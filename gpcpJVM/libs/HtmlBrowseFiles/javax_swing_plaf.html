@@ -1,0 +1,516 @@
+<html><head><title>javax_swing_plaf</title></head>
+<body bgcolor="white">
+<hr><pre>
+<b>FOREIGN MODULE </b><font color="#cc0033">javax_swing_plaf</font>;
+
+<b>IMPORT</b>
+    <a href="javax_swing.html">javax_swing</a> := "javax.swing",
+    <a href="java_io.html">java_io</a> := "java.io",
+    <a href="java_lang.html">java_lang</a> := "java.lang",
+    <a href="java_awt.html">java_awt</a> := "java.awt",
+    <a href="javax_swing_border.html">javax_swing_border</a> := "javax.swing.border",
+    <a href="javax_accessibility.html">javax_accessibility</a> := "javax.accessibility",
+    <a href="java_awt_color.html">java_awt_color</a> := "java.awt.color",
+    <a href="java_awt_image.html">java_awt_image</a> := "java.awt.image",
+    <a href="java_awt_geom.html">java_awt_geom</a> := "java.awt.geom",
+    <a href="javax_swing_filechooser.html">javax_swing_filechooser</a> := "javax.swing.filechooser",
+    <a href="java_util.html">java_util</a> := "java.util",
+    <a href="java_awt_peer.html">java_awt_peer</a> := "java.awt.peer",
+    <a href="sun_font.html">sun_font</a> := "sun.font",
+    <a href="java_lang_ref.html">java_lang_ref</a> := "java.lang.ref",
+    <a href="java_text.html">java_text</a> := "java.text",
+    <a href="java_awt_font.html">java_awt_font</a> := "java.awt.font",
+    <a href="java_awt_event.html">java_awt_event</a> := "java.awt.event",
+    <a href="javax_swing_text.html">javax_swing_text</a> := "javax.swing.text",
+    <a href="javax_swing_tree.html">javax_swing_tree</a> := "javax.swing.tree";
+
+<b>TYPE</b>
+
+  <a name="type-ActionMapUIResource"></a><font color="#cc0033">ActionMapUIResource</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="javax_swing.html#type-ActionMap">javax_swing.ActionMap</a> + <a href="#type-UIResource">UIResource</a>)
+                         <b>STATIC</b>
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-ActionMapUIResource">ActionMapUIResource</a><b>,CONSTRUCTOR</b>;
+                         <b>END</b>;
+
+  <a name="type-BorderUIResource"></a><font color="#cc0033">BorderUIResource</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="javax_swing_border.html#type-Border">javax_swing_border.Border</a> + <a href="#type-UIResource">UIResource</a> + <a href="java_io.html#type-Serializable">java_io.Serializable</a>)    <a href="#meths-BorderUIResource"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                      <b>STATIC</b>
+                        <b>PROCEDURE </b><font color="#cc0033">getBlackLineBorderUIResource</font>*() : <a href="javax_swing_border.html#type-Border">javax_swing_border.Border</a>;
+                        <b>PROCEDURE </b><font color="#cc0033">getEtchedBorderUIResource</font>*() : <a href="javax_swing_border.html#type-Border">javax_swing_border.Border</a>;
+                        <b>PROCEDURE </b><font color="#cc0033">getLoweredBevelBorderUIResource</font>*() : <a href="javax_swing_border.html#type-Border">javax_swing_border.Border</a>;
+                        <b>PROCEDURE </b><font color="#cc0033">getRaisedBevelBorderUIResource</font>*() : <a href="javax_swing_border.html#type-Border">javax_swing_border.Border</a>;
+                        <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="javax_swing_border.html#type-Border">javax_swing_border.Border</a>) : <a href="#type-BorderUIResource">BorderUIResource</a><b>,CONSTRUCTOR</b>;
+                      <b>END</b>;
+
+  <a name="type-BorderUIResource$BevelBorderUIResource"></a><font color="#cc0033">BorderUIResource$BevelBorderUIResource</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="javax_swing_border.html#type-BevelBorder">javax_swing_border.BevelBorder</a> + <a href="#type-UIResource">UIResource</a>)
+                                            <b>STATIC</b>
+                                              <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER;
+                                                              p1 : <a href="java_awt.html#type-Color">java_awt.Color</a>;
+                                                              p2 : <a href="java_awt.html#type-Color">java_awt.Color</a>;
+                                                              p3 : <a href="java_awt.html#type-Color">java_awt.Color</a>;
+                                                              p4 : <a href="java_awt.html#type-Color">java_awt.Color</a>) : <a href="#type-BorderUIResource$BevelBorderUIResource">BorderUIResource$BevelBorderUIResource</a><b>,CONSTRUCTOR</b>;
+                                              <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER;
+                                                              p1 : <a href="java_awt.html#type-Color">java_awt.Color</a>;
+                                                              p2 : <a href="java_awt.html#type-Color">java_awt.Color</a>) : <a href="#type-BorderUIResource$BevelBorderUIResource">BorderUIResource$BevelBorderUIResource</a><b>,CONSTRUCTOR</b>;
+                                              <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER) : <a href="#type-BorderUIResource$BevelBorderUIResource">BorderUIResource$BevelBorderUIResource</a><b>,CONSTRUCTOR</b>;
+                                            <b>END</b>;
+
+  <a name="type-BorderUIResource$CompoundBorderUIResource"></a><font color="#cc0033">BorderUIResource$CompoundBorderUIResource</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="javax_swing_border.html#type-CompoundBorder">javax_swing_border.CompoundBorder</a> + <a href="#type-UIResource">UIResource</a>)
+                                               <b>STATIC</b>
+                                                 <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="javax_swing_border.html#type-Border">javax_swing_border.Border</a>;
+                                                                 p1 : <a href="javax_swing_border.html#type-Border">javax_swing_border.Border</a>) : <a href="#type-BorderUIResource$CompoundBorderUIResource">BorderUIResource$CompoundBorderUIResource</a><b>,CONSTRUCTOR</b>;
+                                               <b>END</b>;
+
+  <a name="type-BorderUIResource$EmptyBorderUIResource"></a><font color="#cc0033">BorderUIResource$EmptyBorderUIResource</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="javax_swing_border.html#type-EmptyBorder">javax_swing_border.EmptyBorder</a> + <a href="#type-UIResource">UIResource</a>)
+                                            <b>STATIC</b>
+                                              <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_awt.html#type-Insets">java_awt.Insets</a>) : <a href="#type-BorderUIResource$EmptyBorderUIResource">BorderUIResource$EmptyBorderUIResource</a><b>,CONSTRUCTOR</b>;
+                                              <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER;
+                                                              p1 : INTEGER;
+                                                              p2 : INTEGER;
+                                                              p3 : INTEGER) : <a href="#type-BorderUIResource$EmptyBorderUIResource">BorderUIResource$EmptyBorderUIResource</a><b>,CONSTRUCTOR</b>;
+                                            <b>END</b>;
+
+  <a name="type-BorderUIResource$EtchedBorderUIResource"></a><font color="#cc0033">BorderUIResource$EtchedBorderUIResource</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="javax_swing_border.html#type-EtchedBorder">javax_swing_border.EtchedBorder</a> + <a href="#type-UIResource">UIResource</a>)
+                                             <b>STATIC</b>
+                                               <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_awt.html#type-Color">java_awt.Color</a>;
+                                                               p1 : <a href="java_awt.html#type-Color">java_awt.Color</a>) : <a href="#type-BorderUIResource$EtchedBorderUIResource">BorderUIResource$EtchedBorderUIResource</a><b>,CONSTRUCTOR</b>;
+                                               <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER;
+                                                               p1 : <a href="java_awt.html#type-Color">java_awt.Color</a>;
+                                                               p2 : <a href="java_awt.html#type-Color">java_awt.Color</a>) : <a href="#type-BorderUIResource$EtchedBorderUIResource">BorderUIResource$EtchedBorderUIResource</a><b>,CONSTRUCTOR</b>;
+                                               <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-BorderUIResource$EtchedBorderUIResource">BorderUIResource$EtchedBorderUIResource</a><b>,CONSTRUCTOR</b>;
+                                               <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER) : <a href="#type-BorderUIResource$EtchedBorderUIResource">BorderUIResource$EtchedBorderUIResource</a><b>,CONSTRUCTOR</b>;
+                                             <b>END</b>;
+
+  <a name="type-BorderUIResource$LineBorderUIResource"></a><font color="#cc0033">BorderUIResource$LineBorderUIResource</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="javax_swing_border.html#type-LineBorder">javax_swing_border.LineBorder</a> + <a href="#type-UIResource">UIResource</a>)
+                                           <b>STATIC</b>
+                                             <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_awt.html#type-Color">java_awt.Color</a>;
+                                                             p1 : INTEGER) : <a href="#type-BorderUIResource$LineBorderUIResource">BorderUIResource$LineBorderUIResource</a><b>,CONSTRUCTOR</b>;
+                                             <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_awt.html#type-Color">java_awt.Color</a>) : <a href="#type-BorderUIResource$LineBorderUIResource">BorderUIResource$LineBorderUIResource</a><b>,CONSTRUCTOR</b>;
+                                           <b>END</b>;
+
+  <a name="type-BorderUIResource$MatteBorderUIResource"></a><font color="#cc0033">BorderUIResource$MatteBorderUIResource</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="javax_swing_border.html#type-MatteBorder">javax_swing_border.MatteBorder</a> + <a href="#type-UIResource">UIResource</a>)
+                                            <b>STATIC</b>
+                                              <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="javax_swing.html#type-Icon">javax_swing.Icon</a>) : <a href="#type-BorderUIResource$MatteBorderUIResource">BorderUIResource$MatteBorderUIResource</a><b>,CONSTRUCTOR</b>;
+                                              <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER;
+                                                              p1 : INTEGER;
+                                                              p2 : INTEGER;
+                                                              p3 : INTEGER;
+                                                              p4 : <a href="javax_swing.html#type-Icon">javax_swing.Icon</a>) : <a href="#type-BorderUIResource$MatteBorderUIResource">BorderUIResource$MatteBorderUIResource</a><b>,CONSTRUCTOR</b>;
+                                              <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER;
+                                                              p1 : INTEGER;
+                                                              p2 : INTEGER;
+                                                              p3 : INTEGER;
+                                                              p4 : <a href="java_awt.html#type-Color">java_awt.Color</a>) : <a href="#type-BorderUIResource$MatteBorderUIResource">BorderUIResource$MatteBorderUIResource</a><b>,CONSTRUCTOR</b>;
+                                            <b>END</b>;
+
+  <a name="type-BorderUIResource$TitledBorderUIResource"></a><font color="#cc0033">BorderUIResource$TitledBorderUIResource</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="javax_swing_border.html#type-TitledBorder">javax_swing_border.TitledBorder</a> + <a href="#type-UIResource">UIResource</a>)
+                                             <b>STATIC</b>
+                                               <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="javax_swing_border.html#type-Border">javax_swing_border.Border</a>;
+                                                               p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                               p2 : INTEGER;
+                                                               p3 : INTEGER) : <a href="#type-BorderUIResource$TitledBorderUIResource">BorderUIResource$TitledBorderUIResource</a><b>,CONSTRUCTOR</b>;
+                                               <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="javax_swing_border.html#type-Border">javax_swing_border.Border</a>;
+                                                               p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                               p2 : INTEGER;
+                                                               p3 : INTEGER;
+                                                               p4 : <a href="java_awt.html#type-Font">java_awt.Font</a>) : <a href="#type-BorderUIResource$TitledBorderUIResource">BorderUIResource$TitledBorderUIResource</a><b>,CONSTRUCTOR</b>;
+                                               <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="javax_swing_border.html#type-Border">javax_swing_border.Border</a>;
+                                                               p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                               p2 : INTEGER;
+                                                               p3 : INTEGER;
+                                                               p4 : <a href="java_awt.html#type-Font">java_awt.Font</a>;
+                                                               p5 : <a href="java_awt.html#type-Color">java_awt.Color</a>) : <a href="#type-BorderUIResource$TitledBorderUIResource">BorderUIResource$TitledBorderUIResource</a><b>,CONSTRUCTOR</b>;
+                                               <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-BorderUIResource$TitledBorderUIResource">BorderUIResource$TitledBorderUIResource</a><b>,CONSTRUCTOR</b>;
+                                               <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="javax_swing_border.html#type-Border">javax_swing_border.Border</a>) : <a href="#type-BorderUIResource$TitledBorderUIResource">BorderUIResource$TitledBorderUIResource</a><b>,CONSTRUCTOR</b>;
+                                               <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="javax_swing_border.html#type-Border">javax_swing_border.Border</a>;
+                                                               p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-BorderUIResource$TitledBorderUIResource">BorderUIResource$TitledBorderUIResource</a><b>,CONSTRUCTOR</b>;
+                                             <b>END</b>;
+
+  <a name="type-ButtonUI"></a><font color="#cc0033">ButtonUI</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="#type-ComponentUI">ComponentUI</a>)
+              <b>STATIC</b>
+                <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-ButtonUI">ButtonUI</a><b>,CONSTRUCTOR</b>;
+              <b>END</b>;
+
+  <a name="type-ColorChooserUI"></a><font color="#cc0033">ColorChooserUI</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="#type-ComponentUI">ComponentUI</a>)
+                    <b>STATIC</b>
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-ColorChooserUI">ColorChooserUI</a><b>,CONSTRUCTOR</b>;
+                    <b>END</b>;
+
+  <a name="type-ColorUIResource"></a><font color="#cc0033">ColorUIResource</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_awt.html#type-Color">java_awt.Color</a> + <a href="#type-UIResource">UIResource</a>)
+                     <b>STATIC</b>
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : SHORTREAL;
+                                       p1 : SHORTREAL;
+                                       p2 : SHORTREAL) : <a href="#type-ColorUIResource">ColorUIResource</a><b>,CONSTRUCTOR</b>;
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_awt.html#type-Color">java_awt.Color</a>) : <a href="#type-ColorUIResource">ColorUIResource</a><b>,CONSTRUCTOR</b>;
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER;
+                                       p1 : INTEGER;
+                                       p2 : INTEGER) : <a href="#type-ColorUIResource">ColorUIResource</a><b>,CONSTRUCTOR</b>;
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER) : <a href="#type-ColorUIResource">ColorUIResource</a><b>,CONSTRUCTOR</b>;
+                     <b>END</b>;
+
+  <a name="type-ComboBoxUI"></a><font color="#cc0033">ComboBoxUI</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="#type-ComponentUI">ComponentUI</a>)    <a href="#meths-ComboBoxUI"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                <b>STATIC</b>
+                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-ComboBoxUI">ComboBoxUI</a><b>,CONSTRUCTOR</b>;
+                <b>END</b>;
+
+  <a name="type-ComponentInputMapUIResource"></a><font color="#cc0033">ComponentInputMapUIResource</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="javax_swing.html#type-ComponentInputMap">javax_swing.ComponentInputMap</a> + <a href="#type-UIResource">UIResource</a>)
+                                 <b>STATIC</b>
+                                   <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="javax_swing.html#type-JComponent">javax_swing.JComponent</a>) : <a href="#type-ComponentInputMapUIResource">ComponentInputMapUIResource</a><b>,CONSTRUCTOR</b>;
+                                 <b>END</b>;
+
+  <a name="type-ComponentUI"></a><font color="#cc0033">ComponentUI</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-ComponentUI"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                 <b>STATIC</b>
+                   <b>PROCEDURE </b><font color="#cc0033">createUI</font>*(p0 : <a href="javax_swing.html#type-JComponent">javax_swing.JComponent</a>) : <a href="#type-ComponentUI">ComponentUI</a>;
+                   <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-ComponentUI">ComponentUI</a><b>,CONSTRUCTOR</b>;
+                 <b>END</b>;
+
+  <a name="type-DesktopIconUI"></a><font color="#cc0033">DesktopIconUI</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="#type-ComponentUI">ComponentUI</a>)
+                   <b>STATIC</b>
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-DesktopIconUI">DesktopIconUI</a><b>,CONSTRUCTOR</b>;
+                   <b>END</b>;
+
+  <a name="type-DesktopPaneUI"></a><font color="#cc0033">DesktopPaneUI</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="#type-ComponentUI">ComponentUI</a>)
+                   <b>STATIC</b>
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-DesktopPaneUI">DesktopPaneUI</a><b>,CONSTRUCTOR</b>;
+                   <b>END</b>;
+
+  <a name="type-DimensionUIResource"></a><font color="#cc0033">DimensionUIResource</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_awt.html#type-Dimension">java_awt.Dimension</a> + <a href="#type-UIResource">UIResource</a>)
+                         <b>STATIC</b>
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER;
+                                           p1 : INTEGER) : <a href="#type-DimensionUIResource">DimensionUIResource</a><b>,CONSTRUCTOR</b>;
+                         <b>END</b>;
+
+  <a name="type-FileChooserUI"></a><font color="#cc0033">FileChooserUI</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="#type-ComponentUI">ComponentUI</a>)    <a href="#meths-FileChooserUI"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                   <b>STATIC</b>
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-FileChooserUI">FileChooserUI</a><b>,CONSTRUCTOR</b>;
+                   <b>END</b>;
+
+  <a name="type-FontUIResource"></a><font color="#cc0033">FontUIResource</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_awt.html#type-Font">java_awt.Font</a> + <a href="#type-UIResource">UIResource</a>)
+                    <b>STATIC</b>
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_awt.html#type-Font">java_awt.Font</a>) : <a href="#type-FontUIResource">FontUIResource</a><b>,CONSTRUCTOR</b>;
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                      p1 : INTEGER;
+                                      p2 : INTEGER) : <a href="#type-FontUIResource">FontUIResource</a><b>,CONSTRUCTOR</b>;
+                    <b>END</b>;
+
+  <a name="type-IconUIResource"></a><font color="#cc0033">IconUIResource</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="javax_swing.html#type-Icon">javax_swing.Icon</a> + <a href="#type-UIResource">UIResource</a> + <a href="java_io.html#type-Serializable">java_io.Serializable</a>)    <a href="#meths-IconUIResource"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                    <b>STATIC</b>
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="javax_swing.html#type-Icon">javax_swing.Icon</a>) : <a href="#type-IconUIResource">IconUIResource</a><b>,CONSTRUCTOR</b>;
+                    <b>END</b>;
+
+  <a name="type-InputMapUIResource"></a><font color="#cc0033">InputMapUIResource</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="javax_swing.html#type-InputMap">javax_swing.InputMap</a> + <a href="#type-UIResource">UIResource</a>)
+                        <b>STATIC</b>
+                          <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-InputMapUIResource">InputMapUIResource</a><b>,CONSTRUCTOR</b>;
+                        <b>END</b>;
+
+  <a name="type-InsetsUIResource"></a><font color="#cc0033">InsetsUIResource</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_awt.html#type-Insets">java_awt.Insets</a> + <a href="#type-UIResource">UIResource</a>)
+                      <b>STATIC</b>
+                        <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER;
+                                        p1 : INTEGER;
+                                        p2 : INTEGER;
+                                        p3 : INTEGER) : <a href="#type-InsetsUIResource">InsetsUIResource</a><b>,CONSTRUCTOR</b>;
+                      <b>END</b>;
+
+  <a name="type-InternalFrameUI"></a><font color="#cc0033">InternalFrameUI</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="#type-ComponentUI">ComponentUI</a>)
+                     <b>STATIC</b>
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-InternalFrameUI">InternalFrameUI</a><b>,CONSTRUCTOR</b>;
+                     <b>END</b>;
+
+  <a name="type-LabelUI"></a><font color="#cc0033">LabelUI</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="#type-ComponentUI">ComponentUI</a>)
+             <b>STATIC</b>
+               <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-LabelUI">LabelUI</a><b>,CONSTRUCTOR</b>;
+             <b>END</b>;
+
+  <a name="type-ListUI"></a><font color="#cc0033">ListUI</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="#type-ComponentUI">ComponentUI</a>)    <a href="#meths-ListUI"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+            <b>STATIC</b>
+              <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-ListUI">ListUI</a><b>,CONSTRUCTOR</b>;
+            <b>END</b>;
+
+  <a name="type-MenuBarUI"></a><font color="#cc0033">MenuBarUI</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="#type-ComponentUI">ComponentUI</a>)
+               <b>STATIC</b>
+                 <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-MenuBarUI">MenuBarUI</a><b>,CONSTRUCTOR</b>;
+               <b>END</b>;
+
+  <a name="type-MenuItemUI"></a><font color="#cc0033">MenuItemUI</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="#type-ButtonUI">ButtonUI</a>)
+                <b>STATIC</b>
+                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-MenuItemUI">MenuItemUI</a><b>,CONSTRUCTOR</b>;
+                <b>END</b>;
+
+  <a name="type-OptionPaneUI"></a><font color="#cc0033">OptionPaneUI</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="#type-ComponentUI">ComponentUI</a>)    <a href="#meths-OptionPaneUI"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                  <b>STATIC</b>
+                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-OptionPaneUI">OptionPaneUI</a><b>,CONSTRUCTOR</b>;
+                  <b>END</b>;
+
+  <a name="type-PanelUI"></a><font color="#cc0033">PanelUI</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="#type-ComponentUI">ComponentUI</a>)
+             <b>STATIC</b>
+               <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-PanelUI">PanelUI</a><b>,CONSTRUCTOR</b>;
+             <b>END</b>;
+
+  <a name="type-PopupMenuUI"></a><font color="#cc0033">PopupMenuUI</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="#type-ComponentUI">ComponentUI</a>)    <a href="#meths-PopupMenuUI"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                 <b>STATIC</b>
+                   <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-PopupMenuUI">PopupMenuUI</a><b>,CONSTRUCTOR</b>;
+                 <b>END</b>;
+
+  <a name="type-ProgressBarUI"></a><font color="#cc0033">ProgressBarUI</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="#type-ComponentUI">ComponentUI</a>)
+                   <b>STATIC</b>
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-ProgressBarUI">ProgressBarUI</a><b>,CONSTRUCTOR</b>;
+                   <b>END</b>;
+
+  <a name="type-RootPaneUI"></a><font color="#cc0033">RootPaneUI</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="#type-ComponentUI">ComponentUI</a>)
+                <b>STATIC</b>
+                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-RootPaneUI">RootPaneUI</a><b>,CONSTRUCTOR</b>;
+                <b>END</b>;
+
+  <a name="type-ScrollBarUI"></a><font color="#cc0033">ScrollBarUI</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="#type-ComponentUI">ComponentUI</a>)
+                 <b>STATIC</b>
+                   <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-ScrollBarUI">ScrollBarUI</a><b>,CONSTRUCTOR</b>;
+                 <b>END</b>;
+
+  <a name="type-ScrollPaneUI"></a><font color="#cc0033">ScrollPaneUI</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="#type-ComponentUI">ComponentUI</a>)
+                  <b>STATIC</b>
+                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-ScrollPaneUI">ScrollPaneUI</a><b>,CONSTRUCTOR</b>;
+                  <b>END</b>;
+
+  <a name="type-SeparatorUI"></a><font color="#cc0033">SeparatorUI</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="#type-ComponentUI">ComponentUI</a>)
+                 <b>STATIC</b>
+                   <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-SeparatorUI">SeparatorUI</a><b>,CONSTRUCTOR</b>;
+                 <b>END</b>;
+
+  <a name="type-SliderUI"></a><font color="#cc0033">SliderUI</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="#type-ComponentUI">ComponentUI</a>)
+              <b>STATIC</b>
+                <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-SliderUI">SliderUI</a><b>,CONSTRUCTOR</b>;
+              <b>END</b>;
+
+  <a name="type-SpinnerUI"></a><font color="#cc0033">SpinnerUI</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="#type-ComponentUI">ComponentUI</a>)
+               <b>STATIC</b>
+                 <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-SpinnerUI">SpinnerUI</a><b>,CONSTRUCTOR</b>;
+               <b>END</b>;
+
+  <a name="type-SplitPaneUI"></a><font color="#cc0033">SplitPaneUI</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="#type-ComponentUI">ComponentUI</a>)    <a href="#meths-SplitPaneUI"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                 <b>STATIC</b>
+                   <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-SplitPaneUI">SplitPaneUI</a><b>,CONSTRUCTOR</b>;
+                 <b>END</b>;
+
+  <a name="type-TabbedPaneUI"></a><font color="#cc0033">TabbedPaneUI</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="#type-ComponentUI">ComponentUI</a>)    <a href="#meths-TabbedPaneUI"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                  <b>STATIC</b>
+                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-TabbedPaneUI">TabbedPaneUI</a><b>,CONSTRUCTOR</b>;
+                  <b>END</b>;
+
+  <a name="type-TableHeaderUI"></a><font color="#cc0033">TableHeaderUI</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="#type-ComponentUI">ComponentUI</a>)
+                   <b>STATIC</b>
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-TableHeaderUI">TableHeaderUI</a><b>,CONSTRUCTOR</b>;
+                   <b>END</b>;
+
+  <a name="type-TableUI"></a><font color="#cc0033">TableUI</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="#type-ComponentUI">ComponentUI</a>)
+             <b>STATIC</b>
+               <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-TableUI">TableUI</a><b>,CONSTRUCTOR</b>;
+             <b>END</b>;
+
+  <a name="type-TextUI"></a><font color="#cc0033">TextUI</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="#type-ComponentUI">ComponentUI</a>)    <a href="#meths-TextUI"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+            <b>STATIC</b>
+              <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-TextUI">TextUI</a><b>,CONSTRUCTOR</b>;
+            <b>END</b>;
+
+  <a name="type-ToolBarUI"></a><font color="#cc0033">ToolBarUI</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="#type-ComponentUI">ComponentUI</a>)
+               <b>STATIC</b>
+                 <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-ToolBarUI">ToolBarUI</a><b>,CONSTRUCTOR</b>;
+               <b>END</b>;
+
+  <a name="type-ToolTipUI"></a><font color="#cc0033">ToolTipUI</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="#type-ComponentUI">ComponentUI</a>)
+               <b>STATIC</b>
+                 <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-ToolTipUI">ToolTipUI</a><b>,CONSTRUCTOR</b>;
+               <b>END</b>;
+
+  <a name="type-TreeUI"></a><font color="#cc0033">TreeUI</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="#type-ComponentUI">ComponentUI</a>)    <a href="#meths-TreeUI"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+            <b>STATIC</b>
+              <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-TreeUI">TreeUI</a><b>,CONSTRUCTOR</b>;
+            <b>END</b>;
+
+  <a name="type-UIResource"></a><font color="#cc0033">UIResource</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                <b>END</b>;
+
+  <a name="type-ViewportUI"></a><font color="#cc0033">ViewportUI</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="#type-ComponentUI">ComponentUI</a>)
+                <b>STATIC</b>
+                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-ViewportUI">ViewportUI</a><b>,CONSTRUCTOR</b>;
+                <b>END</b>;
+
+
+
+<a name="meths-BorderUIResource"></a>
+<b>PROCEDURE </b>(self:BorderUIResource) <font color="#cc0033">getBorderInsets</font>*(p0 : <a href="java_awt.html#type-Component">java_awt.Component</a>) : <a href="java_awt.html#type-Insets">java_awt.Insets</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BorderUIResource) <font color="#cc0033">isBorderOpaque</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BorderUIResource) <font color="#cc0033">paintBorder</font>*(p0 : <a href="java_awt.html#type-Component">java_awt.Component</a>;
+                                               p1 : <a href="java_awt.html#type-Graphics">java_awt.Graphics</a>;
+                                               p2 : INTEGER;
+                                               p3 : INTEGER;
+                                               p4 : INTEGER;
+                                               p5 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-ComboBoxUI"></a>
+<b>PROCEDURE </b>(self:ComboBoxUI) <font color="#cc0033">isFocusTraversable</font>*(p0 : <a href="javax_swing.html#type-JComboBox">javax_swing.JComboBox</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ComboBoxUI) <font color="#cc0033">isPopupVisible</font>*(p0 : <a href="javax_swing.html#type-JComboBox">javax_swing.JComboBox</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ComboBoxUI) <font color="#cc0033">setPopupVisible</font>*(p0 : <a href="javax_swing.html#type-JComboBox">javax_swing.JComboBox</a>;
+                                             p1 : BOOLEAN)<b>,NEW,ABSTRACT</b>;
+<a name="meths-ComponentUI"></a>
+<b>PROCEDURE </b>(self:ComponentUI) <font color="#cc0033">contains</font>*(p0 : <a href="javax_swing.html#type-JComponent">javax_swing.JComponent</a>;
+                                       p1 : INTEGER;
+                                       p2 : INTEGER) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ComponentUI) <font color="#cc0033">getAccessibleChild</font>*(p0 : <a href="javax_swing.html#type-JComponent">javax_swing.JComponent</a>;
+                                                 p1 : INTEGER) : <a href="javax_accessibility.html#type-Accessible">javax_accessibility.Accessible</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ComponentUI) <font color="#cc0033">getAccessibleChildrenCount</font>*(p0 : <a href="javax_swing.html#type-JComponent">javax_swing.JComponent</a>) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ComponentUI) <font color="#cc0033">getBaseline</font>*(p0 : <a href="javax_swing.html#type-JComponent">javax_swing.JComponent</a>;
+                                          p1 : INTEGER;
+                                          p2 : INTEGER) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ComponentUI) <font color="#cc0033">getBaselineResizeBehavior</font>*(p0 : <a href="javax_swing.html#type-JComponent">javax_swing.JComponent</a>) : <a href="java_awt.html#type-Component$BaselineResizeBehavior">java_awt.Component$BaselineResizeBehavior</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ComponentUI) <font color="#cc0033">getMaximumSize</font>*(p0 : <a href="javax_swing.html#type-JComponent">javax_swing.JComponent</a>) : <a href="java_awt.html#type-Dimension">java_awt.Dimension</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ComponentUI) <font color="#cc0033">getMinimumSize</font>*(p0 : <a href="javax_swing.html#type-JComponent">javax_swing.JComponent</a>) : <a href="java_awt.html#type-Dimension">java_awt.Dimension</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ComponentUI) <font color="#cc0033">getPreferredSize</font>*(p0 : <a href="javax_swing.html#type-JComponent">javax_swing.JComponent</a>) : <a href="java_awt.html#type-Dimension">java_awt.Dimension</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ComponentUI) <font color="#cc0033">installUI</font>*(p0 : <a href="javax_swing.html#type-JComponent">javax_swing.JComponent</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ComponentUI) <font color="#cc0033">paint</font>*(p0 : <a href="java_awt.html#type-Graphics">java_awt.Graphics</a>;
+                                    p1 : <a href="javax_swing.html#type-JComponent">javax_swing.JComponent</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ComponentUI) <font color="#cc0033">uninstallUI</font>*(p0 : <a href="javax_swing.html#type-JComponent">javax_swing.JComponent</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ComponentUI) <font color="#cc0033">update</font>*(p0 : <a href="java_awt.html#type-Graphics">java_awt.Graphics</a>;
+                                     p1 : <a href="javax_swing.html#type-JComponent">javax_swing.JComponent</a>)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-FileChooserUI"></a>
+<b>PROCEDURE </b>(self:FileChooserUI) <font color="#cc0033">ensureFileIsVisible</font>*(p0 : <a href="javax_swing.html#type-JFileChooser">javax_swing.JFileChooser</a>;
+                                                    p1 : <a href="java_io.html#type-File">java_io.File</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:FileChooserUI) <font color="#cc0033">getAcceptAllFileFilter</font>*(p0 : <a href="javax_swing.html#type-JFileChooser">javax_swing.JFileChooser</a>) : <a href="javax_swing_filechooser.html#type-FileFilter">javax_swing_filechooser.FileFilter</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:FileChooserUI) <font color="#cc0033">getApproveButtonText</font>*(p0 : <a href="javax_swing.html#type-JFileChooser">javax_swing.JFileChooser</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:FileChooserUI) <font color="#cc0033">getDialogTitle</font>*(p0 : <a href="javax_swing.html#type-JFileChooser">javax_swing.JFileChooser</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:FileChooserUI) <font color="#cc0033">getFileView</font>*(p0 : <a href="javax_swing.html#type-JFileChooser">javax_swing.JFileChooser</a>) : <a href="javax_swing_filechooser.html#type-FileView">javax_swing_filechooser.FileView</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:FileChooserUI) <font color="#cc0033">rescanCurrentDirectory</font>*(p0 : <a href="javax_swing.html#type-JFileChooser">javax_swing.JFileChooser</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-IconUIResource"></a>
+<b>PROCEDURE </b>(self:IconUIResource) <font color="#cc0033">getIconHeight</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IconUIResource) <font color="#cc0033">getIconWidth</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IconUIResource) <font color="#cc0033">paintIcon</font>*(p0 : <a href="java_awt.html#type-Component">java_awt.Component</a>;
+                                           p1 : <a href="java_awt.html#type-Graphics">java_awt.Graphics</a>;
+                                           p2 : INTEGER;
+                                           p3 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-ListUI"></a>
+<b>PROCEDURE </b>(self:ListUI) <font color="#cc0033">getCellBounds</font>*(p0 : <a href="javax_swing.html#type-JList">javax_swing.JList</a>;
+                                       p1 : INTEGER;
+                                       p2 : INTEGER) : <a href="java_awt.html#type-Rectangle">java_awt.Rectangle</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ListUI) <font color="#cc0033">indexToLocation</font>*(p0 : <a href="javax_swing.html#type-JList">javax_swing.JList</a>;
+                                         p1 : INTEGER) : <a href="java_awt.html#type-Point">java_awt.Point</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ListUI) <font color="#cc0033">locationToIndex</font>*(p0 : <a href="javax_swing.html#type-JList">javax_swing.JList</a>;
+                                         p1 : <a href="java_awt.html#type-Point">java_awt.Point</a>) : INTEGER<b>,NEW,ABSTRACT</b>;
+<a name="meths-OptionPaneUI"></a>
+<b>PROCEDURE </b>(self:OptionPaneUI) <font color="#cc0033">containsCustomComponents</font>*(p0 : <a href="javax_swing.html#type-JOptionPane">javax_swing.JOptionPane</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:OptionPaneUI) <font color="#cc0033">selectInitialValue</font>*(p0 : <a href="javax_swing.html#type-JOptionPane">javax_swing.JOptionPane</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-PopupMenuUI"></a>
+<b>PROCEDURE </b>(self:PopupMenuUI) <font color="#cc0033">getPopup</font>*(p0 : <a href="javax_swing.html#type-JPopupMenu">javax_swing.JPopupMenu</a>;
+                                       p1 : INTEGER;
+                                       p2 : INTEGER) : <a href="javax_swing.html#type-Popup">javax_swing.Popup</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PopupMenuUI) <font color="#cc0033">isPopupTrigger</font>*(p0 : <a href="java_awt_event.html#type-MouseEvent">java_awt_event.MouseEvent</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-SplitPaneUI"></a>
+<b>PROCEDURE </b>(self:SplitPaneUI) <font color="#cc0033">finishedPaintingChildren</font>*(p0 : <a href="javax_swing.html#type-JSplitPane">javax_swing.JSplitPane</a>;
+                                                       p1 : <a href="java_awt.html#type-Graphics">java_awt.Graphics</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SplitPaneUI) <font color="#cc0033">getDividerLocation</font>*(p0 : <a href="javax_swing.html#type-JSplitPane">javax_swing.JSplitPane</a>) : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SplitPaneUI) <font color="#cc0033">getMaximumDividerLocation</font>*(p0 : <a href="javax_swing.html#type-JSplitPane">javax_swing.JSplitPane</a>) : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SplitPaneUI) <font color="#cc0033">getMinimumDividerLocation</font>*(p0 : <a href="javax_swing.html#type-JSplitPane">javax_swing.JSplitPane</a>) : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SplitPaneUI) <font color="#cc0033">resetToPreferredSizes</font>*(p0 : <a href="javax_swing.html#type-JSplitPane">javax_swing.JSplitPane</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SplitPaneUI) <font color="#cc0033">setDividerLocation</font>*(p0 : <a href="javax_swing.html#type-JSplitPane">javax_swing.JSplitPane</a>;
+                                                 p1 : INTEGER)<b>,NEW,ABSTRACT</b>;
+<a name="meths-TabbedPaneUI"></a>
+<b>PROCEDURE </b>(self:TabbedPaneUI) <font color="#cc0033">getTabBounds</font>*(p0 : <a href="javax_swing.html#type-JTabbedPane">javax_swing.JTabbedPane</a>;
+                                            p1 : INTEGER) : <a href="java_awt.html#type-Rectangle">java_awt.Rectangle</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:TabbedPaneUI) <font color="#cc0033">getTabRunCount</font>*(p0 : <a href="javax_swing.html#type-JTabbedPane">javax_swing.JTabbedPane</a>) : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:TabbedPaneUI) <font color="#cc0033">tabForCoordinate</font>*(p0 : <a href="javax_swing.html#type-JTabbedPane">javax_swing.JTabbedPane</a>;
+                                                p1 : INTEGER;
+                                                p2 : INTEGER) : INTEGER<b>,NEW,ABSTRACT</b>;
+<a name="meths-TextUI"></a>
+<b>PROCEDURE </b>(self:TextUI) <font color="#cc0033">damageRange</font>*(p0 : <a href="javax_swing_text.html#type-JTextComponent">javax_swing_text.JTextComponent</a>;
+                                     p1 : INTEGER;
+                                     p2 : INTEGER)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:TextUI) <font color="#cc0033">damageRange</font>*(p0 : <a href="javax_swing_text.html#type-JTextComponent">javax_swing_text.JTextComponent</a>;
+                                     p1 : INTEGER;
+                                     p2 : INTEGER;
+                                     p3 : <a href="javax_swing_text.html#type-Position$Bias">javax_swing_text.Position$Bias</a>;
+                                     p4 : <a href="javax_swing_text.html#type-Position$Bias">javax_swing_text.Position$Bias</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:TextUI) <font color="#cc0033">getEditorKit</font>*(p0 : <a href="javax_swing_text.html#type-JTextComponent">javax_swing_text.JTextComponent</a>) : <a href="javax_swing_text.html#type-EditorKit">javax_swing_text.EditorKit</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:TextUI) <font color="#cc0033">getNextVisualPositionFrom</font>*(    p0 : <a href="javax_swing_text.html#type-JTextComponent">javax_swing_text.JTextComponent</a>;
+                                                       p1 : INTEGER;
+                                                       p2 : <a href="javax_swing_text.html#type-Position$Bias">javax_swing_text.Position$Bias</a>;
+                                                       p3 : INTEGER;
+                                                   IN  p4 : <b>ARRAY </b><b>OF </b><a href="javax_swing_text.html#type-Position$Bias">javax_swing_text.Position$Bias</a>) : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:TextUI) <font color="#cc0033">getRootView</font>*(p0 : <a href="javax_swing_text.html#type-JTextComponent">javax_swing_text.JTextComponent</a>) : <a href="javax_swing_text.html#type-View">javax_swing_text.View</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:TextUI) <font color="#cc0033">getToolTipText</font>*(p0 : <a href="javax_swing_text.html#type-JTextComponent">javax_swing_text.JTextComponent</a>;
+                                        p1 : <a href="java_awt.html#type-Point">java_awt.Point</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TextUI) <font color="#cc0033">modelToView</font>*(p0 : <a href="javax_swing_text.html#type-JTextComponent">javax_swing_text.JTextComponent</a>;
+                                     p1 : INTEGER) : <a href="java_awt.html#type-Rectangle">java_awt.Rectangle</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:TextUI) <font color="#cc0033">modelToView</font>*(p0 : <a href="javax_swing_text.html#type-JTextComponent">javax_swing_text.JTextComponent</a>;
+                                     p1 : INTEGER;
+                                     p2 : <a href="javax_swing_text.html#type-Position$Bias">javax_swing_text.Position$Bias</a>) : <a href="java_awt.html#type-Rectangle">java_awt.Rectangle</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:TextUI) <font color="#cc0033">viewToModel</font>*(    p0 : <a href="javax_swing_text.html#type-JTextComponent">javax_swing_text.JTextComponent</a>;
+                                         p1 : <a href="java_awt.html#type-Point">java_awt.Point</a>;
+                                     IN  p2 : <b>ARRAY </b><b>OF </b><a href="javax_swing_text.html#type-Position$Bias">javax_swing_text.Position$Bias</a>) : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:TextUI) <font color="#cc0033">viewToModel</font>*(p0 : <a href="javax_swing_text.html#type-JTextComponent">javax_swing_text.JTextComponent</a>;
+                                     p1 : <a href="java_awt.html#type-Point">java_awt.Point</a>) : INTEGER<b>,NEW,ABSTRACT</b>;
+<a name="meths-TreeUI"></a>
+<b>PROCEDURE </b>(self:TreeUI) <font color="#cc0033">cancelEditing</font>*(p0 : <a href="javax_swing.html#type-JTree">javax_swing.JTree</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:TreeUI) <font color="#cc0033">getClosestPathForLocation</font>*(p0 : <a href="javax_swing.html#type-JTree">javax_swing.JTree</a>;
+                                                   p1 : INTEGER;
+                                                   p2 : INTEGER) : <a href="javax_swing_tree.html#type-TreePath">javax_swing_tree.TreePath</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:TreeUI) <font color="#cc0033">getEditingPath</font>*(p0 : <a href="javax_swing.html#type-JTree">javax_swing.JTree</a>) : <a href="javax_swing_tree.html#type-TreePath">javax_swing_tree.TreePath</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:TreeUI) <font color="#cc0033">getPathBounds</font>*(p0 : <a href="javax_swing.html#type-JTree">javax_swing.JTree</a>;
+                                       p1 : <a href="javax_swing_tree.html#type-TreePath">javax_swing_tree.TreePath</a>) : <a href="java_awt.html#type-Rectangle">java_awt.Rectangle</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:TreeUI) <font color="#cc0033">getPathForRow</font>*(p0 : <a href="javax_swing.html#type-JTree">javax_swing.JTree</a>;
+                                       p1 : INTEGER) : <a href="javax_swing_tree.html#type-TreePath">javax_swing_tree.TreePath</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:TreeUI) <font color="#cc0033">getRowCount</font>*(p0 : <a href="javax_swing.html#type-JTree">javax_swing.JTree</a>) : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:TreeUI) <font color="#cc0033">getRowForPath</font>*(p0 : <a href="javax_swing.html#type-JTree">javax_swing.JTree</a>;
+                                       p1 : <a href="javax_swing_tree.html#type-TreePath">javax_swing_tree.TreePath</a>) : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:TreeUI) <font color="#cc0033">isEditing</font>*(p0 : <a href="javax_swing.html#type-JTree">javax_swing.JTree</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:TreeUI) <font color="#cc0033">startEditingAtPath</font>*(p0 : <a href="javax_swing.html#type-JTree">javax_swing.JTree</a>;
+                                            p1 : <a href="javax_swing_tree.html#type-TreePath">javax_swing_tree.TreePath</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:TreeUI) <font color="#cc0033">stopEditing</font>*(p0 : <a href="javax_swing.html#type-JTree">javax_swing.JTree</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>END </b><font color="#cc0033">javax_swing_plaf</font>.
+</font></pre></hr></body></html>

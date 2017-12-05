@@ -1,0 +1,98 @@
+<html><head><title>javax_sound_sampled_spi</title></head>
+<body bgcolor="white">
+<hr><pre>
+<b>FOREIGN MODULE </b><font color="#cc0033">javax_sound_sampled_spi</font>;
+
+<b>IMPORT</b>
+    <a href="java_io.html">java_io</a> := "java.io",
+    <a href="javax_sound_sampled.html">javax_sound_sampled</a> := "javax.sound.sampled",
+    <a href="java_net.html">java_net</a> := "java.net",
+    <a href="java_lang.html">java_lang</a> := "java.lang";
+
+<b>TYPE</b>
+
+  <a name="type-AudioFileReader"></a><font color="#cc0033">AudioFileReader</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-AudioFileReader"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                     <b>STATIC</b>
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-AudioFileReader">AudioFileReader</a><b>,CONSTRUCTOR</b>;
+                     <b>END</b>;
+
+  <a name="type-AudioFileWriter"></a><font color="#cc0033">AudioFileWriter</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-AudioFileWriter"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                     <b>STATIC</b>
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-AudioFileWriter">AudioFileWriter</a><b>,CONSTRUCTOR</b>;
+                     <b>END</b>;
+
+  <a name="type-FormatConversionProvider"></a><font color="#cc0033">FormatConversionProvider</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-FormatConversionProvider"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                              <b>STATIC</b>
+                                <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-FormatConversionProvider">FormatConversionProvider</a><b>,CONSTRUCTOR</b>;
+                              <b>END</b>;
+
+  <a name="type-MixerProvider"></a><font color="#cc0033">MixerProvider</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-MixerProvider"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                   <b>STATIC</b>
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-MixerProvider">MixerProvider</a><b>,CONSTRUCTOR</b>;
+                   <b>END</b>;
+
+
+
+<a name="meths-AudioFileReader"></a>
+<b>PROCEDURE </b>(self:AudioFileReader) <font color="#cc0033">getAudioFileFormat</font>*(p0 : <a href="java_io.html#type-File">java_io.File</a>) : <a href="javax_sound_sampled.html#type-AudioFileFormat">javax_sound_sampled.AudioFileFormat</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AudioFileReader) <font color="#cc0033">getAudioFileFormat</font>*(p0 : <a href="java_net.html#type-URL">java_net.URL</a>) : <a href="javax_sound_sampled.html#type-AudioFileFormat">javax_sound_sampled.AudioFileFormat</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AudioFileReader) <font color="#cc0033">getAudioFileFormat</font>*(p0 : <a href="java_io.html#type-InputStream">java_io.InputStream</a>) : <a href="javax_sound_sampled.html#type-AudioFileFormat">javax_sound_sampled.AudioFileFormat</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AudioFileReader) <font color="#cc0033">getAudioInputStream</font>*(p0 : <a href="java_io.html#type-File">java_io.File</a>) : <a href="javax_sound_sampled.html#type-AudioInputStream">javax_sound_sampled.AudioInputStream</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AudioFileReader) <font color="#cc0033">getAudioInputStream</font>*(p0 : <a href="java_net.html#type-URL">java_net.URL</a>) : <a href="javax_sound_sampled.html#type-AudioInputStream">javax_sound_sampled.AudioInputStream</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AudioFileReader) <font color="#cc0033">getAudioInputStream</font>*(p0 : <a href="java_io.html#type-InputStream">java_io.InputStream</a>) : <a href="javax_sound_sampled.html#type-AudioInputStream">javax_sound_sampled.AudioInputStream</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-AudioFileWriter"></a>
+<b>PROCEDURE </b>(self:AudioFileWriter) <font color="#cc0033">getAudioFileTypes</font>*(p0 : <a href="javax_sound_sampled.html#type-AudioInputStream">javax_sound_sampled.AudioInputStream</a>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="javax_sound_sampled.html#type-AudioFileFormat$Type">javax_sound_sampled.AudioFileFormat$Type</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AudioFileWriter) <font color="#cc0033">getAudioFileTypes</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="javax_sound_sampled.html#type-AudioFileFormat$Type">javax_sound_sampled.AudioFileFormat$Type</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AudioFileWriter) <font color="#cc0033">isFileTypeSupported</font>*(p0 : <a href="javax_sound_sampled.html#type-AudioFileFormat$Type">javax_sound_sampled.AudioFileFormat$Type</a>;
+                                                      p1 : <a href="javax_sound_sampled.html#type-AudioInputStream">javax_sound_sampled.AudioInputStream</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AudioFileWriter) <font color="#cc0033">isFileTypeSupported</font>*(p0 : <a href="javax_sound_sampled.html#type-AudioFileFormat$Type">javax_sound_sampled.AudioFileFormat$Type</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AudioFileWriter) <font color="#cc0033">write</font>*(p0 : <a href="javax_sound_sampled.html#type-AudioInputStream">javax_sound_sampled.AudioInputStream</a>;
+                                        p1 : <a href="javax_sound_sampled.html#type-AudioFileFormat$Type">javax_sound_sampled.AudioFileFormat$Type</a>;
+                                        p2 : <a href="java_io.html#type-File">java_io.File</a>) : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AudioFileWriter) <font color="#cc0033">write</font>*(p0 : <a href="javax_sound_sampled.html#type-AudioInputStream">javax_sound_sampled.AudioInputStream</a>;
+                                        p1 : <a href="javax_sound_sampled.html#type-AudioFileFormat$Type">javax_sound_sampled.AudioFileFormat$Type</a>;
+                                        p2 : <a href="java_io.html#type-OutputStream">java_io.OutputStream</a>) : INTEGER<b>,NEW,ABSTRACT</b>;
+<a name="meths-FormatConversionProvider"></a>
+<b>PROCEDURE </b>(self:FormatConversionProvider) <font color="#cc0033">getAudioInputStream</font>*(p0 : <a href="javax_sound_sampled.html#type-AudioFormat$Encoding">javax_sound_sampled.AudioFormat$Encoding</a>;
+                                                               p1 : <a href="javax_sound_sampled.html#type-AudioInputStream">javax_sound_sampled.AudioInputStream</a>) : <a href="javax_sound_sampled.html#type-AudioInputStream">javax_sound_sampled.AudioInputStream</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:FormatConversionProvider) <font color="#cc0033">getAudioInputStream</font>*(p0 : <a href="javax_sound_sampled.html#type-AudioFormat">javax_sound_sampled.AudioFormat</a>;
+                                                               p1 : <a href="javax_sound_sampled.html#type-AudioInputStream">javax_sound_sampled.AudioInputStream</a>) : <a href="javax_sound_sampled.html#type-AudioInputStream">javax_sound_sampled.AudioInputStream</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:FormatConversionProvider) <font color="#cc0033">getSourceEncodings</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="javax_sound_sampled.html#type-AudioFormat$Encoding">javax_sound_sampled.AudioFormat$Encoding</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:FormatConversionProvider) <font color="#cc0033">getTargetEncodings</font>*(p0 : <a href="javax_sound_sampled.html#type-AudioFormat">javax_sound_sampled.AudioFormat</a>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="javax_sound_sampled.html#type-AudioFormat$Encoding">javax_sound_sampled.AudioFormat$Encoding</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:FormatConversionProvider) <font color="#cc0033">getTargetEncodings</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="javax_sound_sampled.html#type-AudioFormat$Encoding">javax_sound_sampled.AudioFormat$Encoding</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:FormatConversionProvider) <font color="#cc0033">getTargetFormats</font>*(p0 : <a href="javax_sound_sampled.html#type-AudioFormat$Encoding">javax_sound_sampled.AudioFormat$Encoding</a>;
+                                                            p1 : <a href="javax_sound_sampled.html#type-AudioFormat">javax_sound_sampled.AudioFormat</a>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="javax_sound_sampled.html#type-AudioFormat">javax_sound_sampled.AudioFormat</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:FormatConversionProvider) <font color="#cc0033">isConversionSupported</font>*(p0 : <a href="javax_sound_sampled.html#type-AudioFormat">javax_sound_sampled.AudioFormat</a>;
+                                                                 p1 : <a href="javax_sound_sampled.html#type-AudioFormat">javax_sound_sampled.AudioFormat</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FormatConversionProvider) <font color="#cc0033">isConversionSupported</font>*(p0 : <a href="javax_sound_sampled.html#type-AudioFormat$Encoding">javax_sound_sampled.AudioFormat$Encoding</a>;
+                                                                 p1 : <a href="javax_sound_sampled.html#type-AudioFormat">javax_sound_sampled.AudioFormat</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FormatConversionProvider) <font color="#cc0033">isSourceEncodingSupported</font>*(p0 : <a href="javax_sound_sampled.html#type-AudioFormat$Encoding">javax_sound_sampled.AudioFormat$Encoding</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FormatConversionProvider) <font color="#cc0033">isTargetEncodingSupported</font>*(p0 : <a href="javax_sound_sampled.html#type-AudioFormat$Encoding">javax_sound_sampled.AudioFormat$Encoding</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-MixerProvider"></a>
+<b>PROCEDURE </b>(self:MixerProvider) <font color="#cc0033">getMixer</font>*(p0 : <a href="javax_sound_sampled.html#type-Mixer$Info">javax_sound_sampled.Mixer$Info</a>) : <a href="javax_sound_sampled.html#type-Mixer">javax_sound_sampled.Mixer</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MixerProvider) <font color="#cc0033">getMixerInfo</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="javax_sound_sampled.html#type-Mixer$Info">javax_sound_sampled.Mixer$Info</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MixerProvider) <font color="#cc0033">isMixerSupported</font>*(p0 : <a href="javax_sound_sampled.html#type-Mixer$Info">javax_sound_sampled.Mixer$Info</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>END </b><font color="#cc0033">javax_sound_sampled_spi</font>.
+</font></pre></hr></body></html>

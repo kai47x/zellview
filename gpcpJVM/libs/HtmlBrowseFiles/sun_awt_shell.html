@@ -1,0 +1,203 @@
+<html><head><title>sun_awt_shell</title></head>
+<body bgcolor="white">
+<hr><pre>
+<b>FOREIGN MODULE </b><font color="#cc0033">sun_awt_shell</font>;
+
+<b>IMPORT</b>
+    <a href="java_io.html">java_io</a> := "java.io",
+    <a href="java_lang.html">java_lang</a> := "java.lang",
+    <a href="java_awt.html">java_awt</a> := "java.awt",
+    <a href="java_util.html">java_util</a> := "java.util",
+    <a href="java_util_concurrent.html">java_util_concurrent</a> := "java.util.concurrent",
+    <a href="java_net.html">java_net</a> := "java.net",
+    <a href="javax_swing.html">javax_swing</a> := "javax.swing",
+    <a href="sun_java2d.html">sun_java2d</a> := "sun.java2d",
+    <a href="java_security.html">java_security</a> := "java.security",
+    <a href="java_util_concurrent_locks.html">java_util_concurrent_locks</a> := "java.util.concurrent.locks";
+
+<b>TYPE</b>
+
+  <a name="type-ShellFolder"></a><font color="#cc0033">ShellFolder</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_io.html#type-File">java_io.File</a>)    <a href="#meths-ShellFolder"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                   <font color="#cc0033">parent</font>! : <a href="#type-ShellFolder">ShellFolder</a>;
+                 <b>STATIC</b>
+                   <b>PROCEDURE </b><font color="#cc0033">get</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                   <b>PROCEDURE </b><font color="#cc0033">getFolderColumns</font>*(p0 : <a href="java_io.html#type-File">java_io.File</a>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-ShellFolderColumnInfo">ShellFolderColumnInfo</a>;
+                   <b>PROCEDURE </b><font color="#cc0033">getFolderColumnValue</font>*(p0 : <a href="java_io.html#type-File">java_io.File</a>;
+                                                   p1 : INTEGER) : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                   <b>PROCEDURE </b><font color="#cc0033">getInvoker</font>*() : <a href="#type-ShellFolder$Invoker">ShellFolder$Invoker</a>;
+                   <b>PROCEDURE </b><font color="#cc0033">getNormalizedFile</font>*(p0 : <a href="java_io.html#type-File">java_io.File</a>) : <a href="java_io.html#type-File">java_io.File</a>;
+                   <b>PROCEDURE </b><font color="#cc0033">getShellFolder</font>*(p0 : <a href="java_io.html#type-File">java_io.File</a>) : <a href="#type-ShellFolder">ShellFolder</a>;
+                   <b>PROCEDURE </b><font color="#cc0033">invoke</font>*(p0 : <a href="java_util_concurrent.html#type-Callable">java_util_concurrent.Callable</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                   <b>PROCEDURE </b><font color="#cc0033">invoke</font>*(p0 : <a href="java_util_concurrent.html#type-Callable">java_util_concurrent.Callable</a>;
+                                     p1 : <a href="java_lang.html#type-Class">java_lang.Class</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                   <b>PROCEDURE </b><font color="#cc0033">isComputerNode</font>*(p0 : <a href="java_io.html#type-File">java_io.File</a>) : BOOLEAN;
+                   <b>PROCEDURE </b><font color="#cc0033">isFileSystemRoot</font>*(p0 : <a href="java_io.html#type-File">java_io.File</a>) : BOOLEAN;
+                   <b>PROCEDURE </b><font color="#cc0033">sortFiles</font>*(p0 : <a href="java_util.html#type-List">java_util.List</a>);
+                 <b>END</b>;
+
+  <a name="type-ShellFolder$Invoker"></a><font color="#cc0033">ShellFolder$Invoker</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-ShellFolder$Invoker"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                         <b>END</b>;
+
+  <a name="type-ShellFolderColumnInfo"></a><font color="#cc0033">ShellFolderColumnInfo</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-ShellFolderColumnInfo"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                           <b>STATIC</b>
+                             <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                             p1 : INTEGER;
+                                             p2 : INTEGER;
+                                             p3 : BOOLEAN) : <a href="#type-ShellFolderColumnInfo">ShellFolderColumnInfo</a><b>,CONSTRUCTOR</b>;
+                             <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                             p1 : <a href="java_lang.html#type-Integer">java_lang.Integer</a>;
+                                             p2 : <a href="java_lang.html#type-Integer">java_lang.Integer</a>;
+                                             p3 : BOOLEAN;
+                                             p4 : <a href="javax_swing.html#type-SortOrder">javax_swing.SortOrder</a>;
+                                             p5 : <a href="java_util.html#type-Comparator">java_util.Comparator</a>) : <a href="#type-ShellFolderColumnInfo">ShellFolderColumnInfo</a><b>,CONSTRUCTOR</b>;
+                             <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                             p1 : <a href="java_lang.html#type-Integer">java_lang.Integer</a>;
+                                             p2 : <a href="java_lang.html#type-Integer">java_lang.Integer</a>;
+                                             p3 : BOOLEAN;
+                                             p4 : <a href="javax_swing.html#type-SortOrder">javax_swing.SortOrder</a>;
+                                             p5 : <a href="java_util.html#type-Comparator">java_util.Comparator</a>;
+                                             p6 : BOOLEAN) : <a href="#type-ShellFolderColumnInfo">ShellFolderColumnInfo</a><b>,CONSTRUCTOR</b>;
+                           <b>END</b>;
+
+  <a name="type-Win32ShellFolder2$SystemIcon"></a><font color="#cc0033">Win32ShellFolder2$SystemIcon</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Enum">java_lang.Enum</a>)    <a href="#meths-Win32ShellFolder2$SystemIcon"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                                  <b>STATIC</b>
+                                    <a name="type-IDI_APPLICATION"></a><font color="#cc0033">IDI_APPLICATION</font>* : <a href="#type-Win32ShellFolder2$SystemIcon">Win32ShellFolder2$SystemIcon</a>;
+                                    <a name="type-IDI_ASTERISK"></a><font color="#cc0033">IDI_ASTERISK</font>*    : <a href="#type-Win32ShellFolder2$SystemIcon">Win32ShellFolder2$SystemIcon</a>;
+                                    <a name="type-IDI_ERROR"></a><font color="#cc0033">IDI_ERROR</font>*       : <a href="#type-Win32ShellFolder2$SystemIcon">Win32ShellFolder2$SystemIcon</a>;
+                                    <a name="type-IDI_EXCLAMATION"></a><font color="#cc0033">IDI_EXCLAMATION</font>* : <a href="#type-Win32ShellFolder2$SystemIcon">Win32ShellFolder2$SystemIcon</a>;
+                                    <a name="type-IDI_HAND"></a><font color="#cc0033">IDI_HAND</font>*        : <a href="#type-Win32ShellFolder2$SystemIcon">Win32ShellFolder2$SystemIcon</a>;
+                                    <a name="type-IDI_INFORMATION"></a><font color="#cc0033">IDI_INFORMATION</font>* : <a href="#type-Win32ShellFolder2$SystemIcon">Win32ShellFolder2$SystemIcon</a>;
+                                    <a name="type-IDI_QUESTION"></a><font color="#cc0033">IDI_QUESTION</font>*    : <a href="#type-Win32ShellFolder2$SystemIcon">Win32ShellFolder2$SystemIcon</a>;
+                                    <a name="type-IDI_WARNING"></a><font color="#cc0033">IDI_WARNING</font>*     : <a href="#type-Win32ShellFolder2$SystemIcon">Win32ShellFolder2$SystemIcon</a>;
+                                    <a name="type-IDI_WINLOGO"></a><font color="#cc0033">IDI_WINLOGO</font>*     : <a href="#type-Win32ShellFolder2$SystemIcon">Win32ShellFolder2$SystemIcon</a>;
+                                    <b>PROCEDURE </b><font color="#cc0033">valueOf</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-Win32ShellFolder2$SystemIcon">Win32ShellFolder2$SystemIcon</a>;
+                                    <b>PROCEDURE </b><font color="#cc0033">values</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-Win32ShellFolder2$SystemIcon">Win32ShellFolder2$SystemIcon</a>;
+                                  <b>END</b>;
+
+  <a name="type-Win32ShellFolderManager2"></a><font color="#cc0033">Win32ShellFolderManager2</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<b>ShellFolderManager</b>)    <a href="#meths-Win32ShellFolderManager2"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                              <b>STATIC</b>
+                                <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-Win32ShellFolderManager2">Win32ShellFolderManager2</a><b>,CONSTRUCTOR</b>;
+                              <b>END</b>;
+
+
+
+<a name="meths-ShellFolder"></a>
+<b>PROCEDURE </b>(self:ShellFolder) <font color="#cc0033">canRead</font>*() : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ShellFolder) <font color="#cc0033">canWrite</font>*() : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ShellFolder) <font color="#cc0033">compareTo</font>*(p0 : <a href="java_io.html#type-File">java_io.File</a>) : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ShellFolder) <font color="#cc0033">compareTo</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ShellFolder) <font color="#cc0033">createNewFile</font>*() : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ShellFolder) <font color="#cc0033">delete</font>*() : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ShellFolder) <font color="#cc0033">deleteOnExit</font>*()<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ShellFolder) <font color="#cc0033">exists</font>*() : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ShellFolder) <font color="#cc0033">getAbsoluteFile</font>*() : <a href="java_io.html#type-File">java_io.File</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ShellFolder) <font color="#cc0033">getDisplayName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ShellFolder) <font color="#cc0033">getExecutableType</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ShellFolder) <font color="#cc0033">getFolderColumns</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-ShellFolderColumnInfo">ShellFolderColumnInfo</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ShellFolder) <font color="#cc0033">getFolderColumnValue</font>*(p0 : INTEGER) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ShellFolder) <font color="#cc0033">getFolderType</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ShellFolder) <font color="#cc0033">getIcon</font>*(p0 : BOOLEAN) : <a href="java_awt.html#type-Image">java_awt.Image</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ShellFolder) <font color="#cc0033">getLinkLocation</font>*() : <a href="#type-ShellFolder">ShellFolder</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ShellFolder) <font color="#cc0033">getParent</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ShellFolder) <font color="#cc0033">getParentFile</font>*() : <a href="java_io.html#type-File">java_io.File</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ShellFolder) <font color="#cc0033">isAbsolute</font>*() : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ShellFolder) <font color="#cc0033">isDirectory</font>*() : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ShellFolder) <font color="#cc0033">isFile</font>*() : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ShellFolder) <font color="#cc0033">isFileSystem</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ShellFolder) <font color="#cc0033">isLink</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ShellFolder) <font color="#cc0033">lastModified</font>*() : LONGINT<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ShellFolder) <font color="#cc0033">length</font>*() : LONGINT<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ShellFolder) <font color="#cc0033">listFiles</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_io.html#type-File">java_io.File</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ShellFolder) <font color="#cc0033">listFiles</font>*(p0 : BOOLEAN) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_io.html#type-File">java_io.File</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ShellFolder) <font color="#cc0033">mkdir</font>*() : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ShellFolder) <font color="#cc0033">mkdirs</font>*() : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ShellFolder) <font color="#cc0033">renameTo</font>*(p0 : <a href="java_io.html#type-File">java_io.File</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ShellFolder) <font color="#cc0033">setLastModified</font>*(p0 : LONGINT) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ShellFolder) <font color="#cc0033">setReadOnly</font>*() : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ShellFolder) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ShellFolder) <font color="#cc0033">writeReplace</font>!() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-ShellFolder$Invoker"></a>
+<b>PROCEDURE </b>(self:ShellFolder$Invoker) <font color="#cc0033">invoke</font>*(p0 : <a href="java_util_concurrent.html#type-Callable">java_util_concurrent.Callable</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-ShellFolderColumnInfo"></a>
+<b>PROCEDURE </b>(self:ShellFolderColumnInfo) <font color="#cc0033">getAlignment</font>*() : <a href="java_lang.html#type-Integer">java_lang.Integer</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ShellFolderColumnInfo) <font color="#cc0033">getComparator</font>*() : <a href="java_util.html#type-Comparator">java_util.Comparator</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ShellFolderColumnInfo) <font color="#cc0033">getSortOrder</font>*() : <a href="javax_swing.html#type-SortOrder">javax_swing.SortOrder</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ShellFolderColumnInfo) <font color="#cc0033">getTitle</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ShellFolderColumnInfo) <font color="#cc0033">getWidth</font>*() : <a href="java_lang.html#type-Integer">java_lang.Integer</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ShellFolderColumnInfo) <font color="#cc0033">isCompareByColumn</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ShellFolderColumnInfo) <font color="#cc0033">isVisible</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ShellFolderColumnInfo) <font color="#cc0033">setAlignment</font>*(p0 : <a href="java_lang.html#type-Integer">java_lang.Integer</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ShellFolderColumnInfo) <font color="#cc0033">setComparator</font>*(p0 : <a href="java_util.html#type-Comparator">java_util.Comparator</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ShellFolderColumnInfo) <font color="#cc0033">setCompareByColumn</font>*(p0 : BOOLEAN)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ShellFolderColumnInfo) <font color="#cc0033">setSortOrder</font>*(p0 : <a href="javax_swing.html#type-SortOrder">javax_swing.SortOrder</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ShellFolderColumnInfo) <font color="#cc0033">setTitle</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ShellFolderColumnInfo) <font color="#cc0033">setVisible</font>*(p0 : BOOLEAN)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ShellFolderColumnInfo) <font color="#cc0033">setWidth</font>*(p0 : <a href="java_lang.html#type-Integer">java_lang.Integer</a>)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-Win32ShellFolder2$SystemIcon"></a>
+<b>PROCEDURE </b>(self:Win32ShellFolder2$SystemIcon) <font color="#cc0033">getIconID</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-Win32ShellFolderManager2"></a>
+<b>PROCEDURE </b>(self:Win32ShellFolderManager2) <font color="#cc0033">createInvoker</font>!() : <a href="#type-ShellFolder$Invoker">ShellFolder$Invoker</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Win32ShellFolderManager2) <font color="#cc0033">createShellFolder</font>*(p0 : <a href="java_io.html#type-File">java_io.File</a>) : <a href="#type-ShellFolder">ShellFolder</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Win32ShellFolderManager2) <font color="#cc0033">get</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Win32ShellFolderManager2) <font color="#cc0033">getFolderColumns</font>*(p0 : <a href="java_io.html#type-File">java_io.File</a>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-ShellFolderColumnInfo">ShellFolderColumnInfo</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Win32ShellFolderManager2) <font color="#cc0033">getFolderColumnValue</font>*(p0 : <a href="java_io.html#type-File">java_io.File</a>;
+                                                                p1 : INTEGER) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Win32ShellFolderManager2) <font color="#cc0033">isComputerNode</font>*(p0 : <a href="java_io.html#type-File">java_io.File</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Win32ShellFolderManager2) <font color="#cc0033">isFileSystemRoot</font>*(p0 : <a href="java_io.html#type-File">java_io.File</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Win32ShellFolderManager2) <font color="#cc0033">sortFiles</font>*(p0 : <a href="java_util.html#type-List">java_util.List</a>)<b>,EXTENSIBLE</b>;
+
+<b>END </b><font color="#cc0033">sun_awt_shell</font>.
+</font></pre></hr></body></html>

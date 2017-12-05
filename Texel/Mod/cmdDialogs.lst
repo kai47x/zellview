@@ -1,0 +1,172 @@
+Listing:
+
+   1 
+   2 MODULE CmdDialogs;
+   3 
+   4         
+   5 
+   6         IMPORT
+   7                 Lang := java_lang,
+   8                 Swing := javax_swing,
+   9                 Event := java_awt_event,
+  10                 Awt := java_awt,
+  11                 CPmain,
+  12                 Console;
+  13 
+  14         CONST
+  15                 Rsrc = "images/";
+  16 (*              Rsrc = "C:/Users/Alfa/Zellview/Texel/Text/Mod/images/"; *)
+  17 
+  18         TYPE
+  19                 JDialog* = POINTER TO EXTENSIBLE RECORD(Swing.JDialog); END;
+  20         
+  21 (*              Listener* = POINTER TO(Event.ActionListener); END; *)
+  22         
+  23                 SuchenUndErsetzen* = POINTER TO RECORD(Swing.JDialog ) 
+  24                         owner: Awt.Component;
+  25                         textArea: Swing.JTextArea;
+  26                         lbl1, lbl2: Swing.JLabel;
+  27                         tfSuche, tfErsetze: Swing.JTextField;
+  28                         checkGrossKlein: Swing.JCheckBox;
+  29                         btnBeenden, btnWeitersuchen, btnErsetzen, btnAlleErsetzen: Swing.JButton;
+  30                 END;
+  31 
+  32         VAR dlg: SuchenUndErsetzen;
+  33 
+  34         PROCEDURE Init*( frame: Awt.Frame): SuchenUndErsetzen, CONSTRUCTOR; 
+  35 
+  36         PROCEDURE (dlg: SuchenUndErsetzen) SetTextArea* (tArea: Swing.JTextArea), NEW;
+  37         BEGIN
+  38                 dlg.textArea := tArea;
+  39         END SetTextArea;
+  40 
+  41         PROCEDURE (dlg: SuchenUndErsetzen)InitComponents, NEW;
+  42                 VAR comp: Awt.Component;
+  43                         icon: Swing.ImageIcon;
+  44                         iconPath: Lang.String;
+  45                         btn: Swing.JButton;
+  46         BEGIN
+  47                 dlg.setTitle("Suchen und Ersetzen");
+  48                 iconPath := Rsrc + "Search.png";
+  49                 dlg.setIconImage(Awt.Toolkit.getDefaultToolkit().getImage(dlg.getClass().getResource(iconPath)));
+  50                 dlg.setSize(480, 155);
+  51 
+  52                 dlg.setLayout(NIL);                     (* Layout Manager ausschalten *)                
+  53                 dlg.setResizable(FALSE);                        (* Kein Grössenänderung des Dialogs *)
+  54                 dlg.setLocation(Awt.Point.Init(150, 150));                      (* Position auf Screen *)
+  55                 dlg.setDefaultCloseOperation(Swing.WindowConstants.DISPOSE_ON_CLOSE);
+  56 
+  57                 (* Label "Suchen nach" *)
+  58                 dlg.lbl1 := Swing.JLabel.Init("Suchen nach:");
+  59                 dlg.lbl1.setBounds(5, 5, 90, 25);
+  60                 comp := dlg.add(dlg.lbl1);
+  61 
+  62                 (* Textfeld "Suchen nach"  *)
+  63                 dlg.tfSuche := Swing.JTextField.Init();
+  64                 dlg.tfSuche.setBounds(110, 5, 240, 25);
+  65                 comp := dlg.add(dlg.tfSuche);
+  66 
+  67                 (* Label "Ersetzen durch" *)
+  68                 dlg.lbl2 := Swing.JLabel.Init("Ersetzen durch:");
+  69                 dlg.lbl2.setBounds(5, 35, 90, 25);
+  70                 comp := dlg.add(dlg.lbl2);
+  71 
+  72                 (* Textfeld "Ersetzen durch" *)
+  73                 dlg.tfErsetze := Swing.JTextField.Init();
+  74                 dlg.tfErsetze.setBounds(110, 35, 240, 25);
+  75                 comp := dlg.add(dlg.tfErsetze);
+  76 
+  77                 (* Checkbox "Groß/Kleinschreibung nicht beachten" *)
+  78                 dlg.checkGrossKlein := Swing.JCheckBox.Init("Groß-/Kleinschreibung beachten");
+  79                 dlg.checkGrossKlein.setBounds(5, 90, 300, 25);
+  80                 comp := dlg.add(dlg.checkGrossKlein);
+  81 
+  82                 (* Button "Weitersuchen" *)
+  83                 btn := Swing.JButton.Init("Weitersuchen");
+  84                 btn.setFont(btn.getFont().deriveFont(Awt.Font.PLAIN, 11));
+  85                 btn.setBounds(350, 5, 120, 25);
+  86 (*              btn.addActionListener(dlg);              *)
+  87                 comp := dlg.add(btn);
+  88                 dlg.btnWeitersuchen := btn;
+  89 
+  90                 (* Button "Ersetzen *)
+  91                 btn := Swing.JButton.Init("Ersetzen");
+  92                 btn.setFont(btn.getFont().deriveFont(Awt.Font.PLAIN, 11));
+  93                 btn.setBounds(350, 35, 120, 25);
+  94 (*              btn.addActionListener(dlg); *)
+  95                 comp := dlg.add(btn);
+  96                 dlg.btnErsetzen := btn;
+  97                 
+  98                 (* Button "Alle ersetzen" *)
+  99                 btn := Swing.JButton.Init("Alle Ersetzen");
+ 100                 btn.setFont(btn.getFont().deriveFont(Awt.Font.PLAIN, 11));
+ 101                 btn.setBounds(350, 65, 120, 25);
+ 102 (*              btn.addActionListener(dlg); *)
+ 103                 comp := dlg.add(btn);
+ 104                 dlg.btnAlleErsetzen := btn;
+ 105 
+ 106                 (* Button "Beenden" mit Icon *)
+ 107                 icon := Swing.ImageIcon.Init(dlg.getClass().getResource(Rsrc + "Exit.png"));
+ 108                 btn := Swing.JButton.Init("Beenden", icon);
+ 109                 btn.setFont(btn.getFont().deriveFont(Awt.Font.PLAIN, 11));
+ 110                 btn.setBounds(350, 95, 120, 25);
+ 111 (*              btn.addActionListener(dlg); *)
+ 112                 comp := dlg.add(btn);
+ 113 
+ 114         END InitComponents;
+ 115 
+ 116 
+ 117 (*
+ 118         PROCEDURE (dlg: SuchenUndErsetzen)actionPerformed* (e: Event.ActionEvent), NEW;
+ 119         BEGIN
+ 120 
+ 121         END actionPerformed;
+ 122 *)
+ 123 (*
+ 124         PROCEDURE (dlg: SuchenUndErsetzen) Init*(): SuchenUndErsetzen;
+ 125         BEGIN
+ 126                 dlg := Swing.JDialog.Init()(SuchenUndErsetzen);                                 
+ 127                 RETURN
+ 128         END Init;
+ 129 
+ 130 
+ 131 PROCEDURE MkMyRect*(Formals) : MyRect,BASE(actuals);
+ 132 (* Local-declarations *)
+ 133 BEGIN
+ 134 (* Constructor body code *)
+ 135 RETURN SELF;
+ 136 END MkMyRect;
+ 137 
+ 138         PROCEDURE MkJDialog(): JDialog, BASE();
+ 139         BEGIN   
+ 140                 RETURN SELF;    
+ 141         END MkJDialog;
+ 142 
+ 143 *)
+ 144 
+ 145         PROCEDURE MkSuchenUndErsetzen* ( f: Awt.Frame, i:INTEGER ): SuchenUndErsetzen, BASE( f );
+**** ';' expected-----------------------------------------^
+ 146         BEGIN
+ 147                 RETURN SELF;
+ 148         END MkSuchenUndErsetzen;
+ 149 
+ 150         PROCEDURE NewDialog* (): SuchenUndErsetzen;
+ 151         VAR d: SuchenUndErsetzen;
+ 152                 f: Awt.Frame;
+ 153         BEGIN
+ 154                 f:= NIL;
+ 155                 d := Init( f );
+ 156                 d.InitComponents;
+ 157                 RETURN d
+ 158         END NewDialog;
+ 159 
+ 160 BEGIN
+ 161         Console.WriteString("Hier ist CmdDialogs.main"); Console.WriteLn;
+ 162         dlg := NewDialog();
+ 163         dlg.SetTextArea(Swing.JTextArea.Init());
+ 164         dlg.setVisible(TRUE)
+ 165 END CmdDialogs.;
+
+There were:  1 error, and No warnings
+
+

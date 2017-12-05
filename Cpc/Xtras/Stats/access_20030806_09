@@ -1,0 +1,27 @@
+format.access="%Ses->client.ip%  %Req->headers.referer% -  %Req->vars.auth-user% [%SYSDATE%] \"%Req->reqpb.clf-request%\" %Req->srvhdrs.clf-status% %Req->srvhdrs.content-length% %Req->headers.host%"
+164.61.216.36 http://www.google.de/search?hl=de&ie=UTF-8&oe=UTF-8&q=wkix&btnG=Google+Suche&meta=lr%3Dlang_de - [06/Aug/2003:09:22:54 +0200] "GET /CpcIndex.txt HTTP/1.1" 200 88190 www.zinnamturm.de
+212.135.173.243 - - [06/Aug/2003:09:25:20 +0200] "GET / HTTP/1.1" 304 - www.zinnamturm.de
+212.135.173.243 http://www.zinnamturm.de/ - [06/Aug/2003:09:25:20 +0200] "GET /bg3.gif HTTP/1.1" 304 - www.zinnamturm.de
+212.135.173.243 http://www.zinnamturm.de/ - [06/Aug/2003:09:25:20 +0200] "GET /mail99.gif HTTP/1.1" 304 - www.zinnamturm.de
+212.135.173.243 - - [06/Aug/2003:12:35:25 +0200] "GET / HTTP/1.1" 304 - www.zinnamturm.de
+212.135.173.243 http://www.zinnamturm.de/ - [06/Aug/2003:12:35:25 +0200] "GET /mail99.gif HTTP/1.1" 304 - www.zinnamturm.de
+212.135.173.243 http://www.zinnamturm.de/ - [06/Aug/2003:12:35:25 +0200] "GET /bg3.gif HTTP/1.1" 304 - www.zinnamturm.de
+194.209.202.1 http://www.zinnamturm.de/ - [06/Aug/2003:14:25:40 +0200] "GET /bg3.gif HTTP/1.1" 200 16276 www.zinnamturm.de
+194.209.202.1 http://www.zinnamturm.de/ - [06/Aug/2003:14:25:41 +0200] "GET /mail99.gif HTTP/1.1" 200 4196 www.zinnamturm.de
+194.209.202.1 http://www.oberon.ch/resources/index.html - [06/Aug/2003:14:25:41 +0200] "GET / HTTP/1.1" 200 84567 www.zinnamturm.de
+217.80.71.82 - - [06/Aug/2003:18:43:32 +0200] "GET / HTTP/1.1" 200 84567 www.zinnamturm.de
+217.80.71.82 http://www.zinnamturm.de/ - [06/Aug/2003:18:43:32 +0200] "GET /bg3.gif HTTP/1.1" 200 16276 www.zinnamturm.de
+217.80.71.82 http://www.zinnamturm.de/ - [06/Aug/2003:18:43:32 +0200] "GET /mail99.gif HTTP/1.1" 200 4196 www.zinnamturm.de
+217.80.71.85 http://www.zinnamturm.de/ - [06/Aug/2003:19:04:21 +0200] "GET /mail99.gif HTTP/1.1" 304 - www.zinnamturm.de
+217.80.71.85 http://www.zinnamturm.de/ - [06/Aug/2003:19:04:21 +0200] "GET /bg3.gif HTTP/1.1" 304 - www.zinnamturm.de
+217.80.71.85 - - [06/Aug/2003:19:04:21 +0200] "GET / HTTP/1.1" 304 - www.zinnamturm.de
+194.85.102.180 http://www.zinnamturm.de - [06/Aug/2003:21:20:36 +0200] "GET /mail99.gif HTTP/1.1" 304 - www.zinnamturm.de
+194.85.102.180 http://www.zinnamturm.de - [06/Aug/2003:21:20:36 +0200] "GET /bg3.gif HTTP/1.1" 304 - www.zinnamturm.de
+194.85.102.180 - - [06/Aug/2003:21:20:36 +0200] "GET / HTTP/1.1" 200 84567 www.zinnamturm.de
+217.80.71.119 - - [06/Aug/2003:22:59:08 +0200] "GET / HTTP/1.1" 304 - www.zinnamturm.de
+217.80.71.119 http://www.zinnamturm.de/ - [06/Aug/2003:22:59:08 +0200] "GET /bg3.gif HTTP/1.1" 304 - www.zinnamturm.de
+217.80.71.119 http://www.zinnamturm.de/ - [06/Aug/2003:22:59:08 +0200] "GET /mail99.gif HTTP/1.1" 304 - www.zinnamturm.de
+217.80.71.119 - - [06/Aug/2003:22:59:26 +0200] "GET /favicon.ico HTTP/1.1" 200 1406 www.zinnamturm.de
+194.65.14.76 http://www.zinnamturm.de/ - [06/Aug/2003:23:17:12 +0200] "GET /bg3.gif HTTP/1.1" 200 16276 www.zinnamturm.de
+194.65.14.76 http://www.google.pt/search?q=Gruntz+full+game+download&hl=pt-PT&lr=&ie=UTF-8&oe=UTF-8&start=20&sa=N - [06/Aug/2003:23:17:12 +0200] "GET / HTTP/1.0" 200 84567 www.zinnamturm.de
+194.65.14.76 http://www.zinnamturm.de/ - [06/Aug/2003:23:17:14 +0200] "GET /mail99.gif HTTP/1.1" 200 4196 www.zinnamturm.de

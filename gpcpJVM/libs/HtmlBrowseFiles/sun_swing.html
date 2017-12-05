@@ -1,0 +1,856 @@
+<html><head><title>sun_swing</title></head>
+<body bgcolor="white">
+<hr><pre>
+<b>FOREIGN MODULE </b><font color="#cc0033">sun_swing</font>;
+
+<b>IMPORT</b>
+    <a href="java_security.html">java_security</a> := "java.security",
+    <a href="java_lang.html">java_lang</a> := "java.lang",
+    <a href="java_lang_reflect.html">java_lang_reflect</a> := "java.lang.reflect",
+    <a href="java_util.html">java_util</a> := "java.util",
+    <a href="java_io.html">java_io</a> := "java.io",
+    <a href="java_awt.html">java_awt</a> := "java.awt",
+    <a href="javax_swing.html">javax_swing</a> := "javax.swing",
+    <a href="javax_swing_plaf.html">javax_swing_plaf</a> := "javax.swing.plaf",
+    <a href="javax_swing_border.html">javax_swing_border</a> := "javax.swing.border",
+    <a href="java_awt_event.html">java_awt_event</a> := "java.awt.event",
+    <a href="javax_swing_event.html">javax_swing_event</a> := "javax.swing.event",
+    <a href="java_beans.html">java_beans</a> := "java.beans",
+    <a href="javax_swing_text.html">javax_swing_text</a> := "javax.swing.text",
+    <a href="javax_accessibility.html">javax_accessibility</a> := "javax.accessibility",
+    <a href="sun_awt.html">sun_awt</a> := "sun.awt",
+    <a href="java_util_logging.html">java_util_logging</a> := "java.util.logging",
+    <a href="java_awt_peer.html">java_awt_peer</a> := "java.awt.peer",
+    <a href="sun_java2d_pipe.html">sun_java2d_pipe</a> := "sun.java2d.pipe",
+    <a href="java_awt_image.html">java_awt_image</a> := "java.awt.image",
+    <a href="java_awt_dnd.html">java_awt_dnd</a> := "java.awt.dnd",
+    <a href="java_awt_im.html">java_awt_im</a> := "java.awt.im",
+    <a href="javax_swing_table.html">javax_swing_table</a> := "javax.swing.table",
+    <a href="java_text.html">java_text</a> := "java.text",
+    <a href="javax_print_attribute.html">javax_print_attribute</a> := "javax.print.attribute",
+    <a href="javax_print.html">javax_print</a> := "javax.print",
+    <a href="java_awt_print.html">java_awt_print</a> := "java.awt.print",
+    <a href="javax_swing_tree.html">javax_swing_tree</a> := "javax.swing.tree",
+    <a href="javax_swing_plaf_basic.html">javax_swing_plaf_basic</a> := "javax.swing.plaf.basic",
+    <a href="sun_awt_shell.html">sun_awt_shell</a> := "sun.awt.shell",
+    <a href="java_util_concurrent.html">java_util_concurrent</a> := "java.util.concurrent",
+    <a href="java_net.html">java_net</a> := "java.net",
+    <a href="java_awt_color.html">java_awt_color</a> := "java.awt.color",
+    <a href="java_awt_geom.html">java_awt_geom</a> := "java.awt.geom",
+    <a href="java_util_concurrent_atomic.html">java_util_concurrent_atomic</a> := "java.util.concurrent.atomic",
+    <a href="java_awt_font.html">java_awt_font</a> := "java.awt.font";
+
+<b>TYPE</b>
+
+  <a name="type-AccessibleMethod"></a><font color="#cc0033">AccessibleMethod</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-AccessibleMethod"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                      <b>STATIC</b>
+                        <b>PROCEDURE </b><font color="#cc0033">Init</font>*(    p0 : <a href="java_lang.html#type-Class">java_lang.Class</a>;
+                                            p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                        IN  p2 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Class">java_lang.Class</a>) : <a href="#type-AccessibleMethod">AccessibleMethod</a><b>,CONSTRUCTOR</b>;
+                      <b>END</b>;
+
+  <a name="type-AccumulativeRunnable"></a><font color="#cc0033">AccumulativeRunnable</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_lang.html#type-Runnable">java_lang.Runnable</a>)    <a href="#meths-AccumulativeRunnable"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                          <b>STATIC</b>
+                            <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-AccumulativeRunnable">AccumulativeRunnable</a><b>,CONSTRUCTOR</b>;
+                          <b>END</b>;
+
+  <a name="type-BakedArrayList"></a><font color="#cc0033">BakedArrayList</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_util.html#type-ArrayList">java_util.ArrayList</a>)    <a href="#meths-BakedArrayList"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                    <b>STATIC</b>
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_util.html#type-List">java_util.List</a>) : <a href="#type-BakedArrayList">BakedArrayList</a><b>,CONSTRUCTOR</b>;
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER) : <a href="#type-BakedArrayList">BakedArrayList</a><b>,CONSTRUCTOR</b>;
+                    <b>END</b>;
+
+  <a name="type-CachedPainter"></a><font color="#cc0033">CachedPainter</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-CachedPainter"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                   <b>STATIC</b>
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER) : <a href="#type-CachedPainter">CachedPainter</a><b>,CONSTRUCTOR</b>;
+                   <b>END</b>;
+
+  <a name="type-DefaultLayoutStyle"></a><font color="#cc0033">DefaultLayoutStyle</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="javax_swing.html#type-LayoutStyle">javax_swing.LayoutStyle</a>)    <a href="#meths-DefaultLayoutStyle"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                        <b>STATIC</b>
+                          <b>PROCEDURE </b><font color="#cc0033">getInstance</font>*() : <a href="javax_swing.html#type-LayoutStyle">javax_swing.LayoutStyle</a>;
+                          <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-DefaultLayoutStyle">DefaultLayoutStyle</a><b>,CONSTRUCTOR</b>;
+                        <b>END</b>;
+
+  <a name="type-DefaultLookup"></a><font color="#cc0033">DefaultLookup</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-DefaultLookup"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                   <b>STATIC</b>
+                     <b>PROCEDURE </b><font color="#cc0033">get</font>*(p0 : <a href="javax_swing.html#type-JComponent">javax_swing.JComponent</a>;
+                                    p1 : <a href="javax_swing_plaf.html#type-ComponentUI">javax_swing_plaf.ComponentUI</a>;
+                                    p2 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                     <b>PROCEDURE </b><font color="#cc0033">getBoolean</font>*(p0 : <a href="javax_swing.html#type-JComponent">javax_swing.JComponent</a>;
+                                           p1 : <a href="javax_swing_plaf.html#type-ComponentUI">javax_swing_plaf.ComponentUI</a>;
+                                           p2 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                           p3 : BOOLEAN) : BOOLEAN;
+                     <b>PROCEDURE </b><font color="#cc0033">getBoolean</font>*(p0 : <a href="javax_swing.html#type-JComponent">javax_swing.JComponent</a>;
+                                           p1 : <a href="javax_swing_plaf.html#type-ComponentUI">javax_swing_plaf.ComponentUI</a>;
+                                           p2 : <a href="java_lang.html#type-String">java_lang.String</a>) : BOOLEAN;
+                     <b>PROCEDURE </b><font color="#cc0033">getBorder</font>*(p0 : <a href="javax_swing.html#type-JComponent">javax_swing.JComponent</a>;
+                                          p1 : <a href="javax_swing_plaf.html#type-ComponentUI">javax_swing_plaf.ComponentUI</a>;
+                                          p2 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="javax_swing_border.html#type-Border">javax_swing_border.Border</a>;
+                     <b>PROCEDURE </b><font color="#cc0033">getBorder</font>*(p0 : <a href="javax_swing.html#type-JComponent">javax_swing.JComponent</a>;
+                                          p1 : <a href="javax_swing_plaf.html#type-ComponentUI">javax_swing_plaf.ComponentUI</a>;
+                                          p2 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                          p3 : <a href="javax_swing_border.html#type-Border">javax_swing_border.Border</a>) : <a href="javax_swing_border.html#type-Border">javax_swing_border.Border</a>;
+                     <b>PROCEDURE </b><font color="#cc0033">getColor</font>*(p0 : <a href="javax_swing.html#type-JComponent">javax_swing.JComponent</a>;
+                                         p1 : <a href="javax_swing_plaf.html#type-ComponentUI">javax_swing_plaf.ComponentUI</a>;
+                                         p2 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                         p3 : <a href="java_awt.html#type-Color">java_awt.Color</a>) : <a href="java_awt.html#type-Color">java_awt.Color</a>;
+                     <b>PROCEDURE </b><font color="#cc0033">getColor</font>*(p0 : <a href="javax_swing.html#type-JComponent">javax_swing.JComponent</a>;
+                                         p1 : <a href="javax_swing_plaf.html#type-ComponentUI">javax_swing_plaf.ComponentUI</a>;
+                                         p2 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_awt.html#type-Color">java_awt.Color</a>;
+                     <b>PROCEDURE </b><font color="#cc0033">getIcon</font>*(p0 : <a href="javax_swing.html#type-JComponent">javax_swing.JComponent</a>;
+                                        p1 : <a href="javax_swing_plaf.html#type-ComponentUI">javax_swing_plaf.ComponentUI</a>;
+                                        p2 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                        p3 : <a href="javax_swing.html#type-Icon">javax_swing.Icon</a>) : <a href="javax_swing.html#type-Icon">javax_swing.Icon</a>;
+                     <b>PROCEDURE </b><font color="#cc0033">getIcon</font>*(p0 : <a href="javax_swing.html#type-JComponent">javax_swing.JComponent</a>;
+                                        p1 : <a href="javax_swing_plaf.html#type-ComponentUI">javax_swing_plaf.ComponentUI</a>;
+                                        p2 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="javax_swing.html#type-Icon">javax_swing.Icon</a>;
+                     <b>PROCEDURE </b><font color="#cc0033">getInsets</font>*(p0 : <a href="javax_swing.html#type-JComponent">javax_swing.JComponent</a>;
+                                          p1 : <a href="javax_swing_plaf.html#type-ComponentUI">javax_swing_plaf.ComponentUI</a>;
+                                          p2 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                          p3 : <a href="java_awt.html#type-Insets">java_awt.Insets</a>) : <a href="java_awt.html#type-Insets">java_awt.Insets</a>;
+                     <b>PROCEDURE </b><font color="#cc0033">getInsets</font>*(p0 : <a href="javax_swing.html#type-JComponent">javax_swing.JComponent</a>;
+                                          p1 : <a href="javax_swing_plaf.html#type-ComponentUI">javax_swing_plaf.ComponentUI</a>;
+                                          p2 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_awt.html#type-Insets">java_awt.Insets</a>;
+                     <b>PROCEDURE </b><font color="#cc0033">getInt</font>*(p0 : <a href="javax_swing.html#type-JComponent">javax_swing.JComponent</a>;
+                                       p1 : <a href="javax_swing_plaf.html#type-ComponentUI">javax_swing_plaf.ComponentUI</a>;
+                                       p2 : <a href="java_lang.html#type-String">java_lang.String</a>) : INTEGER;
+                     <b>PROCEDURE </b><font color="#cc0033">getInt</font>*(p0 : <a href="javax_swing.html#type-JComponent">javax_swing.JComponent</a>;
+                                       p1 : <a href="javax_swing_plaf.html#type-ComponentUI">javax_swing_plaf.ComponentUI</a>;
+                                       p2 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                       p3 : INTEGER) : INTEGER;
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-DefaultLookup">DefaultLookup</a><b>,CONSTRUCTOR</b>;
+                     <b>PROCEDURE </b><font color="#cc0033">setDefaultLookup</font>*(p0 : <a href="#type-DefaultLookup">DefaultLookup</a>);
+                   <b>END</b>;
+
+  <a name="type-FilePane"></a><font color="#cc0033">FilePane</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="javax_swing.html#type-JPanel">javax_swing.JPanel</a> + <a href="java_beans.html#type-PropertyChangeListener">java_beans.PropertyChangeListener</a>)    <a href="#meths-FilePane"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                <font color="#cc0033">newFolderAction</font>! : <a href="javax_swing.html#type-Action">javax_swing.Action</a>;
+              <b>STATIC</b>
+                <font color="#cc0033">ACTION_APPROVE_SELECTION</font>*          = "approveSelection";
+                <font color="#cc0033">ACTION_CANCEL</font>*                     = "cancelSelection";
+                <font color="#cc0033">ACTION_CHANGE_TO_PARENT_DIRECTORY</font>* = "Go Up";
+                <font color="#cc0033">ACTION_EDIT_FILE_NAME</font>*             = "editFileName";
+                <font color="#cc0033">ACTION_NEW_FOLDER</font>*                 = "New Folder";
+                <font color="#cc0033">ACTION_REFRESH</font>*                    = "refresh";
+                <font color="#cc0033">ACTION_VIEW_DETAILS</font>*               = "viewTypeDetails";
+                <font color="#cc0033">ACTION_VIEW_LIST</font>*                  = "viewTypeList";
+                <font color="#cc0033">VIEWTYPE_DETAILS</font>*                  = 1;
+                <font color="#cc0033">VIEWTYPE_LIST</font>*                     = 0;
+                <b>PROCEDURE </b><font color="#cc0033">addActionsToMap</font>*(    p0 : <a href="javax_swing.html#type-ActionMap">javax_swing.ActionMap</a>;
+                                           IN  p1 : <b>ARRAY </b><b>OF </b><a href="javax_swing.html#type-Action">javax_swing.Action</a>);
+                <b>PROCEDURE </b><font color="#cc0033">canWrite</font>*(p0 : <a href="java_io.html#type-File">java_io.File</a>) : BOOLEAN;
+                <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="#type-FilePane$FileChooserUIAccessor">FilePane$FileChooserUIAccessor</a>) : <a href="#type-FilePane">FilePane</a><b>,CONSTRUCTOR</b>;
+                <b>PROCEDURE </b><font color="#cc0033">usesShellFolder</font>*(p0 : <a href="javax_swing.html#type-JFileChooser">javax_swing.JFileChooser</a>) : BOOLEAN;
+              <b>END</b>;
+
+  <a name="type-FilePane$FileChooserUIAccessor"></a><font color="#cc0033">FilePane$FileChooserUIAccessor</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-FilePane$FileChooserUIAccessor"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                                    <b>END</b>;
+
+  <a name="type-FilePane$FileRenderer"></a><font color="#cc0033">FilePane$FileRenderer</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="javax_swing.html#type-DefaultListCellRenderer">javax_swing.DefaultListCellRenderer</a>)    <a href="#meths-FilePane$FileRenderer"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                           <b>STATIC</b>
+                             <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : <a href="#type-FilePane">FilePane</a>) : <a href="#type-FilePane$FileRenderer">FilePane$FileRenderer</a><b>,CONSTRUCTOR</b>;
+                           <b>END</b>;
+
+  <a name="type-ImageCache"></a><font color="#cc0033">ImageCache</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-ImageCache"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                <b>STATIC</b>
+                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER) : <a href="#type-ImageCache">ImageCache</a><b>,CONSTRUCTOR</b>;
+                <b>END</b>;
+
+  <a name="type-ImageIconUIResource"></a><font color="#cc0033">ImageIconUIResource</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="javax_swing.html#type-ImageIcon">javax_swing.ImageIcon</a> + <a href="javax_swing_plaf.html#type-UIResource">javax_swing_plaf.UIResource</a>)
+                         <b>STATIC</b>
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_awt.html#type-Image">java_awt.Image</a>) : <a href="#type-ImageIconUIResource">ImageIconUIResource</a><b>,CONSTRUCTOR</b>;
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE) : <a href="#type-ImageIconUIResource">ImageIconUIResource</a><b>,CONSTRUCTOR</b>;
+                         <b>END</b>;
+
+  <a name="type-MenuItemCheckIconFactory"></a><font color="#cc0033">MenuItemCheckIconFactory</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-MenuItemCheckIconFactory"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                              <b>END</b>;
+
+  <a name="type-MenuItemLayoutHelper"></a><font color="#cc0033">MenuItemLayoutHelper</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-MenuItemLayoutHelper"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                          <b>STATIC</b>
+                            <a name="type-MAX_ACC_WIDTH"></a><font color="#cc0033">MAX_ACC_WIDTH</font>*                   : <a href="#type-StringUIClientPropertyKey">StringUIClientPropertyKey</a>;
+                            <a name="type-MAX_ARROW_WIDTH"></a><font color="#cc0033">MAX_ARROW_WIDTH</font>*                 : <a href="#type-StringUIClientPropertyKey">StringUIClientPropertyKey</a>;
+                            <a name="type-MAX_CHECK_WIDTH"></a><font color="#cc0033">MAX_CHECK_WIDTH</font>*                 : <a href="#type-StringUIClientPropertyKey">StringUIClientPropertyKey</a>;
+                            <a name="type-MAX_ICON_WIDTH"></a><font color="#cc0033">MAX_ICON_WIDTH</font>*                  : <a href="#type-StringUIClientPropertyKey">StringUIClientPropertyKey</a>;
+                            <a name="type-MAX_LABEL_WIDTH"></a><font color="#cc0033">MAX_LABEL_WIDTH</font>*                 : <a href="#type-StringUIClientPropertyKey">StringUIClientPropertyKey</a>;
+                            <a name="type-MAX_TEXT_WIDTH"></a><font color="#cc0033">MAX_TEXT_WIDTH</font>*                  : <a href="#type-StringUIClientPropertyKey">StringUIClientPropertyKey</a>;
+                            <b>PROCEDURE </b><font color="#cc0033">addMaxWidth</font>*(p0 : <a href="#type-MenuItemLayoutHelper$RectSize">MenuItemLayoutHelper$RectSize</a>;
+                                                   p1 : INTEGER;
+                                                   p2 : <a href="java_awt.html#type-Dimension">java_awt.Dimension</a>);
+                            <b>PROCEDURE </b><font color="#cc0033">addWidth</font>*(p0 : INTEGER;
+                                                p1 : INTEGER;
+                                                p2 : <a href="java_awt.html#type-Dimension">java_awt.Dimension</a>);
+                            <b>PROCEDURE </b><font color="#cc0033">clearUsedClientProperties</font>*(p0 : <a href="javax_swing.html#type-JComponent">javax_swing.JComponent</a>);
+                            <b>PROCEDURE </b><font color="#cc0033">clearUsedParentClientProperties</font>*(p0 : <a href="javax_swing.html#type-JMenuItem">javax_swing.JMenuItem</a>);
+                            <b>PROCEDURE </b><font color="#cc0033">createMaxRect</font>*() : <a href="java_awt.html#type-Rectangle">java_awt.Rectangle</a>;
+                            <b>PROCEDURE </b><font color="#cc0033">getMenuItemParent</font>*(p0 : <a href="javax_swing.html#type-JMenuItem">javax_swing.JMenuItem</a>) : <a href="javax_swing.html#type-JComponent">javax_swing.JComponent</a>;
+                            <b>PROCEDURE </b><font color="#cc0033">Init</font>!() : <a href="#type-MenuItemLayoutHelper">MenuItemLayoutHelper</a><b>,CONSTRUCTOR</b>;
+                            <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0  : <a href="javax_swing.html#type-JMenuItem">javax_swing.JMenuItem</a>;
+                                            p1  : <a href="javax_swing.html#type-Icon">javax_swing.Icon</a>;
+                                            p2  : <a href="javax_swing.html#type-Icon">javax_swing.Icon</a>;
+                                            p3  : <a href="java_awt.html#type-Rectangle">java_awt.Rectangle</a>;
+                                            p4  : INTEGER;
+                                            p5  : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                            p6  : BOOLEAN;
+                                            p7  : <a href="java_awt.html#type-Font">java_awt.Font</a>;
+                                            p8  : <a href="java_awt.html#type-Font">java_awt.Font</a>;
+                                            p9  : BOOLEAN;
+                                            p10 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-MenuItemLayoutHelper">MenuItemLayoutHelper</a><b>,CONSTRUCTOR</b>;
+                            <b>PROCEDURE </b><font color="#cc0033">isColumnLayout</font>*(p0 : BOOLEAN;
+                                                      p1 : INTEGER;
+                                                      p2 : INTEGER;
+                                                      p3 : INTEGER) : BOOLEAN;
+                            <b>PROCEDURE </b><font color="#cc0033">isColumnLayout</font>*(p0 : BOOLEAN;
+                                                      p1 : <a href="javax_swing.html#type-JMenuItem">javax_swing.JMenuItem</a>) : BOOLEAN;
+                            <b>PROCEDURE </b><font color="#cc0033">max</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>INTEGER) : INTEGER;
+                            <b>PROCEDURE </b><font color="#cc0033">useCheckAndArrow</font>*(p0 : <a href="javax_swing.html#type-JMenuItem">javax_swing.JMenuItem</a>) : BOOLEAN;
+                          <b>END</b>;
+
+  <a name="type-MenuItemLayoutHelper$ColumnAlignment"></a><font color="#cc0033">MenuItemLayoutHelper$ColumnAlignment</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-MenuItemLayoutHelper$ColumnAlignment"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                                          <b>STATIC</b>
+                                            <a name="type-LEFT_ALIGNMENT"></a><font color="#cc0033">LEFT_ALIGNMENT</font>*  : <a href="#type-MenuItemLayoutHelper$ColumnAlignment">MenuItemLayoutHelper$ColumnAlignment</a>;
+                                            <a name="type-RIGHT_ALIGNMENT"></a><font color="#cc0033">RIGHT_ALIGNMENT</font>* : <a href="#type-MenuItemLayoutHelper$ColumnAlignment">MenuItemLayoutHelper$ColumnAlignment</a>;
+                                            <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER;
+                                                            p1 : INTEGER;
+                                                            p2 : INTEGER;
+                                                            p3 : INTEGER;
+                                                            p4 : INTEGER) : <a href="#type-MenuItemLayoutHelper$ColumnAlignment">MenuItemLayoutHelper$ColumnAlignment</a><b>,CONSTRUCTOR</b>;
+                                          <b>END</b>;
+
+  <a name="type-MenuItemLayoutHelper$LayoutResult"></a><font color="#cc0033">MenuItemLayoutHelper$LayoutResult</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-MenuItemLayoutHelper$LayoutResult"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                                       <b>STATIC</b>
+                                         <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_awt.html#type-Rectangle">java_awt.Rectangle</a>;
+                                                         p1 : <a href="java_awt.html#type-Rectangle">java_awt.Rectangle</a>;
+                                                         p2 : <a href="java_awt.html#type-Rectangle">java_awt.Rectangle</a>;
+                                                         p3 : <a href="java_awt.html#type-Rectangle">java_awt.Rectangle</a>;
+                                                         p4 : <a href="java_awt.html#type-Rectangle">java_awt.Rectangle</a>;
+                                                         p5 : <a href="java_awt.html#type-Rectangle">java_awt.Rectangle</a>) : <a href="#type-MenuItemLayoutHelper$LayoutResult">MenuItemLayoutHelper$LayoutResult</a><b>,CONSTRUCTOR</b>;
+                                         <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-MenuItemLayoutHelper$LayoutResult">MenuItemLayoutHelper$LayoutResult</a><b>,CONSTRUCTOR</b>;
+                                       <b>END</b>;
+
+  <a name="type-MenuItemLayoutHelper$RectSize"></a><font color="#cc0033">MenuItemLayoutHelper$RectSize</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-MenuItemLayoutHelper$RectSize"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                                   <b>STATIC</b>
+                                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER;
+                                                     p1 : INTEGER;
+                                                     p2 : INTEGER;
+                                                     p3 : INTEGER) : <a href="#type-MenuItemLayoutHelper$RectSize">MenuItemLayoutHelper$RectSize</a><b>,CONSTRUCTOR</b>;
+                                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-MenuItemLayoutHelper$RectSize">MenuItemLayoutHelper$RectSize</a><b>,CONSTRUCTOR</b>;
+                                   <b>END</b>;
+
+  <a name="type-PrintColorUIResource"></a><font color="#cc0033">PrintColorUIResource</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="javax_swing_plaf.html#type-ColorUIResource">javax_swing_plaf.ColorUIResource</a>)    <a href="#meths-PrintColorUIResource"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                          <b>STATIC</b>
+                            <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER;
+                                            p1 : <a href="java_awt.html#type-Color">java_awt.Color</a>) : <a href="#type-PrintColorUIResource">PrintColorUIResource</a><b>,CONSTRUCTOR</b>;
+                          <b>END</b>;
+
+  <a name="type-PrintingStatus"></a><font color="#cc0033">PrintingStatus</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-PrintingStatus"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                    <b>STATIC</b>
+                      <b>PROCEDURE </b><font color="#cc0033">createPrintingStatus</font>*(p0 : <a href="java_awt.html#type-Component">java_awt.Component</a>;
+                                                      p1 : <a href="java_awt_print.html#type-PrinterJob">java_awt_print.PrinterJob</a>) : <a href="#type-PrintingStatus">PrintingStatus</a>;
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : <a href="java_awt.html#type-Component">java_awt.Component</a>;
+                                      p1 : <a href="java_awt_print.html#type-PrinterJob">java_awt_print.PrinterJob</a>) : <a href="#type-PrintingStatus">PrintingStatus</a><b>,CONSTRUCTOR</b>;
+                    <b>END</b>;
+
+  <a name="type-StringUIClientPropertyKey"></a><font color="#cc0033">StringUIClientPropertyKey</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-UIClientPropertyKey">UIClientPropertyKey</a>)    <a href="#meths-StringUIClientPropertyKey"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                               <b>STATIC</b>
+                                 <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-StringUIClientPropertyKey">StringUIClientPropertyKey</a><b>,CONSTRUCTOR</b>;
+                               <b>END</b>;
+
+  <a name="type-SwingLazyValue"></a><font color="#cc0033">SwingLazyValue</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="javax_swing.html#type-UIDefaults$LazyValue">javax_swing.UIDefaults$LazyValue</a>)    <a href="#meths-SwingLazyValue"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                    <b>STATIC</b>
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*(    p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                      IN  p1 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="#type-SwingLazyValue">SwingLazyValue</a><b>,CONSTRUCTOR</b>;
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*(    p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                          p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                      IN  p2 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="#type-SwingLazyValue">SwingLazyValue</a><b>,CONSTRUCTOR</b>;
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-SwingLazyValue">SwingLazyValue</a><b>,CONSTRUCTOR</b>;
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                      p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-SwingLazyValue">SwingLazyValue</a><b>,CONSTRUCTOR</b>;
+                    <b>END</b>;
+
+  <a name="type-SwingUtilities2"></a><font color="#cc0033">SwingUtilities2</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                     <b>STATIC</b>
+                       <a name="type-AA_TEXT_PROPERTY_KEY"></a><font color="#cc0033">AA_TEXT_PROPERTY_KEY</font>*                 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                       <a name="type-BASICMENUITEMUI_MAX_TEXT_OFFSET"></a><font color="#cc0033">BASICMENUITEMUI_MAX_TEXT_OFFSET</font>*      : <a href="#type-StringUIClientPropertyKey">StringUIClientPropertyKey</a>;
+                       <a name="type-COMPONENT_UI_PROPERTY_KEY"></a><font color="#cc0033">COMPONENT_UI_PROPERTY_KEY</font>*            : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                       <a name="type-DEFAULT_FRC"></a><font color="#cc0033">DEFAULT_FRC</font>*                          : <a href="java_awt_font.html#type-FontRenderContext">java_awt_font.FontRenderContext</a>;
+                       <font color="#cc0033">IMPLIED_CR</font>*                           = "CR";
+                       <a name="type-LAF_STATE_KEY"></a><font color="#cc0033">LAF_STATE_KEY</font>*                        : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                       <b>PROCEDURE </b><font color="#cc0033">adjustFocus</font>*(p0 : <a href="javax_swing.html#type-JComponent">javax_swing.JComponent</a>);
+                       <b>PROCEDURE </b><font color="#cc0033">canAccessSystemClipboard</font>*() : BOOLEAN;
+                       <b>PROCEDURE </b><font color="#cc0033">canCurrentEventAccessSystemClipboard</font>*() : BOOLEAN;
+                       <b>PROCEDURE </b><font color="#cc0033">canEventAccessSystemClipboard</font>*(p0 : <a href="java_awt.html#type-AWTEvent">java_awt.AWTEvent</a>) : BOOLEAN;
+                       <b>PROCEDURE </b><font color="#cc0033">clipString</font>*(p0 : <a href="javax_swing.html#type-JComponent">javax_swing.JComponent</a>;
+                                             p1 : <a href="java_awt.html#type-FontMetrics">java_awt.FontMetrics</a>;
+                                             p2 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                             p3 : INTEGER) : <a href="java_lang.html#type-String">java_lang.String</a>;
+                       <b>PROCEDURE </b><font color="#cc0033">clipStringIfNecessary</font>*(p0 : <a href="javax_swing.html#type-JComponent">javax_swing.JComponent</a>;
+                                                        p1 : <a href="java_awt.html#type-FontMetrics">java_awt.FontMetrics</a>;
+                                                        p2 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                        p3 : INTEGER) : <a href="java_lang.html#type-String">java_lang.String</a>;
+                       <b>PROCEDURE </b><font color="#cc0033">compositeRequestFocus</font>*(p0 : <a href="java_awt.html#type-Component">java_awt.Component</a>) : <a href="java_awt.html#type-Component">java_awt.Component</a>;
+                       <b>PROCEDURE </b><font color="#cc0033">convertColumnIndexToModel</font>*(p0 : <a href="javax_swing_table.html#type-TableColumnModel">javax_swing_table.TableColumnModel</a>;
+                                                            p1 : INTEGER) : INTEGER;
+                       <b>PROCEDURE </b><font color="#cc0033">convertColumnIndexToView</font>*(p0 : <a href="javax_swing_table.html#type-TableColumnModel">javax_swing_table.TableColumnModel</a>;
+                                                           p1 : INTEGER) : INTEGER;
+                       <b>PROCEDURE </b><font color="#cc0033">displayPropertiesToCSS</font>*(p0 : <a href="java_awt.html#type-Font">java_awt.Font</a>;
+                                                         p1 : <a href="java_awt.html#type-Color">java_awt.Color</a>) : <a href="java_lang.html#type-String">java_lang.String</a>;
+                       <b>PROCEDURE </b><font color="#cc0033">drawChars</font>*(    p0 : <a href="javax_swing.html#type-JComponent">javax_swing.JComponent</a>;
+                                                p1 : <a href="java_awt.html#type-Graphics">java_awt.Graphics</a>;
+                                            IN  p2 : <b>ARRAY </b><b>OF </b>CHAR;
+                                                p3 : INTEGER;
+                                                p4 : INTEGER;
+                                                p5 : INTEGER;
+                                                p6 : INTEGER) : INTEGER;
+                       <b>PROCEDURE </b><font color="#cc0033">drawString</font>*(p0 : <a href="javax_swing.html#type-JComponent">javax_swing.JComponent</a>;
+                                             p1 : <a href="java_awt.html#type-Graphics">java_awt.Graphics</a>;
+                                             p2 : <a href="java_text.html#type-AttributedCharacterIterator">java_text.AttributedCharacterIterator</a>;
+                                             p3 : INTEGER;
+                                             p4 : INTEGER) : SHORTREAL;
+                       <b>PROCEDURE </b><font color="#cc0033">drawString</font>*(p0 : <a href="javax_swing.html#type-JComponent">javax_swing.JComponent</a>;
+                                             p1 : <a href="java_awt.html#type-Graphics">java_awt.Graphics</a>;
+                                             p2 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                             p3 : INTEGER;
+                                             p4 : INTEGER);
+                       <b>PROCEDURE </b><font color="#cc0033">drawStringUnderlineCharAt</font>*(p0 : <a href="javax_swing.html#type-JComponent">javax_swing.JComponent</a>;
+                                                            p1 : <a href="java_awt.html#type-Graphics">java_awt.Graphics</a>;
+                                                            p2 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                            p3 : INTEGER;
+                                                            p4 : INTEGER;
+                                                            p5 : INTEGER);
+                       <b>PROCEDURE </b><font color="#cc0033">drawTextAntialiased</font>*(p0 : <a href="javax_swing.html#type-JComponent">javax_swing.JComponent</a>) : <a href="#type-SwingUtilities2$AATextInfo">SwingUtilities2$AATextInfo</a>;
+                       <b>PROCEDURE </b><font color="#cc0033">getAdjustedClickCount</font>*(p0 : <a href="javax_swing_text.html#type-JTextComponent">javax_swing_text.JTextComponent</a>;
+                                                        p1 : <a href="java_awt_event.html#type-MouseEvent">java_awt_event.MouseEvent</a>) : INTEGER;
+                       <b>PROCEDURE </b><font color="#cc0033">getFontMetrics</font>*(p0 : <a href="javax_swing.html#type-JComponent">javax_swing.JComponent</a>;
+                                                 p1 : <a href="java_awt.html#type-Font">java_awt.Font</a>) : <a href="java_awt.html#type-FontMetrics">java_awt.FontMetrics</a>;
+                       <b>PROCEDURE </b><font color="#cc0033">getFontMetrics</font>*(p0 : <a href="javax_swing.html#type-JComponent">javax_swing.JComponent</a>;
+                                                 p1 : <a href="java_awt.html#type-Graphics">java_awt.Graphics</a>) : <a href="java_awt.html#type-FontMetrics">java_awt.FontMetrics</a>;
+                       <b>PROCEDURE </b><font color="#cc0033">getFontMetrics</font>*(p0 : <a href="javax_swing.html#type-JComponent">javax_swing.JComponent</a>;
+                                                 p1 : <a href="java_awt.html#type-Graphics">java_awt.Graphics</a>;
+                                                 p2 : <a href="java_awt.html#type-Font">java_awt.Font</a>) : <a href="java_awt.html#type-FontMetrics">java_awt.FontMetrics</a>;
+                       <b>PROCEDURE </b><font color="#cc0033">getFontRenderContext</font>*(p0 : <a href="java_awt.html#type-Component">java_awt.Component</a>) : <a href="java_awt_font.html#type-FontRenderContext">java_awt_font.FontRenderContext</a>;
+                       <b>PROCEDURE </b><font color="#cc0033">getGraphics2D</font>*(p0 : <a href="java_awt.html#type-Graphics">java_awt.Graphics</a>) : <a href="java_awt.html#type-Graphics2D">java_awt.Graphics2D</a>;
+                       <b>PROCEDURE </b><font color="#cc0033">getLeftSideBearing</font>*(p0 : <a href="javax_swing.html#type-JComponent">javax_swing.JComponent</a>;
+                                                     p1 : <a href="java_awt.html#type-FontMetrics">java_awt.FontMetrics</a>;
+                                                     p2 : <a href="java_lang.html#type-String">java_lang.String</a>) : INTEGER;
+                       <b>PROCEDURE </b><font color="#cc0033">getLeftSideBearing</font>*(p0 : <a href="javax_swing.html#type-JComponent">javax_swing.JComponent</a>;
+                                                     p1 : <a href="java_awt.html#type-FontMetrics">java_awt.FontMetrics</a>;
+                                                     p2 : CHAR) : INTEGER;
+                       <b>PROCEDURE </b><font color="#cc0033">getUIDefaultsInt</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : INTEGER;
+                       <b>PROCEDURE </b><font color="#cc0033">getUIDefaultsInt</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                   p1 : <a href="java_util.html#type-Locale">java_util.Locale</a>;
+                                                   p2 : INTEGER) : INTEGER;
+                       <b>PROCEDURE </b><font color="#cc0033">getUIDefaultsInt</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                   p1 : INTEGER) : INTEGER;
+                       <b>PROCEDURE </b><font color="#cc0033">getUIDefaultsInt</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                   p1 : <a href="java_util.html#type-Locale">java_util.Locale</a>) : INTEGER;
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-SwingUtilities2">SwingUtilities2</a><b>,CONSTRUCTOR</b>;
+                       <b>PROCEDURE </b><font color="#cc0033">isComplexLayout</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>CHAR;
+                                                      p1 : INTEGER;
+                                                      p2 : INTEGER) : BOOLEAN;
+                       <b>PROCEDURE </b><font color="#cc0033">isLocalDisplay</font>*() : BOOLEAN;
+                       <b>PROCEDURE </b><font color="#cc0033">liesInHorizontal</font>*(p0 : <a href="java_awt.html#type-Rectangle">java_awt.Rectangle</a>;
+                                                   p1 : <a href="java_awt.html#type-Point">java_awt.Point</a>;
+                                                   p2 : BOOLEAN;
+                                                   p3 : BOOLEAN) : <a href="#type-SwingUtilities2$Section">SwingUtilities2$Section</a>;
+                       <b>PROCEDURE </b><font color="#cc0033">liesInVertical</font>*(p0 : <a href="java_awt.html#type-Rectangle">java_awt.Rectangle</a>;
+                                                 p1 : <a href="java_awt.html#type-Point">java_awt.Point</a>;
+                                                 p2 : BOOLEAN) : <a href="#type-SwingUtilities2$Section">SwingUtilities2$Section</a>;
+                       <b>PROCEDURE </b><font color="#cc0033">loc2IndexFileList</font>*(p0 : <a href="javax_swing.html#type-JList">javax_swing.JList</a>;
+                                                    p1 : <a href="java_awt.html#type-Point">java_awt.Point</a>) : INTEGER;
+                       <b>PROCEDURE </b><font color="#cc0033">makeIcon</font>*(p0 : <a href="java_lang.html#type-Class">java_lang.Class</a>;
+                                           p1 : <a href="java_lang.html#type-Class">java_lang.Class</a>;
+                                           p2 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                       <b>PROCEDURE </b><font color="#cc0033">pointOutsidePrefSize</font>*(p0 : <a href="javax_swing.html#type-JTable">javax_swing.JTable</a>;
+                                                       p1 : INTEGER;
+                                                       p2 : INTEGER;
+                                                       p3 : <a href="java_awt.html#type-Point">java_awt.Point</a>) : BOOLEAN;
+                       <b>PROCEDURE </b><font color="#cc0033">setLeadAnchorWithoutSelection</font>*(p0 : <a href="javax_swing.html#type-ListSelectionModel">javax_swing.ListSelectionModel</a>;
+                                                                p1 : INTEGER;
+                                                                p2 : INTEGER);
+                       <b>PROCEDURE </b><font color="#cc0033">setSkipClickCount</font>*(p0 : <a href="java_awt.html#type-Component">java_awt.Component</a>;
+                                                    p1 : INTEGER);
+                       <b>PROCEDURE </b><font color="#cc0033">shouldIgnore</font>*(p0 : <a href="java_awt_event.html#type-MouseEvent">java_awt_event.MouseEvent</a>;
+                                               p1 : <a href="javax_swing.html#type-JComponent">javax_swing.JComponent</a>) : BOOLEAN;
+                       <b>PROCEDURE </b><font color="#cc0033">stringWidth</font>*(p0 : <a href="javax_swing.html#type-JComponent">javax_swing.JComponent</a>;
+                                              p1 : <a href="java_awt.html#type-FontMetrics">java_awt.FontMetrics</a>;
+                                              p2 : <a href="java_lang.html#type-String">java_lang.String</a>) : INTEGER;
+                       <b>PROCEDURE </b><font color="#cc0033">submit</font>*(p0 : <a href="java_util_concurrent.html#type-Callable">java_util_concurrent.Callable</a>) : <a href="java_util_concurrent.html#type-Future">java_util_concurrent.Future</a>;
+                       <b>PROCEDURE </b><font color="#cc0033">submit</font>*(p0 : <a href="java_lang.html#type-Runnable">java_lang.Runnable</a>;
+                                         p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_util_concurrent.html#type-Future">java_util_concurrent.Future</a>;
+                       <b>PROCEDURE </b><font color="#cc0033">tabbedPaneChangeFocusTo</font>*(p0 : <a href="java_awt.html#type-Component">java_awt.Component</a>) : BOOLEAN;
+                       <b>PROCEDURE </b><font color="#cc0033">useSelectedTextColor</font>*(p0 : <a href="javax_swing_text.html#type-Highlighter$Highlight">javax_swing_text.Highlighter$Highlight</a>;
+                                                       p1 : <a href="javax_swing_text.html#type-JTextComponent">javax_swing_text.JTextComponent</a>) : BOOLEAN;
+                     <b>END</b>;
+
+  <a name="type-SwingUtilities2$AATextInfo"></a><font color="#cc0033">SwingUtilities2$AATextInfo</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                                <b>STATIC</b>
+                                  <b>PROCEDURE </b><font color="#cc0033">getAATextInfo</font>*(p0 : BOOLEAN) : <a href="#type-SwingUtilities2$AATextInfo">SwingUtilities2$AATextInfo</a>;
+                                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                  p1 : <a href="java_lang.html#type-Integer">java_lang.Integer</a>) : <a href="#type-SwingUtilities2$AATextInfo">SwingUtilities2$AATextInfo</a><b>,CONSTRUCTOR</b>;
+                                <b>END</b>;
+
+  <a name="type-SwingUtilities2$Section"></a><font color="#cc0033">SwingUtilities2$Section</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Enum">java_lang.Enum</a>)
+                             <b>STATIC</b>
+                               <a name="type-LEADING"></a><font color="#cc0033">LEADING</font>*  : <a href="#type-SwingUtilities2$Section">SwingUtilities2$Section</a>;
+                               <a name="type-MIDDLE"></a><font color="#cc0033">MIDDLE</font>*   : <a href="#type-SwingUtilities2$Section">SwingUtilities2$Section</a>;
+                               <a name="type-TRAILING"></a><font color="#cc0033">TRAILING</font>* : <a href="#type-SwingUtilities2$Section">SwingUtilities2$Section</a>;
+                               <b>PROCEDURE </b><font color="#cc0033">valueOf</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-SwingUtilities2$Section">SwingUtilities2$Section</a>;
+                               <b>PROCEDURE </b><font color="#cc0033">values</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-SwingUtilities2$Section">SwingUtilities2$Section</a>;
+                             <b>END</b>;
+
+  <a name="type-UIAction"></a><font color="#cc0033">UIAction</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="javax_swing.html#type-Action">javax_swing.Action</a>)    <a href="#meths-UIAction"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+              <b>STATIC</b>
+                <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-UIAction">UIAction</a><b>,CONSTRUCTOR</b>;
+              <b>END</b>;
+
+  <a name="type-UIClientPropertyKey"></a><font color="#cc0033">UIClientPropertyKey</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                         <b>END</b>;
+
+  <a name="type-WindowsPlacesBar"></a><font color="#cc0033">WindowsPlacesBar</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="javax_swing.html#type-JToolBar">javax_swing.JToolBar</a> + <a href="java_awt_event.html#type-ActionListener">java_awt_event.ActionListener</a> + <a href="java_beans.html#type-PropertyChangeListener">java_beans.PropertyChangeListener</a>)    <a href="#meths-WindowsPlacesBar"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                      <b>STATIC</b>
+                        <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="javax_swing.html#type-JFileChooser">javax_swing.JFileChooser</a>;
+                                        p1 : BOOLEAN) : <a href="#type-WindowsPlacesBar">WindowsPlacesBar</a><b>,CONSTRUCTOR</b>;
+                      <b>END</b>;
+
+
+
+<a name="meths-AccessibleMethod"></a>
+<b>PROCEDURE </b>(self:AccessibleMethod) <font color="#cc0033">invoke</font>*(    p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                          IN  p1 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AccessibleMethod) <font color="#cc0033">invokeNoChecked</font>*(    p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                   IN  p1 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-AccumulativeRunnable"></a>
+<b>PROCEDURE </b>(self:AccumulativeRunnable) <font color="#cc0033">add</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:AccumulativeRunnable) <font color="#cc0033">run</font>*()<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:AccumulativeRunnable) <font color="#cc0033">run</font>!(p0 : <a href="java_util.html#type-List">java_util.List</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AccumulativeRunnable) <font color="#cc0033">submit</font>!()<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-BakedArrayList"></a>
+<b>PROCEDURE </b>(self:BakedArrayList) <font color="#cc0033">cacheHashCode</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BakedArrayList) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BakedArrayList) <font color="#cc0033">hashCode</font>*() : INTEGER<b>,EXTENSIBLE</b>;
+<a name="meths-CachedPainter"></a>
+<b>PROCEDURE </b>(self:CachedPainter) <font color="#cc0033">createImage</font>!(    p0 : <a href="java_awt.html#type-Component">java_awt.Component</a>;
+                                                p1 : INTEGER;
+                                                p2 : INTEGER;
+                                                p3 : <a href="java_awt.html#type-GraphicsConfiguration">java_awt.GraphicsConfiguration</a>;
+                                            IN  p4 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_awt.html#type-Image">java_awt.Image</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CachedPainter) <font color="#cc0033">flush</font>!()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CachedPainter) <font color="#cc0033">paint</font>*(    p0 : <a href="java_awt.html#type-Component">java_awt.Component</a>;
+                                          p1 : <a href="java_awt.html#type-Graphics">java_awt.Graphics</a>;
+                                          p2 : INTEGER;
+                                          p3 : INTEGER;
+                                          p4 : INTEGER;
+                                          p5 : INTEGER;
+                                      IN  p6 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CachedPainter) <font color="#cc0033">paintImage</font>!(    p0 : <a href="java_awt.html#type-Component">java_awt.Component</a>;
+                                               p1 : <a href="java_awt.html#type-Graphics">java_awt.Graphics</a>;
+                                               p2 : INTEGER;
+                                               p3 : INTEGER;
+                                               p4 : INTEGER;
+                                               p5 : INTEGER;
+                                               p6 : <a href="java_awt.html#type-Image">java_awt.Image</a>;
+                                           IN  p7 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CachedPainter) <font color="#cc0033">paintToImage</font>!(    p0 : <a href="java_awt.html#type-Component">java_awt.Component</a>;
+                                                 p1 : <a href="java_awt.html#type-Image">java_awt.Image</a>;
+                                                 p2 : <a href="java_awt.html#type-Graphics">java_awt.Graphics</a>;
+                                                 p3 : INTEGER;
+                                                 p4 : INTEGER;
+                                             IN  p5 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-DefaultLayoutStyle"></a>
+<b>PROCEDURE </b>(self:DefaultLayoutStyle) <font color="#cc0033">flipDirection</font>!(p0 : INTEGER) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultLayoutStyle) <font color="#cc0033">getButtonGap</font>!(p0 : <a href="javax_swing.html#type-JComponent">javax_swing.JComponent</a>;
+                                                  p1 : INTEGER;
+                                                  p2 : INTEGER) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultLayoutStyle) <font color="#cc0033">getButtonGap</font>*(p0 : <a href="javax_swing.html#type-JComponent">javax_swing.JComponent</a>;
+                                                  p1 : INTEGER) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultLayoutStyle) <font color="#cc0033">getButtonGap</font>!(p0 : <a href="javax_swing.html#type-JComponent">javax_swing.JComponent</a>;
+                                                  p1 : <a href="javax_swing.html#type-JComponent">javax_swing.JComponent</a>;
+                                                  p2 : INTEGER;
+                                                  p3 : INTEGER) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultLayoutStyle) <font color="#cc0033">getContainerGap</font>*(p0 : <a href="javax_swing.html#type-JComponent">javax_swing.JComponent</a>;
+                                                     p1 : INTEGER;
+                                                     p2 : <a href="java_awt.html#type-Container">java_awt.Container</a>) : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultLayoutStyle) <font color="#cc0033">getIndent</font>!(p0 : <a href="javax_swing.html#type-JComponent">javax_swing.JComponent</a>;
+                                               p1 : INTEGER) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultLayoutStyle) <font color="#cc0033">getPreferredGap</font>*(p0 : <a href="javax_swing.html#type-JComponent">javax_swing.JComponent</a>;
+                                                     p1 : <a href="javax_swing.html#type-JComponent">javax_swing.JComponent</a>;
+                                                     p2 : <a href="javax_swing.html#type-LayoutStyle$ComponentPlacement">javax_swing.LayoutStyle$ComponentPlacement</a>;
+                                                     p3 : INTEGER;
+                                                     p4 : <a href="java_awt.html#type-Container">java_awt.Container</a>) : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultLayoutStyle) <font color="#cc0033">isLabelAndNonlabel</font>!(p0 : <a href="javax_swing.html#type-JComponent">javax_swing.JComponent</a>;
+                                                        p1 : <a href="javax_swing.html#type-JComponent">javax_swing.JComponent</a>;
+                                                        p2 : INTEGER) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-DefaultLookup"></a>
+<b>PROCEDURE </b>(self:DefaultLookup) <font color="#cc0033">getDefault</font>*(p0 : <a href="javax_swing.html#type-JComponent">javax_swing.JComponent</a>;
+                                           p1 : <a href="javax_swing_plaf.html#type-ComponentUI">javax_swing_plaf.ComponentUI</a>;
+                                           p2 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-FilePane"></a>
+<b>PROCEDURE </b>(self:FilePane) <font color="#cc0033">clearSelection</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FilePane) <font color="#cc0033">createActionMap</font>!()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FilePane) <font color="#cc0033">createDetailsView</font>*() : <a href="javax_swing.html#type-JPanel">javax_swing.JPanel</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FilePane) <font color="#cc0033">createList</font>*() : <a href="javax_swing.html#type-JPanel">javax_swing.JPanel</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FilePane) <font color="#cc0033">createListSelectionListener</font>*() : <a href="javax_swing_event.html#type-ListSelectionListener">javax_swing_event.ListSelectionListener</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FilePane) <font color="#cc0033">ensureFileIsVisible</font>*(p0 : <a href="javax_swing.html#type-JFileChooser">javax_swing.JFileChooser</a>;
+                                               p1 : <a href="java_io.html#type-File">java_io.File</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FilePane) <font color="#cc0033">getActions</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="javax_swing.html#type-Action">javax_swing.Action</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FilePane) <font color="#cc0033">getComponentPopupMenu</font>*() : <a href="javax_swing.html#type-JPopupMenu">javax_swing.JPopupMenu</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FilePane) <font color="#cc0033">getDirectory</font>!() : <a href="java_io.html#type-File">java_io.File</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FilePane) <font color="#cc0033">getFileChooser</font>!() : <a href="javax_swing.html#type-JFileChooser">javax_swing.JFileChooser</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FilePane) <font color="#cc0033">getModel</font>!() : <a href="javax_swing_plaf_basic.html#type-BasicDirectoryModel">javax_swing_plaf_basic.BasicDirectoryModel</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FilePane) <font color="#cc0033">getMouseHandler</font>!() : <b>FilePane$Handler</b><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FilePane) <font color="#cc0033">getNewFolderAction</font>*() : <a href="javax_swing.html#type-Action">javax_swing.Action</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FilePane) <font color="#cc0033">getViewMenu</font>*() : <a href="javax_swing.html#type-JMenu">javax_swing.JMenu</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FilePane) <font color="#cc0033">getViewType</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FilePane) <font color="#cc0033">getViewTypeAction</font>*(p0 : INTEGER) : <a href="javax_swing.html#type-Action">javax_swing.Action</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FilePane) <font color="#cc0033">installDefaults</font>!()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FilePane) <font color="#cc0033">isDirectorySelected</font>!() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FilePane) <font color="#cc0033">propertyChange</font>*(p0 : <a href="java_beans.html#type-PropertyChangeEvent">java_beans.PropertyChangeEvent</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FilePane) <font color="#cc0033">rescanCurrentDirectory</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FilePane) <font color="#cc0033">setViewPanel</font>*(p0 : INTEGER;
+                                        p1 : <a href="javax_swing.html#type-JPanel">javax_swing.JPanel</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FilePane) <font color="#cc0033">setViewType</font>*(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FilePane) <font color="#cc0033">uninstallUI</font>*()<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-FilePane$FileChooserUIAccessor"></a>
+<b>PROCEDURE </b>(self:FilePane$FileChooserUIAccessor) <font color="#cc0033">createDetailsView</font>*() : <a href="javax_swing.html#type-JPanel">javax_swing.JPanel</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:FilePane$FileChooserUIAccessor) <font color="#cc0033">createDoubleClickListener</font>*(p0 : <a href="javax_swing.html#type-JList">javax_swing.JList</a>) : <a href="java_awt_event.html#type-MouseListener">java_awt_event.MouseListener</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:FilePane$FileChooserUIAccessor) <font color="#cc0033">createList</font>*() : <a href="javax_swing.html#type-JPanel">javax_swing.JPanel</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:FilePane$FileChooserUIAccessor) <font color="#cc0033">createListSelectionListener</font>*() : <a href="javax_swing_event.html#type-ListSelectionListener">javax_swing_event.ListSelectionListener</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:FilePane$FileChooserUIAccessor) <font color="#cc0033">getApproveSelectionAction</font>*() : <a href="javax_swing.html#type-Action">javax_swing.Action</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:FilePane$FileChooserUIAccessor) <font color="#cc0033">getChangeToParentDirectoryAction</font>*() : <a href="javax_swing.html#type-Action">javax_swing.Action</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:FilePane$FileChooserUIAccessor) <font color="#cc0033">getDirectory</font>*() : <a href="java_io.html#type-File">java_io.File</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:FilePane$FileChooserUIAccessor) <font color="#cc0033">getFileChooser</font>*() : <a href="javax_swing.html#type-JFileChooser">javax_swing.JFileChooser</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:FilePane$FileChooserUIAccessor) <font color="#cc0033">getModel</font>*() : <a href="javax_swing_plaf_basic.html#type-BasicDirectoryModel">javax_swing_plaf_basic.BasicDirectoryModel</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:FilePane$FileChooserUIAccessor) <font color="#cc0033">getNewFolderAction</font>*() : <a href="javax_swing.html#type-Action">javax_swing.Action</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:FilePane$FileChooserUIAccessor) <font color="#cc0033">isDirectorySelected</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:FilePane$FileChooserUIAccessor) <font color="#cc0033">usesShellFolder</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+<a name="meths-FilePane$FileRenderer"></a>
+<b>PROCEDURE </b>(self:FilePane$FileRenderer) <font color="#cc0033">getListCellRendererComponent</font>*(p0 : <a href="javax_swing.html#type-JList">javax_swing.JList</a>;
+                                                                     p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                                     p2 : INTEGER;
+                                                                     p3 : BOOLEAN;
+                                                                     p4 : BOOLEAN) : <a href="java_awt.html#type-Component">java_awt.Component</a><b>,EXTENSIBLE</b>;
+<a name="meths-ImageCache"></a>
+<b>PROCEDURE </b>(self:ImageCache) <font color="#cc0033">flush</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImageCache) <font color="#cc0033">getImage</font>*(    p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                          p1 : <a href="java_awt.html#type-GraphicsConfiguration">java_awt.GraphicsConfiguration</a>;
+                                          p2 : INTEGER;
+                                          p3 : INTEGER;
+                                      IN  p4 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_awt.html#type-Image">java_awt.Image</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImageCache) <font color="#cc0033">setImage</font>*(    p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                          p1 : <a href="java_awt.html#type-GraphicsConfiguration">java_awt.GraphicsConfiguration</a>;
+                                          p2 : INTEGER;
+                                          p3 : INTEGER;
+                                      IN  p4 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                          p5 : <a href="java_awt.html#type-Image">java_awt.Image</a>)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-MenuItemCheckIconFactory"></a>
+<b>PROCEDURE </b>(self:MenuItemCheckIconFactory) <font color="#cc0033">getIcon</font>*(p0 : <a href="javax_swing.html#type-JMenuItem">javax_swing.JMenuItem</a>) : <a href="javax_swing.html#type-Icon">javax_swing.Icon</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MenuItemCheckIconFactory) <font color="#cc0033">isCompatible</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                        p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+<a name="meths-MenuItemLayoutHelper"></a>
+<b>PROCEDURE </b>(self:MenuItemLayoutHelper) <font color="#cc0033">calcMaxValue</font>!(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                    p1 : INTEGER) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MenuItemLayoutHelper) <font color="#cc0033">calcMaxWidth</font>!(p0 : <a href="#type-MenuItemLayoutHelper$RectSize">MenuItemLayoutHelper$RectSize</a>;
+                                                    p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MenuItemLayoutHelper) <font color="#cc0033">calcMaxWidths</font>!()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MenuItemLayoutHelper) <font color="#cc0033">calcWidthsAndHeights</font>!()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MenuItemLayoutHelper) <font color="#cc0033">getAccFont</font>*() : <a href="java_awt.html#type-Font">java_awt.Font</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MenuItemLayoutHelper) <font color="#cc0033">getAccFontMetrics</font>*() : <a href="java_awt.html#type-FontMetrics">java_awt.FontMetrics</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MenuItemLayoutHelper) <font color="#cc0033">getAccSize</font>*() : <a href="#type-MenuItemLayoutHelper$RectSize">MenuItemLayoutHelper$RectSize</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MenuItemLayoutHelper) <font color="#cc0033">getAccText</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MenuItemLayoutHelper) <font color="#cc0033">getAfterCheckIconGap</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MenuItemLayoutHelper) <font color="#cc0033">getArrowIcon</font>*() : <a href="javax_swing.html#type-Icon">javax_swing.Icon</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MenuItemLayoutHelper) <font color="#cc0033">getArrowSize</font>*() : <a href="#type-MenuItemLayoutHelper$RectSize">MenuItemLayoutHelper$RectSize</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MenuItemLayoutHelper) <font color="#cc0033">getCheckIcon</font>*() : <a href="javax_swing.html#type-Icon">javax_swing.Icon</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MenuItemLayoutHelper) <font color="#cc0033">getCheckSize</font>*() : <a href="#type-MenuItemLayoutHelper$RectSize">MenuItemLayoutHelper$RectSize</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MenuItemLayoutHelper) <font color="#cc0033">getFont</font>*() : <a href="java_awt.html#type-Font">java_awt.Font</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MenuItemLayoutHelper) <font color="#cc0033">getFontMetrics</font>*() : <a href="java_awt.html#type-FontMetrics">java_awt.FontMetrics</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MenuItemLayoutHelper) <font color="#cc0033">getGap</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MenuItemLayoutHelper) <font color="#cc0033">getHorizontalAlignment</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MenuItemLayoutHelper) <font color="#cc0033">getHorizontalTextPosition</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MenuItemLayoutHelper) <font color="#cc0033">getHtmlView</font>*() : <a href="javax_swing_text.html#type-View">javax_swing_text.View</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MenuItemLayoutHelper) <font color="#cc0033">getIcon</font>*() : <a href="javax_swing.html#type-Icon">javax_swing.Icon</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MenuItemLayoutHelper) <font color="#cc0033">getIconSize</font>*() : <a href="#type-MenuItemLayoutHelper$RectSize">MenuItemLayoutHelper$RectSize</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MenuItemLayoutHelper) <font color="#cc0033">getLabelSize</font>*() : <a href="#type-MenuItemLayoutHelper$RectSize">MenuItemLayoutHelper$RectSize</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MenuItemLayoutHelper) <font color="#cc0033">getLeadingGap</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MenuItemLayoutHelper) <font color="#cc0033">getLeftTextExtraWidth</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MenuItemLayoutHelper) <font color="#cc0033">getLTRColumnAlignment</font>*() : <a href="#type-MenuItemLayoutHelper$ColumnAlignment">MenuItemLayoutHelper$ColumnAlignment</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MenuItemLayoutHelper) <font color="#cc0033">getMenuItem</font>*() : <a href="javax_swing.html#type-JMenuItem">javax_swing.JMenuItem</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MenuItemLayoutHelper) <font color="#cc0033">getMenuItemParent</font>*() : <a href="javax_swing.html#type-JComponent">javax_swing.JComponent</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MenuItemLayoutHelper) <font color="#cc0033">getMinTextOffset</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MenuItemLayoutHelper) <font color="#cc0033">getParentIntProperty</font>!(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MenuItemLayoutHelper) <font color="#cc0033">getRTLColumnAlignment</font>*() : <a href="#type-MenuItemLayoutHelper$ColumnAlignment">MenuItemLayoutHelper$ColumnAlignment</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MenuItemLayoutHelper) <font color="#cc0033">getText</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MenuItemLayoutHelper) <font color="#cc0033">getTextSize</font>*() : <a href="#type-MenuItemLayoutHelper$RectSize">MenuItemLayoutHelper$RectSize</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MenuItemLayoutHelper) <font color="#cc0033">getVerticalAlignment</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MenuItemLayoutHelper) <font color="#cc0033">getVerticalTextPosition</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MenuItemLayoutHelper) <font color="#cc0033">getViewRect</font>*() : <a href="java_awt.html#type-Rectangle">java_awt.Rectangle</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MenuItemLayoutHelper) <font color="#cc0033">isColumnLayout</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MenuItemLayoutHelper) <font color="#cc0033">isLeftToRight</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MenuItemLayoutHelper) <font color="#cc0033">isTopLevelMenu</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MenuItemLayoutHelper) <font color="#cc0033">layoutIconAndTextInLabelRect</font>!(p0 : <a href="#type-MenuItemLayoutHelper$LayoutResult">MenuItemLayoutHelper$LayoutResult</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MenuItemLayoutHelper) <font color="#cc0033">layoutMenuItem</font>*() : <a href="#type-MenuItemLayoutHelper$LayoutResult">MenuItemLayoutHelper$LayoutResult</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MenuItemLayoutHelper) <font color="#cc0033">prepareForLayout</font>!(p0 : <a href="#type-MenuItemLayoutHelper$LayoutResult">MenuItemLayoutHelper$LayoutResult</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MenuItemLayoutHelper) <font color="#cc0033">reset</font>!(p0  : <a href="javax_swing.html#type-JMenuItem">javax_swing.JMenuItem</a>;
+                                             p1  : <a href="javax_swing.html#type-Icon">javax_swing.Icon</a>;
+                                             p2  : <a href="javax_swing.html#type-Icon">javax_swing.Icon</a>;
+                                             p3  : <a href="java_awt.html#type-Rectangle">java_awt.Rectangle</a>;
+                                             p4  : INTEGER;
+                                             p5  : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                             p6  : BOOLEAN;
+                                             p7  : <a href="java_awt.html#type-Font">java_awt.Font</a>;
+                                             p8  : <a href="java_awt.html#type-Font">java_awt.Font</a>;
+                                             p9  : BOOLEAN;
+                                             p10 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MenuItemLayoutHelper) <font color="#cc0033">setAccFont</font>!(p0 : <a href="java_awt.html#type-Font">java_awt.Font</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MenuItemLayoutHelper) <font color="#cc0033">setAccFontMetrics</font>!(p0 : <a href="java_awt.html#type-FontMetrics">java_awt.FontMetrics</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MenuItemLayoutHelper) <font color="#cc0033">setAccSize</font>!(p0 : <a href="#type-MenuItemLayoutHelper$RectSize">MenuItemLayoutHelper$RectSize</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MenuItemLayoutHelper) <font color="#cc0033">setAccText</font>!(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MenuItemLayoutHelper) <font color="#cc0033">setAfterCheckIconGap</font>!(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MenuItemLayoutHelper) <font color="#cc0033">setArrowIcon</font>!(p0 : <a href="javax_swing.html#type-Icon">javax_swing.Icon</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MenuItemLayoutHelper) <font color="#cc0033">setArrowSize</font>!(p0 : <a href="#type-MenuItemLayoutHelper$RectSize">MenuItemLayoutHelper$RectSize</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MenuItemLayoutHelper) <font color="#cc0033">setCheckIcon</font>!(p0 : <a href="javax_swing.html#type-Icon">javax_swing.Icon</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MenuItemLayoutHelper) <font color="#cc0033">setCheckSize</font>!(p0 : <a href="#type-MenuItemLayoutHelper$RectSize">MenuItemLayoutHelper$RectSize</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MenuItemLayoutHelper) <font color="#cc0033">setColumnLayout</font>!(p0 : BOOLEAN)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MenuItemLayoutHelper) <font color="#cc0033">setFont</font>!(p0 : <a href="java_awt.html#type-Font">java_awt.Font</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MenuItemLayoutHelper) <font color="#cc0033">setFontMetrics</font>!(p0 : <a href="java_awt.html#type-FontMetrics">java_awt.FontMetrics</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MenuItemLayoutHelper) <font color="#cc0033">setGap</font>!(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MenuItemLayoutHelper) <font color="#cc0033">setHorizontalAlignment</font>!(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MenuItemLayoutHelper) <font color="#cc0033">setHorizontalTextPosition</font>!(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MenuItemLayoutHelper) <font color="#cc0033">setHtmlView</font>!(p0 : <a href="javax_swing_text.html#type-View">javax_swing_text.View</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MenuItemLayoutHelper) <font color="#cc0033">setIcon</font>!(p0 : <a href="javax_swing.html#type-Icon">javax_swing.Icon</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MenuItemLayoutHelper) <font color="#cc0033">setIconSize</font>!(p0 : <a href="#type-MenuItemLayoutHelper$RectSize">MenuItemLayoutHelper$RectSize</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MenuItemLayoutHelper) <font color="#cc0033">setLabelSize</font>!(p0 : <a href="#type-MenuItemLayoutHelper$RectSize">MenuItemLayoutHelper$RectSize</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MenuItemLayoutHelper) <font color="#cc0033">setLeadingGap</font>!(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MenuItemLayoutHelper) <font color="#cc0033">setLeftToRight</font>!(p0 : BOOLEAN)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MenuItemLayoutHelper) <font color="#cc0033">setMenuItem</font>!(p0 : <a href="javax_swing.html#type-JMenuItem">javax_swing.JMenuItem</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MenuItemLayoutHelper) <font color="#cc0033">setMenuItemParent</font>!(p0 : <a href="javax_swing.html#type-JComponent">javax_swing.JComponent</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MenuItemLayoutHelper) <font color="#cc0033">setMinTextOffset</font>!(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MenuItemLayoutHelper) <font color="#cc0033">setText</font>!(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MenuItemLayoutHelper) <font color="#cc0033">setTextSize</font>!(p0 : <a href="#type-MenuItemLayoutHelper$RectSize">MenuItemLayoutHelper$RectSize</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MenuItemLayoutHelper) <font color="#cc0033">setTopLevelMenu</font>!(p0 : BOOLEAN)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MenuItemLayoutHelper) <font color="#cc0033">setUseCheckAndArrow</font>!(p0 : BOOLEAN)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MenuItemLayoutHelper) <font color="#cc0033">setVerticalAlignment</font>!(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MenuItemLayoutHelper) <font color="#cc0033">setVerticalTextPosition</font>!(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MenuItemLayoutHelper) <font color="#cc0033">setViewRect</font>!(p0 : <a href="java_awt.html#type-Rectangle">java_awt.Rectangle</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MenuItemLayoutHelper) <font color="#cc0033">useCheckAndArrow</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-MenuItemLayoutHelper$ColumnAlignment"></a>
+<b>PROCEDURE </b>(self:MenuItemLayoutHelper$ColumnAlignment) <font color="#cc0033">getAccAlignment</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MenuItemLayoutHelper$ColumnAlignment) <font color="#cc0033">getArrowAlignment</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MenuItemLayoutHelper$ColumnAlignment) <font color="#cc0033">getCheckAlignment</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MenuItemLayoutHelper$ColumnAlignment) <font color="#cc0033">getIconAlignment</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MenuItemLayoutHelper$ColumnAlignment) <font color="#cc0033">getTextAlignment</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-MenuItemLayoutHelper$LayoutResult"></a>
+<b>PROCEDURE </b>(self:MenuItemLayoutHelper$LayoutResult) <font color="#cc0033">getAccRect</font>*() : <a href="java_awt.html#type-Rectangle">java_awt.Rectangle</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MenuItemLayoutHelper$LayoutResult) <font color="#cc0033">getAllRects</font>*() : <a href="java_util.html#type-Map">java_util.Map</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MenuItemLayoutHelper$LayoutResult) <font color="#cc0033">getArrowRect</font>*() : <a href="java_awt.html#type-Rectangle">java_awt.Rectangle</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MenuItemLayoutHelper$LayoutResult) <font color="#cc0033">getCheckRect</font>*() : <a href="java_awt.html#type-Rectangle">java_awt.Rectangle</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MenuItemLayoutHelper$LayoutResult) <font color="#cc0033">getIconRect</font>*() : <a href="java_awt.html#type-Rectangle">java_awt.Rectangle</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MenuItemLayoutHelper$LayoutResult) <font color="#cc0033">getLabelRect</font>*() : <a href="java_awt.html#type-Rectangle">java_awt.Rectangle</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MenuItemLayoutHelper$LayoutResult) <font color="#cc0033">getTextRect</font>*() : <a href="java_awt.html#type-Rectangle">java_awt.Rectangle</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MenuItemLayoutHelper$LayoutResult) <font color="#cc0033">setAccRect</font>*(p0 : <a href="java_awt.html#type-Rectangle">java_awt.Rectangle</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MenuItemLayoutHelper$LayoutResult) <font color="#cc0033">setArrowRect</font>*(p0 : <a href="java_awt.html#type-Rectangle">java_awt.Rectangle</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MenuItemLayoutHelper$LayoutResult) <font color="#cc0033">setCheckRect</font>*(p0 : <a href="java_awt.html#type-Rectangle">java_awt.Rectangle</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MenuItemLayoutHelper$LayoutResult) <font color="#cc0033">setIconRect</font>*(p0 : <a href="java_awt.html#type-Rectangle">java_awt.Rectangle</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MenuItemLayoutHelper$LayoutResult) <font color="#cc0033">setLabelRect</font>*(p0 : <a href="java_awt.html#type-Rectangle">java_awt.Rectangle</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MenuItemLayoutHelper$LayoutResult) <font color="#cc0033">setTextRect</font>*(p0 : <a href="java_awt.html#type-Rectangle">java_awt.Rectangle</a>)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-MenuItemLayoutHelper$RectSize"></a>
+<b>PROCEDURE </b>(self:MenuItemLayoutHelper$RectSize) <font color="#cc0033">getHeight</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MenuItemLayoutHelper$RectSize) <font color="#cc0033">getMaxWidth</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MenuItemLayoutHelper$RectSize) <font color="#cc0033">getOrigWidth</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MenuItemLayoutHelper$RectSize) <font color="#cc0033">getWidth</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MenuItemLayoutHelper$RectSize) <font color="#cc0033">setHeight</font>*(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MenuItemLayoutHelper$RectSize) <font color="#cc0033">setMaxWidth</font>*(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MenuItemLayoutHelper$RectSize) <font color="#cc0033">setOrigWidth</font>*(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MenuItemLayoutHelper$RectSize) <font color="#cc0033">setWidth</font>*(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MenuItemLayoutHelper$RectSize) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,EXTENSIBLE</b>;
+<a name="meths-PrintColorUIResource"></a>
+<b>PROCEDURE </b>(self:PrintColorUIResource) <font color="#cc0033">getPrintColor</font>*() : <a href="java_awt.html#type-Color">java_awt.Color</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-PrintingStatus"></a>
+<b>PROCEDURE </b>(self:PrintingStatus) <font color="#cc0033">createNotificationPrintable</font>*(p0 : <a href="java_awt_print.html#type-Printable">java_awt_print.Printable</a>) : <a href="java_awt_print.html#type-Printable">java_awt_print.Printable</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PrintingStatus) <font color="#cc0033">dispose</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PrintingStatus) <font color="#cc0033">isAborted</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PrintingStatus) <font color="#cc0033">showModal</font>*(p0 : BOOLEAN)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-StringUIClientPropertyKey"></a>
+<b>PROCEDURE </b>(self:StringUIClientPropertyKey) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,EXTENSIBLE</b>;
+<a name="meths-SwingLazyValue"></a>
+<b>PROCEDURE </b>(self:SwingLazyValue) <font color="#cc0033">createValue</font>*(p0 : <a href="javax_swing.html#type-UIDefaults">javax_swing.UIDefaults</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-UIAction"></a>
+<b>PROCEDURE </b>(self:UIAction) <font color="#cc0033">addPropertyChangeListener</font>*(p0 : <a href="java_beans.html#type-PropertyChangeListener">java_beans.PropertyChangeListener</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:UIAction) <font color="#cc0033">getName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:UIAction) <font color="#cc0033">getValue</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:UIAction) <font color="#cc0033">isEnabled</font>*() : BOOLEAN<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:UIAction) <font color="#cc0033">isEnabled</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:UIAction) <font color="#cc0033">putValue</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                    p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:UIAction) <font color="#cc0033">removePropertyChangeListener</font>*(p0 : <a href="java_beans.html#type-PropertyChangeListener">java_beans.PropertyChangeListener</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:UIAction) <font color="#cc0033">setEnabled</font>*(p0 : BOOLEAN)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-WindowsPlacesBar"></a>
+<b>PROCEDURE </b>(self:WindowsPlacesBar) <font color="#cc0033">actionPerformed</font>*(p0 : <a href="java_awt_event.html#type-ActionEvent">java_awt_event.ActionEvent</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WindowsPlacesBar) <font color="#cc0033">doDirectoryChanged</font>!(p0 : <a href="java_io.html#type-File">java_io.File</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WindowsPlacesBar) <font color="#cc0033">getPreferredSize</font>*() : <a href="java_awt.html#type-Dimension">java_awt.Dimension</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WindowsPlacesBar) <font color="#cc0033">propertyChange</font>*(p0 : <a href="java_beans.html#type-PropertyChangeEvent">java_beans.PropertyChangeEvent</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>END </b><font color="#cc0033">sun_swing</font>.
+</font></pre></hr></body></html>

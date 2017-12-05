@@ -1,0 +1,156 @@
+<html><head><title>sun_util</title></head>
+<body bgcolor="white">
+<hr><pre>
+<b>FOREIGN MODULE </b><font color="#cc0033">sun_util</font>;
+
+<b>IMPORT</b>
+    <a href="java_util.html">java_util</a> := "java.util",
+    <a href="java_lang.html">java_lang</a> := "java.lang",
+    <a href="sun_util_calendar.html">sun_util_calendar</a> := "sun.util.calendar",
+    <a href="java_io.html">java_io</a> := "java.io",
+    <a href="java_text.html">java_text</a> := "java.text",
+    <a href="java_util_concurrent.html">java_util_concurrent</a> := "java.util.concurrent",
+    <a href="java_lang_ref.html">java_lang_ref</a> := "java.lang.ref",
+    <a href="java_security.html">java_security</a> := "java.security",
+    <a href="java_util_spi.html">java_util_spi</a> := "java.util.spi",
+    <a href="sun_util_resources.html">sun_util_resources</a> := "sun.util.resources";
+
+<b>TYPE</b>
+
+  <a name="type-BuddhistCalendar"></a><font color="#cc0033">BuddhistCalendar</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_util.html#type-GregorianCalendar">java_util.GregorianCalendar</a>)    <a href="#meths-BuddhistCalendar"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                      <b>STATIC</b>
+                        <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_util.html#type-Locale">java_util.Locale</a>) : <a href="#type-BuddhistCalendar">BuddhistCalendar</a><b>,CONSTRUCTOR</b>;
+                        <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_util.html#type-TimeZone">java_util.TimeZone</a>;
+                                        p1 : <a href="java_util.html#type-Locale">java_util.Locale</a>) : <a href="#type-BuddhistCalendar">BuddhistCalendar</a><b>,CONSTRUCTOR</b>;
+                        <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-BuddhistCalendar">BuddhistCalendar</a><b>,CONSTRUCTOR</b>;
+                        <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_util.html#type-TimeZone">java_util.TimeZone</a>) : <a href="#type-BuddhistCalendar">BuddhistCalendar</a><b>,CONSTRUCTOR</b>;
+                      <b>END</b>;
+
+  <a name="type-CoreResourceBundleControl"></a><font color="#cc0033">CoreResourceBundleControl</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_util.html#type-ResourceBundle$Control">java_util.ResourceBundle$Control</a>)    <a href="#meths-CoreResourceBundleControl"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                               <b>STATIC</b>
+                                 <b>PROCEDURE </b><font color="#cc0033">getRBControlInstance</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-CoreResourceBundleControl">CoreResourceBundleControl</a>;
+                                 <b>PROCEDURE </b><font color="#cc0033">getRBControlInstance</font>*() : <a href="#type-CoreResourceBundleControl">CoreResourceBundleControl</a>;
+                                 <b>PROCEDURE </b><font color="#cc0033">Init</font>!() : <a href="#type-CoreResourceBundleControl">CoreResourceBundleControl</a><b>,CONSTRUCTOR</b>;
+                               <b>END</b>;
+
+  <a name="type-EmptyListResourceBundle"></a><font color="#cc0033">EmptyListResourceBundle</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_util.html#type-ListResourceBundle">java_util.ListResourceBundle</a>)    <a href="#meths-EmptyListResourceBundle"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                             <b>STATIC</b>
+                               <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-EmptyListResourceBundle">EmptyListResourceBundle</a><b>,CONSTRUCTOR</b>;
+                             <b>END</b>;
+
+  <a name="type-LocaleDataMetaInfo"></a><font color="#cc0033">LocaleDataMetaInfo</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                        <b>STATIC</b>
+                          <b>PROCEDURE </b><font color="#cc0033">getSupportedLocaleString</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-String">java_lang.String</a>;
+                          <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-LocaleDataMetaInfo">LocaleDataMetaInfo</a><b>,CONSTRUCTOR</b>;
+                        <b>END</b>;
+
+  <a name="type-LocaleServiceProviderPool"></a><font color="#cc0033">LocaleServiceProviderPool</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-LocaleServiceProviderPool"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                               <b>STATIC</b>
+                                 <b>PROCEDURE </b><font color="#cc0033">getAllAvailableLocales</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_util.html#type-Locale">java_util.Locale</a>;
+                                 <b>PROCEDURE </b><font color="#cc0033">getPool</font>*(p0 : <a href="java_lang.html#type-Class">java_lang.Class</a>) : <a href="#type-LocaleServiceProviderPool">LocaleServiceProviderPool</a>;
+                               <b>END</b>;
+
+  <a name="type-LocaleServiceProviderPool$LocalizedObjectGetter"></a><font color="#cc0033">LocaleServiceProviderPool$LocalizedObjectGetter</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-LocaleServiceProviderPool$LocalizedObjectGetter"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                                                     <b>END</b>;
+
+  <a name="type-PreHashedMap"></a><font color="#cc0033">PreHashedMap</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_util.html#type-AbstractMap">java_util.AbstractMap</a>)    <a href="#meths-PreHashedMap"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                  <b>STATIC</b>
+                    <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : INTEGER;
+                                    p1 : INTEGER;
+                                    p2 : INTEGER;
+                                    p3 : INTEGER) : <a href="#type-PreHashedMap">PreHashedMap</a><b>,CONSTRUCTOR</b>;
+                  <b>END</b>;
+
+  <a name="type-ResourceBundleEnumeration"></a><font color="#cc0033">ResourceBundleEnumeration</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_util.html#type-Enumeration">java_util.Enumeration</a>)    <a href="#meths-ResourceBundleEnumeration"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                               <b>STATIC</b>
+                                 <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_util.html#type-Set">java_util.Set</a>;
+                                                 p1 : <a href="java_util.html#type-Enumeration">java_util.Enumeration</a>) : <a href="#type-ResourceBundleEnumeration">ResourceBundleEnumeration</a><b>,CONSTRUCTOR</b>;
+                               <b>END</b>;
+
+  <a name="type-TimeZoneNameUtility"></a><font color="#cc0033">TimeZoneNameUtility</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                         <b>STATIC</b>
+                           <b>PROCEDURE </b><font color="#cc0033">getZoneStrings</font>*(p0 : <a href="java_util.html#type-Locale">java_util.Locale</a>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>;
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-TimeZoneNameUtility">TimeZoneNameUtility</a><b>,CONSTRUCTOR</b>;
+                           <b>PROCEDURE </b><font color="#cc0033">retrieveDisplayNames</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                           p1 : <a href="java_util.html#type-Locale">java_util.Locale</a>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>;
+                         <b>END</b>;
+
+
+
+<a name="meths-BuddhistCalendar"></a>
+<b>PROCEDURE </b>(self:BuddhistCalendar) <font color="#cc0033">add</font>*(p0 : INTEGER;
+                                       p1 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BuddhistCalendar) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BuddhistCalendar) <font color="#cc0033">get</font>*(p0 : INTEGER) : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BuddhistCalendar) <font color="#cc0033">getActualMaximum</font>*(p0 : INTEGER) : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BuddhistCalendar) <font color="#cc0033">getDisplayName</font>*(p0 : INTEGER;
+                                                  p1 : INTEGER;
+                                                  p2 : <a href="java_util.html#type-Locale">java_util.Locale</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BuddhistCalendar) <font color="#cc0033">getDisplayNames</font>*(p0 : INTEGER;
+                                                   p1 : INTEGER;
+                                                   p2 : <a href="java_util.html#type-Locale">java_util.Locale</a>) : <a href="java_util.html#type-Map">java_util.Map</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BuddhistCalendar) <font color="#cc0033">hashCode</font>*() : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BuddhistCalendar) <font color="#cc0033">roll</font>*(p0 : INTEGER;
+                                        p1 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BuddhistCalendar) <font color="#cc0033">set</font>*(p0 : INTEGER;
+                                       p1 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BuddhistCalendar) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,EXTENSIBLE</b>;
+<a name="meths-CoreResourceBundleControl"></a>
+<b>PROCEDURE </b>(self:CoreResourceBundleControl) <font color="#cc0033">getCandidateLocales</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                                p1 : <a href="java_util.html#type-Locale">java_util.Locale</a>) : <a href="java_util.html#type-List">java_util.List</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CoreResourceBundleControl) <font color="#cc0033">getTimeToLive</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                          p1 : <a href="java_util.html#type-Locale">java_util.Locale</a>) : LONGINT<b>,EXTENSIBLE</b>;
+<a name="meths-EmptyListResourceBundle"></a>
+<b>PROCEDURE </b>(self:EmptyListResourceBundle) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-LocaleServiceProviderPool"></a>
+<b>PROCEDURE </b>(self:LocaleServiceProviderPool) <font color="#cc0033">getAvailableLocales</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_util.html#type-Locale">java_util.Locale</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LocaleServiceProviderPool) <font color="#cc0033">getLocalizedObject</font>*(    p0 : <a href="#type-LocaleServiceProviderPool$LocalizedObjectGetter">LocaleServiceProviderPool$LocalizedObjectGetter</a>;
+                                                                   p1 : <a href="java_util.html#type-Locale">java_util.Locale</a>;
+                                                               IN  p2 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LocaleServiceProviderPool) <font color="#cc0033">getLocalizedObject</font>*(    p0 : <a href="#type-LocaleServiceProviderPool$LocalizedObjectGetter">LocaleServiceProviderPool$LocalizedObjectGetter</a>;
+                                                                   p1 : <a href="java_util.html#type-Locale">java_util.Locale</a>;
+                                                                   p2 : <a href="sun_util_resources.html#type-OpenListResourceBundle">sun_util_resources.OpenListResourceBundle</a>;
+                                                                   p3 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                               IN  p4 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LocaleServiceProviderPool) <font color="#cc0033">hasProviders</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-LocaleServiceProviderPool$LocalizedObjectGetter"></a>
+<b>PROCEDURE </b>(self:LocaleServiceProviderPool$LocalizedObjectGetter) <font color="#cc0033">getObject</font>*(    p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                                                p1 : <a href="java_util.html#type-Locale">java_util.Locale</a>;
+                                                                                p2 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                                            IN  p3 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-PreHashedMap"></a>
+<b>PROCEDURE </b>(self:PreHashedMap) <font color="#cc0033">entrySet</font>*() : <a href="java_util.html#type-Set">java_util.Set</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PreHashedMap) <font color="#cc0033">get</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PreHashedMap) <font color="#cc0033">init</font>!(IN  p0 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:PreHashedMap) <font color="#cc0033">keySet</font>*() : <a href="java_util.html#type-Set">java_util.Set</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PreHashedMap) <font color="#cc0033">put</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                   p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PreHashedMap) <font color="#cc0033">put</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                   p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-ResourceBundleEnumeration"></a>
+<b>PROCEDURE </b>(self:ResourceBundleEnumeration) <font color="#cc0033">hasMoreElements</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ResourceBundleEnumeration) <font color="#cc0033">nextElement</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ResourceBundleEnumeration) <font color="#cc0033">nextElement</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>END </b><font color="#cc0033">sun_util</font>.
+</font></pre></hr></body></html>

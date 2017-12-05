@@ -1,0 +1,26 @@
+<html><head><title>java_nio_charset_spi</title></head>
+<body bgcolor="white">
+<hr><pre>
+<b>FOREIGN MODULE </b><font color="#cc0033">java_nio_charset_spi</font>;
+
+<b>IMPORT</b>
+    <a href="java_util.html">java_util</a> := "java.util",
+    <a href="java_lang.html">java_lang</a> := "java.lang",
+    <a href="java_nio_charset.html">java_nio_charset</a> := "java.nio.charset";
+
+<b>TYPE</b>
+
+  <a name="type-CharsetProvider"></a><font color="#cc0033">CharsetProvider</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-CharsetProvider"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                     <b>STATIC</b>
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>!() : <a href="#type-CharsetProvider">CharsetProvider</a><b>,CONSTRUCTOR</b>;
+                     <b>END</b>;
+
+
+
+<a name="meths-CharsetProvider"></a>
+<b>PROCEDURE </b>(self:CharsetProvider) <font color="#cc0033">charsetForName</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_nio_charset.html#type-Charset">java_nio_charset.Charset</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CharsetProvider) <font color="#cc0033">charsets</font>*() : <a href="java_util.html#type-Iterator">java_util.Iterator</a><b>,NEW,ABSTRACT</b>;
+
+<b>END </b><font color="#cc0033">java_nio_charset_spi</font>.
+</font></pre></hr></body></html>

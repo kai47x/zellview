@@ -1,0 +1,62 @@
+<html><head><title>com_sun_beans</title></head>
+<body bgcolor="white">
+<hr><pre>
+<b>FOREIGN MODULE </b><font color="#cc0033">com_sun_beans</font>;
+
+<b>IMPORT</b>
+    <a href="java_lang.html">java_lang</a> := "java.lang",
+    <a href="java_util.html">java_util</a> := "java.util",
+    <a href="java_beans.html">java_beans</a> := "java.beans",
+    <a href="java_security.html">java_security</a> := "java.security",
+    <a href="org_xml_sax.html">org_xml_sax</a> := "org.xml.sax";
+
+<b>TYPE</b>
+
+  <a name="type-ObjectHandler"></a><font color="#cc0033">ObjectHandler</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="org_xml_sax.html#type-HandlerBase">org_xml_sax.HandlerBase</a>)    <a href="#meths-ObjectHandler"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                   <b>STATIC</b>
+                     <b>PROCEDURE </b><font color="#cc0033">classForName</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-Class">java_lang.Class</a>;
+                     <b>PROCEDURE </b><font color="#cc0033">classForName</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                             p1 : <a href="java_lang.html#type-ClassLoader">java_lang.ClassLoader</a>) : <a href="java_lang.html#type-Class">java_lang.Class</a>;
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_beans.html#type-XMLDecoder">java_beans.XMLDecoder</a>) : <a href="#type-ObjectHandler">ObjectHandler</a><b>,CONSTRUCTOR</b>;
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_beans.html#type-XMLDecoder">java_beans.XMLDecoder</a>;
+                                     p1 : <a href="java_lang.html#type-ClassLoader">java_lang.ClassLoader</a>) : <a href="#type-ObjectHandler">ObjectHandler</a><b>,CONSTRUCTOR</b>;
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-ObjectHandler">ObjectHandler</a><b>,CONSTRUCTOR</b>;
+                     <b>PROCEDURE </b><font color="#cc0033">typeNameToClass</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-Class">java_lang.Class</a>;
+                     <b>PROCEDURE </b><font color="#cc0033">typeNameToPrimitiveClass</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-Class">java_lang.Class</a>;
+                   <b>END</b>;
+
+  <a name="type-WeakCache"></a><font color="#cc0033">WeakCache</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-WeakCache"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+               <b>STATIC</b>
+                 <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-WeakCache">WeakCache</a><b>,CONSTRUCTOR</b>;
+               <b>END</b>;
+
+
+
+<a name="meths-ObjectHandler"></a>
+<b>PROCEDURE </b>(self:ObjectHandler) <font color="#cc0033">characters</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>CHAR;
+                                               p1 : INTEGER;
+                                               p2 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ObjectHandler) <font color="#cc0033">dequeueResult</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ObjectHandler) <font color="#cc0033">endElement</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ObjectHandler) <font color="#cc0033">lookup</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ObjectHandler) <font color="#cc0033">register</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                         p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ObjectHandler) <font color="#cc0033">reset</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ObjectHandler) <font color="#cc0033">startElement</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                             p1 : <a href="org_xml_sax.html#type-AttributeList">org_xml_sax.AttributeList</a>)<b>,EXTENSIBLE</b>;
+<a name="meths-WeakCache"></a>
+<b>PROCEDURE </b>(self:WeakCache) <font color="#cc0033">clear</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WeakCache) <font color="#cc0033">get</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WeakCache) <font color="#cc0033">put</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>END </b><font color="#cc0033">com_sun_beans</font>.
+</font></pre></hr></body></html>

@@ -1,0 +1,257 @@
+<html><head><title>java_util_jar</title></head>
+<body bgcolor="white">
+<hr><pre>
+<b>FOREIGN MODULE </b><font color="#cc0033">java_util_jar</font>;
+
+<b>IMPORT</b>
+    <a href="java_lang.html">java_lang</a> := "java.lang",
+    <a href="java_util.html">java_util</a> := "java.util",
+    <a href="java_io.html">java_io</a> := "java.io",
+    <a href="java_util_zip.html">java_util_zip</a> := "java.util.zip",
+    <a href="java_security_cert.html">java_security_cert</a> := "java.security.cert",
+    <a href="java_security.html">java_security</a> := "java.security",
+    <a href="java_lang_ref.html">java_lang_ref</a> := "java.lang.ref",
+    <a href="java_net.html">java_net</a> := "java.net",
+    <a href="sun_security_util.html">sun_security_util</a> := "sun.security.util",
+    <a href="sun_misc.html">sun_misc</a> := "sun.misc",
+    <a href="java_beans.html">java_beans</a> := "java.beans";
+
+<b>TYPE</b>
+
+  <a name="type-Attributes"></a><font color="#cc0033">Attributes</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_util.html#type-Map">java_util.Map</a> + <a href="java_lang.html#type-Cloneable">java_lang.Cloneable</a>)    <a href="#meths-Attributes"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                  <font color="#cc0033">map</font>! : <a href="java_util.html#type-Map">java_util.Map</a>;
+                <b>STATIC</b>
+                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="#type-Attributes">Attributes</a>) : <a href="#type-Attributes">Attributes</a><b>,CONSTRUCTOR</b>;
+                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER) : <a href="#type-Attributes">Attributes</a><b>,CONSTRUCTOR</b>;
+                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-Attributes">Attributes</a><b>,CONSTRUCTOR</b>;
+                <b>END</b>;
+
+  <a name="type-Attributes$Name"></a><font color="#cc0033">Attributes$Name</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-Attributes$Name"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                     <b>STATIC</b>
+                       <a name="type-CLASS_PATH"></a><font color="#cc0033">CLASS_PATH</font>*               : <a href="#type-Attributes$Name">Attributes$Name</a>;
+                       <a name="type-CONTENT_TYPE"></a><font color="#cc0033">CONTENT_TYPE</font>*             : <a href="#type-Attributes$Name">Attributes$Name</a>;
+                       <a name="type-EXTENSION_INSTALLATION"></a><font color="#cc0033">EXTENSION_INSTALLATION</font>*   : <a href="#type-Attributes$Name">Attributes$Name</a>;
+                       <a name="type-EXTENSION_LIST"></a><font color="#cc0033">EXTENSION_LIST</font>*           : <a href="#type-Attributes$Name">Attributes$Name</a>;
+                       <a name="type-EXTENSION_NAME"></a><font color="#cc0033">EXTENSION_NAME</font>*           : <a href="#type-Attributes$Name">Attributes$Name</a>;
+                       <a name="type-IMPLEMENTATION_TITLE"></a><font color="#cc0033">IMPLEMENTATION_TITLE</font>*     : <a href="#type-Attributes$Name">Attributes$Name</a>;
+                       <a name="type-IMPLEMENTATION_URL"></a><font color="#cc0033">IMPLEMENTATION_URL</font>*       : <a href="#type-Attributes$Name">Attributes$Name</a>;
+                       <a name="type-IMPLEMENTATION_VENDOR"></a><font color="#cc0033">IMPLEMENTATION_VENDOR</font>*    : <a href="#type-Attributes$Name">Attributes$Name</a>;
+                       <a name="type-IMPLEMENTATION_VENDOR_ID"></a><font color="#cc0033">IMPLEMENTATION_VENDOR_ID</font>* : <a href="#type-Attributes$Name">Attributes$Name</a>;
+                       <a name="type-IMPLEMENTATION_VERSION"></a><font color="#cc0033">IMPLEMENTATION_VERSION</font>*   : <a href="#type-Attributes$Name">Attributes$Name</a>;
+                       <a name="type-MAIN_CLASS"></a><font color="#cc0033">MAIN_CLASS</font>*               : <a href="#type-Attributes$Name">Attributes$Name</a>;
+                       <a name="type-MANIFEST_VERSION"></a><font color="#cc0033">MANIFEST_VERSION</font>*         : <a href="#type-Attributes$Name">Attributes$Name</a>;
+                       <a name="type-SEALED"></a><font color="#cc0033">SEALED</font>*                   : <a href="#type-Attributes$Name">Attributes$Name</a>;
+                       <a name="type-SIGNATURE_VERSION"></a><font color="#cc0033">SIGNATURE_VERSION</font>*        : <a href="#type-Attributes$Name">Attributes$Name</a>;
+                       <a name="type-SPECIFICATION_TITLE"></a><font color="#cc0033">SPECIFICATION_TITLE</font>*      : <a href="#type-Attributes$Name">Attributes$Name</a>;
+                       <a name="type-SPECIFICATION_VENDOR"></a><font color="#cc0033">SPECIFICATION_VENDOR</font>*     : <a href="#type-Attributes$Name">Attributes$Name</a>;
+                       <a name="type-SPECIFICATION_VERSION"></a><font color="#cc0033">SPECIFICATION_VERSION</font>*    : <a href="#type-Attributes$Name">Attributes$Name</a>;
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-Attributes$Name">Attributes$Name</a><b>,CONSTRUCTOR</b>;
+                     <b>END</b>;
+
+  <a name="type-JarEntry"></a><font color="#cc0033">JarEntry</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_util_zip.html#type-ZipEntry">java_util_zip.ZipEntry</a>)    <a href="#meths-JarEntry"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+              <b>STATIC</b>
+                <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="#type-JarEntry">JarEntry</a>) : <a href="#type-JarEntry">JarEntry</a><b>,CONSTRUCTOR</b>;
+                <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_util_zip.html#type-ZipEntry">java_util_zip.ZipEntry</a>) : <a href="#type-JarEntry">JarEntry</a><b>,CONSTRUCTOR</b>;
+                <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-JarEntry">JarEntry</a><b>,CONSTRUCTOR</b>;
+              <b>END</b>;
+
+  <a name="type-JarException"></a><font color="#cc0033">JarException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_util_zip.html#type-ZipException">java_util_zip.ZipException</a>)
+                  <b>STATIC</b>
+                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-JarException">JarException</a><b>,CONSTRUCTOR</b>;
+                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-JarException">JarException</a><b>,CONSTRUCTOR</b>;
+                  <b>END</b>;
+
+  <a name="type-JarFile"></a><font color="#cc0033">JarFile</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_util_zip.html#type-ZipFile">java_util_zip.ZipFile</a>)    <a href="#meths-JarFile"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+             <b>STATIC</b>
+               <font color="#cc0033">MANIFEST_NAME</font>* = "META-INF/MANIFEST.MF";
+               <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_io.html#type-File">java_io.File</a>;
+                               p1 : BOOLEAN) : <a href="#type-JarFile">JarFile</a><b>,CONSTRUCTOR</b>;
+               <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_io.html#type-File">java_io.File</a>;
+                               p1 : BOOLEAN;
+                               p2 : INTEGER) : <a href="#type-JarFile">JarFile</a><b>,CONSTRUCTOR</b>;
+               <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_io.html#type-File">java_io.File</a>) : <a href="#type-JarFile">JarFile</a><b>,CONSTRUCTOR</b>;
+               <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-JarFile">JarFile</a><b>,CONSTRUCTOR</b>;
+               <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                               p1 : BOOLEAN) : <a href="#type-JarFile">JarFile</a><b>,CONSTRUCTOR</b>;
+             <b>END</b>;
+
+  <a name="type-JarInputStream"></a><font color="#cc0033">JarInputStream</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_util_zip.html#type-ZipInputStream">java_util_zip.ZipInputStream</a>)    <a href="#meths-JarInputStream"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                    <b>STATIC</b>
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_io.html#type-InputStream">java_io.InputStream</a>;
+                                      p1 : BOOLEAN) : <a href="#type-JarInputStream">JarInputStream</a><b>,CONSTRUCTOR</b>;
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_io.html#type-InputStream">java_io.InputStream</a>) : <a href="#type-JarInputStream">JarInputStream</a><b>,CONSTRUCTOR</b>;
+                    <b>END</b>;
+
+  <a name="type-JarOutputStream"></a><font color="#cc0033">JarOutputStream</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_util_zip.html#type-ZipOutputStream">java_util_zip.ZipOutputStream</a>)    <a href="#meths-JarOutputStream"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                     <b>STATIC</b>
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_io.html#type-OutputStream">java_io.OutputStream</a>) : <a href="#type-JarOutputStream">JarOutputStream</a><b>,CONSTRUCTOR</b>;
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_io.html#type-OutputStream">java_io.OutputStream</a>;
+                                       p1 : <a href="#type-Manifest">Manifest</a>) : <a href="#type-JarOutputStream">JarOutputStream</a><b>,CONSTRUCTOR</b>;
+                     <b>END</b>;
+
+  <a name="type-Manifest"></a><font color="#cc0033">Manifest</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_lang.html#type-Cloneable">java_lang.Cloneable</a>)    <a href="#meths-Manifest"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+              <b>STATIC</b>
+                <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="#type-Manifest">Manifest</a>) : <a href="#type-Manifest">Manifest</a><b>,CONSTRUCTOR</b>;
+                <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_io.html#type-InputStream">java_io.InputStream</a>) : <a href="#type-Manifest">Manifest</a><b>,CONSTRUCTOR</b>;
+                <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-Manifest">Manifest</a><b>,CONSTRUCTOR</b>;
+              <b>END</b>;
+
+  <a name="type-Pack200"></a><font color="#cc0033">Pack200</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+             <b>STATIC</b>
+               <b>PROCEDURE </b><font color="#cc0033">newPacker</font>*() : <a href="#type-Pack200$Packer">Pack200$Packer</a>;
+               <b>PROCEDURE </b><font color="#cc0033">newUnpacker</font>*() : <a href="#type-Pack200$Unpacker">Pack200$Unpacker</a>;
+             <b>END</b>;
+
+  <a name="type-Pack200$Packer"></a><font color="#cc0033">Pack200$Packer</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-Pack200$Packer"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                    <b>STATIC</b>
+                      <font color="#cc0033">CLASS_ATTRIBUTE_PFX</font>*  = "pack.class.attribute.";
+                      <font color="#cc0033">CODE_ATTRIBUTE_PFX</font>*   = "pack.code.attribute.";
+                      <font color="#cc0033">DEFLATE_HINT</font>*         = "pack.deflate.hint";
+                      <font color="#cc0033">EFFORT</font>*               = "pack.effort";
+                      <font color="#cc0033">ERROR</font>*                = "error";
+                      <font color="#cc0033">FALSE</font>*                = "false";
+                      <font color="#cc0033">FIELD_ATTRIBUTE_PFX</font>*  = "pack.field.attribute.";
+                      <font color="#cc0033">KEEP</font>*                 = "keep";
+                      <font color="#cc0033">KEEP_FILE_ORDER</font>*      = "pack.keep.file.order";
+                      <font color="#cc0033">LATEST</font>*               = "latest";
+                      <font color="#cc0033">METHOD_ATTRIBUTE_PFX</font>* = "pack.method.attribute.";
+                      <font color="#cc0033">MODIFICATION_TIME</font>*    = "pack.modification.time";
+                      <font color="#cc0033">PASS</font>*                 = "pass";
+                      <font color="#cc0033">PASS_FILE_PFX</font>*        = "pack.pass.file.";
+                      <font color="#cc0033">PROGRESS</font>*             = "pack.progress";
+                      <font color="#cc0033">SEGMENT_LIMIT</font>*        = "pack.segment.limit";
+                      <font color="#cc0033">STRIP</font>*                = "strip";
+                      <font color="#cc0033">TRUE</font>*                 = "true";
+                      <font color="#cc0033">UNKNOWN_ATTRIBUTE</font>*    = "pack.unknown.attribute";
+                    <b>END</b>;
+
+  <a name="type-Pack200$Unpacker"></a><font color="#cc0033">Pack200$Unpacker</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-Pack200$Unpacker"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                      <b>STATIC</b>
+                        <font color="#cc0033">DEFLATE_HINT</font>* = "unpack.deflate.hint";
+                        <font color="#cc0033">FALSE</font>*        = "false";
+                        <font color="#cc0033">KEEP</font>*         = "keep";
+                        <font color="#cc0033">PROGRESS</font>*     = "unpack.progress";
+                        <font color="#cc0033">TRUE</font>*         = "true";
+                      <b>END</b>;
+
+
+
+<a name="meths-Attributes"></a>
+<b>PROCEDURE </b>(self:Attributes) <font color="#cc0033">clear</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Attributes) <font color="#cc0033">clone</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Attributes) <font color="#cc0033">containsKey</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Attributes) <font color="#cc0033">containsValue</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Attributes) <font color="#cc0033">entrySet</font>*() : <a href="java_util.html#type-Set">java_util.Set</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Attributes) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Attributes) <font color="#cc0033">get</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Attributes) <font color="#cc0033">getValue</font>*(p0 : <a href="#type-Attributes$Name">Attributes$Name</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Attributes) <font color="#cc0033">getValue</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Attributes) <font color="#cc0033">hashCode</font>*() : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Attributes) <font color="#cc0033">isEmpty</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Attributes) <font color="#cc0033">keySet</font>*() : <a href="java_util.html#type-Set">java_util.Set</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Attributes) <font color="#cc0033">put</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                 p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Attributes) <font color="#cc0033">putAll</font>*(p0 : <a href="java_util.html#type-Map">java_util.Map</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Attributes) <font color="#cc0033">putValue</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                      p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Attributes) <font color="#cc0033">remove</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Attributes) <font color="#cc0033">size</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Attributes) <font color="#cc0033">values</font>*() : <a href="java_util.html#type-Collection">java_util.Collection</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-Attributes$Name"></a>
+<b>PROCEDURE </b>(self:Attributes$Name) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Attributes$Name) <font color="#cc0033">hashCode</font>*() : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Attributes$Name) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,EXTENSIBLE</b>;
+<a name="meths-JarEntry"></a>
+<b>PROCEDURE </b>(self:JarEntry) <font color="#cc0033">getAttributes</font>*() : <a href="#type-Attributes">Attributes</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:JarEntry) <font color="#cc0033">getCertificates</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_security_cert.html#type-Certificate">java_security_cert.Certificate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:JarEntry) <font color="#cc0033">getCodeSigners</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_security.html#type-CodeSigner">java_security.CodeSigner</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-JarFile"></a>
+<b>PROCEDURE </b>(self:JarFile) <font color="#cc0033">entries</font>*() : <a href="java_util.html#type-Enumeration">java_util.Enumeration</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:JarFile) <font color="#cc0033">getEntry</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_util_zip.html#type-ZipEntry">java_util_zip.ZipEntry</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:JarFile) <font color="#cc0033">getInputStream</font>*(p0 : <a href="java_util_zip.html#type-ZipEntry">java_util_zip.ZipEntry</a>) : <a href="java_io.html#type-InputStream">java_io.InputStream</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:JarFile) <font color="#cc0033">getJarEntry</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-JarEntry">JarEntry</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:JarFile) <font color="#cc0033">getManifest</font>*() : <a href="#type-Manifest">Manifest</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-JarInputStream"></a>
+<b>PROCEDURE </b>(self:JarInputStream) <font color="#cc0033">createZipEntry</font>!(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_util_zip.html#type-ZipEntry">java_util_zip.ZipEntry</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:JarInputStream) <font color="#cc0033">getManifest</font>*() : <a href="#type-Manifest">Manifest</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:JarInputStream) <font color="#cc0033">getNextEntry</font>*() : <a href="java_util_zip.html#type-ZipEntry">java_util_zip.ZipEntry</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:JarInputStream) <font color="#cc0033">getNextJarEntry</font>*() : <a href="#type-JarEntry">JarEntry</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:JarInputStream) <font color="#cc0033">read</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE;
+                                          p1 : INTEGER;
+                                          p2 : INTEGER) : INTEGER<b>,EXTENSIBLE</b>;
+<a name="meths-JarOutputStream"></a>
+<b>PROCEDURE </b>(self:JarOutputStream) <font color="#cc0033">putNextEntry</font>*(p0 : <a href="java_util_zip.html#type-ZipEntry">java_util_zip.ZipEntry</a>)<b>,EXTENSIBLE</b>;
+<a name="meths-Manifest"></a>
+<b>PROCEDURE </b>(self:Manifest) <font color="#cc0033">clear</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Manifest) <font color="#cc0033">clone</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Manifest) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Manifest) <font color="#cc0033">getAttributes</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-Attributes">Attributes</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Manifest) <font color="#cc0033">getEntries</font>*() : <a href="java_util.html#type-Map">java_util.Map</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Manifest) <font color="#cc0033">getMainAttributes</font>*() : <a href="#type-Attributes">Attributes</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Manifest) <font color="#cc0033">hashCode</font>*() : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Manifest) <font color="#cc0033">read</font>*(p0 : <a href="java_io.html#type-InputStream">java_io.InputStream</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Manifest) <font color="#cc0033">write</font>*(p0 : <a href="java_io.html#type-OutputStream">java_io.OutputStream</a>)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-Pack200$Packer"></a>
+<b>PROCEDURE </b>(self:Pack200$Packer) <font color="#cc0033">addPropertyChangeListener</font>*(p0 : <a href="java_beans.html#type-PropertyChangeListener">java_beans.PropertyChangeListener</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Pack200$Packer) <font color="#cc0033">pack</font>*(p0 : <a href="#type-JarInputStream">JarInputStream</a>;
+                                      p1 : <a href="java_io.html#type-OutputStream">java_io.OutputStream</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Pack200$Packer) <font color="#cc0033">pack</font>*(p0 : <a href="#type-JarFile">JarFile</a>;
+                                      p1 : <a href="java_io.html#type-OutputStream">java_io.OutputStream</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Pack200$Packer) <font color="#cc0033">properties</font>*() : <a href="java_util.html#type-SortedMap">java_util.SortedMap</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Pack200$Packer) <font color="#cc0033">removePropertyChangeListener</font>*(p0 : <a href="java_beans.html#type-PropertyChangeListener">java_beans.PropertyChangeListener</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-Pack200$Unpacker"></a>
+<b>PROCEDURE </b>(self:Pack200$Unpacker) <font color="#cc0033">addPropertyChangeListener</font>*(p0 : <a href="java_beans.html#type-PropertyChangeListener">java_beans.PropertyChangeListener</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Pack200$Unpacker) <font color="#cc0033">properties</font>*() : <a href="java_util.html#type-SortedMap">java_util.SortedMap</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Pack200$Unpacker) <font color="#cc0033">removePropertyChangeListener</font>*(p0 : <a href="java_beans.html#type-PropertyChangeListener">java_beans.PropertyChangeListener</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Pack200$Unpacker) <font color="#cc0033">unpack</font>*(p0 : <a href="java_io.html#type-InputStream">java_io.InputStream</a>;
+                                          p1 : <a href="#type-JarOutputStream">JarOutputStream</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Pack200$Unpacker) <font color="#cc0033">unpack</font>*(p0 : <a href="java_io.html#type-File">java_io.File</a>;
+                                          p1 : <a href="#type-JarOutputStream">JarOutputStream</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>END </b><font color="#cc0033">java_util_jar</font>.
+</font></pre></hr></body></html>

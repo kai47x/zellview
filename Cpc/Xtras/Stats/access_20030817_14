@@ -1,0 +1,8 @@
+format.access="%Ses->client.ip%  %Req->headers.referer% -  %Req->vars.auth-user% [%SYSDATE%] \"%Req->reqpb.clf-request%\" %Req->srvhdrs.clf-status% %Req->srvhdrs.content-length% %Req->headers.host%"
+62.194.20.19 - - [17/Aug/2003:14:15:56 +0200] "GET / HTTP/1.1" 200 84552 www.zinnamturm.de
+217.185.110.224 http://www.google.de/search?q=%22Helmut+Zinn%22&hl=de&lr=&ie=UTF-8&oe=UTF-8&start=10&sa=N - [17/Aug/2003:21:50:34 +0200] "GET / HTTP/1.1" 200 84552 www.zinnamturm.de
+217.185.110.224 http://www.zinnamturm.de/ - [17/Aug/2003:21:50:34 +0200] "GET /bg3.gif HTTP/1.1" 200 16276 www.zinnamturm.de
+217.185.110.224 http://www.zinnamturm.de/ - [17/Aug/2003:21:50:34 +0200] "GET /mail99.gif HTTP/1.1" 200 4196 www.zinnamturm.de
+213.240.6.145 http://www.zinnamturm.de/ - [17/Aug/2003:23:10:46 +0200] "GET /bg3.gif HTTP/1.1" 200 16276 www.zinnamturm.de
+213.240.6.145 http://www.zinnamturm.de/ - [17/Aug/2003:23:10:54 +0200] "GET /mail99.gif HTTP/1.1" 200 4196 www.zinnamturm.de
+213.240.6.145 - - [17/Aug/2003:23:10:57 +0200] "GET / HTTP/1.1" 403 142 www.zinnamturm.de

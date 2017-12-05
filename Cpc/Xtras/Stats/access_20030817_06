@@ -1,0 +1,10 @@
+format.access="%Ses->client.ip%  %Req->headers.referer% -  %Req->vars.auth-user% [%SYSDATE%] \"%Req->reqpb.clf-request%\" %Req->srvhdrs.clf-status% %Req->srvhdrs.content-length% %Req->headers.host%"
+64.68.82.168 - - [17/Aug/2003:06:24:29 +0200] "GET /Util.txt HTTP/1.0" 403 142 www.zinnamturm.de
+64.68.82.168 - - [17/Aug/2003:07:14:16 +0200] "GET /Tp2cp.txt HTTP/1.0" 200 126526 www.zinnamturm.de
+64.68.82.169 - - [17/Aug/2003:07:22:32 +0200] "GET /Lib.txt HTTP/1.0" 403 142 www.zinnamturm.de
+64.68.82.169 - - [17/Aug/2003:08:01:50 +0200] "GET /CpcWhere.txt HTTP/1.0" 200 63844 www.zinnamturm.de
+64.68.82.14 - - [17/Aug/2003:08:17:39 +0200] "GET /Desktop.txt HTTP/1.0" 200 56761 www.zinnamturm.de
+64.68.82.170 - - [17/Aug/2003:08:21:54 +0200] "GET /Opal.txt HTTP/1.0" 200 58013 www.zinnamturm.de
+64.68.82.170 - - [17/Aug/2003:08:22:24 +0200] "GET /Chill.txt HTTP/1.0" 403 142 www.zinnamturm.de
+64.68.82.14 - - [17/Aug/2003:08:23:22 +0200] "GET /CpcSearch.txt HTTP/1.0" 200 65651 www.zinnamturm.de
+64.68.82.18 - - [17/Aug/2003:08:23:44 +0200] "GET /Cow.txt HTTP/1.0" 403 142 www.zinnamturm.de

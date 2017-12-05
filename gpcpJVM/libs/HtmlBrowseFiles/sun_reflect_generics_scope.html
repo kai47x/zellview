@@ -1,0 +1,62 @@
+<html><head><title>sun_reflect_generics_scope</title></head>
+<body bgcolor="white">
+<hr><pre>
+<b>FOREIGN MODULE </b><font color="#cc0033">sun_reflect_generics_scope</font>;
+
+<b>IMPORT</b>
+    <a href="java_lang_reflect.html">java_lang_reflect</a> := "java.lang.reflect",
+    <a href="java_lang.html">java_lang</a> := "java.lang";
+
+<b>TYPE</b>
+
+  <a name="type-AbstractScope"></a><font color="#cc0033">AbstractScope</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-Scope">Scope</a>)    <a href="#meths-AbstractScope"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                   <b>STATIC</b>
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : <a href="java_lang_reflect.html#type-GenericDeclaration">java_lang_reflect.GenericDeclaration</a>) : <a href="#type-AbstractScope">AbstractScope</a><b>,CONSTRUCTOR</b>;
+                   <b>END</b>;
+
+  <a name="type-ClassScope"></a><font color="#cc0033">ClassScope</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-AbstractScope">AbstractScope</a> + <a href="#type-Scope">Scope</a>)    <a href="#meths-ClassScope"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                <b>STATIC</b>
+                  <b>PROCEDURE </b><font color="#cc0033">make</font>*(p0 : <a href="java_lang.html#type-Class">java_lang.Class</a>) : <a href="#type-ClassScope">ClassScope</a>;
+                <b>END</b>;
+
+  <a name="type-ConstructorScope"></a><font color="#cc0033">ConstructorScope</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-AbstractScope">AbstractScope</a>)    <a href="#meths-ConstructorScope"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                      <b>STATIC</b>
+                        <b>PROCEDURE </b><font color="#cc0033">make</font>*(p0 : <a href="java_lang_reflect.html#type-Constructor">java_lang_reflect.Constructor</a>) : <a href="#type-ConstructorScope">ConstructorScope</a>;
+                      <b>END</b>;
+
+  <a name="type-DummyScope"></a><font color="#cc0033">DummyScope</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-Scope">Scope</a>)    <a href="#meths-DummyScope"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                <b>STATIC</b>
+                  <b>PROCEDURE </b><font color="#cc0033">make</font>*() : <a href="#type-DummyScope">DummyScope</a>;
+                <b>END</b>;
+
+  <a name="type-MethodScope"></a><font color="#cc0033">MethodScope</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-AbstractScope">AbstractScope</a>)    <a href="#meths-MethodScope"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                 <b>STATIC</b>
+                   <b>PROCEDURE </b><font color="#cc0033">make</font>*(p0 : <a href="java_lang_reflect.html#type-Method">java_lang_reflect.Method</a>) : <a href="#type-MethodScope">MethodScope</a>;
+                 <b>END</b>;
+
+  <a name="type-Scope"></a><font color="#cc0033">Scope</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-Scope"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+           <b>END</b>;
+
+
+
+<a name="meths-AbstractScope"></a>
+<b>PROCEDURE </b>(self:AbstractScope) <font color="#cc0033">computeEnclosingScope</font>!() : <a href="#type-Scope">Scope</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AbstractScope) <font color="#cc0033">getEnclosingScope</font>!() : <a href="#type-Scope">Scope</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AbstractScope) <font color="#cc0033">getRecvr</font>!() : <a href="java_lang_reflect.html#type-GenericDeclaration">java_lang_reflect.GenericDeclaration</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AbstractScope) <font color="#cc0033">lookup</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang_reflect.html#type-TypeVariable">java_lang_reflect.TypeVariable</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-ClassScope"></a>
+<b>PROCEDURE </b>(self:ClassScope) <font color="#cc0033">computeEnclosingScope</font>!() : <a href="#type-Scope">Scope</a><b>,EXTENSIBLE</b>;
+<a name="meths-ConstructorScope"></a>
+<b>PROCEDURE </b>(self:ConstructorScope) <font color="#cc0033">computeEnclosingScope</font>!() : <a href="#type-Scope">Scope</a><b>,EXTENSIBLE</b>;
+<a name="meths-DummyScope"></a>
+<b>PROCEDURE </b>(self:DummyScope) <font color="#cc0033">lookup</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang_reflect.html#type-TypeVariable">java_lang_reflect.TypeVariable</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-MethodScope"></a>
+<b>PROCEDURE </b>(self:MethodScope) <font color="#cc0033">computeEnclosingScope</font>!() : <a href="#type-Scope">Scope</a><b>,EXTENSIBLE</b>;
+<a name="meths-Scope"></a>
+<b>PROCEDURE </b>(self:Scope) <font color="#cc0033">lookup</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang_reflect.html#type-TypeVariable">java_lang_reflect.TypeVariable</a><b>,NEW,ABSTRACT</b>;
+
+<b>END </b><font color="#cc0033">sun_reflect_generics_scope</font>.
+</font></pre></hr></body></html>

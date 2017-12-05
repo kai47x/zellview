@@ -1,0 +1,21 @@
+format.access="%Ses->client.ip%  %Req->headers.referer% -  %Req->vars.auth-user% [%SYSDATE%] \"%Req->reqpb.clf-request%\" %Req->srvhdrs.clf-status% %Req->srvhdrs.content-length% %Req->headers.host%"
+64.68.82.18 - - [10/Aug/2003:02:41:21 +0200] "GET / HTTP/1.0" 200 84552 www.zinnamturm.de
+64.68.82.18 - - [10/Aug/2003:02:41:21 +0200] "GET /robots.txt HTTP/1.0" 404 2977 www.zinnamturm.de
+64.68.82.14 - - [10/Aug/2003:05:04:26 +0200] "GET /Omi.txt HTTP/1.0" 200 17803 www.zinnamturm.de
+64.68.82.167 - - [10/Aug/2003:05:04:32 +0200] "GET /TboxTeaTime.txt HTTP/1.0" 403 142 www.zinnamturm.de
+64.68.82.170 - - [10/Aug/2003:05:04:33 +0200] "GET /Info.txt HTTP/1.0" 200 127058 www.zinnamturm.de
+64.68.82.14 - - [10/Aug/2003:05:04:59 +0200] "GET /CpcWhere.txt HTTP/1.0" 200 63844 www.zinnamturm.de
+64.68.82.170 - - [10/Aug/2003:05:05:39 +0200] "GET /Ctlsx.txt HTTP/1.0" 403 142 www.zinnamturm.de
+64.68.82.170 - - [10/Aug/2003:05:15:29 +0200] "GET /Numer.txt HTTP/1.0" 200 154661 www.zinnamturm.de
+64.68.82.14 - - [10/Aug/2003:05:16:08 +0200] "GET /Kine.txt HTTP/1.0" 200 110993 www.zinnamturm.de
+64.68.82.168 - - [10/Aug/2003:05:16:08 +0200] "GET /Pic.txt HTTP/1.0" 200 100128 www.zinnamturm.de
+64.68.82.168 - - [10/Aug/2003:05:16:21 +0200] "GET /Plot.txt HTTP/1.0" 403 142 www.zinnamturm.de
+64.68.82.14 - - [10/Aug/2003:05:22:10 +0200] "GET /Lib.txt HTTP/1.0" 403 142 www.zinnamturm.de
+64.68.82.38 - - [10/Aug/2003:06:21:34 +0200] "GET /Dos.txt HTTP/1.0" 200 116611 www.zinnamturm.de
+64.68.82.38 - - [10/Aug/2003:06:21:34 +0200] "GET /Good.txt HTTP/1.0" 200 42256 www.zinnamturm.de
+64.68.82.170 - - [10/Aug/2003:06:26:50 +0200] "GET /Nav.txt HTTP/1.0" 403 142 www.zinnamturm.de
+64.68.82.168 - - [10/Aug/2003:06:26:57 +0200] "GET /Coco.txt HTTP/1.0" 403 142 www.zinnamturm.de
+64.68.82.28 - - [10/Aug/2003:06:37:00 +0200] "GET /Util.txt HTTP/1.0" 403 142 www.zinnamturm.de
+64.68.82.7 - - [10/Aug/2003:06:37:12 +0200] "GET /Tp2cp.txt HTTP/1.0" 200 126526 www.zinnamturm.de
+64.68.82.169 - - [10/Aug/2003:06:37:27 +0200] "GET /Datafit.txt HTTP/1.0" 200 61041 www.zinnamturm.de
+64.68.82.14 - - [10/Aug/2003:06:37:52 +0200] "GET /Pac.txt HTTP/1.0" 200 164694 www.zinnamturm.de

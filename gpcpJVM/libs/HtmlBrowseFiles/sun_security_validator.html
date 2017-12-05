@@ -1,0 +1,106 @@
+<html><head><title>sun_security_validator</title></head>
+<body bgcolor="white">
+<hr><pre>
+<b>FOREIGN MODULE </b><font color="#cc0033">sun_security_validator</font>;
+
+<b>IMPORT</b>
+    <a href="java_lang.html">java_lang</a> := "java.lang",
+    <a href="java_util.html">java_util</a> := "java.util",
+    <a href="java_security_cert.html">java_security_cert</a> := "java.security.cert",
+    <a href="java_security.html">java_security</a> := "java.security",
+    <a href="sun_security_util.html">sun_security_util</a> := "sun.security.util",
+    <a href="java_io.html">java_io</a> := "java.io";
+
+<b>TYPE</b>
+
+  <a name="type-KeyStores"></a><font color="#cc0033">KeyStores</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+               <b>STATIC</b>
+                 <b>PROCEDURE </b><font color="#cc0033">getTrustedCerts</font>*(p0 : <a href="java_security.html#type-KeyStore">java_security.KeyStore</a>) : <a href="java_util.html#type-Set">java_util.Set</a>;
+               <b>END</b>;
+
+  <a name="type-PKIXValidator"></a><font color="#cc0033">PKIXValidator</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-Validator">Validator</a>)    <a href="#meths-PKIXValidator"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                   <b>END</b>;
+
+  <a name="type-SimpleValidator"></a><font color="#cc0033">SimpleValidator</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-Validator">Validator</a>)    <a href="#meths-SimpleValidator"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                     <b>END</b>;
+
+  <a name="type-Validator"></a><font color="#cc0033">Validator</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-Validator"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+               <b>STATIC</b>
+                 <font color="#cc0033">TYPE_PKIX</font>*               = "PKIX";
+                 <font color="#cc0033">TYPE_SIMPLE</font>*             = "Simple";
+                 <font color="#cc0033">VAR_CODE_SIGNING</font>*        = "code signing";
+                 <font color="#cc0033">VAR_GENERIC</font>*             = "generic";
+                 <font color="#cc0033">VAR_JCE_SIGNING</font>*         = "jce signing";
+                 <font color="#cc0033">VAR_PLUGIN_CODE_SIGNING</font>* = "plugin code signing";
+                 <font color="#cc0033">VAR_TLS_CLIENT</font>*          = "tls client";
+                 <font color="#cc0033">VAR_TLS_SERVER</font>*          = "tls server";
+                 <font color="#cc0033">VAR_TSA_SERVER</font>*          = "tsa server";
+                 <b>PROCEDURE </b><font color="#cc0033">getInstance</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                        p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                        p2 : <a href="java_security_cert.html#type-PKIXBuilderParameters">java_security_cert.PKIXBuilderParameters</a>) : <a href="#type-Validator">Validator</a>;
+                 <b>PROCEDURE </b><font color="#cc0033">getInstance</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                        p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                        p2 : <a href="java_util.html#type-Collection">java_util.Collection</a>) : <a href="#type-Validator">Validator</a>;
+                 <b>PROCEDURE </b><font color="#cc0033">getInstance</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                        p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                        p2 : <a href="java_security.html#type-KeyStore">java_security.KeyStore</a>) : <a href="#type-Validator">Validator</a>;
+               <b>END</b>;
+
+  <a name="type-ValidatorException"></a><font color="#cc0033">ValidatorException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_security_cert.html#type-CertificateException">java_security_cert.CertificateException</a>)    <a href="#meths-ValidatorException"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                        <b>STATIC</b>
+                          <a name="type-T_ALGORITHM_DISABLED"></a><font color="#cc0033">T_ALGORITHM_DISABLED</font>*       : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                          <a name="type-T_CA_EXTENSIONS"></a><font color="#cc0033">T_CA_EXTENSIONS</font>*            : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                          <a name="type-T_CERT_EXPIRED"></a><font color="#cc0033">T_CERT_EXPIRED</font>*             : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                          <a name="type-T_EE_EXTENSIONS"></a><font color="#cc0033">T_EE_EXTENSIONS</font>*            : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                          <a name="type-T_NAME_CHAINING"></a><font color="#cc0033">T_NAME_CHAINING</font>*            : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                          <a name="type-T_NO_TRUST_ANCHOR"></a><font color="#cc0033">T_NO_TRUST_ANCHOR</font>*          : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                          <a name="type-T_OCSP_RESPONSE_UNRELIABLE"></a><font color="#cc0033">T_OCSP_RESPONSE_UNRELIABLE</font>* : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                          <a name="type-T_SIGNATURE_ERROR"></a><font color="#cc0033">T_SIGNATURE_ERROR</font>*          : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                          <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                          p1 : <a href="java_security_cert.html#type-X509Certificate">java_security_cert.X509Certificate</a>;
+                                          p2 : <a href="java_lang.html#type-Throwable">java_lang.Throwable</a>) : <a href="#type-ValidatorException">ValidatorException</a><b>,CONSTRUCTOR</b>;
+                          <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                          p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                          p2 : <a href="java_security_cert.html#type-X509Certificate">java_security_cert.X509Certificate</a>) : <a href="#type-ValidatorException">ValidatorException</a><b>,CONSTRUCTOR</b>;
+                          <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                          p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                          p2 : <a href="java_security_cert.html#type-X509Certificate">java_security_cert.X509Certificate</a>;
+                                          p3 : <a href="java_lang.html#type-Throwable">java_lang.Throwable</a>) : <a href="#type-ValidatorException">ValidatorException</a><b>,CONSTRUCTOR</b>;
+                          <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                          p1 : <a href="java_security_cert.html#type-X509Certificate">java_security_cert.X509Certificate</a>) : <a href="#type-ValidatorException">ValidatorException</a><b>,CONSTRUCTOR</b>;
+                          <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-ValidatorException">ValidatorException</a><b>,CONSTRUCTOR</b>;
+                          <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                          p1 : <a href="java_lang.html#type-Throwable">java_lang.Throwable</a>) : <a href="#type-ValidatorException">ValidatorException</a><b>,CONSTRUCTOR</b>;
+                          <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="#type-ValidatorException">ValidatorException</a><b>,CONSTRUCTOR</b>;
+                        <b>END</b>;
+
+
+
+<a name="meths-PKIXValidator"></a>
+<b>PROCEDURE </b>(self:PKIXValidator) <font color="#cc0033">getCertPathLength</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PKIXValidator) <font color="#cc0033">getParameters</font>*() : <a href="java_security_cert.html#type-PKIXBuilderParameters">java_security_cert.PKIXBuilderParameters</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PKIXValidator) <font color="#cc0033">getTrustedCertificates</font>*() : <a href="java_util.html#type-Collection">java_util.Collection</a><b>,EXTENSIBLE</b>;
+<a name="meths-SimpleValidator"></a>
+<b>PROCEDURE </b>(self:SimpleValidator) <font color="#cc0033">getTrustedCertificates</font>*() : <a href="java_util.html#type-Collection">java_util.Collection</a><b>,EXTENSIBLE</b>;
+<a name="meths-Validator"></a>
+<b>PROCEDURE </b>(self:Validator) <font color="#cc0033">getTrustedCertificates</font>*() : <a href="java_util.html#type-Collection">java_util.Collection</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Validator) <font color="#cc0033">setValidationDate</font>*(p0 : <a href="java_util.html#type-Date">java_util.Date</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Validator) <font color="#cc0033">validate</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="java_security_cert.html#type-X509Certificate">java_security_cert.X509Certificate</a>;
+                                         p1 : <a href="java_util.html#type-Collection">java_util.Collection</a>;
+                                         p2 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_security_cert.html#type-X509Certificate">java_security_cert.X509Certificate</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:Validator) <font color="#cc0033">validate</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="java_security_cert.html#type-X509Certificate">java_security_cert.X509Certificate</a>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_security_cert.html#type-X509Certificate">java_security_cert.X509Certificate</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:Validator) <font color="#cc0033">validate</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="java_security_cert.html#type-X509Certificate">java_security_cert.X509Certificate</a>;
+                                         p1 : <a href="java_util.html#type-Collection">java_util.Collection</a>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_security_cert.html#type-X509Certificate">java_security_cert.X509Certificate</a><b>,NEW</b>;
+<a name="meths-ValidatorException"></a>
+<b>PROCEDURE </b>(self:ValidatorException) <font color="#cc0033">getErrorCertificate</font>*() : <a href="java_security_cert.html#type-X509Certificate">java_security_cert.X509Certificate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ValidatorException) <font color="#cc0033">getErrorType</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>END </b><font color="#cc0033">sun_security_validator</font>.
+</font></pre></hr></body></html>

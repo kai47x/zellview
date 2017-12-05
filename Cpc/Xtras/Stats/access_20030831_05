@@ -1,0 +1,25 @@
+format.access="%Ses->client.ip%  %Req->headers.referer% -  %Req->vars.auth-user% [%SYSDATE%] \"%Req->reqpb.clf-request%\" %Req->srvhdrs.clf-status% %Req->srvhdrs.content-length% %Req->headers.host%"
+67.127.101.112 - - [31/Aug/2003:05:35:20 +0200] "GET /cgi-bin/formmail/FormMail.pl HTTP/1.1" 302 0 www.zinnamturm.de
+67.127.101.112 - - [31/Aug/2003:05:35:25 +0200] "GET /cgi-bin/formmail/FormMail.cgi HTTP/1.1" 302 0 www.zinnamturm.de
+67.127.101.112 - - [31/Aug/2003:05:35:25 +0200] "GET /cgi-bin/formmail/FormMail.cgi HTTP/1.1" 302 0 www.zinnamturm.de
+67.127.101.112 - - [31/Aug/2003:05:35:25 +0200] "GET /cgi-bin/formmail/FormMail.pl HTTP/1.1" 302 0 www.zinnamturm.de
+200.151.102.88 - - [31/Aug/2003:05:39:21 +0200] "POST /_vti_bin/_vti_aut/author.dll HTTP/1.0" 405 124 www.zinnamturm.de
+200.151.102.88 - - [31/Aug/2003:05:39:21 +0200] "POST /_vti_bin/_vti_aut/author.exe HTTP/1.0" 405 124 www.zinnamturm.de
+200.151.102.88 - - [31/Aug/2003:05:39:21 +0200] "POST /_vti_bin/_vti_aut/author.exe HTTP/1.0" 405 124 www.zinnamturm.de
+64.68.82.18 - - [31/Aug/2003:07:31:52 +0200] "GET /Coco.txt HTTP/1.0" 403 142 www.zinnamturm.de
+64.68.82.169 - - [31/Aug/2003:07:42:26 +0200] "GET /Filter.txt HTTP/1.0" 403 142 www.zinnamturm.de
+64.68.82.28 - - [31/Aug/2003:07:42:28 +0200] "GET /Ctls.txt HTTP/1.0" 403 142 www.zinnamturm.de
+64.68.82.7 - - [31/Aug/2003:07:49:36 +0200] "GET /Kine.txt HTTP/1.0" 200 110993 www.zinnamturm.de
+64.68.82.14 - - [31/Aug/2003:07:49:37 +0200] "GET /Numer.txt HTTP/1.0" 200 154661 www.zinnamturm.de
+64.68.82.18 - - [31/Aug/2003:07:49:40 +0200] "GET /Pic.txt HTTP/1.0" 200 100128 www.zinnamturm.de
+64.68.82.167 - - [31/Aug/2003:07:51:45 +0200] "GET /Morfit.txt HTTP/1.0" 403 142 www.zinnamturm.de
+64.68.82.38 - - [31/Aug/2003:07:51:45 +0200] "GET /Desktop.txt HTTP/1.0" 200 56761 www.zinnamturm.de
+64.68.82.38 - - [31/Aug/2003:07:53:43 +0200] "GET /Plot.txt HTTP/1.0" 403 142 www.zinnamturm.de
+64.68.82.169 - - [31/Aug/2003:07:58:27 +0200] "GET /Info.txt HTTP/1.0" 200 127058 www.zinnamturm.de
+64.68.82.28 - - [31/Aug/2003:07:58:54 +0200] "GET /Media.txt HTTP/1.0" 200 60130 www.zinnamturm.de
+64.68.82.168 - - [31/Aug/2003:08:01:32 +0200] "GET /Good.txt HTTP/1.0" 200 42256 www.zinnamturm.de
+64.68.82.168 - - [31/Aug/2003:08:01:37 +0200] "GET /Dos.txt HTTP/1.0" 200 116611 www.zinnamturm.de
+64.68.82.28 - - [31/Aug/2003:08:16:51 +0200] "GET /TboxText.txt HTTP/1.0" 200 13121 www.zinnamturm.de
+64.68.82.168 - - [31/Aug/2003:08:16:53 +0200] "GET /CpcBeautifier.txt HTTP/1.0" 200 61399 www.zinnamturm.de
+64.68.82.38 - - [31/Aug/2003:08:16:53 +0200] "GET /CpcMenus.txt HTTP/1.0" 200 31513 www.zinnamturm.de
+64.68.82.7 - - [31/Aug/2003:08:17:55 +0200] "GET /Nav.txt HTTP/1.0" 200 165946 www.zinnamturm.de

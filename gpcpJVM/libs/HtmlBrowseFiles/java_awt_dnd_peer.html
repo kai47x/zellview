@@ -1,0 +1,64 @@
+<html><head><title>java_awt_dnd_peer</title></head>
+<body bgcolor="white">
+<hr><pre>
+<b>FOREIGN MODULE </b><font color="#cc0033">java_awt_dnd_peer</font>;
+
+<b>IMPORT</b>
+    <a href="java_awt_dnd.html">java_awt_dnd</a> := "java.awt.dnd",
+    <a href="java_awt.html">java_awt</a> := "java.awt",
+    <a href="java_lang.html">java_lang</a> := "java.lang",
+    <a href="java_awt_datatransfer.html">java_awt_datatransfer</a> := "java.awt.datatransfer";
+
+<b>TYPE</b>
+
+  <a name="type-DragSourceContextPeer"></a><font color="#cc0033">DragSourceContextPeer</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-DragSourceContextPeer"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                           <b>END</b>;
+
+  <a name="type-DropTargetContextPeer"></a><font color="#cc0033">DropTargetContextPeer</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-DropTargetContextPeer"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                           <b>END</b>;
+
+  <a name="type-DropTargetPeer"></a><font color="#cc0033">DropTargetPeer</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-DropTargetPeer"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                    <b>END</b>;
+
+
+
+<a name="meths-DragSourceContextPeer"></a>
+<b>PROCEDURE </b>(self:DragSourceContextPeer) <font color="#cc0033">getCursor</font>*() : <a href="java_awt.html#type-Cursor">java_awt.Cursor</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DragSourceContextPeer) <font color="#cc0033">setCursor</font>*(p0 : <a href="java_awt.html#type-Cursor">java_awt.Cursor</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DragSourceContextPeer) <font color="#cc0033">startDrag</font>*(p0 : <a href="java_awt_dnd.html#type-DragSourceContext">java_awt_dnd.DragSourceContext</a>;
+                                                  p1 : <a href="java_awt.html#type-Cursor">java_awt.Cursor</a>;
+                                                  p2 : <a href="java_awt.html#type-Image">java_awt.Image</a>;
+                                                  p3 : <a href="java_awt.html#type-Point">java_awt.Point</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DragSourceContextPeer) <font color="#cc0033">transferablesFlavorsChanged</font>*()<b>,NEW,ABSTRACT</b>;
+<a name="meths-DropTargetContextPeer"></a>
+<b>PROCEDURE </b>(self:DropTargetContextPeer) <font color="#cc0033">acceptDrag</font>*(p0 : INTEGER)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DropTargetContextPeer) <font color="#cc0033">acceptDrop</font>*(p0 : INTEGER)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DropTargetContextPeer) <font color="#cc0033">dropComplete</font>*(p0 : BOOLEAN)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DropTargetContextPeer) <font color="#cc0033">getDropTarget</font>*() : <a href="java_awt_dnd.html#type-DropTarget">java_awt_dnd.DropTarget</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DropTargetContextPeer) <font color="#cc0033">getTargetActions</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DropTargetContextPeer) <font color="#cc0033">getTransferable</font>*() : <a href="java_awt_datatransfer.html#type-Transferable">java_awt_datatransfer.Transferable</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DropTargetContextPeer) <font color="#cc0033">getTransferDataFlavors</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_awt_datatransfer.html#type-DataFlavor">java_awt_datatransfer.DataFlavor</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DropTargetContextPeer) <font color="#cc0033">isTransferableJVMLocal</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DropTargetContextPeer) <font color="#cc0033">rejectDrag</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DropTargetContextPeer) <font color="#cc0033">rejectDrop</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DropTargetContextPeer) <font color="#cc0033">setTargetActions</font>*(p0 : INTEGER)<b>,NEW,ABSTRACT</b>;
+<a name="meths-DropTargetPeer"></a>
+<b>PROCEDURE </b>(self:DropTargetPeer) <font color="#cc0033">addDropTarget</font>*(p0 : <a href="java_awt_dnd.html#type-DropTarget">java_awt_dnd.DropTarget</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DropTargetPeer) <font color="#cc0033">removeDropTarget</font>*(p0 : <a href="java_awt_dnd.html#type-DropTarget">java_awt_dnd.DropTarget</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>END </b><font color="#cc0033">java_awt_dnd_peer</font>.
+</font></pre></hr></body></html>

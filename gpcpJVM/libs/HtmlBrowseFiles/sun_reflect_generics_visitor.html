@@ -1,0 +1,103 @@
+<html><head><title>sun_reflect_generics_visitor</title></head>
+<body bgcolor="white">
+<hr><pre>
+<b>FOREIGN MODULE </b><font color="#cc0033">sun_reflect_generics_visitor</font>;
+
+<b>IMPORT</b>
+    <a href="java_lang_reflect.html">java_lang_reflect</a> := "java.lang.reflect",
+    <a href="sun_reflect_generics_factory.html">sun_reflect_generics_factory</a> := "sun.reflect.generics.factory",
+    <a href="sun_reflect_generics_tree.html">sun_reflect_generics_tree</a> := "sun.reflect.generics.tree",
+    <a href="java_lang.html">java_lang</a> := "java.lang";
+
+<b>TYPE</b>
+
+  <a name="type-Reifier"></a><font color="#cc0033">Reifier</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-TypeTreeVisitor">TypeTreeVisitor</a>)    <a href="#meths-Reifier"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+             <b>STATIC</b>
+               <b>PROCEDURE </b><font color="#cc0033">make</font>*(p0 : <a href="sun_reflect_generics_factory.html#type-GenericsFactory">sun_reflect_generics_factory.GenericsFactory</a>) : <a href="#type-Reifier">Reifier</a>;
+             <b>END</b>;
+
+  <a name="type-TypeTreeVisitor"></a><font color="#cc0033">TypeTreeVisitor</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-TypeTreeVisitor"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                     <b>END</b>;
+
+  <a name="type-Visitor"></a><font color="#cc0033">Visitor</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-TypeTreeVisitor">TypeTreeVisitor</a>)    <a href="#meths-Visitor"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+             <b>END</b>;
+
+
+
+<a name="meths-Reifier"></a>
+<b>PROCEDURE </b>(self:Reifier) <font color="#cc0033">getResult</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Reifier) <font color="#cc0033">getResult</font>*() : <a href="java_lang_reflect.html#type-Type">java_lang_reflect.Type</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Reifier) <font color="#cc0033">visitArrayTypeSignature</font>*(p0 : <a href="sun_reflect_generics_tree.html#type-ArrayTypeSignature">sun_reflect_generics_tree.ArrayTypeSignature</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Reifier) <font color="#cc0033">visitBooleanSignature</font>*(p0 : <a href="sun_reflect_generics_tree.html#type-BooleanSignature">sun_reflect_generics_tree.BooleanSignature</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Reifier) <font color="#cc0033">visitBottomSignature</font>*(p0 : <a href="sun_reflect_generics_tree.html#type-BottomSignature">sun_reflect_generics_tree.BottomSignature</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Reifier) <font color="#cc0033">visitByteSignature</font>*(p0 : <a href="sun_reflect_generics_tree.html#type-ByteSignature">sun_reflect_generics_tree.ByteSignature</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Reifier) <font color="#cc0033">visitCharSignature</font>*(p0 : <a href="sun_reflect_generics_tree.html#type-CharSignature">sun_reflect_generics_tree.CharSignature</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Reifier) <font color="#cc0033">visitClassTypeSignature</font>*(p0 : <a href="sun_reflect_generics_tree.html#type-ClassTypeSignature">sun_reflect_generics_tree.ClassTypeSignature</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Reifier) <font color="#cc0033">visitDoubleSignature</font>*(p0 : <a href="sun_reflect_generics_tree.html#type-DoubleSignature">sun_reflect_generics_tree.DoubleSignature</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Reifier) <font color="#cc0033">visitFloatSignature</font>*(p0 : <a href="sun_reflect_generics_tree.html#type-FloatSignature">sun_reflect_generics_tree.FloatSignature</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Reifier) <font color="#cc0033">visitFormalTypeParameter</font>*(p0 : <a href="sun_reflect_generics_tree.html#type-FormalTypeParameter">sun_reflect_generics_tree.FormalTypeParameter</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Reifier) <font color="#cc0033">visitIntSignature</font>*(p0 : <a href="sun_reflect_generics_tree.html#type-IntSignature">sun_reflect_generics_tree.IntSignature</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Reifier) <font color="#cc0033">visitLongSignature</font>*(p0 : <a href="sun_reflect_generics_tree.html#type-LongSignature">sun_reflect_generics_tree.LongSignature</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Reifier) <font color="#cc0033">visitShortSignature</font>*(p0 : <a href="sun_reflect_generics_tree.html#type-ShortSignature">sun_reflect_generics_tree.ShortSignature</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Reifier) <font color="#cc0033">visitSimpleClassTypeSignature</font>*(p0 : <a href="sun_reflect_generics_tree.html#type-SimpleClassTypeSignature">sun_reflect_generics_tree.SimpleClassTypeSignature</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Reifier) <font color="#cc0033">visitTypeVariableSignature</font>*(p0 : <a href="sun_reflect_generics_tree.html#type-TypeVariableSignature">sun_reflect_generics_tree.TypeVariableSignature</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Reifier) <font color="#cc0033">visitVoidDescriptor</font>*(p0 : <a href="sun_reflect_generics_tree.html#type-VoidDescriptor">sun_reflect_generics_tree.VoidDescriptor</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Reifier) <font color="#cc0033">visitWildcard</font>*(p0 : <a href="sun_reflect_generics_tree.html#type-Wildcard">sun_reflect_generics_tree.Wildcard</a>)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-TypeTreeVisitor"></a>
+<b>PROCEDURE </b>(self:TypeTreeVisitor) <font color="#cc0033">getResult</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:TypeTreeVisitor) <font color="#cc0033">visitArrayTypeSignature</font>*(p0 : <a href="sun_reflect_generics_tree.html#type-ArrayTypeSignature">sun_reflect_generics_tree.ArrayTypeSignature</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:TypeTreeVisitor) <font color="#cc0033">visitBooleanSignature</font>*(p0 : <a href="sun_reflect_generics_tree.html#type-BooleanSignature">sun_reflect_generics_tree.BooleanSignature</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:TypeTreeVisitor) <font color="#cc0033">visitBottomSignature</font>*(p0 : <a href="sun_reflect_generics_tree.html#type-BottomSignature">sun_reflect_generics_tree.BottomSignature</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:TypeTreeVisitor) <font color="#cc0033">visitByteSignature</font>*(p0 : <a href="sun_reflect_generics_tree.html#type-ByteSignature">sun_reflect_generics_tree.ByteSignature</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:TypeTreeVisitor) <font color="#cc0033">visitCharSignature</font>*(p0 : <a href="sun_reflect_generics_tree.html#type-CharSignature">sun_reflect_generics_tree.CharSignature</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:TypeTreeVisitor) <font color="#cc0033">visitClassTypeSignature</font>*(p0 : <a href="sun_reflect_generics_tree.html#type-ClassTypeSignature">sun_reflect_generics_tree.ClassTypeSignature</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:TypeTreeVisitor) <font color="#cc0033">visitDoubleSignature</font>*(p0 : <a href="sun_reflect_generics_tree.html#type-DoubleSignature">sun_reflect_generics_tree.DoubleSignature</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:TypeTreeVisitor) <font color="#cc0033">visitFloatSignature</font>*(p0 : <a href="sun_reflect_generics_tree.html#type-FloatSignature">sun_reflect_generics_tree.FloatSignature</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:TypeTreeVisitor) <font color="#cc0033">visitFormalTypeParameter</font>*(p0 : <a href="sun_reflect_generics_tree.html#type-FormalTypeParameter">sun_reflect_generics_tree.FormalTypeParameter</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:TypeTreeVisitor) <font color="#cc0033">visitIntSignature</font>*(p0 : <a href="sun_reflect_generics_tree.html#type-IntSignature">sun_reflect_generics_tree.IntSignature</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:TypeTreeVisitor) <font color="#cc0033">visitLongSignature</font>*(p0 : <a href="sun_reflect_generics_tree.html#type-LongSignature">sun_reflect_generics_tree.LongSignature</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:TypeTreeVisitor) <font color="#cc0033">visitShortSignature</font>*(p0 : <a href="sun_reflect_generics_tree.html#type-ShortSignature">sun_reflect_generics_tree.ShortSignature</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:TypeTreeVisitor) <font color="#cc0033">visitSimpleClassTypeSignature</font>*(p0 : <a href="sun_reflect_generics_tree.html#type-SimpleClassTypeSignature">sun_reflect_generics_tree.SimpleClassTypeSignature</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:TypeTreeVisitor) <font color="#cc0033">visitTypeVariableSignature</font>*(p0 : <a href="sun_reflect_generics_tree.html#type-TypeVariableSignature">sun_reflect_generics_tree.TypeVariableSignature</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:TypeTreeVisitor) <font color="#cc0033">visitVoidDescriptor</font>*(p0 : <a href="sun_reflect_generics_tree.html#type-VoidDescriptor">sun_reflect_generics_tree.VoidDescriptor</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:TypeTreeVisitor) <font color="#cc0033">visitWildcard</font>*(p0 : <a href="sun_reflect_generics_tree.html#type-Wildcard">sun_reflect_generics_tree.Wildcard</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-Visitor"></a>
+<b>PROCEDURE </b>(self:Visitor) <font color="#cc0033">visitClassSignature</font>*(p0 : <a href="sun_reflect_generics_tree.html#type-ClassSignature">sun_reflect_generics_tree.ClassSignature</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Visitor) <font color="#cc0033">visitMethodTypeSignature</font>*(p0 : <a href="sun_reflect_generics_tree.html#type-MethodTypeSignature">sun_reflect_generics_tree.MethodTypeSignature</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>END </b><font color="#cc0033">sun_reflect_generics_visitor</font>.
+</font></pre></hr></body></html>

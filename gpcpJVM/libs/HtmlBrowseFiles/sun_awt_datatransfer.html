@@ -1,0 +1,329 @@
+<html><head><title>sun_awt_datatransfer</title></head>
+<body bgcolor="white">
+<hr><pre>
+<b>FOREIGN MODULE </b><font color="#cc0033">sun_awt_datatransfer</font>;
+
+<b>IMPORT</b>
+    <a href="java_util.html">java_util</a> := "java.util",
+    <a href="java_io.html">java_io</a> := "java.io",
+    <a href="java_lang.html">java_lang</a> := "java.lang",
+    <a href="java_security.html">java_security</a> := "java.security",
+    <a href="java_awt_datatransfer.html">java_awt_datatransfer</a> := "java.awt.datatransfer",
+    <a href="java_nio_charset.html">java_nio_charset</a> := "java.nio.charset",
+    <a href="java_nio.html">java_nio</a> := "java.nio",
+    <a href="sun_awt.html">sun_awt</a> := "sun.awt",
+    <a href="java_awt.html">java_awt</a> := "java.awt",
+    <a href="java_awt_image.html">java_awt_image</a> := "java.awt.image",
+    <a href="java_beans.html">java_beans</a> := "java.beans";
+
+<b>TYPE</b>
+
+  <a name="type-ClipboardTransferable"></a><font color="#cc0033">ClipboardTransferable</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_awt_datatransfer.html#type-Transferable">java_awt_datatransfer.Transferable</a>)    <a href="#meths-ClipboardTransferable"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                           <b>STATIC</b>
+                             <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="#type-SunClipboard">SunClipboard</a>) : <a href="#type-ClipboardTransferable">ClipboardTransferable</a><b>,CONSTRUCTOR</b>;
+                           <b>END</b>;
+
+  <a name="type-DataTransferer"></a><font color="#cc0033">DataTransferer</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-DataTransferer"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                    <b>STATIC</b>
+                      <a name="type-byteArrayClass"></a><font color="#cc0033">byteArrayClass</font>*             : <a href="java_lang.html#type-Class">java_lang.Class</a>;
+                      <a name="type-charArrayClass"></a><font color="#cc0033">charArrayClass</font>*             : <a href="java_lang.html#type-Class">java_lang.Class</a>;
+                      <a name="type-javaTextEncodingFlavor"></a><font color="#cc0033">javaTextEncodingFlavor</font>*     : <a href="java_awt_datatransfer.html#type-DataFlavor">java_awt_datatransfer.DataFlavor</a>;
+                      <a name="type-plainTextStringFlavor"></a><font color="#cc0033">plainTextStringFlavor</font>*      : <a href="java_awt_datatransfer.html#type-DataFlavor">java_awt_datatransfer.DataFlavor</a>;
+                      <b>PROCEDURE </b><font color="#cc0033">adaptFlavorMap</font>*(p0 : <a href="java_awt_datatransfer.html#type-FlavorMap">java_awt_datatransfer.FlavorMap</a>) : <a href="java_awt_datatransfer.html#type-FlavorTable">java_awt_datatransfer.FlavorTable</a>;
+                      <b>PROCEDURE </b><font color="#cc0033">canonicalName</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-String">java_lang.String</a>;
+                      <b>PROCEDURE </b><font color="#cc0033">doesSubtypeSupportCharset</font>*(p0 : <a href="java_awt_datatransfer.html#type-DataFlavor">java_awt_datatransfer.DataFlavor</a>) : BOOLEAN;
+                      <b>PROCEDURE </b><font color="#cc0033">doesSubtypeSupportCharset</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                           p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : BOOLEAN;
+                      <b>PROCEDURE </b><font color="#cc0033">getDefaultTextCharset</font>*() : <a href="java_lang.html#type-String">java_lang.String</a>;
+                      <b>PROCEDURE </b><font color="#cc0033">getInstance</font>*() : <a href="#type-DataTransferer">DataTransferer</a>;
+                      <b>PROCEDURE </b><font color="#cc0033">getTextCharset</font>*(p0 : <a href="java_awt_datatransfer.html#type-DataFlavor">java_awt_datatransfer.DataFlavor</a>) : <a href="java_lang.html#type-String">java_lang.String</a>;
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-DataTransferer">DataTransferer</a><b>,CONSTRUCTOR</b>;
+                      <b>PROCEDURE </b><font color="#cc0033">inputStreamToByteArray</font>!(p0 : <a href="java_io.html#type-InputStream">java_io.InputStream</a>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>BYTE;
+                      <b>PROCEDURE </b><font color="#cc0033">isEncodingSupported</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : BOOLEAN;
+                      <b>PROCEDURE </b><font color="#cc0033">isFlavorCharsetTextType</font>*(p0 : <a href="java_awt_datatransfer.html#type-DataFlavor">java_awt_datatransfer.DataFlavor</a>) : BOOLEAN;
+                      <b>PROCEDURE </b><font color="#cc0033">isFlavorNoncharsetTextType</font>*(p0 : <a href="java_awt_datatransfer.html#type-DataFlavor">java_awt_datatransfer.DataFlavor</a>) : BOOLEAN;
+                      <b>PROCEDURE </b><font color="#cc0033">keysToDataFlavorArray</font>*(p0 : <a href="java_util.html#type-Map">java_util.Map</a>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_awt_datatransfer.html#type-DataFlavor">java_awt_datatransfer.DataFlavor</a>;
+                      <b>PROCEDURE </b><font color="#cc0033">keysToLongArray</font>*(p0 : <a href="java_util.html#type-SortedMap">java_util.SortedMap</a>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>LONGINT;
+                      <b>PROCEDURE </b><font color="#cc0033">setToSortedDataFlavorArray</font>*(p0 : <a href="java_util.html#type-Set">java_util.Set</a>;
+                                                            p1 : <a href="java_util.html#type-Map">java_util.Map</a>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_awt_datatransfer.html#type-DataFlavor">java_awt_datatransfer.DataFlavor</a>;
+                      <b>PROCEDURE </b><font color="#cc0033">setToSortedDataFlavorArray</font>*(p0 : <a href="java_util.html#type-Set">java_util.Set</a>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_awt_datatransfer.html#type-DataFlavor">java_awt_datatransfer.DataFlavor</a>;
+                      <b>PROCEDURE </b><font color="#cc0033">standardEncodings</font>*() : <a href="java_util.html#type-Iterator">java_util.Iterator</a>;
+                    <b>END</b>;
+
+  <a name="type-DataTransferer$CharsetComparator"></a><font color="#cc0033">DataTransferer$CharsetComparator</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-DataTransferer$IndexedComparator">DataTransferer$IndexedComparator</a>)    <a href="#meths-DataTransferer$CharsetComparator"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                                      <b>STATIC</b>
+                                        <b>PROCEDURE </b><font color="#cc0033">getEncoding</font>!(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                        <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : BOOLEAN) : <a href="#type-DataTransferer$CharsetComparator">DataTransferer$CharsetComparator</a><b>,CONSTRUCTOR</b>;
+                                        <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-DataTransferer$CharsetComparator">DataTransferer$CharsetComparator</a><b>,CONSTRUCTOR</b>;
+                                      <b>END</b>;
+
+  <a name="type-DataTransferer$DataFlavorComparator"></a><font color="#cc0033">DataTransferer$DataFlavorComparator</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-DataTransferer$IndexedComparator">DataTransferer$IndexedComparator</a>)    <a href="#meths-DataTransferer$DataFlavorComparator"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                                           <font color="#cc0033">flavorToFormatMap</font>! : <a href="java_util.html#type-Map">java_util.Map</a>;
+                                         <b>STATIC</b>
+                                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_util.html#type-Map">java_util.Map</a>) : <a href="#type-DataTransferer$DataFlavorComparator">DataTransferer$DataFlavorComparator</a><b>,CONSTRUCTOR</b>;
+                                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_util.html#type-Map">java_util.Map</a>;
+                                                           p1 : BOOLEAN) : <a href="#type-DataTransferer$DataFlavorComparator">DataTransferer$DataFlavorComparator</a><b>,CONSTRUCTOR</b>;
+                                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-DataTransferer$DataFlavorComparator">DataTransferer$DataFlavorComparator</a><b>,CONSTRUCTOR</b>;
+                                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : BOOLEAN) : <a href="#type-DataTransferer$DataFlavorComparator">DataTransferer$DataFlavorComparator</a><b>,CONSTRUCTOR</b>;
+                                         <b>END</b>;
+
+  <a name="type-DataTransferer$IndexedComparator"></a><font color="#cc0033">DataTransferer$IndexedComparator</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_util.html#type-Comparator">java_util.Comparator</a>)
+                                        <font color="#cc0033">order</font>! : BOOLEAN;
+                                      <b>STATIC</b>
+                                        <font color="#cc0033">SELECT_BEST</font>*    = 1;
+                                        <font color="#cc0033">SELECT_WORST</font>*   = 0;
+                                        <b>PROCEDURE </b><font color="#cc0033">compareIndices</font>!(p0 : <a href="java_util.html#type-Map">java_util.Map</a>;
+                                                                  p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                                  p2 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                                  p3 : <a href="java_lang.html#type-Integer">java_lang.Integer</a>) : INTEGER;
+                                        <b>PROCEDURE </b><font color="#cc0033">compareLongs</font>!(p0 : <a href="java_util.html#type-Map">java_util.Map</a>;
+                                                                p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                                p2 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                                p3 : <a href="java_lang.html#type-Long">java_lang.Long</a>) : INTEGER;
+                                        <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-DataTransferer$IndexedComparator">DataTransferer$IndexedComparator</a><b>,CONSTRUCTOR</b>;
+                                        <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : BOOLEAN) : <a href="#type-DataTransferer$IndexedComparator">DataTransferer$IndexedComparator</a><b>,CONSTRUCTOR</b>;
+                                      <b>END</b>;
+
+  <a name="type-DataTransferer$IndexOrderComparator"></a><font color="#cc0033">DataTransferer$IndexOrderComparator</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-DataTransferer$IndexedComparator">DataTransferer$IndexedComparator</a>)    <a href="#meths-DataTransferer$IndexOrderComparator"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                                         <b>STATIC</b>
+                                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_util.html#type-Map">java_util.Map</a>;
+                                                           p1 : BOOLEAN) : <a href="#type-DataTransferer$IndexOrderComparator">DataTransferer$IndexOrderComparator</a><b>,CONSTRUCTOR</b>;
+                                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_util.html#type-Map">java_util.Map</a>) : <a href="#type-DataTransferer$IndexOrderComparator">DataTransferer$IndexOrderComparator</a><b>,CONSTRUCTOR</b>;
+                                         <b>END</b>;
+
+  <a name="type-DataTransferer$ReencodingInputStream"></a><font color="#cc0033">DataTransferer$ReencodingInputStream</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_io.html#type-InputStream">java_io.InputStream</a>)    <a href="#meths-DataTransferer$ReencodingInputStream"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                                            <font color="#cc0033">wrapped</font>!        : <a href="java_io.html#type-BufferedReader">java_io.BufferedReader</a>;
+                                            <font color="#cc0033">in</font>!             : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>CHAR;
+                                            <font color="#cc0033">out</font>!            : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>BYTE;
+                                            <font color="#cc0033">encoder</font>!        : <a href="java_nio_charset.html#type-CharsetEncoder">java_nio_charset.CharsetEncoder</a>;
+                                            <font color="#cc0033">inBuf</font>!          : <a href="java_nio.html#type-CharBuffer">java_nio.CharBuffer</a>;
+                                            <font color="#cc0033">outBuf</font>!         : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>;
+                                            <font color="#cc0033">eoln</font>!           : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>CHAR;
+                                            <font color="#cc0033">numTerminators</font>! : INTEGER;
+                                            <font color="#cc0033">eos</font>!            : BOOLEAN;
+                                            <font color="#cc0033">index</font>!          : INTEGER;
+                                            <font color="#cc0033">limit</font>!          : INTEGER;
+                                          <b>STATIC</b>
+                                            <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="#type-DataTransferer">DataTransferer</a>;
+                                                            p1 : <a href="java_io.html#type-InputStream">java_io.InputStream</a>;
+                                                            p2 : LONGINT;
+                                                            p3 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                            p4 : <a href="java_awt_datatransfer.html#type-Transferable">java_awt_datatransfer.Transferable</a>) : <a href="#type-DataTransferer$ReencodingInputStream">DataTransferer$ReencodingInputStream</a><b>,CONSTRUCTOR</b>;
+                                          <b>END</b>;
+
+  <a name="type-SunClipboard"></a><font color="#cc0033">SunClipboard</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_awt_datatransfer.html#type-Clipboard">java_awt_datatransfer.Clipboard</a> + <a href="java_beans.html#type-PropertyChangeListener">java_beans.PropertyChangeListener</a>)    <a href="#meths-SunClipboard"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                  <b>STATIC</b>
+                    <a name="type-flavorMap"></a><font color="#cc0033">flavorMap</font>* : <a href="java_awt_datatransfer.html#type-FlavorTable">java_awt_datatransfer.FlavorTable</a>;
+                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-SunClipboard">SunClipboard</a><b>,CONSTRUCTOR</b>;
+                  <b>END</b>;
+
+  <a name="type-ToolkitThreadBlockedHandler"></a><font color="#cc0033">ToolkitThreadBlockedHandler</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-ToolkitThreadBlockedHandler"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                                 <b>END</b>;
+
+  <a name="type-TransferableProxy"></a><font color="#cc0033">TransferableProxy</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_awt_datatransfer.html#type-Transferable">java_awt_datatransfer.Transferable</a>)    <a href="#meths-TransferableProxy"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                         <font color="#cc0033">transferable</font>! : <a href="java_awt_datatransfer.html#type-Transferable">java_awt_datatransfer.Transferable</a>;
+                         <font color="#cc0033">isLocal</font>!      : BOOLEAN;
+                       <b>STATIC</b>
+                         <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_awt_datatransfer.html#type-Transferable">java_awt_datatransfer.Transferable</a>;
+                                         p1 : BOOLEAN) : <a href="#type-TransferableProxy">TransferableProxy</a><b>,CONSTRUCTOR</b>;
+                       <b>END</b>;
+
+
+
+<a name="meths-ClipboardTransferable"></a>
+<b>PROCEDURE </b>(self:ClipboardTransferable) <font color="#cc0033">getTransferData</font>*(p0 : <a href="java_awt_datatransfer.html#type-DataFlavor">java_awt_datatransfer.DataFlavor</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ClipboardTransferable) <font color="#cc0033">getTransferDataFlavors</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_awt_datatransfer.html#type-DataFlavor">java_awt_datatransfer.DataFlavor</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ClipboardTransferable) <font color="#cc0033">isDataFlavorSupported</font>*(p0 : <a href="java_awt_datatransfer.html#type-DataFlavor">java_awt_datatransfer.DataFlavor</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-DataTransferer"></a>
+<b>PROCEDURE </b>(self:DataTransferer) <font color="#cc0033">convertData</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                             p1 : <a href="java_awt_datatransfer.html#type-Transferable">java_awt_datatransfer.Transferable</a>;
+                                             p2 : LONGINT;
+                                             p3 : <a href="java_util.html#type-Map">java_util.Map</a>;
+                                             p4 : BOOLEAN) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>BYTE<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DataTransferer) <font color="#cc0033">dragQueryFile</font>!(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DataTransferer) <font color="#cc0033">getCharsetForTextFormat</font>!(p0 : <a href="java_lang.html#type-Long">java_lang.Long</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DataTransferer) <font color="#cc0033">getDefaultUnicodeEncoding</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DataTransferer) <font color="#cc0033">getFlavorsForFormat</font>*(p0 : LONGINT;
+                                                     p1 : <a href="java_awt_datatransfer.html#type-FlavorTable">java_awt_datatransfer.FlavorTable</a>) : <a href="java_util.html#type-Map">java_util.Map</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DataTransferer) <font color="#cc0033">getFlavorsForFormatAsArray</font>*(p0 : LONGINT;
+                                                            p1 : <a href="java_awt_datatransfer.html#type-FlavorTable">java_awt_datatransfer.FlavorTable</a>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_awt_datatransfer.html#type-DataFlavor">java_awt_datatransfer.DataFlavor</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DataTransferer) <font color="#cc0033">getFlavorsForFormats</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>LONGINT;
+                                                          p1 : <a href="java_awt_datatransfer.html#type-FlavorTable">java_awt_datatransfer.FlavorTable</a>) : <a href="java_util.html#type-Map">java_util.Map</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DataTransferer) <font color="#cc0033">getFlavorsForFormatsAsArray</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>LONGINT;
+                                                                 p1 : <a href="java_awt_datatransfer.html#type-FlavorTable">java_awt_datatransfer.FlavorTable</a>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_awt_datatransfer.html#type-DataFlavor">java_awt_datatransfer.DataFlavor</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DataTransferer) <font color="#cc0033">getFlavorsForFormatsAsSet</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>LONGINT;
+                                                               p1 : <a href="java_awt_datatransfer.html#type-FlavorTable">java_awt_datatransfer.FlavorTable</a>) : <a href="java_util.html#type-Set">java_util.Set</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DataTransferer) <font color="#cc0033">getFormatForNativeAsLong</font>!(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-Long">java_lang.Long</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DataTransferer) <font color="#cc0033">getFormatsForFlavor</font>*(p0 : <a href="java_awt_datatransfer.html#type-DataFlavor">java_awt_datatransfer.DataFlavor</a>;
+                                                     p1 : <a href="java_awt_datatransfer.html#type-FlavorTable">java_awt_datatransfer.FlavorTable</a>) : <a href="java_util.html#type-SortedMap">java_util.SortedMap</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DataTransferer) <font color="#cc0033">getFormatsForFlavorAsArray</font>*(p0 : <a href="java_awt_datatransfer.html#type-DataFlavor">java_awt_datatransfer.DataFlavor</a>;
+                                                            p1 : <a href="java_awt_datatransfer.html#type-FlavorTable">java_awt_datatransfer.FlavorTable</a>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DataTransferer) <font color="#cc0033">getFormatsForFlavors</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="java_awt_datatransfer.html#type-DataFlavor">java_awt_datatransfer.DataFlavor</a>;
+                                                          p1 : <a href="java_awt_datatransfer.html#type-FlavorTable">java_awt_datatransfer.FlavorTable</a>) : <a href="java_util.html#type-SortedMap">java_util.SortedMap</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DataTransferer) <font color="#cc0033">getFormatsForFlavorsAsArray</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="java_awt_datatransfer.html#type-DataFlavor">java_awt_datatransfer.DataFlavor</a>;
+                                                                 p1 : <a href="java_awt_datatransfer.html#type-FlavorTable">java_awt_datatransfer.FlavorTable</a>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DataTransferer) <font color="#cc0033">getFormatsForTransferable</font>*(p0 : <a href="java_awt_datatransfer.html#type-Transferable">java_awt_datatransfer.Transferable</a>;
+                                                           p1 : <a href="java_awt_datatransfer.html#type-FlavorTable">java_awt_datatransfer.FlavorTable</a>) : <a href="java_util.html#type-SortedMap">java_util.SortedMap</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DataTransferer) <font color="#cc0033">getFormatsForTransferableAsArray</font>*(p0 : <a href="java_awt_datatransfer.html#type-Transferable">java_awt_datatransfer.Transferable</a>;
+                                                                  p1 : <a href="java_awt_datatransfer.html#type-FlavorTable">java_awt_datatransfer.FlavorTable</a>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DataTransferer) <font color="#cc0033">getNativeForFormat</font>!(p0 : LONGINT) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DataTransferer) <font color="#cc0033">getPlatformMappingsForFlavor</font>*(p0 : <a href="java_awt_datatransfer.html#type-DataFlavor">java_awt_datatransfer.DataFlavor</a>) : <a href="java_util.html#type-List">java_util.List</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DataTransferer) <font color="#cc0033">getPlatformMappingsForNative</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_util.html#type-List">java_util.List</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DataTransferer) <font color="#cc0033">getToolkitThreadBlockedHandler</font>*() : <a href="#type-ToolkitThreadBlockedHandler">ToolkitThreadBlockedHandler</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DataTransferer) <font color="#cc0033">imageToPlatformBytes</font>!(p0 : <a href="java_awt.html#type-Image">java_awt.Image</a>;
+                                                      p1 : LONGINT) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>BYTE<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DataTransferer) <font color="#cc0033">imageToStandardBytes</font>!(p0 : <a href="java_awt.html#type-Image">java_awt.Image</a>;
+                                                      p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>BYTE<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DataTransferer) <font color="#cc0033">imageToStandardBytesImpl</font>!(p0 : <a href="java_awt_image.html#type-RenderedImage">java_awt_image.RenderedImage</a>;
+                                                          p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>BYTE<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DataTransferer) <font color="#cc0033">isFileFormat</font>*(p0 : LONGINT) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DataTransferer) <font color="#cc0033">isImageFormat</font>*(p0 : LONGINT) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DataTransferer) <font color="#cc0033">isLocaleDependentTextFormat</font>*(p0 : LONGINT) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DataTransferer) <font color="#cc0033">isTextFormat</font>!(p0 : LONGINT) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DataTransferer) <font color="#cc0033">platformImageBytesOrStreamToImage</font>!(    p0 : <a href="java_io.html#type-InputStream">java_io.InputStream</a>;
+                                                                   IN  p1 : <b>ARRAY </b><b>OF </b>BYTE;
+                                                                       p2 : LONGINT) : <a href="java_awt.html#type-Image">java_awt.Image</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DataTransferer) <font color="#cc0033">processDataConversionRequests</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DataTransferer) <font color="#cc0033">registerTextFlavorProperties</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                              p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                              p2 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                              p3 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DataTransferer) <font color="#cc0033">standardImageBytesOrStreamToImage</font>!(    p0 : <a href="java_io.html#type-InputStream">java_io.InputStream</a>;
+                                                                   IN  p1 : <b>ARRAY </b><b>OF </b>BYTE;
+                                                                       p2 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_awt.html#type-Image">java_awt.Image</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DataTransferer) <font color="#cc0033">translateBytes</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE;
+                                                    p1 : <a href="java_awt_datatransfer.html#type-DataFlavor">java_awt_datatransfer.DataFlavor</a>;
+                                                    p2 : LONGINT;
+                                                    p3 : <a href="java_awt_datatransfer.html#type-Transferable">java_awt_datatransfer.Transferable</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DataTransferer) <font color="#cc0033">translateBytesOrStream</font>!(    p0 : <a href="java_io.html#type-InputStream">java_io.InputStream</a>;
+                                                        IN  p1 : <b>ARRAY </b><b>OF </b>BYTE;
+                                                            p2 : <a href="java_awt_datatransfer.html#type-DataFlavor">java_awt_datatransfer.DataFlavor</a>;
+                                                            p3 : LONGINT;
+                                                            p4 : <a href="java_awt_datatransfer.html#type-Transferable">java_awt_datatransfer.Transferable</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DataTransferer) <font color="#cc0033">translateStream</font>*(p0 : <a href="java_io.html#type-InputStream">java_io.InputStream</a>;
+                                                 p1 : <a href="java_awt_datatransfer.html#type-DataFlavor">java_awt_datatransfer.DataFlavor</a>;
+                                                 p2 : LONGINT;
+                                                 p3 : <a href="java_awt_datatransfer.html#type-Transferable">java_awt_datatransfer.Transferable</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DataTransferer) <font color="#cc0033">translateTransferable</font>*(p0 : <a href="java_awt_datatransfer.html#type-Transferable">java_awt_datatransfer.Transferable</a>;
+                                                       p1 : <a href="java_awt_datatransfer.html#type-DataFlavor">java_awt_datatransfer.DataFlavor</a>;
+                                                       p2 : LONGINT) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>BYTE<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-DataTransferer$CharsetComparator"></a>
+<b>PROCEDURE </b>(self:DataTransferer$CharsetComparator) <font color="#cc0033">compare</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                           p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DataTransferer$CharsetComparator) <font color="#cc0033">compareCharsets</font>!(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                                   p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-DataTransferer$DataFlavorComparator"></a>
+<b>PROCEDURE </b>(self:DataTransferer$DataFlavorComparator) <font color="#cc0033">compare</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                              p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-DataTransferer$IndexOrderComparator"></a>
+<b>PROCEDURE </b>(self:DataTransferer$IndexOrderComparator) <font color="#cc0033">compare</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                              p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-DataTransferer$ReencodingInputStream"></a>
+<b>PROCEDURE </b>(self:DataTransferer$ReencodingInputStream) <font color="#cc0033">available</font>*() : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DataTransferer$ReencodingInputStream) <font color="#cc0033">close</font>*()<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DataTransferer$ReencodingInputStream) <font color="#cc0033">read</font>*() : INTEGER<b>,EXTENSIBLE</b>;
+<a name="meths-SunClipboard"></a>
+<b>PROCEDURE </b>(self:SunClipboard) <font color="#cc0033">addFlavorListener</font>*(p0 : <a href="java_awt_datatransfer.html#type-FlavorListener">java_awt_datatransfer.FlavorListener</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunClipboard) <font color="#cc0033">areFlavorListenersRegistered</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunClipboard) <font color="#cc0033">checkChange</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>LONGINT)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunClipboard) <font color="#cc0033">clearNativeContext</font>!()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SunClipboard) <font color="#cc0033">closeClipboard</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunClipboard) <font color="#cc0033">createLocaleTransferable</font>!(IN  p0 : <b>ARRAY </b><b>OF </b>LONGINT) : <a href="java_awt_datatransfer.html#type-Transferable">java_awt_datatransfer.Transferable</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunClipboard) <font color="#cc0033">getAvailableDataFlavors</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_awt_datatransfer.html#type-DataFlavor">java_awt_datatransfer.DataFlavor</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunClipboard) <font color="#cc0033">getClipboardData</font>!(p0 : LONGINT) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>BYTE<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SunClipboard) <font color="#cc0033">getClipboardFormats</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>LONGINT<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SunClipboard) <font color="#cc0033">getClipboardFormatsOpenClose</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunClipboard) <font color="#cc0033">getContents</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_awt_datatransfer.html#type-Transferable">java_awt_datatransfer.Transferable</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunClipboard) <font color="#cc0033">getData</font>*(p0 : <a href="java_awt_datatransfer.html#type-DataFlavor">java_awt_datatransfer.DataFlavor</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunClipboard) <font color="#cc0033">getFlavorListeners</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_awt_datatransfer.html#type-FlavorListener">java_awt_datatransfer.FlavorListener</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunClipboard) <font color="#cc0033">getID</font>*() : LONGINT<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SunClipboard) <font color="#cc0033">isDataFlavorAvailable</font>*(p0 : <a href="java_awt_datatransfer.html#type-DataFlavor">java_awt_datatransfer.DataFlavor</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunClipboard) <font color="#cc0033">lostOwnershipImpl</font>!()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunClipboard) <font color="#cc0033">lostOwnershipLater</font>!(p0 : <a href="sun_awt.html#type-AppContext">sun_awt.AppContext</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunClipboard) <font color="#cc0033">openClipboard</font>*(p0 : <a href="#type-SunClipboard">SunClipboard</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunClipboard) <font color="#cc0033">propertyChange</font>*(p0 : <a href="java_beans.html#type-PropertyChangeEvent">java_beans.PropertyChangeEvent</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunClipboard) <font color="#cc0033">registerClipboardViewerChecked</font>!()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SunClipboard) <font color="#cc0033">removeFlavorListener</font>*(p0 : <a href="java_awt_datatransfer.html#type-FlavorListener">java_awt_datatransfer.FlavorListener</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunClipboard) <font color="#cc0033">setContents</font>*(p0 : <a href="java_awt_datatransfer.html#type-Transferable">java_awt_datatransfer.Transferable</a>;
+                                           p1 : <a href="java_awt_datatransfer.html#type-ClipboardOwner">java_awt_datatransfer.ClipboardOwner</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunClipboard) <font color="#cc0033">setContentsNative</font>!(p0 : <a href="java_awt_datatransfer.html#type-Transferable">java_awt_datatransfer.Transferable</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SunClipboard) <font color="#cc0033">unregisterClipboardViewerChecked</font>!()<b>,NEW,ABSTRACT</b>;
+<a name="meths-ToolkitThreadBlockedHandler"></a>
+<b>PROCEDURE </b>(self:ToolkitThreadBlockedHandler) <font color="#cc0033">enter</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ToolkitThreadBlockedHandler) <font color="#cc0033">exit</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ToolkitThreadBlockedHandler) <font color="#cc0033">lock</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ToolkitThreadBlockedHandler) <font color="#cc0033">unlock</font>*()<b>,NEW,ABSTRACT</b>;
+<a name="meths-TransferableProxy"></a>
+<b>PROCEDURE </b>(self:TransferableProxy) <font color="#cc0033">getTransferData</font>*(p0 : <a href="java_awt_datatransfer.html#type-DataFlavor">java_awt_datatransfer.DataFlavor</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TransferableProxy) <font color="#cc0033">getTransferDataFlavors</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_awt_datatransfer.html#type-DataFlavor">java_awt_datatransfer.DataFlavor</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TransferableProxy) <font color="#cc0033">isDataFlavorSupported</font>*(p0 : <a href="java_awt_datatransfer.html#type-DataFlavor">java_awt_datatransfer.DataFlavor</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>END </b><font color="#cc0033">sun_awt_datatransfer</font>.
+</font></pre></hr></body></html>

@@ -1,0 +1,1664 @@
+<html><head><title>sun_awt_windows</title></head>
+<body bgcolor="white">
+<hr><pre>
+<b>FOREIGN MODULE </b><font color="#cc0033">sun_awt_windows</font>;
+
+<b>IMPORT</b>
+    <a href="java_lang.html">java_lang</a> := "java.lang",
+    <a href="java_util.html">java_util</a> := "java.util",
+    <a href="java_util_concurrent.html">java_util_concurrent</a> := "java.util.concurrent",
+    <a href="java_lang_ref.html">java_lang_ref</a> := "java.lang.ref",
+    <a href="java_awt.html">java_awt</a> := "java.awt",
+    <a href="java_io.html">java_io</a> := "java.io",
+    <a href="java_util_concurrent_locks.html">java_util_concurrent_locks</a> := "java.util.concurrent.locks",
+    <a href="java_awt_image.html">java_awt_image</a> := "java.awt.image",
+    <a href="sun_java2d_pipe_hw.html">sun_java2d_pipe_hw</a> := "sun.java2d.pipe.hw",
+    <a href="java_awt_peer.html">java_awt_peer</a> := "java.awt.peer",
+    <a href="java_awt_event.html">java_awt_event</a> := "java.awt.event",
+    <a href="java_awt_dnd_peer.html">java_awt_dnd_peer</a> := "java.awt.dnd.peer",
+    <a href="sun_awt.html">sun_awt</a> := "sun.awt",
+    <a href="java_util_logging.html">java_util_logging</a> := "java.util.logging",
+    <a href="sun_java2d.html">sun_java2d</a> := "sun.java2d",
+    <a href="java_awt_dnd.html">java_awt_dnd</a> := "java.awt.dnd",
+    <a href="sun_java2d_pipe.html">sun_java2d_pipe</a> := "sun.java2d.pipe",
+    <a href="java_lang_reflect.html">java_lang_reflect</a> := "java.lang.reflect",
+    <a href="java_awt_datatransfer.html">java_awt_datatransfer</a> := "java.awt.datatransfer",
+    <a href="sun_awt_datatransfer.html">sun_awt_datatransfer</a> := "sun.awt.datatransfer",
+    <a href="java_beans.html">java_beans</a> := "java.beans",
+    <a href="java_security.html">java_security</a> := "java.security",
+    <a href="java_nio_charset.html">java_nio_charset</a> := "java.nio.charset",
+    <a href="java_nio.html">java_nio</a> := "java.nio",
+    <a href="java_nio_charset_spi.html">java_nio_charset_spi</a> := "java.nio.charset.spi",
+    <a href="java_net.html">java_net</a> := "java.net",
+    <a href="sun_awt_dnd.html">sun_awt_dnd</a> := "sun.awt.dnd",
+    <a href="java_nio_channels.html">java_nio_channels</a> := "java.nio.channels",
+    <a href="java_applet.html">java_applet</a> := "java.applet",
+    <a href="javax_accessibility.html">javax_accessibility</a> := "javax.accessibility",
+    <a href="sun_awt_util.html">sun_awt_util</a> := "sun.awt.util",
+    <a href="java_awt_im.html">java_awt_im</a> := "java.awt.im",
+    <a href="java_util_concurrent_atomic.html">java_util_concurrent_atomic</a> := "java.util.concurrent.atomic",
+    <a href="java_awt_geom.html">java_awt_geom</a> := "java.awt.geom",
+    <a href="sun_font.html">sun_font</a> := "sun.font",
+    <a href="java_awt_font.html">java_awt_font</a> := "java.awt.font",
+    <a href="java_text.html">java_text</a> := "java.text",
+    <a href="java_awt_im_spi.html">java_awt_im_spi</a> := "java.awt.im.spi",
+    <a href="sun_awt_im.html">sun_awt_im</a> := "sun.awt.im",
+    <a href="java_awt_print.html">java_awt_print</a> := "java.awt.print",
+    <a href="sun_print.html">sun_print</a> := "sun.print",
+    <a href="java_awt_image_renderable.html">java_awt_image_renderable</a> := "java.awt.image.renderable",
+    <a href="javax_print.html">javax_print</a> := "javax.print",
+    <a href="javax_print_attribute.html">javax_print_attribute</a> := "javax.print.attribute",
+    <a href="javax_print_attribute_standard.html">javax_print_attribute_standard</a> := "javax.print.attribute.standard",
+    <a href="sun_misc.html">sun_misc</a> := "sun.misc";
+
+<b>TYPE</b>
+
+  <a name="type-awtLocalization"></a><font color="#cc0033">awtLocalization</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_util.html#type-ListResourceBundle">java_util.ListResourceBundle</a>)    <a href="#meths-awtLocalization"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                     <b>STATIC</b>
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-awtLocalization">awtLocalization</a><b>,CONSTRUCTOR</b>;
+                     <b>END</b>;
+
+  <a name="type-awtLocalization_de"></a><font color="#cc0033">awtLocalization_de</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_util.html#type-ListResourceBundle">java_util.ListResourceBundle</a>)    <a href="#meths-awtLocalization_de"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                        <b>STATIC</b>
+                          <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-awtLocalization_de">awtLocalization_de</a><b>,CONSTRUCTOR</b>;
+                        <b>END</b>;
+
+  <a name="type-awtLocalization_es"></a><font color="#cc0033">awtLocalization_es</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_util.html#type-ListResourceBundle">java_util.ListResourceBundle</a>)    <a href="#meths-awtLocalization_es"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                        <b>STATIC</b>
+                          <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-awtLocalization_es">awtLocalization_es</a><b>,CONSTRUCTOR</b>;
+                        <b>END</b>;
+
+  <a name="type-awtLocalization_fr"></a><font color="#cc0033">awtLocalization_fr</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_util.html#type-ListResourceBundle">java_util.ListResourceBundle</a>)    <a href="#meths-awtLocalization_fr"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                        <b>STATIC</b>
+                          <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-awtLocalization_fr">awtLocalization_fr</a><b>,CONSTRUCTOR</b>;
+                        <b>END</b>;
+
+  <a name="type-awtLocalization_it"></a><font color="#cc0033">awtLocalization_it</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_util.html#type-ListResourceBundle">java_util.ListResourceBundle</a>)    <a href="#meths-awtLocalization_it"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                        <b>STATIC</b>
+                          <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-awtLocalization_it">awtLocalization_it</a><b>,CONSTRUCTOR</b>;
+                        <b>END</b>;
+
+  <a name="type-awtLocalization_ja"></a><font color="#cc0033">awtLocalization_ja</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_util.html#type-ListResourceBundle">java_util.ListResourceBundle</a>)    <a href="#meths-awtLocalization_ja"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                        <b>STATIC</b>
+                          <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-awtLocalization_ja">awtLocalization_ja</a><b>,CONSTRUCTOR</b>;
+                        <b>END</b>;
+
+  <a name="type-awtLocalization_ko"></a><font color="#cc0033">awtLocalization_ko</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_util.html#type-ListResourceBundle">java_util.ListResourceBundle</a>)    <a href="#meths-awtLocalization_ko"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                        <b>STATIC</b>
+                          <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-awtLocalization_ko">awtLocalization_ko</a><b>,CONSTRUCTOR</b>;
+                        <b>END</b>;
+
+  <a name="type-awtLocalization_pt_BR"></a><font color="#cc0033">awtLocalization_pt_BR</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_util.html#type-ListResourceBundle">java_util.ListResourceBundle</a>)    <a href="#meths-awtLocalization_pt_BR"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                           <b>STATIC</b>
+                             <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-awtLocalization_pt_BR">awtLocalization_pt_BR</a><b>,CONSTRUCTOR</b>;
+                           <b>END</b>;
+
+  <a name="type-awtLocalization_sv"></a><font color="#cc0033">awtLocalization_sv</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_util.html#type-ListResourceBundle">java_util.ListResourceBundle</a>)    <a href="#meths-awtLocalization_sv"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                        <b>STATIC</b>
+                          <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-awtLocalization_sv">awtLocalization_sv</a><b>,CONSTRUCTOR</b>;
+                        <b>END</b>;
+
+  <a name="type-awtLocalization_zh_CN"></a><font color="#cc0033">awtLocalization_zh_CN</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_util.html#type-ListResourceBundle">java_util.ListResourceBundle</a>)    <a href="#meths-awtLocalization_zh_CN"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                           <b>STATIC</b>
+                             <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-awtLocalization_zh_CN">awtLocalization_zh_CN</a><b>,CONSTRUCTOR</b>;
+                           <b>END</b>;
+
+  <a name="type-awtLocalization_zh_HK"></a><font color="#cc0033">awtLocalization_zh_HK</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_util.html#type-ListResourceBundle">java_util.ListResourceBundle</a>)    <a href="#meths-awtLocalization_zh_HK"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                           <b>STATIC</b>
+                             <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-awtLocalization_zh_HK">awtLocalization_zh_HK</a><b>,CONSTRUCTOR</b>;
+                           <b>END</b>;
+
+  <a name="type-awtLocalization_zh_TW"></a><font color="#cc0033">awtLocalization_zh_TW</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_util.html#type-ListResourceBundle">java_util.ListResourceBundle</a>)    <a href="#meths-awtLocalization_zh_TW"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                           <b>STATIC</b>
+                             <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-awtLocalization_zh_TW">awtLocalization_zh_TW</a><b>,CONSTRUCTOR</b>;
+                           <b>END</b>;
+
+  <a name="type-ThemeReader"></a><font color="#cc0033">ThemeReader</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                 <b>STATIC</b>
+                   <b>PROCEDURE </b><font color="#cc0033">closeTheme</font>*(p0 : LONGINT);
+                   <b>PROCEDURE </b><font color="#cc0033">getBoolean</font>*(p0 : LONGINT;
+                                         p1 : INTEGER;
+                                         p2 : INTEGER;
+                                         p3 : INTEGER) : BOOLEAN;
+                   <b>PROCEDURE </b><font color="#cc0033">getBoolean</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                         p1 : INTEGER;
+                                         p2 : INTEGER;
+                                         p3 : INTEGER) : BOOLEAN;
+                   <b>PROCEDURE </b><font color="#cc0033">getColor</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                       p1 : INTEGER;
+                                       p2 : INTEGER;
+                                       p3 : INTEGER) : <a href="java_awt.html#type-Color">java_awt.Color</a>;
+                   <b>PROCEDURE </b><font color="#cc0033">getColor</font>*(p0 : LONGINT;
+                                       p1 : INTEGER;
+                                       p2 : INTEGER;
+                                       p3 : INTEGER) : <a href="java_awt.html#type-Color">java_awt.Color</a>;
+                   <b>PROCEDURE </b><font color="#cc0033">getEnum</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                      p1 : INTEGER;
+                                      p2 : INTEGER;
+                                      p3 : INTEGER) : INTEGER;
+                   <b>PROCEDURE </b><font color="#cc0033">getEnum</font>*(p0 : LONGINT;
+                                      p1 : INTEGER;
+                                      p2 : INTEGER;
+                                      p3 : INTEGER) : INTEGER;
+                   <b>PROCEDURE </b><font color="#cc0033">getInt</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                     p1 : INTEGER;
+                                     p2 : INTEGER;
+                                     p3 : INTEGER) : INTEGER;
+                   <b>PROCEDURE </b><font color="#cc0033">getInt</font>*(p0 : LONGINT;
+                                     p1 : INTEGER;
+                                     p2 : INTEGER;
+                                     p3 : INTEGER) : INTEGER;
+                   <b>PROCEDURE </b><font color="#cc0033">getPartSize</font>*(p0 : LONGINT;
+                                          p1 : INTEGER;
+                                          p2 : INTEGER) : <a href="java_awt.html#type-Dimension">java_awt.Dimension</a>;
+                   <b>PROCEDURE </b><font color="#cc0033">getPartSize</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                          p1 : INTEGER;
+                                          p2 : INTEGER) : <a href="java_awt.html#type-Dimension">java_awt.Dimension</a>;
+                   <b>PROCEDURE </b><font color="#cc0033">getPoint</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                       p1 : INTEGER;
+                                       p2 : INTEGER;
+                                       p3 : INTEGER) : <a href="java_awt.html#type-Point">java_awt.Point</a>;
+                   <b>PROCEDURE </b><font color="#cc0033">getPoint</font>*(p0 : LONGINT;
+                                       p1 : INTEGER;
+                                       p2 : INTEGER;
+                                       p3 : INTEGER) : <a href="java_awt.html#type-Point">java_awt.Point</a>;
+                   <b>PROCEDURE </b><font color="#cc0033">getPosition</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                          p1 : INTEGER;
+                                          p2 : INTEGER;
+                                          p3 : INTEGER) : <a href="java_awt.html#type-Dimension">java_awt.Dimension</a>;
+                   <b>PROCEDURE </b><font color="#cc0033">getPosition</font>*(p0 : LONGINT;
+                                          p1 : INTEGER;
+                                          p2 : INTEGER;
+                                          p3 : INTEGER) : <a href="java_awt.html#type-Dimension">java_awt.Dimension</a>;
+                   <b>PROCEDURE </b><font color="#cc0033">getSysBoolean</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                            p1 : INTEGER) : BOOLEAN;
+                   <b>PROCEDURE </b><font color="#cc0033">getSysBoolean</font>*(p0 : LONGINT;
+                                            p1 : INTEGER) : BOOLEAN;
+                   <b>PROCEDURE </b><font color="#cc0033">getThemeBackgroundContentMargins</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                               p1 : INTEGER;
+                                                               p2 : INTEGER;
+                                                               p3 : INTEGER;
+                                                               p4 : INTEGER) : <a href="java_awt.html#type-Insets">java_awt.Insets</a>;
+                   <b>PROCEDURE </b><font color="#cc0033">getThemeMargins</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                              p1 : INTEGER;
+                                              p2 : INTEGER;
+                                              p3 : INTEGER) : <a href="java_awt.html#type-Insets">java_awt.Insets</a>;
+                   <b>PROCEDURE </b><font color="#cc0033">getThemeMargins</font>*(p0 : LONGINT;
+                                              p1 : INTEGER;
+                                              p2 : INTEGER;
+                                              p3 : INTEGER) : <a href="java_awt.html#type-Insets">java_awt.Insets</a>;
+                   <b>PROCEDURE </b><font color="#cc0033">getThemeTransitionDuration</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                         p1 : INTEGER;
+                                                         p2 : INTEGER;
+                                                         p3 : INTEGER;
+                                                         p4 : INTEGER) : LONGINT;
+                   <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-ThemeReader">ThemeReader</a><b>,CONSTRUCTOR</b>;
+                   <b>PROCEDURE </b><font color="#cc0033">isGetThemeTransitionDurationDefined</font>*() : BOOLEAN;
+                   <b>PROCEDURE </b><font color="#cc0033">isThemed</font>*() : BOOLEAN;
+                   <b>PROCEDURE </b><font color="#cc0033">isThemePartDefined</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                 p1 : INTEGER;
+                                                 p2 : INTEGER) : BOOLEAN;
+                   <b>PROCEDURE </b><font color="#cc0033">openTheme</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : LONGINT;
+                   <b>PROCEDURE </b><font color="#cc0033">paintBackground</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>INTEGER;
+                                                  p1 : LONGINT;
+                                                  p2 : INTEGER;
+                                                  p3 : INTEGER;
+                                                  p4 : INTEGER;
+                                                  p5 : INTEGER;
+                                                  p6 : INTEGER;
+                                                  p7 : INTEGER;
+                                                  p8 : INTEGER);
+                   <b>PROCEDURE </b><font color="#cc0033">paintBackground</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>INTEGER;
+                                                  p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                  p2 : INTEGER;
+                                                  p3 : INTEGER;
+                                                  p4 : INTEGER;
+                                                  p5 : INTEGER;
+                                                  p6 : INTEGER;
+                                                  p7 : INTEGER;
+                                                  p8 : INTEGER);
+                   <b>PROCEDURE </b><font color="#cc0033">setWindowTheme</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>);
+                 <b>END</b>;
+
+  <a name="type-TranslucentWindowPainter"></a><font color="#cc0033">TranslucentWindowPainter</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-TranslucentWindowPainter"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                                <font color="#cc0033">window</font>! : <a href="java_awt.html#type-Window">java_awt.Window</a>;
+                                <font color="#cc0033">peer</font>!   : <a href="#type-WWindowPeer">WWindowPeer</a>;
+                              <b>STATIC</b>
+                                <b>PROCEDURE </b><font color="#cc0033">createInstance</font>*(p0 : <a href="#type-WWindowPeer">WWindowPeer</a>) : <a href="#type-TranslucentWindowPainter">TranslucentWindowPainter</a>;
+                                <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : <a href="#type-WWindowPeer">WWindowPeer</a>) : <a href="#type-TranslucentWindowPainter">TranslucentWindowPainter</a><b>,CONSTRUCTOR</b>;
+                              <b>END</b>;
+
+  <a name="type-WBufferStrategy"></a><font color="#cc0033">WBufferStrategy</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                     <b>STATIC</b>
+                       <b>PROCEDURE </b><font color="#cc0033">getDrawBuffer</font>*(p0 : <a href="java_awt.html#type-Component">java_awt.Component</a>) : <a href="java_awt.html#type-Image">java_awt.Image</a>;
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-WBufferStrategy">WBufferStrategy</a><b>,CONSTRUCTOR</b>;
+                     <b>END</b>;
+
+  <a name="type-WCheckboxPeer"></a><font color="#cc0033">WCheckboxPeer</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-WComponentPeer">WComponentPeer</a> + <a href="java_awt_peer.html#type-CheckboxPeer">java_awt_peer.CheckboxPeer</a>)    <a href="#meths-WCheckboxPeer"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                   <b>END</b>;
+
+  <a name="type-WClipboard"></a><font color="#cc0033">WClipboard</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="sun_awt_datatransfer.html#type-SunClipboard">sun_awt_datatransfer.SunClipboard</a>)    <a href="#meths-WClipboard"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                <b>STATIC</b>
+                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-WClipboard">WClipboard</a><b>,CONSTRUCTOR</b>;
+                <b>END</b>;
+
+  <a name="type-WComponentPeer"></a><font color="#cc0033">WComponentPeer</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<b>WObjectPeer</b> + <a href="java_awt_peer.html#type-ComponentPeer">java_awt_peer.ComponentPeer</a> + <a href="java_awt_dnd_peer.html#type-DropTargetPeer">java_awt_dnd_peer.DropTargetPeer</a> + <a href="sun_awt.html#type-DisplayChangedListener">sun_awt.DisplayChangedListener</a>)    <a href="#meths-WComponentPeer"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                      <font color="#cc0033">hwnd</font>!              : LONGINT;
+                      <font color="#cc0033">winGraphicsConfig</font>! : <a href="sun_awt.html#type-Win32GraphicsConfig">sun_awt.Win32GraphicsConfig</a>;
+                      <font color="#cc0033">serialNum</font>*         : INTEGER;
+                    <b>END</b>;
+
+  <a name="type-WCustomCursor"></a><font color="#cc0033">WCustomCursor</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="sun_awt.html#type-CustomCursor">sun_awt.CustomCursor</a>)    <a href="#meths-WCustomCursor"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                   <b>STATIC</b>
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_awt.html#type-Image">java_awt.Image</a>;
+                                     p1 : <a href="java_awt.html#type-Point">java_awt.Point</a>;
+                                     p2 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-WCustomCursor">WCustomCursor</a><b>,CONSTRUCTOR</b>;
+                   <b>END</b>;
+
+  <a name="type-WDataTransferer"></a><font color="#cc0033">WDataTransferer</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="sun_awt_datatransfer.html#type-DataTransferer">sun_awt_datatransfer.DataTransferer</a>)    <a href="#meths-WDataTransferer"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                     <b>STATIC</b>
+                       <a name="type-CFSTR_INETURL"></a><font color="#cc0033">CFSTR_INETURL</font>*   : LONGINT;
+                       <font color="#cc0033">CF_DIB</font>*          = 8;
+                       <font color="#cc0033">CF_ENHMETAFILE</font>*  = 14;
+                       <font color="#cc0033">CF_HDROP</font>*        = 15;
+                       <a name="type-CF_HTML"></a><font color="#cc0033">CF_HTML</font>*         : LONGINT;
+                       <a name="type-CF_JFIF"></a><font color="#cc0033">CF_JFIF</font>*         : LONGINT;
+                       <font color="#cc0033">CF_LOCALE</font>*       = 16;
+                       <font color="#cc0033">CF_METAFILEPICT</font>* = 3;
+                       <a name="type-CF_PNG"></a><font color="#cc0033">CF_PNG</font>*          : LONGINT;
+                       <font color="#cc0033">CF_TEXT</font>*         = 1;
+                       <b>PROCEDURE </b><font color="#cc0033">getInstanceImpl</font>*() : <a href="#type-WDataTransferer">WDataTransferer</a>;
+                     <b>END</b>;
+
+  <a name="type-WDefaultFontCharset"></a><font color="#cc0033">WDefaultFontCharset</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="sun_awt.html#type-AWTCharset">sun_awt.AWTCharset</a>)    <a href="#meths-WDefaultFontCharset"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                         <b>STATIC</b>
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-WDefaultFontCharset">WDefaultFontCharset</a><b>,CONSTRUCTOR</b>;
+                         <b>END</b>;
+
+  <a name="type-WDesktopPeer"></a><font color="#cc0033">WDesktopPeer</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_awt_peer.html#type-DesktopPeer">java_awt_peer.DesktopPeer</a>)    <a href="#meths-WDesktopPeer"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                  <b>STATIC</b>
+                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-WDesktopPeer">WDesktopPeer</a><b>,CONSTRUCTOR</b>;
+                  <b>END</b>;
+
+  <a name="type-WEmbeddedFrame"></a><font color="#cc0033">WEmbeddedFrame</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="sun_awt.html#type-EmbeddedFrame">sun_awt.EmbeddedFrame</a>)    <a href="#meths-WEmbeddedFrame"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                    <b>STATIC</b>
+                      <b>PROCEDURE </b><font color="#cc0033">getPrintScaleFactor</font>!() : INTEGER;
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : LONGINT) : <a href="#type-WEmbeddedFrame">WEmbeddedFrame</a><b>,CONSTRUCTOR</b>;
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-WEmbeddedFrame">WEmbeddedFrame</a><b>,CONSTRUCTOR</b>;
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER) : <a href="#type-WEmbeddedFrame">WEmbeddedFrame</a><b>,CONSTRUCTOR</b>;
+                    <b>END</b>;
+
+  <a name="type-WEmbeddedFramePeer"></a><font color="#cc0033">WEmbeddedFramePeer</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<b>WFramePeer</b>)    <a href="#meths-WEmbeddedFramePeer"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                        <b>STATIC</b>
+                          <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="sun_awt.html#type-EmbeddedFrame">sun_awt.EmbeddedFrame</a>) : <a href="#type-WEmbeddedFramePeer">WEmbeddedFramePeer</a><b>,CONSTRUCTOR</b>;
+                        <b>END</b>;
+
+  <a name="type-WFileDialogPeer"></a><font color="#cc0033">WFileDialogPeer</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-WWindowPeer">WWindowPeer</a> + <a href="java_awt_peer.html#type-FileDialogPeer">java_awt_peer.FileDialogPeer</a>)    <a href="#meths-WFileDialogPeer"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                     <b>END</b>;
+
+  <a name="type-WFontConfiguration"></a><font color="#cc0033">WFontConfiguration</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="sun_awt.html#type-FontConfiguration">sun_awt.FontConfiguration</a>)    <a href="#meths-WFontConfiguration"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                        <b>STATIC</b>
+                          <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="sun_java2d.html#type-SunGraphicsEnvironment">sun_java2d.SunGraphicsEnvironment</a>;
+                                          p1 : BOOLEAN;
+                                          p2 : BOOLEAN) : <a href="#type-WFontConfiguration">WFontConfiguration</a><b>,CONSTRUCTOR</b>;
+                          <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="sun_java2d.html#type-SunGraphicsEnvironment">sun_java2d.SunGraphicsEnvironment</a>) : <a href="#type-WFontConfiguration">WFontConfiguration</a><b>,CONSTRUCTOR</b>;
+                        <b>END</b>;
+
+  <a name="type-WFontPeer"></a><font color="#cc0033">WFontPeer</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="sun_awt.html#type-PlatformFont">sun_awt.PlatformFont</a>)    <a href="#meths-WFontPeer"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+               <b>STATIC</b>
+                 <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                 p1 : INTEGER) : <a href="#type-WFontPeer">WFontPeer</a><b>,CONSTRUCTOR</b>;
+               <b>END</b>;
+
+  <a name="type-WGlobalCursorManager"></a><font color="#cc0033">WGlobalCursorManager</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="sun_awt.html#type-GlobalCursorManager">sun_awt.GlobalCursorManager</a>)    <a href="#meths-WGlobalCursorManager"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                          <b>STATIC</b>
+                            <b>PROCEDURE </b><font color="#cc0033">getCursorManager</font>*() : <a href="sun_awt.html#type-GlobalCursorManager">sun_awt.GlobalCursorManager</a>;
+                            <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-WGlobalCursorManager">WGlobalCursorManager</a><b>,CONSTRUCTOR</b>;
+                            <b>PROCEDURE </b><font color="#cc0033">nativeUpdateCursor</font>*(p0 : <a href="java_awt.html#type-Component">java_awt.Component</a>);
+                          <b>END</b>;
+
+  <a name="type-WingDings"></a><font color="#cc0033">WingDings</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_nio_charset.html#type-Charset">java_nio_charset.Charset</a>)    <a href="#meths-WingDings"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+               <b>STATIC</b>
+                 <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-WingDings">WingDings</a><b>,CONSTRUCTOR</b>;
+               <b>END</b>;
+
+  <a name="type-WInputMethod"></a><font color="#cc0033">WInputMethod</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="sun_awt_im.html#type-InputMethodAdapter">sun_awt_im.InputMethodAdapter</a>)    <a href="#meths-WInputMethod"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                  <b>STATIC</b>
+                    <font color="#cc0033">ATTR_CONVERTED</font>*           = 2;
+                    <font color="#cc0033">ATTR_INPUT</font>*               = 0;
+                    <font color="#cc0033">ATTR_INPUT_ERROR</font>*         = 4;
+                    <font color="#cc0033">ATTR_TARGET_CONVERTED</font>*    = 1;
+                    <font color="#cc0033">ATTR_TARGET_NOTCONVERTED</font>* = 3;
+                    <font color="#cc0033">IME_CMODE_ALPHANUMERIC</font>*   = 0;
+                    <font color="#cc0033">IME_CMODE_FULLSHAPE</font>*      = 8;
+                    <font color="#cc0033">IME_CMODE_HANJACONVERT</font>*   = 64;
+                    <font color="#cc0033">IME_CMODE_KATAKANA</font>*       = 2;
+                    <font color="#cc0033">IME_CMODE_LANGUAGE</font>*       = 3;
+                    <font color="#cc0033">IME_CMODE_NATIVE</font>*         = 1;
+                    <font color="#cc0033">IME_CMODE_ROMAN</font>*          = 16;
+                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-WInputMethod">WInputMethod</a><b>,CONSTRUCTOR</b>;
+                  <b>END</b>;
+
+  <a name="type-WPageDialog"></a><font color="#cc0033">WPageDialog</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-WPrintDialog">WPrintDialog</a>)    <a href="#meths-WPageDialog"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                 <b>END</b>;
+
+  <a name="type-WPageDialogPeer"></a><font color="#cc0033">WPageDialogPeer</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-WPrintDialogPeer">WPrintDialogPeer</a>)    <a href="#meths-WPageDialogPeer"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                     <b>END</b>;
+
+  <a name="type-WPopupMenuPeer"></a><font color="#cc0033">WPopupMenuPeer</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<b>WMenuPeer</b> + <a href="java_awt_peer.html#type-PopupMenuPeer">java_awt_peer.PopupMenuPeer</a>)    <a href="#meths-WPopupMenuPeer"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                    <b>STATIC</b>
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_awt.html#type-PopupMenu">java_awt.PopupMenu</a>) : <a href="#type-WPopupMenuPeer">WPopupMenuPeer</a><b>,CONSTRUCTOR</b>;
+                    <b>END</b>;
+
+  <a name="type-WPrintDialog"></a><font color="#cc0033">WPrintDialog</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_awt.html#type-Dialog">java_awt.Dialog</a>)    <a href="#meths-WPrintDialog"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                    <font color="#cc0033">job</font>!  : <a href="java_awt.html#type-PrintJob">java_awt.PrintJob</a>;
+                    <font color="#cc0033">pjob</font>! : <a href="java_awt_print.html#type-PrinterJob">java_awt_print.PrinterJob</a>;
+                  <b>STATIC</b>
+                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_awt.html#type-Dialog">java_awt.Dialog</a>;
+                                    p1 : <a href="java_awt_print.html#type-PrinterJob">java_awt_print.PrinterJob</a>) : <a href="#type-WPrintDialog">WPrintDialog</a><b>,CONSTRUCTOR</b>;
+                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_awt.html#type-Frame">java_awt.Frame</a>;
+                                    p1 : <a href="java_awt_print.html#type-PrinterJob">java_awt_print.PrinterJob</a>) : <a href="#type-WPrintDialog">WPrintDialog</a><b>,CONSTRUCTOR</b>;
+                  <b>END</b>;
+
+  <a name="type-WPrintDialogPeer"></a><font color="#cc0033">WPrintDialogPeer</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-WWindowPeer">WWindowPeer</a> + <a href="java_awt_peer.html#type-DialogPeer">java_awt_peer.DialogPeer</a>)    <a href="#meths-WPrintDialogPeer"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                      <b>END</b>;
+
+  <a name="type-WPrinterJob"></a><font color="#cc0033">WPrinterJob</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="sun_print.html#type-RasterPrinterJob">sun_print.RasterPrinterJob</a> + <a href="sun_java2d.html#type-DisposerTarget">sun_java2d.DisposerTarget</a>)    <a href="#meths-WPrinterJob"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                 <b>STATIC</b>
+                   <font color="#cc0033">POLYFILL_ALTERNATE</font>! = 1;
+                   <font color="#cc0033">POLYFILL_WINDING</font>!   = 2;
+                   <font color="#cc0033">PS_ENDCAP_FLAT</font>!     = 512;
+                   <font color="#cc0033">PS_ENDCAP_ROUND</font>!    = 0;
+                   <font color="#cc0033">PS_ENDCAP_SQUARE</font>!   = 256;
+                   <font color="#cc0033">PS_JOIN_BEVEL</font>!      = 4096;
+                   <font color="#cc0033">PS_JOIN_MITER</font>!      = 8192;
+                   <font color="#cc0033">PS_JOIN_ROUND</font>!      = 0;
+                   <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-WPrinterJob">WPrinterJob</a><b>,CONSTRUCTOR</b>;
+                 <b>END</b>;
+
+  <a name="type-WSystemTrayPeer"></a><font color="#cc0033">WSystemTrayPeer</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<b>WObjectPeer</b> + <a href="java_awt_peer.html#type-SystemTrayPeer">java_awt_peer.SystemTrayPeer</a>)    <a href="#meths-WSystemTrayPeer"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                     <b>END</b>;
+
+  <a name="type-WToolkit"></a><font color="#cc0033">WToolkit</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="sun_awt.html#type-SunToolkit">sun_awt.SunToolkit</a> + <a href="java_lang.html#type-Runnable">java_lang.Runnable</a>)    <a href="#meths-WToolkit"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                <font color="#cc0033">dynamicLayoutSetting</font>! : BOOLEAN;
+              <b>STATIC</b>
+                <font color="#cc0033">DATA_TRANSFERER_CLASS_NAME</font>* = "sun.awt.windows.WDataTransferer";
+                <b>PROCEDURE </b><font color="#cc0033">displayChanged</font>*();
+                <b>PROCEDURE </b><font color="#cc0033">embeddedDispose</font>*() : BOOLEAN;
+                <b>PROCEDURE </b><font color="#cc0033">embeddedInit</font>*() : BOOLEAN;
+                <b>PROCEDURE </b><font color="#cc0033">getWToolkit</font>*() : <a href="#type-WToolkit">WToolkit</a>;
+                <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-WToolkit">WToolkit</a><b>,CONSTRUCTOR</b>;
+                <b>PROCEDURE </b><font color="#cc0033">loadLibraries</font>*();
+                <b>PROCEDURE </b><font color="#cc0033">quitSecondaryEventLoop</font>*();
+                <b>PROCEDURE </b><font color="#cc0033">resetGC</font>*();
+                <b>PROCEDURE </b><font color="#cc0033">startSecondaryEventLoop</font>*();
+                <b>PROCEDURE </b><font color="#cc0033">targetDisposedPeer</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                              p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>);
+                <b>PROCEDURE </b><font color="#cc0033">targetToPeer</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+              <b>END</b>;
+
+  <a name="type-WTrayIconPeer"></a><font color="#cc0033">WTrayIconPeer</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<b>WObjectPeer</b> + <a href="java_awt_peer.html#type-TrayIconPeer">java_awt_peer.TrayIconPeer</a>)    <a href="#meths-WTrayIconPeer"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                   <b>END</b>;
+
+  <a name="type-WWindowPeer"></a><font color="#cc0033">WWindowPeer</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<b>WPanelPeer</b> + <a href="java_awt_peer.html#type-WindowPeer">java_awt_peer.WindowPeer</a>)    <a href="#meths-WWindowPeer"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                   <font color="#cc0033">visible</font>! : BOOLEAN;
+                 <b>STATIC</b>
+                   <b>PROCEDURE </b><font color="#cc0033">getActiveWindowHandles</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>LONGINT;
+                 <b>END</b>;
+
+
+
+<a name="meths-awtLocalization"></a>
+<b>PROCEDURE </b>(self:awtLocalization) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-awtLocalization_de"></a>
+<b>PROCEDURE </b>(self:awtLocalization_de) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-awtLocalization_es"></a>
+<b>PROCEDURE </b>(self:awtLocalization_es) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-awtLocalization_fr"></a>
+<b>PROCEDURE </b>(self:awtLocalization_fr) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-awtLocalization_it"></a>
+<b>PROCEDURE </b>(self:awtLocalization_it) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-awtLocalization_ja"></a>
+<b>PROCEDURE </b>(self:awtLocalization_ja) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-awtLocalization_ko"></a>
+<b>PROCEDURE </b>(self:awtLocalization_ko) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-awtLocalization_pt_BR"></a>
+<b>PROCEDURE </b>(self:awtLocalization_pt_BR) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-awtLocalization_sv"></a>
+<b>PROCEDURE </b>(self:awtLocalization_sv) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-awtLocalization_zh_CN"></a>
+<b>PROCEDURE </b>(self:awtLocalization_zh_CN) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-awtLocalization_zh_HK"></a>
+<b>PROCEDURE </b>(self:awtLocalization_zh_HK) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-awtLocalization_zh_TW"></a>
+<b>PROCEDURE </b>(self:awtLocalization_zh_TW) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-TranslucentWindowPainter"></a>
+<b>PROCEDURE </b>(self:TranslucentWindowPainter) <font color="#cc0033">flush</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:TranslucentWindowPainter) <font color="#cc0033">getBackBuffer</font>!(p0 : BOOLEAN) : <a href="java_awt.html#type-Image">java_awt.Image</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:TranslucentWindowPainter) <font color="#cc0033">update</font>!(p0 : <a href="java_awt.html#type-Image">java_awt.Image</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:TranslucentWindowPainter) <font color="#cc0033">updateWindow</font>*(p0 : BOOLEAN)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-WCheckboxPeer"></a>
+<b>PROCEDURE </b>(self:WCheckboxPeer) <font color="#cc0033">getMinimumSize</font>*() : <a href="java_awt.html#type-Dimension">java_awt.Dimension</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WCheckboxPeer) <font color="#cc0033">isFocusable</font>*() : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WCheckboxPeer) <font color="#cc0033">minimumSize</font>*() : <a href="java_awt.html#type-Dimension">java_awt.Dimension</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WCheckboxPeer) <font color="#cc0033">setCheckboxGroup</font>*(p0 : <a href="java_awt.html#type-CheckboxGroup">java_awt.CheckboxGroup</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WCheckboxPeer) <font color="#cc0033">setLabel</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WCheckboxPeer) <font color="#cc0033">setState</font>*(p0 : BOOLEAN)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WCheckboxPeer) <font color="#cc0033">shouldClearRectBeforePaint</font>*() : BOOLEAN<b>,EXTENSIBLE</b>;
+<a name="meths-WClipboard"></a>
+<b>PROCEDURE </b>(self:WClipboard) <font color="#cc0033">clearNativeContext</font>!()<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WClipboard) <font color="#cc0033">closeClipboard</font>*()<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WClipboard) <font color="#cc0033">createLocaleTransferable</font>!(IN  p0 : <b>ARRAY </b><b>OF </b>LONGINT) : <a href="java_awt_datatransfer.html#type-Transferable">java_awt_datatransfer.Transferable</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WClipboard) <font color="#cc0033">getClipboardData</font>!(p0 : LONGINT) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>BYTE<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WClipboard) <font color="#cc0033">getClipboardFormats</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>LONGINT<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WClipboard) <font color="#cc0033">getID</font>*() : LONGINT<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WClipboard) <font color="#cc0033">openClipboard</font>*(p0 : <a href="sun_awt_datatransfer.html#type-SunClipboard">sun_awt_datatransfer.SunClipboard</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WClipboard) <font color="#cc0033">registerClipboardViewerChecked</font>!()<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WClipboard) <font color="#cc0033">setContentsNative</font>!(p0 : <a href="java_awt_datatransfer.html#type-Transferable">java_awt_datatransfer.Transferable</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WClipboard) <font color="#cc0033">unregisterClipboardViewerChecked</font>!()<b>,EXTENSIBLE</b>;
+<a name="meths-WComponentPeer"></a>
+<b>PROCEDURE </b>(self:WComponentPeer) <font color="#cc0033">addDropTarget</font>*(p0 : <a href="java_awt_dnd.html#type-DropTarget">java_awt_dnd.DropTarget</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WComponentPeer) <font color="#cc0033">applyShape</font>*(p0 : <a href="sun_java2d_pipe.html#type-Region">sun_java2d_pipe.Region</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WComponentPeer) <font color="#cc0033">beginLayout</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WComponentPeer) <font color="#cc0033">beginValidate</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WComponentPeer) <font color="#cc0033">canDetermineObscurity</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WComponentPeer) <font color="#cc0033">checkCreation</font>!()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WComponentPeer) <font color="#cc0033">checkImage</font>*(p0 : <a href="java_awt.html#type-Image">java_awt.Image</a>;
+                                            p1 : INTEGER;
+                                            p2 : INTEGER;
+                                            p3 : <a href="java_awt_image.html#type-ImageObserver">java_awt_image.ImageObserver</a>) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WComponentPeer) <font color="#cc0033">coalescePaintEvent</font>*(p0 : <a href="java_awt_event.html#type-PaintEvent">java_awt_event.PaintEvent</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WComponentPeer) <font color="#cc0033">createBuffers</font>*(p0 : INTEGER;
+                                               p1 : <a href="java_awt.html#type-BufferCapabilities">java_awt.BufferCapabilities</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WComponentPeer) <font color="#cc0033">createImage</font>*(p0 : <a href="java_awt_image.html#type-ImageProducer">java_awt_image.ImageProducer</a>) : <a href="java_awt.html#type-Image">java_awt.Image</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WComponentPeer) <font color="#cc0033">createImage</font>*(p0 : INTEGER;
+                                             p1 : INTEGER) : <a href="java_awt.html#type-Image">java_awt.Image</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WComponentPeer) <font color="#cc0033">createVolatileImage</font>*(p0 : INTEGER;
+                                                     p1 : INTEGER) : <a href="java_awt_image.html#type-VolatileImage">java_awt_image.VolatileImage</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WComponentPeer) <font color="#cc0033">destroyBuffers</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WComponentPeer) <font color="#cc0033">disable</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WComponentPeer) <font color="#cc0033">disableAcceleration</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WComponentPeer) <font color="#cc0033">displayChanged</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WComponentPeer) <font color="#cc0033">disposeImpl</font>!()<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WComponentPeer) <font color="#cc0033">enable</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WComponentPeer) <font color="#cc0033">endLayout</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WComponentPeer) <font color="#cc0033">endValidate</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WComponentPeer) <font color="#cc0033">flip</font>*(p0 : INTEGER;
+                                      p1 : INTEGER;
+                                      p2 : INTEGER;
+                                      p3 : INTEGER;
+                                      p4 : <a href="java_awt.html#type-BufferCapabilities$FlipContents">java_awt.BufferCapabilities$FlipContents</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WComponentPeer) <font color="#cc0033">getBackBuffer</font>*() : <a href="java_awt.html#type-Image">java_awt.Image</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WComponentPeer) <font color="#cc0033">getBackBufferCaps</font>*() : <a href="java_awt.html#type-BufferCapabilities">java_awt.BufferCapabilities</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WComponentPeer) <font color="#cc0033">getBackBuffersNum</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WComponentPeer) <font color="#cc0033">getBackgroundNoSync</font>*() : <a href="java_awt.html#type-Color">java_awt.Color</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WComponentPeer) <font color="#cc0033">getBounds</font>*() : <a href="java_awt.html#type-Rectangle">java_awt.Rectangle</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WComponentPeer) <font color="#cc0033">getColorModel</font>*() : <a href="java_awt_image.html#type-ColorModel">java_awt_image.ColorModel</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WComponentPeer) <font color="#cc0033">getColorModel</font>*(p0 : INTEGER) : <a href="java_awt_image.html#type-ColorModel">java_awt_image.ColorModel</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WComponentPeer) <font color="#cc0033">getData</font>*() : LONGINT<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WComponentPeer) <font color="#cc0033">getDeviceColorModel</font>*() : <a href="java_awt_image.html#type-ColorModel">java_awt_image.ColorModel</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WComponentPeer) <font color="#cc0033">getFontMetrics</font>*(p0 : <a href="java_awt.html#type-Font">java_awt.Font</a>) : <a href="java_awt.html#type-FontMetrics">java_awt.FontMetrics</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WComponentPeer) <font color="#cc0033">getGraphics</font>*() : <a href="java_awt.html#type-Graphics">java_awt.Graphics</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WComponentPeer) <font color="#cc0033">getGraphicsConfiguration</font>*() : <a href="java_awt.html#type-GraphicsConfiguration">java_awt.GraphicsConfiguration</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WComponentPeer) <font color="#cc0033">getHWnd</font>*() : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WComponentPeer) <font color="#cc0033">getLocationOnScreen</font>*() : <a href="java_awt.html#type-Point">java_awt.Point</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WComponentPeer) <font color="#cc0033">getMinimumSize</font>*() : <a href="java_awt.html#type-Dimension">java_awt.Dimension</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WComponentPeer) <font color="#cc0033">getPreferredSize</font>*() : <a href="java_awt.html#type-Dimension">java_awt.Dimension</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WComponentPeer) <font color="#cc0033">getSurfaceData</font>*() : <a href="sun_java2d.html#type-SurfaceData">sun_java2d.SurfaceData</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WComponentPeer) <font color="#cc0033">getTarget</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WComponentPeer) <font color="#cc0033">getToolkit</font>*() : <a href="java_awt.html#type-Toolkit">java_awt.Toolkit</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WComponentPeer) <font color="#cc0033">handleEvent</font>*(p0 : <a href="java_awt.html#type-AWTEvent">java_awt.AWTEvent</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WComponentPeer) <font color="#cc0033">handleJavaKeyEvent</font>*(p0 : <a href="java_awt_event.html#type-KeyEvent">java_awt_event.KeyEvent</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WComponentPeer) <font color="#cc0033">handlePaint</font>*(p0 : INTEGER;
+                                             p1 : INTEGER;
+                                             p2 : INTEGER;
+                                             p3 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WComponentPeer) <font color="#cc0033">handlesWheelScrolling</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WComponentPeer) <font color="#cc0033">hide</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WComponentPeer) <font color="#cc0033">isAccelCapable</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WComponentPeer) <font color="#cc0033">isFocusable</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WComponentPeer) <font color="#cc0033">isObscured</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WComponentPeer) <font color="#cc0033">isPaintPending</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WComponentPeer) <font color="#cc0033">isReparentSupported</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WComponentPeer) <font color="#cc0033">layout</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WComponentPeer) <font color="#cc0033">minimumSize</font>*() : <a href="java_awt.html#type-Dimension">java_awt.Dimension</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WComponentPeer) <font color="#cc0033">paint</font>*(p0 : <a href="java_awt.html#type-Graphics">java_awt.Graphics</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WComponentPeer) <font color="#cc0033">paletteChanged</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WComponentPeer) <font color="#cc0033">preferredSize</font>*() : <a href="java_awt.html#type-Dimension">java_awt.Dimension</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WComponentPeer) <font color="#cc0033">prepareImage</font>*(p0 : <a href="java_awt.html#type-Image">java_awt.Image</a>;
+                                              p1 : INTEGER;
+                                              p2 : INTEGER;
+                                              p3 : <a href="java_awt_image.html#type-ImageObserver">java_awt_image.ImageObserver</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WComponentPeer) <font color="#cc0033">print</font>*(p0 : <a href="java_awt.html#type-Graphics">java_awt.Graphics</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WComponentPeer) <font color="#cc0033">pShow</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WComponentPeer) <font color="#cc0033">removeDropTarget</font>*(p0 : <a href="java_awt_dnd.html#type-DropTarget">java_awt_dnd.DropTarget</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WComponentPeer) <font color="#cc0033">repaint</font>*(p0 : LONGINT;
+                                         p1 : INTEGER;
+                                         p2 : INTEGER;
+                                         p3 : INTEGER;
+                                         p4 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WComponentPeer) <font color="#cc0033">reparent</font>*(p0 : <a href="java_awt_peer.html#type-ContainerPeer">java_awt_peer.ContainerPeer</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WComponentPeer) <font color="#cc0033">replaceSurfaceData</font>*(p0 : INTEGER;
+                                                    p1 : <a href="java_awt.html#type-BufferCapabilities">java_awt.BufferCapabilities</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WComponentPeer) <font color="#cc0033">replaceSurfaceData</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WComponentPeer) <font color="#cc0033">replaceSurfaceDataLater</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WComponentPeer) <font color="#cc0033">requestFocus</font>*(p0 : <a href="java_awt.html#type-Component">java_awt.Component</a>;
+                                              p1 : BOOLEAN;
+                                              p2 : BOOLEAN;
+                                              p3 : LONGINT;
+                                              p4 : <a href="sun_awt.html#type-CausedFocusEvent$Cause">sun_awt.CausedFocusEvent$Cause</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WComponentPeer) <font color="#cc0033">reshape</font>*(p0 : INTEGER;
+                                         p1 : INTEGER;
+                                         p2 : INTEGER;
+                                         p3 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WComponentPeer) <font color="#cc0033">setBackground</font>*(p0 : <a href="java_awt.html#type-Color">java_awt.Color</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WComponentPeer) <font color="#cc0033">setBounds</font>*(p0 : INTEGER;
+                                           p1 : INTEGER;
+                                           p2 : INTEGER;
+                                           p3 : INTEGER;
+                                           p4 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WComponentPeer) <font color="#cc0033">setBoundsOperation</font>*(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WComponentPeer) <font color="#cc0033">setEnabled</font>*(p0 : BOOLEAN)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WComponentPeer) <font color="#cc0033">setFont</font>*(p0 : <a href="java_awt.html#type-Font">java_awt.Font</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WComponentPeer) <font color="#cc0033">setForeground</font>*(p0 : <a href="java_awt.html#type-Color">java_awt.Color</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WComponentPeer) <font color="#cc0033">setVisible</font>*(p0 : BOOLEAN)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WComponentPeer) <font color="#cc0033">shouldClearRectBeforePaint</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WComponentPeer) <font color="#cc0033">show</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WComponentPeer) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WComponentPeer) <font color="#cc0033">updateCursorImmediately</font>*()<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:WComponentPeer) <font color="#cc0033">_requestFocus</font>*(p0 : <a href="java_awt.html#type-Component">java_awt.Component</a>;
+                                               p1 : BOOLEAN;
+                                               p2 : BOOLEAN;
+                                               p3 : LONGINT;
+                                               p4 : <a href="sun_awt.html#type-CausedFocusEvent$Cause">sun_awt.CausedFocusEvent$Cause</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WComponentPeer) <font color="#cc0033">_setBackground</font>*(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WComponentPeer) <font color="#cc0033">_setFont</font>*(p0 : <a href="java_awt.html#type-Font">java_awt.Font</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WComponentPeer) <font color="#cc0033">_setForeground</font>*(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-WCustomCursor"></a>
+<b>PROCEDURE </b>(self:WCustomCursor) <font color="#cc0033">createNativeCursor</font>!(    p0 : <a href="java_awt.html#type-Image">java_awt.Image</a>;
+                                                   IN  p1 : <b>ARRAY </b><b>OF </b>INTEGER;
+                                                       p2 : INTEGER;
+                                                       p3 : INTEGER;
+                                                       p4 : INTEGER;
+                                                       p5 : INTEGER)<b>,EXTENSIBLE</b>;
+<a name="meths-WDataTransferer"></a>
+<b>PROCEDURE </b>(self:WDataTransferer) <font color="#cc0033">dragQueryFile</font>!(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WDataTransferer) <font color="#cc0033">getDefaultUnicodeEncoding</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WDataTransferer) <font color="#cc0033">getFormatForNativeAsLong</font>!(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-Long">java_lang.Long</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WDataTransferer) <font color="#cc0033">getFormatsForFlavors</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="java_awt_datatransfer.html#type-DataFlavor">java_awt_datatransfer.DataFlavor</a>;
+                                                           p1 : <a href="java_awt_datatransfer.html#type-FlavorTable">java_awt_datatransfer.FlavorTable</a>) : <a href="java_util.html#type-SortedMap">java_util.SortedMap</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WDataTransferer) <font color="#cc0033">getNativeForFormat</font>!(p0 : LONGINT) : <a href="java_lang.html#type-String">java_lang.String</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WDataTransferer) <font color="#cc0033">getToolkitThreadBlockedHandler</font>*() : <a href="sun_awt_datatransfer.html#type-ToolkitThreadBlockedHandler">sun_awt_datatransfer.ToolkitThreadBlockedHandler</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WDataTransferer) <font color="#cc0033">imageToPlatformBytes</font>!(p0 : <a href="java_awt.html#type-Image">java_awt.Image</a>;
+                                                       p1 : LONGINT) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>BYTE<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WDataTransferer) <font color="#cc0033">isFileFormat</font>*(p0 : LONGINT) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WDataTransferer) <font color="#cc0033">isImageFormat</font>*(p0 : LONGINT) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WDataTransferer) <font color="#cc0033">isLocaleDependentTextFormat</font>*(p0 : LONGINT) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WDataTransferer) <font color="#cc0033">platformImageBytesOrStreamToImage</font>!(    p0 : <a href="java_io.html#type-InputStream">java_io.InputStream</a>;
+                                                                    IN  p1 : <b>ARRAY </b><b>OF </b>BYTE;
+                                                                        p2 : LONGINT) : <a href="java_awt.html#type-Image">java_awt.Image</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WDataTransferer) <font color="#cc0033">translateBytesOrStream</font>!(    p0 : <a href="java_io.html#type-InputStream">java_io.InputStream</a>;
+                                                         IN  p1 : <b>ARRAY </b><b>OF </b>BYTE;
+                                                             p2 : <a href="java_awt_datatransfer.html#type-DataFlavor">java_awt_datatransfer.DataFlavor</a>;
+                                                             p3 : LONGINT;
+                                                             p4 : <a href="java_awt_datatransfer.html#type-Transferable">java_awt_datatransfer.Transferable</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WDataTransferer) <font color="#cc0033">translateTransferable</font>*(p0 : <a href="java_awt_datatransfer.html#type-Transferable">java_awt_datatransfer.Transferable</a>;
+                                                        p1 : <a href="java_awt_datatransfer.html#type-DataFlavor">java_awt_datatransfer.DataFlavor</a>;
+                                                        p2 : LONGINT) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>BYTE<b>,EXTENSIBLE</b>;
+<a name="meths-WDefaultFontCharset"></a>
+<b>PROCEDURE </b>(self:WDefaultFontCharset) <font color="#cc0033">canConvert</font>*(p0 : CHAR) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WDefaultFontCharset) <font color="#cc0033">newEncoder</font>*() : <a href="java_nio_charset.html#type-CharsetEncoder">java_nio_charset.CharsetEncoder</a><b>,EXTENSIBLE</b>;
+<a name="meths-WDesktopPeer"></a>
+<b>PROCEDURE </b>(self:WDesktopPeer) <font color="#cc0033">browse</font>*(p0 : <a href="java_net.html#type-URI">java_net.URI</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WDesktopPeer) <font color="#cc0033">edit</font>*(p0 : <a href="java_io.html#type-File">java_io.File</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WDesktopPeer) <font color="#cc0033">isSupported</font>*(p0 : <a href="java_awt.html#type-Desktop$Action">java_awt.Desktop$Action</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WDesktopPeer) <font color="#cc0033">mail</font>*(p0 : <a href="java_net.html#type-URI">java_net.URI</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WDesktopPeer) <font color="#cc0033">open</font>*(p0 : <a href="java_io.html#type-File">java_io.File</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WDesktopPeer) <font color="#cc0033">print</font>*(p0 : <a href="java_io.html#type-File">java_io.File</a>)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-WEmbeddedFrame"></a>
+<b>PROCEDURE </b>(self:WEmbeddedFrame) <font color="#cc0033">activateEmbeddingTopLevel</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WEmbeddedFrame) <font color="#cc0033">addNotify</font>*()<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WEmbeddedFrame) <font color="#cc0033">getEmbedderHandle</font>*() : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WEmbeddedFrame) <font color="#cc0033">isPrinterDC</font>!(p0 : LONGINT) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WEmbeddedFrame) <font color="#cc0033">notifyModalBlocked</font>*(p0 : <a href="java_awt.html#type-Dialog">java_awt.Dialog</a>;
+                                                    p1 : BOOLEAN)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WEmbeddedFrame) <font color="#cc0033">printBand</font>!(    p0  : LONGINT;
+                                           IN  p1  : <b>ARRAY </b><b>OF </b>BYTE;
+                                               p2  : INTEGER;
+                                               p3  : INTEGER;
+                                               p4  : INTEGER;
+                                               p5  : INTEGER;
+                                               p6  : INTEGER;
+                                               p7  : INTEGER;
+                                               p8  : INTEGER;
+                                               p9  : INTEGER;
+                                               p10 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WEmbeddedFrame) <font color="#cc0033">registerAccelerator</font>*(p0 : <a href="java_awt.html#type-AWTKeyStroke">java_awt.AWTKeyStroke</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WEmbeddedFrame) <font color="#cc0033">synthesizeWindowActivation</font>*(p0 : BOOLEAN)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WEmbeddedFrame) <font color="#cc0033">unregisterAccelerator</font>*(p0 : <a href="java_awt.html#type-AWTKeyStroke">java_awt.AWTKeyStroke</a>)<b>,EXTENSIBLE</b>;
+<a name="meths-WEmbeddedFramePeer"></a>
+<b>PROCEDURE </b>(self:WEmbeddedFramePeer) <font color="#cc0033">getBoundsPrivate</font>*() : <a href="java_awt.html#type-Rectangle">java_awt.Rectangle</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WEmbeddedFramePeer) <font color="#cc0033">getMinimumSize</font>*() : <a href="java_awt.html#type-Dimension">java_awt.Dimension</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WEmbeddedFramePeer) <font color="#cc0033">getState</font>*() : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WEmbeddedFramePeer) <font color="#cc0033">isAccelCapable</font>*() : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WEmbeddedFramePeer) <font color="#cc0033">modalDisable</font>*(p0 : <a href="java_awt.html#type-Dialog">java_awt.Dialog</a>;
+                                                  p1 : LONGINT)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WEmbeddedFramePeer) <font color="#cc0033">modalEnable</font>*(p0 : <a href="java_awt.html#type-Dialog">java_awt.Dialog</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WEmbeddedFramePeer) <font color="#cc0033">print</font>*(p0 : <a href="java_awt.html#type-Graphics">java_awt.Graphics</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WEmbeddedFramePeer) <font color="#cc0033">reshape</font>*(p0 : INTEGER;
+                                             p1 : INTEGER;
+                                             p2 : INTEGER;
+                                             p3 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WEmbeddedFramePeer) <font color="#cc0033">setBoundsPrivate</font>*(p0 : INTEGER;
+                                                      p1 : INTEGER;
+                                                      p2 : INTEGER;
+                                                      p3 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WEmbeddedFramePeer) <font color="#cc0033">setMaximizedBounds</font>*(p0 : <a href="java_awt.html#type-Rectangle">java_awt.Rectangle</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WEmbeddedFramePeer) <font color="#cc0033">setMenuBar</font>*(p0 : <a href="java_awt.html#type-MenuBar">java_awt.MenuBar</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WEmbeddedFramePeer) <font color="#cc0033">setState</font>*(p0 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WEmbeddedFramePeer) <font color="#cc0033">synthesizeWmActivate</font>*(p0 : BOOLEAN)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WEmbeddedFramePeer) <font color="#cc0033">updateMinimumSize</font>*()<b>,EXTENSIBLE</b>;
+<a name="meths-WFileDialogPeer"></a>
+<b>PROCEDURE </b>(self:WFileDialogPeer) <font color="#cc0033">addDropTarget</font>*(p0 : <a href="java_awt_dnd.html#type-DropTarget">java_awt_dnd.DropTarget</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WFileDialogPeer) <font color="#cc0033">applyShape</font>*(p0 : <a href="sun_java2d_pipe.html#type-Region">sun_java2d_pipe.Region</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WFileDialogPeer) <font color="#cc0033">beginValidate</font>*()<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WFileDialogPeer) <font color="#cc0033">blockWindows</font>*(p0 : <a href="java_util.html#type-List">java_util.List</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WFileDialogPeer) <font color="#cc0033">checkCreation</font>!()<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WFileDialogPeer) <font color="#cc0033">disable</font>*()<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WFileDialogPeer) <font color="#cc0033">disposeImpl</font>!()<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WFileDialogPeer) <font color="#cc0033">enable</font>*()<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WFileDialogPeer) <font color="#cc0033">endValidate</font>*()<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WFileDialogPeer) <font color="#cc0033">handleEvent</font>*(p0 : <a href="java_awt.html#type-Event">java_awt.Event</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WFileDialogPeer) <font color="#cc0033">hide</font>*()<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WFileDialogPeer) <font color="#cc0033">isRestackSupported</font>*() : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WFileDialogPeer) <font color="#cc0033">removeDropTarget</font>*(p0 : <a href="java_awt_dnd.html#type-DropTarget">java_awt_dnd.DropTarget</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WFileDialogPeer) <font color="#cc0033">requestFocus</font>*(p0 : <a href="java_awt.html#type-Component">java_awt.Component</a>;
+                                               p1 : BOOLEAN;
+                                               p2 : BOOLEAN;
+                                               p3 : LONGINT;
+                                               p4 : <a href="sun_awt.html#type-CausedFocusEvent$Cause">sun_awt.CausedFocusEvent$Cause</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WFileDialogPeer) <font color="#cc0033">requestFocus</font>*(p0 : BOOLEAN;
+                                               p1 : BOOLEAN) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WFileDialogPeer) <font color="#cc0033">reshape</font>*(p0 : INTEGER;
+                                          p1 : INTEGER;
+                                          p2 : INTEGER;
+                                          p3 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WFileDialogPeer) <font color="#cc0033">restack</font>*()<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WFileDialogPeer) <font color="#cc0033">setAlwaysOnTop</font>*(p0 : BOOLEAN)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WFileDialogPeer) <font color="#cc0033">setBackground</font>*(p0 : <a href="java_awt.html#type-Color">java_awt.Color</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WFileDialogPeer) <font color="#cc0033">setDirectory</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WFileDialogPeer) <font color="#cc0033">setFile</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WFileDialogPeer) <font color="#cc0033">setFilenameFilter</font>*(p0 : <a href="java_io.html#type-FilenameFilter">java_io.FilenameFilter</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WFileDialogPeer) <font color="#cc0033">setFont</font>*(p0 : <a href="java_awt.html#type-Font">java_awt.Font</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WFileDialogPeer) <font color="#cc0033">setForeground</font>*(p0 : <a href="java_awt.html#type-Color">java_awt.Color</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WFileDialogPeer) <font color="#cc0033">setOpacity</font>*(p0 : SHORTREAL)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WFileDialogPeer) <font color="#cc0033">setOpaque</font>*(p0 : BOOLEAN)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WFileDialogPeer) <font color="#cc0033">setResizable</font>*(p0 : BOOLEAN)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WFileDialogPeer) <font color="#cc0033">setTitle</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WFileDialogPeer) <font color="#cc0033">show</font>*()<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WFileDialogPeer) <font color="#cc0033">toBack</font>*()<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WFileDialogPeer) <font color="#cc0033">toFront</font>*()<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WFileDialogPeer) <font color="#cc0033">updateFocusableWindowState</font>*()<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WFileDialogPeer) <font color="#cc0033">updateIconImages</font>*()<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WFileDialogPeer) <font color="#cc0033">updateMinimumSize</font>*()<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WFileDialogPeer) <font color="#cc0033">updateWindow</font>*(p0 : <a href="java_awt_image.html#type-BufferedImage">java_awt_image.BufferedImage</a>)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-WFontConfiguration"></a>
+<b>PROCEDURE </b>(self:WFontConfiguration) <font color="#cc0033">getDefaultFontCharset</font>!(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_nio_charset.html#type-Charset">java_nio_charset.Charset</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WFontConfiguration) <font color="#cc0033">getEncoding</font>!(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                 p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WFontConfiguration) <font color="#cc0033">getFaceNameFromComponentFontName</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WFontConfiguration) <font color="#cc0033">getFallbackFamilyName</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                           p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WFontConfiguration) <font color="#cc0033">getFileNameFromComponentFontName</font>!(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WFontConfiguration) <font color="#cc0033">getTextComponentFontName</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                              p1 : INTEGER) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WFontConfiguration) <font color="#cc0033">initReorderMap</font>!()<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WFontConfiguration) <font color="#cc0033">makeAWTFontName</font>!(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                     p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WFontConfiguration) <font color="#cc0033">setOsNameAndVersion</font>!()<b>,EXTENSIBLE</b>;
+<a name="meths-WFontPeer"></a>
+<b>PROCEDURE </b>(self:WFontPeer) <font color="#cc0033">getMissingGlyphCharacter</font>!() : CHAR<b>,EXTENSIBLE</b>;
+<a name="meths-WGlobalCursorManager"></a>
+<b>PROCEDURE </b>(self:WGlobalCursorManager) <font color="#cc0033">findComponentAt</font>!(p0 : <a href="java_awt.html#type-Container">java_awt.Container</a>;
+                                                       p1 : INTEGER;
+                                                       p2 : INTEGER) : <a href="java_awt.html#type-Component">java_awt.Component</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WGlobalCursorManager) <font color="#cc0033">findHeavyweightUnderCursor</font>!(p0 : BOOLEAN) : <a href="java_awt.html#type-Component">java_awt.Component</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WGlobalCursorManager) <font color="#cc0033">getCursorPos</font>!(p0 : <a href="java_awt.html#type-Point">java_awt.Point</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WGlobalCursorManager) <font color="#cc0033">getLocationOnScreen</font>!(p0 : <a href="java_awt.html#type-Component">java_awt.Component</a>) : <a href="java_awt.html#type-Point">java_awt.Point</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WGlobalCursorManager) <font color="#cc0033">setCursor</font>!(p0 : <a href="java_awt.html#type-Component">java_awt.Component</a>;
+                                                 p1 : <a href="java_awt.html#type-Cursor">java_awt.Cursor</a>;
+                                                 p2 : BOOLEAN)<b>,EXTENSIBLE</b>;
+<a name="meths-WingDings"></a>
+<b>PROCEDURE </b>(self:WingDings) <font color="#cc0033">contains</font>*(p0 : <a href="java_nio_charset.html#type-Charset">java_nio_charset.Charset</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WingDings) <font color="#cc0033">newDecoder</font>*() : <a href="java_nio_charset.html#type-CharsetDecoder">java_nio_charset.CharsetDecoder</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WingDings) <font color="#cc0033">newEncoder</font>*() : <a href="java_nio_charset.html#type-CharsetEncoder">java_nio_charset.CharsetEncoder</a><b>,EXTENSIBLE</b>;
+<a name="meths-WInputMethod"></a>
+<b>PROCEDURE </b>(self:WInputMethod) <font color="#cc0033">activate</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WInputMethod) <font color="#cc0033">deactivate</font>*(p0 : BOOLEAN)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WInputMethod) <font color="#cc0033">disableInputMethod</font>*()<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WInputMethod) <font color="#cc0033">dispatchEvent</font>*(p0 : <a href="java_awt.html#type-AWTEvent">java_awt.AWTEvent</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WInputMethod) <font color="#cc0033">dispose</font>*()<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:WInputMethod) <font color="#cc0033">endComposition</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WInputMethod) <font color="#cc0033">finalize</font>!()<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WInputMethod) <font color="#cc0033">getControlObject</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WInputMethod) <font color="#cc0033">getLocale</font>*() : <a href="java_util.html#type-Locale">java_util.Locale</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WInputMethod) <font color="#cc0033">getNativeInputMethodInfo</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WInputMethod) <font color="#cc0033">hideWindows</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WInputMethod) <font color="#cc0033">inquireCandidatePosition</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WInputMethod) <font color="#cc0033">isCompositionEnabled</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WInputMethod) <font color="#cc0033">removeNotify</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WInputMethod) <font color="#cc0033">sendInputMethodEvent</font>*(    p0 : INTEGER;
+                                                        p1 : LONGINT;
+                                                        p2 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                    IN  p3 : <b>ARRAY </b><b>OF </b>INTEGER;
+                                                    IN  p4 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>;
+                                                    IN  p5 : <b>ARRAY </b><b>OF </b>INTEGER;
+                                                    IN  p6 : <b>ARRAY </b><b>OF </b>BYTE;
+                                                        p7 : INTEGER;
+                                                        p8 : INTEGER;
+                                                        p9 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WInputMethod) <font color="#cc0033">setAWTFocussedComponent</font>!(p0 : <a href="java_awt.html#type-Component">java_awt.Component</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WInputMethod) <font color="#cc0033">setCharacterSubsets</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Character$Subset">java_lang.Character$Subset</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WInputMethod) <font color="#cc0033">setCompositionEnabled</font>*(p0 : BOOLEAN)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WInputMethod) <font color="#cc0033">setInputMethodContext</font>*(p0 : <a href="java_awt_im_spi.html#type-InputMethodContext">java_awt_im_spi.InputMethodContext</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WInputMethod) <font color="#cc0033">setLocale</font>*(p0 : <a href="java_util.html#type-Locale">java_util.Locale</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WInputMethod) <font color="#cc0033">stopListening</font>!()<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WInputMethod) <font color="#cc0033">supportsBelowTheSpot</font>!() : BOOLEAN<b>,EXTENSIBLE</b>;
+<a name="meths-WPageDialog"></a>
+<b>PROCEDURE </b>(self:WPageDialog) <font color="#cc0033">addNotify</font>*()<b>,EXTENSIBLE</b>;
+<a name="meths-WPageDialogPeer"></a>
+<b>PROCEDURE </b>(self:WPageDialogPeer) <font color="#cc0033">show</font>*()<b>,EXTENSIBLE</b>;
+<a name="meths-WPopupMenuPeer"></a>
+<b>PROCEDURE </b>(self:WPopupMenuPeer) <font color="#cc0033">addItem</font>*(p0 : <a href="java_awt.html#type-MenuItem">java_awt.MenuItem</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WPopupMenuPeer) <font color="#cc0033">addSeparator</font>*()<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WPopupMenuPeer) <font color="#cc0033">delItem</font>*(p0 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WPopupMenuPeer) <font color="#cc0033">disable</font>*()<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WPopupMenuPeer) <font color="#cc0033">enable</font>*()<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WPopupMenuPeer) <font color="#cc0033">getData</font>*() : LONGINT<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WPopupMenuPeer) <font color="#cc0033">getTarget</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WPopupMenuPeer) <font color="#cc0033">readShortcutLabel</font>*()<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WPopupMenuPeer) <font color="#cc0033">setEnabled</font>*(p0 : BOOLEAN)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WPopupMenuPeer) <font color="#cc0033">setFont</font>*(p0 : <a href="java_awt.html#type-Font">java_awt.Font</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WPopupMenuPeer) <font color="#cc0033">setLabel</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WPopupMenuPeer) <font color="#cc0033">show</font>*(p0 : <a href="java_awt.html#type-Event">java_awt.Event</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WPopupMenuPeer) <font color="#cc0033">_setLabel</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WPopupMenuPeer) <font color="#cc0033">_show</font>*(p0 : <a href="java_awt.html#type-Event">java_awt.Event</a>)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-WPrintDialog"></a>
+<b>PROCEDURE </b>(self:WPrintDialog) <font color="#cc0033">addNotify</font>*()<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WPrintDialog) <font color="#cc0033">getRetVal</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WPrintDialog) <font color="#cc0033">setPeer</font>!(p0 : <a href="java_awt_peer.html#type-ComponentPeer">java_awt_peer.ComponentPeer</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WPrintDialog) <font color="#cc0033">setRetVal</font>*(p0 : BOOLEAN)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-WPrintDialogPeer"></a>
+<b>PROCEDURE </b>(self:WPrintDialogPeer) <font color="#cc0033">addDropTarget</font>*(p0 : <a href="java_awt_dnd.html#type-DropTarget">java_awt_dnd.DropTarget</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WPrintDialogPeer) <font color="#cc0033">applyShape</font>*(p0 : <a href="sun_java2d_pipe.html#type-Region">sun_java2d_pipe.Region</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WPrintDialogPeer) <font color="#cc0033">beginValidate</font>*()<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WPrintDialogPeer) <font color="#cc0033">blockWindows</font>*(p0 : <a href="java_util.html#type-List">java_util.List</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WPrintDialogPeer) <font color="#cc0033">checkCreation</font>!()<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WPrintDialogPeer) <font color="#cc0033">disable</font>*()<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WPrintDialogPeer) <font color="#cc0033">disposeImpl</font>!()<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WPrintDialogPeer) <font color="#cc0033">enable</font>*()<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WPrintDialogPeer) <font color="#cc0033">endValidate</font>*()<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WPrintDialogPeer) <font color="#cc0033">handleEvent</font>*(p0 : <a href="java_awt.html#type-Event">java_awt.Event</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WPrintDialogPeer) <font color="#cc0033">hide</font>*()<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WPrintDialogPeer) <font color="#cc0033">isRestackSupported</font>*() : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WPrintDialogPeer) <font color="#cc0033">removeDropTarget</font>*(p0 : <a href="java_awt_dnd.html#type-DropTarget">java_awt_dnd.DropTarget</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WPrintDialogPeer) <font color="#cc0033">requestFocus</font>*(p0 : BOOLEAN;
+                                                p1 : BOOLEAN) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WPrintDialogPeer) <font color="#cc0033">requestFocus</font>*(p0 : <a href="java_awt.html#type-Component">java_awt.Component</a>;
+                                                p1 : BOOLEAN;
+                                                p2 : BOOLEAN;
+                                                p3 : LONGINT;
+                                                p4 : <a href="sun_awt.html#type-CausedFocusEvent$Cause">sun_awt.CausedFocusEvent$Cause</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WPrintDialogPeer) <font color="#cc0033">reshape</font>*(p0 : INTEGER;
+                                           p1 : INTEGER;
+                                           p2 : INTEGER;
+                                           p3 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WPrintDialogPeer) <font color="#cc0033">restack</font>*()<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WPrintDialogPeer) <font color="#cc0033">setAlwaysOnTop</font>*(p0 : BOOLEAN)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WPrintDialogPeer) <font color="#cc0033">setBackground</font>*(p0 : <a href="java_awt.html#type-Color">java_awt.Color</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WPrintDialogPeer) <font color="#cc0033">setFont</font>*(p0 : <a href="java_awt.html#type-Font">java_awt.Font</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WPrintDialogPeer) <font color="#cc0033">setForeground</font>*(p0 : <a href="java_awt.html#type-Color">java_awt.Color</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WPrintDialogPeer) <font color="#cc0033">setOpacity</font>*(p0 : SHORTREAL)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WPrintDialogPeer) <font color="#cc0033">setOpaque</font>*(p0 : BOOLEAN)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WPrintDialogPeer) <font color="#cc0033">setResizable</font>*(p0 : BOOLEAN)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WPrintDialogPeer) <font color="#cc0033">show</font>*()<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WPrintDialogPeer) <font color="#cc0033">toBack</font>*()<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WPrintDialogPeer) <font color="#cc0033">toFront</font>*()<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WPrintDialogPeer) <font color="#cc0033">updateFocusableWindowState</font>*()<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WPrintDialogPeer) <font color="#cc0033">updateIconImages</font>*()<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WPrintDialogPeer) <font color="#cc0033">updateMinimumSize</font>*()<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WPrintDialogPeer) <font color="#cc0033">updateWindow</font>*(p0 : <a href="java_awt_image.html#type-BufferedImage">java_awt_image.BufferedImage</a>)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-WPrinterJob"></a>
+<b>PROCEDURE </b>(self:WPrinterJob) <font color="#cc0033">abortDoc</font>!()<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WPrinterJob) <font color="#cc0033">beginPath</font>!()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WPrinterJob) <font color="#cc0033">beginPath</font>!(p0 : LONGINT)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WPrinterJob) <font color="#cc0033">closeFigure</font>!()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WPrinterJob) <font color="#cc0033">closeFigure</font>!(p0 : LONGINT)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WPrinterJob) <font color="#cc0033">createPathGraphics</font>!(p0 : <a href="sun_print.html#type-PeekGraphics">sun_print.PeekGraphics</a>;
+                                                 p1 : <a href="java_awt_print.html#type-PrinterJob">java_awt_print.PrinterJob</a>;
+                                                 p2 : <a href="java_awt_print.html#type-Printable">java_awt_print.Printable</a>;
+                                                 p3 : <a href="java_awt_print.html#type-PageFormat">java_awt_print.PageFormat</a>;
+                                                 p4 : INTEGER) : <a href="java_awt.html#type-Graphics2D">java_awt.Graphics2D</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WPrinterJob) <font color="#cc0033">defaultPage</font>*(p0 : <a href="java_awt_print.html#type-PageFormat">java_awt_print.PageFormat</a>) : <a href="java_awt_print.html#type-PageFormat">java_awt_print.PageFormat</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WPrinterJob) <font color="#cc0033">deviceEndPage</font>!(p0 : <a href="java_awt_print.html#type-PageFormat">java_awt_print.PageFormat</a>;
+                                            p1 : <a href="java_awt_print.html#type-Printable">java_awt_print.Printable</a>;
+                                            p2 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WPrinterJob) <font color="#cc0033">deviceStartPage</font>!(p0 : <a href="java_awt_print.html#type-PageFormat">java_awt_print.PageFormat</a>;
+                                              p1 : <a href="java_awt_print.html#type-Printable">java_awt_print.Printable</a>;
+                                              p2 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WPrinterJob) <font color="#cc0033">drawDIBImage</font>!(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE;
+                                               p1 : SHORTREAL;
+                                               p2 : SHORTREAL;
+                                               p3 : SHORTREAL;
+                                               p4 : SHORTREAL;
+                                               p5 : SHORTREAL;
+                                               p6 : SHORTREAL;
+                                               p7 : SHORTREAL;
+                                               p8 : SHORTREAL;
+                                               p9 : <a href="java_awt_image.html#type-IndexColorModel">java_awt_image.IndexColorModel</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WPrinterJob) <font color="#cc0033">drawImage3ByteBGR</font>!(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE;
+                                                    p1 : SHORTREAL;
+                                                    p2 : SHORTREAL;
+                                                    p3 : SHORTREAL;
+                                                    p4 : SHORTREAL;
+                                                    p5 : SHORTREAL;
+                                                    p6 : SHORTREAL;
+                                                    p7 : SHORTREAL;
+                                                    p8 : SHORTREAL)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WPrinterJob) <font color="#cc0033">endDoc</font>!()<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WPrinterJob) <font color="#cc0033">endPage</font>!(p0 : <a href="java_awt_print.html#type-PageFormat">java_awt_print.PageFormat</a>;
+                                      p1 : <a href="java_awt_print.html#type-Printable">java_awt_print.Printable</a>;
+                                      p2 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WPrinterJob) <font color="#cc0033">endPath</font>!()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WPrinterJob) <font color="#cc0033">endPath</font>!(p0 : LONGINT)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WPrinterJob) <font color="#cc0033">fillPath</font>!()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WPrinterJob) <font color="#cc0033">fillPath</font>!(p0 : LONGINT)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WPrinterJob) <font color="#cc0033">fillRect</font>!(p0 : SHORTREAL;
+                                       p1 : SHORTREAL;
+                                       p2 : SHORTREAL;
+                                       p3 : SHORTREAL;
+                                       p4 : <a href="java_awt.html#type-Color">java_awt.Color</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WPrinterJob) <font color="#cc0033">fillRect</font>!(p0 : LONGINT;
+                                       p1 : SHORTREAL;
+                                       p2 : SHORTREAL;
+                                       p3 : SHORTREAL;
+                                       p4 : SHORTREAL;
+                                       p5 : INTEGER;
+                                       p6 : INTEGER;
+                                       p7 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WPrinterJob) <font color="#cc0033">frameRect</font>!(p0 : SHORTREAL;
+                                        p1 : SHORTREAL;
+                                        p2 : SHORTREAL;
+                                        p3 : SHORTREAL)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WPrinterJob) <font color="#cc0033">frameRect</font>!(p0 : LONGINT;
+                                        p1 : SHORTREAL;
+                                        p2 : SHORTREAL;
+                                        p3 : SHORTREAL;
+                                        p4 : SHORTREAL)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WPrinterJob) <font color="#cc0033">getCollatedCopies</font>!() : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WPrinterJob) <font color="#cc0033">getColorAttrib</font>*() : INTEGER<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:WPrinterJob) <font color="#cc0033">getCopiesAttrib</font>*() : INTEGER<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:WPrinterJob) <font color="#cc0033">getDestAttrib</font>*() : BOOLEAN<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:WPrinterJob) <font color="#cc0033">getDisposerReferent</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WPrinterJob) <font color="#cc0033">getFromPageAttrib</font>*() : INTEGER<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:WPrinterJob) <font color="#cc0033">getMaxPageAttrib</font>*() : INTEGER<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:WPrinterJob) <font color="#cc0033">getMDHAttrib</font>*() : BOOLEAN<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:WPrinterJob) <font color="#cc0033">getMinPageAttrib</font>*() : INTEGER<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:WPrinterJob) <font color="#cc0033">getNoncollatedCopies</font>!() : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WPrinterJob) <font color="#cc0033">getOrientAttrib</font>*() : INTEGER<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:WPrinterJob) <font color="#cc0033">getPenX</font>!() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WPrinterJob) <font color="#cc0033">getPenX</font>!(p0 : LONGINT) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WPrinterJob) <font color="#cc0033">getPenY</font>!(p0 : LONGINT) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WPrinterJob) <font color="#cc0033">getPenY</font>!() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WPrinterJob) <font color="#cc0033">getPhysicalPageHeight</font>!(p0 : <a href="java_awt_print.html#type-Paper">java_awt_print.Paper</a>) : REAL<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WPrinterJob) <font color="#cc0033">getPhysicalPageWidth</font>!(p0 : <a href="java_awt_print.html#type-Paper">java_awt_print.Paper</a>) : REAL<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WPrinterJob) <font color="#cc0033">getPhysicalPrintableHeight</font>!(p0 : <a href="java_awt_print.html#type-Paper">java_awt_print.Paper</a>) : REAL<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WPrinterJob) <font color="#cc0033">getPhysicalPrintableWidth</font>!(p0 : <a href="java_awt_print.html#type-Paper">java_awt_print.Paper</a>) : REAL<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WPrinterJob) <font color="#cc0033">getPhysicalPrintableX</font>!(p0 : <a href="java_awt_print.html#type-Paper">java_awt_print.Paper</a>) : REAL<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WPrinterJob) <font color="#cc0033">getPhysicalPrintableY</font>!(p0 : <a href="java_awt_print.html#type-Paper">java_awt_print.Paper</a>) : REAL<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WPrinterJob) <font color="#cc0033">getPrinterAttrib</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:WPrinterJob) <font color="#cc0033">getPrintService</font>*() : <a href="javax_print.html#type-PrintService">javax_print.PrintService</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WPrinterJob) <font color="#cc0033">getPrintToFileEnabled</font>*() : BOOLEAN<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:WPrinterJob) <font color="#cc0033">getQualityAttrib</font>*() : INTEGER<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:WPrinterJob) <font color="#cc0033">getSelectAttrib</font>*() : INTEGER<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:WPrinterJob) <font color="#cc0033">getSidesAttrib</font>*() : INTEGER<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:WPrinterJob) <font color="#cc0033">getToPageAttrib</font>*() : INTEGER<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:WPrinterJob) <font color="#cc0033">getWin32MediaAttrib</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>INTEGER<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:WPrinterJob) <font color="#cc0033">getXRes</font>!() : REAL<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WPrinterJob) <font color="#cc0033">getYRes</font>!() : REAL<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WPrinterJob) <font color="#cc0033">initPrinter</font>!()<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WPrinterJob) <font color="#cc0033">isCollated</font>!() : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WPrinterJob) <font color="#cc0033">lineTo</font>!(p0 : LONGINT;
+                                     p1 : SHORTREAL;
+                                     p2 : SHORTREAL)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WPrinterJob) <font color="#cc0033">lineTo</font>!(p0 : SHORTREAL;
+                                     p1 : SHORTREAL)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WPrinterJob) <font color="#cc0033">moveTo</font>!(p0 : SHORTREAL;
+                                     p1 : SHORTREAL)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WPrinterJob) <font color="#cc0033">moveTo</font>!(p0 : LONGINT;
+                                     p1 : SHORTREAL;
+                                     p2 : SHORTREAL)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WPrinterJob) <font color="#cc0033">pageDialog</font>*(p0 : <a href="java_awt_print.html#type-PageFormat">java_awt_print.PageFormat</a>) : <a href="java_awt_print.html#type-PageFormat">java_awt_print.PageFormat</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WPrinterJob) <font color="#cc0033">polyBezierTo</font>!(p0 : SHORTREAL;
+                                           p1 : SHORTREAL;
+                                           p2 : SHORTREAL;
+                                           p3 : SHORTREAL;
+                                           p4 : SHORTREAL;
+                                           p5 : SHORTREAL)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WPrinterJob) <font color="#cc0033">polyBezierTo</font>!(p0 : LONGINT;
+                                           p1 : SHORTREAL;
+                                           p2 : SHORTREAL;
+                                           p3 : SHORTREAL;
+                                           p4 : SHORTREAL;
+                                           p5 : SHORTREAL;
+                                           p6 : SHORTREAL)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WPrinterJob) <font color="#cc0033">printBand</font>!(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE;
+                                            p1 : INTEGER;
+                                            p2 : INTEGER;
+                                            p3 : INTEGER;
+                                            p4 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WPrinterJob) <font color="#cc0033">printDialog</font>*() : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WPrinterJob) <font color="#cc0033">selectClipPath</font>!()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WPrinterJob) <font color="#cc0033">selectClipPath</font>!(p0 : LONGINT)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WPrinterJob) <font color="#cc0033">selectPen</font>!(p0 : LONGINT;
+                                        p1 : SHORTREAL;
+                                        p2 : INTEGER;
+                                        p3 : INTEGER;
+                                        p4 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WPrinterJob) <font color="#cc0033">selectPen</font>!(p0 : SHORTREAL;
+                                        p1 : <a href="java_awt.html#type-Color">java_awt.Color</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WPrinterJob) <font color="#cc0033">selectSolidBrush</font>!(p0 : LONGINT;
+                                               p1 : INTEGER;
+                                               p2 : INTEGER;
+                                               p3 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WPrinterJob) <font color="#cc0033">selectSolidBrush</font>!(p0 : <a href="java_awt.html#type-Color">java_awt.Color</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WPrinterJob) <font color="#cc0033">selectStylePen</font>!(p0 : INTEGER;
+                                             p1 : INTEGER;
+                                             p2 : SHORTREAL;
+                                             p3 : <a href="java_awt.html#type-Color">java_awt.Color</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WPrinterJob) <font color="#cc0033">selectStylePen</font>!(p0 : LONGINT;
+                                             p1 : LONGINT;
+                                             p2 : LONGINT;
+                                             p3 : SHORTREAL;
+                                             p4 : INTEGER;
+                                             p5 : INTEGER;
+                                             p6 : INTEGER) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WPrinterJob) <font color="#cc0033">setAttributes</font>!(p0 : <a href="javax_print_attribute.html#type-PrintRequestAttributeSet">javax_print_attribute.PrintRequestAttributeSet</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WPrinterJob) <font color="#cc0033">setCopies</font>*(p0 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WPrinterJob) <font color="#cc0033">setFont</font>!(p0 : LONGINT;
+                                      p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                      p2 : SHORTREAL;
+                                      p3 : BOOLEAN;
+                                      p4 : BOOLEAN;
+                                      p5 : INTEGER;
+                                      p6 : SHORTREAL) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WPrinterJob) <font color="#cc0033">setFont</font>!(p0 : <a href="java_awt.html#type-Font">java_awt.Font</a>;
+                                      p1 : INTEGER;
+                                      p2 : SHORTREAL) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WPrinterJob) <font color="#cc0033">setLogicalFont</font>!(p0 : <a href="java_awt.html#type-Font">java_awt.Font</a>;
+                                             p1 : INTEGER;
+                                             p2 : SHORTREAL) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WPrinterJob) <font color="#cc0033">setNativeAttributes</font>*(p0 : INTEGER;
+                                                  p1 : INTEGER)<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:WPrinterJob) <font color="#cc0033">setNativeCopies</font>*(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WPrinterJob) <font color="#cc0033">setPolyFillMode</font>!(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WPrinterJob) <font color="#cc0033">setPolyFillMode</font>!(p0 : LONGINT;
+                                              p1 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WPrinterJob) <font color="#cc0033">setPrinterNameAttrib</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WPrinterJob) <font color="#cc0033">setPrintService</font>*(p0 : <a href="javax_print.html#type-PrintService">javax_print.PrintService</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WPrinterJob) <font color="#cc0033">setRangeCopiesAttribute</font>*(p0 : INTEGER;
+                                                      p1 : INTEGER;
+                                                      p2 : BOOLEAN;
+                                                      p3 : INTEGER)<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:WPrinterJob) <font color="#cc0033">setResolutionDPI</font>*(p0 : INTEGER;
+                                               p1 : INTEGER)<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:WPrinterJob) <font color="#cc0033">setTextColor</font>!(p0 : <a href="java_awt.html#type-Color">java_awt.Color</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WPrinterJob) <font color="#cc0033">setTextColor</font>!(p0 : LONGINT;
+                                           p1 : INTEGER;
+                                           p2 : INTEGER;
+                                           p3 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WPrinterJob) <font color="#cc0033">setWin32MediaAttrib</font>*(p0 : INTEGER;
+                                                  p1 : INTEGER;
+                                                  p2 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WPrinterJob) <font color="#cc0033">startDoc</font>!()<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WPrinterJob) <font color="#cc0033">startPage</font>!(p0 : <a href="java_awt_print.html#type-PageFormat">java_awt_print.PageFormat</a>;
+                                        p1 : <a href="java_awt_print.html#type-Printable">java_awt_print.Printable</a>;
+                                        p2 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WPrinterJob) <font color="#cc0033">textOut</font>!(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                      p1 : SHORTREAL;
+                                      p2 : SHORTREAL;
+                                      p3 : <a href="java_awt.html#type-Font">java_awt.Font</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WPrinterJob) <font color="#cc0033">textOut</font>!(p0 : LONGINT;
+                                      p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                      p2 : SHORTREAL;
+                                      p3 : SHORTREAL;
+                                      p4 : <a href="java_awt.html#type-Font">java_awt.Font</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WPrinterJob) <font color="#cc0033">validatePaper</font>!(p0 : <a href="java_awt_print.html#type-Paper">java_awt_print.Paper</a>;
+                                            p1 : <a href="java_awt_print.html#type-Paper">java_awt_print.Paper</a>)<b>,EXTENSIBLE</b>;
+<a name="meths-WSystemTrayPeer"></a>
+<b>PROCEDURE </b>(self:WSystemTrayPeer) <font color="#cc0033">disposeImpl</font>!()<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WSystemTrayPeer) <font color="#cc0033">getData</font>*() : LONGINT<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WSystemTrayPeer) <font color="#cc0033">getTarget</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WSystemTrayPeer) <font color="#cc0033">getTrayIconSize</font>*() : <a href="java_awt.html#type-Dimension">java_awt.Dimension</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WSystemTrayPeer) <font color="#cc0033">isSupported</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-WToolkit"></a>
+<b>PROCEDURE </b>(self:WToolkit) <font color="#cc0033">addPropertyChangeListener</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                     p1 : <a href="java_beans.html#type-PropertyChangeListener">java_beans.PropertyChangeListener</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WToolkit) <font color="#cc0033">beep</font>*()<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WToolkit) <font color="#cc0033">createButton</font>*(p0 : <a href="java_awt.html#type-Button">java_awt.Button</a>) : <a href="java_awt_peer.html#type-ButtonPeer">java_awt_peer.ButtonPeer</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WToolkit) <font color="#cc0033">createCanvas</font>*(p0 : <a href="java_awt.html#type-Canvas">java_awt.Canvas</a>) : <a href="java_awt_peer.html#type-CanvasPeer">java_awt_peer.CanvasPeer</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WToolkit) <font color="#cc0033">createCheckbox</font>*(p0 : <a href="java_awt.html#type-Checkbox">java_awt.Checkbox</a>) : <a href="java_awt_peer.html#type-CheckboxPeer">java_awt_peer.CheckboxPeer</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WToolkit) <font color="#cc0033">createCheckboxMenuItem</font>*(p0 : <a href="java_awt.html#type-CheckboxMenuItem">java_awt.CheckboxMenuItem</a>) : <a href="java_awt_peer.html#type-CheckboxMenuItemPeer">java_awt_peer.CheckboxMenuItemPeer</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WToolkit) <font color="#cc0033">createChoice</font>*(p0 : <a href="java_awt.html#type-Choice">java_awt.Choice</a>) : <a href="java_awt_peer.html#type-ChoicePeer">java_awt_peer.ChoicePeer</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WToolkit) <font color="#cc0033">createCustomCursor</font>*(p0 : <a href="java_awt.html#type-Image">java_awt.Image</a>;
+                                              p1 : <a href="java_awt.html#type-Point">java_awt.Point</a>;
+                                              p2 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_awt.html#type-Cursor">java_awt.Cursor</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WToolkit) <font color="#cc0033">createDesktopPeer</font>*(p0 : <a href="java_awt.html#type-Desktop">java_awt.Desktop</a>) : <a href="java_awt_peer.html#type-DesktopPeer">java_awt_peer.DesktopPeer</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WToolkit) <font color="#cc0033">createDialog</font>*(p0 : <a href="java_awt.html#type-Dialog">java_awt.Dialog</a>) : <a href="java_awt_peer.html#type-DialogPeer">java_awt_peer.DialogPeer</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WToolkit) <font color="#cc0033">createDragGestureRecognizer</font>*(p0 : <a href="java_lang.html#type-Class">java_lang.Class</a>;
+                                                       p1 : <a href="java_awt_dnd.html#type-DragSource">java_awt_dnd.DragSource</a>;
+                                                       p2 : <a href="java_awt.html#type-Component">java_awt.Component</a>;
+                                                       p3 : INTEGER;
+                                                       p4 : <a href="java_awt_dnd.html#type-DragGestureListener">java_awt_dnd.DragGestureListener</a>) : <a href="java_awt_dnd.html#type-DragGestureRecognizer">java_awt_dnd.DragGestureRecognizer</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WToolkit) <font color="#cc0033">createDragSourceContextPeer</font>*(p0 : <a href="java_awt_dnd.html#type-DragGestureEvent">java_awt_dnd.DragGestureEvent</a>) : <a href="java_awt_dnd_peer.html#type-DragSourceContextPeer">java_awt_dnd_peer.DragSourceContextPeer</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WToolkit) <font color="#cc0033">createEmbeddedFrame</font>*(p0 : <a href="#type-WEmbeddedFrame">WEmbeddedFrame</a>) : <a href="#type-WEmbeddedFramePeer">WEmbeddedFramePeer</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WToolkit) <font color="#cc0033">createFileDialog</font>*(p0 : <a href="java_awt.html#type-FileDialog">java_awt.FileDialog</a>) : <a href="java_awt_peer.html#type-FileDialogPeer">java_awt_peer.FileDialogPeer</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WToolkit) <font color="#cc0033">createFrame</font>*(p0 : <a href="java_awt.html#type-Frame">java_awt.Frame</a>) : <a href="java_awt_peer.html#type-FramePeer">java_awt_peer.FramePeer</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WToolkit) <font color="#cc0033">createLabel</font>*(p0 : <a href="java_awt.html#type-Label">java_awt.Label</a>) : <a href="java_awt_peer.html#type-LabelPeer">java_awt_peer.LabelPeer</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WToolkit) <font color="#cc0033">createList</font>*(p0 : <a href="java_awt.html#type-List">java_awt.List</a>) : <a href="java_awt_peer.html#type-ListPeer">java_awt_peer.ListPeer</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WToolkit) <font color="#cc0033">createMenu</font>*(p0 : <a href="java_awt.html#type-Menu">java_awt.Menu</a>) : <a href="java_awt_peer.html#type-MenuPeer">java_awt_peer.MenuPeer</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WToolkit) <font color="#cc0033">createMenuBar</font>*(p0 : <a href="java_awt.html#type-MenuBar">java_awt.MenuBar</a>) : <a href="java_awt_peer.html#type-MenuBarPeer">java_awt_peer.MenuBarPeer</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WToolkit) <font color="#cc0033">createMenuItem</font>*(p0 : <a href="java_awt.html#type-MenuItem">java_awt.MenuItem</a>) : <a href="java_awt_peer.html#type-MenuItemPeer">java_awt_peer.MenuItemPeer</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WToolkit) <font color="#cc0033">createPanel</font>*(p0 : <a href="java_awt.html#type-Panel">java_awt.Panel</a>) : <a href="java_awt_peer.html#type-PanelPeer">java_awt_peer.PanelPeer</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WToolkit) <font color="#cc0033">createPopupMenu</font>*(p0 : <a href="java_awt.html#type-PopupMenu">java_awt.PopupMenu</a>) : <a href="java_awt_peer.html#type-PopupMenuPeer">java_awt_peer.PopupMenuPeer</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WToolkit) <font color="#cc0033">createRobot</font>*(p0 : <a href="java_awt.html#type-Robot">java_awt.Robot</a>;
+                                       p1 : <a href="java_awt.html#type-GraphicsDevice">java_awt.GraphicsDevice</a>) : <a href="java_awt_peer.html#type-RobotPeer">java_awt_peer.RobotPeer</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WToolkit) <font color="#cc0033">createScrollbar</font>*(p0 : <a href="java_awt.html#type-Scrollbar">java_awt.Scrollbar</a>) : <a href="java_awt_peer.html#type-ScrollbarPeer">java_awt_peer.ScrollbarPeer</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WToolkit) <font color="#cc0033">createScrollPane</font>*(p0 : <a href="java_awt.html#type-ScrollPane">java_awt.ScrollPane</a>) : <a href="java_awt_peer.html#type-ScrollPanePeer">java_awt_peer.ScrollPanePeer</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WToolkit) <font color="#cc0033">createSystemTray</font>*(p0 : <a href="java_awt.html#type-SystemTray">java_awt.SystemTray</a>) : <a href="java_awt_peer.html#type-SystemTrayPeer">java_awt_peer.SystemTrayPeer</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WToolkit) <font color="#cc0033">createTextArea</font>*(p0 : <a href="java_awt.html#type-TextArea">java_awt.TextArea</a>) : <a href="java_awt_peer.html#type-TextAreaPeer">java_awt_peer.TextAreaPeer</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WToolkit) <font color="#cc0033">createTextField</font>*(p0 : <a href="java_awt.html#type-TextField">java_awt.TextField</a>) : <a href="java_awt_peer.html#type-TextFieldPeer">java_awt_peer.TextFieldPeer</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WToolkit) <font color="#cc0033">createTrayIcon</font>*(p0 : <a href="java_awt.html#type-TrayIcon">java_awt.TrayIcon</a>) : <a href="java_awt_peer.html#type-TrayIconPeer">java_awt_peer.TrayIconPeer</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WToolkit) <font color="#cc0033">createWindow</font>*(p0 : <a href="java_awt.html#type-Window">java_awt.Window</a>) : <a href="java_awt_peer.html#type-WindowPeer">java_awt_peer.WindowPeer</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WToolkit) <font color="#cc0033">embeddedEventLoopIdleProcessing</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WToolkit) <font color="#cc0033">enableInputMethodsForTextComponent</font>*() : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WToolkit) <font color="#cc0033">getBestCursorSize</font>*(p0 : INTEGER;
+                                             p1 : INTEGER) : <a href="java_awt.html#type-Dimension">java_awt.Dimension</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WToolkit) <font color="#cc0033">getColorModel</font>*() : <a href="java_awt_image.html#type-ColorModel">java_awt_image.ColorModel</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WToolkit) <font color="#cc0033">getDefaultKeyboardLocale</font>*() : <a href="java_util.html#type-Locale">java_util.Locale</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WToolkit) <font color="#cc0033">getDesktopAAHints</font>!() : <a href="java_awt.html#type-RenderingHints">java_awt.RenderingHints</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WToolkit) <font color="#cc0033">getFontMetrics</font>*(p0 : <a href="java_awt.html#type-Font">java_awt.Font</a>) : <a href="java_awt.html#type-FontMetrics">java_awt.FontMetrics</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WToolkit) <font color="#cc0033">getFontPeer</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                       p1 : INTEGER) : <a href="java_awt_peer.html#type-FontPeer">java_awt_peer.FontPeer</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WToolkit) <font color="#cc0033">getInputMethodAdapterDescriptor</font>*() : <a href="java_awt_im_spi.html#type-InputMethodDescriptor">java_awt_im_spi.InputMethodDescriptor</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WToolkit) <font color="#cc0033">getLockingKeyState</font>*(p0 : INTEGER) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WToolkit) <font color="#cc0033">getLockingKeyStateNative</font>*(p0 : INTEGER) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WToolkit) <font color="#cc0033">getMaximumCursorColors</font>*() : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WToolkit) <font color="#cc0033">getPrintJob</font>*(p0 : <a href="java_awt.html#type-Frame">java_awt.Frame</a>;
+                                       p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                       p2 : <a href="java_awt.html#type-JobAttributes">java_awt.JobAttributes</a>;
+                                       p3 : <a href="java_awt.html#type-PageAttributes">java_awt.PageAttributes</a>) : <a href="java_awt.html#type-PrintJob">java_awt.PrintJob</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WToolkit) <font color="#cc0033">getPrintJob</font>*(p0 : <a href="java_awt.html#type-Frame">java_awt.Frame</a>;
+                                       p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                       p2 : <a href="java_util.html#type-Properties">java_util.Properties</a>) : <a href="java_awt.html#type-PrintJob">java_awt.PrintJob</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WToolkit) <font color="#cc0033">getScreenHeight</font>!() : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WToolkit) <font color="#cc0033">getScreenInsets</font>*(p0 : <a href="java_awt.html#type-GraphicsConfiguration">java_awt.GraphicsConfiguration</a>) : <a href="java_awt.html#type-Insets">java_awt.Insets</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WToolkit) <font color="#cc0033">getScreenInsets</font>!(p0 : INTEGER) : <a href="java_awt.html#type-Insets">java_awt.Insets</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WToolkit) <font color="#cc0033">getScreenResolution</font>*() : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WToolkit) <font color="#cc0033">getScreenWidth</font>!() : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WToolkit) <font color="#cc0033">getSystemClipboard</font>*() : <a href="java_awt_datatransfer.html#type-Clipboard">java_awt_datatransfer.Clipboard</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WToolkit) <font color="#cc0033">grab</font>*(p0 : <a href="java_awt.html#type-Window">java_awt.Window</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WToolkit) <font color="#cc0033">initializeDesktopProperties</font>!()<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WToolkit) <font color="#cc0033">isDesktopSupported</font>*() : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WToolkit) <font color="#cc0033">isDynamicLayoutActive</font>*() : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WToolkit) <font color="#cc0033">isDynamicLayoutSet</font>!() : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WToolkit) <font color="#cc0033">isDynamicLayoutSupportedNative</font>!() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WToolkit) <font color="#cc0033">isFrameStateSupported</font>*(p0 : INTEGER) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WToolkit) <font color="#cc0033">isModalExclusionTypeSupported</font>*(p0 : <a href="java_awt.html#type-Dialog$ModalExclusionType">java_awt.Dialog$ModalExclusionType</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WToolkit) <font color="#cc0033">isModalityTypeSupported</font>*(p0 : <a href="java_awt.html#type-Dialog$ModalityType">java_awt.Dialog$ModalityType</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WToolkit) <font color="#cc0033">isTranslucencyCapable</font>*(p0 : <a href="java_awt.html#type-GraphicsConfiguration">java_awt.GraphicsConfiguration</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WToolkit) <font color="#cc0033">isTraySupported</font>*() : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WToolkit) <font color="#cc0033">isWindowOpacityControlSupported</font>*() : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WToolkit) <font color="#cc0033">isWindowShapingSupported</font>*() : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WToolkit) <font color="#cc0033">isWindowTranslucencySupported</font>*() : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WToolkit) <font color="#cc0033">lazilyLoadDesktopProperty</font>!(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WToolkit) <font color="#cc0033">loadSystemColors</font>!(IN  p0 : <b>ARRAY </b><b>OF </b>INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WToolkit) <font color="#cc0033">mapInputMethodHighlight</font>*(p0 : <a href="java_awt_im.html#type-InputMethodHighlight">java_awt_im.InputMethodHighlight</a>) : <a href="java_util.html#type-Map">java_util.Map</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WToolkit) <font color="#cc0033">needUpdateWindow</font>*() : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WToolkit) <font color="#cc0033">run</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WToolkit) <font color="#cc0033">setDynamicLayout</font>*(p0 : BOOLEAN)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WToolkit) <font color="#cc0033">setDynamicLayoutNative</font>!(p0 : BOOLEAN)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WToolkit) <font color="#cc0033">setLockingKeyState</font>*(p0 : INTEGER;
+                                              p1 : BOOLEAN)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WToolkit) <font color="#cc0033">setLockingKeyStateNative</font>*(p0 : INTEGER;
+                                                    p1 : BOOLEAN)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WToolkit) <font color="#cc0033">sync</font>*()<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WToolkit) <font color="#cc0033">syncNativeQueue</font>*() : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WToolkit) <font color="#cc0033">ungrab</font>*(p0 : <a href="java_awt.html#type-Window">java_awt.Window</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WToolkit) <font color="#cc0033">useBufferPerWindow</font>*() : BOOLEAN<b>,EXTENSIBLE</b>;
+<a name="meths-WTrayIconPeer"></a>
+<b>PROCEDURE </b>(self:WTrayIconPeer) <font color="#cc0033">displayMessage</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                               p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                               p2 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WTrayIconPeer) <font color="#cc0033">disposeImpl</font>!()<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WTrayIconPeer) <font color="#cc0033">getData</font>*() : LONGINT<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WTrayIconPeer) <font color="#cc0033">getTarget</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WTrayIconPeer) <font color="#cc0033">setToolTip</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WTrayIconPeer) <font color="#cc0033">showPopupMenu</font>*(p0 : INTEGER;
+                                              p1 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WTrayIconPeer) <font color="#cc0033">updateImage</font>*()<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-WWindowPeer"></a>
+<b>PROCEDURE </b>(self:WWindowPeer) <font color="#cc0033">displayChanged</font>*()<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WWindowPeer) <font color="#cc0033">disposeImpl</font>!()<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WWindowPeer) <font color="#cc0033">focusAllowedFor</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WWindowPeer) <font color="#cc0033">getGraphics</font>*() : <a href="java_awt.html#type-Graphics">java_awt.Graphics</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WWindowPeer) <font color="#cc0033">getInsets</font>*() : <a href="java_awt.html#type-Insets">java_awt.Insets</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WWindowPeer) <font color="#cc0033">getTranslucentGraphics</font>*() : <a href="java_awt.html#type-Graphics">java_awt.Graphics</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:WWindowPeer) <font color="#cc0033">grab</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WWindowPeer) <font color="#cc0033">handleEvent</font>*(p0 : <a href="java_awt.html#type-AWTEvent">java_awt.AWTEvent</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WWindowPeer) <font color="#cc0033">hide</font>*()<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WWindowPeer) <font color="#cc0033">insets</font>*() : <a href="java_awt.html#type-Insets">java_awt.Insets</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WWindowPeer) <font color="#cc0033">isModalBlocked</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WWindowPeer) <font color="#cc0033">isRestackSupported</font>*() : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WWindowPeer) <font color="#cc0033">paint</font>*(p0 : <a href="java_awt.html#type-Graphics">java_awt.Graphics</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WWindowPeer) <font color="#cc0033">print</font>*(p0 : <a href="java_awt.html#type-Graphics">java_awt.Graphics</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WWindowPeer) <font color="#cc0033">realShow</font>!()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WWindowPeer) <font color="#cc0033">repositionSecurityWarning</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WWindowPeer) <font color="#cc0033">requestWindowFocus</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WWindowPeer) <font color="#cc0033">resetTargetGC</font>*()<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WWindowPeer) <font color="#cc0033">restack</font>*()<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WWindowPeer) <font color="#cc0033">setAlwaysOnTop</font>*(p0 : BOOLEAN)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WWindowPeer) <font color="#cc0033">setAlwaysOnTopNative</font>*(p0 : BOOLEAN)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WWindowPeer) <font color="#cc0033">setBounds</font>*(p0 : INTEGER;
+                                        p1 : INTEGER;
+                                        p2 : INTEGER;
+                                        p3 : INTEGER;
+                                        p4 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WWindowPeer) <font color="#cc0033">setModalBlocked</font>*(p0 : <a href="java_awt.html#type-Dialog">java_awt.Dialog</a>;
+                                              p1 : BOOLEAN)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WWindowPeer) <font color="#cc0033">setOpacity</font>*(p0 : SHORTREAL)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WWindowPeer) <font color="#cc0033">setOpaque</font>*(p0 : BOOLEAN)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WWindowPeer) <font color="#cc0033">setResizable</font>*(p0 : BOOLEAN)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WWindowPeer) <font color="#cc0033">setTitle</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WWindowPeer) <font color="#cc0033">shouldClearRectBeforePaint</font>*() : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WWindowPeer) <font color="#cc0033">show</font>*()<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WWindowPeer) <font color="#cc0033">toBack</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WWindowPeer) <font color="#cc0033">toFront</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WWindowPeer) <font color="#cc0033">ungrab</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WWindowPeer) <font color="#cc0033">updateFocusableWindowState</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WWindowPeer) <font color="#cc0033">updateGC</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WWindowPeer) <font color="#cc0033">updateIconImages</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WWindowPeer) <font color="#cc0033">updateMinimumSize</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WWindowPeer) <font color="#cc0033">updateWindow</font>*(p0 : BOOLEAN)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WWindowPeer) <font color="#cc0033">updateWindow</font>*()<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:WWindowPeer) <font color="#cc0033">_setResizable</font>*(p0 : BOOLEAN)<b>,NEW,EXTENSIBLE</b>;
+
+<b>END </b><font color="#cc0033">sun_awt_windows</font>.
+</font></pre></hr></body></html>

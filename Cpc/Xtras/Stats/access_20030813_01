@@ -1,0 +1,22 @@
+format.access="%Ses->client.ip%  %Req->headers.referer% -  %Req->vars.auth-user% [%SYSDATE%] \"%Req->reqpb.clf-request%\" %Req->srvhdrs.clf-status% %Req->srvhdrs.content-length% %Req->headers.host%"
+68.173.205.66 http://kd.mysearch.myway.com/jsp/GGweb.jsp?searchfor=hu3m&fr=30&st=addr&ptnrS=KD - [13/Aug/2003:01:24:33 +0200] "GET /Ctls.txt HTTP/1.1" 200 457128 www.zinnamturm.de
+209.237.238.175 - - [13/Aug/2003:06:08:02 +0200] "GET /robots.txt HTTP/1.0" 404 2977 www.zinnamturm.de
+209.237.238.175 - - [13/Aug/2003:06:08:04 +0200] "GET /Algebra.pac HTTP/1.0" 200 359205 www.zinnamturm.de
+209.237.238.172 - - [13/Aug/2003:06:11:06 +0200] "GET /robots.txt HTTP/1.0" 404 2977 www.zinnamturm.de
+209.237.238.172 - - [13/Aug/2003:06:11:08 +0200] "GET /Babel.pac HTTP/1.0" 200 200577 www.zinnamturm.de
+209.237.238.174 - - [13/Aug/2003:06:12:22 +0200] "GET /robots.txt HTTP/1.0" 404 2977 www.zinnamturm.de
+209.237.238.174 - - [13/Aug/2003:06:12:31 +0200] "GET /Algebra.txt HTTP/1.0" 200 876472 www.zinnamturm.de
+209.237.238.174 - - [13/Aug/2003:06:14:27 +0200] "GET /Chill.txt HTTP/1.0" 200 149808 www.zinnamturm.de
+209.237.238.173 - - [13/Aug/2003:06:16:36 +0200] "GET /Babel.txt HTTP/1.0" 200 512530 www.zinnamturm.de
+209.237.238.173 - - [13/Aug/2003:06:16:36 +0200] "GET /robots.txt HTTP/1.0" 404 2977 www.zinnamturm.de
+209.237.238.172 - - [13/Aug/2003:06:18:03 +0200] "GET /Coco.pac HTTP/1.0" 200 156551 www.zinnamturm.de
+209.237.238.175 - - [13/Aug/2003:06:18:14 +0200] "GET /Chill.pac HTTP/1.0" 200 60072 www.zinnamturm.de
+209.237.238.173 - - [13/Aug/2003:06:18:53 +0200] "GET /Coco.txt HTTP/1.0" 200 386194 www.zinnamturm.de
+209.237.238.175 - - [13/Aug/2003:06:23:14 +0200] "GET /Cow.pac HTTP/1.0" 200 51532 www.zinnamturm.de
+209.237.238.174 - - [13/Aug/2003:06:27:25 +0200] "GET /Cow.txt HTTP/1.0" 200 121311 www.zinnamturm.de
+209.237.238.174 - - [13/Aug/2003:07:12:00 +0200] "GET /CpcBeautifier.pac HTTP/1.0" 200 25213 www.zinnamturm.de
+209.237.238.172 - - [13/Aug/2003:07:22:46 +0200] "GET /CpcBeautifier.txt HTTP/1.0" 200 61399 www.zinnamturm.de
+64.68.82.167 - - [13/Aug/2003:07:41:31 +0200] "GET /Info.txt HTTP/1.0" 200 127058 www.zinnamturm.de
+64.68.82.14 - - [13/Aug/2003:07:45:25 +0200] "GET /CpcMenus.txt HTTP/1.0" 200 31513 www.zinnamturm.de
+64.68.82.14 - - [13/Aug/2003:07:45:25 +0200] "GET /TboxText.txt HTTP/1.0" 200 13121 www.zinnamturm.de
+64.68.82.168 - - [13/Aug/2003:07:56:44 +0200] "GET /CpcStylists.txt HTTP/1.0" 200 124217 www.zinnamturm.de

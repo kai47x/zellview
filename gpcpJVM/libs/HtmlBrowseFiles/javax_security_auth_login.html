@@ -1,0 +1,157 @@
+<html><head><title>javax_security_auth_login</title></head>
+<body bgcolor="white">
+<hr><pre>
+<b>FOREIGN MODULE </b><font color="#cc0033">javax_security_auth_login</font>;
+
+<b>IMPORT</b>
+    <a href="java_lang.html">java_lang</a> := "java.lang",
+    <a href="java_security.html">java_security</a> := "java.security",
+    <a href="java_io.html">java_io</a> := "java.io",
+    <a href="java_util.html">java_util</a> := "java.util",
+    <a href="javax_security_auth_callback.html">javax_security_auth_callback</a> := "javax.security.auth.callback",
+    <a href="javax_security_auth.html">javax_security_auth</a> := "javax.security.auth",
+    <a href="sun_security_util.html">sun_security_util</a> := "sun.security.util";
+
+<b>TYPE</b>
+
+  <a name="type-AccountException"></a><font color="#cc0033">AccountException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-LoginException">LoginException</a>)
+                      <b>STATIC</b>
+                        <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-AccountException">AccountException</a><b>,CONSTRUCTOR</b>;
+                        <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-AccountException">AccountException</a><b>,CONSTRUCTOR</b>;
+                      <b>END</b>;
+
+  <a name="type-AccountExpiredException"></a><font color="#cc0033">AccountExpiredException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-AccountException">AccountException</a>)
+                             <b>STATIC</b>
+                               <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-AccountExpiredException">AccountExpiredException</a><b>,CONSTRUCTOR</b>;
+                               <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-AccountExpiredException">AccountExpiredException</a><b>,CONSTRUCTOR</b>;
+                             <b>END</b>;
+
+  <a name="type-AccountLockedException"></a><font color="#cc0033">AccountLockedException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-AccountException">AccountException</a>)
+                            <b>STATIC</b>
+                              <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-AccountLockedException">AccountLockedException</a><b>,CONSTRUCTOR</b>;
+                              <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-AccountLockedException">AccountLockedException</a><b>,CONSTRUCTOR</b>;
+                            <b>END</b>;
+
+  <a name="type-AccountNotFoundException"></a><font color="#cc0033">AccountNotFoundException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-AccountException">AccountException</a>)
+                              <b>STATIC</b>
+                                <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-AccountNotFoundException">AccountNotFoundException</a><b>,CONSTRUCTOR</b>;
+                                <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-AccountNotFoundException">AccountNotFoundException</a><b>,CONSTRUCTOR</b>;
+                              <b>END</b>;
+
+  <a name="type-AppConfigurationEntry"></a><font color="#cc0033">AppConfigurationEntry</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-AppConfigurationEntry"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                           <b>STATIC</b>
+                             <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                             p1 : <a href="#type-AppConfigurationEntry$LoginModuleControlFlag">AppConfigurationEntry$LoginModuleControlFlag</a>;
+                                             p2 : <a href="java_util.html#type-Map">java_util.Map</a>) : <a href="#type-AppConfigurationEntry">AppConfigurationEntry</a><b>,CONSTRUCTOR</b>;
+                           <b>END</b>;
+
+  <a name="type-AppConfigurationEntry$LoginModuleControlFlag"></a><font color="#cc0033">AppConfigurationEntry$LoginModuleControlFlag</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-AppConfigurationEntry$LoginModuleControlFlag"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                                                  <b>STATIC</b>
+                                                    <a name="type-OPTIONAL"></a><font color="#cc0033">OPTIONAL</font>*   : <a href="#type-AppConfigurationEntry$LoginModuleControlFlag">AppConfigurationEntry$LoginModuleControlFlag</a>;
+                                                    <a name="type-REQUIRED"></a><font color="#cc0033">REQUIRED</font>*   : <a href="#type-AppConfigurationEntry$LoginModuleControlFlag">AppConfigurationEntry$LoginModuleControlFlag</a>;
+                                                    <a name="type-REQUISITE"></a><font color="#cc0033">REQUISITE</font>*  : <a href="#type-AppConfigurationEntry$LoginModuleControlFlag">AppConfigurationEntry$LoginModuleControlFlag</a>;
+                                                    <a name="type-SUFFICIENT"></a><font color="#cc0033">SUFFICIENT</font>* : <a href="#type-AppConfigurationEntry$LoginModuleControlFlag">AppConfigurationEntry$LoginModuleControlFlag</a>;
+                                                  <b>END</b>;
+
+  <a name="type-Configuration"></a><font color="#cc0033">Configuration</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-Configuration"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                   <b>STATIC</b>
+                     <b>PROCEDURE </b><font color="#cc0033">getConfiguration</font>*() : <a href="#type-Configuration">Configuration</a>;
+                     <b>PROCEDURE </b><font color="#cc0033">getInstance</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                            p1 : <a href="#type-Configuration$Parameters">Configuration$Parameters</a>) : <a href="#type-Configuration">Configuration</a>;
+                     <b>PROCEDURE </b><font color="#cc0033">getInstance</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                            p1 : <a href="#type-Configuration$Parameters">Configuration$Parameters</a>;
+                                            p2 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-Configuration">Configuration</a>;
+                     <b>PROCEDURE </b><font color="#cc0033">getInstance</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                            p1 : <a href="#type-Configuration$Parameters">Configuration$Parameters</a>;
+                                            p2 : <a href="java_security.html#type-Provider">java_security.Provider</a>) : <a href="#type-Configuration">Configuration</a>;
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>!() : <a href="#type-Configuration">Configuration</a><b>,CONSTRUCTOR</b>;
+                     <b>PROCEDURE </b><font color="#cc0033">setConfiguration</font>*(p0 : <a href="#type-Configuration">Configuration</a>);
+                   <b>END</b>;
+
+  <a name="type-Configuration$Parameters"></a><font color="#cc0033">Configuration$Parameters</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                              <b>END</b>;
+
+  <a name="type-ConfigurationSpi"></a><font color="#cc0033">ConfigurationSpi</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-ConfigurationSpi"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                      <b>STATIC</b>
+                        <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-ConfigurationSpi">ConfigurationSpi</a><b>,CONSTRUCTOR</b>;
+                      <b>END</b>;
+
+  <a name="type-CredentialException"></a><font color="#cc0033">CredentialException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-LoginException">LoginException</a>)
+                         <b>STATIC</b>
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-CredentialException">CredentialException</a><b>,CONSTRUCTOR</b>;
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CredentialException">CredentialException</a><b>,CONSTRUCTOR</b>;
+                         <b>END</b>;
+
+  <a name="type-CredentialExpiredException"></a><font color="#cc0033">CredentialExpiredException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-CredentialException">CredentialException</a>)
+                                <b>STATIC</b>
+                                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-CredentialExpiredException">CredentialExpiredException</a><b>,CONSTRUCTOR</b>;
+                                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CredentialExpiredException">CredentialExpiredException</a><b>,CONSTRUCTOR</b>;
+                                <b>END</b>;
+
+  <a name="type-CredentialNotFoundException"></a><font color="#cc0033">CredentialNotFoundException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-CredentialException">CredentialException</a>)
+                                 <b>STATIC</b>
+                                   <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-CredentialNotFoundException">CredentialNotFoundException</a><b>,CONSTRUCTOR</b>;
+                                   <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CredentialNotFoundException">CredentialNotFoundException</a><b>,CONSTRUCTOR</b>;
+                                 <b>END</b>;
+
+  <a name="type-FailedLoginException"></a><font color="#cc0033">FailedLoginException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-LoginException">LoginException</a>)
+                          <b>STATIC</b>
+                            <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-FailedLoginException">FailedLoginException</a><b>,CONSTRUCTOR</b>;
+                            <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-FailedLoginException">FailedLoginException</a><b>,CONSTRUCTOR</b>;
+                          <b>END</b>;
+
+  <a name="type-LoginContext"></a><font color="#cc0033">LoginContext</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-LoginContext"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                  <b>STATIC</b>
+                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                    p1 : <a href="javax_security_auth.html#type-Subject">javax_security_auth.Subject</a>;
+                                    p2 : <a href="javax_security_auth_callback.html#type-CallbackHandler">javax_security_auth_callback.CallbackHandler</a>) : <a href="#type-LoginContext">LoginContext</a><b>,CONSTRUCTOR</b>;
+                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                    p1 : <a href="javax_security_auth.html#type-Subject">javax_security_auth.Subject</a>;
+                                    p2 : <a href="javax_security_auth_callback.html#type-CallbackHandler">javax_security_auth_callback.CallbackHandler</a>;
+                                    p3 : <a href="#type-Configuration">Configuration</a>) : <a href="#type-LoginContext">LoginContext</a><b>,CONSTRUCTOR</b>;
+                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                    p1 : <a href="javax_security_auth_callback.html#type-CallbackHandler">javax_security_auth_callback.CallbackHandler</a>) : <a href="#type-LoginContext">LoginContext</a><b>,CONSTRUCTOR</b>;
+                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-LoginContext">LoginContext</a><b>,CONSTRUCTOR</b>;
+                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                    p1 : <a href="javax_security_auth.html#type-Subject">javax_security_auth.Subject</a>) : <a href="#type-LoginContext">LoginContext</a><b>,CONSTRUCTOR</b>;
+                  <b>END</b>;
+
+  <a name="type-LoginException"></a><font color="#cc0033">LoginException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_security.html#type-GeneralSecurityException">java_security.GeneralSecurityException</a>)
+                    <b>STATIC</b>
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-LoginException">LoginException</a><b>,CONSTRUCTOR</b>;
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-LoginException">LoginException</a><b>,CONSTRUCTOR</b>;
+                    <b>END</b>;
+
+
+
+<a name="meths-AppConfigurationEntry"></a>
+<b>PROCEDURE </b>(self:AppConfigurationEntry) <font color="#cc0033">getControlFlag</font>*() : <a href="#type-AppConfigurationEntry$LoginModuleControlFlag">AppConfigurationEntry$LoginModuleControlFlag</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AppConfigurationEntry) <font color="#cc0033">getLoginModuleName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AppConfigurationEntry) <font color="#cc0033">getOptions</font>*() : <a href="java_util.html#type-Map">java_util.Map</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-AppConfigurationEntry$LoginModuleControlFlag"></a>
+<b>PROCEDURE </b>(self:AppConfigurationEntry$LoginModuleControlFlag) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,EXTENSIBLE</b>;
+<a name="meths-Configuration"></a>
+<b>PROCEDURE </b>(self:Configuration) <font color="#cc0033">getAppConfigurationEntry</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-AppConfigurationEntry">AppConfigurationEntry</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Configuration) <font color="#cc0033">getParameters</font>*() : <a href="#type-Configuration$Parameters">Configuration$Parameters</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Configuration) <font color="#cc0033">getProvider</font>*() : <a href="java_security.html#type-Provider">java_security.Provider</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Configuration) <font color="#cc0033">getType</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Configuration) <font color="#cc0033">refresh</font>*()<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-ConfigurationSpi"></a>
+<b>PROCEDURE </b>(self:ConfigurationSpi) <font color="#cc0033">engineGetAppConfigurationEntry</font>!(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-AppConfigurationEntry">AppConfigurationEntry</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ConfigurationSpi) <font color="#cc0033">engineRefresh</font>!()<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-LoginContext"></a>
+<b>PROCEDURE </b>(self:LoginContext) <font color="#cc0033">getSubject</font>*() : <a href="javax_security_auth.html#type-Subject">javax_security_auth.Subject</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LoginContext) <font color="#cc0033">login</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LoginContext) <font color="#cc0033">logout</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>END </b><font color="#cc0033">javax_security_auth_login</font>.
+</font></pre></hr></body></html>

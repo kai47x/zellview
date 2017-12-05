@@ -1,0 +1,136 @@
+MODULE GPDevCompiler;
+
+	
+
+	IMPORT ComTools, Controllers, Converters, Dialog,
+		Files, HostFiles, Log, Services, Strings, Views,
+		Ascii := ObxAscii,
+		WinApi, Windows;
+
+	CONST
+		GpcpLog = "gpcp.log";
+		JavaLog = "java.log";
+		wait = 800;
+		MaxAttempt = 4;
+
+	VAR
+		textConv: Converters.Converter;
+
+	PROCEDURE SaveCopyAsText*;
+		(* save copy of document shown in target window as plain text format *)
+		VAR w: Windows.Window; v: Views.View;
+			loc: Files.Locator; name: Files.Name;
+			conv: Converters.Converter;
+	BEGIN
+		w := Windows.dir.Focus(Controllers.targetPath);
+		IF (w # NIL) THEN
+			v := w.doc.OriginalView();
+			loc := w.loc; name := w.name$;
+			IF name = "" THEN Dialog.MapString("#System:untitled", name)
+			ELSE Strings.Extract(name, 0, LEN(name$) - 4, name) END;
+			IF loc # NIL THEN
+				Dialog.ShowStatus("#Host:Saving");
+				Converters.Export(loc, name, textConv, v);
+				IF loc.res = 0 THEN;
+					Log.String(name + " saved as plain text"); Log.Ln;
+					Dialog.ShowStatus("#Host:Saved")
+				ELSE Dialog.ShowStatus("#Host:Failed") END
+			END
+		END
+	END SaveCopyAsText;
+
+	PROCEDURE Wait (ticks: INTEGER);
+		VAR start, now: LONGINT;
+	BEGIN
+		now := Services.Ticks(); start := now;
+		WHILE now < start + ticks DO now := Services.Ticks() END
+	END Wait;
+
+	PROCEDURE GetLogfile (file: ARRAY OF CHAR);
+		VAR
+			text: Ascii.Text; ch: CHAR; cnt: INTEGER;
+	BEGIN
+		cnt := 0;
+		WHILE (text = NIL) & (cnt < MaxAttempt) DO Wait(wait);
+			text := Ascii.Open(NIL, file); INC(cnt)
+		END;
+		IF text # NIL THEN
+			Ascii.ReadChar(text, ch);
+			WHILE ~Ascii.Eot(text) DO
+				IF ch = CHR(13) THEN
+					Log.Ln; Ascii.ReadChar(text, ch)
+				ELSE Log.Char(ch) END;
+				Ascii.ReadChar(text, ch)
+			END
+		ELSE Log.String(file + " not found"); Log.Ln; END
+	END GetLogfile;
+
+	PROCEDURE Compile*;
+		VAR res: INTEGER; bool: WinApi.BOOL;
+			path, name: Files.Name;
+			w: Windows.Window;
+			cmd: Dialog.String;
+	BEGIN
+		w := Windows.dir.Focus(Controllers.targetPath);
+		IF (w # NIL) THEN
+			path := w.loc(HostFiles.Locator).path$;
+			bool := WinApi.SetCurrentDirectory(ComTools.NewSString(SHORT(path)));
+			SaveCopyAsText;
+			name := w.name$;
+			Strings.Extract(name, 0, LEN(name$) - 4, name); 				(* hinten 4 abschneiden ".odc  *)
+			Log.String("GpcpCompiler.Compile " + name); Log.Ln;
+			cmd := 'cprun.bat gpcp "-hsize=10000" ' + name + '  > ' + GpcpLog;
+			res := WinApi.WinExec(ComTools.NewSString(SHORT(cmd)), 0);
+			GetLogfile(path + "\" + GpcpLog)
+		END
+	END Compile;
+
+	PROCEDURE CompileJava*;
+		VAR res: INTEGER; bool: WinApi.BOOL;
+			path, name: Files.Name;
+			w: Windows.Window;
+			cmd: Dialog.String;
+	BEGIN
+		w := Windows.dir.Focus(Controllers.targetPath);
+		IF (w # NIL) THEN
+			SaveCopyAsText;
+			path := w.loc(HostFiles.Locator).path$;
+			bool := WinApi.SetCurrentDirectory(ComTools.NewSString(SHORT(path)));
+			name := w.name$;
+			Strings.Extract(name, 0, LEN(name$) - 4, name); 				(* hinten 4 abschneiden ".odc  *)
+			Log.String("GpcpCompiler.CompileJava " + name); Log.Ln;
+			cmd := "JavaRun.bat javac.exe " + name + '  > ' + JavaLog + " & pause";
+			Log.String(cmd); Log.Ln;
+			res := WinApi.WinExec(ComTools.NewSString(SHORT(cmd)), 3);
+			GetLogfile(path + "\" + JavaLog)
+		END
+	END CompileJava;
+
+	PROCEDURE Run*;
+		VAR res: INTEGER; cmd: Dialog.String;
+			name: Files.Name; w: Windows.Window;
+	BEGIN
+		w := Windows.dir.Focus(Controllers.targetPath);
+		IF (w # NIL) THEN
+			name := w.name$;
+			Strings.Extract(name, 0, LEN(name$) - 7, name); 				(* hinten 4 abschneiden ".odc  *)
+			Log.String("CpRun " + name); Log.Ln;
+			cmd := "cprun.bat " + name;
+			res := WinApi.WinExec(ComTools.NewSString(SHORT(cmd)), 0)
+		END
+	END Run;
+
+	PROCEDURE SetConverter;
+	BEGIN
+		textConv := Converters.list; ;
+		WHILE(textConv # NIL) & (textConv.imp # "HostTextConv.ImportText") DO
+			textConv := textConv.next
+		END;
+		ASSERT(textConv # NIL, 1);
+	END SetConverter;
+
+BEGIN
+
+	SetConverter
+
+END GPDevCompiler.

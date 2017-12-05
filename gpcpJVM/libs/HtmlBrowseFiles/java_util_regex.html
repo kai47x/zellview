@@ -1,0 +1,147 @@
+<html><head><title>java_util_regex</title></head>
+<body bgcolor="white">
+<hr><pre>
+<b>FOREIGN MODULE </b><font color="#cc0033">java_util_regex</font>;
+
+<b>IMPORT</b>
+    <a href="java_lang.html">java_lang</a> := "java.lang",
+    <a href="java_util.html">java_util</a> := "java.util",
+    <a href="java_io.html">java_io</a> := "java.io";
+
+<b>TYPE</b>
+
+  <a name="type-Matcher"></a><font color="#cc0033">Matcher</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-MatchResult">MatchResult</a>)    <a href="#meths-Matcher"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+             <b>STATIC</b>
+               <b>PROCEDURE </b><font color="#cc0033">quoteReplacement</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-String">java_lang.String</a>;
+             <b>END</b>;
+
+  <a name="type-MatchResult"></a><font color="#cc0033">MatchResult</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-MatchResult"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                 <b>END</b>;
+
+  <a name="type-Pattern"></a><font color="#cc0033">Pattern</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_io.html#type-Serializable">java_io.Serializable</a>)    <a href="#meths-Pattern"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+             <b>STATIC</b>
+               <font color="#cc0033">CANON_EQ</font>*         = 128;
+               <font color="#cc0033">CASE_INSENSITIVE</font>* = 2;
+               <font color="#cc0033">COMMENTS</font>*         = 4;
+               <font color="#cc0033">DOTALL</font>*           = 32;
+               <font color="#cc0033">LITERAL</font>*          = 16;
+               <font color="#cc0033">MULTILINE</font>*        = 8;
+               <font color="#cc0033">UNICODE_CASE</font>*     = 64;
+               <font color="#cc0033">UNIX_LINES</font>*       = 1;
+               <b>PROCEDURE </b><font color="#cc0033">compile</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                  p1 : INTEGER) : <a href="#type-Pattern">Pattern</a>;
+               <b>PROCEDURE </b><font color="#cc0033">compile</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-Pattern">Pattern</a>;
+               <b>PROCEDURE </b><font color="#cc0033">matches</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                  p1 : <a href="java_lang.html#type-CharSequence">java_lang.CharSequence</a>) : BOOLEAN;
+               <b>PROCEDURE </b><font color="#cc0033">quote</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-String">java_lang.String</a>;
+             <b>END</b>;
+
+  <a name="type-PatternSyntaxException"></a><font color="#cc0033">PatternSyntaxException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-IllegalArgumentException">java_lang.IllegalArgumentException</a>)    <a href="#meths-PatternSyntaxException"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                            <b>STATIC</b>
+                              <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                              p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                              p2 : INTEGER) : <a href="#type-PatternSyntaxException">PatternSyntaxException</a><b>,CONSTRUCTOR</b>;
+                            <b>END</b>;
+
+
+
+<a name="meths-Matcher"></a>
+<b>PROCEDURE </b>(self:Matcher) <font color="#cc0033">appendReplacement</font>*(p0 : <a href="java_lang.html#type-StringBuffer">java_lang.StringBuffer</a>;
+                                            p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-Matcher">Matcher</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Matcher) <font color="#cc0033">appendTail</font>*(p0 : <a href="java_lang.html#type-StringBuffer">java_lang.StringBuffer</a>) : <a href="java_lang.html#type-StringBuffer">java_lang.StringBuffer</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Matcher) <font color="#cc0033">end</font>*(p0 : INTEGER) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Matcher) <font color="#cc0033">end</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Matcher) <font color="#cc0033">find</font>*(p0 : INTEGER) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Matcher) <font color="#cc0033">find</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Matcher) <font color="#cc0033">group</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Matcher) <font color="#cc0033">group</font>*(p0 : INTEGER) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Matcher) <font color="#cc0033">groupCount</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Matcher) <font color="#cc0033">hasAnchoringBounds</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Matcher) <font color="#cc0033">hasTransparentBounds</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Matcher) <font color="#cc0033">hitEnd</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Matcher) <font color="#cc0033">lookingAt</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Matcher) <font color="#cc0033">matches</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Matcher) <font color="#cc0033">pattern</font>*() : <a href="#type-Pattern">Pattern</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Matcher) <font color="#cc0033">region</font>*(p0 : INTEGER;
+                                 p1 : INTEGER) : <a href="#type-Matcher">Matcher</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Matcher) <font color="#cc0033">regionEnd</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Matcher) <font color="#cc0033">regionStart</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Matcher) <font color="#cc0033">replaceAll</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Matcher) <font color="#cc0033">replaceFirst</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Matcher) <font color="#cc0033">requireEnd</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Matcher) <font color="#cc0033">reset</font>*(p0 : <a href="java_lang.html#type-CharSequence">java_lang.CharSequence</a>) : <a href="#type-Matcher">Matcher</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Matcher) <font color="#cc0033">reset</font>*() : <a href="#type-Matcher">Matcher</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Matcher) <font color="#cc0033">start</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Matcher) <font color="#cc0033">start</font>*(p0 : INTEGER) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Matcher) <font color="#cc0033">toMatchResult</font>*() : <a href="#type-MatchResult">MatchResult</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Matcher) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Matcher) <font color="#cc0033">useAnchoringBounds</font>*(p0 : BOOLEAN) : <a href="#type-Matcher">Matcher</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Matcher) <font color="#cc0033">usePattern</font>*(p0 : <a href="#type-Pattern">Pattern</a>) : <a href="#type-Matcher">Matcher</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Matcher) <font color="#cc0033">useTransparentBounds</font>*(p0 : BOOLEAN) : <a href="#type-Matcher">Matcher</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-MatchResult"></a>
+<b>PROCEDURE </b>(self:MatchResult) <font color="#cc0033">end</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MatchResult) <font color="#cc0033">end</font>*(p0 : INTEGER) : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MatchResult) <font color="#cc0033">group</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MatchResult) <font color="#cc0033">group</font>*(p0 : INTEGER) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MatchResult) <font color="#cc0033">groupCount</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MatchResult) <font color="#cc0033">start</font>*(p0 : INTEGER) : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MatchResult) <font color="#cc0033">start</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+<a name="meths-Pattern"></a>
+<b>PROCEDURE </b>(self:Pattern) <font color="#cc0033">flags</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Pattern) <font color="#cc0033">matcher</font>*(p0 : <a href="java_lang.html#type-CharSequence">java_lang.CharSequence</a>) : <a href="#type-Matcher">Matcher</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Pattern) <font color="#cc0033">pattern</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Pattern) <font color="#cc0033">split</font>*(p0 : <a href="java_lang.html#type-CharSequence">java_lang.CharSequence</a>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Pattern) <font color="#cc0033">split</font>*(p0 : <a href="java_lang.html#type-CharSequence">java_lang.CharSequence</a>;
+                                p1 : INTEGER) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Pattern) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,EXTENSIBLE</b>;
+<a name="meths-PatternSyntaxException"></a>
+<b>PROCEDURE </b>(self:PatternSyntaxException) <font color="#cc0033">getDescription</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PatternSyntaxException) <font color="#cc0033">getIndex</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PatternSyntaxException) <font color="#cc0033">getMessage</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PatternSyntaxException) <font color="#cc0033">getPattern</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>END </b><font color="#cc0033">java_util_regex</font>.
+</font></pre></hr></body></html>

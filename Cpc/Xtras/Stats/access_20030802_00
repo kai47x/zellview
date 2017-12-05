@@ -1,0 +1,5 @@
+format.access="%Ses->client.ip%  %Req->headers.referer% -  %Req->vars.auth-user% [%SYSDATE%] \"%Req->reqpb.clf-request%\" %Req->srvhdrs.clf-status% %Req->srvhdrs.content-length% %Req->headers.host%"
+212.195.73.221 - - [02/Aug/2003:00:04:33 +0200] "GET / HTTP/1.0" 200 84738 www.zinnamturm.de
+210.55.230.18 - - [02/Aug/2003:00:43:25 +0200] "GET / HTTP/1.0" 200 84738 www.zinnamturm.de
+210.55.230.18 http://www.zinnamturm.de/ - [02/Aug/2003:00:43:26 +0200] "GET /bg3.gif HTTP/1.0" 200 16276 www.zinnamturm.de
+210.55.230.18 http://www.zinnamturm.de/ - [02/Aug/2003:00:43:37 +0200] "GET /mail99.gif HTTP/1.0" 200 4196 www.zinnamturm.de

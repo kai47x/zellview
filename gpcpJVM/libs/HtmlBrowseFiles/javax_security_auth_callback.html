@@ -1,0 +1,167 @@
+<html><head><title>javax_security_auth_callback</title></head>
+<body bgcolor="white">
+<hr><pre>
+<b>FOREIGN MODULE </b><font color="#cc0033">javax_security_auth_callback</font>;
+
+<b>IMPORT</b>
+    <a href="java_lang.html">java_lang</a> := "java.lang",
+    <a href="java_io.html">java_io</a> := "java.io",
+    <a href="java_util.html">java_util</a> := "java.util";
+
+<b>TYPE</b>
+
+  <a name="type-Callback"></a><font color="#cc0033">Callback</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+              <b>END</b>;
+
+  <a name="type-CallbackHandler"></a><font color="#cc0033">CallbackHandler</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-CallbackHandler"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                     <b>END</b>;
+
+  <a name="type-ChoiceCallback"></a><font color="#cc0033">ChoiceCallback</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-Callback">Callback</a> + <a href="java_io.html#type-Serializable">java_io.Serializable</a>)    <a href="#meths-ChoiceCallback"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                    <b>STATIC</b>
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*(    p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                      IN  p1 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>;
+                                          p2 : INTEGER;
+                                          p3 : BOOLEAN) : <a href="#type-ChoiceCallback">ChoiceCallback</a><b>,CONSTRUCTOR</b>;
+                    <b>END</b>;
+
+  <a name="type-ConfirmationCallback"></a><font color="#cc0033">ConfirmationCallback</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-Callback">Callback</a> + <a href="java_io.html#type-Serializable">java_io.Serializable</a>)    <a href="#meths-ConfirmationCallback"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                          <b>STATIC</b>
+                            <font color="#cc0033">CANCEL</font>*               = 2;
+                            <font color="#cc0033">ERROR</font>*                = 2;
+                            <font color="#cc0033">INFORMATION</font>*          = 0;
+                            <font color="#cc0033">NO</font>*                   = 1;
+                            <font color="#cc0033">OK</font>*                   = 3;
+                            <font color="#cc0033">OK_CANCEL_OPTION</font>*     = 2;
+                            <font color="#cc0033">UNSPECIFIED_OPTION</font>*   = -1;
+                            <font color="#cc0033">WARNING</font>*              = 1;
+                            <font color="#cc0033">YES</font>*                  = 0;
+                            <font color="#cc0033">YES_NO_CANCEL_OPTION</font>* = 1;
+                            <font color="#cc0033">YES_NO_OPTION</font>*        = 0;
+                            <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                            p1 : INTEGER;
+                                            p2 : INTEGER;
+                                            p3 : INTEGER) : <a href="#type-ConfirmationCallback">ConfirmationCallback</a><b>,CONSTRUCTOR</b>;
+                            <b>PROCEDURE </b><font color="#cc0033">Init</font>*(    p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                p1 : INTEGER;
+                                            IN  p2 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>;
+                                                p3 : INTEGER) : <a href="#type-ConfirmationCallback">ConfirmationCallback</a><b>,CONSTRUCTOR</b>;
+                            <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER;
+                                            p1 : INTEGER;
+                                            p2 : INTEGER) : <a href="#type-ConfirmationCallback">ConfirmationCallback</a><b>,CONSTRUCTOR</b>;
+                            <b>PROCEDURE </b><font color="#cc0033">Init</font>*(    p0 : INTEGER;
+                                            IN  p1 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>;
+                                                p2 : INTEGER) : <a href="#type-ConfirmationCallback">ConfirmationCallback</a><b>,CONSTRUCTOR</b>;
+                          <b>END</b>;
+
+  <a name="type-LanguageCallback"></a><font color="#cc0033">LanguageCallback</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-Callback">Callback</a> + <a href="java_io.html#type-Serializable">java_io.Serializable</a>)    <a href="#meths-LanguageCallback"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                      <b>STATIC</b>
+                        <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-LanguageCallback">LanguageCallback</a><b>,CONSTRUCTOR</b>;
+                      <b>END</b>;
+
+  <a name="type-NameCallback"></a><font color="#cc0033">NameCallback</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-Callback">Callback</a> + <a href="java_io.html#type-Serializable">java_io.Serializable</a>)    <a href="#meths-NameCallback"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                  <b>STATIC</b>
+                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                    p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-NameCallback">NameCallback</a><b>,CONSTRUCTOR</b>;
+                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-NameCallback">NameCallback</a><b>,CONSTRUCTOR</b>;
+                  <b>END</b>;
+
+  <a name="type-PasswordCallback"></a><font color="#cc0033">PasswordCallback</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-Callback">Callback</a> + <a href="java_io.html#type-Serializable">java_io.Serializable</a>)    <a href="#meths-PasswordCallback"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                      <b>STATIC</b>
+                        <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                        p1 : BOOLEAN) : <a href="#type-PasswordCallback">PasswordCallback</a><b>,CONSTRUCTOR</b>;
+                      <b>END</b>;
+
+  <a name="type-TextInputCallback"></a><font color="#cc0033">TextInputCallback</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-Callback">Callback</a> + <a href="java_io.html#type-Serializable">java_io.Serializable</a>)    <a href="#meths-TextInputCallback"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                       <b>STATIC</b>
+                         <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                         p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-TextInputCallback">TextInputCallback</a><b>,CONSTRUCTOR</b>;
+                         <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-TextInputCallback">TextInputCallback</a><b>,CONSTRUCTOR</b>;
+                       <b>END</b>;
+
+  <a name="type-TextOutputCallback"></a><font color="#cc0033">TextOutputCallback</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-Callback">Callback</a> + <a href="java_io.html#type-Serializable">java_io.Serializable</a>)    <a href="#meths-TextOutputCallback"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                        <b>STATIC</b>
+                          <font color="#cc0033">ERROR</font>*       = 2;
+                          <font color="#cc0033">INFORMATION</font>* = 0;
+                          <font color="#cc0033">WARNING</font>*     = 1;
+                          <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER;
+                                          p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-TextOutputCallback">TextOutputCallback</a><b>,CONSTRUCTOR</b>;
+                        <b>END</b>;
+
+  <a name="type-UnsupportedCallbackException"></a><font color="#cc0033">UnsupportedCallbackException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Exception">java_lang.Exception</a>)    <a href="#meths-UnsupportedCallbackException"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                                  <b>STATIC</b>
+                                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="#type-Callback">Callback</a>;
+                                                    p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-UnsupportedCallbackException">UnsupportedCallbackException</a><b>,CONSTRUCTOR</b>;
+                                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="#type-Callback">Callback</a>) : <a href="#type-UnsupportedCallbackException">UnsupportedCallbackException</a><b>,CONSTRUCTOR</b>;
+                                  <b>END</b>;
+
+
+
+<a name="meths-CallbackHandler"></a>
+<b>PROCEDURE </b>(self:CallbackHandler) <font color="#cc0033">handle</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="#type-Callback">Callback</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-ChoiceCallback"></a>
+<b>PROCEDURE </b>(self:ChoiceCallback) <font color="#cc0033">allowMultipleSelections</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ChoiceCallback) <font color="#cc0033">getChoices</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ChoiceCallback) <font color="#cc0033">getDefaultChoice</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ChoiceCallback) <font color="#cc0033">getPrompt</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ChoiceCallback) <font color="#cc0033">getSelectedIndexes</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ChoiceCallback) <font color="#cc0033">setSelectedIndex</font>*(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ChoiceCallback) <font color="#cc0033">setSelectedIndexes</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>INTEGER)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-ConfirmationCallback"></a>
+<b>PROCEDURE </b>(self:ConfirmationCallback) <font color="#cc0033">getDefaultOption</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ConfirmationCallback) <font color="#cc0033">getMessageType</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ConfirmationCallback) <font color="#cc0033">getOptions</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ConfirmationCallback) <font color="#cc0033">getOptionType</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ConfirmationCallback) <font color="#cc0033">getPrompt</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ConfirmationCallback) <font color="#cc0033">getSelectedIndex</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ConfirmationCallback) <font color="#cc0033">setSelectedIndex</font>*(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-LanguageCallback"></a>
+<b>PROCEDURE </b>(self:LanguageCallback) <font color="#cc0033">getLocale</font>*() : <a href="java_util.html#type-Locale">java_util.Locale</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LanguageCallback) <font color="#cc0033">setLocale</font>*(p0 : <a href="java_util.html#type-Locale">java_util.Locale</a>)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-NameCallback"></a>
+<b>PROCEDURE </b>(self:NameCallback) <font color="#cc0033">getDefaultName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:NameCallback) <font color="#cc0033">getName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:NameCallback) <font color="#cc0033">getPrompt</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:NameCallback) <font color="#cc0033">setName</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-PasswordCallback"></a>
+<b>PROCEDURE </b>(self:PasswordCallback) <font color="#cc0033">clearPassword</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PasswordCallback) <font color="#cc0033">getPassword</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>CHAR<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PasswordCallback) <font color="#cc0033">getPrompt</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PasswordCallback) <font color="#cc0033">isEchoOn</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PasswordCallback) <font color="#cc0033">setPassword</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>CHAR)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-TextInputCallback"></a>
+<b>PROCEDURE </b>(self:TextInputCallback) <font color="#cc0033">getDefaultText</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TextInputCallback) <font color="#cc0033">getPrompt</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TextInputCallback) <font color="#cc0033">getText</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TextInputCallback) <font color="#cc0033">setText</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-TextOutputCallback"></a>
+<b>PROCEDURE </b>(self:TextOutputCallback) <font color="#cc0033">getMessage</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TextOutputCallback) <font color="#cc0033">getMessageType</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-UnsupportedCallbackException"></a>
+<b>PROCEDURE </b>(self:UnsupportedCallbackException) <font color="#cc0033">getCallback</font>*() : <a href="#type-Callback">Callback</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>END </b><font color="#cc0033">javax_security_auth_callback</font>.
+</font></pre></hr></body></html>

@@ -1,0 +1,118 @@
+<html><head><title>sun_net_idn</title></head>
+<body bgcolor="white">
+<hr><pre>
+<b>FOREIGN MODULE </b><font color="#cc0033">sun_net_idn</font>;
+
+<b>IMPORT</b>
+    <a href="java_lang.html">java_lang</a> := "java.lang",
+    <a href="sun_text_normalizer.html">sun_text_normalizer</a> := "sun.text.normalizer",
+    <a href="java_io.html">java_io</a> := "java.io";
+
+<b>TYPE</b>
+
+  <a name="type-Punycode"></a><font color="#cc0033">Punycode</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+              <b>STATIC</b>
+                <b>PROCEDURE </b><font color="#cc0033">decode</font>*(    p0 : <a href="java_lang.html#type-StringBuffer">java_lang.StringBuffer</a>;
+                                  IN  p1 : <b>ARRAY </b><b>OF </b>BOOLEAN) : <a href="java_lang.html#type-StringBuffer">java_lang.StringBuffer</a>;
+                <b>PROCEDURE </b><font color="#cc0033">encode</font>*(    p0 : <a href="java_lang.html#type-StringBuffer">java_lang.StringBuffer</a>;
+                                  IN  p1 : <b>ARRAY </b><b>OF </b>BOOLEAN) : <a href="java_lang.html#type-StringBuffer">java_lang.StringBuffer</a>;
+                <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-Punycode">Punycode</a><b>,CONSTRUCTOR</b>;
+              <b>END</b>;
+
+  <a name="type-StringPrep"></a><font color="#cc0033">StringPrep</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-StringPrep"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                <b>STATIC</b>
+                  <font color="#cc0033">ALLOW_UNASSIGNED</font>* = 1;
+                  <font color="#cc0033">DEFAULT</font>*          = 0;
+                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_io.html#type-InputStream">java_io.InputStream</a>) : <a href="#type-StringPrep">StringPrep</a><b>,CONSTRUCTOR</b>;
+                <b>END</b>;
+
+  <a name="type-UCharacterEnums$ECharacterCategory"></a><font color="#cc0033">UCharacterEnums$ECharacterCategory</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                                        <b>STATIC</b>
+                                          <font color="#cc0033">CHAR_CATEGORY_COUNT</font>*       = 30;
+                                          <font color="#cc0033">COMBINING_SPACING_MARK</font>*    = 8;
+                                          <font color="#cc0033">CONNECTOR_PUNCTUATION</font>*     = 22;
+                                          <font color="#cc0033">CONTROL</font>*                   = 15;
+                                          <font color="#cc0033">CURRENCY_SYMBOL</font>*           = 25;
+                                          <font color="#cc0033">DASH_PUNCTUATION</font>*          = 19;
+                                          <font color="#cc0033">DECIMAL_DIGIT_NUMBER</font>*      = 9;
+                                          <font color="#cc0033">ENCLOSING_MARK</font>*            = 7;
+                                          <font color="#cc0033">END_PUNCTUATION</font>*           = 21;
+                                          <font color="#cc0033">FINAL_PUNCTUATION</font>*         = 29;
+                                          <font color="#cc0033">FINAL_QUOTE_PUNCTUATION</font>*   = 29;
+                                          <font color="#cc0033">FORMAT</font>*                    = 16;
+                                          <font color="#cc0033">GENERAL_OTHER_TYPES</font>*       = 0;
+                                          <font color="#cc0033">INITIAL_PUNCTUATION</font>*       = 28;
+                                          <font color="#cc0033">INITIAL_QUOTE_PUNCTUATION</font>* = 28;
+                                          <font color="#cc0033">LETTER_NUMBER</font>*             = 10;
+                                          <font color="#cc0033">LINE_SEPARATOR</font>*            = 13;
+                                          <font color="#cc0033">LOWERCASE_LETTER</font>*          = 2;
+                                          <font color="#cc0033">MATH_SYMBOL</font>*               = 24;
+                                          <font color="#cc0033">MODIFIER_LETTER</font>*           = 4;
+                                          <font color="#cc0033">MODIFIER_SYMBOL</font>*           = 26;
+                                          <font color="#cc0033">NON_SPACING_MARK</font>*          = 6;
+                                          <font color="#cc0033">OTHER_LETTER</font>*              = 5;
+                                          <font color="#cc0033">OTHER_NUMBER</font>*              = 11;
+                                          <font color="#cc0033">OTHER_PUNCTUATION</font>*         = 23;
+                                          <font color="#cc0033">OTHER_SYMBOL</font>*              = 27;
+                                          <font color="#cc0033">PARAGRAPH_SEPARATOR</font>*       = 14;
+                                          <font color="#cc0033">PRIVATE_USE</font>*               = 17;
+                                          <font color="#cc0033">SPACE_SEPARATOR</font>*           = 12;
+                                          <font color="#cc0033">START_PUNCTUATION</font>*         = 20;
+                                          <font color="#cc0033">SURROGATE</font>*                 = 18;
+                                          <font color="#cc0033">TITLECASE_LETTER</font>*          = 3;
+                                          <font color="#cc0033">UNASSIGNED</font>*                = 0;
+                                          <font color="#cc0033">UPPERCASE_LETTER</font>*          = 1;
+                                        <b>END</b>;
+
+  <a name="type-UCharacterEnums$ECharacterDirection"></a><font color="#cc0033">UCharacterEnums$ECharacterDirection</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                                         <b>STATIC</b>
+                                           <font color="#cc0033">ARABIC_NUMBER</font>*                             = 5;
+                                           <font color="#cc0033">BLOCK_SEPARATOR</font>*                           = 7;
+                                           <font color="#cc0033">BOUNDARY_NEUTRAL</font>*                          = 18;
+                                           <font color="#cc0033">CHAR_DIRECTION_COUNT</font>*                      = 19;
+                                           <font color="#cc0033">COMMON_NUMBER_SEPARATOR</font>*                   = 6;
+                                           <font color="#cc0033">DIRECTIONALITY_ARABIC_NUMBER</font>*              = 5;
+                                           <font color="#cc0033">DIRECTIONALITY_BOUNDARY_NEUTRAL</font>*           = 18;
+                                           <font color="#cc0033">DIRECTIONALITY_COMMON_NUMBER_SEPARATOR</font>*    = 6;
+                                           <font color="#cc0033">DIRECTIONALITY_EUROPEAN_NUMBER</font>*            = 2;
+                                           <font color="#cc0033">DIRECTIONALITY_EUROPEAN_NUMBER_SEPARATOR</font>*  = 3;
+                                           <font color="#cc0033">DIRECTIONALITY_EUROPEAN_NUMBER_TERMINATOR</font>* = 4;
+                                           <font color="#cc0033">DIRECTIONALITY_LEFT_TO_RIGHT</font>*              = 0;
+                                           <font color="#cc0033">DIRECTIONALITY_LEFT_TO_RIGHT_EMBEDDING</font>*    = 11;
+                                           <font color="#cc0033">DIRECTIONALITY_LEFT_TO_RIGHT_OVERRIDE</font>*     = 12;
+                                           <font color="#cc0033">DIRECTIONALITY_NON_SPACING_MARK</font>*           = 17;
+                                           <font color="#cc0033">DIRECTIONALITY_OTHER_NEUTRALS</font>*             = 10;
+                                           <font color="#cc0033">DIRECTIONALITY_PARAGRAPH_SEPARATOR</font>*        = 7;
+                                           <font color="#cc0033">DIRECTIONALITY_POP_DIRECTIONAL_FORMAT</font>*     = 16;
+                                           <font color="#cc0033">DIRECTIONALITY_RIGHT_TO_LEFT</font>*              = 1;
+                                           <font color="#cc0033">DIRECTIONALITY_RIGHT_TO_LEFT_ARABIC</font>*       = 13;
+                                           <font color="#cc0033">DIRECTIONALITY_RIGHT_TO_LEFT_EMBEDDING</font>*    = 14;
+                                           <font color="#cc0033">DIRECTIONALITY_RIGHT_TO_LEFT_OVERRIDE</font>*     = 15;
+                                           <font color="#cc0033">DIRECTIONALITY_SEGMENT_SEPARATOR</font>*          = 8;
+                                           <font color="#cc0033">DIRECTIONALITY_UNDEFINED</font>*                  = -1;
+                                           <font color="#cc0033">DIRECTIONALITY_WHITESPACE</font>*                 = 9;
+                                           <font color="#cc0033">DIR_NON_SPACING_MARK</font>*                      = 17;
+                                           <font color="#cc0033">EUROPEAN_NUMBER</font>*                           = 2;
+                                           <font color="#cc0033">EUROPEAN_NUMBER_SEPARATOR</font>*                 = 3;
+                                           <font color="#cc0033">EUROPEAN_NUMBER_TERMINATOR</font>*                = 4;
+                                           <font color="#cc0033">LEFT_TO_RIGHT</font>*                             = 0;
+                                           <font color="#cc0033">LEFT_TO_RIGHT_EMBEDDING</font>*                   = 11;
+                                           <font color="#cc0033">LEFT_TO_RIGHT_OVERRIDE</font>*                    = 12;
+                                           <font color="#cc0033">OTHER_NEUTRAL</font>*                             = 10;
+                                           <font color="#cc0033">POP_DIRECTIONAL_FORMAT</font>*                    = 16;
+                                           <font color="#cc0033">RIGHT_TO_LEFT</font>*                             = 1;
+                                           <font color="#cc0033">RIGHT_TO_LEFT_ARABIC</font>*                      = 13;
+                                           <font color="#cc0033">RIGHT_TO_LEFT_EMBEDDING</font>*                   = 14;
+                                           <font color="#cc0033">RIGHT_TO_LEFT_OVERRIDE</font>*                    = 15;
+                                           <font color="#cc0033">SEGMENT_SEPARATOR</font>*                         = 8;
+                                           <font color="#cc0033">WHITE_SPACE_NEUTRAL</font>*                       = 9;
+                                         <b>END</b>;
+
+
+
+<a name="meths-StringPrep"></a>
+<b>PROCEDURE </b>(self:StringPrep) <font color="#cc0033">prepare</font>*(p0 : <a href="sun_text_normalizer.html#type-UCharacterIterator">sun_text_normalizer.UCharacterIterator</a>;
+                                     p1 : INTEGER) : <a href="java_lang.html#type-StringBuffer">java_lang.StringBuffer</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>END </b><font color="#cc0033">sun_net_idn</font>.
+</font></pre></hr></body></html>

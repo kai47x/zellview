@@ -1,0 +1,252 @@
+<html><head><title>java_nio_charset</title></head>
+<body bgcolor="white">
+<hr><pre>
+<b>FOREIGN MODULE </b><font color="#cc0033">java_nio_charset</font>;
+
+<b>IMPORT</b>
+    <a href="java_io.html">java_io</a> := "java.io",
+    <a href="java_lang.html">java_lang</a> := "java.lang",
+    <a href="java_util.html">java_util</a> := "java.util",
+    <a href="java_security.html">java_security</a> := "java.security",
+    <a href="java_nio_charset_spi.html">java_nio_charset_spi</a> := "java.nio.charset.spi",
+    <a href="java_nio.html">java_nio</a> := "java.nio",
+    <a href="java_lang_ref.html">java_lang_ref</a> := "java.lang.ref";
+
+<b>TYPE</b>
+
+  <a name="type-CharacterCodingException"></a><font color="#cc0033">CharacterCodingException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_io.html#type-IOException">java_io.IOException</a>)
+                              <b>STATIC</b>
+                                <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CharacterCodingException">CharacterCodingException</a><b>,CONSTRUCTOR</b>;
+                              <b>END</b>;
+
+  <a name="type-Charset"></a><font color="#cc0033">Charset</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_lang.html#type-Comparable">java_lang.Comparable</a>)    <a href="#meths-Charset"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+             <b>STATIC</b>
+               <b>PROCEDURE </b><font color="#cc0033">availableCharsets</font>*() : <a href="java_util.html#type-SortedMap">java_util.SortedMap</a>;
+               <b>PROCEDURE </b><font color="#cc0033">defaultCharset</font>*() : <a href="#type-Charset">Charset</a>;
+               <b>PROCEDURE </b><font color="#cc0033">forName</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-Charset">Charset</a>;
+               <b>PROCEDURE </b><font color="#cc0033">Init</font>!(    p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                               IN  p1 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-Charset">Charset</a><b>,CONSTRUCTOR</b>;
+               <b>PROCEDURE </b><font color="#cc0033">isSupported</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : BOOLEAN;
+             <b>END</b>;
+
+  <a name="type-CharsetDecoder"></a><font color="#cc0033">CharsetDecoder</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-CharsetDecoder"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                    <b>STATIC</b>
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : <a href="#type-Charset">Charset</a>;
+                                      p1 : SHORTREAL;
+                                      p2 : SHORTREAL) : <a href="#type-CharsetDecoder">CharsetDecoder</a><b>,CONSTRUCTOR</b>;
+                    <b>END</b>;
+
+  <a name="type-CharsetEncoder"></a><font color="#cc0033">CharsetEncoder</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-CharsetEncoder"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                    <b>STATIC</b>
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : <a href="#type-Charset">Charset</a>;
+                                      p1 : SHORTREAL;
+                                      p2 : SHORTREAL) : <a href="#type-CharsetEncoder">CharsetEncoder</a><b>,CONSTRUCTOR</b>;
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>!(    p0 : <a href="#type-Charset">Charset</a>;
+                                          p1 : SHORTREAL;
+                                          p2 : SHORTREAL;
+                                      IN  p3 : <b>ARRAY </b><b>OF </b>BYTE) : <a href="#type-CharsetEncoder">CharsetEncoder</a><b>,CONSTRUCTOR</b>;
+                    <b>END</b>;
+
+  <a name="type-CoderMalfunctionError"></a><font color="#cc0033">CoderMalfunctionError</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Error">java_lang.Error</a>)
+                           <b>STATIC</b>
+                             <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-Exception">java_lang.Exception</a>) : <a href="#type-CoderMalfunctionError">CoderMalfunctionError</a><b>,CONSTRUCTOR</b>;
+                           <b>END</b>;
+
+  <a name="type-CoderResult"></a><font color="#cc0033">CoderResult</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-CoderResult"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                 <b>STATIC</b>
+                   <a name="type-OVERFLOW"></a><font color="#cc0033">OVERFLOW</font>*            : <a href="#type-CoderResult">CoderResult</a>;
+                   <a name="type-UNDERFLOW"></a><font color="#cc0033">UNDERFLOW</font>*           : <a href="#type-CoderResult">CoderResult</a>;
+                   <b>PROCEDURE </b><font color="#cc0033">malformedForLength</font>*(p0 : INTEGER) : <a href="#type-CoderResult">CoderResult</a>;
+                   <b>PROCEDURE </b><font color="#cc0033">unmappableForLength</font>*(p0 : INTEGER) : <a href="#type-CoderResult">CoderResult</a>;
+                 <b>END</b>;
+
+  <a name="type-CodingErrorAction"></a><font color="#cc0033">CodingErrorAction</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-CodingErrorAction"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                       <b>STATIC</b>
+                         <a name="type-IGNORE"></a><font color="#cc0033">IGNORE</font>*  : <a href="#type-CodingErrorAction">CodingErrorAction</a>;
+                         <a name="type-REPLACE"></a><font color="#cc0033">REPLACE</font>* : <a href="#type-CodingErrorAction">CodingErrorAction</a>;
+                         <a name="type-REPORT"></a><font color="#cc0033">REPORT</font>*  : <a href="#type-CodingErrorAction">CodingErrorAction</a>;
+                       <b>END</b>;
+
+  <a name="type-IllegalCharsetNameException"></a><font color="#cc0033">IllegalCharsetNameException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-IllegalArgumentException">java_lang.IllegalArgumentException</a>)    <a href="#meths-IllegalCharsetNameException"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                                 <b>STATIC</b>
+                                   <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-IllegalCharsetNameException">IllegalCharsetNameException</a><b>,CONSTRUCTOR</b>;
+                                 <b>END</b>;
+
+  <a name="type-MalformedInputException"></a><font color="#cc0033">MalformedInputException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-CharacterCodingException">CharacterCodingException</a>)    <a href="#meths-MalformedInputException"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                             <b>STATIC</b>
+                               <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER) : <a href="#type-MalformedInputException">MalformedInputException</a><b>,CONSTRUCTOR</b>;
+                             <b>END</b>;
+
+  <a name="type-UnmappableCharacterException"></a><font color="#cc0033">UnmappableCharacterException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-CharacterCodingException">CharacterCodingException</a>)    <a href="#meths-UnmappableCharacterException"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                                  <b>STATIC</b>
+                                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER) : <a href="#type-UnmappableCharacterException">UnmappableCharacterException</a><b>,CONSTRUCTOR</b>;
+                                  <b>END</b>;
+
+  <a name="type-UnsupportedCharsetException"></a><font color="#cc0033">UnsupportedCharsetException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-IllegalArgumentException">java_lang.IllegalArgumentException</a>)    <a href="#meths-UnsupportedCharsetException"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                                 <b>STATIC</b>
+                                   <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-UnsupportedCharsetException">UnsupportedCharsetException</a><b>,CONSTRUCTOR</b>;
+                                 <b>END</b>;
+
+
+
+<a name="meths-Charset"></a>
+<b>PROCEDURE </b>(self:Charset) <font color="#cc0033">aliases</font>*() : <a href="java_util.html#type-Set">java_util.Set</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:Charset) <font color="#cc0033">canEncode</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Charset) <font color="#cc0033">compareTo</font>*(p0 : <a href="#type-Charset">Charset</a>) : INTEGER<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:Charset) <font color="#cc0033">compareTo</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Charset) <font color="#cc0033">contains</font>*(p0 : <a href="#type-Charset">Charset</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Charset) <font color="#cc0033">decode</font>*(p0 : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>) : <a href="java_nio.html#type-CharBuffer">java_nio.CharBuffer</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:Charset) <font color="#cc0033">displayName</font>*(p0 : <a href="java_util.html#type-Locale">java_util.Locale</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Charset) <font color="#cc0033">displayName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Charset) <font color="#cc0033">encode</font>*(p0 : <a href="java_nio.html#type-CharBuffer">java_nio.CharBuffer</a>) : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:Charset) <font color="#cc0033">encode</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:Charset) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN;
+
+<b>PROCEDURE </b>(self:Charset) <font color="#cc0033">hashCode</font>*() : INTEGER;
+
+<b>PROCEDURE </b>(self:Charset) <font color="#cc0033">isRegistered</font>*() : BOOLEAN<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:Charset) <font color="#cc0033">name</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:Charset) <font color="#cc0033">newDecoder</font>*() : <a href="#type-CharsetDecoder">CharsetDecoder</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Charset) <font color="#cc0033">newEncoder</font>*() : <a href="#type-CharsetEncoder">CharsetEncoder</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Charset) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a>;
+<a name="meths-CharsetDecoder"></a>
+<b>PROCEDURE </b>(self:CharsetDecoder) <font color="#cc0033">averageCharsPerByte</font>*() : SHORTREAL<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:CharsetDecoder) <font color="#cc0033">charset</font>*() : <a href="#type-Charset">Charset</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:CharsetDecoder) <font color="#cc0033">decode</font>*(p0 : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>) : <a href="java_nio.html#type-CharBuffer">java_nio.CharBuffer</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:CharsetDecoder) <font color="#cc0033">decode</font>*(p0 : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>;
+                                        p1 : <a href="java_nio.html#type-CharBuffer">java_nio.CharBuffer</a>;
+                                        p2 : BOOLEAN) : <a href="#type-CoderResult">CoderResult</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:CharsetDecoder) <font color="#cc0033">decodeLoop</font>!(p0 : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>;
+                                            p1 : <a href="java_nio.html#type-CharBuffer">java_nio.CharBuffer</a>) : <a href="#type-CoderResult">CoderResult</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CharsetDecoder) <font color="#cc0033">detectedCharset</font>*() : <a href="#type-Charset">Charset</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CharsetDecoder) <font color="#cc0033">flush</font>*(p0 : <a href="java_nio.html#type-CharBuffer">java_nio.CharBuffer</a>) : <a href="#type-CoderResult">CoderResult</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:CharsetDecoder) <font color="#cc0033">implFlush</font>!(p0 : <a href="java_nio.html#type-CharBuffer">java_nio.CharBuffer</a>) : <a href="#type-CoderResult">CoderResult</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CharsetDecoder) <font color="#cc0033">implOnMalformedInput</font>!(p0 : <a href="#type-CodingErrorAction">CodingErrorAction</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CharsetDecoder) <font color="#cc0033">implOnUnmappableCharacter</font>!(p0 : <a href="#type-CodingErrorAction">CodingErrorAction</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CharsetDecoder) <font color="#cc0033">implReplaceWith</font>!(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CharsetDecoder) <font color="#cc0033">implReset</font>!()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CharsetDecoder) <font color="#cc0033">isAutoDetecting</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CharsetDecoder) <font color="#cc0033">isCharsetDetected</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CharsetDecoder) <font color="#cc0033">malformedInputAction</font>*() : <a href="#type-CodingErrorAction">CodingErrorAction</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CharsetDecoder) <font color="#cc0033">maxCharsPerByte</font>*() : SHORTREAL<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:CharsetDecoder) <font color="#cc0033">onMalformedInput</font>*(p0 : <a href="#type-CodingErrorAction">CodingErrorAction</a>) : <a href="#type-CharsetDecoder">CharsetDecoder</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:CharsetDecoder) <font color="#cc0033">onUnmappableCharacter</font>*(p0 : <a href="#type-CodingErrorAction">CodingErrorAction</a>) : <a href="#type-CharsetDecoder">CharsetDecoder</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:CharsetDecoder) <font color="#cc0033">replacement</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:CharsetDecoder) <font color="#cc0033">replaceWith</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-CharsetDecoder">CharsetDecoder</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:CharsetDecoder) <font color="#cc0033">reset</font>*() : <a href="#type-CharsetDecoder">CharsetDecoder</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:CharsetDecoder) <font color="#cc0033">unmappableCharacterAction</font>*() : <a href="#type-CodingErrorAction">CodingErrorAction</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-CharsetEncoder"></a>
+<b>PROCEDURE </b>(self:CharsetEncoder) <font color="#cc0033">averageBytesPerChar</font>*() : SHORTREAL<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:CharsetEncoder) <font color="#cc0033">canEncode</font>*(p0 : CHAR) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CharsetEncoder) <font color="#cc0033">canEncode</font>*(p0 : <a href="java_lang.html#type-CharSequence">java_lang.CharSequence</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CharsetEncoder) <font color="#cc0033">charset</font>*() : <a href="#type-Charset">Charset</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:CharsetEncoder) <font color="#cc0033">encode</font>*(p0 : <a href="java_nio.html#type-CharBuffer">java_nio.CharBuffer</a>;
+                                        p1 : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>;
+                                        p2 : BOOLEAN) : <a href="#type-CoderResult">CoderResult</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:CharsetEncoder) <font color="#cc0033">encode</font>*(p0 : <a href="java_nio.html#type-CharBuffer">java_nio.CharBuffer</a>) : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:CharsetEncoder) <font color="#cc0033">encodeLoop</font>!(p0 : <a href="java_nio.html#type-CharBuffer">java_nio.CharBuffer</a>;
+                                            p1 : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>) : <a href="#type-CoderResult">CoderResult</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CharsetEncoder) <font color="#cc0033">flush</font>*(p0 : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>) : <a href="#type-CoderResult">CoderResult</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:CharsetEncoder) <font color="#cc0033">implFlush</font>!(p0 : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>) : <a href="#type-CoderResult">CoderResult</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CharsetEncoder) <font color="#cc0033">implOnMalformedInput</font>!(p0 : <a href="#type-CodingErrorAction">CodingErrorAction</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CharsetEncoder) <font color="#cc0033">implOnUnmappableCharacter</font>!(p0 : <a href="#type-CodingErrorAction">CodingErrorAction</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CharsetEncoder) <font color="#cc0033">implReplaceWith</font>!(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CharsetEncoder) <font color="#cc0033">implReset</font>!()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CharsetEncoder) <font color="#cc0033">isLegalReplacement</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CharsetEncoder) <font color="#cc0033">malformedInputAction</font>*() : <a href="#type-CodingErrorAction">CodingErrorAction</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CharsetEncoder) <font color="#cc0033">maxBytesPerChar</font>*() : SHORTREAL<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:CharsetEncoder) <font color="#cc0033">onMalformedInput</font>*(p0 : <a href="#type-CodingErrorAction">CodingErrorAction</a>) : <a href="#type-CharsetEncoder">CharsetEncoder</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:CharsetEncoder) <font color="#cc0033">onUnmappableCharacter</font>*(p0 : <a href="#type-CodingErrorAction">CodingErrorAction</a>) : <a href="#type-CharsetEncoder">CharsetEncoder</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:CharsetEncoder) <font color="#cc0033">replacement</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>BYTE<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:CharsetEncoder) <font color="#cc0033">replaceWith</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE) : <a href="#type-CharsetEncoder">CharsetEncoder</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:CharsetEncoder) <font color="#cc0033">reset</font>*() : <a href="#type-CharsetEncoder">CharsetEncoder</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:CharsetEncoder) <font color="#cc0033">unmappableCharacterAction</font>*() : <a href="#type-CodingErrorAction">CodingErrorAction</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-CoderResult"></a>
+<b>PROCEDURE </b>(self:CoderResult) <font color="#cc0033">isError</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CoderResult) <font color="#cc0033">isMalformed</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CoderResult) <font color="#cc0033">isOverflow</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CoderResult) <font color="#cc0033">isUnderflow</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CoderResult) <font color="#cc0033">isUnmappable</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CoderResult) <font color="#cc0033">length</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CoderResult) <font color="#cc0033">throwException</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CoderResult) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,EXTENSIBLE</b>;
+<a name="meths-CodingErrorAction"></a>
+<b>PROCEDURE </b>(self:CodingErrorAction) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,EXTENSIBLE</b>;
+<a name="meths-IllegalCharsetNameException"></a>
+<b>PROCEDURE </b>(self:IllegalCharsetNameException) <font color="#cc0033">getCharsetName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-MalformedInputException"></a>
+<b>PROCEDURE </b>(self:MalformedInputException) <font color="#cc0033">getInputLength</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MalformedInputException) <font color="#cc0033">getMessage</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,EXTENSIBLE</b>;
+<a name="meths-UnmappableCharacterException"></a>
+<b>PROCEDURE </b>(self:UnmappableCharacterException) <font color="#cc0033">getInputLength</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:UnmappableCharacterException) <font color="#cc0033">getMessage</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,EXTENSIBLE</b>;
+<a name="meths-UnsupportedCharsetException"></a>
+<b>PROCEDURE </b>(self:UnsupportedCharsetException) <font color="#cc0033">getCharsetName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>END </b><font color="#cc0033">java_nio_charset</font>.
+</font></pre></hr></body></html>

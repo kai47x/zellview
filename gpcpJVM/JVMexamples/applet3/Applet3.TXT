@@ -1,0 +1,18 @@
+
+This program is an example of an applet written entirely in Component Pascal.
+It uses only the old-fashioned AWT libraries. Yes, it is pretty old!
+
+It computes bicycle wheel spoke lengths given the geometry of the rim and
+hubs and the spoking pattern.
+
+Unlike many such programs it deals with irregular spoking patterns and 
+rims with offset spoke beds.
+
+It is precompiled in this directory, and may be compiled using just
+> cprun gpcp SpokeLength3.cp
+All code is in the one source file. However, the browser must be able
+to reach the runtime libraries, which means that classes for the
+CP.RTS, CP.CPJ, CP.CPJrts packages must be present in the codebase.
+
+John Gough 16 September 2004.
+

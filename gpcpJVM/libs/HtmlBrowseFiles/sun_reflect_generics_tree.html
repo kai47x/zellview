@@ -1,0 +1,214 @@
+<html><head><title>sun_reflect_generics_tree</title></head>
+<body bgcolor="white">
+<hr><pre>
+<b>FOREIGN MODULE </b><font color="#cc0033">sun_reflect_generics_tree</font>;
+
+<b>IMPORT</b>
+    <a href="sun_reflect_generics_visitor.html">sun_reflect_generics_visitor</a> := "sun.reflect.generics.visitor",
+    <a href="java_lang.html">java_lang</a> := "java.lang",
+    <a href="java_util.html">java_util</a> := "java.util";
+
+<b>TYPE</b>
+
+  <a name="type-ArrayTypeSignature"></a><font color="#cc0033">ArrayTypeSignature</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-FieldTypeSignature">FieldTypeSignature</a>)    <a href="#meths-ArrayTypeSignature"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                        <b>STATIC</b>
+                          <b>PROCEDURE </b><font color="#cc0033">make</font>*(p0 : <a href="#type-TypeSignature">TypeSignature</a>) : <a href="#type-ArrayTypeSignature">ArrayTypeSignature</a>;
+                        <b>END</b>;
+
+  <a name="type-BaseType"></a><font color="#cc0033">BaseType</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-TypeSignature">TypeSignature</a>)
+              <b>END</b>;
+
+  <a name="type-BooleanSignature"></a><font color="#cc0033">BooleanSignature</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-BaseType">BaseType</a>)    <a href="#meths-BooleanSignature"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                      <b>STATIC</b>
+                        <b>PROCEDURE </b><font color="#cc0033">make</font>*() : <a href="#type-BooleanSignature">BooleanSignature</a>;
+                      <b>END</b>;
+
+  <a name="type-BottomSignature"></a><font color="#cc0033">BottomSignature</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-FieldTypeSignature">FieldTypeSignature</a>)    <a href="#meths-BottomSignature"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                     <b>STATIC</b>
+                       <b>PROCEDURE </b><font color="#cc0033">make</font>*() : <a href="#type-BottomSignature">BottomSignature</a>;
+                     <b>END</b>;
+
+  <a name="type-ByteSignature"></a><font color="#cc0033">ByteSignature</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-BaseType">BaseType</a>)    <a href="#meths-ByteSignature"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                   <b>STATIC</b>
+                     <b>PROCEDURE </b><font color="#cc0033">make</font>*() : <a href="#type-ByteSignature">ByteSignature</a>;
+                   <b>END</b>;
+
+  <a name="type-CharSignature"></a><font color="#cc0033">CharSignature</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-BaseType">BaseType</a>)    <a href="#meths-CharSignature"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                   <b>STATIC</b>
+                     <b>PROCEDURE </b><font color="#cc0033">make</font>*() : <a href="#type-CharSignature">CharSignature</a>;
+                   <b>END</b>;
+
+  <a name="type-ClassSignature"></a><font color="#cc0033">ClassSignature</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-Signature">Signature</a>)    <a href="#meths-ClassSignature"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                    <b>STATIC</b>
+                      <b>PROCEDURE </b><font color="#cc0033">make</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="#type-FormalTypeParameter">FormalTypeParameter</a>;
+                                          p1 : <a href="#type-ClassTypeSignature">ClassTypeSignature</a>;
+                                      IN  p2 : <b>ARRAY </b><b>OF </b><a href="#type-ClassTypeSignature">ClassTypeSignature</a>) : <a href="#type-ClassSignature">ClassSignature</a>;
+                    <b>END</b>;
+
+  <a name="type-ClassTypeSignature"></a><font color="#cc0033">ClassTypeSignature</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-FieldTypeSignature">FieldTypeSignature</a>)    <a href="#meths-ClassTypeSignature"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                        <b>STATIC</b>
+                          <b>PROCEDURE </b><font color="#cc0033">make</font>*(p0 : <a href="java_util.html#type-List">java_util.List</a>) : <a href="#type-ClassTypeSignature">ClassTypeSignature</a>;
+                        <b>END</b>;
+
+  <a name="type-DoubleSignature"></a><font color="#cc0033">DoubleSignature</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-BaseType">BaseType</a>)    <a href="#meths-DoubleSignature"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                     <b>STATIC</b>
+                       <b>PROCEDURE </b><font color="#cc0033">make</font>*() : <a href="#type-DoubleSignature">DoubleSignature</a>;
+                     <b>END</b>;
+
+  <a name="type-FieldTypeSignature"></a><font color="#cc0033">FieldTypeSignature</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-BaseType">BaseType</a> + <a href="#type-TypeSignature">TypeSignature</a> + <a href="#type-TypeArgument">TypeArgument</a>)
+                        <b>END</b>;
+
+  <a name="type-FloatSignature"></a><font color="#cc0033">FloatSignature</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-BaseType">BaseType</a>)    <a href="#meths-FloatSignature"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                    <b>STATIC</b>
+                      <b>PROCEDURE </b><font color="#cc0033">make</font>*() : <a href="#type-FloatSignature">FloatSignature</a>;
+                    <b>END</b>;
+
+  <a name="type-FormalTypeParameter"></a><font color="#cc0033">FormalTypeParameter</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-TypeTree">TypeTree</a>)    <a href="#meths-FormalTypeParameter"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                         <b>STATIC</b>
+                           <b>PROCEDURE </b><font color="#cc0033">make</font>*(    p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                           IN  p1 : <b>ARRAY </b><b>OF </b><a href="#type-FieldTypeSignature">FieldTypeSignature</a>) : <a href="#type-FormalTypeParameter">FormalTypeParameter</a>;
+                         <b>END</b>;
+
+  <a name="type-IntSignature"></a><font color="#cc0033">IntSignature</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-BaseType">BaseType</a>)    <a href="#meths-IntSignature"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                  <b>STATIC</b>
+                    <b>PROCEDURE </b><font color="#cc0033">make</font>*() : <a href="#type-IntSignature">IntSignature</a>;
+                  <b>END</b>;
+
+  <a name="type-LongSignature"></a><font color="#cc0033">LongSignature</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-BaseType">BaseType</a>)    <a href="#meths-LongSignature"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                   <b>STATIC</b>
+                     <b>PROCEDURE </b><font color="#cc0033">make</font>*() : <a href="#type-LongSignature">LongSignature</a>;
+                   <b>END</b>;
+
+  <a name="type-MethodTypeSignature"></a><font color="#cc0033">MethodTypeSignature</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-Signature">Signature</a>)    <a href="#meths-MethodTypeSignature"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                         <b>STATIC</b>
+                           <b>PROCEDURE </b><font color="#cc0033">make</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="#type-FormalTypeParameter">FormalTypeParameter</a>;
+                                           IN  p1 : <b>ARRAY </b><b>OF </b><a href="#type-TypeSignature">TypeSignature</a>;
+                                               p2 : <a href="#type-ReturnType">ReturnType</a>;
+                                           IN  p3 : <b>ARRAY </b><b>OF </b><a href="#type-FieldTypeSignature">FieldTypeSignature</a>) : <a href="#type-MethodTypeSignature">MethodTypeSignature</a>;
+                         <b>END</b>;
+
+  <a name="type-ReturnType"></a><font color="#cc0033">ReturnType</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-TypeTree">TypeTree</a>)
+                <b>END</b>;
+
+  <a name="type-ShortSignature"></a><font color="#cc0033">ShortSignature</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-BaseType">BaseType</a>)    <a href="#meths-ShortSignature"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                    <b>STATIC</b>
+                      <b>PROCEDURE </b><font color="#cc0033">make</font>*() : <a href="#type-ShortSignature">ShortSignature</a>;
+                    <b>END</b>;
+
+  <a name="type-Signature"></a><font color="#cc0033">Signature</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-Tree">Tree</a>)    <a href="#meths-Signature"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+               <b>END</b>;
+
+  <a name="type-SimpleClassTypeSignature"></a><font color="#cc0033">SimpleClassTypeSignature</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-FieldTypeSignature">FieldTypeSignature</a>)    <a href="#meths-SimpleClassTypeSignature"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                              <b>STATIC</b>
+                                <b>PROCEDURE </b><font color="#cc0033">make</font>*(    p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                    p1 : BOOLEAN;
+                                                IN  p2 : <b>ARRAY </b><b>OF </b><a href="#type-TypeArgument">TypeArgument</a>) : <a href="#type-SimpleClassTypeSignature">SimpleClassTypeSignature</a>;
+                              <b>END</b>;
+
+  <a name="type-Tree"></a><font color="#cc0033">Tree</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+          <b>END</b>;
+
+  <a name="type-TypeArgument"></a><font color="#cc0033">TypeArgument</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-TypeTree">TypeTree</a>)
+                  <b>END</b>;
+
+  <a name="type-TypeSignature"></a><font color="#cc0033">TypeSignature</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-ReturnType">ReturnType</a>)
+                   <b>END</b>;
+
+  <a name="type-TypeTree"></a><font color="#cc0033">TypeTree</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-Tree">Tree</a>)    <a href="#meths-TypeTree"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+              <b>END</b>;
+
+  <a name="type-TypeVariableSignature"></a><font color="#cc0033">TypeVariableSignature</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-FieldTypeSignature">FieldTypeSignature</a>)    <a href="#meths-TypeVariableSignature"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                           <b>STATIC</b>
+                             <b>PROCEDURE </b><font color="#cc0033">make</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-TypeVariableSignature">TypeVariableSignature</a>;
+                           <b>END</b>;
+
+  <a name="type-VoidDescriptor"></a><font color="#cc0033">VoidDescriptor</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-ReturnType">ReturnType</a>)    <a href="#meths-VoidDescriptor"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                    <b>STATIC</b>
+                      <b>PROCEDURE </b><font color="#cc0033">make</font>*() : <a href="#type-VoidDescriptor">VoidDescriptor</a>;
+                    <b>END</b>;
+
+  <a name="type-Wildcard"></a><font color="#cc0033">Wildcard</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-TypeArgument">TypeArgument</a>)    <a href="#meths-Wildcard"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+              <b>STATIC</b>
+                <b>PROCEDURE </b><font color="#cc0033">make</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="#type-FieldTypeSignature">FieldTypeSignature</a>;
+                                IN  p1 : <b>ARRAY </b><b>OF </b><a href="#type-FieldTypeSignature">FieldTypeSignature</a>) : <a href="#type-Wildcard">Wildcard</a>;
+              <b>END</b>;
+
+
+
+<a name="meths-ArrayTypeSignature"></a>
+<b>PROCEDURE </b>(self:ArrayTypeSignature) <font color="#cc0033">accept</font>*(p0 : <a href="sun_reflect_generics_visitor.html#type-TypeTreeVisitor">sun_reflect_generics_visitor.TypeTreeVisitor</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ArrayTypeSignature) <font color="#cc0033">getComponentType</font>*() : <a href="#type-TypeSignature">TypeSignature</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-BooleanSignature"></a>
+<b>PROCEDURE </b>(self:BooleanSignature) <font color="#cc0033">accept</font>*(p0 : <a href="sun_reflect_generics_visitor.html#type-TypeTreeVisitor">sun_reflect_generics_visitor.TypeTreeVisitor</a>)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-BottomSignature"></a>
+<b>PROCEDURE </b>(self:BottomSignature) <font color="#cc0033">accept</font>*(p0 : <a href="sun_reflect_generics_visitor.html#type-TypeTreeVisitor">sun_reflect_generics_visitor.TypeTreeVisitor</a>)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-ByteSignature"></a>
+<b>PROCEDURE </b>(self:ByteSignature) <font color="#cc0033">accept</font>*(p0 : <a href="sun_reflect_generics_visitor.html#type-TypeTreeVisitor">sun_reflect_generics_visitor.TypeTreeVisitor</a>)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-CharSignature"></a>
+<b>PROCEDURE </b>(self:CharSignature) <font color="#cc0033">accept</font>*(p0 : <a href="sun_reflect_generics_visitor.html#type-TypeTreeVisitor">sun_reflect_generics_visitor.TypeTreeVisitor</a>)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-ClassSignature"></a>
+<b>PROCEDURE </b>(self:ClassSignature) <font color="#cc0033">accept</font>*(p0 : <a href="sun_reflect_generics_visitor.html#type-Visitor">sun_reflect_generics_visitor.Visitor</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ClassSignature) <font color="#cc0033">getFormalTypeParameters</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-FormalTypeParameter">FormalTypeParameter</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ClassSignature) <font color="#cc0033">getSuperclass</font>*() : <a href="#type-ClassTypeSignature">ClassTypeSignature</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ClassSignature) <font color="#cc0033">getSuperInterfaces</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-ClassTypeSignature">ClassTypeSignature</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-ClassTypeSignature"></a>
+<b>PROCEDURE </b>(self:ClassTypeSignature) <font color="#cc0033">accept</font>*(p0 : <a href="sun_reflect_generics_visitor.html#type-TypeTreeVisitor">sun_reflect_generics_visitor.TypeTreeVisitor</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ClassTypeSignature) <font color="#cc0033">getPath</font>*() : <a href="java_util.html#type-List">java_util.List</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-DoubleSignature"></a>
+<b>PROCEDURE </b>(self:DoubleSignature) <font color="#cc0033">accept</font>*(p0 : <a href="sun_reflect_generics_visitor.html#type-TypeTreeVisitor">sun_reflect_generics_visitor.TypeTreeVisitor</a>)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-FloatSignature"></a>
+<b>PROCEDURE </b>(self:FloatSignature) <font color="#cc0033">accept</font>*(p0 : <a href="sun_reflect_generics_visitor.html#type-TypeTreeVisitor">sun_reflect_generics_visitor.TypeTreeVisitor</a>)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-FormalTypeParameter"></a>
+<b>PROCEDURE </b>(self:FormalTypeParameter) <font color="#cc0033">accept</font>*(p0 : <a href="sun_reflect_generics_visitor.html#type-TypeTreeVisitor">sun_reflect_generics_visitor.TypeTreeVisitor</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FormalTypeParameter) <font color="#cc0033">getBounds</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-FieldTypeSignature">FieldTypeSignature</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FormalTypeParameter) <font color="#cc0033">getName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-IntSignature"></a>
+<b>PROCEDURE </b>(self:IntSignature) <font color="#cc0033">accept</font>*(p0 : <a href="sun_reflect_generics_visitor.html#type-TypeTreeVisitor">sun_reflect_generics_visitor.TypeTreeVisitor</a>)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-LongSignature"></a>
+<b>PROCEDURE </b>(self:LongSignature) <font color="#cc0033">accept</font>*(p0 : <a href="sun_reflect_generics_visitor.html#type-TypeTreeVisitor">sun_reflect_generics_visitor.TypeTreeVisitor</a>)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-MethodTypeSignature"></a>
+<b>PROCEDURE </b>(self:MethodTypeSignature) <font color="#cc0033">accept</font>*(p0 : <a href="sun_reflect_generics_visitor.html#type-Visitor">sun_reflect_generics_visitor.Visitor</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MethodTypeSignature) <font color="#cc0033">getExceptionTypes</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-FieldTypeSignature">FieldTypeSignature</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MethodTypeSignature) <font color="#cc0033">getFormalTypeParameters</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-FormalTypeParameter">FormalTypeParameter</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MethodTypeSignature) <font color="#cc0033">getParameterTypes</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-TypeSignature">TypeSignature</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MethodTypeSignature) <font color="#cc0033">getReturnType</font>*() : <a href="#type-ReturnType">ReturnType</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-ShortSignature"></a>
+<b>PROCEDURE </b>(self:ShortSignature) <font color="#cc0033">accept</font>*(p0 : <a href="sun_reflect_generics_visitor.html#type-TypeTreeVisitor">sun_reflect_generics_visitor.TypeTreeVisitor</a>)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-Signature"></a>
+<b>PROCEDURE </b>(self:Signature) <font color="#cc0033">getFormalTypeParameters</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-FormalTypeParameter">FormalTypeParameter</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-SimpleClassTypeSignature"></a>
+<b>PROCEDURE </b>(self:SimpleClassTypeSignature) <font color="#cc0033">accept</font>*(p0 : <a href="sun_reflect_generics_visitor.html#type-TypeTreeVisitor">sun_reflect_generics_visitor.TypeTreeVisitor</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SimpleClassTypeSignature) <font color="#cc0033">getDollar</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SimpleClassTypeSignature) <font color="#cc0033">getName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SimpleClassTypeSignature) <font color="#cc0033">getTypeArguments</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-TypeArgument">TypeArgument</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-TypeTree"></a>
+<b>PROCEDURE </b>(self:TypeTree) <font color="#cc0033">accept</font>*(p0 : <a href="sun_reflect_generics_visitor.html#type-TypeTreeVisitor">sun_reflect_generics_visitor.TypeTreeVisitor</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-TypeVariableSignature"></a>
+<b>PROCEDURE </b>(self:TypeVariableSignature) <font color="#cc0033">accept</font>*(p0 : <a href="sun_reflect_generics_visitor.html#type-TypeTreeVisitor">sun_reflect_generics_visitor.TypeTreeVisitor</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TypeVariableSignature) <font color="#cc0033">getIdentifier</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-VoidDescriptor"></a>
+<b>PROCEDURE </b>(self:VoidDescriptor) <font color="#cc0033">accept</font>*(p0 : <a href="sun_reflect_generics_visitor.html#type-TypeTreeVisitor">sun_reflect_generics_visitor.TypeTreeVisitor</a>)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-Wildcard"></a>
+<b>PROCEDURE </b>(self:Wildcard) <font color="#cc0033">accept</font>*(p0 : <a href="sun_reflect_generics_visitor.html#type-TypeTreeVisitor">sun_reflect_generics_visitor.TypeTreeVisitor</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Wildcard) <font color="#cc0033">getLowerBounds</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-FieldTypeSignature">FieldTypeSignature</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Wildcard) <font color="#cc0033">getUpperBounds</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-FieldTypeSignature">FieldTypeSignature</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>END </b><font color="#cc0033">sun_reflect_generics_tree</font>.
+</font></pre></hr></body></html>

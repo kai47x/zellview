@@ -1,0 +1,88 @@
+<html><head><title>java_awt_im_spi</title></head>
+<body bgcolor="white">
+<hr><pre>
+<b>FOREIGN MODULE </b><font color="#cc0033">java_awt_im_spi</font>;
+
+<b>IMPORT</b>
+    <a href="java_util.html">java_util</a> := "java.util",
+    <a href="java_awt.html">java_awt</a> := "java.awt",
+    <a href="java_lang.html">java_lang</a> := "java.lang",
+    <a href="java_awt_im.html">java_awt_im</a> := "java.awt.im",
+    <a href="java_text.html">java_text</a> := "java.text",
+    <a href="java_awt_font.html">java_awt_font</a> := "java.awt.font",
+    <a href="javax_swing.html">javax_swing</a> := "javax.swing";
+
+<b>TYPE</b>
+
+  <a name="type-InputMethod"></a><font color="#cc0033">InputMethod</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-InputMethod"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                 <b>END</b>;
+
+  <a name="type-InputMethodContext"></a><font color="#cc0033">InputMethodContext</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_awt_im.html#type-InputMethodRequests">java_awt_im.InputMethodRequests</a>)    <a href="#meths-InputMethodContext"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                        <b>END</b>;
+
+  <a name="type-InputMethodDescriptor"></a><font color="#cc0033">InputMethodDescriptor</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-InputMethodDescriptor"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                           <b>END</b>;
+
+
+
+<a name="meths-InputMethod"></a>
+<b>PROCEDURE </b>(self:InputMethod) <font color="#cc0033">activate</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:InputMethod) <font color="#cc0033">deactivate</font>*(p0 : BOOLEAN)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:InputMethod) <font color="#cc0033">dispatchEvent</font>*(p0 : <a href="java_awt.html#type-AWTEvent">java_awt.AWTEvent</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:InputMethod) <font color="#cc0033">dispose</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:InputMethod) <font color="#cc0033">endComposition</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:InputMethod) <font color="#cc0033">getControlObject</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:InputMethod) <font color="#cc0033">getLocale</font>*() : <a href="java_util.html#type-Locale">java_util.Locale</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:InputMethod) <font color="#cc0033">hideWindows</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:InputMethod) <font color="#cc0033">isCompositionEnabled</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:InputMethod) <font color="#cc0033">notifyClientWindowChange</font>*(p0 : <a href="java_awt.html#type-Rectangle">java_awt.Rectangle</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:InputMethod) <font color="#cc0033">reconvert</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:InputMethod) <font color="#cc0033">removeNotify</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:InputMethod) <font color="#cc0033">setCharacterSubsets</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Character$Subset">java_lang.Character$Subset</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:InputMethod) <font color="#cc0033">setCompositionEnabled</font>*(p0 : BOOLEAN)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:InputMethod) <font color="#cc0033">setInputMethodContext</font>*(p0 : <a href="#type-InputMethodContext">InputMethodContext</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:InputMethod) <font color="#cc0033">setLocale</font>*(p0 : <a href="java_util.html#type-Locale">java_util.Locale</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+<a name="meths-InputMethodContext"></a>
+<b>PROCEDURE </b>(self:InputMethodContext) <font color="#cc0033">createInputMethodJFrame</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                             p1 : BOOLEAN) : <a href="javax_swing.html#type-JFrame">javax_swing.JFrame</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:InputMethodContext) <font color="#cc0033">createInputMethodWindow</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                             p1 : BOOLEAN) : <a href="java_awt.html#type-Window">java_awt.Window</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:InputMethodContext) <font color="#cc0033">dispatchInputMethodEvent</font>*(p0 : INTEGER;
+                                                              p1 : <a href="java_text.html#type-AttributedCharacterIterator">java_text.AttributedCharacterIterator</a>;
+                                                              p2 : INTEGER;
+                                                              p3 : <a href="java_awt_font.html#type-TextHitInfo">java_awt_font.TextHitInfo</a>;
+                                                              p4 : <a href="java_awt_font.html#type-TextHitInfo">java_awt_font.TextHitInfo</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:InputMethodContext) <font color="#cc0033">enableClientWindowNotification</font>*(p0 : <a href="#type-InputMethod">InputMethod</a>;
+                                                                    p1 : BOOLEAN)<b>,NEW,ABSTRACT</b>;
+<a name="meths-InputMethodDescriptor"></a>
+<b>PROCEDURE </b>(self:InputMethodDescriptor) <font color="#cc0033">createInputMethod</font>*() : <a href="#type-InputMethod">InputMethod</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:InputMethodDescriptor) <font color="#cc0033">getAvailableLocales</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_util.html#type-Locale">java_util.Locale</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:InputMethodDescriptor) <font color="#cc0033">getInputMethodDisplayName</font>*(p0 : <a href="java_util.html#type-Locale">java_util.Locale</a>;
+                                                                  p1 : <a href="java_util.html#type-Locale">java_util.Locale</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:InputMethodDescriptor) <font color="#cc0033">getInputMethodIcon</font>*(p0 : <a href="java_util.html#type-Locale">java_util.Locale</a>) : <a href="java_awt.html#type-Image">java_awt.Image</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:InputMethodDescriptor) <font color="#cc0033">hasDynamicLocaleList</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>END </b><font color="#cc0033">java_awt_im_spi</font>.
+</font></pre></hr></body></html>

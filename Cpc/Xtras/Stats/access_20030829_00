@@ -1,0 +1,9 @@
+format.access="%Ses->client.ip%  %Req->headers.referer% -  %Req->vars.auth-user% [%SYSDATE%] \"%Req->reqpb.clf-request%\" %Req->srvhdrs.clf-status% %Req->srvhdrs.content-length% %Req->headers.host%"
+80.135.80.102 http://www.google.de/search?q=eFeM&hl=de&lr=&cr=countryDE&ie=UTF-8&oe=UTF-8&start=0&sa=N - [29/Aug/2003:00:22:01 +0200] "GET /Multi.txt HTTP/1.1" 200 376040 www.zinnamturm.de
+217.5.5.247 http://www.zinnamturm.de/ - [29/Aug/2003:03:17:21 +0200] "GET /bg3.gif HTTP/1.1" 200 16276 www.zinnamturm.de
+217.5.5.247 http://www.zinnamturm.de/ - [29/Aug/2003:03:17:21 +0200] "GET /mail99.gif HTTP/1.1" 200 4196 www.zinnamturm.de
+217.5.5.247 - - [29/Aug/2003:03:17:32 +0200] "GET /favicon.ico HTTP/1.1" 200 1406 www.zinnamturm.de
+217.5.5.247 http://www.oberon.ch/prod/bbcommunity/index.html - [29/Aug/2003:03:17:32 +0200] "GET / HTTP/1.1" 200 84555 www.zinnamturm.de
+217.5.3.42 http://www.zinnamturm.de/ - [29/Aug/2003:03:36:15 +0200] "GET /CpcBeautifier.pac HTTP/1.1" 200 25213 www.zinnamturm.de
+217.5.3.42 http://www.zinnamturm.de/ - [29/Aug/2003:03:37:58 +0200] "GET /CpcBeautifier.txt HTTP/1.1" 403 142 www.zinnamturm.de
+217.5.3.42 - - [29/Aug/2003:03:38:05 +0200] "GET /CpcBeautifier.txt HTTP/1.1" 200 61399 www.zinnamturm.de

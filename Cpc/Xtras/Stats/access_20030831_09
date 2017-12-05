@@ -1,0 +1,27 @@
+format.access="%Ses->client.ip%  %Req->headers.referer% -  %Req->vars.auth-user% [%SYSDATE%] \"%Req->reqpb.clf-request%\" %Req->srvhdrs.clf-status% %Req->srvhdrs.content-length% %Req->headers.host%"
+64.68.82.28 - - [31/Aug/2003:09:11:06 +0200] "GET /CpcFloat.txt HTTP/1.0" 200 12706 www.zinnamturm.de
+64.68.82.28 - - [31/Aug/2003:09:11:06 +0200] "GET /Reg.txt HTTP/1.0" 200 31465 www.zinnamturm.de
+64.68.82.170 - - [31/Aug/2003:09:25:02 +0200] "GET /Algebra.txt HTTP/1.0" 403 142 www.zinnamturm.de
+64.68.82.170 - - [31/Aug/2003:09:25:02 +0200] "GET /CpcFormTidy.txt HTTP/1.0" 200 35360 www.zinnamturm.de
+64.68.82.28 - - [31/Aug/2003:09:25:16 +0200] "GET /Output.txt HTTP/1.0" 200 46059 www.zinnamturm.de
+67.127.101.112 - - [31/Aug/2003:11:48:49 +0200] "GET /cgi-bin/formmail/FormMail.pl HTTP/1.1" 302 0 www.zinnamturm.de
+67.127.101.112 - - [31/Aug/2003:11:48:51 +0200] "GET /cgi-bin/formmail/FormMail.cgi HTTP/1.1" 302 0 www.zinnamturm.de
+213.44.177.129 - - [31/Aug/2003:11:56:07 +0200] "GET / HTTP/1.0" 200 84555 www.zinnamturm.de
+4.63.162.8 - - [31/Aug/2003:12:13:48 +0200] "GET /cgi-bin/formmail/FormMail.pl?realname=elexl%20wwkajc&recipient=piscesali@aol.com&email=WantDis@aol.com&subject=http://www.zinnamturm.de/cgi-bin/formmail/FormMail.pl&message=erekh%20qoalxtrxgny%20rwifuvlvycx%20nrsrtf HTTP/1.1" 200 594 www.zinnamturm.de
+4.63.162.8 - - [31/Aug/2003:12:13:48 +0200] "GET /cgi-bin/formmail/formmail.pl?realname=jncji%20qstpcj&recipient=piscesali@aol.com&email=WantDis@aol.com&subject=http://www.zinnamturm.de/cgi-bin/formmail/formmail.pl&message=gypqa%20orywnuhhuzf%20tdsenaotqzr%20cuzcag HTTP/1.1" 200 594 www.zinnamturm.de
+4.63.162.8 - - [31/Aug/2003:12:13:48 +0200] "GET /cgi-bin/formmail.pl?realname=wrydv%20voocgn&recipient=piscesali@aol.com&email=WantDis@aol.com&subject=http://www.zinnamturm.de/cgi-bin/formmail.pl&message=bkamv%20bvuraykchki%20owxiinzpemc%20fptoeb HTTP/1.1" 200 597 www.zinnamturm.de
+4.63.162.8 - - [31/Aug/2003:12:13:48 +0200] "GET /cgi-bin/formmail/FormMail.cgi?realname=cbdws%20wlyrzb&recipient=piscesali@aol.com&email=WantDis@aol.com&subject=http://www.zinnamturm.de/cgi-bin/formmail/FormMail.cgi&message=cylzp%20hezjeahmddx%20qdovctbuwjd%20czihsd HTTP/1.1" 200 594 www.zinnamturm.de
+217.17.28.130 - - [31/Aug/2003:13:58:10 +0200] "GET / HTTP/1.0" 403 142 www.zinnamturm.de
+67.127.101.112 - - [31/Aug/2003:14:15:45 +0200] "GET /cgi-bin/formmail/FormMail.cgi HTTP/1.1" 302 0 www.zinnamturm.de
+67.127.101.112 - - [31/Aug/2003:14:15:45 +0200] "GET /cgi-bin/formmail/FormMail.pl HTTP/1.1" 302 0 www.zinnamturm.de
+194.95.224.130 http://www.zinnamturm.de/ - [31/Aug/2003:14:59:51 +0200] "GET /bg3.gif HTTP/1.1" 200 16276 www.zinnamturm.de
+194.95.224.130 http://www.zinnamturm.de/ - [31/Aug/2003:14:59:51 +0200] "GET /mail99.gif HTTP/1.1" 200 4196 www.zinnamturm.de
+194.95.224.130 http://www.oberon.ch/resources/index.html - [31/Aug/2003:14:59:51 +0200] "GET / HTTP/1.1" 200 84555 www.zinnamturm.de
+81.14.129.152 http://www.zinnamturm.de/ - [31/Aug/2003:15:57:28 +0200] "GET /bg3.gif HTTP/1.1" 304 - www.zinnamturm.de
+81.14.129.152 http://www.oberon.ch/resources/index.html - [31/Aug/2003:15:57:28 +0200] "GET / HTTP/1.1" 304 - www.zinnamturm.de
+81.14.129.152 http://www.zinnamturm.de/ - [31/Aug/2003:15:57:28 +0200] "GET /mail99.gif HTTP/1.1" 304 - www.zinnamturm.de
+67.127.101.112 - - [31/Aug/2003:16:14:18 +0200] "GET /cgi-bin/formmail/FormMail.cgi HTTP/1.1" 302 0 www.zinnamturm.de
+67.127.101.112 - - [31/Aug/2003:16:14:18 +0200] "GET /cgi-bin/formmail/FormMail.pl HTTP/1.1" 302 0 www.zinnamturm.de
+67.127.101.112 - - [31/Aug/2003:16:18:12 +0200] "GET /cgi-bin/formmail/FormMail.pl HTTP/1.1" 302 0 www.zinnamturm.de
+67.127.101.112 - - [31/Aug/2003:16:18:15 +0200] "GET /cgi-bin/formmail/FormMail.cgi HTTP/1.1" 302 0 www.zinnamturm.de
+82.64.237.177 - - [31/Aug/2003:18:00:28 +0200] "GET /Util.txt HTTP/1.1" 200 260498 www.zinnamturm.de

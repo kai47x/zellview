@@ -1,0 +1,55 @@
+<html><head><title>java_util_spi</title></head>
+<body bgcolor="white">
+<hr><pre>
+<b>FOREIGN MODULE </b><font color="#cc0033">java_util_spi</font>;
+
+<b>IMPORT</b>
+    <a href="java_lang.html">java_lang</a> := "java.lang",
+    <a href="java_util.html">java_util</a> := "java.util";
+
+<b>TYPE</b>
+
+  <a name="type-CurrencyNameProvider"></a><font color="#cc0033">CurrencyNameProvider</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="#type-LocaleServiceProvider">LocaleServiceProvider</a>)    <a href="#meths-CurrencyNameProvider"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                          <b>STATIC</b>
+                            <b>PROCEDURE </b><font color="#cc0033">Init</font>!() : <a href="#type-CurrencyNameProvider">CurrencyNameProvider</a><b>,CONSTRUCTOR</b>;
+                          <b>END</b>;
+
+  <a name="type-LocaleNameProvider"></a><font color="#cc0033">LocaleNameProvider</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="#type-LocaleServiceProvider">LocaleServiceProvider</a>)    <a href="#meths-LocaleNameProvider"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                        <b>STATIC</b>
+                          <b>PROCEDURE </b><font color="#cc0033">Init</font>!() : <a href="#type-LocaleNameProvider">LocaleNameProvider</a><b>,CONSTRUCTOR</b>;
+                        <b>END</b>;
+
+  <a name="type-LocaleServiceProvider"></a><font color="#cc0033">LocaleServiceProvider</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-LocaleServiceProvider"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                           <b>STATIC</b>
+                             <b>PROCEDURE </b><font color="#cc0033">Init</font>!() : <a href="#type-LocaleServiceProvider">LocaleServiceProvider</a><b>,CONSTRUCTOR</b>;
+                           <b>END</b>;
+
+  <a name="type-TimeZoneNameProvider"></a><font color="#cc0033">TimeZoneNameProvider</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="#type-LocaleServiceProvider">LocaleServiceProvider</a>)    <a href="#meths-TimeZoneNameProvider"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                          <b>STATIC</b>
+                            <b>PROCEDURE </b><font color="#cc0033">Init</font>!() : <a href="#type-TimeZoneNameProvider">TimeZoneNameProvider</a><b>,CONSTRUCTOR</b>;
+                          <b>END</b>;
+
+
+
+<a name="meths-CurrencyNameProvider"></a>
+<b>PROCEDURE </b>(self:CurrencyNameProvider) <font color="#cc0033">getSymbol</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                 p1 : <a href="java_util.html#type-Locale">java_util.Locale</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-LocaleNameProvider"></a>
+<b>PROCEDURE </b>(self:LocaleNameProvider) <font color="#cc0033">getDisplayCountry</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                       p1 : <a href="java_util.html#type-Locale">java_util.Locale</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:LocaleNameProvider) <font color="#cc0033">getDisplayLanguage</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                        p1 : <a href="java_util.html#type-Locale">java_util.Locale</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:LocaleNameProvider) <font color="#cc0033">getDisplayVariant</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                       p1 : <a href="java_util.html#type-Locale">java_util.Locale</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-LocaleServiceProvider"></a>
+<b>PROCEDURE </b>(self:LocaleServiceProvider) <font color="#cc0033">getAvailableLocales</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_util.html#type-Locale">java_util.Locale</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-TimeZoneNameProvider"></a>
+<b>PROCEDURE </b>(self:TimeZoneNameProvider) <font color="#cc0033">getDisplayName</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                      p1 : BOOLEAN;
+                                                      p2 : INTEGER;
+                                                      p3 : <a href="java_util.html#type-Locale">java_util.Locale</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>END </b><font color="#cc0033">java_util_spi</font>.
+</font></pre></hr></body></html>

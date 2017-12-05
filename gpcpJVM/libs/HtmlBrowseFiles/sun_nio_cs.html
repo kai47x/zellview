@@ -1,0 +1,954 @@
+<html><head><title>sun_nio_cs</title></head>
+<body bgcolor="white">
+<hr><pre>
+<b>FOREIGN MODULE </b><font color="#cc0033">sun_nio_cs</font>;
+
+<b>IMPORT</b>
+    <a href="java_util.html">java_util</a> := "java.util",
+    <a href="java_nio_charset.html">java_nio_charset</a> := "java.nio.charset",
+    <a href="java_lang.html">java_lang</a> := "java.lang",
+    <a href="java_nio_charset_spi.html">java_nio_charset_spi</a> := "java.nio.charset.spi",
+    <a href="java_security.html">java_security</a> := "java.security",
+    <a href="java_util_regex.html">java_util_regex</a> := "java.util.regex",
+    <a href="java_io.html">java_io</a> := "java.io",
+    <a href="java_nio.html">java_nio</a> := "java.nio",
+    <a href="java_lang_ref.html">java_lang_ref</a> := "java.lang.ref",
+    <a href="sun_util.html">sun_util</a> := "sun.util",
+    <a href="java_nio_channels.html">java_nio_channels</a> := "java.nio.channels";
+
+<b>TYPE</b>
+
+  <a name="type-AbstractCharsetProvider"></a><font color="#cc0033">AbstractCharsetProvider</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_nio_charset_spi.html#type-CharsetProvider">java_nio_charset_spi.CharsetProvider</a>)    <a href="#meths-AbstractCharsetProvider"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                             <b>STATIC</b>
+                               <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-AbstractCharsetProvider">AbstractCharsetProvider</a><b>,CONSTRUCTOR</b>;
+                               <b>PROCEDURE </b><font color="#cc0033">Init</font>!() : <a href="#type-AbstractCharsetProvider">AbstractCharsetProvider</a><b>,CONSTRUCTOR</b>;
+                             <b>END</b>;
+
+  <a name="type-CharsetMapping"></a><font color="#cc0033">CharsetMapping</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-CharsetMapping"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                    <b>STATIC</b>
+                      <font color="#cc0033">UNMAPPABLE_DECODING</font>* = 65533;
+                      <font color="#cc0033">UNMAPPABLE_ENCODING</font>* = 65533;
+                      <b>PROCEDURE </b><font color="#cc0033">get</font>*(p0 : <a href="java_lang.html#type-Class">java_lang.Class</a>;
+                                     p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-CharsetMapping">CharsetMapping</a>;
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CharsetMapping">CharsetMapping</a><b>,CONSTRUCTOR</b>;
+                      <b>PROCEDURE </b><font color="#cc0033">writeCOMPOSITE</font>*(    p0 : <a href="java_io.html#type-OutputStream">java_io.OutputStream</a>;
+                                                IN  p1 : <b>ARRAY </b><b>OF </b><a href="#type-CharsetMapping$Entry">CharsetMapping$Entry</a>;
+                                                    p2 : INTEGER);
+                      <b>PROCEDURE </b><font color="#cc0033">writeDOUBLEBYTE1</font>*(    p0 : <a href="java_io.html#type-OutputStream">java_io.OutputStream</a>;
+                                                  IN  p1 : <b>ARRAY </b><b>OF </b>INTEGER;
+                                                      p2 : INTEGER;
+                                                      p3 : INTEGER;
+                                                      p4 : INTEGER;
+                                                      p5 : INTEGER);
+                      <b>PROCEDURE </b><font color="#cc0033">writeDOUBLEBYTE2</font>*(    p0 : <a href="java_io.html#type-OutputStream">java_io.OutputStream</a>;
+                                                  IN  p1 : <b>ARRAY </b><b>OF </b>INTEGER;
+                                                      p2 : INTEGER;
+                                                      p3 : INTEGER;
+                                                      p4 : INTEGER;
+                                                      p5 : INTEGER);
+                      <b>PROCEDURE </b><font color="#cc0033">writeINDEXC2B</font>*(    p0 : <a href="java_io.html#type-OutputStream">java_io.OutputStream</a>;
+                                               IN  p1 : <b>ARRAY </b><b>OF </b>INTEGER);
+                      <b>PROCEDURE </b><font color="#cc0033">writeSINGLEBYTE</font>*(    p0 : <a href="java_io.html#type-OutputStream">java_io.OutputStream</a>;
+                                                 IN  p1 : <b>ARRAY </b><b>OF </b>INTEGER);
+                      <b>PROCEDURE </b><font color="#cc0033">writeSIZE</font>*(p0 : <a href="java_io.html#type-OutputStream">java_io.OutputStream</a>;
+                                           p1 : INTEGER);
+                      <b>PROCEDURE </b><font color="#cc0033">writeSUPPLEMENT</font>*(    p0 : <a href="java_io.html#type-OutputStream">java_io.OutputStream</a>;
+                                                 IN  p1 : <b>ARRAY </b><b>OF </b><a href="#type-CharsetMapping$Entry">CharsetMapping$Entry</a>;
+                                                     p2 : INTEGER);
+                    <b>END</b>;
+
+  <a name="type-CharsetMapping$Entry"></a><font color="#cc0033">CharsetMapping$Entry</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                            <font color="#cc0033">bs</font>*  : INTEGER;
+                            <font color="#cc0033">cp</font>*  : INTEGER;
+                            <font color="#cc0033">cp2</font>* : INTEGER;
+                          <b>STATIC</b>
+                            <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER;
+                                            p1 : INTEGER;
+                                            p2 : INTEGER) : <a href="#type-CharsetMapping$Entry">CharsetMapping$Entry</a><b>,CONSTRUCTOR</b>;
+                            <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CharsetMapping$Entry">CharsetMapping$Entry</a><b>,CONSTRUCTOR</b>;
+                          <b>END</b>;
+
+  <a name="type-CharsetMapping$Parser"></a><font color="#cc0033">CharsetMapping$Parser</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-CharsetMapping$Parser"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                           <b>STATIC</b>
+                             <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_io.html#type-InputStream">java_io.InputStream</a>) : <a href="#type-CharsetMapping$Parser">CharsetMapping$Parser</a><b>,CONSTRUCTOR</b>;
+                             <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_io.html#type-InputStream">java_io.InputStream</a>;
+                                             p1 : <a href="java_util_regex.html#type-Pattern">java_util_regex.Pattern</a>) : <a href="#type-CharsetMapping$Parser">CharsetMapping$Parser</a><b>,CONSTRUCTOR</b>;
+                             <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_io.html#type-InputStream">java_io.InputStream</a>;
+                                             p1 : <a href="java_util_regex.html#type-Pattern">java_util_regex.Pattern</a>;
+                                             p2 : INTEGER;
+                                             p3 : INTEGER;
+                                             p4 : INTEGER) : <a href="#type-CharsetMapping$Parser">CharsetMapping$Parser</a><b>,CONSTRUCTOR</b>;
+                           <b>END</b>;
+
+  <a name="type-FastCharsetProvider"></a><font color="#cc0033">FastCharsetProvider</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_nio_charset_spi.html#type-CharsetProvider">java_nio_charset_spi.CharsetProvider</a>)    <a href="#meths-FastCharsetProvider"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                         <b>STATIC</b>
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                           p1 : <a href="java_util.html#type-Map">java_util.Map</a>;
+                                           p2 : <a href="java_util.html#type-Map">java_util.Map</a>;
+                                           p3 : <a href="java_util.html#type-Map">java_util.Map</a>) : <a href="#type-FastCharsetProvider">FastCharsetProvider</a><b>,CONSTRUCTOR</b>;
+                         <b>END</b>;
+
+  <a name="type-HistoricallyNamedCharset"></a><font color="#cc0033">HistoricallyNamedCharset</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-HistoricallyNamedCharset"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                              <b>END</b>;
+
+  <a name="type-IBM437"></a><font color="#cc0033">IBM437</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_nio_charset.html#type-Charset">java_nio_charset.Charset</a> + <a href="#type-HistoricallyNamedCharset">HistoricallyNamedCharset</a>)    <a href="#meths-IBM437"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+            <b>STATIC</b>
+              <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-IBM437">IBM437</a><b>,CONSTRUCTOR</b>;
+            <b>END</b>;
+
+  <a name="type-IBM737"></a><font color="#cc0033">IBM737</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_nio_charset.html#type-Charset">java_nio_charset.Charset</a> + <a href="#type-HistoricallyNamedCharset">HistoricallyNamedCharset</a>)    <a href="#meths-IBM737"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+            <b>STATIC</b>
+              <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-IBM737">IBM737</a><b>,CONSTRUCTOR</b>;
+            <b>END</b>;
+
+  <a name="type-IBM775"></a><font color="#cc0033">IBM775</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_nio_charset.html#type-Charset">java_nio_charset.Charset</a> + <a href="#type-HistoricallyNamedCharset">HistoricallyNamedCharset</a>)    <a href="#meths-IBM775"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+            <b>STATIC</b>
+              <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-IBM775">IBM775</a><b>,CONSTRUCTOR</b>;
+            <b>END</b>;
+
+  <a name="type-IBM850"></a><font color="#cc0033">IBM850</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_nio_charset.html#type-Charset">java_nio_charset.Charset</a> + <a href="#type-HistoricallyNamedCharset">HistoricallyNamedCharset</a>)    <a href="#meths-IBM850"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+            <b>STATIC</b>
+              <b>PROCEDURE </b><font color="#cc0033">getDecoderSingleByteMappings</font>*() : <a href="java_lang.html#type-String">java_lang.String</a>;
+              <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-IBM850">IBM850</a><b>,CONSTRUCTOR</b>;
+            <b>END</b>;
+
+  <a name="type-IBM850$Decoder"></a><font color="#cc0033">IBM850$Decoder</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-SingleByteDecoder">SingleByteDecoder</a>)
+                    <b>STATIC</b>
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_nio_charset.html#type-Charset">java_nio_charset.Charset</a>) : <a href="#type-IBM850$Decoder">IBM850$Decoder</a><b>,CONSTRUCTOR</b>;
+                    <b>END</b>;
+
+  <a name="type-IBM850$Encoder"></a><font color="#cc0033">IBM850$Encoder</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-SingleByteEncoder">SingleByteEncoder</a>)
+                    <b>STATIC</b>
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_nio_charset.html#type-Charset">java_nio_charset.Charset</a>) : <a href="#type-IBM850$Encoder">IBM850$Encoder</a><b>,CONSTRUCTOR</b>;
+                    <b>END</b>;
+
+  <a name="type-IBM852"></a><font color="#cc0033">IBM852</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_nio_charset.html#type-Charset">java_nio_charset.Charset</a> + <a href="#type-HistoricallyNamedCharset">HistoricallyNamedCharset</a>)    <a href="#meths-IBM852"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+            <b>STATIC</b>
+              <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-IBM852">IBM852</a><b>,CONSTRUCTOR</b>;
+            <b>END</b>;
+
+  <a name="type-IBM855"></a><font color="#cc0033">IBM855</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_nio_charset.html#type-Charset">java_nio_charset.Charset</a> + <a href="#type-HistoricallyNamedCharset">HistoricallyNamedCharset</a>)    <a href="#meths-IBM855"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+            <b>STATIC</b>
+              <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-IBM855">IBM855</a><b>,CONSTRUCTOR</b>;
+            <b>END</b>;
+
+  <a name="type-IBM857"></a><font color="#cc0033">IBM857</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_nio_charset.html#type-Charset">java_nio_charset.Charset</a> + <a href="#type-HistoricallyNamedCharset">HistoricallyNamedCharset</a>)    <a href="#meths-IBM857"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+            <b>STATIC</b>
+              <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-IBM857">IBM857</a><b>,CONSTRUCTOR</b>;
+            <b>END</b>;
+
+  <a name="type-IBM858"></a><font color="#cc0033">IBM858</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_nio_charset.html#type-Charset">java_nio_charset.Charset</a> + <a href="#type-HistoricallyNamedCharset">HistoricallyNamedCharset</a>)    <a href="#meths-IBM858"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+            <b>STATIC</b>
+              <b>PROCEDURE </b><font color="#cc0033">getDecoderSingleByteMappings</font>*() : <a href="java_lang.html#type-String">java_lang.String</a>;
+              <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-IBM858">IBM858</a><b>,CONSTRUCTOR</b>;
+            <b>END</b>;
+
+  <a name="type-IBM862"></a><font color="#cc0033">IBM862</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_nio_charset.html#type-Charset">java_nio_charset.Charset</a> + <a href="#type-HistoricallyNamedCharset">HistoricallyNamedCharset</a>)    <a href="#meths-IBM862"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+            <b>STATIC</b>
+              <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-IBM862">IBM862</a><b>,CONSTRUCTOR</b>;
+            <b>END</b>;
+
+  <a name="type-IBM866"></a><font color="#cc0033">IBM866</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_nio_charset.html#type-Charset">java_nio_charset.Charset</a> + <a href="#type-HistoricallyNamedCharset">HistoricallyNamedCharset</a>)    <a href="#meths-IBM866"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+            <b>STATIC</b>
+              <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-IBM866">IBM866</a><b>,CONSTRUCTOR</b>;
+            <b>END</b>;
+
+  <a name="type-IBM874"></a><font color="#cc0033">IBM874</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_nio_charset.html#type-Charset">java_nio_charset.Charset</a> + <a href="#type-HistoricallyNamedCharset">HistoricallyNamedCharset</a>)    <a href="#meths-IBM874"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+            <b>STATIC</b>
+              <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-IBM874">IBM874</a><b>,CONSTRUCTOR</b>;
+            <b>END</b>;
+
+  <a name="type-ISO_8859_13"></a><font color="#cc0033">ISO_8859_13</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_nio_charset.html#type-Charset">java_nio_charset.Charset</a> + <a href="#type-HistoricallyNamedCharset">HistoricallyNamedCharset</a>)    <a href="#meths-ISO_8859_13"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                 <b>STATIC</b>
+                   <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-ISO_8859_13">ISO_8859_13</a><b>,CONSTRUCTOR</b>;
+                 <b>END</b>;
+
+  <a name="type-ISO_8859_15"></a><font color="#cc0033">ISO_8859_15</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_nio_charset.html#type-Charset">java_nio_charset.Charset</a> + <a href="#type-HistoricallyNamedCharset">HistoricallyNamedCharset</a>)    <a href="#meths-ISO_8859_15"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                 <b>STATIC</b>
+                   <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-ISO_8859_15">ISO_8859_15</a><b>,CONSTRUCTOR</b>;
+                 <b>END</b>;
+
+  <a name="type-ISO_8859_2"></a><font color="#cc0033">ISO_8859_2</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_nio_charset.html#type-Charset">java_nio_charset.Charset</a> + <a href="#type-HistoricallyNamedCharset">HistoricallyNamedCharset</a>)    <a href="#meths-ISO_8859_2"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                <b>STATIC</b>
+                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-ISO_8859_2">ISO_8859_2</a><b>,CONSTRUCTOR</b>;
+                <b>END</b>;
+
+  <a name="type-ISO_8859_4"></a><font color="#cc0033">ISO_8859_4</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_nio_charset.html#type-Charset">java_nio_charset.Charset</a> + <a href="#type-HistoricallyNamedCharset">HistoricallyNamedCharset</a>)    <a href="#meths-ISO_8859_4"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                <b>STATIC</b>
+                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-ISO_8859_4">ISO_8859_4</a><b>,CONSTRUCTOR</b>;
+                <b>END</b>;
+
+  <a name="type-ISO_8859_5"></a><font color="#cc0033">ISO_8859_5</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_nio_charset.html#type-Charset">java_nio_charset.Charset</a> + <a href="#type-HistoricallyNamedCharset">HistoricallyNamedCharset</a>)    <a href="#meths-ISO_8859_5"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                <b>STATIC</b>
+                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-ISO_8859_5">ISO_8859_5</a><b>,CONSTRUCTOR</b>;
+                <b>END</b>;
+
+  <a name="type-ISO_8859_7"></a><font color="#cc0033">ISO_8859_7</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_nio_charset.html#type-Charset">java_nio_charset.Charset</a> + <a href="#type-HistoricallyNamedCharset">HistoricallyNamedCharset</a>)    <a href="#meths-ISO_8859_7"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                <b>STATIC</b>
+                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-ISO_8859_7">ISO_8859_7</a><b>,CONSTRUCTOR</b>;
+                <b>END</b>;
+
+  <a name="type-ISO_8859_9"></a><font color="#cc0033">ISO_8859_9</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_nio_charset.html#type-Charset">java_nio_charset.Charset</a> + <a href="#type-HistoricallyNamedCharset">HistoricallyNamedCharset</a>)    <a href="#meths-ISO_8859_9"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                <b>STATIC</b>
+                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-ISO_8859_9">ISO_8859_9</a><b>,CONSTRUCTOR</b>;
+                <b>END</b>;
+
+  <a name="type-KOI8_R"></a><font color="#cc0033">KOI8_R</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_nio_charset.html#type-Charset">java_nio_charset.Charset</a> + <a href="#type-HistoricallyNamedCharset">HistoricallyNamedCharset</a>)    <a href="#meths-KOI8_R"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+            <b>STATIC</b>
+              <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-KOI8_R">KOI8_R</a><b>,CONSTRUCTOR</b>;
+            <b>END</b>;
+
+  <a name="type-KOI8_U"></a><font color="#cc0033">KOI8_U</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_nio_charset.html#type-Charset">java_nio_charset.Charset</a> + <a href="#type-HistoricallyNamedCharset">HistoricallyNamedCharset</a>)    <a href="#meths-KOI8_U"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+            <b>STATIC</b>
+              <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-KOI8_U">KOI8_U</a><b>,CONSTRUCTOR</b>;
+            <b>END</b>;
+
+  <a name="type-MS1250"></a><font color="#cc0033">MS1250</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_nio_charset.html#type-Charset">java_nio_charset.Charset</a> + <a href="#type-HistoricallyNamedCharset">HistoricallyNamedCharset</a>)    <a href="#meths-MS1250"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+            <b>STATIC</b>
+              <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-MS1250">MS1250</a><b>,CONSTRUCTOR</b>;
+            <b>END</b>;
+
+  <a name="type-MS1251"></a><font color="#cc0033">MS1251</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_nio_charset.html#type-Charset">java_nio_charset.Charset</a> + <a href="#type-HistoricallyNamedCharset">HistoricallyNamedCharset</a>)    <a href="#meths-MS1251"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+            <b>STATIC</b>
+              <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-MS1251">MS1251</a><b>,CONSTRUCTOR</b>;
+            <b>END</b>;
+
+  <a name="type-MS1252"></a><font color="#cc0033">MS1252</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_nio_charset.html#type-Charset">java_nio_charset.Charset</a> + <a href="#type-HistoricallyNamedCharset">HistoricallyNamedCharset</a>)    <a href="#meths-MS1252"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+            <b>STATIC</b>
+              <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-MS1252">MS1252</a><b>,CONSTRUCTOR</b>;
+            <b>END</b>;
+
+  <a name="type-MS1253"></a><font color="#cc0033">MS1253</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_nio_charset.html#type-Charset">java_nio_charset.Charset</a> + <a href="#type-HistoricallyNamedCharset">HistoricallyNamedCharset</a>)    <a href="#meths-MS1253"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+            <b>STATIC</b>
+              <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-MS1253">MS1253</a><b>,CONSTRUCTOR</b>;
+            <b>END</b>;
+
+  <a name="type-MS1254"></a><font color="#cc0033">MS1254</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_nio_charset.html#type-Charset">java_nio_charset.Charset</a> + <a href="#type-HistoricallyNamedCharset">HistoricallyNamedCharset</a>)    <a href="#meths-MS1254"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+            <b>STATIC</b>
+              <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-MS1254">MS1254</a><b>,CONSTRUCTOR</b>;
+            <b>END</b>;
+
+  <a name="type-MS1257"></a><font color="#cc0033">MS1257</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_nio_charset.html#type-Charset">java_nio_charset.Charset</a> + <a href="#type-HistoricallyNamedCharset">HistoricallyNamedCharset</a>)    <a href="#meths-MS1257"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+            <b>STATIC</b>
+              <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-MS1257">MS1257</a><b>,CONSTRUCTOR</b>;
+            <b>END</b>;
+
+  <a name="type-SingleByte"></a><font color="#cc0033">SingleByte</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                <b>STATIC</b>
+                  <font color="#cc0033">UNMAPPABLE_DECODING</font>* = 65533;
+                  <font color="#cc0033">UNMAPPABLE_ENCODING</font>* = 65533;
+                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-SingleByte">SingleByte</a><b>,CONSTRUCTOR</b>;
+                  <b>PROCEDURE </b><font color="#cc0033">initC2B</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>CHAR;
+                                     IN  p1 : <b>ARRAY </b><b>OF </b>CHAR;
+                                     IN  p2 : <b>ARRAY </b><b>OF </b>CHAR;
+                                     IN  p3 : <b>ARRAY </b><b>OF </b>CHAR);
+                <b>END</b>;
+
+  <a name="type-SingleByte$Decoder"></a><font color="#cc0033">SingleByte$Decoder</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_nio_charset.html#type-CharsetDecoder">java_nio_charset.CharsetDecoder</a>)    <a href="#meths-SingleByte$Decoder"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                        <b>STATIC</b>
+                          <b>PROCEDURE </b><font color="#cc0033">Init</font>*(    p0 : <a href="java_nio_charset.html#type-Charset">java_nio_charset.Charset</a>;
+                                          IN  p1 : <b>ARRAY </b><b>OF </b>CHAR) : <a href="#type-SingleByte$Decoder">SingleByte$Decoder</a><b>,CONSTRUCTOR</b>;
+                        <b>END</b>;
+
+  <a name="type-SingleByte$Encoder"></a><font color="#cc0033">SingleByte$Encoder</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_nio_charset.html#type-CharsetEncoder">java_nio_charset.CharsetEncoder</a>)    <a href="#meths-SingleByte$Encoder"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                        <b>STATIC</b>
+                          <b>PROCEDURE </b><font color="#cc0033">Init</font>*(    p0 : <a href="java_nio_charset.html#type-Charset">java_nio_charset.Charset</a>;
+                                          IN  p1 : <b>ARRAY </b><b>OF </b>CHAR;
+                                          IN  p2 : <b>ARRAY </b><b>OF </b>CHAR) : <a href="#type-SingleByte$Encoder">SingleByte$Encoder</a><b>,CONSTRUCTOR</b>;
+                        <b>END</b>;
+
+  <a name="type-SingleByteDecoder"></a><font color="#cc0033">SingleByteDecoder</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_nio_charset.html#type-CharsetDecoder">java_nio_charset.CharsetDecoder</a>)    <a href="#meths-SingleByteDecoder"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                       <b>STATIC</b>
+                         <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : <a href="java_nio_charset.html#type-Charset">java_nio_charset.Charset</a>;
+                                         p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-SingleByteDecoder">SingleByteDecoder</a><b>,CONSTRUCTOR</b>;
+                       <b>END</b>;
+
+  <a name="type-SingleByteEncoder"></a><font color="#cc0033">SingleByteEncoder</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_nio_charset.html#type-CharsetEncoder">java_nio_charset.CharsetEncoder</a>)    <a href="#meths-SingleByteEncoder"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                       <b>STATIC</b>
+                         <b>PROCEDURE </b><font color="#cc0033">Init</font>!(    p0 : <a href="java_nio_charset.html#type-Charset">java_nio_charset.Charset</a>;
+                                         IN  p1 : <b>ARRAY </b><b>OF </b>SHORTINT;
+                                             p2 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                             p3 : INTEGER;
+                                             p4 : INTEGER;
+                                             p5 : INTEGER) : <a href="#type-SingleByteEncoder">SingleByteEncoder</a><b>,CONSTRUCTOR</b>;
+                       <b>END</b>;
+
+  <a name="type-StandardCharsets"></a><font color="#cc0033">StandardCharsets</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-FastCharsetProvider">FastCharsetProvider</a>)
+                      <b>STATIC</b>
+                        <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-StandardCharsets">StandardCharsets</a><b>,CONSTRUCTOR</b>;
+                      <b>END</b>;
+
+  <a name="type-StreamDecoder"></a><font color="#cc0033">StreamDecoder</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_io.html#type-Reader">java_io.Reader</a>)    <a href="#meths-StreamDecoder"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                   <b>STATIC</b>
+                     <b>PROCEDURE </b><font color="#cc0033">forDecoder</font>*(p0 : <a href="java_nio_channels.html#type-ReadableByteChannel">java_nio_channels.ReadableByteChannel</a>;
+                                           p1 : <a href="java_nio_charset.html#type-CharsetDecoder">java_nio_charset.CharsetDecoder</a>;
+                                           p2 : INTEGER) : <a href="#type-StreamDecoder">StreamDecoder</a>;
+                     <b>PROCEDURE </b><font color="#cc0033">forInputStreamReader</font>*(p0 : <a href="java_io.html#type-InputStream">java_io.InputStream</a>;
+                                                     p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                     p2 : <a href="java_nio_charset.html#type-CharsetDecoder">java_nio_charset.CharsetDecoder</a>) : <a href="#type-StreamDecoder">StreamDecoder</a>;
+                     <b>PROCEDURE </b><font color="#cc0033">forInputStreamReader</font>*(p0 : <a href="java_io.html#type-InputStream">java_io.InputStream</a>;
+                                                     p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                     p2 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-StreamDecoder">StreamDecoder</a>;
+                     <b>PROCEDURE </b><font color="#cc0033">forInputStreamReader</font>*(p0 : <a href="java_io.html#type-InputStream">java_io.InputStream</a>;
+                                                     p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                     p2 : <a href="java_nio_charset.html#type-Charset">java_nio_charset.Charset</a>) : <a href="#type-StreamDecoder">StreamDecoder</a>;
+                   <b>END</b>;
+
+  <a name="type-StreamEncoder"></a><font color="#cc0033">StreamEncoder</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_io.html#type-Writer">java_io.Writer</a>)    <a href="#meths-StreamEncoder"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                   <b>STATIC</b>
+                     <b>PROCEDURE </b><font color="#cc0033">forEncoder</font>*(p0 : <a href="java_nio_channels.html#type-WritableByteChannel">java_nio_channels.WritableByteChannel</a>;
+                                           p1 : <a href="java_nio_charset.html#type-CharsetEncoder">java_nio_charset.CharsetEncoder</a>;
+                                           p2 : INTEGER) : <a href="#type-StreamEncoder">StreamEncoder</a>;
+                     <b>PROCEDURE </b><font color="#cc0033">forOutputStreamWriter</font>*(p0 : <a href="java_io.html#type-OutputStream">java_io.OutputStream</a>;
+                                                      p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                      p2 : <a href="java_nio_charset.html#type-CharsetEncoder">java_nio_charset.CharsetEncoder</a>) : <a href="#type-StreamEncoder">StreamEncoder</a>;
+                     <b>PROCEDURE </b><font color="#cc0033">forOutputStreamWriter</font>*(p0 : <a href="java_io.html#type-OutputStream">java_io.OutputStream</a>;
+                                                      p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                      p2 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-StreamEncoder">StreamEncoder</a>;
+                     <b>PROCEDURE </b><font color="#cc0033">forOutputStreamWriter</font>*(p0 : <a href="java_io.html#type-OutputStream">java_io.OutputStream</a>;
+                                                      p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                      p2 : <a href="java_nio_charset.html#type-Charset">java_nio_charset.Charset</a>) : <a href="#type-StreamEncoder">StreamEncoder</a>;
+                   <b>END</b>;
+
+  <a name="type-Surrogate"></a><font color="#cc0033">Surrogate</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+               <b>STATIC</b>
+                 <font color="#cc0033">MAX</font>*       = 57343;
+                 <font color="#cc0033">MAX_HIGH</font>*  = 56319;
+                 <font color="#cc0033">MAX_LOW</font>*   = 57343;
+                 <font color="#cc0033">MIN</font>*       = 55296;
+                 <font color="#cc0033">MIN_HIGH</font>*  = 55296;
+                 <font color="#cc0033">MIN_LOW</font>*   = 56320;
+                 <font color="#cc0033">UCS4_MAX</font>*  = 1114111;
+                 <font color="#cc0033">UCS4_MIN</font>*  = 65536;
+                 <b>PROCEDURE </b><font color="#cc0033">high</font>*(p0 : INTEGER) : CHAR;
+                 <b>PROCEDURE </b><font color="#cc0033">is</font>*(p0 : INTEGER) : BOOLEAN;
+                 <b>PROCEDURE </b><font color="#cc0033">isHigh</font>*(p0 : INTEGER) : BOOLEAN;
+                 <b>PROCEDURE </b><font color="#cc0033">isLow</font>*(p0 : INTEGER) : BOOLEAN;
+                 <b>PROCEDURE </b><font color="#cc0033">low</font>*(p0 : INTEGER) : CHAR;
+                 <b>PROCEDURE </b><font color="#cc0033">neededFor</font>*(p0 : INTEGER) : BOOLEAN;
+                 <b>PROCEDURE </b><font color="#cc0033">toUCS4</font>*(p0 : CHAR;
+                                   p1 : CHAR) : INTEGER;
+               <b>END</b>;
+
+  <a name="type-Surrogate$Generator"></a><font color="#cc0033">Surrogate$Generator</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-Surrogate$Generator"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                         <b>STATIC</b>
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-Surrogate$Generator">Surrogate$Generator</a><b>,CONSTRUCTOR</b>;
+                         <b>END</b>;
+
+  <a name="type-Surrogate$Parser"></a><font color="#cc0033">Surrogate$Parser</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-Surrogate$Parser"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                      <b>STATIC</b>
+                        <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-Surrogate$Parser">Surrogate$Parser</a><b>,CONSTRUCTOR</b>;
+                      <b>END</b>;
+
+  <a name="type-ThreadLocalCoders"></a><font color="#cc0033">ThreadLocalCoders</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                       <b>STATIC</b>
+                         <b>PROCEDURE </b><font color="#cc0033">decoderFor</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_nio_charset.html#type-CharsetDecoder">java_nio_charset.CharsetDecoder</a>;
+                         <b>PROCEDURE </b><font color="#cc0033">encoderFor</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_nio_charset.html#type-CharsetEncoder">java_nio_charset.CharsetEncoder</a>;
+                         <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-ThreadLocalCoders">ThreadLocalCoders</a><b>,CONSTRUCTOR</b>;
+                       <b>END</b>;
+
+  <a name="type-UnicodeEncoder"></a><font color="#cc0033">UnicodeEncoder</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_nio_charset.html#type-CharsetEncoder">java_nio_charset.CharsetEncoder</a>)    <a href="#meths-UnicodeEncoder"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                    <b>STATIC</b>
+                      <font color="#cc0033">BIG</font>!             = 0;
+                      <font color="#cc0033">BYTE_ORDER_MARK</font>! = 65279;
+                      <font color="#cc0033">LITTLE</font>!          = 1;
+                      <font color="#cc0033">REVERSED_MARK</font>!   = 65534;
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : <a href="java_nio_charset.html#type-Charset">java_nio_charset.Charset</a>;
+                                      p1 : INTEGER;
+                                      p2 : BOOLEAN) : <a href="#type-UnicodeEncoder">UnicodeEncoder</a><b>,CONSTRUCTOR</b>;
+                    <b>END</b>;
+
+  <a name="type-US_ASCII"></a><font color="#cc0033">US_ASCII</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_nio_charset.html#type-Charset">java_nio_charset.Charset</a> + <a href="#type-HistoricallyNamedCharset">HistoricallyNamedCharset</a>)    <a href="#meths-US_ASCII"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+              <b>STATIC</b>
+                <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-US_ASCII">US_ASCII</a><b>,CONSTRUCTOR</b>;
+              <b>END</b>;
+
+  <a name="type-UTF_32"></a><font color="#cc0033">UTF_32</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<b>Unicode</b>)    <a href="#meths-UTF_32"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+            <b>STATIC</b>
+              <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-UTF_32">UTF_32</a><b>,CONSTRUCTOR</b>;
+            <b>END</b>;
+
+  <a name="type-UTF_32BE"></a><font color="#cc0033">UTF_32BE</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<b>Unicode</b>)    <a href="#meths-UTF_32BE"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+              <b>STATIC</b>
+                <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-UTF_32BE">UTF_32BE</a><b>,CONSTRUCTOR</b>;
+              <b>END</b>;
+
+  <a name="type-UTF_32BE_BOM"></a><font color="#cc0033">UTF_32BE_BOM</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<b>Unicode</b>)    <a href="#meths-UTF_32BE_BOM"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                  <b>STATIC</b>
+                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-UTF_32BE_BOM">UTF_32BE_BOM</a><b>,CONSTRUCTOR</b>;
+                  <b>END</b>;
+
+  <a name="type-UTF_32Coder$Decoder"></a><font color="#cc0033">UTF_32Coder$Decoder</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_nio_charset.html#type-CharsetDecoder">java_nio_charset.CharsetDecoder</a>)    <a href="#meths-UTF_32Coder$Decoder"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                         <b>STATIC</b>
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : <a href="java_nio_charset.html#type-Charset">java_nio_charset.Charset</a>;
+                                           p1 : INTEGER) : <a href="#type-UTF_32Coder$Decoder">UTF_32Coder$Decoder</a><b>,CONSTRUCTOR</b>;
+                         <b>END</b>;
+
+  <a name="type-UTF_32Coder$Encoder"></a><font color="#cc0033">UTF_32Coder$Encoder</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_nio_charset.html#type-CharsetEncoder">java_nio_charset.CharsetEncoder</a>)    <a href="#meths-UTF_32Coder$Encoder"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                         <b>STATIC</b>
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : <a href="java_nio_charset.html#type-Charset">java_nio_charset.Charset</a>;
+                                           p1 : INTEGER;
+                                           p2 : BOOLEAN) : <a href="#type-UTF_32Coder$Encoder">UTF_32Coder$Encoder</a><b>,CONSTRUCTOR</b>;
+                         <b>END</b>;
+
+  <a name="type-UTF_32LE"></a><font color="#cc0033">UTF_32LE</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<b>Unicode</b>)    <a href="#meths-UTF_32LE"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+              <b>STATIC</b>
+                <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-UTF_32LE">UTF_32LE</a><b>,CONSTRUCTOR</b>;
+              <b>END</b>;
+
+  <a name="type-UTF_32LE_BOM"></a><font color="#cc0033">UTF_32LE_BOM</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<b>Unicode</b>)    <a href="#meths-UTF_32LE_BOM"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                  <b>STATIC</b>
+                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-UTF_32LE_BOM">UTF_32LE_BOM</a><b>,CONSTRUCTOR</b>;
+                  <b>END</b>;
+
+
+
+<a name="meths-AbstractCharsetProvider"></a>
+<b>PROCEDURE </b>(self:AbstractCharsetProvider) <font color="#cc0033">aliases</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:AbstractCharsetProvider) <font color="#cc0033">charset</font>!(    p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                      p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                  IN  p2 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AbstractCharsetProvider) <font color="#cc0033">charsetForName</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_nio_charset.html#type-Charset">java_nio_charset.Charset</a>;
+
+<b>PROCEDURE </b>(self:AbstractCharsetProvider) <font color="#cc0033">charsets</font>*() : <a href="java_util.html#type-Iterator">java_util.Iterator</a>;
+
+<b>PROCEDURE </b>(self:AbstractCharsetProvider) <font color="#cc0033">deleteCharset</font>!(    p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                        IN  p1 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AbstractCharsetProvider) <font color="#cc0033">init</font>!()<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-CharsetMapping"></a>
+<b>PROCEDURE </b>(self:CharsetMapping) <font color="#cc0033">decodeComposite</font>*(    p0 : <a href="#type-CharsetMapping$Entry">CharsetMapping$Entry</a>;
+                                                 IN  p1 : <b>ARRAY </b><b>OF </b>CHAR) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>CHAR<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CharsetMapping) <font color="#cc0033">decodeDouble</font>*(p0 : INTEGER;
+                                              p1 : INTEGER) : CHAR<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CharsetMapping) <font color="#cc0033">decodeSingle</font>*(p0 : INTEGER) : CHAR<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CharsetMapping) <font color="#cc0033">decodeSurrogate</font>*(    p0 : INTEGER;
+                                                 IN  p1 : <b>ARRAY </b><b>OF </b>CHAR) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>CHAR<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CharsetMapping) <font color="#cc0033">encodeChar</font>*(p0 : CHAR) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CharsetMapping) <font color="#cc0033">encodeComposite</font>*(p0 : <a href="#type-CharsetMapping$Entry">CharsetMapping$Entry</a>) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CharsetMapping) <font color="#cc0033">encodeSurrogate</font>*(p0 : CHAR;
+                                                 p1 : CHAR) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CharsetMapping) <font color="#cc0033">isCompositeBase</font>*(p0 : <a href="#type-CharsetMapping$Entry">CharsetMapping$Entry</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-CharsetMapping$Parser"></a>
+<b>PROCEDURE </b>(self:CharsetMapping$Parser) <font color="#cc0033">isDirective</font>!(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CharsetMapping$Parser) <font color="#cc0033">next</font>*() : <a href="#type-CharsetMapping$Entry">CharsetMapping$Entry</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CharsetMapping$Parser) <font color="#cc0033">next</font>*(p0 : <a href="#type-CharsetMapping$Entry">CharsetMapping$Entry</a>) : <a href="#type-CharsetMapping$Entry">CharsetMapping$Entry</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CharsetMapping$Parser) <font color="#cc0033">parse</font>!(p0 : <a href="java_util_regex.html#type-Matcher">java_util_regex.Matcher</a>;
+                                              p1 : <a href="#type-CharsetMapping$Entry">CharsetMapping$Entry</a>) : <a href="#type-CharsetMapping$Entry">CharsetMapping$Entry</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-FastCharsetProvider"></a>
+<b>PROCEDURE </b>(self:FastCharsetProvider) <font color="#cc0033">charsetForName</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_nio_charset.html#type-Charset">java_nio_charset.Charset</a>;
+
+<b>PROCEDURE </b>(self:FastCharsetProvider) <font color="#cc0033">charsets</font>*() : <a href="java_util.html#type-Iterator">java_util.Iterator</a>;
+<a name="meths-HistoricallyNamedCharset"></a>
+<b>PROCEDURE </b>(self:HistoricallyNamedCharset) <font color="#cc0033">historicalName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-IBM437"></a>
+<b>PROCEDURE </b>(self:IBM437) <font color="#cc0033">contains</font>*(p0 : <a href="java_nio_charset.html#type-Charset">java_nio_charset.Charset</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IBM437) <font color="#cc0033">getDecoderSingleByteMappings</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IBM437) <font color="#cc0033">getEncoderIndex1</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>SHORTINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IBM437) <font color="#cc0033">getEncoderIndex2</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IBM437) <font color="#cc0033">historicalName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IBM437) <font color="#cc0033">newDecoder</font>*() : <a href="java_nio_charset.html#type-CharsetDecoder">java_nio_charset.CharsetDecoder</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IBM437) <font color="#cc0033">newEncoder</font>*() : <a href="java_nio_charset.html#type-CharsetEncoder">java_nio_charset.CharsetEncoder</a><b>,EXTENSIBLE</b>;
+<a name="meths-IBM737"></a>
+<b>PROCEDURE </b>(self:IBM737) <font color="#cc0033">contains</font>*(p0 : <a href="java_nio_charset.html#type-Charset">java_nio_charset.Charset</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IBM737) <font color="#cc0033">getDecoderSingleByteMappings</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IBM737) <font color="#cc0033">getEncoderIndex1</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>SHORTINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IBM737) <font color="#cc0033">getEncoderIndex2</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IBM737) <font color="#cc0033">historicalName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IBM737) <font color="#cc0033">newDecoder</font>*() : <a href="java_nio_charset.html#type-CharsetDecoder">java_nio_charset.CharsetDecoder</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IBM737) <font color="#cc0033">newEncoder</font>*() : <a href="java_nio_charset.html#type-CharsetEncoder">java_nio_charset.CharsetEncoder</a><b>,EXTENSIBLE</b>;
+<a name="meths-IBM775"></a>
+<b>PROCEDURE </b>(self:IBM775) <font color="#cc0033">contains</font>*(p0 : <a href="java_nio_charset.html#type-Charset">java_nio_charset.Charset</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IBM775) <font color="#cc0033">getDecoderSingleByteMappings</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IBM775) <font color="#cc0033">getEncoderIndex1</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>SHORTINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IBM775) <font color="#cc0033">getEncoderIndex2</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IBM775) <font color="#cc0033">historicalName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IBM775) <font color="#cc0033">newDecoder</font>*() : <a href="java_nio_charset.html#type-CharsetDecoder">java_nio_charset.CharsetDecoder</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IBM775) <font color="#cc0033">newEncoder</font>*() : <a href="java_nio_charset.html#type-CharsetEncoder">java_nio_charset.CharsetEncoder</a><b>,EXTENSIBLE</b>;
+<a name="meths-IBM850"></a>
+<b>PROCEDURE </b>(self:IBM850) <font color="#cc0033">contains</font>*(p0 : <a href="java_nio_charset.html#type-Charset">java_nio_charset.Charset</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IBM850) <font color="#cc0033">getEncoderIndex1</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>SHORTINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IBM850) <font color="#cc0033">getEncoderIndex2</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IBM850) <font color="#cc0033">historicalName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IBM850) <font color="#cc0033">newDecoder</font>*() : <a href="java_nio_charset.html#type-CharsetDecoder">java_nio_charset.CharsetDecoder</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IBM850) <font color="#cc0033">newEncoder</font>*() : <a href="java_nio_charset.html#type-CharsetEncoder">java_nio_charset.CharsetEncoder</a><b>,EXTENSIBLE</b>;
+<a name="meths-IBM852"></a>
+<b>PROCEDURE </b>(self:IBM852) <font color="#cc0033">contains</font>*(p0 : <a href="java_nio_charset.html#type-Charset">java_nio_charset.Charset</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IBM852) <font color="#cc0033">getDecoderSingleByteMappings</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IBM852) <font color="#cc0033">getEncoderIndex1</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>SHORTINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IBM852) <font color="#cc0033">getEncoderIndex2</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IBM852) <font color="#cc0033">historicalName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IBM852) <font color="#cc0033">newDecoder</font>*() : <a href="java_nio_charset.html#type-CharsetDecoder">java_nio_charset.CharsetDecoder</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IBM852) <font color="#cc0033">newEncoder</font>*() : <a href="java_nio_charset.html#type-CharsetEncoder">java_nio_charset.CharsetEncoder</a><b>,EXTENSIBLE</b>;
+<a name="meths-IBM855"></a>
+<b>PROCEDURE </b>(self:IBM855) <font color="#cc0033">contains</font>*(p0 : <a href="java_nio_charset.html#type-Charset">java_nio_charset.Charset</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IBM855) <font color="#cc0033">getDecoderSingleByteMappings</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IBM855) <font color="#cc0033">getEncoderIndex1</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>SHORTINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IBM855) <font color="#cc0033">getEncoderIndex2</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IBM855) <font color="#cc0033">historicalName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IBM855) <font color="#cc0033">newDecoder</font>*() : <a href="java_nio_charset.html#type-CharsetDecoder">java_nio_charset.CharsetDecoder</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IBM855) <font color="#cc0033">newEncoder</font>*() : <a href="java_nio_charset.html#type-CharsetEncoder">java_nio_charset.CharsetEncoder</a><b>,EXTENSIBLE</b>;
+<a name="meths-IBM857"></a>
+<b>PROCEDURE </b>(self:IBM857) <font color="#cc0033">contains</font>*(p0 : <a href="java_nio_charset.html#type-Charset">java_nio_charset.Charset</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IBM857) <font color="#cc0033">getDecoderSingleByteMappings</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IBM857) <font color="#cc0033">getEncoderIndex1</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>SHORTINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IBM857) <font color="#cc0033">getEncoderIndex2</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IBM857) <font color="#cc0033">historicalName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IBM857) <font color="#cc0033">newDecoder</font>*() : <a href="java_nio_charset.html#type-CharsetDecoder">java_nio_charset.CharsetDecoder</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IBM857) <font color="#cc0033">newEncoder</font>*() : <a href="java_nio_charset.html#type-CharsetEncoder">java_nio_charset.CharsetEncoder</a><b>,EXTENSIBLE</b>;
+<a name="meths-IBM858"></a>
+<b>PROCEDURE </b>(self:IBM858) <font color="#cc0033">contains</font>*(p0 : <a href="java_nio_charset.html#type-Charset">java_nio_charset.Charset</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IBM858) <font color="#cc0033">getEncoderIndex1</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>SHORTINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IBM858) <font color="#cc0033">getEncoderIndex2</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IBM858) <font color="#cc0033">historicalName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IBM858) <font color="#cc0033">newDecoder</font>*() : <a href="java_nio_charset.html#type-CharsetDecoder">java_nio_charset.CharsetDecoder</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IBM858) <font color="#cc0033">newEncoder</font>*() : <a href="java_nio_charset.html#type-CharsetEncoder">java_nio_charset.CharsetEncoder</a><b>,EXTENSIBLE</b>;
+<a name="meths-IBM862"></a>
+<b>PROCEDURE </b>(self:IBM862) <font color="#cc0033">contains</font>*(p0 : <a href="java_nio_charset.html#type-Charset">java_nio_charset.Charset</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IBM862) <font color="#cc0033">getDecoderSingleByteMappings</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IBM862) <font color="#cc0033">getEncoderIndex1</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>SHORTINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IBM862) <font color="#cc0033">getEncoderIndex2</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IBM862) <font color="#cc0033">historicalName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IBM862) <font color="#cc0033">newDecoder</font>*() : <a href="java_nio_charset.html#type-CharsetDecoder">java_nio_charset.CharsetDecoder</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IBM862) <font color="#cc0033">newEncoder</font>*() : <a href="java_nio_charset.html#type-CharsetEncoder">java_nio_charset.CharsetEncoder</a><b>,EXTENSIBLE</b>;
+<a name="meths-IBM866"></a>
+<b>PROCEDURE </b>(self:IBM866) <font color="#cc0033">contains</font>*(p0 : <a href="java_nio_charset.html#type-Charset">java_nio_charset.Charset</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IBM866) <font color="#cc0033">getDecoderSingleByteMappings</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IBM866) <font color="#cc0033">getEncoderIndex1</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>SHORTINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IBM866) <font color="#cc0033">getEncoderIndex2</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IBM866) <font color="#cc0033">historicalName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IBM866) <font color="#cc0033">newDecoder</font>*() : <a href="java_nio_charset.html#type-CharsetDecoder">java_nio_charset.CharsetDecoder</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IBM866) <font color="#cc0033">newEncoder</font>*() : <a href="java_nio_charset.html#type-CharsetEncoder">java_nio_charset.CharsetEncoder</a><b>,EXTENSIBLE</b>;
+<a name="meths-IBM874"></a>
+<b>PROCEDURE </b>(self:IBM874) <font color="#cc0033">contains</font>*(p0 : <a href="java_nio_charset.html#type-Charset">java_nio_charset.Charset</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IBM874) <font color="#cc0033">getDecoderSingleByteMappings</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IBM874) <font color="#cc0033">getEncoderIndex1</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>SHORTINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IBM874) <font color="#cc0033">getEncoderIndex2</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IBM874) <font color="#cc0033">historicalName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IBM874) <font color="#cc0033">newDecoder</font>*() : <a href="java_nio_charset.html#type-CharsetDecoder">java_nio_charset.CharsetDecoder</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IBM874) <font color="#cc0033">newEncoder</font>*() : <a href="java_nio_charset.html#type-CharsetEncoder">java_nio_charset.CharsetEncoder</a><b>,EXTENSIBLE</b>;
+<a name="meths-ISO_8859_13"></a>
+<b>PROCEDURE </b>(self:ISO_8859_13) <font color="#cc0033">contains</font>*(p0 : <a href="java_nio_charset.html#type-Charset">java_nio_charset.Charset</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ISO_8859_13) <font color="#cc0033">getDecoderSingleByteMappings</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ISO_8859_13) <font color="#cc0033">getEncoderIndex1</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>SHORTINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ISO_8859_13) <font color="#cc0033">getEncoderIndex2</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ISO_8859_13) <font color="#cc0033">historicalName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ISO_8859_13) <font color="#cc0033">newDecoder</font>*() : <a href="java_nio_charset.html#type-CharsetDecoder">java_nio_charset.CharsetDecoder</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ISO_8859_13) <font color="#cc0033">newEncoder</font>*() : <a href="java_nio_charset.html#type-CharsetEncoder">java_nio_charset.CharsetEncoder</a><b>,EXTENSIBLE</b>;
+<a name="meths-ISO_8859_15"></a>
+<b>PROCEDURE </b>(self:ISO_8859_15) <font color="#cc0033">contains</font>*(p0 : <a href="java_nio_charset.html#type-Charset">java_nio_charset.Charset</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ISO_8859_15) <font color="#cc0033">getDecoderSingleByteMappings</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ISO_8859_15) <font color="#cc0033">getEncoderIndex1</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>SHORTINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ISO_8859_15) <font color="#cc0033">getEncoderIndex2</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ISO_8859_15) <font color="#cc0033">historicalName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ISO_8859_15) <font color="#cc0033">newDecoder</font>*() : <a href="java_nio_charset.html#type-CharsetDecoder">java_nio_charset.CharsetDecoder</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ISO_8859_15) <font color="#cc0033">newEncoder</font>*() : <a href="java_nio_charset.html#type-CharsetEncoder">java_nio_charset.CharsetEncoder</a><b>,EXTENSIBLE</b>;
+<a name="meths-ISO_8859_2"></a>
+<b>PROCEDURE </b>(self:ISO_8859_2) <font color="#cc0033">contains</font>*(p0 : <a href="java_nio_charset.html#type-Charset">java_nio_charset.Charset</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ISO_8859_2) <font color="#cc0033">getDecoderSingleByteMappings</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ISO_8859_2) <font color="#cc0033">getEncoderIndex1</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>SHORTINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ISO_8859_2) <font color="#cc0033">getEncoderIndex2</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ISO_8859_2) <font color="#cc0033">historicalName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ISO_8859_2) <font color="#cc0033">newDecoder</font>*() : <a href="java_nio_charset.html#type-CharsetDecoder">java_nio_charset.CharsetDecoder</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ISO_8859_2) <font color="#cc0033">newEncoder</font>*() : <a href="java_nio_charset.html#type-CharsetEncoder">java_nio_charset.CharsetEncoder</a><b>,EXTENSIBLE</b>;
+<a name="meths-ISO_8859_4"></a>
+<b>PROCEDURE </b>(self:ISO_8859_4) <font color="#cc0033">contains</font>*(p0 : <a href="java_nio_charset.html#type-Charset">java_nio_charset.Charset</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ISO_8859_4) <font color="#cc0033">getDecoderSingleByteMappings</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ISO_8859_4) <font color="#cc0033">getEncoderIndex1</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>SHORTINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ISO_8859_4) <font color="#cc0033">getEncoderIndex2</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ISO_8859_4) <font color="#cc0033">historicalName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ISO_8859_4) <font color="#cc0033">newDecoder</font>*() : <a href="java_nio_charset.html#type-CharsetDecoder">java_nio_charset.CharsetDecoder</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ISO_8859_4) <font color="#cc0033">newEncoder</font>*() : <a href="java_nio_charset.html#type-CharsetEncoder">java_nio_charset.CharsetEncoder</a><b>,EXTENSIBLE</b>;
+<a name="meths-ISO_8859_5"></a>
+<b>PROCEDURE </b>(self:ISO_8859_5) <font color="#cc0033">contains</font>*(p0 : <a href="java_nio_charset.html#type-Charset">java_nio_charset.Charset</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ISO_8859_5) <font color="#cc0033">getDecoderSingleByteMappings</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ISO_8859_5) <font color="#cc0033">getEncoderIndex1</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>SHORTINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ISO_8859_5) <font color="#cc0033">getEncoderIndex2</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ISO_8859_5) <font color="#cc0033">historicalName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ISO_8859_5) <font color="#cc0033">newDecoder</font>*() : <a href="java_nio_charset.html#type-CharsetDecoder">java_nio_charset.CharsetDecoder</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ISO_8859_5) <font color="#cc0033">newEncoder</font>*() : <a href="java_nio_charset.html#type-CharsetEncoder">java_nio_charset.CharsetEncoder</a><b>,EXTENSIBLE</b>;
+<a name="meths-ISO_8859_7"></a>
+<b>PROCEDURE </b>(self:ISO_8859_7) <font color="#cc0033">contains</font>*(p0 : <a href="java_nio_charset.html#type-Charset">java_nio_charset.Charset</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ISO_8859_7) <font color="#cc0033">getDecoderSingleByteMappings</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ISO_8859_7) <font color="#cc0033">getEncoderIndex1</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>SHORTINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ISO_8859_7) <font color="#cc0033">getEncoderIndex2</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ISO_8859_7) <font color="#cc0033">historicalName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ISO_8859_7) <font color="#cc0033">newDecoder</font>*() : <a href="java_nio_charset.html#type-CharsetDecoder">java_nio_charset.CharsetDecoder</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ISO_8859_7) <font color="#cc0033">newEncoder</font>*() : <a href="java_nio_charset.html#type-CharsetEncoder">java_nio_charset.CharsetEncoder</a><b>,EXTENSIBLE</b>;
+<a name="meths-ISO_8859_9"></a>
+<b>PROCEDURE </b>(self:ISO_8859_9) <font color="#cc0033">contains</font>*(p0 : <a href="java_nio_charset.html#type-Charset">java_nio_charset.Charset</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ISO_8859_9) <font color="#cc0033">getDecoderSingleByteMappings</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ISO_8859_9) <font color="#cc0033">getEncoderIndex1</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>SHORTINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ISO_8859_9) <font color="#cc0033">getEncoderIndex2</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ISO_8859_9) <font color="#cc0033">historicalName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ISO_8859_9) <font color="#cc0033">newDecoder</font>*() : <a href="java_nio_charset.html#type-CharsetDecoder">java_nio_charset.CharsetDecoder</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ISO_8859_9) <font color="#cc0033">newEncoder</font>*() : <a href="java_nio_charset.html#type-CharsetEncoder">java_nio_charset.CharsetEncoder</a><b>,EXTENSIBLE</b>;
+<a name="meths-KOI8_R"></a>
+<b>PROCEDURE </b>(self:KOI8_R) <font color="#cc0033">contains</font>*(p0 : <a href="java_nio_charset.html#type-Charset">java_nio_charset.Charset</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:KOI8_R) <font color="#cc0033">getDecoderSingleByteMappings</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:KOI8_R) <font color="#cc0033">getEncoderIndex1</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>SHORTINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:KOI8_R) <font color="#cc0033">getEncoderIndex2</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:KOI8_R) <font color="#cc0033">historicalName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:KOI8_R) <font color="#cc0033">newDecoder</font>*() : <a href="java_nio_charset.html#type-CharsetDecoder">java_nio_charset.CharsetDecoder</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:KOI8_R) <font color="#cc0033">newEncoder</font>*() : <a href="java_nio_charset.html#type-CharsetEncoder">java_nio_charset.CharsetEncoder</a><b>,EXTENSIBLE</b>;
+<a name="meths-KOI8_U"></a>
+<b>PROCEDURE </b>(self:KOI8_U) <font color="#cc0033">contains</font>*(p0 : <a href="java_nio_charset.html#type-Charset">java_nio_charset.Charset</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:KOI8_U) <font color="#cc0033">historicalName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:KOI8_U) <font color="#cc0033">newDecoder</font>*() : <a href="java_nio_charset.html#type-CharsetDecoder">java_nio_charset.CharsetDecoder</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:KOI8_U) <font color="#cc0033">newEncoder</font>*() : <a href="java_nio_charset.html#type-CharsetEncoder">java_nio_charset.CharsetEncoder</a><b>,EXTENSIBLE</b>;
+<a name="meths-MS1250"></a>
+<b>PROCEDURE </b>(self:MS1250) <font color="#cc0033">contains</font>*(p0 : <a href="java_nio_charset.html#type-Charset">java_nio_charset.Charset</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MS1250) <font color="#cc0033">getDecoderSingleByteMappings</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MS1250) <font color="#cc0033">getEncoderIndex1</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>SHORTINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MS1250) <font color="#cc0033">getEncoderIndex2</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MS1250) <font color="#cc0033">historicalName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MS1250) <font color="#cc0033">newDecoder</font>*() : <a href="java_nio_charset.html#type-CharsetDecoder">java_nio_charset.CharsetDecoder</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MS1250) <font color="#cc0033">newEncoder</font>*() : <a href="java_nio_charset.html#type-CharsetEncoder">java_nio_charset.CharsetEncoder</a><b>,EXTENSIBLE</b>;
+<a name="meths-MS1251"></a>
+<b>PROCEDURE </b>(self:MS1251) <font color="#cc0033">contains</font>*(p0 : <a href="java_nio_charset.html#type-Charset">java_nio_charset.Charset</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MS1251) <font color="#cc0033">getDecoderSingleByteMappings</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MS1251) <font color="#cc0033">getEncoderIndex1</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>SHORTINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MS1251) <font color="#cc0033">getEncoderIndex2</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MS1251) <font color="#cc0033">historicalName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MS1251) <font color="#cc0033">newDecoder</font>*() : <a href="java_nio_charset.html#type-CharsetDecoder">java_nio_charset.CharsetDecoder</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MS1251) <font color="#cc0033">newEncoder</font>*() : <a href="java_nio_charset.html#type-CharsetEncoder">java_nio_charset.CharsetEncoder</a><b>,EXTENSIBLE</b>;
+<a name="meths-MS1252"></a>
+<b>PROCEDURE </b>(self:MS1252) <font color="#cc0033">contains</font>*(p0 : <a href="java_nio_charset.html#type-Charset">java_nio_charset.Charset</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MS1252) <font color="#cc0033">getDecoderSingleByteMappings</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MS1252) <font color="#cc0033">getEncoderIndex1</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>SHORTINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MS1252) <font color="#cc0033">getEncoderIndex2</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MS1252) <font color="#cc0033">historicalName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MS1252) <font color="#cc0033">newDecoder</font>*() : <a href="java_nio_charset.html#type-CharsetDecoder">java_nio_charset.CharsetDecoder</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MS1252) <font color="#cc0033">newEncoder</font>*() : <a href="java_nio_charset.html#type-CharsetEncoder">java_nio_charset.CharsetEncoder</a><b>,EXTENSIBLE</b>;
+<a name="meths-MS1253"></a>
+<b>PROCEDURE </b>(self:MS1253) <font color="#cc0033">contains</font>*(p0 : <a href="java_nio_charset.html#type-Charset">java_nio_charset.Charset</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MS1253) <font color="#cc0033">getDecoderSingleByteMappings</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MS1253) <font color="#cc0033">getEncoderIndex1</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>SHORTINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MS1253) <font color="#cc0033">getEncoderIndex2</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MS1253) <font color="#cc0033">historicalName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MS1253) <font color="#cc0033">newDecoder</font>*() : <a href="java_nio_charset.html#type-CharsetDecoder">java_nio_charset.CharsetDecoder</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MS1253) <font color="#cc0033">newEncoder</font>*() : <a href="java_nio_charset.html#type-CharsetEncoder">java_nio_charset.CharsetEncoder</a><b>,EXTENSIBLE</b>;
+<a name="meths-MS1254"></a>
+<b>PROCEDURE </b>(self:MS1254) <font color="#cc0033">contains</font>*(p0 : <a href="java_nio_charset.html#type-Charset">java_nio_charset.Charset</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MS1254) <font color="#cc0033">getDecoderSingleByteMappings</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MS1254) <font color="#cc0033">getEncoderIndex1</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>SHORTINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MS1254) <font color="#cc0033">getEncoderIndex2</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MS1254) <font color="#cc0033">historicalName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MS1254) <font color="#cc0033">newDecoder</font>*() : <a href="java_nio_charset.html#type-CharsetDecoder">java_nio_charset.CharsetDecoder</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MS1254) <font color="#cc0033">newEncoder</font>*() : <a href="java_nio_charset.html#type-CharsetEncoder">java_nio_charset.CharsetEncoder</a><b>,EXTENSIBLE</b>;
+<a name="meths-MS1257"></a>
+<b>PROCEDURE </b>(self:MS1257) <font color="#cc0033">contains</font>*(p0 : <a href="java_nio_charset.html#type-Charset">java_nio_charset.Charset</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MS1257) <font color="#cc0033">getDecoderSingleByteMappings</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MS1257) <font color="#cc0033">getEncoderIndex1</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>SHORTINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MS1257) <font color="#cc0033">getEncoderIndex2</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MS1257) <font color="#cc0033">historicalName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MS1257) <font color="#cc0033">newDecoder</font>*() : <a href="java_nio_charset.html#type-CharsetDecoder">java_nio_charset.CharsetDecoder</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MS1257) <font color="#cc0033">newEncoder</font>*() : <a href="java_nio_charset.html#type-CharsetEncoder">java_nio_charset.CharsetEncoder</a><b>,EXTENSIBLE</b>;
+<a name="meths-SingleByte$Decoder"></a>
+<b>PROCEDURE </b>(self:SingleByte$Decoder) <font color="#cc0033">decodeLoop</font>!(p0 : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>;
+                                                p1 : <a href="java_nio.html#type-CharBuffer">java_nio.CharBuffer</a>) : <a href="java_nio_charset.html#type-CoderResult">java_nio_charset.CoderResult</a><b>,EXTENSIBLE</b>;
+<a name="meths-SingleByte$Encoder"></a>
+<b>PROCEDURE </b>(self:SingleByte$Encoder) <font color="#cc0033">canEncode</font>*(p0 : CHAR) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SingleByte$Encoder) <font color="#cc0033">encodeLoop</font>!(p0 : <a href="java_nio.html#type-CharBuffer">java_nio.CharBuffer</a>;
+                                                p1 : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>) : <a href="java_nio_charset.html#type-CoderResult">java_nio_charset.CoderResult</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SingleByte$Encoder) <font color="#cc0033">implReplaceWith</font>!(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SingleByte$Encoder) <font color="#cc0033">isLegalReplacement</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE) : BOOLEAN<b>,EXTENSIBLE</b>;
+<a name="meths-SingleByteDecoder"></a>
+<b>PROCEDURE </b>(self:SingleByteDecoder) <font color="#cc0033">decode</font>*(p0 : INTEGER) : CHAR<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SingleByteDecoder) <font color="#cc0033">decodeLoop</font>!(p0 : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>;
+                                               p1 : <a href="java_nio.html#type-CharBuffer">java_nio.CharBuffer</a>) : <a href="java_nio_charset.html#type-CoderResult">java_nio_charset.CoderResult</a><b>,EXTENSIBLE</b>;
+<a name="meths-SingleByteEncoder"></a>
+<b>PROCEDURE </b>(self:SingleByteEncoder) <font color="#cc0033">canEncode</font>*(p0 : CHAR) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SingleByteEncoder) <font color="#cc0033">encode</font>*(p0 : CHAR) : BYTE<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SingleByteEncoder) <font color="#cc0033">encodeLoop</font>!(p0 : <a href="java_nio.html#type-CharBuffer">java_nio.CharBuffer</a>;
+                                               p1 : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>) : <a href="java_nio_charset.html#type-CoderResult">java_nio_charset.CoderResult</a><b>,EXTENSIBLE</b>;
+<a name="meths-StreamDecoder"></a>
+<b>PROCEDURE </b>(self:StreamDecoder) <font color="#cc0033">close</font>*()<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:StreamDecoder) <font color="#cc0033">getEncoding</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:StreamDecoder) <font color="#cc0033">read</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>CHAR;
+                                         p1 : INTEGER;
+                                         p2 : INTEGER) : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:StreamDecoder) <font color="#cc0033">read</font>*() : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:StreamDecoder) <font color="#cc0033">ready</font>*() : BOOLEAN<b>,EXTENSIBLE</b>;
+<a name="meths-StreamEncoder"></a>
+<b>PROCEDURE </b>(self:StreamEncoder) <font color="#cc0033">close</font>*()<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:StreamEncoder) <font color="#cc0033">flush</font>*()<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:StreamEncoder) <font color="#cc0033">flushBuffer</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:StreamEncoder) <font color="#cc0033">getEncoding</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:StreamEncoder) <font color="#cc0033">write</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                      p1 : INTEGER;
+                                      p2 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:StreamEncoder) <font color="#cc0033">write</font>*(p0 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:StreamEncoder) <font color="#cc0033">write</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>CHAR;
+                                          p1 : INTEGER;
+                                          p2 : INTEGER)<b>,EXTENSIBLE</b>;
+<a name="meths-Surrogate$Generator"></a>
+<b>PROCEDURE </b>(self:Surrogate$Generator) <font color="#cc0033">error</font>*() : <a href="java_nio_charset.html#type-CoderResult">java_nio_charset.CoderResult</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Surrogate$Generator) <font color="#cc0033">generate</font>*(    p0 : INTEGER;
+                                                   p1 : INTEGER;
+                                               IN  p2 : <b>ARRAY </b><b>OF </b>CHAR;
+                                                   p3 : INTEGER;
+                                                   p4 : INTEGER) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Surrogate$Generator) <font color="#cc0033">generate</font>*(p0 : INTEGER;
+                                               p1 : INTEGER;
+                                               p2 : <a href="java_nio.html#type-CharBuffer">java_nio.CharBuffer</a>) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-Surrogate$Parser"></a>
+<b>PROCEDURE </b>(self:Surrogate$Parser) <font color="#cc0033">character</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Surrogate$Parser) <font color="#cc0033">error</font>*() : <a href="java_nio_charset.html#type-CoderResult">java_nio_charset.CoderResult</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Surrogate$Parser) <font color="#cc0033">increment</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Surrogate$Parser) <font color="#cc0033">isPair</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Surrogate$Parser) <font color="#cc0033">parse</font>*(p0 : CHAR;
+                                         p1 : <a href="java_nio.html#type-CharBuffer">java_nio.CharBuffer</a>) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Surrogate$Parser) <font color="#cc0033">parse</font>*(    p0 : CHAR;
+                                         IN  p1 : <b>ARRAY </b><b>OF </b>CHAR;
+                                             p2 : INTEGER;
+                                             p3 : INTEGER) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Surrogate$Parser) <font color="#cc0033">unmappableResult</font>*() : <a href="java_nio_charset.html#type-CoderResult">java_nio_charset.CoderResult</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-UnicodeEncoder"></a>
+<b>PROCEDURE </b>(self:UnicodeEncoder) <font color="#cc0033">canEncode</font>*(p0 : CHAR) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:UnicodeEncoder) <font color="#cc0033">encodeLoop</font>!(p0 : <a href="java_nio.html#type-CharBuffer">java_nio.CharBuffer</a>;
+                                            p1 : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>) : <a href="java_nio_charset.html#type-CoderResult">java_nio_charset.CoderResult</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:UnicodeEncoder) <font color="#cc0033">implReset</font>!()<b>,EXTENSIBLE</b>;
+<a name="meths-US_ASCII"></a>
+<b>PROCEDURE </b>(self:US_ASCII) <font color="#cc0033">contains</font>*(p0 : <a href="java_nio_charset.html#type-Charset">java_nio_charset.Charset</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:US_ASCII) <font color="#cc0033">historicalName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:US_ASCII) <font color="#cc0033">newDecoder</font>*() : <a href="java_nio_charset.html#type-CharsetDecoder">java_nio_charset.CharsetDecoder</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:US_ASCII) <font color="#cc0033">newEncoder</font>*() : <a href="java_nio_charset.html#type-CharsetEncoder">java_nio_charset.CharsetEncoder</a><b>,EXTENSIBLE</b>;
+<a name="meths-UTF_32"></a>
+<b>PROCEDURE </b>(self:UTF_32) <font color="#cc0033">historicalName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:UTF_32) <font color="#cc0033">newDecoder</font>*() : <a href="java_nio_charset.html#type-CharsetDecoder">java_nio_charset.CharsetDecoder</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:UTF_32) <font color="#cc0033">newEncoder</font>*() : <a href="java_nio_charset.html#type-CharsetEncoder">java_nio_charset.CharsetEncoder</a><b>,EXTENSIBLE</b>;
+<a name="meths-UTF_32BE"></a>
+<b>PROCEDURE </b>(self:UTF_32BE) <font color="#cc0033">historicalName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:UTF_32BE) <font color="#cc0033">newDecoder</font>*() : <a href="java_nio_charset.html#type-CharsetDecoder">java_nio_charset.CharsetDecoder</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:UTF_32BE) <font color="#cc0033">newEncoder</font>*() : <a href="java_nio_charset.html#type-CharsetEncoder">java_nio_charset.CharsetEncoder</a><b>,EXTENSIBLE</b>;
+<a name="meths-UTF_32BE_BOM"></a>
+<b>PROCEDURE </b>(self:UTF_32BE_BOM) <font color="#cc0033">historicalName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:UTF_32BE_BOM) <font color="#cc0033">newDecoder</font>*() : <a href="java_nio_charset.html#type-CharsetDecoder">java_nio_charset.CharsetDecoder</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:UTF_32BE_BOM) <font color="#cc0033">newEncoder</font>*() : <a href="java_nio_charset.html#type-CharsetEncoder">java_nio_charset.CharsetEncoder</a><b>,EXTENSIBLE</b>;
+<a name="meths-UTF_32Coder$Decoder"></a>
+<b>PROCEDURE </b>(self:UTF_32Coder$Decoder) <font color="#cc0033">decodeLoop</font>!(p0 : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>;
+                                                 p1 : <a href="java_nio.html#type-CharBuffer">java_nio.CharBuffer</a>) : <a href="java_nio_charset.html#type-CoderResult">java_nio_charset.CoderResult</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:UTF_32Coder$Decoder) <font color="#cc0033">implReset</font>!()<b>,EXTENSIBLE</b>;
+<a name="meths-UTF_32Coder$Encoder"></a>
+<b>PROCEDURE </b>(self:UTF_32Coder$Encoder) <font color="#cc0033">encodeLoop</font>!(p0 : <a href="java_nio.html#type-CharBuffer">java_nio.CharBuffer</a>;
+                                                 p1 : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>) : <a href="java_nio_charset.html#type-CoderResult">java_nio_charset.CoderResult</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:UTF_32Coder$Encoder) <font color="#cc0033">implReset</font>!()<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:UTF_32Coder$Encoder) <font color="#cc0033">put</font>!(p0 : INTEGER;
+                                          p1 : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-UTF_32LE"></a>
+<b>PROCEDURE </b>(self:UTF_32LE) <font color="#cc0033">historicalName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:UTF_32LE) <font color="#cc0033">newDecoder</font>*() : <a href="java_nio_charset.html#type-CharsetDecoder">java_nio_charset.CharsetDecoder</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:UTF_32LE) <font color="#cc0033">newEncoder</font>*() : <a href="java_nio_charset.html#type-CharsetEncoder">java_nio_charset.CharsetEncoder</a><b>,EXTENSIBLE</b>;
+<a name="meths-UTF_32LE_BOM"></a>
+<b>PROCEDURE </b>(self:UTF_32LE_BOM) <font color="#cc0033">historicalName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:UTF_32LE_BOM) <font color="#cc0033">newDecoder</font>*() : <a href="java_nio_charset.html#type-CharsetDecoder">java_nio_charset.CharsetDecoder</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:UTF_32LE_BOM) <font color="#cc0033">newEncoder</font>*() : <a href="java_nio_charset.html#type-CharsetEncoder">java_nio_charset.CharsetEncoder</a><b>,EXTENSIBLE</b>;
+
+<b>END </b><font color="#cc0033">sun_nio_cs</font>.
+</font></pre></hr></body></html>

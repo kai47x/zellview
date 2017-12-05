@@ -1,0 +1,15 @@
+format.access="%Ses->client.ip%  %Req->headers.referer% -  %Req->vars.auth-user% [%SYSDATE%] \"%Req->reqpb.clf-request%\" %Req->srvhdrs.clf-status% %Req->srvhdrs.content-length% %Req->headers.host%"
+68.122.147.19 - - [14/Aug/2003:00:37:28 +0200] "GET /cgi-bin/formmail/FormMail.cgi HTTP/1.1" 302 0 www.zinnamturm.de
+68.122.147.19 - - [14/Aug/2003:00:37:28 +0200] "GET /cgi-bin/formmail/FormMail.pl HTTP/1.1" 302 0 www.zinnamturm.de
+68.122.147.19 - - [14/Aug/2003:00:37:55 +0200] "GET /cgi-bin/formmail/FormMail.pl HTTP/1.1" 302 0 www.zinnamturm.de
+68.122.147.19 - - [14/Aug/2003:00:37:57 +0200] "GET /cgi-bin/formmail/FormMail.cgi HTTP/1.1" 302 0 www.zinnamturm.de
+68.122.147.19 - - [14/Aug/2003:00:38:09 +0200] "GET /cgi-bin/formmail/FormMail.pl HTTP/1.1" 302 0 www.zinnamturm.de
+68.122.147.19 - - [14/Aug/2003:00:38:11 +0200] "GET /cgi-bin/formmail/FormMail.cgi HTTP/1.1" 302 0 www.zinnamturm.de
+62.3.32.57 http://search.yahoo.com/search?p=q8se&ei=UTF-8&fr=fp-top - [14/Aug/2003:00:39:41 +0200] "GET /Opal.txt HTTP/1.1" 200 58013 www.zinnamturm.de
+137.159.49.196 - - [14/Aug/2003:01:08:12 +0200] "GET / HTTP/1.1" 200 84552 www.zinnamturm.de
+137.159.49.196 - - [14/Aug/2003:01:08:13 +0200] "GET /favicon.ico HTTP/1.1" 200 1406 www.zinnamturm.de
+137.159.49.196 http://www.zinnamturm.de/ - [14/Aug/2003:01:08:13 +0200] "GET /bg3.gif HTTP/1.1" 200 16276 www.zinnamturm.de
+137.159.49.196 http://www.zinnamturm.de/ - [14/Aug/2003:01:08:13 +0200] "GET /mail99.gif HTTP/1.1" 200 4196 www.zinnamturm.de
+202.133.193.5 http://www.zinnamturm.de/ - [14/Aug/2003:05:24:44 +0200] "GET /bg3.gif HTTP/1.0" 200 16276 www.zinnamturm.de
+202.133.193.5 http://www.google.com.au/search?q=MULTIPLICATION+TABLE+CODE+TURBO+PASCAL++DOWNLOAD&ie=ISO-8859-1&hl=en&meta= - [14/Aug/2003:05:24:44 +0200] "GET / HTTP/1.0" 200 84552 www.zinnamturm.de
+202.133.193.5 http://www.zinnamturm.de/ - [14/Aug/2003:05:24:44 +0200] "GET /mail99.gif HTTP/1.0" 200 4196 www.zinnamturm.de

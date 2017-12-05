@@ -1,0 +1,2086 @@
+<html><head><title>sun_awt_image</title></head>
+<body bgcolor="white">
+<hr><pre>
+<b>FOREIGN MODULE </b><font color="#cc0033">sun_awt_image</font>;
+
+<b>IMPORT</b>
+    <a href="java_lang.html">java_lang</a> := "java.lang",
+    <a href="java_io.html">java_io</a> := "java.io",
+    <a href="java_awt.html">java_awt</a> := "java.awt",
+    <a href="sun_awt.html">sun_awt</a> := "sun.awt",
+    <a href="java_awt_image.html">java_awt_image</a> := "java.awt.image",
+    <a href="java_awt_geom.html">java_awt_geom</a> := "java.awt.geom",
+    <a href="sun_java2d_loops.html">sun_java2d_loops</a> := "sun.java2d.loops",
+    <a href="sun_java2d.html">sun_java2d</a> := "sun.java2d",
+    <a href="sun_java2d_pipe.html">sun_java2d_pipe</a> := "sun.java2d.pipe",
+    <a href="java_security.html">java_security</a> := "java.security",
+    <a href="java_util.html">java_util</a> := "java.util",
+    <a href="sun_nio_ch.html">sun_nio_ch</a> := "sun.nio.ch",
+    <a href="sun_misc.html">sun_misc</a> := "sun.misc",
+    <a href="java_lang_ref.html">java_lang_ref</a> := "java.lang.ref",
+    <a href="java_net.html">java_net</a> := "java.net";
+
+<b>TYPE</b>
+
+  <a name="type-BadDepthException"></a><font color="#cc0033">BadDepthException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Exception">java_lang.Exception</a>)
+                       <b>STATIC</b>
+                         <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-BadDepthException">BadDepthException</a><b>,CONSTRUCTOR</b>;
+                       <b>END</b>;
+
+  <a name="type-BufferedImageDevice"></a><font color="#cc0033">BufferedImageDevice</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_awt.html#type-GraphicsDevice">java_awt.GraphicsDevice</a>)    <a href="#meths-BufferedImageDevice"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                         <b>STATIC</b>
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="#type-BufferedImageGraphicsConfig">BufferedImageGraphicsConfig</a>) : <a href="#type-BufferedImageDevice">BufferedImageDevice</a><b>,CONSTRUCTOR</b>;
+                         <b>END</b>;
+
+  <a name="type-BufferedImageGraphicsConfig"></a><font color="#cc0033">BufferedImageGraphicsConfig</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_awt.html#type-GraphicsConfiguration">java_awt.GraphicsConfiguration</a>)    <a href="#meths-BufferedImageGraphicsConfig"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                                 <b>STATIC</b>
+                                   <b>PROCEDURE </b><font color="#cc0033">getConfig</font>*(p0 : <a href="java_awt_image.html#type-BufferedImage">java_awt_image.BufferedImage</a>) : <a href="#type-BufferedImageGraphicsConfig">BufferedImageGraphicsConfig</a>;
+                                   <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_awt_image.html#type-BufferedImage">java_awt_image.BufferedImage</a>;
+                                                   p1 : <a href="java_awt.html#type-Component">java_awt.Component</a>) : <a href="#type-BufferedImageGraphicsConfig">BufferedImageGraphicsConfig</a><b>,CONSTRUCTOR</b>;
+                                 <b>END</b>;
+
+  <a name="type-BufImgSurfaceData"></a><font color="#cc0033">BufImgSurfaceData</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="sun_java2d.html#type-SurfaceData">sun_java2d.SurfaceData</a>)    <a href="#meths-BufImgSurfaceData"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                       <b>STATIC</b>
+                         <b>PROCEDURE </b><font color="#cc0033">createData</font>*(p0 : <a href="java_awt_image.html#type-Raster">java_awt_image.Raster</a>;
+                                               p1 : <a href="java_awt_image.html#type-ColorModel">java_awt_image.ColorModel</a>) : <a href="sun_java2d.html#type-SurfaceData">sun_java2d.SurfaceData</a>;
+                         <b>PROCEDURE </b><font color="#cc0033">createData</font>*(p0 : <a href="java_awt_image.html#type-BufferedImage">java_awt_image.BufferedImage</a>) : <a href="sun_java2d.html#type-SurfaceData">sun_java2d.SurfaceData</a>;
+                         <b>PROCEDURE </b><font color="#cc0033">createDataBC</font>*(p0 : <a href="java_awt_image.html#type-BufferedImage">java_awt_image.BufferedImage</a>;
+                                                 p1 : <a href="sun_java2d_loops.html#type-SurfaceType">sun_java2d_loops.SurfaceType</a>;
+                                                 p2 : INTEGER) : <a href="sun_java2d.html#type-SurfaceData">sun_java2d.SurfaceData</a>;
+                         <b>PROCEDURE </b><font color="#cc0033">createDataBP</font>*(p0 : <a href="java_awt_image.html#type-BufferedImage">java_awt_image.BufferedImage</a>;
+                                                 p1 : <a href="sun_java2d_loops.html#type-SurfaceType">sun_java2d_loops.SurfaceType</a>) : <a href="sun_java2d.html#type-SurfaceData">sun_java2d.SurfaceData</a>;
+                         <b>PROCEDURE </b><font color="#cc0033">createDataIC</font>*(p0 : <a href="java_awt_image.html#type-BufferedImage">java_awt_image.BufferedImage</a>;
+                                                 p1 : <a href="sun_java2d_loops.html#type-SurfaceType">sun_java2d_loops.SurfaceType</a>) : <a href="sun_java2d.html#type-SurfaceData">sun_java2d.SurfaceData</a>;
+                         <b>PROCEDURE </b><font color="#cc0033">createDataSC</font>*(p0 : <a href="java_awt_image.html#type-BufferedImage">java_awt_image.BufferedImage</a>;
+                                                 p1 : <a href="sun_java2d_loops.html#type-SurfaceType">sun_java2d_loops.SurfaceType</a>;
+                                                 p2 : <a href="java_awt_image.html#type-IndexColorModel">java_awt_image.IndexColorModel</a>) : <a href="sun_java2d.html#type-SurfaceData">sun_java2d.SurfaceData</a>;
+                         <b>PROCEDURE </b><font color="#cc0033">getSolidLoops</font>*(p0 : <a href="sun_java2d_loops.html#type-SurfaceType">sun_java2d_loops.SurfaceType</a>) : <a href="sun_java2d_loops.html#type-RenderLoops">sun_java2d_loops.RenderLoops</a>;
+                         <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_awt_image.html#type-BufferedImage">java_awt_image.BufferedImage</a>;
+                                         p1 : <a href="sun_java2d_loops.html#type-SurfaceType">sun_java2d_loops.SurfaceType</a>) : <a href="#type-BufImgSurfaceData">BufImgSurfaceData</a><b>,CONSTRUCTOR</b>;
+                       <b>END</b>;
+
+  <a name="type-BufImgSurfaceData$ICMColorData"></a><font color="#cc0033">BufImgSurfaceData$ICMColorData</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-BufImgSurfaceData$ICMColorData"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                                    <b>END</b>;
+
+  <a name="type-BufImgVolatileSurfaceManager"></a><font color="#cc0033">BufImgVolatileSurfaceManager</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-VolatileSurfaceManager">VolatileSurfaceManager</a>)    <a href="#meths-BufImgVolatileSurfaceManager"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                                  <b>STATIC</b>
+                                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="#type-SunVolatileImage">SunVolatileImage</a>;
+                                                    p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="#type-BufImgVolatileSurfaceManager">BufImgVolatileSurfaceManager</a><b>,CONSTRUCTOR</b>;
+                                  <b>END</b>;
+
+  <a name="type-ByteArrayImageSource"></a><font color="#cc0033">ByteArrayImageSource</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-InputStreamImageSource">InputStreamImageSource</a>)    <a href="#meths-ByteArrayImageSource"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                          <b>STATIC</b>
+                            <b>PROCEDURE </b><font color="#cc0033">Init</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE;
+                                                p1 : INTEGER;
+                                                p2 : INTEGER) : <a href="#type-ByteArrayImageSource">ByteArrayImageSource</a><b>,CONSTRUCTOR</b>;
+                            <b>PROCEDURE </b><font color="#cc0033">Init</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE) : <a href="#type-ByteArrayImageSource">ByteArrayImageSource</a><b>,CONSTRUCTOR</b>;
+                          <b>END</b>;
+
+  <a name="type-ByteBandedRaster"></a><font color="#cc0033">ByteBandedRaster</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-SunWritableRaster">SunWritableRaster</a>)    <a href="#meths-ByteBandedRaster"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                      <b>STATIC</b>
+                        <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_awt_image.html#type-SampleModel">java_awt_image.SampleModel</a>;
+                                        p1 : <a href="java_awt_image.html#type-DataBuffer">java_awt_image.DataBuffer</a>;
+                                        p2 : <a href="java_awt.html#type-Rectangle">java_awt.Rectangle</a>;
+                                        p3 : <a href="java_awt.html#type-Point">java_awt.Point</a>;
+                                        p4 : <a href="#type-ByteBandedRaster">ByteBandedRaster</a>) : <a href="#type-ByteBandedRaster">ByteBandedRaster</a><b>,CONSTRUCTOR</b>;
+                        <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_awt_image.html#type-SampleModel">java_awt_image.SampleModel</a>;
+                                        p1 : <a href="java_awt_image.html#type-DataBuffer">java_awt_image.DataBuffer</a>;
+                                        p2 : <a href="java_awt.html#type-Point">java_awt.Point</a>) : <a href="#type-ByteBandedRaster">ByteBandedRaster</a><b>,CONSTRUCTOR</b>;
+                        <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_awt_image.html#type-SampleModel">java_awt_image.SampleModel</a>;
+                                        p1 : <a href="java_awt.html#type-Point">java_awt.Point</a>) : <a href="#type-ByteBandedRaster">ByteBandedRaster</a><b>,CONSTRUCTOR</b>;
+                      <b>END</b>;
+
+  <a name="type-ByteComponentRaster"></a><font color="#cc0033">ByteComponentRaster</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-SunWritableRaster">SunWritableRaster</a>)    <a href="#meths-ByteComponentRaster"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                           <font color="#cc0033">bandOffset</font>!     : INTEGER;
+                           <font color="#cc0033">dataOffsets</font>!    : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>INTEGER;
+                           <font color="#cc0033">scanlineStride</font>! : INTEGER;
+                           <font color="#cc0033">pixelStride</font>!    : INTEGER;
+                           <font color="#cc0033">data</font>!           : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>BYTE;
+                         <b>STATIC</b>
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_awt_image.html#type-SampleModel">java_awt_image.SampleModel</a>;
+                                           p1 : <a href="java_awt_image.html#type-DataBuffer">java_awt_image.DataBuffer</a>;
+                                           p2 : <a href="java_awt.html#type-Rectangle">java_awt.Rectangle</a>;
+                                           p3 : <a href="java_awt.html#type-Point">java_awt.Point</a>;
+                                           p4 : <a href="#type-ByteComponentRaster">ByteComponentRaster</a>) : <a href="#type-ByteComponentRaster">ByteComponentRaster</a><b>,CONSTRUCTOR</b>;
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_awt_image.html#type-SampleModel">java_awt_image.SampleModel</a>;
+                                           p1 : <a href="java_awt_image.html#type-DataBuffer">java_awt_image.DataBuffer</a>;
+                                           p2 : <a href="java_awt.html#type-Point">java_awt.Point</a>) : <a href="#type-ByteComponentRaster">ByteComponentRaster</a><b>,CONSTRUCTOR</b>;
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_awt_image.html#type-SampleModel">java_awt_image.SampleModel</a>;
+                                           p1 : <a href="java_awt.html#type-Point">java_awt.Point</a>) : <a href="#type-ByteComponentRaster">ByteComponentRaster</a><b>,CONSTRUCTOR</b>;
+                         <b>END</b>;
+
+  <a name="type-ByteInterleavedRaster"></a><font color="#cc0033">ByteInterleavedRaster</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-ByteComponentRaster">ByteComponentRaster</a>)    <a href="#meths-ByteInterleavedRaster"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                           <b>STATIC</b>
+                             <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_awt_image.html#type-SampleModel">java_awt_image.SampleModel</a>;
+                                             p1 : <a href="java_awt_image.html#type-DataBuffer">java_awt_image.DataBuffer</a>;
+                                             p2 : <a href="java_awt.html#type-Rectangle">java_awt.Rectangle</a>;
+                                             p3 : <a href="java_awt.html#type-Point">java_awt.Point</a>;
+                                             p4 : <a href="#type-ByteInterleavedRaster">ByteInterleavedRaster</a>) : <a href="#type-ByteInterleavedRaster">ByteInterleavedRaster</a><b>,CONSTRUCTOR</b>;
+                             <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_awt_image.html#type-SampleModel">java_awt_image.SampleModel</a>;
+                                             p1 : <a href="java_awt_image.html#type-DataBuffer">java_awt_image.DataBuffer</a>;
+                                             p2 : <a href="java_awt.html#type-Point">java_awt.Point</a>) : <a href="#type-ByteInterleavedRaster">ByteInterleavedRaster</a><b>,CONSTRUCTOR</b>;
+                             <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_awt_image.html#type-SampleModel">java_awt_image.SampleModel</a>;
+                                             p1 : <a href="java_awt.html#type-Point">java_awt.Point</a>) : <a href="#type-ByteInterleavedRaster">ByteInterleavedRaster</a><b>,CONSTRUCTOR</b>;
+                           <b>END</b>;
+
+  <a name="type-BytePackedRaster"></a><font color="#cc0033">BytePackedRaster</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-SunWritableRaster">SunWritableRaster</a>)    <a href="#meths-BytePackedRaster"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                      <b>STATIC</b>
+                        <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_awt_image.html#type-SampleModel">java_awt_image.SampleModel</a>;
+                                        p1 : <a href="java_awt_image.html#type-DataBuffer">java_awt_image.DataBuffer</a>;
+                                        p2 : <a href="java_awt.html#type-Rectangle">java_awt.Rectangle</a>;
+                                        p3 : <a href="java_awt.html#type-Point">java_awt.Point</a>;
+                                        p4 : <a href="#type-BytePackedRaster">BytePackedRaster</a>) : <a href="#type-BytePackedRaster">BytePackedRaster</a><b>,CONSTRUCTOR</b>;
+                        <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_awt_image.html#type-SampleModel">java_awt_image.SampleModel</a>;
+                                        p1 : <a href="java_awt_image.html#type-DataBuffer">java_awt_image.DataBuffer</a>;
+                                        p2 : <a href="java_awt.html#type-Point">java_awt.Point</a>) : <a href="#type-BytePackedRaster">BytePackedRaster</a><b>,CONSTRUCTOR</b>;
+                        <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_awt_image.html#type-SampleModel">java_awt_image.SampleModel</a>;
+                                        p1 : <a href="java_awt.html#type-Point">java_awt.Point</a>) : <a href="#type-BytePackedRaster">BytePackedRaster</a><b>,CONSTRUCTOR</b>;
+                      <b>END</b>;
+
+  <a name="type-CachingSurfaceManager"></a><font color="#cc0033">CachingSurfaceManager</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="#type-SurfaceManager">SurfaceManager</a> + <a href="#type-RasterListener">RasterListener</a> + <a href="sun_awt.html#type-DisplayChangedListener">sun_awt.DisplayChangedListener</a>)    <a href="#meths-CachingSurfaceManager"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                             <font color="#cc0033">bImg</font>!                     : <a href="java_awt_image.html#type-BufferedImage">java_awt_image.BufferedImage</a>;
+                             <font color="#cc0033">sdDefault</font>!                : <a href="sun_java2d.html#type-SurfaceData">sun_java2d.SurfaceData</a>;
+                             <font color="#cc0033">sdAccel</font>!                  : <a href="sun_java2d.html#type-SurfaceData">sun_java2d.SurfaceData</a>;
+                             <font color="#cc0033">accelSurfaces</font>!            : <a href="java_util.html#type-HashMap">java_util.HashMap</a>;
+                             <font color="#cc0033">localAccelerationEnabled</font>! : BOOLEAN;
+                           <b>STATIC</b>
+                             <a name="type-accelerationEnabled"></a><font color="#cc0033">accelerationEnabled</font>!      : BOOLEAN;
+                             <a name="type-accelerationThreshold"></a><font color="#cc0033">accelerationThreshold</font>!    : INTEGER;
+                             <a name="type-allowRasterSteal"></a><font color="#cc0033">allowRasterSteal</font>!         : BOOLEAN;
+                             <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_awt_image.html#type-BufferedImage">java_awt_image.BufferedImage</a>) : <a href="#type-CachingSurfaceManager">CachingSurfaceManager</a><b>,CONSTRUCTOR</b>;
+                             <b>PROCEDURE </b><font color="#cc0033">restoreLocalAcceleration</font>*(p0 : <a href="java_awt.html#type-Image">java_awt.Image</a>);
+                           <b>END</b>;
+
+  <a name="type-DataBufferNative"></a><font color="#cc0033">DataBufferNative</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_awt_image.html#type-DataBuffer">java_awt_image.DataBuffer</a>)    <a href="#meths-DataBufferNative"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                        <font color="#cc0033">surfaceData</font>! : <a href="sun_java2d.html#type-SurfaceData">sun_java2d.SurfaceData</a>;
+                        <font color="#cc0033">width</font>!       : INTEGER;
+                      <b>STATIC</b>
+                        <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="sun_java2d.html#type-SurfaceData">sun_java2d.SurfaceData</a>;
+                                        p1 : INTEGER;
+                                        p2 : INTEGER;
+                                        p3 : INTEGER) : <a href="#type-DataBufferNative">DataBufferNative</a><b>,CONSTRUCTOR</b>;
+                      <b>END</b>;
+
+  <a name="type-FileImageSource"></a><font color="#cc0033">FileImageSource</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-InputStreamImageSource">InputStreamImageSource</a>)    <a href="#meths-FileImageSource"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                     <b>STATIC</b>
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-FileImageSource">FileImageSource</a><b>,CONSTRUCTOR</b>;
+                     <b>END</b>;
+
+  <a name="type-GifImageDecoder"></a><font color="#cc0033">GifImageDecoder</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-ImageDecoder">ImageDecoder</a>)    <a href="#meths-GifImageDecoder"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                     <b>STATIC</b>
+                       <b>PROCEDURE </b><font color="#cc0033">grow_colormap</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE;
+                                                    p1 : INTEGER) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>BYTE;
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="#type-InputStreamImageSource">InputStreamImageSource</a>;
+                                       p1 : <a href="java_io.html#type-InputStream">java_io.InputStream</a>) : <a href="#type-GifImageDecoder">GifImageDecoder</a><b>,CONSTRUCTOR</b>;
+                     <b>END</b>;
+
+  <a name="type-ImageAccessException"></a><font color="#cc0033">ImageAccessException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Exception">java_lang.Exception</a>)
+                          <b>STATIC</b>
+                            <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-ImageAccessException">ImageAccessException</a><b>,CONSTRUCTOR</b>;
+                          <b>END</b>;
+
+  <a name="type-ImageDecoder"></a><font color="#cc0033">ImageDecoder</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-ImageDecoder"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                    <font color="#cc0033">aborted</font>!  : BOOLEAN;
+                    <font color="#cc0033">finished</font>! : BOOLEAN;
+                  <b>STATIC</b>
+                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="#type-InputStreamImageSource">InputStreamImageSource</a>;
+                                    p1 : <a href="java_io.html#type-InputStream">java_io.InputStream</a>) : <a href="#type-ImageDecoder">ImageDecoder</a><b>,CONSTRUCTOR</b>;
+                  <b>END</b>;
+
+  <a name="type-ImageFetchable"></a><font color="#cc0033">ImageFetchable</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-ImageFetchable"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                    <b>END</b>;
+
+  <a name="type-ImageFormatException"></a><font color="#cc0033">ImageFormatException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Exception">java_lang.Exception</a>)
+                          <b>STATIC</b>
+                            <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-ImageFormatException">ImageFormatException</a><b>,CONSTRUCTOR</b>;
+                          <b>END</b>;
+
+  <a name="type-ImageRepresentation"></a><font color="#cc0033">ImageRepresentation</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-ImageWatched">ImageWatched</a> + <a href="java_awt_image.html#type-ImageConsumer">java_awt_image.ImageConsumer</a>)    <a href="#meths-ImageRepresentation"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                           <font color="#cc0033">cmodel</font>! : <a href="java_awt_image.html#type-ColorModel">java_awt_image.ColorModel</a>;
+                         <b>STATIC</b>
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="#type-ToolkitImage">ToolkitImage</a>;
+                                           p1 : <a href="java_awt_image.html#type-ColorModel">java_awt_image.ColorModel</a>;
+                                           p2 : BOOLEAN) : <a href="#type-ImageRepresentation">ImageRepresentation</a><b>,CONSTRUCTOR</b>;
+                         <b>END</b>;
+
+  <a name="type-ImageWatched"></a><font color="#cc0033">ImageWatched</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-ImageWatched"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                    <font color="#cc0033">watcherList</font>* : <a href="#type-ImageWatched$Link">ImageWatched$Link</a>;
+                  <b>STATIC</b>
+                    <a name="type-endlink"></a><font color="#cc0033">endlink</font>* : <a href="#type-ImageWatched$Link">ImageWatched$Link</a>;
+                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-ImageWatched">ImageWatched</a><b>,CONSTRUCTOR</b>;
+                  <b>END</b>;
+
+  <a name="type-ImageWatched$Link"></a><font color="#cc0033">ImageWatched$Link</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-ImageWatched$Link"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                       <b>STATIC</b>
+                         <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-ImageWatched$Link">ImageWatched$Link</a><b>,CONSTRUCTOR</b>;
+                       <b>END</b>;
+
+  <a name="type-ImageWatched$WeakLink"></a><font color="#cc0033">ImageWatched$WeakLink</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-ImageWatched$Link">ImageWatched$Link</a>)    <a href="#meths-ImageWatched$WeakLink"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                           <b>STATIC</b>
+                             <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_awt_image.html#type-ImageObserver">java_awt_image.ImageObserver</a>;
+                                             p1 : <a href="#type-ImageWatched$Link">ImageWatched$Link</a>) : <a href="#type-ImageWatched$WeakLink">ImageWatched$WeakLink</a><b>,CONSTRUCTOR</b>;
+                           <b>END</b>;
+
+  <a name="type-ImagingLib"></a><font color="#cc0033">ImagingLib</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                <b>STATIC</b>
+                  <b>PROCEDURE </b><font color="#cc0033">convolveBI</font>*(p0 : <a href="java_awt_image.html#type-BufferedImage">java_awt_image.BufferedImage</a>;
+                                        p1 : <a href="java_awt_image.html#type-BufferedImage">java_awt_image.BufferedImage</a>;
+                                        p2 : <a href="java_awt_image.html#type-Kernel">java_awt_image.Kernel</a>;
+                                        p3 : INTEGER) : INTEGER;
+                  <b>PROCEDURE </b><font color="#cc0033">convolveRaster</font>*(p0 : <a href="java_awt_image.html#type-Raster">java_awt_image.Raster</a>;
+                                            p1 : <a href="java_awt_image.html#type-Raster">java_awt_image.Raster</a>;
+                                            p2 : <a href="java_awt_image.html#type-Kernel">java_awt_image.Kernel</a>;
+                                            p3 : INTEGER) : INTEGER;
+                  <b>PROCEDURE </b><font color="#cc0033">filter</font>*(p0 : <a href="java_awt_image.html#type-RasterOp">java_awt_image.RasterOp</a>;
+                                    p1 : <a href="java_awt_image.html#type-Raster">java_awt_image.Raster</a>;
+                                    p2 : <a href="java_awt_image.html#type-WritableRaster">java_awt_image.WritableRaster</a>) : <a href="java_awt_image.html#type-WritableRaster">java_awt_image.WritableRaster</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">filter</font>*(p0 : <a href="java_awt_image.html#type-BufferedImageOp">java_awt_image.BufferedImageOp</a>;
+                                    p1 : <a href="java_awt_image.html#type-BufferedImage">java_awt_image.BufferedImage</a>;
+                                    p2 : <a href="java_awt_image.html#type-BufferedImage">java_awt_image.BufferedImage</a>) : <a href="java_awt_image.html#type-BufferedImage">java_awt_image.BufferedImage</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-ImagingLib">ImagingLib</a><b>,CONSTRUCTOR</b>;
+                  <b>PROCEDURE </b><font color="#cc0033">lookupByteBI</font>*(    p0 : <a href="java_awt_image.html#type-BufferedImage">java_awt_image.BufferedImage</a>;
+                                              p1 : <a href="java_awt_image.html#type-BufferedImage">java_awt_image.BufferedImage</a>;
+                                          IN  p2 : <b>ARRAY </b><b>OF </b>BYTE) : INTEGER;
+                  <b>PROCEDURE </b><font color="#cc0033">lookupByteRaster</font>*(    p0 : <a href="java_awt_image.html#type-Raster">java_awt_image.Raster</a>;
+                                                  p1 : <a href="java_awt_image.html#type-Raster">java_awt_image.Raster</a>;
+                                              IN  p2 : <b>ARRAY </b><b>OF </b>BYTE) : INTEGER;
+                  <b>PROCEDURE </b><font color="#cc0033">transformBI</font>*(    p0 : <a href="java_awt_image.html#type-BufferedImage">java_awt_image.BufferedImage</a>;
+                                             p1 : <a href="java_awt_image.html#type-BufferedImage">java_awt_image.BufferedImage</a>;
+                                         IN  p2 : <b>ARRAY </b><b>OF </b>REAL;
+                                             p3 : INTEGER) : INTEGER;
+                  <b>PROCEDURE </b><font color="#cc0033">transformRaster</font>*(    p0 : <a href="java_awt_image.html#type-Raster">java_awt_image.Raster</a>;
+                                                 p1 : <a href="java_awt_image.html#type-Raster">java_awt_image.Raster</a>;
+                                             IN  p2 : <b>ARRAY </b><b>OF </b>REAL;
+                                                 p3 : INTEGER) : INTEGER;
+                <b>END</b>;
+
+  <a name="type-InputStreamImageSource"></a><font color="#cc0033">InputStreamImageSource</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_awt_image.html#type-ImageProducer">java_awt_image.ImageProducer</a> + <a href="#type-ImageFetchable">ImageFetchable</a>)    <a href="#meths-InputStreamImageSource"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                            <b>STATIC</b>
+                              <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-InputStreamImageSource">InputStreamImageSource</a><b>,CONSTRUCTOR</b>;
+                            <b>END</b>;
+
+  <a name="type-IntegerComponentRaster"></a><font color="#cc0033">IntegerComponentRaster</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-SunWritableRaster">SunWritableRaster</a>)    <a href="#meths-IntegerComponentRaster"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                              <font color="#cc0033">bandOffset</font>!     : INTEGER;
+                              <font color="#cc0033">dataOffsets</font>!    : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>INTEGER;
+                              <font color="#cc0033">scanlineStride</font>! : INTEGER;
+                              <font color="#cc0033">pixelStride</font>!    : INTEGER;
+                              <font color="#cc0033">data</font>!           : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>INTEGER;
+                              <font color="#cc0033">numDataElems</font>!   : INTEGER;
+                            <b>STATIC</b>
+                              <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_awt_image.html#type-SampleModel">java_awt_image.SampleModel</a>;
+                                              p1 : <a href="java_awt_image.html#type-DataBuffer">java_awt_image.DataBuffer</a>;
+                                              p2 : <a href="java_awt.html#type-Rectangle">java_awt.Rectangle</a>;
+                                              p3 : <a href="java_awt.html#type-Point">java_awt.Point</a>;
+                                              p4 : <a href="#type-IntegerComponentRaster">IntegerComponentRaster</a>) : <a href="#type-IntegerComponentRaster">IntegerComponentRaster</a><b>,CONSTRUCTOR</b>;
+                              <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_awt_image.html#type-SampleModel">java_awt_image.SampleModel</a>;
+                                              p1 : <a href="java_awt_image.html#type-DataBuffer">java_awt_image.DataBuffer</a>;
+                                              p2 : <a href="java_awt.html#type-Point">java_awt.Point</a>) : <a href="#type-IntegerComponentRaster">IntegerComponentRaster</a><b>,CONSTRUCTOR</b>;
+                              <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_awt_image.html#type-SampleModel">java_awt_image.SampleModel</a>;
+                                              p1 : <a href="java_awt.html#type-Point">java_awt.Point</a>) : <a href="#type-IntegerComponentRaster">IntegerComponentRaster</a><b>,CONSTRUCTOR</b>;
+                            <b>END</b>;
+
+  <a name="type-IntegerInterleavedRaster"></a><font color="#cc0033">IntegerInterleavedRaster</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-IntegerComponentRaster">IntegerComponentRaster</a>)    <a href="#meths-IntegerInterleavedRaster"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                              <b>STATIC</b>
+                                <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_awt_image.html#type-SampleModel">java_awt_image.SampleModel</a>;
+                                                p1 : <a href="java_awt_image.html#type-DataBuffer">java_awt_image.DataBuffer</a>;
+                                                p2 : <a href="java_awt.html#type-Rectangle">java_awt.Rectangle</a>;
+                                                p3 : <a href="java_awt.html#type-Point">java_awt.Point</a>;
+                                                p4 : <a href="#type-IntegerInterleavedRaster">IntegerInterleavedRaster</a>) : <a href="#type-IntegerInterleavedRaster">IntegerInterleavedRaster</a><b>,CONSTRUCTOR</b>;
+                                <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_awt_image.html#type-SampleModel">java_awt_image.SampleModel</a>;
+                                                p1 : <a href="java_awt_image.html#type-DataBuffer">java_awt_image.DataBuffer</a>;
+                                                p2 : <a href="java_awt.html#type-Point">java_awt.Point</a>) : <a href="#type-IntegerInterleavedRaster">IntegerInterleavedRaster</a><b>,CONSTRUCTOR</b>;
+                                <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_awt_image.html#type-SampleModel">java_awt_image.SampleModel</a>;
+                                                p1 : <a href="java_awt.html#type-Point">java_awt.Point</a>) : <a href="#type-IntegerInterleavedRaster">IntegerInterleavedRaster</a><b>,CONSTRUCTOR</b>;
+                              <b>END</b>;
+
+  <a name="type-JPEGImageDecoder"></a><font color="#cc0033">JPEGImageDecoder</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-ImageDecoder">ImageDecoder</a>)    <a href="#meths-JPEGImageDecoder"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                      <b>STATIC</b>
+                        <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="#type-InputStreamImageSource">InputStreamImageSource</a>;
+                                        p1 : <a href="java_io.html#type-InputStream">java_io.InputStream</a>) : <a href="#type-JPEGImageDecoder">JPEGImageDecoder</a><b>,CONSTRUCTOR</b>;
+                      <b>END</b>;
+
+  <a name="type-OffScreenImage"></a><font color="#cc0033">OffScreenImage</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_awt_image.html#type-BufferedImage">java_awt_image.BufferedImage</a>)    <a href="#meths-OffScreenImage"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                      <font color="#cc0033">c</font>! : <a href="java_awt.html#type-Component">java_awt.Component</a>;
+                    <b>STATIC</b>
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_awt.html#type-Component">java_awt.Component</a>;
+                                      p1 : <a href="java_awt_image.html#type-ColorModel">java_awt_image.ColorModel</a>;
+                                      p2 : <a href="java_awt_image.html#type-WritableRaster">java_awt_image.WritableRaster</a>;
+                                      p3 : BOOLEAN) : <a href="#type-OffScreenImage">OffScreenImage</a><b>,CONSTRUCTOR</b>;
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_awt.html#type-Component">java_awt.Component</a>;
+                                      p1 : INTEGER;
+                                      p2 : INTEGER;
+                                      p3 : INTEGER) : <a href="#type-OffScreenImage">OffScreenImage</a><b>,CONSTRUCTOR</b>;
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_awt.html#type-Component">java_awt.Component</a>;
+                                      p1 : INTEGER;
+                                      p2 : INTEGER) : <a href="#type-OffScreenImage">OffScreenImage</a><b>,CONSTRUCTOR</b>;
+                    <b>END</b>;
+
+  <a name="type-OffScreenImageSource"></a><font color="#cc0033">OffScreenImageSource</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_awt_image.html#type-ImageProducer">java_awt_image.ImageProducer</a>)    <a href="#meths-OffScreenImageSource"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                          <b>STATIC</b>
+                            <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_awt_image.html#type-BufferedImage">java_awt_image.BufferedImage</a>) : <a href="#type-OffScreenImageSource">OffScreenImageSource</a><b>,CONSTRUCTOR</b>;
+                            <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_awt_image.html#type-BufferedImage">java_awt_image.BufferedImage</a>;
+                                            p1 : <a href="java_util.html#type-Hashtable">java_util.Hashtable</a>) : <a href="#type-OffScreenImageSource">OffScreenImageSource</a><b>,CONSTRUCTOR</b>;
+                          <b>END</b>;
+
+  <a name="type-OffScreenSurfaceManager"></a><font color="#cc0033">OffScreenSurfaceManager</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="#type-CachingSurfaceManager">CachingSurfaceManager</a>)    <a href="#meths-OffScreenSurfaceManager"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                             <b>STATIC</b>
+                               <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_awt.html#type-Component">java_awt.Component</a>;
+                                               p1 : <a href="java_awt_image.html#type-BufferedImage">java_awt_image.BufferedImage</a>) : <a href="#type-OffScreenSurfaceManager">OffScreenSurfaceManager</a><b>,CONSTRUCTOR</b>;
+                             <b>END</b>;
+
+  <a name="type-PixelConverter"></a><font color="#cc0033">PixelConverter</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-PixelConverter"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                      <font color="#cc0033">alphaMask</font>! : INTEGER;
+                    <b>STATIC</b>
+                      <a name="type-instance"></a><font color="#cc0033">instance</font>* : <a href="#type-PixelConverter">PixelConverter</a>;
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>!() : <a href="#type-PixelConverter">PixelConverter</a><b>,CONSTRUCTOR</b>;
+                    <b>END</b>;
+
+  <a name="type-PixelConverter$Argb"></a><font color="#cc0033">PixelConverter$Argb</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-PixelConverter">PixelConverter</a>)    <a href="#meths-PixelConverter$Argb"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                         <b>STATIC</b>
+                           <a name="type-instance"></a><font color="#cc0033">instance</font>* : <a href="#type-PixelConverter">PixelConverter</a>;
+                         <b>END</b>;
+
+  <a name="type-PixelConverter$ArgbBm"></a><font color="#cc0033">PixelConverter$ArgbBm</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-PixelConverter">PixelConverter</a>)    <a href="#meths-PixelConverter$ArgbBm"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                           <b>STATIC</b>
+                             <a name="type-instance"></a><font color="#cc0033">instance</font>* : <a href="#type-PixelConverter">PixelConverter</a>;
+                           <b>END</b>;
+
+  <a name="type-PixelConverter$ArgbPre"></a><font color="#cc0033">PixelConverter$ArgbPre</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-PixelConverter">PixelConverter</a>)    <a href="#meths-PixelConverter$ArgbPre"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                            <b>STATIC</b>
+                              <a name="type-instance"></a><font color="#cc0033">instance</font>* : <a href="#type-PixelConverter">PixelConverter</a>;
+                            <b>END</b>;
+
+  <a name="type-PixelConverter$Bgrx"></a><font color="#cc0033">PixelConverter$Bgrx</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-PixelConverter">PixelConverter</a>)    <a href="#meths-PixelConverter$Bgrx"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                         <b>STATIC</b>
+                           <a name="type-instance"></a><font color="#cc0033">instance</font>* : <a href="#type-PixelConverter">PixelConverter</a>;
+                         <b>END</b>;
+
+  <a name="type-PixelConverter$ByteGray"></a><font color="#cc0033">PixelConverter$ByteGray</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-PixelConverter">PixelConverter</a>)    <a href="#meths-PixelConverter$ByteGray"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                             <b>STATIC</b>
+                               <a name="type-instance"></a><font color="#cc0033">instance</font>* : <a href="#type-PixelConverter">PixelConverter</a>;
+                             <b>END</b>;
+
+  <a name="type-PixelConverter$Rgba"></a><font color="#cc0033">PixelConverter$Rgba</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-PixelConverter">PixelConverter</a>)    <a href="#meths-PixelConverter$Rgba"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                         <b>STATIC</b>
+                           <a name="type-instance"></a><font color="#cc0033">instance</font>* : <a href="#type-PixelConverter">PixelConverter</a>;
+                         <b>END</b>;
+
+  <a name="type-PixelConverter$RgbaPre"></a><font color="#cc0033">PixelConverter$RgbaPre</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-PixelConverter">PixelConverter</a>)    <a href="#meths-PixelConverter$RgbaPre"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                            <b>STATIC</b>
+                              <a name="type-instance"></a><font color="#cc0033">instance</font>* : <a href="#type-PixelConverter">PixelConverter</a>;
+                            <b>END</b>;
+
+  <a name="type-PixelConverter$Rgbx"></a><font color="#cc0033">PixelConverter$Rgbx</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-PixelConverter">PixelConverter</a>)    <a href="#meths-PixelConverter$Rgbx"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                         <b>STATIC</b>
+                           <a name="type-instance"></a><font color="#cc0033">instance</font>* : <a href="#type-PixelConverter">PixelConverter</a>;
+                         <b>END</b>;
+
+  <a name="type-PixelConverter$Ushort4444Argb"></a><font color="#cc0033">PixelConverter$Ushort4444Argb</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-PixelConverter">PixelConverter</a>)    <a href="#meths-PixelConverter$Ushort4444Argb"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                                   <b>STATIC</b>
+                                     <a name="type-instance"></a><font color="#cc0033">instance</font>* : <a href="#type-PixelConverter">PixelConverter</a>;
+                                   <b>END</b>;
+
+  <a name="type-PixelConverter$Ushort555Rgb"></a><font color="#cc0033">PixelConverter$Ushort555Rgb</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-PixelConverter">PixelConverter</a>)    <a href="#meths-PixelConverter$Ushort555Rgb"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                                 <b>STATIC</b>
+                                   <a name="type-instance"></a><font color="#cc0033">instance</font>* : <a href="#type-PixelConverter">PixelConverter</a>;
+                                 <b>END</b>;
+
+  <a name="type-PixelConverter$Ushort555Rgbx"></a><font color="#cc0033">PixelConverter$Ushort555Rgbx</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-PixelConverter">PixelConverter</a>)    <a href="#meths-PixelConverter$Ushort555Rgbx"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                                  <b>STATIC</b>
+                                    <a name="type-instance"></a><font color="#cc0033">instance</font>* : <a href="#type-PixelConverter">PixelConverter</a>;
+                                  <b>END</b>;
+
+  <a name="type-PixelConverter$Ushort565Rgb"></a><font color="#cc0033">PixelConverter$Ushort565Rgb</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-PixelConverter">PixelConverter</a>)    <a href="#meths-PixelConverter$Ushort565Rgb"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                                 <b>STATIC</b>
+                                   <a name="type-instance"></a><font color="#cc0033">instance</font>* : <a href="#type-PixelConverter">PixelConverter</a>;
+                                 <b>END</b>;
+
+  <a name="type-PixelConverter$UshortGray"></a><font color="#cc0033">PixelConverter$UshortGray</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-PixelConverter$ByteGray">PixelConverter$ByteGray</a>)    <a href="#meths-PixelConverter$UshortGray"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                               <b>STATIC</b>
+                                 <a name="type-instance"></a><font color="#cc0033">instance</font>* : <a href="#type-PixelConverter">PixelConverter</a>;
+                               <b>END</b>;
+
+  <a name="type-PixelConverter$Xbgr"></a><font color="#cc0033">PixelConverter$Xbgr</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-PixelConverter">PixelConverter</a>)    <a href="#meths-PixelConverter$Xbgr"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                         <b>STATIC</b>
+                           <a name="type-instance"></a><font color="#cc0033">instance</font>* : <a href="#type-PixelConverter">PixelConverter</a>;
+                         <b>END</b>;
+
+  <a name="type-PixelConverter$Xrgb"></a><font color="#cc0033">PixelConverter$Xrgb</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-PixelConverter">PixelConverter</a>)    <a href="#meths-PixelConverter$Xrgb"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                         <b>STATIC</b>
+                           <a name="type-instance"></a><font color="#cc0033">instance</font>* : <a href="#type-PixelConverter">PixelConverter</a>;
+                         <b>END</b>;
+
+  <a name="type-PNGImageDecoder"></a><font color="#cc0033">PNGImageDecoder</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-ImageDecoder">ImageDecoder</a>)    <a href="#meths-PNGImageDecoder"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                     <b>STATIC</b>
+                       <b>PROCEDURE </b><font color="#cc0033">getCheckCRC</font>*() : BOOLEAN;
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="#type-InputStreamImageSource">InputStreamImageSource</a>;
+                                       p1 : <a href="java_io.html#type-InputStream">java_io.InputStream</a>) : <a href="#type-PNGImageDecoder">PNGImageDecoder</a><b>,CONSTRUCTOR</b>;
+                       <b>PROCEDURE </b><font color="#cc0033">setCheckCRC</font>*(p0 : BOOLEAN);
+                     <b>END</b>;
+
+  <a name="type-PNGImageDecoder$Chromaticities"></a><font color="#cc0033">PNGImageDecoder$Chromaticities</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-PNGImageDecoder$Chromaticities"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                                      <font color="#cc0033">whiteX</font>* : SHORTREAL;
+                                      <font color="#cc0033">whiteY</font>* : SHORTREAL;
+                                      <font color="#cc0033">redX</font>*   : SHORTREAL;
+                                      <font color="#cc0033">redY</font>*   : SHORTREAL;
+                                      <font color="#cc0033">greenX</font>* : SHORTREAL;
+                                      <font color="#cc0033">greenY</font>* : SHORTREAL;
+                                      <font color="#cc0033">blueX</font>*  : SHORTREAL;
+                                      <font color="#cc0033">blueY</font>*  : SHORTREAL;
+                                    <b>END</b>;
+
+  <a name="type-PNGImageDecoder$PNGException"></a><font color="#cc0033">PNGImageDecoder$PNGException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_io.html#type-IOException">java_io.IOException</a>)
+                                  <b>END</b>;
+
+  <a name="type-RasterListener"></a><font color="#cc0033">RasterListener</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-RasterListener"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                    <b>END</b>;
+
+  <a name="type-RemoteOffScreenImage"></a><font color="#cc0033">RemoteOffScreenImage</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-OffScreenImage">OffScreenImage</a>)    <a href="#meths-RemoteOffScreenImage"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                            <font color="#cc0033">bufImageTypeSw</font>! : INTEGER;
+                          <b>STATIC</b>
+                            <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_awt.html#type-Component">java_awt.Component</a>;
+                                            p1 : <a href="java_awt_image.html#type-ColorModel">java_awt_image.ColorModel</a>;
+                                            p2 : <a href="java_awt_image.html#type-WritableRaster">java_awt_image.WritableRaster</a>;
+                                            p3 : BOOLEAN) : <a href="#type-RemoteOffScreenImage">RemoteOffScreenImage</a><b>,CONSTRUCTOR</b>;
+                          <b>END</b>;
+
+  <a name="type-ShortBandedRaster"></a><font color="#cc0033">ShortBandedRaster</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-SunWritableRaster">SunWritableRaster</a>)    <a href="#meths-ShortBandedRaster"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                       <b>STATIC</b>
+                         <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_awt_image.html#type-SampleModel">java_awt_image.SampleModel</a>;
+                                         p1 : <a href="java_awt_image.html#type-DataBuffer">java_awt_image.DataBuffer</a>;
+                                         p2 : <a href="java_awt.html#type-Rectangle">java_awt.Rectangle</a>;
+                                         p3 : <a href="java_awt.html#type-Point">java_awt.Point</a>;
+                                         p4 : <a href="#type-ShortBandedRaster">ShortBandedRaster</a>) : <a href="#type-ShortBandedRaster">ShortBandedRaster</a><b>,CONSTRUCTOR</b>;
+                         <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_awt_image.html#type-SampleModel">java_awt_image.SampleModel</a>;
+                                         p1 : <a href="java_awt_image.html#type-DataBuffer">java_awt_image.DataBuffer</a>;
+                                         p2 : <a href="java_awt.html#type-Point">java_awt.Point</a>) : <a href="#type-ShortBandedRaster">ShortBandedRaster</a><b>,CONSTRUCTOR</b>;
+                         <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_awt_image.html#type-SampleModel">java_awt_image.SampleModel</a>;
+                                         p1 : <a href="java_awt.html#type-Point">java_awt.Point</a>) : <a href="#type-ShortBandedRaster">ShortBandedRaster</a><b>,CONSTRUCTOR</b>;
+                       <b>END</b>;
+
+  <a name="type-ShortComponentRaster"></a><font color="#cc0033">ShortComponentRaster</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-SunWritableRaster">SunWritableRaster</a>)    <a href="#meths-ShortComponentRaster"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                            <font color="#cc0033">bandOffset</font>!     : INTEGER;
+                            <font color="#cc0033">dataOffsets</font>!    : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>INTEGER;
+                            <font color="#cc0033">scanlineStride</font>! : INTEGER;
+                            <font color="#cc0033">pixelStride</font>!    : INTEGER;
+                            <font color="#cc0033">data</font>!           : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>SHORTINT;
+                          <b>STATIC</b>
+                            <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_awt_image.html#type-SampleModel">java_awt_image.SampleModel</a>;
+                                            p1 : <a href="java_awt_image.html#type-DataBuffer">java_awt_image.DataBuffer</a>;
+                                            p2 : <a href="java_awt.html#type-Rectangle">java_awt.Rectangle</a>;
+                                            p3 : <a href="java_awt.html#type-Point">java_awt.Point</a>;
+                                            p4 : <a href="#type-ShortComponentRaster">ShortComponentRaster</a>) : <a href="#type-ShortComponentRaster">ShortComponentRaster</a><b>,CONSTRUCTOR</b>;
+                            <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_awt_image.html#type-SampleModel">java_awt_image.SampleModel</a>;
+                                            p1 : <a href="java_awt_image.html#type-DataBuffer">java_awt_image.DataBuffer</a>;
+                                            p2 : <a href="java_awt.html#type-Point">java_awt.Point</a>) : <a href="#type-ShortComponentRaster">ShortComponentRaster</a><b>,CONSTRUCTOR</b>;
+                            <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_awt_image.html#type-SampleModel">java_awt_image.SampleModel</a>;
+                                            p1 : <a href="java_awt.html#type-Point">java_awt.Point</a>) : <a href="#type-ShortComponentRaster">ShortComponentRaster</a><b>,CONSTRUCTOR</b>;
+                          <b>END</b>;
+
+  <a name="type-ShortInterleavedRaster"></a><font color="#cc0033">ShortInterleavedRaster</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-ShortComponentRaster">ShortComponentRaster</a>)    <a href="#meths-ShortInterleavedRaster"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                            <b>STATIC</b>
+                              <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_awt_image.html#type-SampleModel">java_awt_image.SampleModel</a>;
+                                              p1 : <a href="java_awt_image.html#type-DataBuffer">java_awt_image.DataBuffer</a>;
+                                              p2 : <a href="java_awt.html#type-Rectangle">java_awt.Rectangle</a>;
+                                              p3 : <a href="java_awt.html#type-Point">java_awt.Point</a>;
+                                              p4 : <a href="#type-ShortInterleavedRaster">ShortInterleavedRaster</a>) : <a href="#type-ShortInterleavedRaster">ShortInterleavedRaster</a><b>,CONSTRUCTOR</b>;
+                              <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_awt_image.html#type-SampleModel">java_awt_image.SampleModel</a>;
+                                              p1 : <a href="java_awt_image.html#type-DataBuffer">java_awt_image.DataBuffer</a>;
+                                              p2 : <a href="java_awt.html#type-Point">java_awt.Point</a>) : <a href="#type-ShortInterleavedRaster">ShortInterleavedRaster</a><b>,CONSTRUCTOR</b>;
+                              <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_awt_image.html#type-SampleModel">java_awt_image.SampleModel</a>;
+                                              p1 : <a href="java_awt.html#type-Point">java_awt.Point</a>) : <a href="#type-ShortInterleavedRaster">ShortInterleavedRaster</a><b>,CONSTRUCTOR</b>;
+                            <b>END</b>;
+
+  <a name="type-SunVolatileImage"></a><font color="#cc0033">SunVolatileImage</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_awt_image.html#type-VolatileImage">java_awt_image.VolatileImage</a> + <a href="sun_java2d.html#type-DestSurfaceProvider">sun_java2d.DestSurfaceProvider</a>)    <a href="#meths-SunVolatileImage"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                        <font color="#cc0033">volSurfaceManager</font>! : <a href="#type-VolatileSurfaceManager">VolatileSurfaceManager</a>;
+                        <font color="#cc0033">comp</font>!              : <a href="java_awt.html#type-Component">java_awt.Component</a>;
+                      <b>STATIC</b>
+                        <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_awt.html#type-Component">java_awt.Component</a>;
+                                        p1 : INTEGER;
+                                        p2 : INTEGER;
+                                        p3 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="#type-SunVolatileImage">SunVolatileImage</a><b>,CONSTRUCTOR</b>;
+                        <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_awt.html#type-GraphicsConfiguration">java_awt.GraphicsConfiguration</a>;
+                                        p1 : INTEGER;
+                                        p2 : INTEGER;
+                                        p3 : INTEGER;
+                                        p4 : <a href="java_awt.html#type-ImageCapabilities">java_awt.ImageCapabilities</a>) : <a href="#type-SunVolatileImage">SunVolatileImage</a><b>,CONSTRUCTOR</b>;
+                        <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : <a href="java_awt.html#type-Component">java_awt.Component</a>;
+                                        p1 : <a href="java_awt.html#type-GraphicsConfiguration">java_awt.GraphicsConfiguration</a>;
+                                        p2 : INTEGER;
+                                        p3 : INTEGER;
+                                        p4 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                        p5 : INTEGER;
+                                        p6 : <a href="java_awt.html#type-ImageCapabilities">java_awt.ImageCapabilities</a>;
+                                        p7 : INTEGER) : <a href="#type-SunVolatileImage">SunVolatileImage</a><b>,CONSTRUCTOR</b>;
+                        <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_awt.html#type-Component">java_awt.Component</a>;
+                                        p1 : INTEGER;
+                                        p2 : INTEGER) : <a href="#type-SunVolatileImage">SunVolatileImage</a><b>,CONSTRUCTOR</b>;
+                      <b>END</b>;
+
+  <a name="type-SunWritableRaster"></a><font color="#cc0033">SunWritableRaster</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_awt_image.html#type-WritableRaster">java_awt_image.WritableRaster</a>)    <a href="#meths-SunWritableRaster"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                         <font color="#cc0033">listener</font>! : <a href="#type-RasterListener">RasterListener</a>;
+                       <b>STATIC</b>
+                         <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_awt_image.html#type-SampleModel">java_awt_image.SampleModel</a>;
+                                         p1 : <a href="java_awt_image.html#type-DataBuffer">java_awt_image.DataBuffer</a>;
+                                         p2 : <a href="java_awt.html#type-Rectangle">java_awt.Rectangle</a>;
+                                         p3 : <a href="java_awt.html#type-Point">java_awt.Point</a>;
+                                         p4 : <a href="java_awt_image.html#type-WritableRaster">java_awt_image.WritableRaster</a>) : <a href="#type-SunWritableRaster">SunWritableRaster</a><b>,CONSTRUCTOR</b>;
+                         <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_awt_image.html#type-SampleModel">java_awt_image.SampleModel</a>;
+                                         p1 : <a href="java_awt_image.html#type-DataBuffer">java_awt_image.DataBuffer</a>;
+                                         p2 : <a href="java_awt.html#type-Point">java_awt.Point</a>) : <a href="#type-SunWritableRaster">SunWritableRaster</a><b>,CONSTRUCTOR</b>;
+                         <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_awt_image.html#type-SampleModel">java_awt_image.SampleModel</a>;
+                                         p1 : <a href="java_awt.html#type-Point">java_awt.Point</a>) : <a href="#type-SunWritableRaster">SunWritableRaster</a><b>,CONSTRUCTOR</b>;
+                       <b>END</b>;
+
+  <a name="type-SurfaceManager"></a><font color="#cc0033">SurfaceManager</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-SurfaceManager"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                    <b>STATIC</b>
+                      <b>PROCEDURE </b><font color="#cc0033">getManager</font>*(p0 : <a href="java_awt.html#type-Image">java_awt.Image</a>) : <a href="#type-SurfaceManager">SurfaceManager</a>;
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-SurfaceManager">SurfaceManager</a><b>,CONSTRUCTOR</b>;
+                      <b>PROCEDURE </b><font color="#cc0033">setImageAccessor</font>*(p0 : <a href="#type-SurfaceManager$ImageAccessor">SurfaceManager$ImageAccessor</a>);
+                      <b>PROCEDURE </b><font color="#cc0033">setManager</font>*(p0 : <a href="java_awt.html#type-Image">java_awt.Image</a>;
+                                            p1 : <a href="#type-SurfaceManager">SurfaceManager</a>);
+                    <b>END</b>;
+
+  <a name="type-SurfaceManager$ImageAccessor"></a><font color="#cc0033">SurfaceManager$ImageAccessor</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-SurfaceManager$ImageAccessor"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                                  <b>STATIC</b>
+                                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-SurfaceManager$ImageAccessor">SurfaceManager$ImageAccessor</a><b>,CONSTRUCTOR</b>;
+                                  <b>END</b>;
+
+  <a name="type-ToolkitImage"></a><font color="#cc0033">ToolkitImage</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_awt.html#type-Image">java_awt.Image</a>)    <a href="#meths-ToolkitImage"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                  <b>STATIC</b>
+                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_awt_image.html#type-ImageProducer">java_awt_image.ImageProducer</a>) : <a href="#type-ToolkitImage">ToolkitImage</a><b>,CONSTRUCTOR</b>;
+                    <b>PROCEDURE </b><font color="#cc0033">Init</font>!() : <a href="#type-ToolkitImage">ToolkitImage</a><b>,CONSTRUCTOR</b>;
+                  <b>END</b>;
+
+  <a name="type-URLImageSource"></a><font color="#cc0033">URLImageSource</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-InputStreamImageSource">InputStreamImageSource</a>)    <a href="#meths-URLImageSource"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                    <b>STATIC</b>
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_net.html#type-URL">java_net.URL</a>;
+                                      p1 : <a href="java_net.html#type-URLConnection">java_net.URLConnection</a>) : <a href="#type-URLImageSource">URLImageSource</a><b>,CONSTRUCTOR</b>;
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_net.html#type-URLConnection">java_net.URLConnection</a>) : <a href="#type-URLImageSource">URLImageSource</a><b>,CONSTRUCTOR</b>;
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_net.html#type-URL">java_net.URL</a>) : <a href="#type-URLImageSource">URLImageSource</a><b>,CONSTRUCTOR</b>;
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-URLImageSource">URLImageSource</a><b>,CONSTRUCTOR</b>;
+                    <b>END</b>;
+
+  <a name="type-VolatileSurfaceManager"></a><font color="#cc0033">VolatileSurfaceManager</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="#type-SurfaceManager">SurfaceManager</a> + <a href="sun_awt.html#type-DisplayChangedListener">sun_awt.DisplayChangedListener</a>)    <a href="#meths-VolatileSurfaceManager"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                              <font color="#cc0033">vImg</font>!        : <a href="#type-SunVolatileImage">SunVolatileImage</a>;
+                              <font color="#cc0033">sdAccel</font>!     : <a href="sun_java2d.html#type-SurfaceData">sun_java2d.SurfaceData</a>;
+                              <font color="#cc0033">sdBackup</font>!    : <a href="sun_java2d.html#type-SurfaceData">sun_java2d.SurfaceData</a>;
+                              <font color="#cc0033">sdCurrent</font>!   : <a href="sun_java2d.html#type-SurfaceData">sun_java2d.SurfaceData</a>;
+                              <font color="#cc0033">sdPrevious</font>!  : <a href="sun_java2d.html#type-SurfaceData">sun_java2d.SurfaceData</a>;
+                              <font color="#cc0033">lostSurface</font>! : BOOLEAN;
+                              <font color="#cc0033">context</font>!     : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                            <b>STATIC</b>
+                              <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : <a href="#type-SunVolatileImage">SunVolatileImage</a>;
+                                              p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="#type-VolatileSurfaceManager">VolatileSurfaceManager</a><b>,CONSTRUCTOR</b>;
+                            <b>END</b>;
+
+  <a name="type-VSyncedBSManager"></a><font color="#cc0033">VSyncedBSManager</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                      <b>STATIC</b>
+                        <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-VSyncedBSManager">VSyncedBSManager</a><b>,CONSTRUCTOR</b>;
+                        <b>PROCEDURE </b><font color="#cc0033">releaseVsync</font>*(p0 : <a href="java_awt_image.html#type-BufferStrategy">java_awt_image.BufferStrategy</a>);
+                        <b>PROCEDURE </b><font color="#cc0033">vsyncAllowed</font>*(p0 : <a href="java_awt_image.html#type-BufferStrategy">java_awt_image.BufferStrategy</a>) : BOOLEAN;
+                      <b>END</b>;
+
+  <a name="type-WritableRasterNative"></a><font color="#cc0033">WritableRasterNative</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_awt_image.html#type-WritableRaster">java_awt_image.WritableRaster</a>)
+                          <b>STATIC</b>
+                            <b>PROCEDURE </b><font color="#cc0033">createNativeRaster</font>*(p0 : <a href="java_awt_image.html#type-ColorModel">java_awt_image.ColorModel</a>;
+                                                          p1 : <a href="sun_java2d.html#type-SurfaceData">sun_java2d.SurfaceData</a>;
+                                                          p2 : INTEGER;
+                                                          p3 : INTEGER) : <a href="#type-WritableRasterNative">WritableRasterNative</a>;
+                            <b>PROCEDURE </b><font color="#cc0033">createNativeRaster</font>*(p0 : <a href="java_awt_image.html#type-SampleModel">java_awt_image.SampleModel</a>;
+                                                          p1 : <a href="java_awt_image.html#type-DataBuffer">java_awt_image.DataBuffer</a>) : <a href="#type-WritableRasterNative">WritableRasterNative</a>;
+                            <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : <a href="java_awt_image.html#type-SampleModel">java_awt_image.SampleModel</a>;
+                                            p1 : <a href="java_awt_image.html#type-DataBuffer">java_awt_image.DataBuffer</a>) : <a href="#type-WritableRasterNative">WritableRasterNative</a><b>,CONSTRUCTOR</b>;
+                          <b>END</b>;
+
+  <a name="type-XbmImageDecoder"></a><font color="#cc0033">XbmImageDecoder</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-ImageDecoder">ImageDecoder</a>)    <a href="#meths-XbmImageDecoder"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                     <b>STATIC</b>
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="#type-InputStreamImageSource">InputStreamImageSource</a>;
+                                       p1 : <a href="java_io.html#type-InputStream">java_io.InputStream</a>) : <a href="#type-XbmImageDecoder">XbmImageDecoder</a><b>,CONSTRUCTOR</b>;
+                     <b>END</b>;
+
+
+
+<a name="meths-BufferedImageDevice"></a>
+<b>PROCEDURE </b>(self:BufferedImageDevice) <font color="#cc0033">getConfigurations</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_awt.html#type-GraphicsConfiguration">java_awt.GraphicsConfiguration</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BufferedImageDevice) <font color="#cc0033">getDefaultConfiguration</font>*() : <a href="java_awt.html#type-GraphicsConfiguration">java_awt.GraphicsConfiguration</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BufferedImageDevice) <font color="#cc0033">getIDstring</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BufferedImageDevice) <font color="#cc0033">getType</font>*() : INTEGER<b>,EXTENSIBLE</b>;
+<a name="meths-BufferedImageGraphicsConfig"></a>
+<b>PROCEDURE </b>(self:BufferedImageGraphicsConfig) <font color="#cc0033">createCompatibleImage</font>*(p0 : INTEGER;
+                                                                    p1 : INTEGER) : <a href="java_awt_image.html#type-BufferedImage">java_awt_image.BufferedImage</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BufferedImageGraphicsConfig) <font color="#cc0033">getBounds</font>*() : <a href="java_awt.html#type-Rectangle">java_awt.Rectangle</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BufferedImageGraphicsConfig) <font color="#cc0033">getColorModel</font>*(p0 : INTEGER) : <a href="java_awt_image.html#type-ColorModel">java_awt_image.ColorModel</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BufferedImageGraphicsConfig) <font color="#cc0033">getColorModel</font>*() : <a href="java_awt_image.html#type-ColorModel">java_awt_image.ColorModel</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BufferedImageGraphicsConfig) <font color="#cc0033">getDefaultTransform</font>*() : <a href="java_awt_geom.html#type-AffineTransform">java_awt_geom.AffineTransform</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BufferedImageGraphicsConfig) <font color="#cc0033">getDevice</font>*() : <a href="java_awt.html#type-GraphicsDevice">java_awt.GraphicsDevice</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BufferedImageGraphicsConfig) <font color="#cc0033">getNormalizingTransform</font>*() : <a href="java_awt_geom.html#type-AffineTransform">java_awt_geom.AffineTransform</a><b>,EXTENSIBLE</b>;
+<a name="meths-BufImgSurfaceData"></a>
+<b>PROCEDURE </b>(self:BufImgSurfaceData) <font color="#cc0033">checkCustomComposite</font>!()<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BufImgSurfaceData) <font color="#cc0033">getBounds</font>*() : <a href="java_awt.html#type-Rectangle">java_awt.Rectangle</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BufImgSurfaceData) <font color="#cc0033">getDestination</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BufImgSurfaceData) <font color="#cc0033">getDeviceConfiguration</font>*() : <a href="java_awt.html#type-GraphicsConfiguration">java_awt.GraphicsConfiguration</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BufImgSurfaceData) <font color="#cc0033">getRaster</font>*(p0 : INTEGER;
+                                              p1 : INTEGER;
+                                              p2 : INTEGER;
+                                              p3 : INTEGER) : <a href="java_awt_image.html#type-Raster">java_awt_image.Raster</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BufImgSurfaceData) <font color="#cc0033">getRenderLoops</font>*(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>) : <a href="sun_java2d_loops.html#type-RenderLoops">sun_java2d_loops.RenderLoops</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BufImgSurfaceData) <font color="#cc0033">getReplacement</font>*() : <a href="sun_java2d.html#type-SurfaceData">sun_java2d.SurfaceData</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BufImgSurfaceData) <font color="#cc0033">initRaster</font>!(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                               p1 : INTEGER;
+                                               p2 : INTEGER;
+                                               p3 : INTEGER;
+                                               p4 : INTEGER;
+                                               p5 : INTEGER;
+                                               p6 : INTEGER;
+                                               p7 : <a href="java_awt_image.html#type-IndexColorModel">java_awt_image.IndexColorModel</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BufImgSurfaceData) <font color="#cc0033">initSolidLoops</font>*()<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-BufImgSurfaceData$ICMColorData"></a>
+<b>PROCEDURE </b>(self:BufImgSurfaceData$ICMColorData) <font color="#cc0033">finalize</font>*()<b>,EXTENSIBLE</b>;
+<a name="meths-BufImgVolatileSurfaceManager"></a>
+<b>PROCEDURE </b>(self:BufImgVolatileSurfaceManager) <font color="#cc0033">initAcceleratedSurface</font>!() : <a href="sun_java2d.html#type-SurfaceData">sun_java2d.SurfaceData</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BufImgVolatileSurfaceManager) <font color="#cc0033">isAccelerationEnabled</font>!() : BOOLEAN<b>,EXTENSIBLE</b>;
+<a name="meths-ByteArrayImageSource"></a>
+<b>PROCEDURE </b>(self:ByteArrayImageSource) <font color="#cc0033">getDecoder</font>!() : <a href="#type-ImageDecoder">ImageDecoder</a><b>,EXTENSIBLE</b>;
+<a name="meths-ByteBandedRaster"></a>
+<b>PROCEDURE </b>(self:ByteBandedRaster) <font color="#cc0033">createChild</font>*(    p0 : INTEGER;
+                                                   p1 : INTEGER;
+                                                   p2 : INTEGER;
+                                                   p3 : INTEGER;
+                                                   p4 : INTEGER;
+                                                   p5 : INTEGER;
+                                               IN  p6 : <b>ARRAY </b><b>OF </b>INTEGER) : <a href="java_awt_image.html#type-Raster">java_awt_image.Raster</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ByteBandedRaster) <font color="#cc0033">createCompatibleWritableRaster</font>*() : <a href="java_awt_image.html#type-WritableRaster">java_awt_image.WritableRaster</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ByteBandedRaster) <font color="#cc0033">createCompatibleWritableRaster</font>*(p0 : INTEGER;
+                                                                  p1 : INTEGER) : <a href="java_awt_image.html#type-WritableRaster">java_awt_image.WritableRaster</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ByteBandedRaster) <font color="#cc0033">createWritableChild</font>*(    p0 : INTEGER;
+                                                           p1 : INTEGER;
+                                                           p2 : INTEGER;
+                                                           p3 : INTEGER;
+                                                           p4 : INTEGER;
+                                                           p5 : INTEGER;
+                                                       IN  p6 : <b>ARRAY </b><b>OF </b>INTEGER) : <a href="java_awt_image.html#type-WritableRaster">java_awt_image.WritableRaster</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ByteBandedRaster) <font color="#cc0033">getByteData</font>*(    p0 : INTEGER;
+                                                   p1 : INTEGER;
+                                                   p2 : INTEGER;
+                                                   p3 : INTEGER;
+                                                   p4 : INTEGER;
+                                               IN  p5 : <b>ARRAY </b><b>OF </b>BYTE) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>BYTE<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ByteBandedRaster) <font color="#cc0033">getByteData</font>*(    p0 : INTEGER;
+                                                   p1 : INTEGER;
+                                                   p2 : INTEGER;
+                                                   p3 : INTEGER;
+                                               IN  p4 : <b>ARRAY </b><b>OF </b>BYTE) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>BYTE<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ByteBandedRaster) <font color="#cc0033">getDataElements</font>*(p0 : INTEGER;
+                                                   p1 : INTEGER;
+                                                   p2 : INTEGER;
+                                                   p3 : INTEGER;
+                                                   p4 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ByteBandedRaster) <font color="#cc0033">getDataElements</font>*(p0 : INTEGER;
+                                                   p1 : INTEGER;
+                                                   p2 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ByteBandedRaster) <font color="#cc0033">getDataOffset</font>*(p0 : INTEGER) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ByteBandedRaster) <font color="#cc0033">getDataOffsets</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ByteBandedRaster) <font color="#cc0033">getDataStorage</font>*(p0 : INTEGER) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>BYTE<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ByteBandedRaster) <font color="#cc0033">getDataStorage</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>BYTE<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ByteBandedRaster) <font color="#cc0033">getPixelStride</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ByteBandedRaster) <font color="#cc0033">getScanlineStride</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ByteBandedRaster) <font color="#cc0033">putByteData</font>*(    p0 : INTEGER;
+                                                   p1 : INTEGER;
+                                                   p2 : INTEGER;
+                                                   p3 : INTEGER;
+                                               IN  p4 : <b>ARRAY </b><b>OF </b>BYTE)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ByteBandedRaster) <font color="#cc0033">putByteData</font>*(    p0 : INTEGER;
+                                                   p1 : INTEGER;
+                                                   p2 : INTEGER;
+                                                   p3 : INTEGER;
+                                                   p4 : INTEGER;
+                                               IN  p5 : <b>ARRAY </b><b>OF </b>BYTE)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ByteBandedRaster) <font color="#cc0033">setDataElements</font>*(p0 : INTEGER;
+                                                   p1 : INTEGER;
+                                                   p2 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ByteBandedRaster) <font color="#cc0033">setDataElements</font>*(p0 : INTEGER;
+                                                   p1 : INTEGER;
+                                                   p2 : <a href="java_awt_image.html#type-Raster">java_awt_image.Raster</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ByteBandedRaster) <font color="#cc0033">setDataElements</font>*(p0 : INTEGER;
+                                                   p1 : INTEGER;
+                                                   p2 : INTEGER;
+                                                   p3 : INTEGER;
+                                                   p4 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ByteBandedRaster) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,EXTENSIBLE</b>;
+<a name="meths-ByteComponentRaster"></a>
+<b>PROCEDURE </b>(self:ByteComponentRaster) <font color="#cc0033">createChild</font>*(    p0 : INTEGER;
+                                                      p1 : INTEGER;
+                                                      p2 : INTEGER;
+                                                      p3 : INTEGER;
+                                                      p4 : INTEGER;
+                                                      p5 : INTEGER;
+                                                  IN  p6 : <b>ARRAY </b><b>OF </b>INTEGER) : <a href="java_awt_image.html#type-Raster">java_awt_image.Raster</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ByteComponentRaster) <font color="#cc0033">createCompatibleWritableRaster</font>*() : <a href="java_awt_image.html#type-WritableRaster">java_awt_image.WritableRaster</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ByteComponentRaster) <font color="#cc0033">createCompatibleWritableRaster</font>*(p0 : INTEGER;
+                                                                     p1 : INTEGER) : <a href="java_awt_image.html#type-WritableRaster">java_awt_image.WritableRaster</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ByteComponentRaster) <font color="#cc0033">createWritableChild</font>*(    p0 : INTEGER;
+                                                              p1 : INTEGER;
+                                                              p2 : INTEGER;
+                                                              p3 : INTEGER;
+                                                              p4 : INTEGER;
+                                                              p5 : INTEGER;
+                                                          IN  p6 : <b>ARRAY </b><b>OF </b>INTEGER) : <a href="java_awt_image.html#type-WritableRaster">java_awt_image.WritableRaster</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ByteComponentRaster) <font color="#cc0033">getByteData</font>*(    p0 : INTEGER;
+                                                      p1 : INTEGER;
+                                                      p2 : INTEGER;
+                                                      p3 : INTEGER;
+                                                      p4 : INTEGER;
+                                                  IN  p5 : <b>ARRAY </b><b>OF </b>BYTE) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>BYTE<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ByteComponentRaster) <font color="#cc0033">getByteData</font>*(    p0 : INTEGER;
+                                                      p1 : INTEGER;
+                                                      p2 : INTEGER;
+                                                      p3 : INTEGER;
+                                                  IN  p4 : <b>ARRAY </b><b>OF </b>BYTE) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>BYTE<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ByteComponentRaster) <font color="#cc0033">getDataElements</font>*(p0 : INTEGER;
+                                                      p1 : INTEGER;
+                                                      p2 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ByteComponentRaster) <font color="#cc0033">getDataElements</font>*(p0 : INTEGER;
+                                                      p1 : INTEGER;
+                                                      p2 : INTEGER;
+                                                      p3 : INTEGER;
+                                                      p4 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ByteComponentRaster) <font color="#cc0033">getDataOffset</font>*(p0 : INTEGER) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ByteComponentRaster) <font color="#cc0033">getDataOffsets</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ByteComponentRaster) <font color="#cc0033">getDataStorage</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>BYTE<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ByteComponentRaster) <font color="#cc0033">getPixelStride</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ByteComponentRaster) <font color="#cc0033">getScanlineStride</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ByteComponentRaster) <font color="#cc0033">putByteData</font>*(    p0 : INTEGER;
+                                                      p1 : INTEGER;
+                                                      p2 : INTEGER;
+                                                      p3 : INTEGER;
+                                                  IN  p4 : <b>ARRAY </b><b>OF </b>BYTE)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ByteComponentRaster) <font color="#cc0033">putByteData</font>*(    p0 : INTEGER;
+                                                      p1 : INTEGER;
+                                                      p2 : INTEGER;
+                                                      p3 : INTEGER;
+                                                      p4 : INTEGER;
+                                                  IN  p5 : <b>ARRAY </b><b>OF </b>BYTE)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ByteComponentRaster) <font color="#cc0033">setDataElements</font>*(p0 : INTEGER;
+                                                      p1 : INTEGER;
+                                                      p2 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ByteComponentRaster) <font color="#cc0033">setDataElements</font>*(p0 : INTEGER;
+                                                      p1 : INTEGER;
+                                                      p2 : <a href="java_awt_image.html#type-Raster">java_awt_image.Raster</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ByteComponentRaster) <font color="#cc0033">setDataElements</font>*(p0 : INTEGER;
+                                                      p1 : INTEGER;
+                                                      p2 : INTEGER;
+                                                      p3 : INTEGER;
+                                                      p4 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ByteComponentRaster) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,EXTENSIBLE</b>;
+<a name="meths-ByteInterleavedRaster"></a>
+<b>PROCEDURE </b>(self:ByteInterleavedRaster) <font color="#cc0033">createChild</font>*(    p0 : INTEGER;
+                                                        p1 : INTEGER;
+                                                        p2 : INTEGER;
+                                                        p3 : INTEGER;
+                                                        p4 : INTEGER;
+                                                        p5 : INTEGER;
+                                                    IN  p6 : <b>ARRAY </b><b>OF </b>INTEGER) : <a href="java_awt_image.html#type-Raster">java_awt_image.Raster</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ByteInterleavedRaster) <font color="#cc0033">createCompatibleWritableRaster</font>*() : <a href="java_awt_image.html#type-WritableRaster">java_awt_image.WritableRaster</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ByteInterleavedRaster) <font color="#cc0033">createCompatibleWritableRaster</font>*(p0 : INTEGER;
+                                                                       p1 : INTEGER) : <a href="java_awt_image.html#type-WritableRaster">java_awt_image.WritableRaster</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ByteInterleavedRaster) <font color="#cc0033">createWritableChild</font>*(    p0 : INTEGER;
+                                                                p1 : INTEGER;
+                                                                p2 : INTEGER;
+                                                                p3 : INTEGER;
+                                                                p4 : INTEGER;
+                                                                p5 : INTEGER;
+                                                            IN  p6 : <b>ARRAY </b><b>OF </b>INTEGER) : <a href="java_awt_image.html#type-WritableRaster">java_awt_image.WritableRaster</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ByteInterleavedRaster) <font color="#cc0033">getByteData</font>*(    p0 : INTEGER;
+                                                        p1 : INTEGER;
+                                                        p2 : INTEGER;
+                                                        p3 : INTEGER;
+                                                        p4 : INTEGER;
+                                                    IN  p5 : <b>ARRAY </b><b>OF </b>BYTE) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>BYTE<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ByteInterleavedRaster) <font color="#cc0033">getByteData</font>*(    p0 : INTEGER;
+                                                        p1 : INTEGER;
+                                                        p2 : INTEGER;
+                                                        p3 : INTEGER;
+                                                    IN  p4 : <b>ARRAY </b><b>OF </b>BYTE) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>BYTE<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ByteInterleavedRaster) <font color="#cc0033">getDataElements</font>*(p0 : INTEGER;
+                                                        p1 : INTEGER;
+                                                        p2 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ByteInterleavedRaster) <font color="#cc0033">getDataElements</font>*(p0 : INTEGER;
+                                                        p1 : INTEGER;
+                                                        p2 : INTEGER;
+                                                        p3 : INTEGER;
+                                                        p4 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ByteInterleavedRaster) <font color="#cc0033">getDataOffset</font>*(p0 : INTEGER) : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ByteInterleavedRaster) <font color="#cc0033">getDataOffsets</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ByteInterleavedRaster) <font color="#cc0033">getDataStorage</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>BYTE<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ByteInterleavedRaster) <font color="#cc0033">getPixels</font>*(    p0 : INTEGER;
+                                                      p1 : INTEGER;
+                                                      p2 : INTEGER;
+                                                      p3 : INTEGER;
+                                                  IN  p4 : <b>ARRAY </b><b>OF </b>INTEGER) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ByteInterleavedRaster) <font color="#cc0033">getPixelStride</font>*() : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ByteInterleavedRaster) <font color="#cc0033">getSample</font>*(p0 : INTEGER;
+                                                  p1 : INTEGER;
+                                                  p2 : INTEGER) : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ByteInterleavedRaster) <font color="#cc0033">getSamples</font>*(    p0 : INTEGER;
+                                                       p1 : INTEGER;
+                                                       p2 : INTEGER;
+                                                       p3 : INTEGER;
+                                                       p4 : INTEGER;
+                                                   IN  p5 : <b>ARRAY </b><b>OF </b>INTEGER) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ByteInterleavedRaster) <font color="#cc0033">getScanlineStride</font>*() : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ByteInterleavedRaster) <font color="#cc0033">putByteData</font>*(    p0 : INTEGER;
+                                                        p1 : INTEGER;
+                                                        p2 : INTEGER;
+                                                        p3 : INTEGER;
+                                                    IN  p4 : <b>ARRAY </b><b>OF </b>BYTE)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ByteInterleavedRaster) <font color="#cc0033">putByteData</font>*(    p0 : INTEGER;
+                                                        p1 : INTEGER;
+                                                        p2 : INTEGER;
+                                                        p3 : INTEGER;
+                                                        p4 : INTEGER;
+                                                    IN  p5 : <b>ARRAY </b><b>OF </b>BYTE)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ByteInterleavedRaster) <font color="#cc0033">setDataElements</font>*(p0 : INTEGER;
+                                                        p1 : INTEGER;
+                                                        p2 : INTEGER;
+                                                        p3 : INTEGER;
+                                                        p4 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ByteInterleavedRaster) <font color="#cc0033">setDataElements</font>*(p0 : INTEGER;
+                                                        p1 : INTEGER;
+                                                        p2 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ByteInterleavedRaster) <font color="#cc0033">setDataElements</font>*(p0 : INTEGER;
+                                                        p1 : INTEGER;
+                                                        p2 : <a href="java_awt_image.html#type-Raster">java_awt_image.Raster</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ByteInterleavedRaster) <font color="#cc0033">setPixels</font>*(    p0 : INTEGER;
+                                                      p1 : INTEGER;
+                                                      p2 : INTEGER;
+                                                      p3 : INTEGER;
+                                                  IN  p4 : <b>ARRAY </b><b>OF </b>INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ByteInterleavedRaster) <font color="#cc0033">setRect</font>*(p0 : INTEGER;
+                                                p1 : INTEGER;
+                                                p2 : <a href="java_awt_image.html#type-Raster">java_awt_image.Raster</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ByteInterleavedRaster) <font color="#cc0033">setSample</font>*(p0 : INTEGER;
+                                                  p1 : INTEGER;
+                                                  p2 : INTEGER;
+                                                  p3 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ByteInterleavedRaster) <font color="#cc0033">setSamples</font>*(    p0 : INTEGER;
+                                                       p1 : INTEGER;
+                                                       p2 : INTEGER;
+                                                       p3 : INTEGER;
+                                                       p4 : INTEGER;
+                                                   IN  p5 : <b>ARRAY </b><b>OF </b>INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ByteInterleavedRaster) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,EXTENSIBLE</b>;
+<a name="meths-BytePackedRaster"></a>
+<b>PROCEDURE </b>(self:BytePackedRaster) <font color="#cc0033">createChild</font>*(    p0 : INTEGER;
+                                                   p1 : INTEGER;
+                                                   p2 : INTEGER;
+                                                   p3 : INTEGER;
+                                                   p4 : INTEGER;
+                                                   p5 : INTEGER;
+                                               IN  p6 : <b>ARRAY </b><b>OF </b>INTEGER) : <a href="java_awt_image.html#type-Raster">java_awt_image.Raster</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BytePackedRaster) <font color="#cc0033">createCompatibleWritableRaster</font>*() : <a href="java_awt_image.html#type-WritableRaster">java_awt_image.WritableRaster</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BytePackedRaster) <font color="#cc0033">createCompatibleWritableRaster</font>*(p0 : INTEGER;
+                                                                  p1 : INTEGER) : <a href="java_awt_image.html#type-WritableRaster">java_awt_image.WritableRaster</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BytePackedRaster) <font color="#cc0033">createWritableChild</font>*(    p0 : INTEGER;
+                                                           p1 : INTEGER;
+                                                           p2 : INTEGER;
+                                                           p3 : INTEGER;
+                                                           p4 : INTEGER;
+                                                           p5 : INTEGER;
+                                                       IN  p6 : <b>ARRAY </b><b>OF </b>INTEGER) : <a href="java_awt_image.html#type-WritableRaster">java_awt_image.WritableRaster</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BytePackedRaster) <font color="#cc0033">getByteData</font>*(    p0 : INTEGER;
+                                                   p1 : INTEGER;
+                                                   p2 : INTEGER;
+                                                   p3 : INTEGER;
+                                                   p4 : INTEGER;
+                                               IN  p5 : <b>ARRAY </b><b>OF </b>BYTE) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>BYTE<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BytePackedRaster) <font color="#cc0033">getByteData</font>*(    p0 : INTEGER;
+                                                   p1 : INTEGER;
+                                                   p2 : INTEGER;
+                                                   p3 : INTEGER;
+                                               IN  p4 : <b>ARRAY </b><b>OF </b>BYTE) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>BYTE<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BytePackedRaster) <font color="#cc0033">getDataBitOffset</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BytePackedRaster) <font color="#cc0033">getDataElements</font>*(p0 : INTEGER;
+                                                   p1 : INTEGER;
+                                                   p2 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BytePackedRaster) <font color="#cc0033">getDataElements</font>*(p0 : INTEGER;
+                                                   p1 : INTEGER;
+                                                   p2 : INTEGER;
+                                                   p3 : INTEGER;
+                                                   p4 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BytePackedRaster) <font color="#cc0033">getDataStorage</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>BYTE<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BytePackedRaster) <font color="#cc0033">getPixelBitStride</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BytePackedRaster) <font color="#cc0033">getPixelData</font>*(p0 : INTEGER;
+                                                p1 : INTEGER;
+                                                p2 : INTEGER;
+                                                p3 : INTEGER;
+                                                p4 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BytePackedRaster) <font color="#cc0033">getPixels</font>*(    p0 : INTEGER;
+                                                 p1 : INTEGER;
+                                                 p2 : INTEGER;
+                                                 p3 : INTEGER;
+                                             IN  p4 : <b>ARRAY </b><b>OF </b>INTEGER) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BytePackedRaster) <font color="#cc0033">getScanlineStride</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BytePackedRaster) <font color="#cc0033">putByteData</font>*(    p0 : INTEGER;
+                                                   p1 : INTEGER;
+                                                   p2 : INTEGER;
+                                                   p3 : INTEGER;
+                                               IN  p4 : <b>ARRAY </b><b>OF </b>BYTE)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BytePackedRaster) <font color="#cc0033">putByteData</font>*(    p0 : INTEGER;
+                                                   p1 : INTEGER;
+                                                   p2 : INTEGER;
+                                                   p3 : INTEGER;
+                                                   p4 : INTEGER;
+                                               IN  p5 : <b>ARRAY </b><b>OF </b>BYTE)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BytePackedRaster) <font color="#cc0033">setDataElements</font>*(p0 : INTEGER;
+                                                   p1 : INTEGER;
+                                                   p2 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BytePackedRaster) <font color="#cc0033">setDataElements</font>*(p0 : INTEGER;
+                                                   p1 : INTEGER;
+                                                   p2 : <a href="java_awt_image.html#type-Raster">java_awt_image.Raster</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BytePackedRaster) <font color="#cc0033">setDataElements</font>*(p0 : INTEGER;
+                                                   p1 : INTEGER;
+                                                   p2 : INTEGER;
+                                                   p3 : INTEGER;
+                                                   p4 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BytePackedRaster) <font color="#cc0033">setPixels</font>*(    p0 : INTEGER;
+                                                 p1 : INTEGER;
+                                                 p2 : INTEGER;
+                                                 p3 : INTEGER;
+                                             IN  p4 : <b>ARRAY </b><b>OF </b>INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BytePackedRaster) <font color="#cc0033">setRect</font>*(p0 : INTEGER;
+                                           p1 : INTEGER;
+                                           p2 : <a href="java_awt_image.html#type-Raster">java_awt_image.Raster</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BytePackedRaster) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,EXTENSIBLE</b>;
+<a name="meths-CachingSurfaceManager"></a>
+<b>PROCEDURE </b>(self:CachingSurfaceManager) <font color="#cc0033">copyDefaultToAccelerated</font>!()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CachingSurfaceManager) <font color="#cc0033">createAccelSurface</font>!(p0 : <a href="java_awt.html#type-GraphicsConfiguration">java_awt.GraphicsConfiguration</a>;
+                                                           p1 : INTEGER;
+                                                           p2 : INTEGER) : <a href="sun_java2d.html#type-SurfaceData">sun_java2d.SurfaceData</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CachingSurfaceManager) <font color="#cc0033">displayChanged</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CachingSurfaceManager) <font color="#cc0033">flush</font>*()<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CachingSurfaceManager) <font color="#cc0033">getAccelSurface</font>!(p0 : <a href="java_awt.html#type-GraphicsConfiguration">java_awt.GraphicsConfiguration</a>) : <a href="sun_java2d.html#type-SurfaceData">sun_java2d.SurfaceData</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CachingSurfaceManager) <font color="#cc0033">getCapabilities</font>*(p0 : <a href="java_awt.html#type-GraphicsConfiguration">java_awt.GraphicsConfiguration</a>) : <a href="java_awt.html#type-ImageCapabilities">java_awt.ImageCapabilities</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CachingSurfaceManager) <font color="#cc0033">getDestSurfaceData</font>*() : <a href="sun_java2d.html#type-SurfaceData">sun_java2d.SurfaceData</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CachingSurfaceManager) <font color="#cc0033">getSourceSurfaceData</font>*(p0 : <a href="sun_java2d.html#type-SurfaceData">sun_java2d.SurfaceData</a>;
+                                                             p1 : <a href="sun_java2d_loops.html#type-CompositeType">sun_java2d_loops.CompositeType</a>;
+                                                             p2 : <a href="java_awt.html#type-Color">java_awt.Color</a>;
+                                                             p3 : BOOLEAN) : <a href="sun_java2d.html#type-SurfaceData">sun_java2d.SurfaceData</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CachingSurfaceManager) <font color="#cc0033">getTransparentPixelColor</font>!() : <a href="java_awt.html#type-Color">java_awt.Color</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CachingSurfaceManager) <font color="#cc0033">initAcceleratedSurface</font>!(p0 : <a href="java_awt.html#type-GraphicsConfiguration">java_awt.GraphicsConfiguration</a>;
+                                                               p1 : INTEGER;
+                                                               p2 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CachingSurfaceManager) <font color="#cc0033">invalidateAcceleratedSurfaces</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CachingSurfaceManager) <font color="#cc0033">isDestSurfaceAccelerated</font>!(p0 : <a href="sun_java2d.html#type-SurfaceData">sun_java2d.SurfaceData</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CachingSurfaceManager) <font color="#cc0033">isLocalAccelerationEnabled</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CachingSurfaceManager) <font color="#cc0033">isOperationSupported</font>!(p0 : <a href="sun_java2d.html#type-SurfaceData">sun_java2d.SurfaceData</a>;
+                                                             p1 : <a href="sun_java2d_loops.html#type-CompositeType">sun_java2d_loops.CompositeType</a>;
+                                                             p2 : <a href="java_awt.html#type-Color">java_awt.Color</a>;
+                                                             p3 : BOOLEAN) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CachingSurfaceManager) <font color="#cc0033">isValidAccelSurface</font>!(p0 : <a href="java_awt.html#type-GraphicsConfiguration">java_awt.GraphicsConfiguration</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CachingSurfaceManager) <font color="#cc0033">paletteChanged</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CachingSurfaceManager) <font color="#cc0033">rasterChanged</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CachingSurfaceManager) <font color="#cc0033">rasterStolen</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CachingSurfaceManager) <font color="#cc0033">restoreAcceleratedSurface</font>!()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CachingSurfaceManager) <font color="#cc0033">restoreContents</font>*() : <a href="sun_java2d.html#type-SurfaceData">sun_java2d.SurfaceData</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CachingSurfaceManager) <font color="#cc0033">setAccelerationPriority</font>*(p0 : SHORTREAL)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CachingSurfaceManager) <font color="#cc0033">setLocalAccelerationEnabled</font>*(p0 : BOOLEAN)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CachingSurfaceManager) <font color="#cc0033">validate</font>*(p0 : <a href="java_awt.html#type-GraphicsConfiguration">java_awt.GraphicsConfiguration</a>)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-DataBufferNative"></a>
+<b>PROCEDURE </b>(self:DataBufferNative) <font color="#cc0033">getElem</font>*(p0 : INTEGER;
+                                           p1 : INTEGER) : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DataBufferNative) <font color="#cc0033">getElem</font>!(p0 : INTEGER;
+                                           p1 : INTEGER;
+                                           p2 : <a href="sun_java2d.html#type-SurfaceData">sun_java2d.SurfaceData</a>) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DataBufferNative) <font color="#cc0033">setElem</font>*(p0 : INTEGER;
+                                           p1 : INTEGER;
+                                           p2 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DataBufferNative) <font color="#cc0033">setElem</font>!(p0 : INTEGER;
+                                           p1 : INTEGER;
+                                           p2 : INTEGER;
+                                           p3 : <a href="sun_java2d.html#type-SurfaceData">sun_java2d.SurfaceData</a>)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-FileImageSource"></a>
+<b>PROCEDURE </b>(self:FileImageSource) <font color="#cc0033">getDecoder</font>!() : <a href="#type-ImageDecoder">ImageDecoder</a><b>,EXTENSIBLE</b>;
+<a name="meths-GifImageDecoder"></a>
+<b>PROCEDURE </b>(self:GifImageDecoder) <font color="#cc0033">produceImage</font>*()<b>,EXTENSIBLE</b>;
+<a name="meths-ImageDecoder"></a>
+<b>PROCEDURE </b>(self:ImageDecoder) <font color="#cc0033">abort</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImageDecoder) <font color="#cc0033">close</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImageDecoder) <font color="#cc0033">headerComplete</font>!()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImageDecoder) <font color="#cc0033">imageComplete</font>!(p0 : INTEGER;
+                                             p1 : BOOLEAN) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImageDecoder) <font color="#cc0033">isConsumer</font>*(p0 : <a href="java_awt_image.html#type-ImageConsumer">java_awt_image.ImageConsumer</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImageDecoder) <font color="#cc0033">nextConsumer</font>!(p0 : <b>ImageConsumerQueue</b>) : <b>ImageConsumerQueue</b><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImageDecoder) <font color="#cc0033">produceImage</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ImageDecoder) <font color="#cc0033">removeConsumer</font>*(p0 : <a href="java_awt_image.html#type-ImageConsumer">java_awt_image.ImageConsumer</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImageDecoder) <font color="#cc0033">setColorModel</font>!(p0 : <a href="java_awt_image.html#type-ColorModel">java_awt_image.ColorModel</a>) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImageDecoder) <font color="#cc0033">setDimensions</font>!(p0 : INTEGER;
+                                             p1 : INTEGER) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImageDecoder) <font color="#cc0033">setHints</font>!(p0 : INTEGER) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImageDecoder) <font color="#cc0033">setPixels</font>!(    p0 : INTEGER;
+                                             p1 : INTEGER;
+                                             p2 : INTEGER;
+                                             p3 : INTEGER;
+                                             p4 : <a href="java_awt_image.html#type-ColorModel">java_awt_image.ColorModel</a>;
+                                         IN  p5 : <b>ARRAY </b><b>OF </b>BYTE;
+                                             p6 : INTEGER;
+                                             p7 : INTEGER) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImageDecoder) <font color="#cc0033">setPixels</font>!(    p0 : INTEGER;
+                                             p1 : INTEGER;
+                                             p2 : INTEGER;
+                                             p3 : INTEGER;
+                                             p4 : <a href="java_awt_image.html#type-ColorModel">java_awt_image.ColorModel</a>;
+                                         IN  p5 : <b>ARRAY </b><b>OF </b>INTEGER;
+                                             p6 : INTEGER;
+                                             p7 : INTEGER) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImageDecoder) <font color="#cc0033">setProperties</font>!(p0 : <a href="java_util.html#type-Hashtable">java_util.Hashtable</a>) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-ImageFetchable"></a>
+<b>PROCEDURE </b>(self:ImageFetchable) <font color="#cc0033">doFetch</font>*()<b>,NEW,ABSTRACT</b>;
+<a name="meths-ImageRepresentation"></a>
+<b>PROCEDURE </b>(self:ImageRepresentation) <font color="#cc0033">check</font>*(p0 : <a href="java_awt_image.html#type-ImageObserver">java_awt_image.ImageObserver</a>) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImageRepresentation) <font color="#cc0033">createImage</font>!(p0 : <a href="java_awt_image.html#type-ColorModel">java_awt_image.ColorModel</a>;
+                                                  p1 : <a href="java_awt_image.html#type-WritableRaster">java_awt_image.WritableRaster</a>;
+                                                  p2 : BOOLEAN;
+                                                  p3 : <a href="java_util.html#type-Hashtable">java_util.Hashtable</a>) : <a href="java_awt_image.html#type-BufferedImage">java_awt_image.BufferedImage</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImageRepresentation) <font color="#cc0033">drawToBufImage</font>*(p0 : <a href="java_awt.html#type-Graphics">java_awt.Graphics</a>;
+                                                     p1 : <a href="#type-ToolkitImage">ToolkitImage</a>;
+                                                     p2 : <a href="java_awt_geom.html#type-AffineTransform">java_awt_geom.AffineTransform</a>;
+                                                     p3 : <a href="java_awt_image.html#type-ImageObserver">java_awt_image.ImageObserver</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImageRepresentation) <font color="#cc0033">drawToBufImage</font>*(p0  : <a href="java_awt.html#type-Graphics">java_awt.Graphics</a>;
+                                                     p1  : <a href="#type-ToolkitImage">ToolkitImage</a>;
+                                                     p2  : INTEGER;
+                                                     p3  : INTEGER;
+                                                     p4  : INTEGER;
+                                                     p5  : INTEGER;
+                                                     p6  : INTEGER;
+                                                     p7  : INTEGER;
+                                                     p8  : INTEGER;
+                                                     p9  : INTEGER;
+                                                     p10 : <a href="java_awt.html#type-Color">java_awt.Color</a>;
+                                                     p11 : <a href="java_awt_image.html#type-ImageObserver">java_awt_image.ImageObserver</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImageRepresentation) <font color="#cc0033">drawToBufImage</font>*(p0 : <a href="java_awt.html#type-Graphics">java_awt.Graphics</a>;
+                                                     p1 : <a href="#type-ToolkitImage">ToolkitImage</a>;
+                                                     p2 : INTEGER;
+                                                     p3 : INTEGER;
+                                                     p4 : <a href="java_awt.html#type-Color">java_awt.Color</a>;
+                                                     p5 : <a href="java_awt_image.html#type-ImageObserver">java_awt_image.ImageObserver</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImageRepresentation) <font color="#cc0033">drawToBufImage</font>*(p0 : <a href="java_awt.html#type-Graphics">java_awt.Graphics</a>;
+                                                     p1 : <a href="#type-ToolkitImage">ToolkitImage</a>;
+                                                     p2 : INTEGER;
+                                                     p3 : INTEGER;
+                                                     p4 : INTEGER;
+                                                     p5 : INTEGER;
+                                                     p6 : <a href="java_awt.html#type-Color">java_awt.Color</a>;
+                                                     p7 : <a href="java_awt_image.html#type-ImageObserver">java_awt_image.ImageObserver</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImageRepresentation) <font color="#cc0033">getHeight</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImageRepresentation) <font color="#cc0033">getOpaqueRGBImage</font>*() : <a href="java_awt_image.html#type-BufferedImage">java_awt_image.BufferedImage</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImageRepresentation) <font color="#cc0033">getWidth</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImageRepresentation) <font color="#cc0033">imageComplete</font>*(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImageRepresentation) <font color="#cc0033">notifyWatcherListEmpty</font>*()<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImageRepresentation) <font color="#cc0033">prepare</font>*(p0 : <a href="java_awt_image.html#type-ImageObserver">java_awt_image.ImageObserver</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImageRepresentation) <font color="#cc0033">reconstruct</font>*(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImageRepresentation) <font color="#cc0033">setAccelerationPriority</font>*(p0 : SHORTREAL)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImageRepresentation) <font color="#cc0033">setColorModel</font>*(p0 : <a href="java_awt_image.html#type-ColorModel">java_awt_image.ColorModel</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImageRepresentation) <font color="#cc0033">setDimensions</font>*(p0 : INTEGER;
+                                                    p1 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImageRepresentation) <font color="#cc0033">setHints</font>*(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImageRepresentation) <font color="#cc0033">setPixels</font>*(    p0 : INTEGER;
+                                                    p1 : INTEGER;
+                                                    p2 : INTEGER;
+                                                    p3 : INTEGER;
+                                                    p4 : <a href="java_awt_image.html#type-ColorModel">java_awt_image.ColorModel</a>;
+                                                IN  p5 : <b>ARRAY </b><b>OF </b>BYTE;
+                                                    p6 : INTEGER;
+                                                    p7 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImageRepresentation) <font color="#cc0033">setPixels</font>*(    p0 : INTEGER;
+                                                    p1 : INTEGER;
+                                                    p2 : INTEGER;
+                                                    p3 : INTEGER;
+                                                    p4 : <a href="java_awt_image.html#type-ColorModel">java_awt_image.ColorModel</a>;
+                                                IN  p5 : <b>ARRAY </b><b>OF </b>INTEGER;
+                                                    p6 : INTEGER;
+                                                    p7 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImageRepresentation) <font color="#cc0033">setProperties</font>*(p0 : <a href="java_util.html#type-Hashtable">java_util.Hashtable</a>)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-ImageWatched"></a>
+<b>PROCEDURE </b>(self:ImageWatched) <font color="#cc0033">addWatcher</font>*(p0 : <a href="java_awt_image.html#type-ImageObserver">java_awt_image.ImageObserver</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImageWatched) <font color="#cc0033">isWatcher</font>*(p0 : <a href="java_awt_image.html#type-ImageObserver">java_awt_image.ImageObserver</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImageWatched) <font color="#cc0033">isWatcherListEmpty</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImageWatched) <font color="#cc0033">newInfo</font>*(p0 : <a href="java_awt.html#type-Image">java_awt.Image</a>;
+                                       p1 : INTEGER;
+                                       p2 : INTEGER;
+                                       p3 : INTEGER;
+                                       p4 : INTEGER;
+                                       p5 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImageWatched) <font color="#cc0033">notifyWatcherListEmpty</font>!()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ImageWatched) <font color="#cc0033">removeWatcher</font>*(p0 : <a href="java_awt_image.html#type-ImageObserver">java_awt_image.ImageObserver</a>)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-ImageWatched$Link"></a>
+<b>PROCEDURE </b>(self:ImageWatched$Link) <font color="#cc0033">isWatcher</font>*(p0 : <a href="java_awt_image.html#type-ImageObserver">java_awt_image.ImageObserver</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImageWatched$Link) <font color="#cc0033">newInfo</font>*(p0 : <a href="java_awt.html#type-Image">java_awt.Image</a>;
+                                            p1 : INTEGER;
+                                            p2 : INTEGER;
+                                            p3 : INTEGER;
+                                            p4 : INTEGER;
+                                            p5 : INTEGER) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImageWatched$Link) <font color="#cc0033">removeWatcher</font>*(p0 : <a href="java_awt_image.html#type-ImageObserver">java_awt_image.ImageObserver</a>) : <a href="#type-ImageWatched$Link">ImageWatched$Link</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-ImageWatched$WeakLink"></a>
+<b>PROCEDURE </b>(self:ImageWatched$WeakLink) <font color="#cc0033">isWatcher</font>*(p0 : <a href="java_awt_image.html#type-ImageObserver">java_awt_image.ImageObserver</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImageWatched$WeakLink) <font color="#cc0033">newInfo</font>*(p0 : <a href="java_awt.html#type-Image">java_awt.Image</a>;
+                                                p1 : INTEGER;
+                                                p2 : INTEGER;
+                                                p3 : INTEGER;
+                                                p4 : INTEGER;
+                                                p5 : INTEGER) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ImageWatched$WeakLink) <font color="#cc0033">removeWatcher</font>*(p0 : <a href="java_awt_image.html#type-ImageObserver">java_awt_image.ImageObserver</a>) : <a href="#type-ImageWatched$Link">ImageWatched$Link</a><b>,EXTENSIBLE</b>;
+<a name="meths-InputStreamImageSource"></a>
+<b>PROCEDURE </b>(self:InputStreamImageSource) <font color="#cc0033">addConsumer</font>*(p0 : <a href="java_awt_image.html#type-ImageConsumer">java_awt_image.ImageConsumer</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:InputStreamImageSource) <font color="#cc0033">decoderForType</font>!(p0 : <a href="java_io.html#type-InputStream">java_io.InputStream</a>;
+                                                        p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-ImageDecoder">ImageDecoder</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:InputStreamImageSource) <font color="#cc0033">doFetch</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:InputStreamImageSource) <font color="#cc0033">getDecoder</font>!() : <a href="#type-ImageDecoder">ImageDecoder</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:InputStreamImageSource) <font color="#cc0033">getDecoder</font>!(p0 : <a href="java_io.html#type-InputStream">java_io.InputStream</a>) : <a href="#type-ImageDecoder">ImageDecoder</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:InputStreamImageSource) <font color="#cc0033">isConsumer</font>*(p0 : <a href="java_awt_image.html#type-ImageConsumer">java_awt_image.ImageConsumer</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:InputStreamImageSource) <font color="#cc0033">removeConsumer</font>*(p0 : <a href="java_awt_image.html#type-ImageConsumer">java_awt_image.ImageConsumer</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:InputStreamImageSource) <font color="#cc0033">requestTopDownLeftRightResend</font>*(p0 : <a href="java_awt_image.html#type-ImageConsumer">java_awt_image.ImageConsumer</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:InputStreamImageSource) <font color="#cc0033">startProduction</font>*(p0 : <a href="java_awt_image.html#type-ImageConsumer">java_awt_image.ImageConsumer</a>)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-IntegerComponentRaster"></a>
+<b>PROCEDURE </b>(self:IntegerComponentRaster) <font color="#cc0033">createChild</font>*(    p0 : INTEGER;
+                                                         p1 : INTEGER;
+                                                         p2 : INTEGER;
+                                                         p3 : INTEGER;
+                                                         p4 : INTEGER;
+                                                         p5 : INTEGER;
+                                                     IN  p6 : <b>ARRAY </b><b>OF </b>INTEGER) : <a href="java_awt_image.html#type-Raster">java_awt_image.Raster</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IntegerComponentRaster) <font color="#cc0033">createCompatibleWritableRaster</font>*() : <a href="java_awt_image.html#type-WritableRaster">java_awt_image.WritableRaster</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IntegerComponentRaster) <font color="#cc0033">createCompatibleWritableRaster</font>*(p0 : INTEGER;
+                                                                        p1 : INTEGER) : <a href="java_awt_image.html#type-WritableRaster">java_awt_image.WritableRaster</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IntegerComponentRaster) <font color="#cc0033">createWritableChild</font>*(    p0 : INTEGER;
+                                                                 p1 : INTEGER;
+                                                                 p2 : INTEGER;
+                                                                 p3 : INTEGER;
+                                                                 p4 : INTEGER;
+                                                                 p5 : INTEGER;
+                                                             IN  p6 : <b>ARRAY </b><b>OF </b>INTEGER) : <a href="java_awt_image.html#type-WritableRaster">java_awt_image.WritableRaster</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IntegerComponentRaster) <font color="#cc0033">getDataElements</font>*(p0 : INTEGER;
+                                                         p1 : INTEGER;
+                                                         p2 : INTEGER;
+                                                         p3 : INTEGER;
+                                                         p4 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IntegerComponentRaster) <font color="#cc0033">getDataElements</font>*(p0 : INTEGER;
+                                                         p1 : INTEGER;
+                                                         p2 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IntegerComponentRaster) <font color="#cc0033">getDataOffset</font>*(p0 : INTEGER) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IntegerComponentRaster) <font color="#cc0033">getDataOffsets</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IntegerComponentRaster) <font color="#cc0033">getDataStorage</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IntegerComponentRaster) <font color="#cc0033">getPixelStride</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IntegerComponentRaster) <font color="#cc0033">getScanlineStride</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IntegerComponentRaster) <font color="#cc0033">setDataElements</font>*(p0 : INTEGER;
+                                                         p1 : INTEGER;
+                                                         p2 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IntegerComponentRaster) <font color="#cc0033">setDataElements</font>*(p0 : INTEGER;
+                                                         p1 : INTEGER;
+                                                         p2 : <a href="java_awt_image.html#type-Raster">java_awt_image.Raster</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IntegerComponentRaster) <font color="#cc0033">setDataElements</font>*(p0 : INTEGER;
+                                                         p1 : INTEGER;
+                                                         p2 : INTEGER;
+                                                         p3 : INTEGER;
+                                                         p4 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IntegerComponentRaster) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,EXTENSIBLE</b>;
+<a name="meths-IntegerInterleavedRaster"></a>
+<b>PROCEDURE </b>(self:IntegerInterleavedRaster) <font color="#cc0033">createChild</font>*(    p0 : INTEGER;
+                                                           p1 : INTEGER;
+                                                           p2 : INTEGER;
+                                                           p3 : INTEGER;
+                                                           p4 : INTEGER;
+                                                           p5 : INTEGER;
+                                                       IN  p6 : <b>ARRAY </b><b>OF </b>INTEGER) : <a href="java_awt_image.html#type-Raster">java_awt_image.Raster</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IntegerInterleavedRaster) <font color="#cc0033">createCompatibleWritableRaster</font>*() : <a href="java_awt_image.html#type-WritableRaster">java_awt_image.WritableRaster</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IntegerInterleavedRaster) <font color="#cc0033">createCompatibleWritableRaster</font>*(p0 : INTEGER;
+                                                                          p1 : INTEGER) : <a href="java_awt_image.html#type-WritableRaster">java_awt_image.WritableRaster</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IntegerInterleavedRaster) <font color="#cc0033">createWritableChild</font>*(    p0 : INTEGER;
+                                                                   p1 : INTEGER;
+                                                                   p2 : INTEGER;
+                                                                   p3 : INTEGER;
+                                                                   p4 : INTEGER;
+                                                                   p5 : INTEGER;
+                                                               IN  p6 : <b>ARRAY </b><b>OF </b>INTEGER) : <a href="java_awt_image.html#type-WritableRaster">java_awt_image.WritableRaster</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IntegerInterleavedRaster) <font color="#cc0033">getDataElements</font>*(p0 : INTEGER;
+                                                           p1 : INTEGER;
+                                                           p2 : INTEGER;
+                                                           p3 : INTEGER;
+                                                           p4 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IntegerInterleavedRaster) <font color="#cc0033">getDataElements</font>*(p0 : INTEGER;
+                                                           p1 : INTEGER;
+                                                           p2 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IntegerInterleavedRaster) <font color="#cc0033">getDataOffset</font>*(p0 : INTEGER) : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IntegerInterleavedRaster) <font color="#cc0033">getDataOffsets</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IntegerInterleavedRaster) <font color="#cc0033">getDataStorage</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IntegerInterleavedRaster) <font color="#cc0033">getPixelStride</font>*() : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IntegerInterleavedRaster) <font color="#cc0033">getScanlineStride</font>*() : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IntegerInterleavedRaster) <font color="#cc0033">setDataElements</font>*(p0 : INTEGER;
+                                                           p1 : INTEGER;
+                                                           p2 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IntegerInterleavedRaster) <font color="#cc0033">setDataElements</font>*(p0 : INTEGER;
+                                                           p1 : INTEGER;
+                                                           p2 : <a href="java_awt_image.html#type-Raster">java_awt_image.Raster</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IntegerInterleavedRaster) <font color="#cc0033">setDataElements</font>*(p0 : INTEGER;
+                                                           p1 : INTEGER;
+                                                           p2 : INTEGER;
+                                                           p3 : INTEGER;
+                                                           p4 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IntegerInterleavedRaster) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,EXTENSIBLE</b>;
+<a name="meths-JPEGImageDecoder"></a>
+<b>PROCEDURE </b>(self:JPEGImageDecoder) <font color="#cc0033">produceImage</font>*()<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:JPEGImageDecoder) <font color="#cc0033">sendHeaderInfo</font>*(p0 : INTEGER;
+                                                  p1 : INTEGER;
+                                                  p2 : BOOLEAN;
+                                                  p3 : BOOLEAN;
+                                                  p4 : BOOLEAN) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:JPEGImageDecoder) <font color="#cc0033">sendPixels</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE;
+                                                  p1 : INTEGER) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:JPEGImageDecoder) <font color="#cc0033">sendPixels</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>INTEGER;
+                                                  p1 : INTEGER) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-OffScreenImage"></a>
+<b>PROCEDURE </b>(self:OffScreenImage) <font color="#cc0033">createGraphics</font>*() : <a href="java_awt.html#type-Graphics2D">java_awt.Graphics2D</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:OffScreenImage) <font color="#cc0033">createSurfaceManager</font>!() : <a href="#type-SurfaceManager">SurfaceManager</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:OffScreenImage) <font color="#cc0033">getGraphics</font>*() : <a href="java_awt.html#type-Graphics">java_awt.Graphics</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:OffScreenImage) <font color="#cc0033">getSource</font>*() : <a href="java_awt_image.html#type-ImageProducer">java_awt_image.ImageProducer</a><b>,EXTENSIBLE</b>;
+<a name="meths-OffScreenImageSource"></a>
+<b>PROCEDURE </b>(self:OffScreenImageSource) <font color="#cc0033">addConsumer</font>*(p0 : <a href="java_awt_image.html#type-ImageConsumer">java_awt_image.ImageConsumer</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:OffScreenImageSource) <font color="#cc0033">isConsumer</font>*(p0 : <a href="java_awt_image.html#type-ImageConsumer">java_awt_image.ImageConsumer</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:OffScreenImageSource) <font color="#cc0033">removeConsumer</font>*(p0 : <a href="java_awt_image.html#type-ImageConsumer">java_awt_image.ImageConsumer</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:OffScreenImageSource) <font color="#cc0033">requestTopDownLeftRightResend</font>*(p0 : <a href="java_awt_image.html#type-ImageConsumer">java_awt_image.ImageConsumer</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:OffScreenImageSource) <font color="#cc0033">startProduction</font>*(p0 : <a href="java_awt_image.html#type-ImageConsumer">java_awt_image.ImageConsumer</a>)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-OffScreenSurfaceManager"></a>
+<b>PROCEDURE </b>(self:OffScreenSurfaceManager) <font color="#cc0033">copyDefaultToAccelerated</font>!()<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:OffScreenSurfaceManager) <font color="#cc0033">createTempImage</font>!() : <a href="java_awt_image.html#type-BufferedImage">java_awt_image.BufferedImage</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:OffScreenSurfaceManager) <font color="#cc0033">flush</font>*()<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:OffScreenSurfaceManager) <font color="#cc0033">getSourceSurfaceData</font>*(p0 : <a href="sun_java2d.html#type-SurfaceData">sun_java2d.SurfaceData</a>;
+                                                               p1 : <a href="sun_java2d_loops.html#type-CompositeType">sun_java2d_loops.CompositeType</a>;
+                                                               p2 : <a href="java_awt.html#type-Color">java_awt.Color</a>;
+                                                               p3 : BOOLEAN) : <a href="sun_java2d.html#type-SurfaceData">sun_java2d.SurfaceData</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:OffScreenSurfaceManager) <font color="#cc0033">invalidateAcceleratedSurfaces</font>*()<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:OffScreenSurfaceManager) <font color="#cc0033">isOperationSupported</font>!(p0 : <a href="sun_java2d.html#type-SurfaceData">sun_java2d.SurfaceData</a>;
+                                                               p1 : <a href="sun_java2d_loops.html#type-CompositeType">sun_java2d_loops.CompositeType</a>;
+                                                               p2 : <a href="java_awt.html#type-Color">java_awt.Color</a>;
+                                                               p3 : BOOLEAN) : BOOLEAN<b>,EXTENSIBLE</b>;
+<a name="meths-PixelConverter"></a>
+<b>PROCEDURE </b>(self:PixelConverter) <font color="#cc0033">getAlphaMask</font>*() : INTEGER<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:PixelConverter) <font color="#cc0033">pixelToRgb</font>*(p0 : INTEGER;
+                                            p1 : <a href="java_awt_image.html#type-ColorModel">java_awt_image.ColorModel</a>) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PixelConverter) <font color="#cc0033">rgbToPixel</font>*(p0 : INTEGER;
+                                            p1 : <a href="java_awt_image.html#type-ColorModel">java_awt_image.ColorModel</a>) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-PixelConverter$Argb"></a>
+<b>PROCEDURE </b>(self:PixelConverter$Argb) <font color="#cc0033">pixelToRgb</font>*(p0 : INTEGER;
+                                                 p1 : <a href="java_awt_image.html#type-ColorModel">java_awt_image.ColorModel</a>) : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PixelConverter$Argb) <font color="#cc0033">rgbToPixel</font>*(p0 : INTEGER;
+                                                 p1 : <a href="java_awt_image.html#type-ColorModel">java_awt_image.ColorModel</a>) : INTEGER<b>,EXTENSIBLE</b>;
+<a name="meths-PixelConverter$ArgbBm"></a>
+<b>PROCEDURE </b>(self:PixelConverter$ArgbBm) <font color="#cc0033">pixelToRgb</font>*(p0 : INTEGER;
+                                                   p1 : <a href="java_awt_image.html#type-ColorModel">java_awt_image.ColorModel</a>) : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PixelConverter$ArgbBm) <font color="#cc0033">rgbToPixel</font>*(p0 : INTEGER;
+                                                   p1 : <a href="java_awt_image.html#type-ColorModel">java_awt_image.ColorModel</a>) : INTEGER<b>,EXTENSIBLE</b>;
+<a name="meths-PixelConverter$ArgbPre"></a>
+<b>PROCEDURE </b>(self:PixelConverter$ArgbPre) <font color="#cc0033">pixelToRgb</font>*(p0 : INTEGER;
+                                                    p1 : <a href="java_awt_image.html#type-ColorModel">java_awt_image.ColorModel</a>) : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PixelConverter$ArgbPre) <font color="#cc0033">rgbToPixel</font>*(p0 : INTEGER;
+                                                    p1 : <a href="java_awt_image.html#type-ColorModel">java_awt_image.ColorModel</a>) : INTEGER<b>,EXTENSIBLE</b>;
+<a name="meths-PixelConverter$Bgrx"></a>
+<b>PROCEDURE </b>(self:PixelConverter$Bgrx) <font color="#cc0033">pixelToRgb</font>*(p0 : INTEGER;
+                                                 p1 : <a href="java_awt_image.html#type-ColorModel">java_awt_image.ColorModel</a>) : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PixelConverter$Bgrx) <font color="#cc0033">rgbToPixel</font>*(p0 : INTEGER;
+                                                 p1 : <a href="java_awt_image.html#type-ColorModel">java_awt_image.ColorModel</a>) : INTEGER<b>,EXTENSIBLE</b>;
+<a name="meths-PixelConverter$ByteGray"></a>
+<b>PROCEDURE </b>(self:PixelConverter$ByteGray) <font color="#cc0033">pixelToRgb</font>*(p0 : INTEGER;
+                                                     p1 : <a href="java_awt_image.html#type-ColorModel">java_awt_image.ColorModel</a>) : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PixelConverter$ByteGray) <font color="#cc0033">rgbToPixel</font>*(p0 : INTEGER;
+                                                     p1 : <a href="java_awt_image.html#type-ColorModel">java_awt_image.ColorModel</a>) : INTEGER<b>,EXTENSIBLE</b>;
+<a name="meths-PixelConverter$Rgba"></a>
+<b>PROCEDURE </b>(self:PixelConverter$Rgba) <font color="#cc0033">pixelToRgb</font>*(p0 : INTEGER;
+                                                 p1 : <a href="java_awt_image.html#type-ColorModel">java_awt_image.ColorModel</a>) : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PixelConverter$Rgba) <font color="#cc0033">rgbToPixel</font>*(p0 : INTEGER;
+                                                 p1 : <a href="java_awt_image.html#type-ColorModel">java_awt_image.ColorModel</a>) : INTEGER<b>,EXTENSIBLE</b>;
+<a name="meths-PixelConverter$RgbaPre"></a>
+<b>PROCEDURE </b>(self:PixelConverter$RgbaPre) <font color="#cc0033">pixelToRgb</font>*(p0 : INTEGER;
+                                                    p1 : <a href="java_awt_image.html#type-ColorModel">java_awt_image.ColorModel</a>) : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PixelConverter$RgbaPre) <font color="#cc0033">rgbToPixel</font>*(p0 : INTEGER;
+                                                    p1 : <a href="java_awt_image.html#type-ColorModel">java_awt_image.ColorModel</a>) : INTEGER<b>,EXTENSIBLE</b>;
+<a name="meths-PixelConverter$Rgbx"></a>
+<b>PROCEDURE </b>(self:PixelConverter$Rgbx) <font color="#cc0033">pixelToRgb</font>*(p0 : INTEGER;
+                                                 p1 : <a href="java_awt_image.html#type-ColorModel">java_awt_image.ColorModel</a>) : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PixelConverter$Rgbx) <font color="#cc0033">rgbToPixel</font>*(p0 : INTEGER;
+                                                 p1 : <a href="java_awt_image.html#type-ColorModel">java_awt_image.ColorModel</a>) : INTEGER<b>,EXTENSIBLE</b>;
+<a name="meths-PixelConverter$Ushort4444Argb"></a>
+<b>PROCEDURE </b>(self:PixelConverter$Ushort4444Argb) <font color="#cc0033">pixelToRgb</font>*(p0 : INTEGER;
+                                                           p1 : <a href="java_awt_image.html#type-ColorModel">java_awt_image.ColorModel</a>) : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PixelConverter$Ushort4444Argb) <font color="#cc0033">rgbToPixel</font>*(p0 : INTEGER;
+                                                           p1 : <a href="java_awt_image.html#type-ColorModel">java_awt_image.ColorModel</a>) : INTEGER<b>,EXTENSIBLE</b>;
+<a name="meths-PixelConverter$Ushort555Rgb"></a>
+<b>PROCEDURE </b>(self:PixelConverter$Ushort555Rgb) <font color="#cc0033">pixelToRgb</font>*(p0 : INTEGER;
+                                                         p1 : <a href="java_awt_image.html#type-ColorModel">java_awt_image.ColorModel</a>) : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PixelConverter$Ushort555Rgb) <font color="#cc0033">rgbToPixel</font>*(p0 : INTEGER;
+                                                         p1 : <a href="java_awt_image.html#type-ColorModel">java_awt_image.ColorModel</a>) : INTEGER<b>,EXTENSIBLE</b>;
+<a name="meths-PixelConverter$Ushort555Rgbx"></a>
+<b>PROCEDURE </b>(self:PixelConverter$Ushort555Rgbx) <font color="#cc0033">pixelToRgb</font>*(p0 : INTEGER;
+                                                          p1 : <a href="java_awt_image.html#type-ColorModel">java_awt_image.ColorModel</a>) : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PixelConverter$Ushort555Rgbx) <font color="#cc0033">rgbToPixel</font>*(p0 : INTEGER;
+                                                          p1 : <a href="java_awt_image.html#type-ColorModel">java_awt_image.ColorModel</a>) : INTEGER<b>,EXTENSIBLE</b>;
+<a name="meths-PixelConverter$Ushort565Rgb"></a>
+<b>PROCEDURE </b>(self:PixelConverter$Ushort565Rgb) <font color="#cc0033">pixelToRgb</font>*(p0 : INTEGER;
+                                                         p1 : <a href="java_awt_image.html#type-ColorModel">java_awt_image.ColorModel</a>) : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PixelConverter$Ushort565Rgb) <font color="#cc0033">rgbToPixel</font>*(p0 : INTEGER;
+                                                         p1 : <a href="java_awt_image.html#type-ColorModel">java_awt_image.ColorModel</a>) : INTEGER<b>,EXTENSIBLE</b>;
+<a name="meths-PixelConverter$UshortGray"></a>
+<b>PROCEDURE </b>(self:PixelConverter$UshortGray) <font color="#cc0033">pixelToRgb</font>*(p0 : INTEGER;
+                                                       p1 : <a href="java_awt_image.html#type-ColorModel">java_awt_image.ColorModel</a>) : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PixelConverter$UshortGray) <font color="#cc0033">rgbToPixel</font>*(p0 : INTEGER;
+                                                       p1 : <a href="java_awt_image.html#type-ColorModel">java_awt_image.ColorModel</a>) : INTEGER<b>,EXTENSIBLE</b>;
+<a name="meths-PixelConverter$Xbgr"></a>
+<b>PROCEDURE </b>(self:PixelConverter$Xbgr) <font color="#cc0033">pixelToRgb</font>*(p0 : INTEGER;
+                                                 p1 : <a href="java_awt_image.html#type-ColorModel">java_awt_image.ColorModel</a>) : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PixelConverter$Xbgr) <font color="#cc0033">rgbToPixel</font>*(p0 : INTEGER;
+                                                 p1 : <a href="java_awt_image.html#type-ColorModel">java_awt_image.ColorModel</a>) : INTEGER<b>,EXTENSIBLE</b>;
+<a name="meths-PixelConverter$Xrgb"></a>
+<b>PROCEDURE </b>(self:PixelConverter$Xrgb) <font color="#cc0033">pixelToRgb</font>*(p0 : INTEGER;
+                                                 p1 : <a href="java_awt_image.html#type-ColorModel">java_awt_image.ColorModel</a>) : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PixelConverter$Xrgb) <font color="#cc0033">rgbToPixel</font>*(p0 : INTEGER;
+                                                 p1 : <a href="java_awt_image.html#type-ColorModel">java_awt_image.ColorModel</a>) : INTEGER<b>,EXTENSIBLE</b>;
+<a name="meths-PNGImageDecoder"></a>
+<b>PROCEDURE </b>(self:PNGImageDecoder) <font color="#cc0033">handleChunk</font>!(    p0 : INTEGER;
+                                              IN  p1 : <b>ARRAY </b><b>OF </b>BYTE;
+                                                  p2 : INTEGER;
+                                                  p3 : INTEGER) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PNGImageDecoder) <font color="#cc0033">print</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PNGImageDecoder) <font color="#cc0033">produceImage</font>*()<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PNGImageDecoder) <font color="#cc0033">wrc</font>!(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PNGImageDecoder) <font color="#cc0033">wrk</font>!(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-PNGImageDecoder$Chromaticities"></a>
+<b>PROCEDURE </b>(self:PNGImageDecoder$Chromaticities) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,EXTENSIBLE</b>;
+<a name="meths-RasterListener"></a>
+<b>PROCEDURE </b>(self:RasterListener) <font color="#cc0033">rasterChanged</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RasterListener) <font color="#cc0033">rasterStolen</font>*()<b>,NEW,ABSTRACT</b>;
+<a name="meths-RemoteOffScreenImage"></a>
+<b>PROCEDURE </b>(self:RemoteOffScreenImage) <font color="#cc0033">createNativeRaster</font>!()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RemoteOffScreenImage) <font color="#cc0033">getSnapshot</font>*() : <a href="java_awt_image.html#type-BufferedImage">java_awt_image.BufferedImage</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-ShortBandedRaster"></a>
+<b>PROCEDURE </b>(self:ShortBandedRaster) <font color="#cc0033">createChild</font>*(    p0 : INTEGER;
+                                                    p1 : INTEGER;
+                                                    p2 : INTEGER;
+                                                    p3 : INTEGER;
+                                                    p4 : INTEGER;
+                                                    p5 : INTEGER;
+                                                IN  p6 : <b>ARRAY </b><b>OF </b>INTEGER) : <a href="java_awt_image.html#type-Raster">java_awt_image.Raster</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ShortBandedRaster) <font color="#cc0033">createCompatibleWritableRaster</font>*(p0 : INTEGER;
+                                                                   p1 : INTEGER) : <a href="java_awt_image.html#type-WritableRaster">java_awt_image.WritableRaster</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ShortBandedRaster) <font color="#cc0033">createCompatibleWritableRaster</font>*() : <a href="java_awt_image.html#type-WritableRaster">java_awt_image.WritableRaster</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ShortBandedRaster) <font color="#cc0033">createWritableChild</font>*(    p0 : INTEGER;
+                                                            p1 : INTEGER;
+                                                            p2 : INTEGER;
+                                                            p3 : INTEGER;
+                                                            p4 : INTEGER;
+                                                            p5 : INTEGER;
+                                                        IN  p6 : <b>ARRAY </b><b>OF </b>INTEGER) : <a href="java_awt_image.html#type-WritableRaster">java_awt_image.WritableRaster</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ShortBandedRaster) <font color="#cc0033">getDataElements</font>*(p0 : INTEGER;
+                                                    p1 : INTEGER;
+                                                    p2 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ShortBandedRaster) <font color="#cc0033">getDataElements</font>*(p0 : INTEGER;
+                                                    p1 : INTEGER;
+                                                    p2 : INTEGER;
+                                                    p3 : INTEGER;
+                                                    p4 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ShortBandedRaster) <font color="#cc0033">getDataOffset</font>*(p0 : INTEGER) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ShortBandedRaster) <font color="#cc0033">getDataOffsets</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ShortBandedRaster) <font color="#cc0033">getDataStorage</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>SHORTINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ShortBandedRaster) <font color="#cc0033">getDataStorage</font>*(p0 : INTEGER) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>SHORTINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ShortBandedRaster) <font color="#cc0033">getPixelStride</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ShortBandedRaster) <font color="#cc0033">getScanlineStride</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ShortBandedRaster) <font color="#cc0033">getShortData</font>*(    p0 : INTEGER;
+                                                     p1 : INTEGER;
+                                                     p2 : INTEGER;
+                                                     p3 : INTEGER;
+                                                 IN  p4 : <b>ARRAY </b><b>OF </b>SHORTINT) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>SHORTINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ShortBandedRaster) <font color="#cc0033">getShortData</font>*(    p0 : INTEGER;
+                                                     p1 : INTEGER;
+                                                     p2 : INTEGER;
+                                                     p3 : INTEGER;
+                                                     p4 : INTEGER;
+                                                 IN  p5 : <b>ARRAY </b><b>OF </b>SHORTINT) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>SHORTINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ShortBandedRaster) <font color="#cc0033">putShortData</font>*(    p0 : INTEGER;
+                                                     p1 : INTEGER;
+                                                     p2 : INTEGER;
+                                                     p3 : INTEGER;
+                                                 IN  p4 : <b>ARRAY </b><b>OF </b>SHORTINT)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ShortBandedRaster) <font color="#cc0033">putShortData</font>*(    p0 : INTEGER;
+                                                     p1 : INTEGER;
+                                                     p2 : INTEGER;
+                                                     p3 : INTEGER;
+                                                     p4 : INTEGER;
+                                                 IN  p5 : <b>ARRAY </b><b>OF </b>SHORTINT)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ShortBandedRaster) <font color="#cc0033">setDataElements</font>*(p0 : INTEGER;
+                                                    p1 : INTEGER;
+                                                    p2 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ShortBandedRaster) <font color="#cc0033">setDataElements</font>*(p0 : INTEGER;
+                                                    p1 : INTEGER;
+                                                    p2 : INTEGER;
+                                                    p3 : INTEGER;
+                                                    p4 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ShortBandedRaster) <font color="#cc0033">setDataElements</font>*(p0 : INTEGER;
+                                                    p1 : INTEGER;
+                                                    p2 : <a href="java_awt_image.html#type-Raster">java_awt_image.Raster</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ShortBandedRaster) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,EXTENSIBLE</b>;
+<a name="meths-ShortComponentRaster"></a>
+<b>PROCEDURE </b>(self:ShortComponentRaster) <font color="#cc0033">createChild</font>*(    p0 : INTEGER;
+                                                       p1 : INTEGER;
+                                                       p2 : INTEGER;
+                                                       p3 : INTEGER;
+                                                       p4 : INTEGER;
+                                                       p5 : INTEGER;
+                                                   IN  p6 : <b>ARRAY </b><b>OF </b>INTEGER) : <a href="java_awt_image.html#type-Raster">java_awt_image.Raster</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ShortComponentRaster) <font color="#cc0033">createCompatibleWritableRaster</font>*() : <a href="java_awt_image.html#type-WritableRaster">java_awt_image.WritableRaster</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ShortComponentRaster) <font color="#cc0033">createCompatibleWritableRaster</font>*(p0 : INTEGER;
+                                                                      p1 : INTEGER) : <a href="java_awt_image.html#type-WritableRaster">java_awt_image.WritableRaster</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ShortComponentRaster) <font color="#cc0033">createWritableChild</font>*(    p0 : INTEGER;
+                                                               p1 : INTEGER;
+                                                               p2 : INTEGER;
+                                                               p3 : INTEGER;
+                                                               p4 : INTEGER;
+                                                               p5 : INTEGER;
+                                                           IN  p6 : <b>ARRAY </b><b>OF </b>INTEGER) : <a href="java_awt_image.html#type-WritableRaster">java_awt_image.WritableRaster</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ShortComponentRaster) <font color="#cc0033">getDataElements</font>*(p0 : INTEGER;
+                                                       p1 : INTEGER;
+                                                       p2 : INTEGER;
+                                                       p3 : INTEGER;
+                                                       p4 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ShortComponentRaster) <font color="#cc0033">getDataElements</font>*(p0 : INTEGER;
+                                                       p1 : INTEGER;
+                                                       p2 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ShortComponentRaster) <font color="#cc0033">getDataOffset</font>*(p0 : INTEGER) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ShortComponentRaster) <font color="#cc0033">getDataOffsets</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ShortComponentRaster) <font color="#cc0033">getDataStorage</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>SHORTINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ShortComponentRaster) <font color="#cc0033">getPixelStride</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ShortComponentRaster) <font color="#cc0033">getScanlineStride</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ShortComponentRaster) <font color="#cc0033">getShortData</font>*(    p0 : INTEGER;
+                                                        p1 : INTEGER;
+                                                        p2 : INTEGER;
+                                                        p3 : INTEGER;
+                                                        p4 : INTEGER;
+                                                    IN  p5 : <b>ARRAY </b><b>OF </b>SHORTINT) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>SHORTINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ShortComponentRaster) <font color="#cc0033">getShortData</font>*(    p0 : INTEGER;
+                                                        p1 : INTEGER;
+                                                        p2 : INTEGER;
+                                                        p3 : INTEGER;
+                                                    IN  p4 : <b>ARRAY </b><b>OF </b>SHORTINT) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>SHORTINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ShortComponentRaster) <font color="#cc0033">putShortData</font>*(    p0 : INTEGER;
+                                                        p1 : INTEGER;
+                                                        p2 : INTEGER;
+                                                        p3 : INTEGER;
+                                                    IN  p4 : <b>ARRAY </b><b>OF </b>SHORTINT)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ShortComponentRaster) <font color="#cc0033">putShortData</font>*(    p0 : INTEGER;
+                                                        p1 : INTEGER;
+                                                        p2 : INTEGER;
+                                                        p3 : INTEGER;
+                                                        p4 : INTEGER;
+                                                    IN  p5 : <b>ARRAY </b><b>OF </b>SHORTINT)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ShortComponentRaster) <font color="#cc0033">setDataElements</font>*(p0 : INTEGER;
+                                                       p1 : INTEGER;
+                                                       p2 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ShortComponentRaster) <font color="#cc0033">setDataElements</font>*(p0 : INTEGER;
+                                                       p1 : INTEGER;
+                                                       p2 : <a href="java_awt_image.html#type-Raster">java_awt_image.Raster</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ShortComponentRaster) <font color="#cc0033">setDataElements</font>*(p0 : INTEGER;
+                                                       p1 : INTEGER;
+                                                       p2 : INTEGER;
+                                                       p3 : INTEGER;
+                                                       p4 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ShortComponentRaster) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,EXTENSIBLE</b>;
+<a name="meths-ShortInterleavedRaster"></a>
+<b>PROCEDURE </b>(self:ShortInterleavedRaster) <font color="#cc0033">createChild</font>*(    p0 : INTEGER;
+                                                         p1 : INTEGER;
+                                                         p2 : INTEGER;
+                                                         p3 : INTEGER;
+                                                         p4 : INTEGER;
+                                                         p5 : INTEGER;
+                                                     IN  p6 : <b>ARRAY </b><b>OF </b>INTEGER) : <a href="java_awt_image.html#type-Raster">java_awt_image.Raster</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ShortInterleavedRaster) <font color="#cc0033">createCompatibleWritableRaster</font>*() : <a href="java_awt_image.html#type-WritableRaster">java_awt_image.WritableRaster</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ShortInterleavedRaster) <font color="#cc0033">createCompatibleWritableRaster</font>*(p0 : INTEGER;
+                                                                        p1 : INTEGER) : <a href="java_awt_image.html#type-WritableRaster">java_awt_image.WritableRaster</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ShortInterleavedRaster) <font color="#cc0033">createWritableChild</font>*(    p0 : INTEGER;
+                                                                 p1 : INTEGER;
+                                                                 p2 : INTEGER;
+                                                                 p3 : INTEGER;
+                                                                 p4 : INTEGER;
+                                                                 p5 : INTEGER;
+                                                             IN  p6 : <b>ARRAY </b><b>OF </b>INTEGER) : <a href="java_awt_image.html#type-WritableRaster">java_awt_image.WritableRaster</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ShortInterleavedRaster) <font color="#cc0033">getDataElements</font>*(p0 : INTEGER;
+                                                         p1 : INTEGER;
+                                                         p2 : INTEGER;
+                                                         p3 : INTEGER;
+                                                         p4 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ShortInterleavedRaster) <font color="#cc0033">getDataElements</font>*(p0 : INTEGER;
+                                                         p1 : INTEGER;
+                                                         p2 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ShortInterleavedRaster) <font color="#cc0033">getDataOffset</font>*(p0 : INTEGER) : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ShortInterleavedRaster) <font color="#cc0033">getDataOffsets</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ShortInterleavedRaster) <font color="#cc0033">getDataStorage</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>SHORTINT<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ShortInterleavedRaster) <font color="#cc0033">getPixelStride</font>*() : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ShortInterleavedRaster) <font color="#cc0033">getScanlineStride</font>*() : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ShortInterleavedRaster) <font color="#cc0033">getShortData</font>*(    p0 : INTEGER;
+                                                          p1 : INTEGER;
+                                                          p2 : INTEGER;
+                                                          p3 : INTEGER;
+                                                          p4 : INTEGER;
+                                                      IN  p5 : <b>ARRAY </b><b>OF </b>SHORTINT) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>SHORTINT<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ShortInterleavedRaster) <font color="#cc0033">getShortData</font>*(    p0 : INTEGER;
+                                                          p1 : INTEGER;
+                                                          p2 : INTEGER;
+                                                          p3 : INTEGER;
+                                                      IN  p4 : <b>ARRAY </b><b>OF </b>SHORTINT) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>SHORTINT<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ShortInterleavedRaster) <font color="#cc0033">putShortData</font>*(    p0 : INTEGER;
+                                                          p1 : INTEGER;
+                                                          p2 : INTEGER;
+                                                          p3 : INTEGER;
+                                                      IN  p4 : <b>ARRAY </b><b>OF </b>SHORTINT)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ShortInterleavedRaster) <font color="#cc0033">putShortData</font>*(    p0 : INTEGER;
+                                                          p1 : INTEGER;
+                                                          p2 : INTEGER;
+                                                          p3 : INTEGER;
+                                                          p4 : INTEGER;
+                                                      IN  p5 : <b>ARRAY </b><b>OF </b>SHORTINT)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ShortInterleavedRaster) <font color="#cc0033">setDataElements</font>*(p0 : INTEGER;
+                                                         p1 : INTEGER;
+                                                         p2 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ShortInterleavedRaster) <font color="#cc0033">setDataElements</font>*(p0 : INTEGER;
+                                                         p1 : INTEGER;
+                                                         p2 : <a href="java_awt_image.html#type-Raster">java_awt_image.Raster</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ShortInterleavedRaster) <font color="#cc0033">setDataElements</font>*(p0 : INTEGER;
+                                                         p1 : INTEGER;
+                                                         p2 : INTEGER;
+                                                         p3 : INTEGER;
+                                                         p4 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ShortInterleavedRaster) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,EXTENSIBLE</b>;
+<a name="meths-SunVolatileImage"></a>
+<b>PROCEDURE </b>(self:SunVolatileImage) <font color="#cc0033">contentsLost</font>*() : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunVolatileImage) <font color="#cc0033">createGraphics</font>*() : <a href="java_awt.html#type-Graphics2D">java_awt.Graphics2D</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunVolatileImage) <font color="#cc0033">createSurfaceManager</font>!(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                        p1 : <a href="java_awt.html#type-ImageCapabilities">java_awt.ImageCapabilities</a>) : <a href="#type-VolatileSurfaceManager">VolatileSurfaceManager</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunVolatileImage) <font color="#cc0033">getBackupImage</font>*() : <a href="java_awt_image.html#type-BufferedImage">java_awt_image.BufferedImage</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunVolatileImage) <font color="#cc0033">getCapabilities</font>*() : <a href="java_awt.html#type-ImageCapabilities">java_awt.ImageCapabilities</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunVolatileImage) <font color="#cc0033">getComponent</font>*() : <a href="java_awt.html#type-Component">java_awt.Component</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunVolatileImage) <font color="#cc0033">getDestSurface</font>*() : <a href="sun_java2d.html#type-Surface">sun_java2d.Surface</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunVolatileImage) <font color="#cc0033">getForcedAccelSurfaceType</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunVolatileImage) <font color="#cc0033">getGraphicsConfig</font>*() : <a href="java_awt.html#type-GraphicsConfiguration">java_awt.GraphicsConfiguration</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunVolatileImage) <font color="#cc0033">getHeight</font>*(p0 : <a href="java_awt_image.html#type-ImageObserver">java_awt_image.ImageObserver</a>) : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunVolatileImage) <font color="#cc0033">getHeight</font>*() : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunVolatileImage) <font color="#cc0033">getProperty</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                               p1 : <a href="java_awt_image.html#type-ImageObserver">java_awt_image.ImageObserver</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunVolatileImage) <font color="#cc0033">getSnapshot</font>*() : <a href="java_awt_image.html#type-BufferedImage">java_awt_image.BufferedImage</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunVolatileImage) <font color="#cc0033">getWidth</font>*() : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunVolatileImage) <font color="#cc0033">getWidth</font>*(p0 : <a href="java_awt_image.html#type-ImageObserver">java_awt_image.ImageObserver</a>) : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunVolatileImage) <font color="#cc0033">updateGraphicsConfig</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunVolatileImage) <font color="#cc0033">validate</font>*(p0 : <a href="java_awt.html#type-GraphicsConfiguration">java_awt.GraphicsConfiguration</a>) : INTEGER<b>,EXTENSIBLE</b>;
+<a name="meths-SunWritableRaster"></a>
+<b>PROCEDURE </b>(self:SunWritableRaster) <font color="#cc0033">getDataBuffer</font>*() : <a href="java_awt_image.html#type-DataBuffer">java_awt_image.DataBuffer</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunWritableRaster) <font color="#cc0033">notifyChanged</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunWritableRaster) <font color="#cc0033">notifyStolen</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunWritableRaster) <font color="#cc0033">setDataElements</font>*(p0 : INTEGER;
+                                                    p1 : INTEGER;
+                                                    p2 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunWritableRaster) <font color="#cc0033">setDataElements</font>*(p0 : INTEGER;
+                                                    p1 : INTEGER;
+                                                    p2 : INTEGER;
+                                                    p3 : INTEGER;
+                                                    p4 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunWritableRaster) <font color="#cc0033">setDataElements</font>*(p0 : INTEGER;
+                                                    p1 : INTEGER;
+                                                    p2 : <a href="java_awt_image.html#type-Raster">java_awt_image.Raster</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunWritableRaster) <font color="#cc0033">setPixel</font>*(    p0 : INTEGER;
+                                                 p1 : INTEGER;
+                                             IN  p2 : <b>ARRAY </b><b>OF </b>INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunWritableRaster) <font color="#cc0033">setPixel</font>*(    p0 : INTEGER;
+                                                 p1 : INTEGER;
+                                             IN  p2 : <b>ARRAY </b><b>OF </b>SHORTREAL)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunWritableRaster) <font color="#cc0033">setPixel</font>*(    p0 : INTEGER;
+                                                 p1 : INTEGER;
+                                             IN  p2 : <b>ARRAY </b><b>OF </b>REAL)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunWritableRaster) <font color="#cc0033">setPixels</font>*(    p0 : INTEGER;
+                                                  p1 : INTEGER;
+                                                  p2 : INTEGER;
+                                                  p3 : INTEGER;
+                                              IN  p4 : <b>ARRAY </b><b>OF </b>INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunWritableRaster) <font color="#cc0033">setPixels</font>*(    p0 : INTEGER;
+                                                  p1 : INTEGER;
+                                                  p2 : INTEGER;
+                                                  p3 : INTEGER;
+                                              IN  p4 : <b>ARRAY </b><b>OF </b>SHORTREAL)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunWritableRaster) <font color="#cc0033">setPixels</font>*(    p0 : INTEGER;
+                                                  p1 : INTEGER;
+                                                  p2 : INTEGER;
+                                                  p3 : INTEGER;
+                                              IN  p4 : <b>ARRAY </b><b>OF </b>REAL)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunWritableRaster) <font color="#cc0033">setRasterListener</font>*(p0 : <a href="#type-RasterListener">RasterListener</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunWritableRaster) <font color="#cc0033">setRect</font>*(p0 : INTEGER;
+                                            p1 : INTEGER;
+                                            p2 : <a href="java_awt_image.html#type-Raster">java_awt_image.Raster</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunWritableRaster) <font color="#cc0033">setRect</font>*(p0 : <a href="java_awt_image.html#type-Raster">java_awt_image.Raster</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunWritableRaster) <font color="#cc0033">setSample</font>*(p0 : INTEGER;
+                                              p1 : INTEGER;
+                                              p2 : INTEGER;
+                                              p3 : SHORTREAL)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunWritableRaster) <font color="#cc0033">setSample</font>*(p0 : INTEGER;
+                                              p1 : INTEGER;
+                                              p2 : INTEGER;
+                                              p3 : REAL)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunWritableRaster) <font color="#cc0033">setSample</font>*(p0 : INTEGER;
+                                              p1 : INTEGER;
+                                              p2 : INTEGER;
+                                              p3 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunWritableRaster) <font color="#cc0033">setSamples</font>*(    p0 : INTEGER;
+                                                   p1 : INTEGER;
+                                                   p2 : INTEGER;
+                                                   p3 : INTEGER;
+                                                   p4 : INTEGER;
+                                               IN  p5 : <b>ARRAY </b><b>OF </b>SHORTREAL)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunWritableRaster) <font color="#cc0033">setSamples</font>*(    p0 : INTEGER;
+                                                   p1 : INTEGER;
+                                                   p2 : INTEGER;
+                                                   p3 : INTEGER;
+                                                   p4 : INTEGER;
+                                               IN  p5 : <b>ARRAY </b><b>OF </b>REAL)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunWritableRaster) <font color="#cc0033">setSamples</font>*(    p0 : INTEGER;
+                                                   p1 : INTEGER;
+                                                   p2 : INTEGER;
+                                                   p3 : INTEGER;
+                                                   p4 : INTEGER;
+                                               IN  p5 : <b>ARRAY </b><b>OF </b>INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunWritableRaster) <font color="#cc0033">setStolen</font>*(p0 : BOOLEAN)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-SurfaceManager"></a>
+<b>PROCEDURE </b>(self:SurfaceManager) <font color="#cc0033">acceleratedSurfaceLost</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SurfaceManager) <font color="#cc0033">flush</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SurfaceManager) <font color="#cc0033">getCapabilities</font>*(p0 : <a href="java_awt.html#type-GraphicsConfiguration">java_awt.GraphicsConfiguration</a>) : <a href="java_awt.html#type-ImageCapabilities">java_awt.ImageCapabilities</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SurfaceManager) <font color="#cc0033">getDestSurfaceData</font>*() : <a href="sun_java2d.html#type-SurfaceData">sun_java2d.SurfaceData</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SurfaceManager) <font color="#cc0033">getSourceSurfaceData</font>*(p0 : <a href="sun_java2d.html#type-SurfaceData">sun_java2d.SurfaceData</a>;
+                                                      p1 : <a href="sun_java2d_loops.html#type-CompositeType">sun_java2d_loops.CompositeType</a>;
+                                                      p2 : <a href="java_awt.html#type-Color">java_awt.Color</a>;
+                                                      p3 : BOOLEAN) : <a href="sun_java2d.html#type-SurfaceData">sun_java2d.SurfaceData</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SurfaceManager) <font color="#cc0033">restoreContents</font>*() : <a href="sun_java2d.html#type-SurfaceData">sun_java2d.SurfaceData</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SurfaceManager) <font color="#cc0033">setAccelerationPriority</font>*(p0 : SHORTREAL)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-SurfaceManager$ImageAccessor"></a>
+<b>PROCEDURE </b>(self:SurfaceManager$ImageAccessor) <font color="#cc0033">getSurfaceManager</font>*(p0 : <a href="java_awt.html#type-Image">java_awt.Image</a>) : <a href="#type-SurfaceManager">SurfaceManager</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SurfaceManager$ImageAccessor) <font color="#cc0033">setSurfaceManager</font>*(p0 : <a href="java_awt.html#type-Image">java_awt.Image</a>;
+                                                                 p1 : <a href="#type-SurfaceManager">SurfaceManager</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-ToolkitImage"></a>
+<b>PROCEDURE </b>(self:ToolkitImage) <font color="#cc0033">check</font>*(p0 : <a href="java_awt_image.html#type-ImageObserver">java_awt_image.ImageObserver</a>) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ToolkitImage) <font color="#cc0033">flush</font>*()<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ToolkitImage) <font color="#cc0033">getBufferedImage</font>*() : <a href="java_awt_image.html#type-BufferedImage">java_awt_image.BufferedImage</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ToolkitImage) <font color="#cc0033">getColorModel</font>*() : <a href="java_awt_image.html#type-ColorModel">java_awt_image.ColorModel</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ToolkitImage) <font color="#cc0033">getGraphics</font>*() : <a href="java_awt.html#type-Graphics">java_awt.Graphics</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ToolkitImage) <font color="#cc0033">getHeight</font>*(p0 : <a href="java_awt_image.html#type-ImageObserver">java_awt_image.ImageObserver</a>) : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ToolkitImage) <font color="#cc0033">getHeight</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ToolkitImage) <font color="#cc0033">getImageRep</font>*() : <a href="#type-ImageRepresentation">ImageRepresentation</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ToolkitImage) <font color="#cc0033">getProperty</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                           p1 : <a href="java_awt_image.html#type-ImageObserver">java_awt_image.ImageObserver</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ToolkitImage) <font color="#cc0033">getSource</font>*() : <a href="java_awt_image.html#type-ImageProducer">java_awt_image.ImageProducer</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ToolkitImage) <font color="#cc0033">getWidth</font>*(p0 : <a href="java_awt_image.html#type-ImageObserver">java_awt_image.ImageObserver</a>) : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ToolkitImage) <font color="#cc0033">getWidth</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ToolkitImage) <font color="#cc0033">hasError</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ToolkitImage) <font color="#cc0033">makeImageRep</font>!() : <a href="#type-ImageRepresentation">ImageRepresentation</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ToolkitImage) <font color="#cc0033">preload</font>*(p0 : <a href="java_awt_image.html#type-ImageObserver">java_awt_image.ImageObserver</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ToolkitImage) <font color="#cc0033">setAccelerationPriority</font>*(p0 : SHORTREAL)<b>,EXTENSIBLE</b>;
+<a name="meths-URLImageSource"></a>
+<b>PROCEDURE </b>(self:URLImageSource) <font color="#cc0033">getDecoder</font>!() : <a href="#type-ImageDecoder">ImageDecoder</a><b>,EXTENSIBLE</b>;
+<a name="meths-VolatileSurfaceManager"></a>
+<b>PROCEDURE </b>(self:VolatileSurfaceManager) <font color="#cc0033">acceleratedSurfaceLost</font>*()<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:VolatileSurfaceManager) <font color="#cc0033">contentsLost</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:VolatileSurfaceManager) <font color="#cc0033">displayChanged</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:VolatileSurfaceManager) <font color="#cc0033">flush</font>*()<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:VolatileSurfaceManager) <font color="#cc0033">getBackupSurface</font>!() : <a href="sun_java2d.html#type-SurfaceData">sun_java2d.SurfaceData</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:VolatileSurfaceManager) <font color="#cc0033">getCapabilities</font>*(p0 : <a href="java_awt.html#type-GraphicsConfiguration">java_awt.GraphicsConfiguration</a>) : <a href="java_awt.html#type-ImageCapabilities">java_awt.ImageCapabilities</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:VolatileSurfaceManager) <font color="#cc0033">getDestSurfaceData</font>*() : <a href="sun_java2d.html#type-SurfaceData">sun_java2d.SurfaceData</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:VolatileSurfaceManager) <font color="#cc0033">getSourceSurfaceData</font>*(p0 : <a href="sun_java2d.html#type-SurfaceData">sun_java2d.SurfaceData</a>;
+                                                              p1 : <a href="sun_java2d_loops.html#type-CompositeType">sun_java2d_loops.CompositeType</a>;
+                                                              p2 : <a href="java_awt.html#type-Color">java_awt.Color</a>;
+                                                              p3 : BOOLEAN) : <a href="sun_java2d.html#type-SurfaceData">sun_java2d.SurfaceData</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:VolatileSurfaceManager) <font color="#cc0033">initAcceleratedSurface</font>!() : <a href="sun_java2d.html#type-SurfaceData">sun_java2d.SurfaceData</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:VolatileSurfaceManager) <font color="#cc0033">initContents</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:VolatileSurfaceManager) <font color="#cc0033">initialize</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:VolatileSurfaceManager) <font color="#cc0033">isAccelerationEnabled</font>!() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:VolatileSurfaceManager) <font color="#cc0033">isConfigValid</font>!(p0 : <a href="java_awt.html#type-GraphicsConfiguration">java_awt.GraphicsConfiguration</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:VolatileSurfaceManager) <font color="#cc0033">paletteChanged</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:VolatileSurfaceManager) <font color="#cc0033">restoreAcceleratedSurface</font>!()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:VolatileSurfaceManager) <font color="#cc0033">restoreContents</font>*() : <a href="sun_java2d.html#type-SurfaceData">sun_java2d.SurfaceData</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:VolatileSurfaceManager) <font color="#cc0033">validate</font>*(p0 : <a href="java_awt.html#type-GraphicsConfiguration">java_awt.GraphicsConfiguration</a>) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-XbmImageDecoder"></a>
+<b>PROCEDURE </b>(self:XbmImageDecoder) <font color="#cc0033">produceImage</font>*()<b>,EXTENSIBLE</b>;
+
+<b>END </b><font color="#cc0033">sun_awt_image</font>.
+</font></pre></hr></body></html>

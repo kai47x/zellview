@@ -1,0 +1,13 @@
+format.access="%Ses->client.ip%  %Req->headers.referer% -  %Req->vars.auth-user% [%SYSDATE%] \"%Req->reqpb.clf-request%\" %Req->srvhdrs.clf-status% %Req->srvhdrs.content-length% %Req->headers.host%"
+212.194.135.127 - - [10/Aug/2003:11:13:22 +0200] "GET / HTTP/1.0" 200 84552 www.zinnamturm.de
+64.210.196.198 - - [10/Aug/2003:13:54:34 +0200] "GET /robots.txt HTTP/1.0" 404 2977 www.zinnamturm.de
+64.210.196.198 - - [10/Aug/2003:13:54:35 +0200] "GET / HTTP/1.0" 200 84552 www.zinnamturm.de
+64.210.196.198 http://www.zinnamturm.de/ - [10/Aug/2003:13:54:35 +0200] "GET /mail99.gif HTTP/1.0" 200 4196 www.zinnamturm.de
+64.210.196.198 http://www.zinnamturm.de/ - [10/Aug/2003:13:54:35 +0200] "GET /bg3.gif HTTP/1.0" 200 16276 www.zinnamturm.de
+217.132.32.97 http://www.google.co.il/search?q=GK2k&hl=iw&lr=&ie=UTF-8&oe=UTF-8&start=10&sa=N - [10/Aug/2003:14:15:35 +0200] "GET /Ctls.txt HTTP/1.1" 403 142 www.zinnamturm.de
+203.124.2.59 http://www.zinnamturm.de/ - [10/Aug/2003:17:28:21 +0200] "GET /mail99.gif HTTP/1.1" 200 4196 www.zinnamturm.de
+203.124.2.59 http://www.zinnamturm.de/ - [10/Aug/2003:17:28:21 +0200] "GET /bg3.gif HTTP/1.1" 200 16276 www.zinnamturm.de
+203.124.2.59 http://search.yahoo.com/search?p=problem+of+equality+abs(a+%e2%80%93+b)+%3c+machine+epsilon&ei=UTF-8&vm=i&n=20&fl=0&fr=fp-top&b=61 - [10/Aug/2003:17:28:22 +0200] "GET / HTTP/1.1" 200 84552 www.zinnamturm.de
+195.49.184.152 http://www.oberon.ch/prod/bbcommunity/index.html - [10/Aug/2003:19:50:07 +0200] "GET / HTTP/1.1" 200 84552 www.zinnamturm.de
+217.225.189.77 http://www.google.de/search?q=ofze+&hl=de&lr=&cr=countryDE&ie=UTF-8&oe=UTF-8&start=10&sa=N - [10/Aug/2003:20:03:36 +0200] "GET /Media.txt HTTP/1.1" 200 60130 www.zinnamturm.de
+193.188.97.152 http://www.google.com/ - [10/Aug/2003:20:39:44 +0200] "GET /CpcAsciiCoder.txt HTTP/1.1" 200 52884 www.zinnamturm.de

@@ -1,0 +1,910 @@
+<html><head><title>sun_java2d</title></head>
+<body bgcolor="white">
+<hr><pre>
+<b>FOREIGN MODULE </b><font color="#cc0033">sun_java2d</font>;
+
+<b>IMPORT</b>
+    <a href="java_lang.html">java_lang</a> := "java.lang",
+    <a href="java_security.html">java_security</a> := "java.security",
+    <a href="java_lang_ref.html">java_lang_ref</a> := "java.lang.ref",
+    <a href="java_util.html">java_util</a> := "java.util",
+    <a href="sun_awt.html">sun_awt</a> := "sun.awt",
+    <a href="java_awt.html">java_awt</a> := "java.awt",
+    <a href="java_awt_image.html">java_awt_image</a> := "java.awt.image",
+    <a href="java_io.html">java_io</a> := "java.io",
+    <a href="sun_java2d_pipe.html">sun_java2d_pipe</a> := "sun.java2d.pipe",
+    <a href="sun_java2d_loops.html">sun_java2d_loops</a> := "sun.java2d.loops",
+    <a href="sun_awt_windows.html">sun_awt_windows</a> := "sun.awt.windows",
+    <a href="java_awt_geom.html">java_awt_geom</a> := "java.awt.geom",
+    <a href="java_awt_font.html">java_awt_font</a> := "java.awt.font",
+    <a href="java_awt_image_renderable.html">java_awt_image_renderable</a> := "java.awt.image.renderable",
+    <a href="java_text.html">java_text</a> := "java.text",
+    <a href="java_util_logging.html">java_util_logging</a> := "java.util.logging",
+    <a href="java_awt_print.html">java_awt_print</a> := "java.awt.print",
+    <a href="java_awt_peer.html">java_awt_peer</a> := "java.awt.peer",
+    <a href="sun_awt_image.html">sun_awt_image</a> := "sun.awt.image";
+
+<b>TYPE</b>
+
+  <a name="type-DefaultDisposerRecord"></a><font color="#cc0033">DefaultDisposerRecord</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-DisposerRecord">DisposerRecord</a>)    <a href="#meths-DefaultDisposerRecord"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                           <b>STATIC</b>
+                             <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : LONGINT;
+                                             p1 : LONGINT) : <a href="#type-DefaultDisposerRecord">DefaultDisposerRecord</a><b>,CONSTRUCTOR</b>;
+                             <b>PROCEDURE </b><font color="#cc0033">invokeNativeDispose</font>*(p0 : LONGINT;
+                                                            p1 : LONGINT);
+                           <b>END</b>;
+
+  <a name="type-DestSurfaceProvider"></a><font color="#cc0033">DestSurfaceProvider</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-DestSurfaceProvider"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                         <b>END</b>;
+
+  <a name="type-Disposer"></a><font color="#cc0033">Disposer</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_lang.html#type-Runnable">java_lang.Runnable</a>)    <a href="#meths-Disposer"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+              <b>STATIC</b>
+                <font color="#cc0033">PHANTOM</font>*         = 1;
+                <a name="type-pollingQueue"></a><font color="#cc0033">pollingQueue</font>*    : BOOLEAN;
+                <a name="type-refType"></a><font color="#cc0033">refType</font>*         : INTEGER;
+                <font color="#cc0033">WEAK</font>*            = 0;
+                <b>PROCEDURE </b><font color="#cc0033">addObjectRecord</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                           p1 : <a href="#type-DisposerRecord">DisposerRecord</a>);
+                <b>PROCEDURE </b><font color="#cc0033">addRecord</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                     p1 : <a href="#type-DisposerRecord">DisposerRecord</a>);
+                <b>PROCEDURE </b><font color="#cc0033">addRecord</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                     p1 : LONGINT;
+                                     p2 : LONGINT);
+                <b>PROCEDURE </b><font color="#cc0033">addReference</font>*(p0 : <a href="java_lang_ref.html#type-Reference">java_lang_ref.Reference</a>;
+                                        p1 : <a href="#type-DisposerRecord">DisposerRecord</a>);
+                <b>PROCEDURE </b><font color="#cc0033">getQueue</font>*() : <a href="java_lang_ref.html#type-ReferenceQueue">java_lang_ref.ReferenceQueue</a>;
+                <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-Disposer">Disposer</a><b>,CONSTRUCTOR</b>;
+                <b>PROCEDURE </b><font color="#cc0033">pollRemove</font>*();
+              <b>END</b>;
+
+  <a name="type-Disposer$PollDisposable"></a><font color="#cc0033">Disposer$PollDisposable</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                             <b>END</b>;
+
+  <a name="type-DisposerRecord"></a><font color="#cc0033">DisposerRecord</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-DisposerRecord"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                    <b>END</b>;
+
+  <a name="type-DisposerTarget"></a><font color="#cc0033">DisposerTarget</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-DisposerTarget"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                    <b>END</b>;
+
+  <a name="type-FontSupport"></a><font color="#cc0033">FontSupport</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-FontSupport"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                 <b>END</b>;
+
+  <a name="type-HeadlessGraphicsEnvironment"></a><font color="#cc0033">HeadlessGraphicsEnvironment</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_awt.html#type-GraphicsEnvironment">java_awt.GraphicsEnvironment</a> + <a href="#type-FontSupport">FontSupport</a>)    <a href="#meths-HeadlessGraphicsEnvironment"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                                 <b>STATIC</b>
+                                   <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_awt.html#type-GraphicsEnvironment">java_awt.GraphicsEnvironment</a>) : <a href="#type-HeadlessGraphicsEnvironment">HeadlessGraphicsEnvironment</a><b>,CONSTRUCTOR</b>;
+                                 <b>END</b>;
+
+  <a name="type-InvalidPipeException"></a><font color="#cc0033">InvalidPipeException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-IllegalStateException">java_lang.IllegalStateException</a>)
+                          <b>STATIC</b>
+                            <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-InvalidPipeException">InvalidPipeException</a><b>,CONSTRUCTOR</b>;
+                            <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-InvalidPipeException">InvalidPipeException</a><b>,CONSTRUCTOR</b>;
+                          <b>END</b>;
+
+  <a name="type-NullSurfaceData"></a><font color="#cc0033">NullSurfaceData</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-SurfaceData">SurfaceData</a>)    <a href="#meths-NullSurfaceData"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                     <b>STATIC</b>
+                       <a name="type-theInstance"></a><font color="#cc0033">theInstance</font>* : <a href="#type-SurfaceData">SurfaceData</a>;
+                     <b>END</b>;
+
+  <a name="type-ScreenUpdateManager"></a><font color="#cc0033">ScreenUpdateManager</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-ScreenUpdateManager"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                         <b>STATIC</b>
+                           <b>PROCEDURE </b><font color="#cc0033">getInstance</font>*() : <a href="#type-ScreenUpdateManager">ScreenUpdateManager</a>;
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>!() : <a href="#type-ScreenUpdateManager">ScreenUpdateManager</a><b>,CONSTRUCTOR</b>;
+                         <b>END</b>;
+
+  <a name="type-Spans"></a><font color="#cc0033">Spans</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-Spans"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+           <b>STATIC</b>
+             <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-Spans">Spans</a><b>,CONSTRUCTOR</b>;
+           <b>END</b>;
+
+  <a name="type-SunCompositeContext"></a><font color="#cc0033">SunCompositeContext</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_awt.html#type-CompositeContext">java_awt.CompositeContext</a>)    <a href="#meths-SunCompositeContext"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                         <b>STATIC</b>
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="sun_java2d_loops.html#type-XORComposite">sun_java2d_loops.XORComposite</a>;
+                                           p1 : <a href="java_awt_image.html#type-ColorModel">java_awt_image.ColorModel</a>;
+                                           p2 : <a href="java_awt_image.html#type-ColorModel">java_awt_image.ColorModel</a>) : <a href="#type-SunCompositeContext">SunCompositeContext</a><b>,CONSTRUCTOR</b>;
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_awt.html#type-AlphaComposite">java_awt.AlphaComposite</a>;
+                                           p1 : <a href="java_awt_image.html#type-ColorModel">java_awt_image.ColorModel</a>;
+                                           p2 : <a href="java_awt_image.html#type-ColorModel">java_awt_image.ColorModel</a>) : <a href="#type-SunCompositeContext">SunCompositeContext</a><b>,CONSTRUCTOR</b>;
+                         <b>END</b>;
+
+  <a name="type-SunGraphics2D"></a><font color="#cc0033">SunGraphics2D</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_awt.html#type-Graphics2D">java_awt.Graphics2D</a> + <a href="sun_awt.html#type-ConstrainableGraphics">sun_awt.ConstrainableGraphics</a> + <a href="java_lang.html#type-Cloneable">java_lang.Cloneable</a> + <a href="#type-DestSurfaceProvider">DestSurfaceProvider</a>)    <a href="#meths-SunGraphics2D"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                     <font color="#cc0033">eargb</font>*             : INTEGER;
+                     <font color="#cc0033">pixel</font>*             : INTEGER;
+                     <font color="#cc0033">surfaceData</font>*       : <a href="#type-SurfaceData">SurfaceData</a>;
+                     <font color="#cc0033">drawpipe</font>*          : <a href="sun_java2d_pipe.html#type-PixelDrawPipe">sun_java2d_pipe.PixelDrawPipe</a>;
+                     <font color="#cc0033">fillpipe</font>*          : <a href="sun_java2d_pipe.html#type-PixelFillPipe">sun_java2d_pipe.PixelFillPipe</a>;
+                     <font color="#cc0033">imagepipe</font>*         : <a href="sun_java2d_pipe.html#type-DrawImagePipe">sun_java2d_pipe.DrawImagePipe</a>;
+                     <font color="#cc0033">shapepipe</font>*         : <a href="sun_java2d_pipe.html#type-ShapeDrawPipe">sun_java2d_pipe.ShapeDrawPipe</a>;
+                     <font color="#cc0033">textpipe</font>*          : <a href="sun_java2d_pipe.html#type-TextPipe">sun_java2d_pipe.TextPipe</a>;
+                     <font color="#cc0033">alphafill</font>*         : <a href="sun_java2d_loops.html#type-MaskFill">sun_java2d_loops.MaskFill</a>;
+                     <font color="#cc0033">loops</font>*             : <a href="sun_java2d_loops.html#type-RenderLoops">sun_java2d_loops.RenderLoops</a>;
+                     <font color="#cc0033">imageComp</font>*         : <a href="sun_java2d_loops.html#type-CompositeType">sun_java2d_loops.CompositeType</a>;
+                     <font color="#cc0033">paintState</font>*        : INTEGER;
+                     <font color="#cc0033">compositeState</font>*    : INTEGER;
+                     <font color="#cc0033">strokeState</font>*       : INTEGER;
+                     <font color="#cc0033">transformState</font>*    : INTEGER;
+                     <font color="#cc0033">clipState</font>*         : INTEGER;
+                     <font color="#cc0033">foregroundColor</font>*   : <a href="java_awt.html#type-Color">java_awt.Color</a>;
+                     <font color="#cc0033">backgroundColor</font>*   : <a href="java_awt.html#type-Color">java_awt.Color</a>;
+                     <font color="#cc0033">transform</font>*         : <a href="java_awt_geom.html#type-AffineTransform">java_awt_geom.AffineTransform</a>;
+                     <font color="#cc0033">transX</font>*            : INTEGER;
+                     <font color="#cc0033">transY</font>*            : INTEGER;
+                     <font color="#cc0033">paint</font>*             : <a href="java_awt.html#type-Paint">java_awt.Paint</a>;
+                     <font color="#cc0033">stroke</font>*            : <a href="java_awt.html#type-Stroke">java_awt.Stroke</a>;
+                     <font color="#cc0033">composite</font>*         : <a href="java_awt.html#type-Composite">java_awt.Composite</a>;
+                     <font color="#cc0033">font</font>!              : <a href="java_awt.html#type-Font">java_awt.Font</a>;
+                     <font color="#cc0033">fontMetrics</font>!       : <a href="java_awt.html#type-FontMetrics">java_awt.FontMetrics</a>;
+                     <font color="#cc0033">renderHint</font>*        : INTEGER;
+                     <font color="#cc0033">antialiasHint</font>*     : INTEGER;
+                     <font color="#cc0033">textAntialiasHint</font>* : INTEGER;
+                     <font color="#cc0033">lcdTextContrast</font>*   : INTEGER;
+                     <font color="#cc0033">strokeHint</font>*        : INTEGER;
+                     <font color="#cc0033">interpolationType</font>* : INTEGER;
+                     <font color="#cc0033">hints</font>*             : <a href="java_awt.html#type-RenderingHints">java_awt.RenderingHints</a>;
+                     <font color="#cc0033">constrainClip</font>*     : <a href="sun_java2d_pipe.html#type-Region">sun_java2d_pipe.Region</a>;
+                     <font color="#cc0033">constrainX</font>*        : INTEGER;
+                     <font color="#cc0033">constrainY</font>*        : INTEGER;
+                     <font color="#cc0033">clipRegion</font>*        : <a href="sun_java2d_pipe.html#type-Region">sun_java2d_pipe.Region</a>;
+                     <font color="#cc0033">usrClip</font>*           : <a href="java_awt.html#type-Shape">java_awt.Shape</a>;
+                     <font color="#cc0033">devClip</font>!           : <a href="sun_java2d_pipe.html#type-Region">sun_java2d_pipe.Region</a>;
+                   <b>STATIC</b>
+                     <font color="#cc0033">CLIP_DEVICE</font>*              = 0;
+                     <font color="#cc0033">CLIP_RECTANGULAR</font>*         = 1;
+                     <font color="#cc0033">CLIP_SHAPE</font>*               = 2;
+                     <font color="#cc0033">COMP_ALPHA</font>*               = 1;
+                     <font color="#cc0033">COMP_CUSTOM</font>*              = 3;
+                     <font color="#cc0033">COMP_ISCOPY</font>*              = 0;
+                     <font color="#cc0033">COMP_XOR</font>*                 = 2;
+                     <a name="type-defaultComposite"></a><font color="#cc0033">defaultComposite</font>!         : <a href="java_awt.html#type-Composite">java_awt.Composite</a>;
+                     <a name="type-defaultStroke"></a><font color="#cc0033">defaultStroke</font>!            : <a href="java_awt.html#type-Stroke">java_awt.Stroke</a>;
+                     <a name="type-invalidpipe"></a><font color="#cc0033">invalidpipe</font>!              : <a href="sun_java2d_pipe.html#type-ValidatePipe">sun_java2d_pipe.ValidatePipe</a>;
+                     <font color="#cc0033">MinPenSizeAASquared</font>*      = 0.03999999538064003;
+                     <font color="#cc0033">MinPenSizeSquared</font>*        = 1.000000001;
+                     <font color="#cc0033">PAINT_ALPHACOLOR</font>*         = 1;
+                     <font color="#cc0033">PAINT_CUSTOM</font>*             = 6;
+                     <font color="#cc0033">PAINT_GRADIENT</font>*           = 2;
+                     <font color="#cc0033">PAINT_LIN_GRADIENT</font>*       = 3;
+                     <font color="#cc0033">PAINT_OPAQUECOLOR</font>*        = 0;
+                     <font color="#cc0033">PAINT_RAD_GRADIENT</font>*       = 4;
+                     <font color="#cc0033">PAINT_TEXTURE</font>*            = 5;
+                     <font color="#cc0033">STROKE_CUSTOM</font>*            = 3;
+                     <font color="#cc0033">STROKE_THIN</font>*              = 0;
+                     <font color="#cc0033">STROKE_THINDASHED</font>*        = 1;
+                     <font color="#cc0033">STROKE_WIDE</font>*              = 2;
+                     <font color="#cc0033">TRANSFORM_ANY_TRANSLATE</font>*  = 2;
+                     <font color="#cc0033">TRANSFORM_GENERIC</font>*        = 4;
+                     <font color="#cc0033">TRANSFORM_INT_TRANSLATE</font>*  = 1;
+                     <font color="#cc0033">TRANSFORM_ISIDENT</font>*        = 0;
+                     <font color="#cc0033">TRANSFORM_TRANSLATESCALE</font>* = 3;
+                     <b>PROCEDURE </b><font color="#cc0033">cloneShape</font>!(p0 : <a href="java_awt.html#type-Shape">java_awt.Shape</a>) : <a href="java_awt.html#type-Shape">java_awt.Shape</a>;
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="#type-SurfaceData">SurfaceData</a>;
+                                     p1 : <a href="java_awt.html#type-Color">java_awt.Color</a>;
+                                     p2 : <a href="java_awt.html#type-Color">java_awt.Color</a>;
+                                     p3 : <a href="java_awt.html#type-Font">java_awt.Font</a>) : <a href="#type-SunGraphics2D">SunGraphics2D</a><b>,CONSTRUCTOR</b>;
+                     <b>PROCEDURE </b><font color="#cc0033">isRotated</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>REAL) : BOOLEAN;
+                     <b>PROCEDURE </b><font color="#cc0033">transformShape</font>!(p0 : <a href="java_awt_geom.html#type-AffineTransform">java_awt_geom.AffineTransform</a>;
+                                               p1 : <a href="java_awt.html#type-Shape">java_awt.Shape</a>) : <a href="java_awt.html#type-Shape">java_awt.Shape</a>;
+                     <b>PROCEDURE </b><font color="#cc0033">transformShape</font>!(p0 : INTEGER;
+                                               p1 : INTEGER;
+                                               p2 : <a href="java_awt.html#type-Shape">java_awt.Shape</a>) : <a href="java_awt.html#type-Shape">java_awt.Shape</a>;
+                   <b>END</b>;
+
+  <a name="type-SunGraphicsEnvironment"></a><font color="#cc0033">SunGraphicsEnvironment</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_awt.html#type-GraphicsEnvironment">java_awt.GraphicsEnvironment</a> + <a href="#type-FontSupport">FontSupport</a> + <a href="sun_awt.html#type-DisplayChangedListener">sun_awt.DisplayChangedListener</a>)    <a href="#meths-SunGraphicsEnvironment"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                              <font color="#cc0033">fontPath</font>!            : <a href="java_lang.html#type-String">java_lang.String</a>;
+                              <font color="#cc0033">registeredFontFiles</font>! : <a href="java_util.html#type-HashSet">java_util.HashSet</a>;
+                              <font color="#cc0033">screens</font>!             : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_awt.html#type-GraphicsDevice">java_awt.GraphicsDevice</a>;
+                              <font color="#cc0033">displayChanger</font>!      : <a href="sun_awt.html#type-SunDisplayChanger">sun_awt.SunDisplayChanger</a>;
+                            <b>STATIC</b>
+                              <a name="type-debugFonts"></a><font color="#cc0033">debugFonts</font>*                   : BOOLEAN;
+                              <a name="type-eudcFontFileName"></a><font color="#cc0033">eudcFontFileName</font>*             : <a href="java_lang.html#type-String">java_lang.String</a>;
+                              <a name="type-isLinux"></a><font color="#cc0033">isLinux</font>*                      : BOOLEAN;
+                              <a name="type-isOpenSolaris"></a><font color="#cc0033">isOpenSolaris</font>*                : BOOLEAN;
+                              <a name="type-isSolaris"></a><font color="#cc0033">isSolaris</font>*                    : BOOLEAN;
+                              <a name="type-jreFontDirName"></a><font color="#cc0033">jreFontDirName</font>*               : <a href="java_lang.html#type-String">java_lang.String</a>;
+                              <a name="type-jreLibDirName"></a><font color="#cc0033">jreLibDirName</font>*                : <a href="java_lang.html#type-String">java_lang.String</a>;
+                              <a name="type-logger"></a><font color="#cc0033">logger</font>!                       : <a href="java_util_logging.html#type-Logger">java_util_logging.Logger</a>;
+                              <font color="#cc0033">lucidaFontName</font>*               = "Lucida Sans Regular";
+                              <a name="type-noType1Font"></a><font color="#cc0033">noType1Font</font>*                  : BOOLEAN;
+                              <a name="type-t1Filter"></a><font color="#cc0033">t1Filter</font>*                     : <a href="#type-SunGraphicsEnvironment$T1Filter">SunGraphicsEnvironment$T1Filter</a>;
+                              <a name="type-ttFilter"></a><font color="#cc0033">ttFilter</font>*                     : <a href="#type-SunGraphicsEnvironment$TTFilter">SunGraphicsEnvironment$TTFilter</a>;
+                              <b>PROCEDURE </b><font color="#cc0033">fontSupportsDefaultEncoding</font>*(p0 : <a href="java_awt.html#type-Font">java_awt.Font</a>) : BOOLEAN;
+                              <b>PROCEDURE </b><font color="#cc0033">getSystemStartupLocale</font>*() : <a href="java_util.html#type-Locale">java_util.Locale</a>;
+                              <b>PROCEDURE </b><font color="#cc0033">getUsableBounds</font>*(p0 : <a href="java_awt.html#type-GraphicsDevice">java_awt.GraphicsDevice</a>) : <a href="java_awt.html#type-Rectangle">java_awt.Rectangle</a>;
+                              <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-SunGraphicsEnvironment">SunGraphicsEnvironment</a><b>,CONSTRUCTOR</b>;
+                              <b>PROCEDURE </b><font color="#cc0033">isLogicalFont</font>*(p0 : <a href="java_awt.html#type-Font">java_awt.Font</a>) : BOOLEAN;
+                              <b>PROCEDURE </b><font color="#cc0033">useAlternateFontforJALocales</font>*();
+                            <b>END</b>;
+
+  <a name="type-SunGraphicsEnvironment$T1Filter"></a><font color="#cc0033">SunGraphicsEnvironment$T1Filter</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_io.html#type-FilenameFilter">java_io.FilenameFilter</a>)    <a href="#meths-SunGraphicsEnvironment$T1Filter"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                                     <b>STATIC</b>
+                                       <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-SunGraphicsEnvironment$T1Filter">SunGraphicsEnvironment$T1Filter</a><b>,CONSTRUCTOR</b>;
+                                     <b>END</b>;
+
+  <a name="type-SunGraphicsEnvironment$TTFilter"></a><font color="#cc0033">SunGraphicsEnvironment$TTFilter</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_io.html#type-FilenameFilter">java_io.FilenameFilter</a>)    <a href="#meths-SunGraphicsEnvironment$TTFilter"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                                     <b>STATIC</b>
+                                       <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-SunGraphicsEnvironment$TTFilter">SunGraphicsEnvironment$TTFilter</a><b>,CONSTRUCTOR</b>;
+                                     <b>END</b>;
+
+  <a name="type-Surface"></a><font color="#cc0033">Surface</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+             <b>END</b>;
+
+  <a name="type-SurfaceData"></a><font color="#cc0033">SurfaceData</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_awt.html#type-Transparency">java_awt.Transparency</a> + <a href="#type-DisposerTarget">DisposerTarget</a> + <a href="#type-Surface">Surface</a>)    <a href="#meths-SurfaceData"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                 <b>STATIC</b>
+                   <a name="type-aaTextRenderer"></a><font color="#cc0033">aaTextRenderer</font>*       : <a href="sun_java2d_pipe.html#type-TextPipe">sun_java2d_pipe.TextPipe</a>;
+                   <a name="type-clipColorPipe"></a><font color="#cc0033">clipColorPipe</font>!        : <a href="sun_java2d_pipe.html#type-CompositePipe">sun_java2d_pipe.CompositePipe</a>;
+                   <a name="type-clipColorText"></a><font color="#cc0033">clipColorText</font>!        : <a href="sun_java2d_pipe.html#type-TextPipe">sun_java2d_pipe.TextPipe</a>;
+                   <a name="type-clipCompPipe"></a><font color="#cc0033">clipCompPipe</font>!         : <a href="sun_java2d_pipe.html#type-CompositePipe">sun_java2d_pipe.CompositePipe</a>;
+                   <a name="type-clipCompText"></a><font color="#cc0033">clipCompText</font>!         : <a href="sun_java2d_pipe.html#type-TextPipe">sun_java2d_pipe.TextPipe</a>;
+                   <a name="type-clipPaintPipe"></a><font color="#cc0033">clipPaintPipe</font>!        : <a href="sun_java2d_pipe.html#type-CompositePipe">sun_java2d_pipe.CompositePipe</a>;
+                   <a name="type-clipPaintText"></a><font color="#cc0033">clipPaintText</font>!        : <a href="sun_java2d_pipe.html#type-TextPipe">sun_java2d_pipe.TextPipe</a>;
+                   <a name="type-colorPipe"></a><font color="#cc0033">colorPipe</font>!            : <a href="sun_java2d_pipe.html#type-AlphaColorPipe">sun_java2d_pipe.AlphaColorPipe</a>;
+                   <a name="type-colorPrimitives"></a><font color="#cc0033">colorPrimitives</font>!      : <a href="sun_java2d_pipe.html#type-LoopPipe">sun_java2d_pipe.LoopPipe</a>;
+                   <a name="type-colorText"></a><font color="#cc0033">colorText</font>!            : <a href="sun_java2d_pipe.html#type-TextPipe">sun_java2d_pipe.TextPipe</a>;
+                   <a name="type-colorViaPgram"></a><font color="#cc0033">colorViaPgram</font>!        : <a href="sun_java2d_pipe.html#type-PixelToParallelogramConverter">sun_java2d_pipe.PixelToParallelogramConverter</a>;
+                   <a name="type-colorViaShape"></a><font color="#cc0033">colorViaShape</font>!        : <a href="sun_java2d_pipe.html#type-PixelToShapeConverter">sun_java2d_pipe.PixelToShapeConverter</a>;
+                   <a name="type-compPipe"></a><font color="#cc0033">compPipe</font>!             : <a href="sun_java2d_pipe.html#type-CompositePipe">sun_java2d_pipe.CompositePipe</a>;
+                   <a name="type-compShape"></a><font color="#cc0033">compShape</font>!            : <a href="sun_java2d_pipe.html#type-SpanShapeRenderer">sun_java2d_pipe.SpanShapeRenderer</a>;
+                   <a name="type-compText"></a><font color="#cc0033">compText</font>!             : <a href="sun_java2d_pipe.html#type-TextPipe">sun_java2d_pipe.TextPipe</a>;
+                   <a name="type-compViaShape"></a><font color="#cc0033">compViaShape</font>!         : <a href="sun_java2d_pipe.html#type-PixelToShapeConverter">sun_java2d_pipe.PixelToShapeConverter</a>;
+                   <a name="type-imagepipe"></a><font color="#cc0033">imagepipe</font>!            : <a href="sun_java2d_pipe.html#type-DrawImagePipe">sun_java2d_pipe.DrawImagePipe</a>;
+                   <a name="type-lcdTextRenderer"></a><font color="#cc0033">lcdTextRenderer</font>*      : <a href="sun_java2d_pipe.html#type-TextPipe">sun_java2d_pipe.TextPipe</a>;
+                   <a name="type-outlineTextRenderer"></a><font color="#cc0033">outlineTextRenderer</font>*  : <a href="sun_java2d_pipe.html#type-TextPipe">sun_java2d_pipe.TextPipe</a>;
+                   <a name="type-paintPipe"></a><font color="#cc0033">paintPipe</font>!            : <a href="sun_java2d_pipe.html#type-CompositePipe">sun_java2d_pipe.CompositePipe</a>;
+                   <a name="type-paintShape"></a><font color="#cc0033">paintShape</font>!           : <a href="sun_java2d_pipe.html#type-SpanShapeRenderer">sun_java2d_pipe.SpanShapeRenderer</a>;
+                   <a name="type-paintText"></a><font color="#cc0033">paintText</font>!            : <a href="sun_java2d_pipe.html#type-TextPipe">sun_java2d_pipe.TextPipe</a>;
+                   <a name="type-paintViaShape"></a><font color="#cc0033">paintViaShape</font>!        : <a href="sun_java2d_pipe.html#type-PixelToShapeConverter">sun_java2d_pipe.PixelToShapeConverter</a>;
+                   <a name="type-solidTextRenderer"></a><font color="#cc0033">solidTextRenderer</font>*    : <a href="sun_java2d_pipe.html#type-TextPipe">sun_java2d_pipe.TextPipe</a>;
+                   <b>PROCEDURE </b><font color="#cc0033">getDestSurfaceData</font>*(p0 : <a href="java_awt.html#type-Image">java_awt.Image</a>) : <a href="#type-SurfaceData">SurfaceData</a>;
+                   <b>PROCEDURE </b><font color="#cc0033">getSourceSurfaceData</font>*(p0 : <a href="java_awt.html#type-Image">java_awt.Image</a>;
+                                                   p1 : <a href="#type-SurfaceData">SurfaceData</a>;
+                                                   p2 : <a href="sun_java2d_loops.html#type-CompositeType">sun_java2d_loops.CompositeType</a>;
+                                                   p3 : <a href="java_awt.html#type-Color">java_awt.Color</a>;
+                                                   p4 : BOOLEAN) : <a href="#type-SurfaceData">SurfaceData</a>;
+                   <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : <a href="sun_java2d_loops.html#type-SurfaceType">sun_java2d_loops.SurfaceType</a>;
+                                   p1 : <a href="java_awt_image.html#type-ColorModel">java_awt_image.ColorModel</a>) : <a href="#type-SurfaceData">SurfaceData</a><b>,CONSTRUCTOR</b>;
+                   <b>PROCEDURE </b><font color="#cc0033">Init</font>!() : <a href="#type-SurfaceData">SurfaceData</a><b>,CONSTRUCTOR</b>;
+                   <b>PROCEDURE </b><font color="#cc0033">isNull</font>*(p0 : <a href="#type-SurfaceData">SurfaceData</a>) : BOOLEAN;
+                   <b>PROCEDURE </b><font color="#cc0033">isOpaqueGray</font>!(p0 : <a href="java_awt_image.html#type-IndexColorModel">java_awt_image.IndexColorModel</a>) : BOOLEAN;
+                   <b>PROCEDURE </b><font color="#cc0033">makeRenderLoops</font>*(p0 : <a href="sun_java2d_loops.html#type-SurfaceType">sun_java2d_loops.SurfaceType</a>;
+                                              p1 : <a href="sun_java2d_loops.html#type-CompositeType">sun_java2d_loops.CompositeType</a>;
+                                              p2 : <a href="sun_java2d_loops.html#type-SurfaceType">sun_java2d_loops.SurfaceType</a>) : <a href="sun_java2d_loops.html#type-RenderLoops">sun_java2d_loops.RenderLoops</a>;
+                   <b>PROCEDURE </b><font color="#cc0033">restoreContents</font>*(p0 : <a href="java_awt.html#type-Image">java_awt.Image</a>) : <a href="#type-SurfaceData">SurfaceData</a>;
+                 <b>END</b>;
+
+  <a name="type-SurfaceData$AA"></a><font color="#cc0033">SurfaceData$AA</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                    <b>STATIC</b>
+                      <a name="type-clipColorShape"></a><font color="#cc0033">clipColorShape</font>*    : <a href="sun_java2d_pipe.html#type-DuctusShapeRenderer">sun_java2d_pipe.DuctusShapeRenderer</a>;
+                      <a name="type-clipColorViaShape"></a><font color="#cc0033">clipColorViaShape</font>* : <a href="sun_java2d_pipe.html#type-PixelToParallelogramConverter">sun_java2d_pipe.PixelToParallelogramConverter</a>;
+                      <a name="type-clipCompShape"></a><font color="#cc0033">clipCompShape</font>*     : <a href="sun_java2d_pipe.html#type-DuctusShapeRenderer">sun_java2d_pipe.DuctusShapeRenderer</a>;
+                      <a name="type-clipCompViaShape"></a><font color="#cc0033">clipCompViaShape</font>*  : <a href="sun_java2d_pipe.html#type-PixelToParallelogramConverter">sun_java2d_pipe.PixelToParallelogramConverter</a>;
+                      <a name="type-clipPaintShape"></a><font color="#cc0033">clipPaintShape</font>*    : <a href="sun_java2d_pipe.html#type-DuctusShapeRenderer">sun_java2d_pipe.DuctusShapeRenderer</a>;
+                      <a name="type-clipPaintViaShape"></a><font color="#cc0033">clipPaintViaShape</font>* : <a href="sun_java2d_pipe.html#type-PixelToParallelogramConverter">sun_java2d_pipe.PixelToParallelogramConverter</a>;
+                      <a name="type-colorShape"></a><font color="#cc0033">colorShape</font>*        : <a href="sun_java2d_pipe.html#type-DuctusShapeRenderer">sun_java2d_pipe.DuctusShapeRenderer</a>;
+                      <a name="type-colorViaPgram"></a><font color="#cc0033">colorViaPgram</font>*     : <a href="sun_java2d_pipe.html#type-PixelToParallelogramConverter">sun_java2d_pipe.PixelToParallelogramConverter</a>;
+                      <a name="type-colorViaShape"></a><font color="#cc0033">colorViaShape</font>*     : <a href="sun_java2d_pipe.html#type-PixelToParallelogramConverter">sun_java2d_pipe.PixelToParallelogramConverter</a>;
+                      <a name="type-compShape"></a><font color="#cc0033">compShape</font>*         : <a href="sun_java2d_pipe.html#type-DuctusShapeRenderer">sun_java2d_pipe.DuctusShapeRenderer</a>;
+                      <a name="type-compViaShape"></a><font color="#cc0033">compViaShape</font>*      : <a href="sun_java2d_pipe.html#type-PixelToParallelogramConverter">sun_java2d_pipe.PixelToParallelogramConverter</a>;
+                      <a name="type-paintShape"></a><font color="#cc0033">paintShape</font>*        : <a href="sun_java2d_pipe.html#type-DuctusShapeRenderer">sun_java2d_pipe.DuctusShapeRenderer</a>;
+                      <a name="type-paintViaShape"></a><font color="#cc0033">paintViaShape</font>*     : <a href="sun_java2d_pipe.html#type-PixelToParallelogramConverter">sun_java2d_pipe.PixelToParallelogramConverter</a>;
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>!() : <a href="#type-SurfaceData$AA">SurfaceData$AA</a><b>,CONSTRUCTOR</b>;
+                    <b>END</b>;
+
+  <a name="type-SurfaceManagerFactory"></a><font color="#cc0033">SurfaceManagerFactory</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                           <b>STATIC</b>
+                             <b>PROCEDURE </b><font color="#cc0033">createCachingManager</font>*(p0 : <a href="java_awt_image.html#type-BufferedImage">java_awt_image.BufferedImage</a>) : <a href="sun_awt_image.html#type-SurfaceManager">sun_awt_image.SurfaceManager</a>;
+                             <b>PROCEDURE </b><font color="#cc0033">createVolatileManager</font>*(p0 : <a href="sun_awt_image.html#type-SunVolatileImage">sun_awt_image.SunVolatileImage</a>;
+                                                              p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="sun_awt_image.html#type-VolatileSurfaceManager">sun_awt_image.VolatileSurfaceManager</a>;
+                             <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-SurfaceManagerFactory">SurfaceManagerFactory</a><b>,CONSTRUCTOR</b>;
+                           <b>END</b>;
+
+
+
+<a name="meths-DefaultDisposerRecord"></a>
+<b>PROCEDURE </b>(self:DefaultDisposerRecord) <font color="#cc0033">dispose</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultDisposerRecord) <font color="#cc0033">getDataPointer</font>*() : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultDisposerRecord) <font color="#cc0033">getDisposerMethodPointer</font>*() : LONGINT<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-DestSurfaceProvider"></a>
+<b>PROCEDURE </b>(self:DestSurfaceProvider) <font color="#cc0033">getDestSurface</font>*() : <a href="#type-Surface">Surface</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-Disposer"></a>
+<b>PROCEDURE </b>(self:Disposer) <font color="#cc0033">run</font>*()<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-DisposerRecord"></a>
+<b>PROCEDURE </b>(self:DisposerRecord) <font color="#cc0033">dispose</font>*()<b>,NEW,ABSTRACT</b>;
+<a name="meths-DisposerTarget"></a>
+<b>PROCEDURE </b>(self:DisposerTarget) <font color="#cc0033">getDisposerReferent</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-FontSupport"></a>
+<b>PROCEDURE </b>(self:FontSupport) <font color="#cc0033">getFontConfiguration</font>*() : <a href="sun_awt.html#type-FontConfiguration">sun_awt.FontConfiguration</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-HeadlessGraphicsEnvironment"></a>
+<b>PROCEDURE </b>(self:HeadlessGraphicsEnvironment) <font color="#cc0033">createGraphics</font>*(p0 : <a href="java_awt_image.html#type-BufferedImage">java_awt_image.BufferedImage</a>) : <a href="java_awt.html#type-Graphics2D">java_awt.Graphics2D</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HeadlessGraphicsEnvironment) <font color="#cc0033">getAllFonts</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_awt.html#type-Font">java_awt.Font</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HeadlessGraphicsEnvironment) <font color="#cc0033">getAvailableFontFamilyNames</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HeadlessGraphicsEnvironment) <font color="#cc0033">getAvailableFontFamilyNames</font>*(p0 : <a href="java_util.html#type-Locale">java_util.Locale</a>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HeadlessGraphicsEnvironment) <font color="#cc0033">getCenterPoint</font>*() : <a href="java_awt.html#type-Point">java_awt.Point</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HeadlessGraphicsEnvironment) <font color="#cc0033">getDefaultScreenDevice</font>*() : <a href="java_awt.html#type-GraphicsDevice">java_awt.GraphicsDevice</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HeadlessGraphicsEnvironment) <font color="#cc0033">getFontConfiguration</font>*() : <a href="sun_awt.html#type-FontConfiguration">sun_awt.FontConfiguration</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HeadlessGraphicsEnvironment) <font color="#cc0033">getMaximumWindowBounds</font>*() : <a href="java_awt.html#type-Rectangle">java_awt.Rectangle</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HeadlessGraphicsEnvironment) <font color="#cc0033">getScreenDevices</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_awt.html#type-GraphicsDevice">java_awt.GraphicsDevice</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HeadlessGraphicsEnvironment) <font color="#cc0033">getSunGraphicsEnvironment</font>*() : <a href="java_awt.html#type-GraphicsEnvironment">java_awt.GraphicsEnvironment</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-NullSurfaceData"></a>
+<b>PROCEDURE </b>(self:NullSurfaceData) <font color="#cc0033">checkCustomComposite</font>!()<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:NullSurfaceData) <font color="#cc0033">copyArea</font>*(p0 : <a href="#type-SunGraphics2D">SunGraphics2D</a>;
+                                           p1 : INTEGER;
+                                           p2 : INTEGER;
+                                           p3 : INTEGER;
+                                           p4 : INTEGER;
+                                           p5 : INTEGER;
+                                           p6 : INTEGER) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:NullSurfaceData) <font color="#cc0033">getBounds</font>*() : <a href="java_awt.html#type-Rectangle">java_awt.Rectangle</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:NullSurfaceData) <font color="#cc0033">getDestination</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:NullSurfaceData) <font color="#cc0033">getDeviceConfiguration</font>*() : <a href="java_awt.html#type-GraphicsConfiguration">java_awt.GraphicsConfiguration</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:NullSurfaceData) <font color="#cc0033">getRaster</font>*(p0 : INTEGER;
+                                            p1 : INTEGER;
+                                            p2 : INTEGER;
+                                            p3 : INTEGER) : <a href="java_awt_image.html#type-Raster">java_awt_image.Raster</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:NullSurfaceData) <font color="#cc0033">getReplacement</font>*() : <a href="#type-SurfaceData">SurfaceData</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:NullSurfaceData) <font color="#cc0033">invalidate</font>*()<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:NullSurfaceData) <font color="#cc0033">pixelFor</font>*(p0 : INTEGER) : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:NullSurfaceData) <font color="#cc0033">rgbFor</font>*(p0 : INTEGER) : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:NullSurfaceData) <font color="#cc0033">useTightBBoxes</font>*() : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:NullSurfaceData) <font color="#cc0033">validatePipe</font>*(p0 : <a href="#type-SunGraphics2D">SunGraphics2D</a>)<b>,EXTENSIBLE</b>;
+<a name="meths-ScreenUpdateManager"></a>
+<b>PROCEDURE </b>(self:ScreenUpdateManager) <font color="#cc0033">createGraphics</font>*(p0 : <a href="#type-SurfaceData">SurfaceData</a>;
+                                                     p1 : <a href="sun_awt_windows.html#type-WComponentPeer">sun_awt_windows.WComponentPeer</a>;
+                                                     p2 : <a href="java_awt.html#type-Color">java_awt.Color</a>;
+                                                     p3 : <a href="java_awt.html#type-Color">java_awt.Color</a>;
+                                                     p4 : <a href="java_awt.html#type-Font">java_awt.Font</a>) : <a href="java_awt.html#type-Graphics2D">java_awt.Graphics2D</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ScreenUpdateManager) <font color="#cc0033">createScreenSurface</font>*(p0 : <a href="sun_awt.html#type-Win32GraphicsConfig">sun_awt.Win32GraphicsConfig</a>;
+                                                          p1 : <a href="sun_awt_windows.html#type-WComponentPeer">sun_awt_windows.WComponentPeer</a>;
+                                                          p2 : INTEGER;
+                                                          p3 : BOOLEAN) : <a href="#type-SurfaceData">SurfaceData</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ScreenUpdateManager) <font color="#cc0033">dropScreenSurface</font>*(p0 : <a href="#type-SurfaceData">SurfaceData</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ScreenUpdateManager) <font color="#cc0033">getReplacementScreenSurface</font>*(p0 : <a href="sun_awt_windows.html#type-WComponentPeer">sun_awt_windows.WComponentPeer</a>;
+                                                                  p1 : <a href="#type-SurfaceData">SurfaceData</a>) : <a href="#type-SurfaceData">SurfaceData</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-Spans"></a>
+<b>PROCEDURE </b>(self:Spans) <font color="#cc0033">add</font>*(p0 : SHORTREAL;
+                            p1 : SHORTREAL)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Spans) <font color="#cc0033">addInfinite</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Spans) <font color="#cc0033">intersects</font>*(p0 : SHORTREAL;
+                                   p1 : SHORTREAL) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-SunCompositeContext"></a>
+<b>PROCEDURE </b>(self:SunCompositeContext) <font color="#cc0033">compose</font>*(p0 : <a href="java_awt_image.html#type-Raster">java_awt_image.Raster</a>;
+                                              p1 : <a href="java_awt_image.html#type-Raster">java_awt_image.Raster</a>;
+                                              p2 : <a href="java_awt_image.html#type-WritableRaster">java_awt_image.WritableRaster</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunCompositeContext) <font color="#cc0033">dispose</font>*()<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-SunGraphics2D"></a>
+<b>PROCEDURE </b>(self:SunGraphics2D) <font color="#cc0033">addRenderingHints</font>*(p0 : <a href="java_util.html#type-Map">java_util.Map</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunGraphics2D) <font color="#cc0033">checkFontInfo</font>*(p0 : <a href="sun_java2d_loops.html#type-FontInfo">sun_java2d_loops.FontInfo</a>;
+                                              p1 : <a href="java_awt.html#type-Font">java_awt.Font</a>;
+                                              p2 : <a href="java_awt_font.html#type-FontRenderContext">java_awt_font.FontRenderContext</a>) : <a href="sun_java2d_loops.html#type-FontInfo">sun_java2d_loops.FontInfo</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunGraphics2D) <font color="#cc0033">clearRect</font>*(p0 : INTEGER;
+                                          p1 : INTEGER;
+                                          p2 : INTEGER;
+                                          p3 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunGraphics2D) <font color="#cc0033">clip</font>*(p0 : <a href="java_awt.html#type-Shape">java_awt.Shape</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunGraphics2D) <font color="#cc0033">clipRect</font>*(p0 : INTEGER;
+                                         p1 : INTEGER;
+                                         p2 : INTEGER;
+                                         p3 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunGraphics2D) <font color="#cc0033">clone</font>!() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunGraphics2D) <font color="#cc0033">cloneTransform</font>*() : <a href="java_awt_geom.html#type-AffineTransform">java_awt_geom.AffineTransform</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunGraphics2D) <font color="#cc0033">constrain</font>*(p0 : INTEGER;
+                                          p1 : INTEGER;
+                                          p2 : INTEGER;
+                                          p3 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunGraphics2D) <font color="#cc0033">copyArea</font>*(p0 : INTEGER;
+                                         p1 : INTEGER;
+                                         p2 : INTEGER;
+                                         p3 : INTEGER;
+                                         p4 : INTEGER;
+                                         p5 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunGraphics2D) <font color="#cc0033">copyImage</font>*(p0 : <a href="java_awt.html#type-Image">java_awt.Image</a>;
+                                          p1 : INTEGER;
+                                          p2 : INTEGER;
+                                          p3 : INTEGER;
+                                          p4 : INTEGER;
+                                          p5 : INTEGER;
+                                          p6 : INTEGER;
+                                          p7 : <a href="java_awt.html#type-Color">java_awt.Color</a>;
+                                          p8 : <a href="java_awt_image.html#type-ImageObserver">java_awt_image.ImageObserver</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunGraphics2D) <font color="#cc0033">create</font>*() : <a href="java_awt.html#type-Graphics">java_awt.Graphics</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunGraphics2D) <font color="#cc0033">dispose</font>*()<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunGraphics2D) <font color="#cc0033">draw</font>*(p0 : <a href="java_awt.html#type-Shape">java_awt.Shape</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunGraphics2D) <font color="#cc0033">drawArc</font>*(p0 : INTEGER;
+                                        p1 : INTEGER;
+                                        p2 : INTEGER;
+                                        p3 : INTEGER;
+                                        p4 : INTEGER;
+                                        p5 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunGraphics2D) <font color="#cc0033">drawBytes</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE;
+                                              p1 : INTEGER;
+                                              p2 : INTEGER;
+                                              p3 : INTEGER;
+                                              p4 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunGraphics2D) <font color="#cc0033">drawChars</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>CHAR;
+                                              p1 : INTEGER;
+                                              p2 : INTEGER;
+                                              p3 : INTEGER;
+                                              p4 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunGraphics2D) <font color="#cc0033">drawGlyphVector</font>*(p0 : <a href="java_awt_font.html#type-GlyphVector">java_awt_font.GlyphVector</a>;
+                                                p1 : SHORTREAL;
+                                                p2 : SHORTREAL)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunGraphics2D) <font color="#cc0033">drawImage</font>*(p0 : <a href="java_awt.html#type-Image">java_awt.Image</a>;
+                                          p1 : INTEGER;
+                                          p2 : INTEGER;
+                                          p3 : <a href="java_awt.html#type-Color">java_awt.Color</a>;
+                                          p4 : <a href="java_awt_image.html#type-ImageObserver">java_awt_image.ImageObserver</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunGraphics2D) <font color="#cc0033">drawImage</font>*(p0 : <a href="java_awt.html#type-Image">java_awt.Image</a>;
+                                          p1 : INTEGER;
+                                          p2 : INTEGER;
+                                          p3 : INTEGER;
+                                          p4 : INTEGER;
+                                          p5 : <a href="java_awt.html#type-Color">java_awt.Color</a>;
+                                          p6 : <a href="java_awt_image.html#type-ImageObserver">java_awt_image.ImageObserver</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunGraphics2D) <font color="#cc0033">drawImage</font>*(p0 : <a href="java_awt.html#type-Image">java_awt.Image</a>;
+                                          p1 : INTEGER;
+                                          p2 : INTEGER;
+                                          p3 : INTEGER;
+                                          p4 : INTEGER;
+                                          p5 : <a href="java_awt_image.html#type-ImageObserver">java_awt_image.ImageObserver</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunGraphics2D) <font color="#cc0033">drawImage</font>*(p0 : <a href="java_awt.html#type-Image">java_awt.Image</a>;
+                                          p1 : INTEGER;
+                                          p2 : INTEGER;
+                                          p3 : <a href="java_awt_image.html#type-ImageObserver">java_awt_image.ImageObserver</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunGraphics2D) <font color="#cc0033">drawImage</font>*(p0 : <a href="java_awt.html#type-Image">java_awt.Image</a>;
+                                          p1 : INTEGER;
+                                          p2 : INTEGER;
+                                          p3 : INTEGER;
+                                          p4 : INTEGER;
+                                          p5 : INTEGER;
+                                          p6 : INTEGER;
+                                          p7 : INTEGER;
+                                          p8 : INTEGER;
+                                          p9 : <a href="java_awt_image.html#type-ImageObserver">java_awt_image.ImageObserver</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunGraphics2D) <font color="#cc0033">drawImage</font>*(p0 : <a href="java_awt_image.html#type-BufferedImage">java_awt_image.BufferedImage</a>;
+                                          p1 : <a href="java_awt_image.html#type-BufferedImageOp">java_awt_image.BufferedImageOp</a>;
+                                          p2 : INTEGER;
+                                          p3 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunGraphics2D) <font color="#cc0033">drawImage</font>*(p0 : <a href="java_awt.html#type-Image">java_awt.Image</a>;
+                                          p1 : <a href="java_awt_geom.html#type-AffineTransform">java_awt_geom.AffineTransform</a>;
+                                          p2 : <a href="java_awt_image.html#type-ImageObserver">java_awt_image.ImageObserver</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunGraphics2D) <font color="#cc0033">drawImage</font>*(p0  : <a href="java_awt.html#type-Image">java_awt.Image</a>;
+                                          p1  : INTEGER;
+                                          p2  : INTEGER;
+                                          p3  : INTEGER;
+                                          p4  : INTEGER;
+                                          p5  : INTEGER;
+                                          p6  : INTEGER;
+                                          p7  : INTEGER;
+                                          p8  : INTEGER;
+                                          p9  : <a href="java_awt.html#type-Color">java_awt.Color</a>;
+                                          p10 : <a href="java_awt_image.html#type-ImageObserver">java_awt_image.ImageObserver</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunGraphics2D) <font color="#cc0033">drawLine</font>*(p0 : INTEGER;
+                                         p1 : INTEGER;
+                                         p2 : INTEGER;
+                                         p3 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunGraphics2D) <font color="#cc0033">drawOval</font>*(p0 : INTEGER;
+                                         p1 : INTEGER;
+                                         p2 : INTEGER;
+                                         p3 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunGraphics2D) <font color="#cc0033">drawPolygon</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>INTEGER;
+                                            IN  p1 : <b>ARRAY </b><b>OF </b>INTEGER;
+                                                p2 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunGraphics2D) <font color="#cc0033">drawPolyline</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>INTEGER;
+                                             IN  p1 : <b>ARRAY </b><b>OF </b>INTEGER;
+                                                 p2 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunGraphics2D) <font color="#cc0033">drawRect</font>*(p0 : INTEGER;
+                                         p1 : INTEGER;
+                                         p2 : INTEGER;
+                                         p3 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunGraphics2D) <font color="#cc0033">drawRenderableImage</font>*(p0 : <a href="java_awt_image_renderable.html#type-RenderableImage">java_awt_image_renderable.RenderableImage</a>;
+                                                    p1 : <a href="java_awt_geom.html#type-AffineTransform">java_awt_geom.AffineTransform</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunGraphics2D) <font color="#cc0033">drawRenderedImage</font>*(p0 : <a href="java_awt_image.html#type-RenderedImage">java_awt_image.RenderedImage</a>;
+                                                  p1 : <a href="java_awt_geom.html#type-AffineTransform">java_awt_geom.AffineTransform</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunGraphics2D) <font color="#cc0033">drawRoundRect</font>*(p0 : INTEGER;
+                                              p1 : INTEGER;
+                                              p2 : INTEGER;
+                                              p3 : INTEGER;
+                                              p4 : INTEGER;
+                                              p5 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunGraphics2D) <font color="#cc0033">drawString</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                           p1 : SHORTREAL;
+                                           p2 : SHORTREAL)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunGraphics2D) <font color="#cc0033">drawString</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                           p1 : INTEGER;
+                                           p2 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunGraphics2D) <font color="#cc0033">drawString</font>*(p0 : <a href="java_text.html#type-AttributedCharacterIterator">java_text.AttributedCharacterIterator</a>;
+                                           p1 : SHORTREAL;
+                                           p2 : SHORTREAL)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunGraphics2D) <font color="#cc0033">drawString</font>*(p0 : <a href="java_text.html#type-AttributedCharacterIterator">java_text.AttributedCharacterIterator</a>;
+                                           p1 : INTEGER;
+                                           p2 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunGraphics2D) <font color="#cc0033">fill</font>*(p0 : <a href="java_awt.html#type-Shape">java_awt.Shape</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunGraphics2D) <font color="#cc0033">fillArc</font>*(p0 : INTEGER;
+                                        p1 : INTEGER;
+                                        p2 : INTEGER;
+                                        p3 : INTEGER;
+                                        p4 : INTEGER;
+                                        p5 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunGraphics2D) <font color="#cc0033">fillOval</font>*(p0 : INTEGER;
+                                         p1 : INTEGER;
+                                         p2 : INTEGER;
+                                         p3 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunGraphics2D) <font color="#cc0033">fillPolygon</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>INTEGER;
+                                            IN  p1 : <b>ARRAY </b><b>OF </b>INTEGER;
+                                                p2 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunGraphics2D) <font color="#cc0033">fillRect</font>*(p0 : INTEGER;
+                                         p1 : INTEGER;
+                                         p2 : INTEGER;
+                                         p3 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunGraphics2D) <font color="#cc0033">fillRoundRect</font>*(p0 : INTEGER;
+                                              p1 : INTEGER;
+                                              p2 : INTEGER;
+                                              p3 : INTEGER;
+                                              p4 : INTEGER;
+                                              p5 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunGraphics2D) <font color="#cc0033">finalize</font>*()<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunGraphics2D) <font color="#cc0033">getBackground</font>*() : <a href="java_awt.html#type-Color">java_awt.Color</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunGraphics2D) <font color="#cc0033">getClip</font>*() : <a href="java_awt.html#type-Shape">java_awt.Shape</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunGraphics2D) <font color="#cc0033">getClipBounds</font>*(p0 : <a href="java_awt.html#type-Rectangle">java_awt.Rectangle</a>) : <a href="java_awt.html#type-Rectangle">java_awt.Rectangle</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunGraphics2D) <font color="#cc0033">getClipBounds</font>*() : <a href="java_awt.html#type-Rectangle">java_awt.Rectangle</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunGraphics2D) <font color="#cc0033">getColor</font>*() : <a href="java_awt.html#type-Color">java_awt.Color</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunGraphics2D) <font color="#cc0033">getCompClip</font>*() : <a href="sun_java2d_pipe.html#type-Region">sun_java2d_pipe.Region</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunGraphics2D) <font color="#cc0033">getComposite</font>*() : <a href="java_awt.html#type-Composite">java_awt.Composite</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunGraphics2D) <font color="#cc0033">getDestination</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunGraphics2D) <font color="#cc0033">getDestSurface</font>*() : <a href="#type-Surface">Surface</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunGraphics2D) <font color="#cc0033">getDeviceColorModel</font>*() : <a href="java_awt_image.html#type-ColorModel">java_awt_image.ColorModel</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunGraphics2D) <font color="#cc0033">getDeviceConfiguration</font>*() : <a href="java_awt.html#type-GraphicsConfiguration">java_awt.GraphicsConfiguration</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunGraphics2D) <font color="#cc0033">getFont</font>*() : <a href="java_awt.html#type-Font">java_awt.Font</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunGraphics2D) <font color="#cc0033">getFontInfo</font>*() : <a href="sun_java2d_loops.html#type-FontInfo">sun_java2d_loops.FontInfo</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunGraphics2D) <font color="#cc0033">getFontMetrics</font>*(p0 : <a href="java_awt.html#type-Font">java_awt.Font</a>) : <a href="java_awt.html#type-FontMetrics">java_awt.FontMetrics</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunGraphics2D) <font color="#cc0033">getFontMetrics</font>*() : <a href="java_awt.html#type-FontMetrics">java_awt.FontMetrics</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunGraphics2D) <font color="#cc0033">getFontRenderContext</font>*() : <a href="java_awt_font.html#type-FontRenderContext">java_awt_font.FontRenderContext</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunGraphics2D) <font color="#cc0033">getGVFontInfo</font>*(p0 : <a href="java_awt.html#type-Font">java_awt.Font</a>;
+                                              p1 : <a href="java_awt_font.html#type-FontRenderContext">java_awt_font.FontRenderContext</a>) : <a href="sun_java2d_loops.html#type-FontInfo">sun_java2d_loops.FontInfo</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunGraphics2D) <font color="#cc0033">getPaint</font>*() : <a href="java_awt.html#type-Paint">java_awt.Paint</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunGraphics2D) <font color="#cc0033">getRenderingHint</font>*(p0 : <a href="java_awt.html#type-RenderingHints$Key">java_awt.RenderingHints$Key</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunGraphics2D) <font color="#cc0033">getRenderingHints</font>*() : <a href="java_awt.html#type-RenderingHints">java_awt.RenderingHints</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunGraphics2D) <font color="#cc0033">getStroke</font>*() : <a href="java_awt.html#type-Stroke">java_awt.Stroke</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunGraphics2D) <font color="#cc0033">getSurfaceData</font>*() : <a href="#type-SurfaceData">SurfaceData</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:SunGraphics2D) <font color="#cc0033">getTransform</font>*() : <a href="java_awt_geom.html#type-AffineTransform">java_awt_geom.AffineTransform</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunGraphics2D) <font color="#cc0033">hit</font>*(p0 : <a href="java_awt.html#type-Rectangle">java_awt.Rectangle</a>;
+                                    p1 : <a href="java_awt.html#type-Shape">java_awt.Shape</a>;
+                                    p2 : BOOLEAN) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunGraphics2D) <font color="#cc0033">hitClip</font>*(p0 : INTEGER;
+                                        p1 : INTEGER;
+                                        p2 : INTEGER;
+                                        p3 : INTEGER) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunGraphics2D) <font color="#cc0033">invalidatePipe</font>!()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunGraphics2D) <font color="#cc0033">invalidateTransform</font>!()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunGraphics2D) <font color="#cc0033">rotate</font>*(p0 : REAL)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunGraphics2D) <font color="#cc0033">rotate</font>*(p0 : REAL;
+                                       p1 : REAL;
+                                       p2 : REAL)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunGraphics2D) <font color="#cc0033">scale</font>*(p0 : REAL;
+                                      p1 : REAL)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunGraphics2D) <font color="#cc0033">setBackground</font>*(p0 : <a href="java_awt.html#type-Color">java_awt.Color</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunGraphics2D) <font color="#cc0033">setClip</font>*(p0 : INTEGER;
+                                        p1 : INTEGER;
+                                        p2 : INTEGER;
+                                        p3 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunGraphics2D) <font color="#cc0033">setClip</font>*(p0 : <a href="java_awt.html#type-Shape">java_awt.Shape</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunGraphics2D) <font color="#cc0033">setColor</font>*(p0 : <a href="java_awt.html#type-Color">java_awt.Color</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunGraphics2D) <font color="#cc0033">setComposite</font>*(p0 : <a href="java_awt.html#type-Composite">java_awt.Composite</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunGraphics2D) <font color="#cc0033">setDevClip</font>*(p0 : <a href="java_awt.html#type-Rectangle">java_awt.Rectangle</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunGraphics2D) <font color="#cc0033">setDevClip</font>*(p0 : INTEGER;
+                                           p1 : INTEGER;
+                                           p2 : INTEGER;
+                                           p3 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunGraphics2D) <font color="#cc0033">setFont</font>*(p0 : <a href="java_awt.html#type-Font">java_awt.Font</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunGraphics2D) <font color="#cc0033">setPaint</font>*(p0 : <a href="java_awt.html#type-Paint">java_awt.Paint</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunGraphics2D) <font color="#cc0033">setPaintMode</font>*()<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunGraphics2D) <font color="#cc0033">setRenderingHint</font>*(p0 : <a href="java_awt.html#type-RenderingHints$Key">java_awt.RenderingHints$Key</a>;
+                                                 p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunGraphics2D) <font color="#cc0033">setRenderingHints</font>*(p0 : <a href="java_util.html#type-Map">java_util.Map</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunGraphics2D) <font color="#cc0033">setStroke</font>*(p0 : <a href="java_awt.html#type-Stroke">java_awt.Stroke</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunGraphics2D) <font color="#cc0033">setTransform</font>*(p0 : <a href="java_awt_geom.html#type-AffineTransform">java_awt_geom.AffineTransform</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunGraphics2D) <font color="#cc0033">setXORMode</font>*(p0 : <a href="java_awt.html#type-Color">java_awt.Color</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunGraphics2D) <font color="#cc0033">shear</font>*(p0 : REAL;
+                                      p1 : REAL)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunGraphics2D) <font color="#cc0033">transform</font>*(p0 : <a href="java_awt_geom.html#type-AffineTransform">java_awt_geom.AffineTransform</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunGraphics2D) <font color="#cc0033">transformBounds</font>!(p0 : <a href="java_awt.html#type-Rectangle">java_awt.Rectangle</a>;
+                                                p1 : <a href="java_awt_geom.html#type-AffineTransform">java_awt_geom.AffineTransform</a>) : <a href="java_awt.html#type-Rectangle">java_awt.Rectangle</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunGraphics2D) <font color="#cc0033">transformShape</font>!(p0 : <a href="java_awt.html#type-Shape">java_awt.Shape</a>) : <a href="java_awt.html#type-Shape">java_awt.Shape</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunGraphics2D) <font color="#cc0033">translate</font>*(p0 : REAL;
+                                          p1 : REAL)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunGraphics2D) <font color="#cc0033">translate</font>*(p0 : INTEGER;
+                                          p1 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunGraphics2D) <font color="#cc0033">untransformShape</font>*(p0 : <a href="java_awt.html#type-Shape">java_awt.Shape</a>) : <a href="java_awt.html#type-Shape">java_awt.Shape</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunGraphics2D) <font color="#cc0033">validateCompClip</font>!()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunGraphics2D) <font color="#cc0033">validatePipe</font>*()<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-SunGraphicsEnvironment"></a>
+<b>PROCEDURE </b>(self:SunGraphicsEnvironment) <font color="#cc0033">addDisplayChangedListener</font>*(p0 : <a href="sun_awt.html#type-DisplayChangedListener">sun_awt.DisplayChangedListener</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunGraphicsEnvironment) <font color="#cc0033">addFontToPlatformFontPath</font>!(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunGraphicsEnvironment) <font color="#cc0033">addToMissingFontFileList</font>!(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunGraphicsEnvironment) <font color="#cc0033">createCompositeFonts</font>*(p0 : <a href="java_util.html#type-Hashtable">java_util.Hashtable</a>;
+                                                              p1 : BOOLEAN;
+                                                              p2 : BOOLEAN)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunGraphicsEnvironment) <font color="#cc0033">createFontConfiguration</font>*(p0 : BOOLEAN;
+                                                                 p1 : BOOLEAN) : <a href="sun_awt.html#type-FontConfiguration">sun_awt.FontConfiguration</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SunGraphicsEnvironment) <font color="#cc0033">createFontConfiguration</font>!() : <a href="sun_awt.html#type-FontConfiguration">sun_awt.FontConfiguration</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SunGraphicsEnvironment) <font color="#cc0033">createGraphics</font>*(p0 : <a href="java_awt_image.html#type-BufferedImage">java_awt_image.BufferedImage</a>) : <a href="java_awt.html#type-Graphics2D">java_awt.Graphics2D</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunGraphicsEnvironment) <font color="#cc0033">displayChanged</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunGraphicsEnvironment) <font color="#cc0033">getAllFonts</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_awt.html#type-Font">java_awt.Font</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunGraphicsEnvironment) <font color="#cc0033">getAllInstalledFonts</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_awt.html#type-Font">java_awt.Font</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunGraphicsEnvironment) <font color="#cc0033">getAvailableFontFamilyNames</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunGraphicsEnvironment) <font color="#cc0033">getAvailableFontFamilyNames</font>*(p0 : <a href="java_util.html#type-Locale">java_util.Locale</a>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunGraphicsEnvironment) <font color="#cc0033">getDefaultFontFaceName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunGraphicsEnvironment) <font color="#cc0033">getDefaultFontFile</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunGraphicsEnvironment) <font color="#cc0033">getDefaultScreenDevice</font>*() : <a href="java_awt.html#type-GraphicsDevice">java_awt.GraphicsDevice</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunGraphicsEnvironment) <font color="#cc0033">getFileNameFromPlatformName</font>!(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunGraphicsEnvironment) <font color="#cc0033">getFontConfiguration</font>*() : <a href="sun_awt.html#type-FontConfiguration">sun_awt.FontConfiguration</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunGraphicsEnvironment) <font color="#cc0033">getInstalledFontFamilyNames</font>*(p0 : <a href="java_util.html#type-Locale">java_util.Locale</a>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunGraphicsEnvironment) <font color="#cc0033">getJREFontFamilyNames</font>!(p0 : <a href="java_util.html#type-TreeMap">java_util.TreeMap</a>;
+                                                               p1 : <a href="java_util.html#type-Locale">java_util.Locale</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunGraphicsEnvironment) <font color="#cc0033">getNativeNames</font>!(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                        p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunGraphicsEnvironment) <font color="#cc0033">getNumScreens</font>!() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SunGraphicsEnvironment) <font color="#cc0033">getPlatformFontPath</font>!(p0 : BOOLEAN) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunGraphicsEnvironment) <font color="#cc0033">getPlatformFontPathFromFontConfig</font>!()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunGraphicsEnvironment) <font color="#cc0033">getPrinterJob</font>*() : <a href="java_awt_print.html#type-PrinterJob">java_awt_print.PrinterJob</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunGraphicsEnvironment) <font color="#cc0033">getScreenDevices</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_awt.html#type-GraphicsDevice">java_awt.GraphicsDevice</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunGraphicsEnvironment) <font color="#cc0033">isFlipStrategyPreferred</font>*(p0 : <a href="java_awt_peer.html#type-ComponentPeer">java_awt_peer.ComponentPeer</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunGraphicsEnvironment) <font color="#cc0033">loadFontFiles</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunGraphicsEnvironment) <font color="#cc0033">loadFonts</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunGraphicsEnvironment) <font color="#cc0033">makeScreenDevice</font>!(p0 : INTEGER) : <a href="java_awt.html#type-GraphicsDevice">java_awt.GraphicsDevice</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SunGraphicsEnvironment) <font color="#cc0033">paletteChanged</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunGraphicsEnvironment) <font color="#cc0033">populateHardcodedFileNameMap</font>*() : <a href="java_util.html#type-HashMap">java_util.HashMap</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunGraphicsEnvironment) <font color="#cc0033">register1dot0Fonts</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunGraphicsEnvironment) <font color="#cc0033">registerFontDir</font>!(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunGraphicsEnvironment) <font color="#cc0033">registerFontDirs</font>!(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunGraphicsEnvironment) <font color="#cc0033">registerFontFile</font>!(    p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                          IN  p1 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>;
+                                                              p2 : INTEGER;
+                                                              p3 : BOOLEAN)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunGraphicsEnvironment) <font color="#cc0033">registerFontsInDir</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunGraphicsEnvironment) <font color="#cc0033">registerJREFontsWithPlatform</font>!(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunGraphicsEnvironment) <font color="#cc0033">registerPlatformFontsUsedByFontConfiguration</font>!()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunGraphicsEnvironment) <font color="#cc0033">removeDisplayChangedListener</font>*(p0 : <a href="sun_awt.html#type-DisplayChangedListener">sun_awt.DisplayChangedListener</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunGraphicsEnvironment) <font color="#cc0033">useAbsoluteFontFileNames</font>!() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-SunGraphicsEnvironment$T1Filter"></a>
+<b>PROCEDURE </b>(self:SunGraphicsEnvironment$T1Filter) <font color="#cc0033">accept</font>*(p0 : <a href="java_io.html#type-File">java_io.File</a>;
+                                                         p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-SunGraphicsEnvironment$TTFilter"></a>
+<b>PROCEDURE </b>(self:SunGraphicsEnvironment$TTFilter) <font color="#cc0033">accept</font>*(p0 : <a href="java_io.html#type-File">java_io.File</a>;
+                                                         p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-SurfaceData"></a>
+<b>PROCEDURE </b>(self:SurfaceData) <font color="#cc0033">canRenderLCDText</font>*(p0 : <a href="#type-SunGraphics2D">SunGraphics2D</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SurfaceData) <font color="#cc0033">checkCustomComposite</font>!()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SurfaceData) <font color="#cc0033">copyArea</font>*(p0 : <a href="#type-SunGraphics2D">SunGraphics2D</a>;
+                                       p1 : INTEGER;
+                                       p2 : INTEGER;
+                                       p3 : INTEGER;
+                                       p4 : INTEGER;
+                                       p5 : INTEGER;
+                                       p6 : INTEGER) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SurfaceData) <font color="#cc0033">flush</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SurfaceData) <font color="#cc0033">getBounds</font>*() : <a href="java_awt.html#type-Rectangle">java_awt.Rectangle</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SurfaceData) <font color="#cc0033">getColorModel</font>*() : <a href="java_awt_image.html#type-ColorModel">java_awt_image.ColorModel</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:SurfaceData) <font color="#cc0033">getDestination</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SurfaceData) <font color="#cc0033">getDeviceConfiguration</font>*() : <a href="java_awt.html#type-GraphicsConfiguration">java_awt.GraphicsConfiguration</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SurfaceData) <font color="#cc0033">getDisposerReferent</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SurfaceData) <font color="#cc0033">getMaskFill</font>!(p0 : <a href="#type-SunGraphics2D">SunGraphics2D</a>) : <a href="sun_java2d_loops.html#type-MaskFill">sun_java2d_loops.MaskFill</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SurfaceData) <font color="#cc0033">getNativeOps</font>*() : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SurfaceData) <font color="#cc0033">getNumCopies</font>*() : INTEGER<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:SurfaceData) <font color="#cc0033">getRaster</font>*(p0 : INTEGER;
+                                        p1 : INTEGER;
+                                        p2 : INTEGER;
+                                        p3 : INTEGER) : <a href="java_awt_image.html#type-Raster">java_awt_image.Raster</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SurfaceData) <font color="#cc0033">getRenderLoops</font>*(p0 : <a href="#type-SunGraphics2D">SunGraphics2D</a>) : <a href="sun_java2d_loops.html#type-RenderLoops">sun_java2d_loops.RenderLoops</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SurfaceData) <font color="#cc0033">getReplacement</font>*() : <a href="#type-SurfaceData">SurfaceData</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SurfaceData) <font color="#cc0033">getSurfaceType</font>*() : <a href="sun_java2d_loops.html#type-SurfaceType">sun_java2d_loops.SurfaceType</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:SurfaceData) <font color="#cc0033">getTransparency</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SurfaceData) <font color="#cc0033">increaseNumCopies</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SurfaceData) <font color="#cc0033">invalidate</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SurfaceData) <font color="#cc0033">isDirty</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SurfaceData) <font color="#cc0033">isSurfaceLost</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SurfaceData) <font color="#cc0033">isValid</font>*() : BOOLEAN<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:SurfaceData) <font color="#cc0033">markDirty</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SurfaceData) <font color="#cc0033">needsBackup</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SurfaceData) <font color="#cc0033">pixelFor</font>*(p0 : <a href="java_awt.html#type-Color">java_awt.Color</a>) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SurfaceData) <font color="#cc0033">pixelFor</font>*(p0 : INTEGER) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SurfaceData) <font color="#cc0033">rgbFor</font>*(p0 : INTEGER) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SurfaceData) <font color="#cc0033">setNeedsBackup</font>*(p0 : BOOLEAN)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SurfaceData) <font color="#cc0033">setSurfaceLost</font>*(p0 : BOOLEAN)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SurfaceData) <font color="#cc0033">useTightBBoxes</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SurfaceData) <font color="#cc0033">validatePipe</font>*(p0 : <a href="#type-SunGraphics2D">SunGraphics2D</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>END </b><font color="#cc0033">sun_java2d</font>.
+</font></pre></hr></body></html>

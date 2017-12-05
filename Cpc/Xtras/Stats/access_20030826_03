@@ -1,0 +1,5 @@
+format.access="%Ses->client.ip%  %Req->headers.referer% -  %Req->vars.auth-user% [%SYSDATE%] \"%Req->reqpb.clf-request%\" %Req->srvhdrs.clf-status% %Req->srvhdrs.content-length% %Req->headers.host%"
+203.144.77.100 http://www.zinnamturm.de/ - [26/Aug/2003:03:06:20 +0200] "GET /bg3.gif HTTP/1.1" 304 - www.zinnamturm.de
+203.144.77.100 http://www.zinnamturm.de/ - [26/Aug/2003:03:06:50 +0200] "GET /mail99.gif HTTP/1.1" 304 - www.zinnamturm.de
+203.144.77.100 http://us.f417.mail.yahoo.com/ym/ShowLetter?MsgId=5781_967369_60922_1425_2071_0_2978_5123_2861157&YY=25552&inc=25&order=down&sort=date&pos=1&view=&head=&box=Inbox - [26/Aug/2003:03:06:50 +0200] "GET / HTTP/1.1" 200 84555 www.zinnamturm.de
+80.179.101.195 - - [26/Aug/2003:06:10:27 +0200] "GET / HTTP/1.1" 200 84555 www.zinnamturm.de

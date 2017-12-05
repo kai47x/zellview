@@ -1,0 +1,404 @@
+<html><head><title>sun_awt_geom</title></head>
+<body bgcolor="white">
+<hr><pre>
+<b>FOREIGN MODULE </b><font color="#cc0033">sun_awt_geom</font>;
+
+<b>IMPORT</b>
+    <a href="java_util.html">java_util</a> := "java.util",
+    <a href="java_lang.html">java_lang</a> := "java.lang",
+    <a href="java_awt_geom.html">java_awt_geom</a> := "java.awt.geom";
+
+<b>TYPE</b>
+
+  <a name="type-AreaOp"></a><font color="#cc0033">AreaOp</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-AreaOp"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+            <b>STATIC</b>
+              <font color="#cc0033">CTAG_LEFT</font>*         = 0;
+              <font color="#cc0033">CTAG_RIGHT</font>*        = 1;
+              <font color="#cc0033">ETAG_ENTER</font>*        = 1;
+              <font color="#cc0033">ETAG_EXIT</font>*         = -1;
+              <font color="#cc0033">ETAG_IGNORE</font>*       = 0;
+              <font color="#cc0033">RSTAG_INSIDE</font>*      = 1;
+              <font color="#cc0033">RSTAG_OUTSIDE</font>*     = -1;
+              <b>PROCEDURE </b><font color="#cc0033">finalizeSubCurves</font>*(p0 : <a href="java_util.html#type-Vector">java_util.Vector</a>;
+                                           p1 : <a href="java_util.html#type-Vector">java_util.Vector</a>);
+              <b>PROCEDURE </b><font color="#cc0033">obstructs</font>*(p0 : REAL;
+                                   p1 : REAL;
+                                   p2 : INTEGER) : BOOLEAN;
+              <b>PROCEDURE </b><font color="#cc0033">resolveLinks</font>*(p0 : <a href="java_util.html#type-Vector">java_util.Vector</a>;
+                                      p1 : <a href="java_util.html#type-Vector">java_util.Vector</a>;
+                                      p2 : <a href="java_util.html#type-Vector">java_util.Vector</a>);
+            <b>END</b>;
+
+  <a name="type-AreaOp$AddOp"></a><font color="#cc0033">AreaOp$AddOp</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-AreaOp$CAGOp">AreaOp$CAGOp</a>)    <a href="#meths-AreaOp$AddOp"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                  <b>STATIC</b>
+                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-AreaOp$AddOp">AreaOp$AddOp</a><b>,CONSTRUCTOR</b>;
+                  <b>END</b>;
+
+  <a name="type-AreaOp$CAGOp"></a><font color="#cc0033">AreaOp$CAGOp</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="#type-AreaOp">AreaOp</a>)    <a href="#meths-AreaOp$CAGOp"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                  <b>STATIC</b>
+                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-AreaOp$CAGOp">AreaOp$CAGOp</a><b>,CONSTRUCTOR</b>;
+                  <b>END</b>;
+
+  <a name="type-AreaOp$EOWindOp"></a><font color="#cc0033">AreaOp$EOWindOp</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-AreaOp">AreaOp</a>)    <a href="#meths-AreaOp$EOWindOp"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                     <b>STATIC</b>
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-AreaOp$EOWindOp">AreaOp$EOWindOp</a><b>,CONSTRUCTOR</b>;
+                     <b>END</b>;
+
+  <a name="type-AreaOp$IntOp"></a><font color="#cc0033">AreaOp$IntOp</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-AreaOp$CAGOp">AreaOp$CAGOp</a>)    <a href="#meths-AreaOp$IntOp"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                  <b>STATIC</b>
+                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-AreaOp$IntOp">AreaOp$IntOp</a><b>,CONSTRUCTOR</b>;
+                  <b>END</b>;
+
+  <a name="type-AreaOp$NZWindOp"></a><font color="#cc0033">AreaOp$NZWindOp</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-AreaOp">AreaOp</a>)    <a href="#meths-AreaOp$NZWindOp"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                     <b>STATIC</b>
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-AreaOp$NZWindOp">AreaOp$NZWindOp</a><b>,CONSTRUCTOR</b>;
+                     <b>END</b>;
+
+  <a name="type-AreaOp$SubOp"></a><font color="#cc0033">AreaOp$SubOp</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-AreaOp$CAGOp">AreaOp$CAGOp</a>)    <a href="#meths-AreaOp$SubOp"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                  <b>STATIC</b>
+                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-AreaOp$SubOp">AreaOp$SubOp</a><b>,CONSTRUCTOR</b>;
+                  <b>END</b>;
+
+  <a name="type-AreaOp$XorOp"></a><font color="#cc0033">AreaOp$XorOp</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-AreaOp$CAGOp">AreaOp$CAGOp</a>)    <a href="#meths-AreaOp$XorOp"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                  <b>STATIC</b>
+                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-AreaOp$XorOp">AreaOp$XorOp</a><b>,CONSTRUCTOR</b>;
+                  <b>END</b>;
+
+  <a name="type-Crossings"></a><font color="#cc0033">Crossings</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-Crossings"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+               <b>STATIC</b>
+                 <font color="#cc0033">debug</font>*         = 0;
+                 <b>PROCEDURE </b><font color="#cc0033">findCrossings</font>*(p0 : <a href="java_awt_geom.html#type-PathIterator">java_awt_geom.PathIterator</a>;
+                                          p1 : REAL;
+                                          p2 : REAL;
+                                          p3 : REAL;
+                                          p4 : REAL) : <a href="#type-Crossings">Crossings</a>;
+                 <b>PROCEDURE </b><font color="#cc0033">findCrossings</font>*(p0 : <a href="java_util.html#type-Vector">java_util.Vector</a>;
+                                          p1 : REAL;
+                                          p2 : REAL;
+                                          p3 : REAL;
+                                          p4 : REAL) : <a href="#type-Crossings">Crossings</a>;
+                 <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : REAL;
+                                 p1 : REAL;
+                                 p2 : REAL;
+                                 p3 : REAL) : <a href="#type-Crossings">Crossings</a><b>,CONSTRUCTOR</b>;
+               <b>END</b>;
+
+  <a name="type-Crossings$EvenOdd"></a><font color="#cc0033">Crossings$EvenOdd</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-Crossings">Crossings</a>)    <a href="#meths-Crossings$EvenOdd"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                       <b>STATIC</b>
+                         <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : REAL;
+                                         p1 : REAL;
+                                         p2 : REAL;
+                                         p3 : REAL) : <a href="#type-Crossings$EvenOdd">Crossings$EvenOdd</a><b>,CONSTRUCTOR</b>;
+                       <b>END</b>;
+
+  <a name="type-Crossings$NonZero"></a><font color="#cc0033">Crossings$NonZero</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-Crossings">Crossings</a>)    <a href="#meths-Crossings$NonZero"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                       <b>STATIC</b>
+                         <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : REAL;
+                                         p1 : REAL;
+                                         p2 : REAL;
+                                         p3 : REAL) : <a href="#type-Crossings$NonZero">Crossings$NonZero</a><b>,CONSTRUCTOR</b>;
+                       <b>END</b>;
+
+  <a name="type-Curve"></a><font color="#cc0033">Curve</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-Curve"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+             <font color="#cc0033">direction</font>! : INTEGER;
+           <b>STATIC</b>
+             <font color="#cc0033">DECREASING</font>*             = -1;
+             <font color="#cc0033">INCREASING</font>*             = 1;
+             <font color="#cc0033">RECT_INTERSECTS</font>*        = -2147483648;
+             <font color="#cc0033">TMIN</font>*                   = 0.0010;
+             <b>PROCEDURE </b><font color="#cc0033">diffbits</font>*(p0 : REAL;
+                                 p1 : REAL) : LONGINT;
+             <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER) : <a href="#type-Curve">Curve</a><b>,CONSTRUCTOR</b>;
+             <b>PROCEDURE </b><font color="#cc0033">insertCubic</font>*(    p0 : <a href="java_util.html#type-Vector">java_util.Vector</a>;
+                                        p1 : REAL;
+                                        p2 : REAL;
+                                    IN  p3 : <b>ARRAY </b><b>OF </b>REAL);
+             <b>PROCEDURE </b><font color="#cc0033">insertLine</font>*(p0 : <a href="java_util.html#type-Vector">java_util.Vector</a>;
+                                   p1 : REAL;
+                                   p2 : REAL;
+                                   p3 : REAL;
+                                   p4 : REAL);
+             <b>PROCEDURE </b><font color="#cc0033">insertMove</font>*(p0 : <a href="java_util.html#type-Vector">java_util.Vector</a>;
+                                   p1 : REAL;
+                                   p2 : REAL);
+             <b>PROCEDURE </b><font color="#cc0033">insertQuad</font>*(    p0 : <a href="java_util.html#type-Vector">java_util.Vector</a>;
+                                       p1 : REAL;
+                                       p2 : REAL;
+                                   IN  p3 : <b>ARRAY </b><b>OF </b>REAL);
+             <b>PROCEDURE </b><font color="#cc0033">next</font>*(p0 : REAL) : REAL;
+             <b>PROCEDURE </b><font color="#cc0033">orderof</font>*(p0 : REAL;
+                                p1 : REAL) : INTEGER;
+             <b>PROCEDURE </b><font color="#cc0033">pointCrossingsForCubic</font>*(p0  : REAL;
+                                               p1  : REAL;
+                                               p2  : REAL;
+                                               p3  : REAL;
+                                               p4  : REAL;
+                                               p5  : REAL;
+                                               p6  : REAL;
+                                               p7  : REAL;
+                                               p8  : REAL;
+                                               p9  : REAL;
+                                               p10 : INTEGER) : INTEGER;
+             <b>PROCEDURE </b><font color="#cc0033">pointCrossingsForLine</font>*(p0 : REAL;
+                                              p1 : REAL;
+                                              p2 : REAL;
+                                              p3 : REAL;
+                                              p4 : REAL;
+                                              p5 : REAL) : INTEGER;
+             <b>PROCEDURE </b><font color="#cc0033">pointCrossingsForPath</font>*(p0 : <a href="java_awt_geom.html#type-PathIterator">java_awt_geom.PathIterator</a>;
+                                              p1 : REAL;
+                                              p2 : REAL) : INTEGER;
+             <b>PROCEDURE </b><font color="#cc0033">pointCrossingsForQuad</font>*(p0 : REAL;
+                                              p1 : REAL;
+                                              p2 : REAL;
+                                              p3 : REAL;
+                                              p4 : REAL;
+                                              p5 : REAL;
+                                              p6 : REAL;
+                                              p7 : REAL;
+                                              p8 : INTEGER) : INTEGER;
+             <b>PROCEDURE </b><font color="#cc0033">prev</font>*(p0 : REAL) : REAL;
+             <b>PROCEDURE </b><font color="#cc0033">rectCrossingsForCubic</font>*(p0  : INTEGER;
+                                              p1  : REAL;
+                                              p2  : REAL;
+                                              p3  : REAL;
+                                              p4  : REAL;
+                                              p5  : REAL;
+                                              p6  : REAL;
+                                              p7  : REAL;
+                                              p8  : REAL;
+                                              p9  : REAL;
+                                              p10 : REAL;
+                                              p11 : REAL;
+                                              p12 : REAL;
+                                              p13 : INTEGER) : INTEGER;
+             <b>PROCEDURE </b><font color="#cc0033">rectCrossingsForLine</font>*(p0 : INTEGER;
+                                             p1 : REAL;
+                                             p2 : REAL;
+                                             p3 : REAL;
+                                             p4 : REAL;
+                                             p5 : REAL;
+                                             p6 : REAL;
+                                             p7 : REAL;
+                                             p8 : REAL) : INTEGER;
+             <b>PROCEDURE </b><font color="#cc0033">rectCrossingsForPath</font>*(p0 : <a href="java_awt_geom.html#type-PathIterator">java_awt_geom.PathIterator</a>;
+                                             p1 : REAL;
+                                             p2 : REAL;
+                                             p3 : REAL;
+                                             p4 : REAL) : INTEGER;
+             <b>PROCEDURE </b><font color="#cc0033">rectCrossingsForQuad</font>*(p0  : INTEGER;
+                                             p1  : REAL;
+                                             p2  : REAL;
+                                             p3  : REAL;
+                                             p4  : REAL;
+                                             p5  : REAL;
+                                             p6  : REAL;
+                                             p7  : REAL;
+                                             p8  : REAL;
+                                             p9  : REAL;
+                                             p10 : REAL;
+                                             p11 : INTEGER) : INTEGER;
+             <b>PROCEDURE </b><font color="#cc0033">round</font>*(p0 : REAL) : REAL;
+             <b>PROCEDURE </b><font color="#cc0033">signeddiffbits</font>*(p0 : REAL;
+                                       p1 : REAL) : LONGINT;
+           <b>END</b>;
+
+
+
+<a name="meths-AreaOp"></a>
+<b>PROCEDURE </b>(self:AreaOp) <font color="#cc0033">calculate</font>*(p0 : <a href="java_util.html#type-Vector">java_util.Vector</a>;
+                                   p1 : <a href="java_util.html#type-Vector">java_util.Vector</a>) : <a href="java_util.html#type-Vector">java_util.Vector</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AreaOp) <font color="#cc0033">classify</font>*(p0 : <b>Edge</b>) : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AreaOp) <font color="#cc0033">getState</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AreaOp) <font color="#cc0033">newRow</font>*()<b>,NEW,ABSTRACT</b>;
+<a name="meths-AreaOp$AddOp"></a>
+<b>PROCEDURE </b>(self:AreaOp$AddOp) <font color="#cc0033">newClassification</font>*(p0 : BOOLEAN;
+                                                 p1 : BOOLEAN) : BOOLEAN<b>,EXTENSIBLE</b>;
+<a name="meths-AreaOp$CAGOp"></a>
+<b>PROCEDURE </b>(self:AreaOp$CAGOp) <font color="#cc0033">classify</font>*(p0 : <b>Edge</b>) : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AreaOp$CAGOp) <font color="#cc0033">getState</font>*() : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AreaOp$CAGOp) <font color="#cc0033">newClassification</font>*(p0 : BOOLEAN;
+                                                 p1 : BOOLEAN) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AreaOp$CAGOp) <font color="#cc0033">newRow</font>*()<b>,EXTENSIBLE</b>;
+<a name="meths-AreaOp$EOWindOp"></a>
+<b>PROCEDURE </b>(self:AreaOp$EOWindOp) <font color="#cc0033">classify</font>*(p0 : <b>Edge</b>) : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AreaOp$EOWindOp) <font color="#cc0033">getState</font>*() : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AreaOp$EOWindOp) <font color="#cc0033">newRow</font>*()<b>,EXTENSIBLE</b>;
+<a name="meths-AreaOp$IntOp"></a>
+<b>PROCEDURE </b>(self:AreaOp$IntOp) <font color="#cc0033">newClassification</font>*(p0 : BOOLEAN;
+                                                 p1 : BOOLEAN) : BOOLEAN<b>,EXTENSIBLE</b>;
+<a name="meths-AreaOp$NZWindOp"></a>
+<b>PROCEDURE </b>(self:AreaOp$NZWindOp) <font color="#cc0033">classify</font>*(p0 : <b>Edge</b>) : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AreaOp$NZWindOp) <font color="#cc0033">getState</font>*() : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AreaOp$NZWindOp) <font color="#cc0033">newRow</font>*()<b>,EXTENSIBLE</b>;
+<a name="meths-AreaOp$SubOp"></a>
+<b>PROCEDURE </b>(self:AreaOp$SubOp) <font color="#cc0033">newClassification</font>*(p0 : BOOLEAN;
+                                                 p1 : BOOLEAN) : BOOLEAN<b>,EXTENSIBLE</b>;
+<a name="meths-AreaOp$XorOp"></a>
+<b>PROCEDURE </b>(self:AreaOp$XorOp) <font color="#cc0033">newClassification</font>*(p0 : BOOLEAN;
+                                                 p1 : BOOLEAN) : BOOLEAN<b>,EXTENSIBLE</b>;
+<a name="meths-Crossings"></a>
+<b>PROCEDURE </b>(self:Crossings) <font color="#cc0033">accumulateCubic</font>*(    p0 : REAL;
+                                                p1 : REAL;
+                                            IN  p2 : <b>ARRAY </b><b>OF </b>REAL) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Crossings) <font color="#cc0033">accumulateLine</font>*(p0 : REAL;
+                                           p1 : REAL;
+                                           p2 : REAL;
+                                           p3 : REAL) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Crossings) <font color="#cc0033">accumulateLine</font>*(p0 : REAL;
+                                           p1 : REAL;
+                                           p2 : REAL;
+                                           p3 : REAL;
+                                           p4 : INTEGER) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Crossings) <font color="#cc0033">accumulateQuad</font>*(    p0 : REAL;
+                                               p1 : REAL;
+                                           IN  p2 : <b>ARRAY </b><b>OF </b>REAL) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Crossings) <font color="#cc0033">covers</font>*(p0 : REAL;
+                                   p1 : REAL) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Crossings) <font color="#cc0033">getXHi</font>*() : REAL<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:Crossings) <font color="#cc0033">getXLo</font>*() : REAL<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:Crossings) <font color="#cc0033">getYHi</font>*() : REAL<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:Crossings) <font color="#cc0033">getYLo</font>*() : REAL<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:Crossings) <font color="#cc0033">isEmpty</font>*() : BOOLEAN<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:Crossings) <font color="#cc0033">print</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Crossings) <font color="#cc0033">record</font>*(p0 : REAL;
+                                   p1 : REAL;
+                                   p2 : INTEGER)<b>,NEW,ABSTRACT</b>;
+<a name="meths-Crossings$EvenOdd"></a>
+<b>PROCEDURE </b>(self:Crossings$EvenOdd) <font color="#cc0033">covers</font>*(p0 : REAL;
+                                           p1 : REAL) : BOOLEAN;
+
+<b>PROCEDURE </b>(self:Crossings$EvenOdd) <font color="#cc0033">record</font>*(p0 : REAL;
+                                           p1 : REAL;
+                                           p2 : INTEGER)<b>,EXTENSIBLE</b>;
+<a name="meths-Crossings$NonZero"></a>
+<b>PROCEDURE </b>(self:Crossings$NonZero) <font color="#cc0033">covers</font>*(p0 : REAL;
+                                           p1 : REAL) : BOOLEAN;
+
+<b>PROCEDURE </b>(self:Crossings$NonZero) <font color="#cc0033">insert</font>*(p0 : INTEGER;
+                                           p1 : REAL;
+                                           p2 : REAL;
+                                           p3 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Crossings$NonZero) <font color="#cc0033">record</font>*(p0 : REAL;
+                                           p1 : REAL;
+                                           p2 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Crossings$NonZero) <font color="#cc0033">remove</font>*(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-Curve"></a>
+<b>PROCEDURE </b>(self:Curve) <font color="#cc0033">accumulateCrossings</font>*(p0 : <a href="#type-Crossings">Crossings</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Curve) <font color="#cc0033">compareTo</font>*(    p0 : <a href="#type-Curve">Curve</a>;
+                                  IN  p1 : <b>ARRAY </b><b>OF </b>REAL) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Curve) <font color="#cc0033">controlPointString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Curve) <font color="#cc0033">crossingsFor</font>*(p0 : REAL;
+                                     p1 : REAL) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Curve) <font color="#cc0033">dXforT</font>*(p0 : REAL;
+                               p1 : INTEGER) : REAL<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Curve) <font color="#cc0033">dYforT</font>*(p0 : REAL;
+                               p1 : INTEGER) : REAL<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Curve) <font color="#cc0033">enlarge</font>*(p0 : <a href="java_awt_geom.html#type-Rectangle2D">java_awt_geom.Rectangle2D</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Curve) <font color="#cc0033">fairlyClose</font>*(p0 : REAL;
+                                    p1 : REAL) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Curve) <font color="#cc0033">findIntersect</font>*(    p0  : <a href="#type-Curve">Curve</a>;
+                                      IN  p1  : <b>ARRAY </b><b>OF </b>REAL;
+                                          p2  : REAL;
+                                          p3  : INTEGER;
+                                          p4  : INTEGER;
+                                          p5  : REAL;
+                                          p6  : REAL;
+                                          p7  : REAL;
+                                          p8  : REAL;
+                                          p9  : REAL;
+                                          p10 : REAL;
+                                          p11 : REAL;
+                                          p12 : REAL;
+                                          p13 : REAL;
+                                          p14 : REAL;
+                                          p15 : REAL;
+                                          p16 : REAL) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Curve) <font color="#cc0033">getDirection</font>*() : INTEGER<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:Curve) <font color="#cc0033">getOrder</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Curve) <font color="#cc0033">getReversedCurve</font>*() : <a href="#type-Curve">Curve</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Curve) <font color="#cc0033">getSegment</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>REAL) : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Curve) <font color="#cc0033">getSubCurve</font>*(p0 : REAL;
+                                    p1 : REAL) : <a href="#type-Curve">Curve</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Curve) <font color="#cc0033">getSubCurve</font>*(p0 : REAL;
+                                    p1 : REAL;
+                                    p2 : INTEGER) : <a href="#type-Curve">Curve</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Curve) <font color="#cc0033">getWithDirection</font>*(p0 : INTEGER) : <a href="#type-Curve">Curve</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:Curve) <font color="#cc0033">getX0</font>*() : REAL<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Curve) <font color="#cc0033">getX1</font>*() : REAL<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Curve) <font color="#cc0033">getXBot</font>*() : REAL<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Curve) <font color="#cc0033">getXMax</font>*() : REAL<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Curve) <font color="#cc0033">getXMin</font>*() : REAL<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Curve) <font color="#cc0033">getXTop</font>*() : REAL<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Curve) <font color="#cc0033">getY0</font>*() : REAL<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Curve) <font color="#cc0033">getY1</font>*() : REAL<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Curve) <font color="#cc0033">getYBot</font>*() : REAL<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Curve) <font color="#cc0033">getYTop</font>*() : REAL<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Curve) <font color="#cc0033">nextVertical</font>*(p0 : REAL;
+                                     p1 : REAL) : REAL<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Curve) <font color="#cc0033">refineTforY</font>*(p0 : REAL;
+                                    p1 : REAL;
+                                    p2 : REAL) : REAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Curve) <font color="#cc0033">TforY</font>*(p0 : REAL) : REAL<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Curve) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Curve) <font color="#cc0033">XforT</font>*(p0 : REAL) : REAL<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Curve) <font color="#cc0033">XforY</font>*(p0 : REAL) : REAL<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Curve) <font color="#cc0033">YforT</font>*(p0 : REAL) : REAL<b>,NEW,ABSTRACT</b>;
+
+<b>END </b><font color="#cc0033">sun_awt_geom</font>.
+</font></pre></hr></body></html>

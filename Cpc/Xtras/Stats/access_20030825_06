@@ -1,0 +1,2 @@
+format.access="%Ses->client.ip%  %Req->headers.referer% -  %Req->vars.auth-user% [%SYSDATE%] \"%Req->reqpb.clf-request%\" %Req->srvhdrs.clf-status% %Req->srvhdrs.content-length% %Req->headers.host%"
+64.68.82.18 - - [25/Aug/2003:06:08:56 +0200] "GET / HTTP/1.0" 200 84555 www.zinnamturm.de

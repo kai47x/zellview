@@ -1,0 +1,114 @@
+<html><head><title>java_nio_channels_spi</title></head>
+<body bgcolor="white">
+<hr><pre>
+<b>FOREIGN MODULE </b><font color="#cc0033">java_nio_channels_spi</font>;
+
+<b>IMPORT</b>
+    <a href="sun_nio_ch.html">sun_nio_ch</a> := "sun.nio.ch",
+    <a href="java_lang.html">java_lang</a> := "java.lang",
+    <a href="java_nio_channels.html">java_nio_channels</a> := "java.nio.channels",
+    <a href="java_util_concurrent_atomic.html">java_util_concurrent_atomic</a> := "java.util.concurrent.atomic",
+    <a href="java_util.html">java_util</a> := "java.util",
+    <a href="java_security.html">java_security</a> := "java.security";
+
+<b>TYPE</b>
+
+  <a name="type-AbstractInterruptibleChannel"></a><font color="#cc0033">AbstractInterruptibleChannel</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_nio_channels.html#type-Channel">java_nio_channels.Channel</a> + <a href="java_nio_channels.html#type-InterruptibleChannel">java_nio_channels.InterruptibleChannel</a>)    <a href="#meths-AbstractInterruptibleChannel"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                                  <b>STATIC</b>
+                                    <b>PROCEDURE </b><font color="#cc0033">Init</font>!() : <a href="#type-AbstractInterruptibleChannel">AbstractInterruptibleChannel</a><b>,CONSTRUCTOR</b>;
+                                  <b>END</b>;
+
+  <a name="type-AbstractSelectableChannel"></a><font color="#cc0033">AbstractSelectableChannel</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_nio_channels.html#type-SelectableChannel">java_nio_channels.SelectableChannel</a>)    <a href="#meths-AbstractSelectableChannel"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                               <b>STATIC</b>
+                                 <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : <a href="#type-SelectorProvider">SelectorProvider</a>) : <a href="#type-AbstractSelectableChannel">AbstractSelectableChannel</a><b>,CONSTRUCTOR</b>;
+                               <b>END</b>;
+
+  <a name="type-AbstractSelectionKey"></a><font color="#cc0033">AbstractSelectionKey</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_nio_channels.html#type-SelectionKey">java_nio_channels.SelectionKey</a>)    <a href="#meths-AbstractSelectionKey"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                          <b>STATIC</b>
+                            <b>PROCEDURE </b><font color="#cc0033">Init</font>!() : <a href="#type-AbstractSelectionKey">AbstractSelectionKey</a><b>,CONSTRUCTOR</b>;
+                          <b>END</b>;
+
+  <a name="type-AbstractSelector"></a><font color="#cc0033">AbstractSelector</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_nio_channels.html#type-Selector">java_nio_channels.Selector</a>)    <a href="#meths-AbstractSelector"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                      <b>STATIC</b>
+                        <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : <a href="#type-SelectorProvider">SelectorProvider</a>) : <a href="#type-AbstractSelector">AbstractSelector</a><b>,CONSTRUCTOR</b>;
+                      <b>END</b>;
+
+  <a name="type-SelectorProvider"></a><font color="#cc0033">SelectorProvider</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-SelectorProvider"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                      <b>STATIC</b>
+                        <b>PROCEDURE </b><font color="#cc0033">Init</font>!() : <a href="#type-SelectorProvider">SelectorProvider</a><b>,CONSTRUCTOR</b>;
+                        <b>PROCEDURE </b><font color="#cc0033">provider</font>*() : <a href="#type-SelectorProvider">SelectorProvider</a>;
+                      <b>END</b>;
+
+
+
+<a name="meths-AbstractInterruptibleChannel"></a>
+<b>PROCEDURE </b>(self:AbstractInterruptibleChannel) <font color="#cc0033">begin</font>!()<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:AbstractInterruptibleChannel) <font color="#cc0033">close</font>*()<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:AbstractInterruptibleChannel) <font color="#cc0033">end</font>!(p0 : BOOLEAN)<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:AbstractInterruptibleChannel) <font color="#cc0033">implCloseChannel</font>!()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AbstractInterruptibleChannel) <font color="#cc0033">isOpen</font>*() : BOOLEAN<b>,NEW</b>;
+<a name="meths-AbstractSelectableChannel"></a>
+<b>PROCEDURE </b>(self:AbstractSelectableChannel) <font color="#cc0033">blockingLock</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+
+<b>PROCEDURE </b>(self:AbstractSelectableChannel) <font color="#cc0033">configureBlocking</font>*(p0 : BOOLEAN) : <a href="java_nio_channels.html#type-SelectableChannel">java_nio_channels.SelectableChannel</a>;
+
+<b>PROCEDURE </b>(self:AbstractSelectableChannel) <font color="#cc0033">implCloseChannel</font>!();
+
+<b>PROCEDURE </b>(self:AbstractSelectableChannel) <font color="#cc0033">implCloseSelectableChannel</font>!()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AbstractSelectableChannel) <font color="#cc0033">implConfigureBlocking</font>!(p0 : BOOLEAN)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AbstractSelectableChannel) <font color="#cc0033">isBlocking</font>*() : BOOLEAN;
+
+<b>PROCEDURE </b>(self:AbstractSelectableChannel) <font color="#cc0033">isRegistered</font>*() : BOOLEAN;
+
+<b>PROCEDURE </b>(self:AbstractSelectableChannel) <font color="#cc0033">keyFor</font>*(p0 : <a href="java_nio_channels.html#type-Selector">java_nio_channels.Selector</a>) : <a href="java_nio_channels.html#type-SelectionKey">java_nio_channels.SelectionKey</a>;
+
+<b>PROCEDURE </b>(self:AbstractSelectableChannel) <font color="#cc0033">provider</font>*() : <a href="#type-SelectorProvider">SelectorProvider</a>;
+
+<b>PROCEDURE </b>(self:AbstractSelectableChannel) <font color="#cc0033">register</font>*(p0 : <a href="java_nio_channels.html#type-Selector">java_nio_channels.Selector</a>;
+                                                     p1 : INTEGER;
+                                                     p2 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_nio_channels.html#type-SelectionKey">java_nio_channels.SelectionKey</a>;
+<a name="meths-AbstractSelectionKey"></a>
+<b>PROCEDURE </b>(self:AbstractSelectionKey) <font color="#cc0033">cancel</font>*();
+
+<b>PROCEDURE </b>(self:AbstractSelectionKey) <font color="#cc0033">isValid</font>*() : BOOLEAN;
+<a name="meths-AbstractSelector"></a>
+<b>PROCEDURE </b>(self:AbstractSelector) <font color="#cc0033">begin</font>!()<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:AbstractSelector) <font color="#cc0033">cancelledKeys</font>!() : <a href="java_util.html#type-Set">java_util.Set</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:AbstractSelector) <font color="#cc0033">close</font>*();
+
+<b>PROCEDURE </b>(self:AbstractSelector) <font color="#cc0033">deregister</font>!(p0 : <a href="#type-AbstractSelectionKey">AbstractSelectionKey</a>)<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:AbstractSelector) <font color="#cc0033">end</font>!()<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:AbstractSelector) <font color="#cc0033">implCloseSelector</font>!()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AbstractSelector) <font color="#cc0033">isOpen</font>*() : BOOLEAN;
+
+<b>PROCEDURE </b>(self:AbstractSelector) <font color="#cc0033">provider</font>*() : <a href="#type-SelectorProvider">SelectorProvider</a>;
+
+<b>PROCEDURE </b>(self:AbstractSelector) <font color="#cc0033">register</font>!(p0 : <a href="#type-AbstractSelectableChannel">AbstractSelectableChannel</a>;
+                                            p1 : INTEGER;
+                                            p2 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_nio_channels.html#type-SelectionKey">java_nio_channels.SelectionKey</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-SelectorProvider"></a>
+<b>PROCEDURE </b>(self:SelectorProvider) <font color="#cc0033">inheritedChannel</font>*() : <a href="java_nio_channels.html#type-Channel">java_nio_channels.Channel</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SelectorProvider) <font color="#cc0033">openDatagramChannel</font>*() : <a href="java_nio_channels.html#type-DatagramChannel">java_nio_channels.DatagramChannel</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SelectorProvider) <font color="#cc0033">openPipe</font>*() : <a href="java_nio_channels.html#type-Pipe">java_nio_channels.Pipe</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SelectorProvider) <font color="#cc0033">openSelector</font>*() : <a href="#type-AbstractSelector">AbstractSelector</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SelectorProvider) <font color="#cc0033">openServerSocketChannel</font>*() : <a href="java_nio_channels.html#type-ServerSocketChannel">java_nio_channels.ServerSocketChannel</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SelectorProvider) <font color="#cc0033">openSocketChannel</font>*() : <a href="java_nio_channels.html#type-SocketChannel">java_nio_channels.SocketChannel</a><b>,NEW,ABSTRACT</b>;
+
+<b>END </b><font color="#cc0033">java_nio_channels_spi</font>.
+</font></pre></hr></body></html>

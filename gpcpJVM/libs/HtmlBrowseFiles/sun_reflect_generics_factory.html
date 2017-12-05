@@ -1,0 +1,94 @@
+<html><head><title>sun_reflect_generics_factory</title></head>
+<body bgcolor="white">
+<hr><pre>
+<b>FOREIGN MODULE </b><font color="#cc0033">sun_reflect_generics_factory</font>;
+
+<b>IMPORT</b>
+    <a href="java_lang_reflect.html">java_lang_reflect</a> := "java.lang.reflect",
+    <a href="sun_reflect_generics_scope.html">sun_reflect_generics_scope</a> := "sun.reflect.generics.scope",
+    <a href="java_lang.html">java_lang</a> := "java.lang";
+
+<b>TYPE</b>
+
+  <a name="type-CoreReflectionFactory"></a><font color="#cc0033">CoreReflectionFactory</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-GenericsFactory">GenericsFactory</a>)    <a href="#meths-CoreReflectionFactory"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                           <b>STATIC</b>
+                             <b>PROCEDURE </b><font color="#cc0033">make</font>*(p0 : <a href="java_lang_reflect.html#type-GenericDeclaration">java_lang_reflect.GenericDeclaration</a>;
+                                             p1 : <a href="sun_reflect_generics_scope.html#type-Scope">sun_reflect_generics_scope.Scope</a>) : <a href="#type-CoreReflectionFactory">CoreReflectionFactory</a>;
+                           <b>END</b>;
+
+  <a name="type-GenericsFactory"></a><font color="#cc0033">GenericsFactory</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-GenericsFactory"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                     <b>END</b>;
+
+
+
+<a name="meths-CoreReflectionFactory"></a>
+<b>PROCEDURE </b>(self:CoreReflectionFactory) <font color="#cc0033">findTypeVariable</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang_reflect.html#type-TypeVariable">java_lang_reflect.TypeVariable</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CoreReflectionFactory) <font color="#cc0033">makeArrayType</font>*(p0 : <a href="java_lang_reflect.html#type-Type">java_lang_reflect.Type</a>) : <a href="java_lang_reflect.html#type-Type">java_lang_reflect.Type</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CoreReflectionFactory) <font color="#cc0033">makeBool</font>*() : <a href="java_lang_reflect.html#type-Type">java_lang_reflect.Type</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CoreReflectionFactory) <font color="#cc0033">makeByte</font>*() : <a href="java_lang_reflect.html#type-Type">java_lang_reflect.Type</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CoreReflectionFactory) <font color="#cc0033">makeChar</font>*() : <a href="java_lang_reflect.html#type-Type">java_lang_reflect.Type</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CoreReflectionFactory) <font color="#cc0033">makeDouble</font>*() : <a href="java_lang_reflect.html#type-Type">java_lang_reflect.Type</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CoreReflectionFactory) <font color="#cc0033">makeFloat</font>*() : <a href="java_lang_reflect.html#type-Type">java_lang_reflect.Type</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CoreReflectionFactory) <font color="#cc0033">makeInt</font>*() : <a href="java_lang_reflect.html#type-Type">java_lang_reflect.Type</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CoreReflectionFactory) <font color="#cc0033">makeLong</font>*() : <a href="java_lang_reflect.html#type-Type">java_lang_reflect.Type</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CoreReflectionFactory) <font color="#cc0033">makeNamedType</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang_reflect.html#type-Type">java_lang_reflect.Type</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CoreReflectionFactory) <font color="#cc0033">makeParameterizedType</font>*(    p0 : <a href="java_lang_reflect.html#type-Type">java_lang_reflect.Type</a>;
+                                                              IN  p1 : <b>ARRAY </b><b>OF </b><a href="java_lang_reflect.html#type-Type">java_lang_reflect.Type</a>;
+                                                                  p2 : <a href="java_lang_reflect.html#type-Type">java_lang_reflect.Type</a>) : <a href="java_lang_reflect.html#type-ParameterizedType">java_lang_reflect.ParameterizedType</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CoreReflectionFactory) <font color="#cc0033">makeShort</font>*() : <a href="java_lang_reflect.html#type-Type">java_lang_reflect.Type</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CoreReflectionFactory) <font color="#cc0033">makeTypeVariable</font>*(    p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                         IN  p1 : <b>ARRAY </b><b>OF </b><b>FieldTypeSignature</b>) : <a href="java_lang_reflect.html#type-TypeVariable">java_lang_reflect.TypeVariable</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CoreReflectionFactory) <font color="#cc0033">makeVoid</font>*() : <a href="java_lang_reflect.html#type-Type">java_lang_reflect.Type</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CoreReflectionFactory) <font color="#cc0033">makeWildcard</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><b>FieldTypeSignature</b>;
+                                                     IN  p1 : <b>ARRAY </b><b>OF </b><b>FieldTypeSignature</b>) : <a href="java_lang_reflect.html#type-WildcardType">java_lang_reflect.WildcardType</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-GenericsFactory"></a>
+<b>PROCEDURE </b>(self:GenericsFactory) <font color="#cc0033">findTypeVariable</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang_reflect.html#type-TypeVariable">java_lang_reflect.TypeVariable</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:GenericsFactory) <font color="#cc0033">makeArrayType</font>*(p0 : <a href="java_lang_reflect.html#type-Type">java_lang_reflect.Type</a>) : <a href="java_lang_reflect.html#type-Type">java_lang_reflect.Type</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:GenericsFactory) <font color="#cc0033">makeBool</font>*() : <a href="java_lang_reflect.html#type-Type">java_lang_reflect.Type</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:GenericsFactory) <font color="#cc0033">makeByte</font>*() : <a href="java_lang_reflect.html#type-Type">java_lang_reflect.Type</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:GenericsFactory) <font color="#cc0033">makeChar</font>*() : <a href="java_lang_reflect.html#type-Type">java_lang_reflect.Type</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:GenericsFactory) <font color="#cc0033">makeDouble</font>*() : <a href="java_lang_reflect.html#type-Type">java_lang_reflect.Type</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:GenericsFactory) <font color="#cc0033">makeFloat</font>*() : <a href="java_lang_reflect.html#type-Type">java_lang_reflect.Type</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:GenericsFactory) <font color="#cc0033">makeInt</font>*() : <a href="java_lang_reflect.html#type-Type">java_lang_reflect.Type</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:GenericsFactory) <font color="#cc0033">makeLong</font>*() : <a href="java_lang_reflect.html#type-Type">java_lang_reflect.Type</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:GenericsFactory) <font color="#cc0033">makeNamedType</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang_reflect.html#type-Type">java_lang_reflect.Type</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:GenericsFactory) <font color="#cc0033">makeParameterizedType</font>*(    p0 : <a href="java_lang_reflect.html#type-Type">java_lang_reflect.Type</a>;
+                                                        IN  p1 : <b>ARRAY </b><b>OF </b><a href="java_lang_reflect.html#type-Type">java_lang_reflect.Type</a>;
+                                                            p2 : <a href="java_lang_reflect.html#type-Type">java_lang_reflect.Type</a>) : <a href="java_lang_reflect.html#type-ParameterizedType">java_lang_reflect.ParameterizedType</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:GenericsFactory) <font color="#cc0033">makeShort</font>*() : <a href="java_lang_reflect.html#type-Type">java_lang_reflect.Type</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:GenericsFactory) <font color="#cc0033">makeTypeVariable</font>*(    p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                   IN  p1 : <b>ARRAY </b><b>OF </b><b>FieldTypeSignature</b>) : <a href="java_lang_reflect.html#type-TypeVariable">java_lang_reflect.TypeVariable</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:GenericsFactory) <font color="#cc0033">makeVoid</font>*() : <a href="java_lang_reflect.html#type-Type">java_lang_reflect.Type</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:GenericsFactory) <font color="#cc0033">makeWildcard</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><b>FieldTypeSignature</b>;
+                                               IN  p1 : <b>ARRAY </b><b>OF </b><b>FieldTypeSignature</b>) : <a href="java_lang_reflect.html#type-WildcardType">java_lang_reflect.WildcardType</a><b>,NEW,ABSTRACT</b>;
+
+<b>END </b><font color="#cc0033">sun_reflect_generics_factory</font>.
+</font></pre></hr></body></html>

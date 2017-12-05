@@ -1,0 +1,348 @@
+<html><head><title>org_xml_sax</title></head>
+<body bgcolor="white">
+<hr><pre>
+<b>FOREIGN MODULE </b><font color="#cc0033">org_xml_sax</font>;
+
+<b>IMPORT</b>
+    <a href="java_lang.html">java_lang</a> := "java.lang",
+    <a href="java_io.html">java_io</a> := "java.io",
+    <a href="java_util.html">java_util</a> := "java.util";
+
+<b>TYPE</b>
+
+  <a name="type-AttributeList"></a><font color="#cc0033">AttributeList</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-AttributeList"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                   <b>END</b>;
+
+  <a name="type-Attributes"></a><font color="#cc0033">Attributes</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-Attributes"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                <b>END</b>;
+
+  <a name="type-ContentHandler"></a><font color="#cc0033">ContentHandler</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-ContentHandler"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                    <b>END</b>;
+
+  <a name="type-DocumentHandler"></a><font color="#cc0033">DocumentHandler</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-DocumentHandler"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                     <b>END</b>;
+
+  <a name="type-DTDHandler"></a><font color="#cc0033">DTDHandler</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-DTDHandler"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                <b>END</b>;
+
+  <a name="type-EntityResolver"></a><font color="#cc0033">EntityResolver</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-EntityResolver"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                    <b>END</b>;
+
+  <a name="type-ErrorHandler"></a><font color="#cc0033">ErrorHandler</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-ErrorHandler"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                  <b>END</b>;
+
+  <a name="type-HandlerBase"></a><font color="#cc0033">HandlerBase</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-EntityResolver">EntityResolver</a> + <a href="#type-DTDHandler">DTDHandler</a> + <a href="#type-DocumentHandler">DocumentHandler</a> + <a href="#type-ErrorHandler">ErrorHandler</a>)    <a href="#meths-HandlerBase"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                 <b>STATIC</b>
+                   <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-HandlerBase">HandlerBase</a><b>,CONSTRUCTOR</b>;
+                 <b>END</b>;
+
+  <a name="type-InputSource"></a><font color="#cc0033">InputSource</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-InputSource"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                 <b>STATIC</b>
+                   <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_io.html#type-InputStream">java_io.InputStream</a>) : <a href="#type-InputSource">InputSource</a><b>,CONSTRUCTOR</b>;
+                   <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_io.html#type-Reader">java_io.Reader</a>) : <a href="#type-InputSource">InputSource</a><b>,CONSTRUCTOR</b>;
+                   <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-InputSource">InputSource</a><b>,CONSTRUCTOR</b>;
+                   <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-InputSource">InputSource</a><b>,CONSTRUCTOR</b>;
+                 <b>END</b>;
+
+  <a name="type-Locator"></a><font color="#cc0033">Locator</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-Locator"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+             <b>END</b>;
+
+  <a name="type-Parser"></a><font color="#cc0033">Parser</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-Parser"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+            <b>END</b>;
+
+  <a name="type-SAXException"></a><font color="#cc0033">SAXException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Exception">java_lang.Exception</a>)    <a href="#meths-SAXException"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                  <b>STATIC</b>
+                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-Exception">java_lang.Exception</a>) : <a href="#type-SAXException">SAXException</a><b>,CONSTRUCTOR</b>;
+                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                    p1 : <a href="java_lang.html#type-Exception">java_lang.Exception</a>) : <a href="#type-SAXException">SAXException</a><b>,CONSTRUCTOR</b>;
+                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-SAXException">SAXException</a><b>,CONSTRUCTOR</b>;
+                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-SAXException">SAXException</a><b>,CONSTRUCTOR</b>;
+                  <b>END</b>;
+
+  <a name="type-SAXNotRecognizedException"></a><font color="#cc0033">SAXNotRecognizedException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-SAXException">SAXException</a>)
+                               <b>STATIC</b>
+                                 <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-SAXNotRecognizedException">SAXNotRecognizedException</a><b>,CONSTRUCTOR</b>;
+                                 <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-SAXNotRecognizedException">SAXNotRecognizedException</a><b>,CONSTRUCTOR</b>;
+                               <b>END</b>;
+
+  <a name="type-SAXNotSupportedException"></a><font color="#cc0033">SAXNotSupportedException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-SAXException">SAXException</a>)
+                              <b>STATIC</b>
+                                <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-SAXNotSupportedException">SAXNotSupportedException</a><b>,CONSTRUCTOR</b>;
+                                <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-SAXNotSupportedException">SAXNotSupportedException</a><b>,CONSTRUCTOR</b>;
+                              <b>END</b>;
+
+  <a name="type-SAXParseException"></a><font color="#cc0033">SAXParseException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-SAXException">SAXException</a>)    <a href="#meths-SAXParseException"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                       <b>STATIC</b>
+                         <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                         p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                         p2 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                         p3 : INTEGER;
+                                         p4 : INTEGER) : <a href="#type-SAXParseException">SAXParseException</a><b>,CONSTRUCTOR</b>;
+                         <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                         p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                         p2 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                         p3 : INTEGER;
+                                         p4 : INTEGER;
+                                         p5 : <a href="java_lang.html#type-Exception">java_lang.Exception</a>) : <a href="#type-SAXParseException">SAXParseException</a><b>,CONSTRUCTOR</b>;
+                         <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                         p1 : <a href="#type-Locator">Locator</a>) : <a href="#type-SAXParseException">SAXParseException</a><b>,CONSTRUCTOR</b>;
+                         <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                         p1 : <a href="#type-Locator">Locator</a>;
+                                         p2 : <a href="java_lang.html#type-Exception">java_lang.Exception</a>) : <a href="#type-SAXParseException">SAXParseException</a><b>,CONSTRUCTOR</b>;
+                       <b>END</b>;
+
+  <a name="type-XMLFilter"></a><font color="#cc0033">XMLFilter</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-XMLReader">XMLReader</a>)    <a href="#meths-XMLFilter"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+               <b>END</b>;
+
+  <a name="type-XMLReader"></a><font color="#cc0033">XMLReader</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-XMLReader"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+               <b>END</b>;
+
+
+
+<a name="meths-AttributeList"></a>
+<b>PROCEDURE </b>(self:AttributeList) <font color="#cc0033">getLength</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AttributeList) <font color="#cc0033">getName</font>*(p0 : INTEGER) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AttributeList) <font color="#cc0033">getType</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AttributeList) <font color="#cc0033">getType</font>*(p0 : INTEGER) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AttributeList) <font color="#cc0033">getValue</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AttributeList) <font color="#cc0033">getValue</font>*(p0 : INTEGER) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-Attributes"></a>
+<b>PROCEDURE </b>(self:Attributes) <font color="#cc0033">getIndex</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Attributes) <font color="#cc0033">getIndex</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                      p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Attributes) <font color="#cc0033">getLength</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Attributes) <font color="#cc0033">getLocalName</font>*(p0 : INTEGER) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Attributes) <font color="#cc0033">getQName</font>*(p0 : INTEGER) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Attributes) <font color="#cc0033">getType</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Attributes) <font color="#cc0033">getType</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                     p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Attributes) <font color="#cc0033">getType</font>*(p0 : INTEGER) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Attributes) <font color="#cc0033">getURI</font>*(p0 : INTEGER) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Attributes) <font color="#cc0033">getValue</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Attributes) <font color="#cc0033">getValue</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                      p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Attributes) <font color="#cc0033">getValue</font>*(p0 : INTEGER) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-ContentHandler"></a>
+<b>PROCEDURE </b>(self:ContentHandler) <font color="#cc0033">characters</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>CHAR;
+                                                p1 : INTEGER;
+                                                p2 : INTEGER)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ContentHandler) <font color="#cc0033">endDocument</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ContentHandler) <font color="#cc0033">endElement</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                            p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                            p2 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ContentHandler) <font color="#cc0033">endPrefixMapping</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ContentHandler) <font color="#cc0033">ignorableWhitespace</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>CHAR;
+                                                         p1 : INTEGER;
+                                                         p2 : INTEGER)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ContentHandler) <font color="#cc0033">processingInstruction</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                       p1 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ContentHandler) <font color="#cc0033">setDocumentLocator</font>*(p0 : <a href="#type-Locator">Locator</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ContentHandler) <font color="#cc0033">skippedEntity</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ContentHandler) <font color="#cc0033">startDocument</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ContentHandler) <font color="#cc0033">startElement</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                              p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                              p2 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                              p3 : <a href="#type-Attributes">Attributes</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ContentHandler) <font color="#cc0033">startPrefixMapping</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                    p1 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-DocumentHandler"></a>
+<b>PROCEDURE </b>(self:DocumentHandler) <font color="#cc0033">characters</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>CHAR;
+                                                 p1 : INTEGER;
+                                                 p2 : INTEGER)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DocumentHandler) <font color="#cc0033">endDocument</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DocumentHandler) <font color="#cc0033">endElement</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DocumentHandler) <font color="#cc0033">ignorableWhitespace</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>CHAR;
+                                                          p1 : INTEGER;
+                                                          p2 : INTEGER)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DocumentHandler) <font color="#cc0033">processingInstruction</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                        p1 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DocumentHandler) <font color="#cc0033">setDocumentLocator</font>*(p0 : <a href="#type-Locator">Locator</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DocumentHandler) <font color="#cc0033">startDocument</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DocumentHandler) <font color="#cc0033">startElement</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                               p1 : <a href="#type-AttributeList">AttributeList</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-DTDHandler"></a>
+<b>PROCEDURE </b>(self:DTDHandler) <font color="#cc0033">notationDecl</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                          p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                          p2 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DTDHandler) <font color="#cc0033">unparsedEntityDecl</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                p2 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                p3 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-EntityResolver"></a>
+<b>PROCEDURE </b>(self:EntityResolver) <font color="#cc0033">resolveEntity</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                               p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-InputSource">InputSource</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-ErrorHandler"></a>
+<b>PROCEDURE </b>(self:ErrorHandler) <font color="#cc0033">error</font>*(p0 : <a href="#type-SAXParseException">SAXParseException</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ErrorHandler) <font color="#cc0033">fatalError</font>*(p0 : <a href="#type-SAXParseException">SAXParseException</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ErrorHandler) <font color="#cc0033">warning</font>*(p0 : <a href="#type-SAXParseException">SAXParseException</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-HandlerBase"></a>
+<b>PROCEDURE </b>(self:HandlerBase) <font color="#cc0033">characters</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>CHAR;
+                                             p1 : INTEGER;
+                                             p2 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HandlerBase) <font color="#cc0033">endDocument</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HandlerBase) <font color="#cc0033">endElement</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HandlerBase) <font color="#cc0033">error</font>*(p0 : <a href="#type-SAXParseException">SAXParseException</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HandlerBase) <font color="#cc0033">fatalError</font>*(p0 : <a href="#type-SAXParseException">SAXParseException</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HandlerBase) <font color="#cc0033">ignorableWhitespace</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>CHAR;
+                                                      p1 : INTEGER;
+                                                      p2 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HandlerBase) <font color="#cc0033">notationDecl</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                           p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                           p2 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HandlerBase) <font color="#cc0033">processingInstruction</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                    p1 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HandlerBase) <font color="#cc0033">resolveEntity</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                            p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-InputSource">InputSource</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HandlerBase) <font color="#cc0033">setDocumentLocator</font>*(p0 : <a href="#type-Locator">Locator</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HandlerBase) <font color="#cc0033">startDocument</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HandlerBase) <font color="#cc0033">startElement</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                           p1 : <a href="#type-AttributeList">AttributeList</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HandlerBase) <font color="#cc0033">unparsedEntityDecl</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                 p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                 p2 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                 p3 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HandlerBase) <font color="#cc0033">warning</font>*(p0 : <a href="#type-SAXParseException">SAXParseException</a>)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-InputSource"></a>
+<b>PROCEDURE </b>(self:InputSource) <font color="#cc0033">getByteStream</font>*() : <a href="java_io.html#type-InputStream">java_io.InputStream</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:InputSource) <font color="#cc0033">getCharacterStream</font>*() : <a href="java_io.html#type-Reader">java_io.Reader</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:InputSource) <font color="#cc0033">getEncoding</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:InputSource) <font color="#cc0033">getPublicId</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:InputSource) <font color="#cc0033">getSystemId</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:InputSource) <font color="#cc0033">setByteStream</font>*(p0 : <a href="java_io.html#type-InputStream">java_io.InputStream</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:InputSource) <font color="#cc0033">setCharacterStream</font>*(p0 : <a href="java_io.html#type-Reader">java_io.Reader</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:InputSource) <font color="#cc0033">setEncoding</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:InputSource) <font color="#cc0033">setPublicId</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:InputSource) <font color="#cc0033">setSystemId</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-Locator"></a>
+<b>PROCEDURE </b>(self:Locator) <font color="#cc0033">getColumnNumber</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Locator) <font color="#cc0033">getLineNumber</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Locator) <font color="#cc0033">getPublicId</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Locator) <font color="#cc0033">getSystemId</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-Parser"></a>
+<b>PROCEDURE </b>(self:Parser) <font color="#cc0033">parse</font>*(p0 : <a href="#type-InputSource">InputSource</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Parser) <font color="#cc0033">parse</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Parser) <font color="#cc0033">setDocumentHandler</font>*(p0 : <a href="#type-DocumentHandler">DocumentHandler</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Parser) <font color="#cc0033">setDTDHandler</font>*(p0 : <a href="#type-DTDHandler">DTDHandler</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Parser) <font color="#cc0033">setEntityResolver</font>*(p0 : <a href="#type-EntityResolver">EntityResolver</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Parser) <font color="#cc0033">setErrorHandler</font>*(p0 : <a href="#type-ErrorHandler">ErrorHandler</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Parser) <font color="#cc0033">setLocale</font>*(p0 : <a href="java_util.html#type-Locale">java_util.Locale</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-SAXException"></a>
+<b>PROCEDURE </b>(self:SAXException) <font color="#cc0033">getCause</font>*() : <a href="java_lang.html#type-Throwable">java_lang.Throwable</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SAXException) <font color="#cc0033">getException</font>*() : <a href="java_lang.html#type-Exception">java_lang.Exception</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SAXException) <font color="#cc0033">getMessage</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SAXException) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,EXTENSIBLE</b>;
+<a name="meths-SAXParseException"></a>
+<b>PROCEDURE </b>(self:SAXParseException) <font color="#cc0033">getColumnNumber</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SAXParseException) <font color="#cc0033">getLineNumber</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SAXParseException) <font color="#cc0033">getPublicId</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SAXParseException) <font color="#cc0033">getSystemId</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-XMLFilter"></a>
+<b>PROCEDURE </b>(self:XMLFilter) <font color="#cc0033">getParent</font>*() : <a href="#type-XMLReader">XMLReader</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLFilter) <font color="#cc0033">setParent</font>*(p0 : <a href="#type-XMLReader">XMLReader</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-XMLReader"></a>
+<b>PROCEDURE </b>(self:XMLReader) <font color="#cc0033">getContentHandler</font>*() : <a href="#type-ContentHandler">ContentHandler</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLReader) <font color="#cc0033">getDTDHandler</font>*() : <a href="#type-DTDHandler">DTDHandler</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLReader) <font color="#cc0033">getEntityResolver</font>*() : <a href="#type-EntityResolver">EntityResolver</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLReader) <font color="#cc0033">getErrorHandler</font>*() : <a href="#type-ErrorHandler">ErrorHandler</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLReader) <font color="#cc0033">getFeature</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLReader) <font color="#cc0033">getProperty</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLReader) <font color="#cc0033">parse</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLReader) <font color="#cc0033">parse</font>*(p0 : <a href="#type-InputSource">InputSource</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLReader) <font color="#cc0033">setContentHandler</font>*(p0 : <a href="#type-ContentHandler">ContentHandler</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLReader) <font color="#cc0033">setDTDHandler</font>*(p0 : <a href="#type-DTDHandler">DTDHandler</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLReader) <font color="#cc0033">setEntityResolver</font>*(p0 : <a href="#type-EntityResolver">EntityResolver</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLReader) <font color="#cc0033">setErrorHandler</font>*(p0 : <a href="#type-ErrorHandler">ErrorHandler</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLReader) <font color="#cc0033">setFeature</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                       p1 : BOOLEAN)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:XMLReader) <font color="#cc0033">setProperty</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                        p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>END </b><font color="#cc0033">org_xml_sax</font>.
+</font></pre></hr></body></html>
