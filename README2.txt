@@ -1,3 +1,7 @@
+
+
+zellview is based on blackbox-component-builder www.blackboxframework.org
+
 This repository contains the sources, resources, and documentation
 of the BlackBox Component Builder and a scripting tool that allows one
 to run BlackBox commands from the command line.
