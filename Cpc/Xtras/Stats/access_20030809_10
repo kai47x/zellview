@@ -1,0 +1,8 @@
+format.access="%Ses->client.ip%  %Req->headers.referer% -  %Req->vars.auth-user% [%SYSDATE%] \"%Req->reqpb.clf-request%\" %Req->srvhdrs.clf-status% %Req->srvhdrs.content-length% %Req->headers.host%"
+217.80.236.240 http://www.google.de/search?hl=de&ie=UTF-8&oe=UTF-8&q=g36+hkv+&btnG=Google+Suche&meta=cr%3DcountryDE - [09/Aug/2003:10:32:36 +0200] "GET /Cow.txt HTTP/1.1" 200 121311 www.zinnamturm.de
+217.229.20.199 http://www.google.de/search?hl=de&ie=UTF-8&oe=UTF-8&q=sab7b&btnG=Google+Suche&meta=cr%3DcountryDE - [09/Aug/2003:12:13:04 +0200] "GET /Coco.txt HTTP/1.1" 200 386194 www.zinnamturm.de
+217.83.57.241 - - [09/Aug/2003:14:06:34 +0200] "GET /CpcSearch.txt HTTP/1.1" 200 65651 www.zinnamturm.de
+212.194.20.82 - - [09/Aug/2003:23:53:18 +0200] "GET / HTTP/1.0" 200 84552 www.zinnamturm.de
+212.194.20.82 http://www.zinnamturm.de/ - [09/Aug/2003:23:53:21 +0200] "GET /bg3.gif HTTP/1.1" 200 16276 www.zinnamturm.de
+212.194.20.82 - - [09/Aug/2003:23:53:22 +0200] "GET / HTTP/1.1" 200 84552 www.zinnamturm.de
+212.194.20.82 http://www.zinnamturm.de/ - [09/Aug/2003:23:53:22 +0200] "GET /mail99.gif HTTP/1.1" 200 4196 www.zinnamturm.de

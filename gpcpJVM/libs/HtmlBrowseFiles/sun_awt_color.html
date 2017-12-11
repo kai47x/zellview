@@ -1,0 +1,139 @@
+<html><head><title>sun_awt_color</title></head>
+<body bgcolor="white">
+<hr><pre>
+<b>FOREIGN MODULE </b><font color="#cc0033">sun_awt_color</font>;
+
+<b>IMPORT</b>
+    <a href="java_awt_color.html">java_awt_color</a> := "java.awt.color",
+    <a href="java_lang.html">java_lang</a> := "java.lang",
+    <a href="java_awt_image.html">java_awt_image</a> := "java.awt.image",
+    <a href="java_io.html">java_io</a> := "java.io",
+    <a href="java_util.html">java_util</a> := "java.util";
+
+<b>TYPE</b>
+
+  <a name="type-CMM"></a><font color="#cc0033">CMM</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-CMM"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+         <b>STATIC</b>
+           <b>PROCEDURE </b><font color="#cc0033">checkStatus</font>*(p0 : INTEGER);
+           <b>PROCEDURE </b><font color="#cc0033">cmmColorConvert</font>*(p0 : LONGINT;
+                                      p1 : <b>CMMImageLayout</b>;
+                                      p2 : <b>CMMImageLayout</b>) : INTEGER;
+           <b>PROCEDURE </b><font color="#cc0033">cmmCombineTransforms</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="#type-ICC_Transform">ICC_Transform</a>;
+                                               p1 : <a href="#type-ICC_Transform">ICC_Transform</a>) : INTEGER;
+           <b>PROCEDURE </b><font color="#cc0033">cmmCullICC_Profiles</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE;
+                                          IN  p1 : <b>ARRAY </b><b>OF </b>BYTE;
+                                          IN  p2 : <b>ARRAY </b><b>OF </b>LONGINT;
+                                          IN  p3 : <b>ARRAY </b><b>OF </b>LONGINT;
+                                          IN  p4 : <b>ARRAY </b><b>OF </b>INTEGER) : INTEGER;
+           <b>PROCEDURE </b><font color="#cc0033">cmmFindICC_Profiles</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE;
+                                          IN  p1 : <b>ARRAY </b><b>OF </b>BYTE;
+                                              p2 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                          IN  p3 : <b>ARRAY </b><b>OF </b>LONGINT;
+                                          IN  p4 : <b>ARRAY </b><b>OF </b>INTEGER) : INTEGER;
+           <b>PROCEDURE </b><font color="#cc0033">cmmFreeProfile</font>*(p0 : LONGINT) : INTEGER;
+           <b>PROCEDURE </b><font color="#cc0033">cmmFreeTransform</font>*(p0 : LONGINT) : INTEGER;
+           <b>PROCEDURE </b><font color="#cc0033">cmmGetNumComponents</font>*(    p0 : LONGINT;
+                                          IN  p1 : <b>ARRAY </b><b>OF </b>INTEGER) : INTEGER;
+           <b>PROCEDURE </b><font color="#cc0033">cmmGetProfileData</font>*(    p0 : LONGINT;
+                                        IN  p1 : <b>ARRAY </b><b>OF </b>BYTE) : INTEGER;
+           <b>PROCEDURE </b><font color="#cc0033">cmmGetProfileSize</font>*(    p0 : LONGINT;
+                                        IN  p1 : <b>ARRAY </b><b>OF </b>INTEGER) : INTEGER;
+           <b>PROCEDURE </b><font color="#cc0033">cmmGetTagData</font>*(    p0 : LONGINT;
+                                        p1 : INTEGER;
+                                    IN  p2 : <b>ARRAY </b><b>OF </b>BYTE) : INTEGER;
+           <b>PROCEDURE </b><font color="#cc0033">cmmGetTagSize</font>*(    p0 : LONGINT;
+                                        p1 : INTEGER;
+                                    IN  p2 : <b>ARRAY </b><b>OF </b>INTEGER) : INTEGER;
+           <b>PROCEDURE </b><font color="#cc0033">cmmGetTransform</font>*(p0 : <a href="java_awt_color.html#type-ICC_Profile">java_awt_color.ICC_Profile</a>;
+                                      p1 : INTEGER;
+                                      p2 : INTEGER;
+                                      p3 : <a href="#type-ICC_Transform">ICC_Transform</a>) : INTEGER;
+           <b>PROCEDURE </b><font color="#cc0033">cmmLoadProfile</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE;
+                                     IN  p1 : <b>ARRAY </b><b>OF </b>LONGINT) : INTEGER;
+           <b>PROCEDURE </b><font color="#cc0033">cmmSetTagData</font>*(    p0 : LONGINT;
+                                        p1 : INTEGER;
+                                    IN  p2 : <b>ARRAY </b><b>OF </b>BYTE) : INTEGER;
+           <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CMM">CMM</a><b>,CONSTRUCTOR</b>;
+         <b>END</b>;
+
+  <a name="type-CMM$CSAccessor"></a><font color="#cc0033">CMM$CSAccessor</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                    <b>STATIC</b>
+                      <a name="type-GRAYspace"></a><font color="#cc0033">GRAYspace</font>*       : <a href="java_awt_color.html#type-ColorSpace">java_awt_color.ColorSpace</a>;
+                      <a name="type-LINEAR_RGBspace"></a><font color="#cc0033">LINEAR_RGBspace</font>* : <a href="java_awt_color.html#type-ColorSpace">java_awt_color.ColorSpace</a>;
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CMM$CSAccessor">CMM$CSAccessor</a><b>,CONSTRUCTOR</b>;
+                    <b>END</b>;
+
+  <a name="type-ICC_Transform"></a><font color="#cc0033">ICC_Transform</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-ICC_Transform"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                   <b>STATIC</b>
+                     <font color="#cc0033">Any</font>*        = -1;
+                     <font color="#cc0033">Gamut</font>*      = 3;
+                     <font color="#cc0033">In</font>*         = 1;
+                     <font color="#cc0033">Out</font>*        = 2;
+                     <font color="#cc0033">Simulation</font>* = 4;
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="#type-ICC_Transform">ICC_Transform</a>) : <a href="#type-ICC_Transform">ICC_Transform</a><b>,CONSTRUCTOR</b>;
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_awt_color.html#type-ICC_Profile">java_awt_color.ICC_Profile</a>;
+                                     p1 : INTEGER;
+                                     p2 : INTEGER) : <a href="#type-ICC_Transform">ICC_Transform</a><b>,CONSTRUCTOR</b>;
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-ICC_Transform">ICC_Transform</a><b>,CONSTRUCTOR</b>;
+                   <b>END</b>;
+
+  <a name="type-ProfileActivator"></a><font color="#cc0033">ProfileActivator</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-ProfileActivator"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                      <b>END</b>;
+
+  <a name="type-ProfileDeferralInfo"></a><font color="#cc0033">ProfileDeferralInfo</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_io.html#type-InputStream">java_io.InputStream</a>)    <a href="#meths-ProfileDeferralInfo"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                           <font color="#cc0033">colorSpaceType</font>* : INTEGER;
+                           <font color="#cc0033">numComponents</font>*  : INTEGER;
+                           <font color="#cc0033">profileClass</font>*   : INTEGER;
+                           <font color="#cc0033">filename</font>*       : <a href="java_lang.html#type-String">java_lang.String</a>;
+                         <b>STATIC</b>
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                           p1 : INTEGER;
+                                           p2 : INTEGER;
+                                           p3 : INTEGER) : <a href="#type-ProfileDeferralInfo">ProfileDeferralInfo</a><b>,CONSTRUCTOR</b>;
+                         <b>END</b>;
+
+  <a name="type-ProfileDeferralMgr"></a><font color="#cc0033">ProfileDeferralMgr</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                        <b>STATIC</b>
+                          <a name="type-deferring"></a><font color="#cc0033">deferring</font>*          : BOOLEAN;
+                          <b>PROCEDURE </b><font color="#cc0033">activateProfiles</font>*();
+                          <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-ProfileDeferralMgr">ProfileDeferralMgr</a><b>,CONSTRUCTOR</b>;
+                          <b>PROCEDURE </b><font color="#cc0033">registerDeferral</font>*(p0 : <a href="#type-ProfileActivator">ProfileActivator</a>);
+                          <b>PROCEDURE </b><font color="#cc0033">unregisterDeferral</font>*(p0 : <a href="#type-ProfileActivator">ProfileActivator</a>);
+                        <b>END</b>;
+
+
+
+<a name="meths-CMM"></a>
+<b>PROCEDURE </b>(self:CMM) <font color="#cc0033">finalize</font>!()<b>,EXTENSIBLE</b>;
+<a name="meths-ICC_Transform"></a>
+<b>PROCEDURE </b>(self:ICC_Transform) <font color="#cc0033">colorConvert</font>*(p0 : <a href="java_awt_image.html#type-Raster">java_awt_image.Raster</a>;
+                                             p1 : <a href="java_awt_image.html#type-WritableRaster">java_awt_image.WritableRaster</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ICC_Transform) <font color="#cc0033">colorConvert</font>*(    p0 : <a href="java_awt_image.html#type-Raster">java_awt_image.Raster</a>;
+                                                 p1 : <a href="java_awt_image.html#type-WritableRaster">java_awt_image.WritableRaster</a>;
+                                             IN  p2 : <b>ARRAY </b><b>OF </b>SHORTREAL;
+                                             IN  p3 : <b>ARRAY </b><b>OF </b>SHORTREAL;
+                                             IN  p4 : <b>ARRAY </b><b>OF </b>SHORTREAL;
+                                             IN  p5 : <b>ARRAY </b><b>OF </b>SHORTREAL)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ICC_Transform) <font color="#cc0033">colorConvert</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE;
+                                             IN  p1 : <b>ARRAY </b><b>OF </b>BYTE) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>BYTE<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ICC_Transform) <font color="#cc0033">colorConvert</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>SHORTINT;
+                                             IN  p1 : <b>ARRAY </b><b>OF </b>SHORTINT) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>SHORTINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ICC_Transform) <font color="#cc0033">colorConvert</font>*(p0 : <a href="java_awt_image.html#type-BufferedImage">java_awt_image.BufferedImage</a>;
+                                             p1 : <a href="java_awt_image.html#type-BufferedImage">java_awt_image.BufferedImage</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ICC_Transform) <font color="#cc0033">finalize</font>*()<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ICC_Transform) <font color="#cc0033">getNumInComponents</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ICC_Transform) <font color="#cc0033">getNumOutComponents</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-ProfileActivator"></a>
+<b>PROCEDURE </b>(self:ProfileActivator) <font color="#cc0033">activate</font>*()<b>,NEW,ABSTRACT</b>;
+<a name="meths-ProfileDeferralInfo"></a>
+<b>PROCEDURE </b>(self:ProfileDeferralInfo) <font color="#cc0033">read</font>*() : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>END </b><font color="#cc0033">sun_awt_color</font>.
+</font></pre></hr></body></html>

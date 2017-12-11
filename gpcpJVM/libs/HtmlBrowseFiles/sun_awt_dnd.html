@@ -1,0 +1,185 @@
+<html><head><title>sun_awt_dnd</title></head>
+<body bgcolor="white">
+<hr><pre>
+<b>FOREIGN MODULE </b><font color="#cc0033">sun_awt_dnd</font>;
+
+<b>IMPORT</b>
+    <a href="java_lang.html">java_lang</a> := "java.lang",
+    <a href="java_awt_dnd.html">java_awt_dnd</a> := "java.awt.dnd",
+    <a href="java_awt_dnd_peer.html">java_awt_dnd_peer</a> := "java.awt.dnd.peer",
+    <a href="java_awt.html">java_awt</a> := "java.awt",
+    <a href="java_awt_datatransfer.html">java_awt_datatransfer</a> := "java.awt.datatransfer",
+    <a href="java_util.html">java_util</a> := "java.util",
+    <a href="sun_awt_datatransfer.html">sun_awt_datatransfer</a> := "sun.awt.datatransfer",
+    <a href="sun_awt.html">sun_awt</a> := "sun.awt",
+    <a href="java_awt_event.html">java_awt_event</a> := "java.awt.event",
+    <a href="java_io.html">java_io</a> := "java.io",
+    <a href="java_security.html">java_security</a> := "java.security",
+    <a href="java_lang_reflect.html">java_lang_reflect</a> := "java.lang.reflect",
+    <a href="java_awt_peer.html">java_awt_peer</a> := "java.awt.peer";
+
+<b>TYPE</b>
+
+  <a name="type-SunDragSourceContextPeer"></a><font color="#cc0033">SunDragSourceContextPeer</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_awt_dnd_peer.html#type-DragSourceContextPeer">java_awt_dnd_peer.DragSourceContextPeer</a>)    <a href="#meths-SunDragSourceContextPeer"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                              <b>STATIC</b>
+                                <font color="#cc0033">DISPATCH_CHANGED</font>!             = 3;
+                                <font color="#cc0033">DISPATCH_ENTER</font>!               = 1;
+                                <font color="#cc0033">DISPATCH_EXIT</font>!                = 4;
+                                <font color="#cc0033">DISPATCH_FINISH</font>!              = 5;
+                                <font color="#cc0033">DISPATCH_MOTION</font>!              = 2;
+                                <font color="#cc0033">DISPATCH_MOUSE_MOVED</font>!         = 6;
+                                <b>PROCEDURE </b><font color="#cc0033">checkDragDropInProgress</font>*();
+                                <b>PROCEDURE </b><font color="#cc0033">checkEvent</font>*(p0 : <a href="java_awt.html#type-AWTEvent">java_awt.AWTEvent</a>) : BOOLEAN;
+                                <b>PROCEDURE </b><font color="#cc0033">convertModifiersToDropAction</font>*(p0 : INTEGER;
+                                                                        p1 : INTEGER) : INTEGER;
+                                <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_awt_dnd.html#type-DragGestureEvent">java_awt_dnd.DragGestureEvent</a>) : <a href="#type-SunDragSourceContextPeer">SunDragSourceContextPeer</a><b>,CONSTRUCTOR</b>;
+                                <b>PROCEDURE </b><font color="#cc0033">setDragDropInProgress</font>*(p0 : BOOLEAN);
+                              <b>END</b>;
+
+  <a name="type-SunDropTargetContextPeer"></a><font color="#cc0033">SunDropTargetContextPeer</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_awt_dnd_peer.html#type-DropTargetContextPeer">java_awt_dnd_peer.DropTargetContextPeer</a> + <a href="java_awt_datatransfer.html#type-Transferable">java_awt_datatransfer.Transferable</a>)    <a href="#meths-SunDropTargetContextPeer"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                                <font color="#cc0033">dropStatus</font>!   : INTEGER;
+                                <font color="#cc0033">dropComplete</font>! : BOOLEAN;
+                              <b>STATIC</b>
+                                <a name="type-currentJVMLocalSourceTransferable"></a><font color="#cc0033">currentJVMLocalSourceTransferable</font>!    : <a href="java_awt_datatransfer.html#type-Transferable">java_awt_datatransfer.Transferable</a>;
+                                <font color="#cc0033">DISPATCH_SYNC</font>*                        = 1;
+                                <font color="#cc0033">STATUS_ACCEPT</font>!                        = 2;
+                                <font color="#cc0033">STATUS_NONE</font>!                          = 0;
+                                <font color="#cc0033">STATUS_REJECT</font>!                        = -1;
+                                <font color="#cc0033">STATUS_WAIT</font>!                          = 1;
+                                <a name="type-_globalLock"></a><font color="#cc0033">_globalLock</font>!                          : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-SunDropTargetContextPeer">SunDropTargetContextPeer</a><b>,CONSTRUCTOR</b>;
+                                <b>PROCEDURE </b><font color="#cc0033">setCurrentJVMLocalSourceTransferable</font>*(p0 : <a href="java_awt_datatransfer.html#type-Transferable">java_awt_datatransfer.Transferable</a>);
+                              <b>END</b>;
+
+  <a name="type-SunDropTargetContextPeer$EventDispatcher"></a><font color="#cc0033">SunDropTargetContextPeer$EventDispatcher</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-SunDropTargetContextPeer$EventDispatcher"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                                              <b>END</b>;
+
+  <a name="type-SunDropTargetEvent"></a><font color="#cc0033">SunDropTargetEvent</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_awt_event.html#type-MouseEvent">java_awt_event.MouseEvent</a>)    <a href="#meths-SunDropTargetEvent"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                        <b>STATIC</b>
+                          <font color="#cc0033">MOUSE_DROPPED</font>* = 502;
+                          <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_awt.html#type-Component">java_awt.Component</a>;
+                                          p1 : INTEGER;
+                                          p2 : INTEGER;
+                                          p3 : INTEGER;
+                                          p4 : <a href="#type-SunDropTargetContextPeer$EventDispatcher">SunDropTargetContextPeer$EventDispatcher</a>) : <a href="#type-SunDropTargetEvent">SunDropTargetEvent</a><b>,CONSTRUCTOR</b>;
+                        <b>END</b>;
+
+
+
+<a name="meths-SunDragSourceContextPeer"></a>
+<b>PROCEDURE </b>(self:SunDragSourceContextPeer) <font color="#cc0033">dragDropFinished</font>!(p0 : BOOLEAN;
+                                                            p1 : INTEGER;
+                                                            p2 : INTEGER;
+                                                            p3 : INTEGER)<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:SunDragSourceContextPeer) <font color="#cc0033">dragExit</font>!(p0 : INTEGER;
+                                                    p1 : INTEGER)<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:SunDragSourceContextPeer) <font color="#cc0033">getComponent</font>!() : <a href="java_awt.html#type-Component">java_awt.Component</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunDragSourceContextPeer) <font color="#cc0033">getCursor</font>*() : <a href="java_awt.html#type-Cursor">java_awt.Cursor</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunDragSourceContextPeer) <font color="#cc0033">getDragSourceContext</font>!() : <a href="java_awt_dnd.html#type-DragSourceContext">java_awt_dnd.DragSourceContext</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunDragSourceContextPeer) <font color="#cc0033">getNativeContext</font>!() : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunDragSourceContextPeer) <font color="#cc0033">getTrigger</font>!() : <a href="java_awt_dnd.html#type-DragGestureEvent">java_awt_dnd.DragGestureEvent</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunDragSourceContextPeer) <font color="#cc0033">postDragSourceDragEvent</font>!(p0 : INTEGER;
+                                                                   p1 : INTEGER;
+                                                                   p2 : INTEGER;
+                                                                   p3 : INTEGER;
+                                                                   p4 : INTEGER)<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:SunDragSourceContextPeer) <font color="#cc0033">setCursor</font>*(p0 : <a href="java_awt.html#type-Cursor">java_awt.Cursor</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunDragSourceContextPeer) <font color="#cc0033">setNativeContext</font>!(p0 : LONGINT)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunDragSourceContextPeer) <font color="#cc0033">setNativeCursor</font>!(p0 : LONGINT;
+                                                           p1 : <a href="java_awt.html#type-Cursor">java_awt.Cursor</a>;
+                                                           p2 : INTEGER)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SunDragSourceContextPeer) <font color="#cc0033">setTrigger</font>!(p0 : <a href="java_awt_dnd.html#type-DragGestureEvent">java_awt_dnd.DragGestureEvent</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunDragSourceContextPeer) <font color="#cc0033">startDrag</font>!(    p0 : <a href="java_awt_datatransfer.html#type-Transferable">java_awt_datatransfer.Transferable</a>;
+                                                     IN  p1 : <b>ARRAY </b><b>OF </b>LONGINT;
+                                                         p2 : <a href="java_util.html#type-Map">java_util.Map</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SunDragSourceContextPeer) <font color="#cc0033">startDrag</font>*(p0 : <a href="java_awt_dnd.html#type-DragSourceContext">java_awt_dnd.DragSourceContext</a>;
+                                                     p1 : <a href="java_awt.html#type-Cursor">java_awt.Cursor</a>;
+                                                     p2 : <a href="java_awt.html#type-Image">java_awt.Image</a>;
+                                                     p3 : <a href="java_awt.html#type-Point">java_awt.Point</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunDragSourceContextPeer) <font color="#cc0033">transferablesFlavorsChanged</font>*()<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-SunDropTargetContextPeer"></a>
+<b>PROCEDURE </b>(self:SunDropTargetContextPeer) <font color="#cc0033">acceptDrag</font>*(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunDropTargetContextPeer) <font color="#cc0033">acceptDrop</font>*(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunDropTargetContextPeer) <font color="#cc0033">doDropDone</font>!(p0 : BOOLEAN;
+                                                      p1 : INTEGER;
+                                                      p2 : BOOLEAN)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SunDropTargetContextPeer) <font color="#cc0033">dropComplete</font>*(p0 : BOOLEAN)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunDropTargetContextPeer) <font color="#cc0033">eventPosted</font>!(p0 : <a href="#type-SunDropTargetEvent">SunDropTargetEvent</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunDropTargetContextPeer) <font color="#cc0033">eventProcessed</font>!(p0 : <a href="#type-SunDropTargetEvent">SunDropTargetEvent</a>;
+                                                          p1 : INTEGER;
+                                                          p2 : BOOLEAN)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunDropTargetContextPeer) <font color="#cc0033">getDropTarget</font>*() : <a href="java_awt_dnd.html#type-DropTarget">java_awt_dnd.DropTarget</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunDropTargetContextPeer) <font color="#cc0033">getNativeData</font>!(p0 : LONGINT) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SunDropTargetContextPeer) <font color="#cc0033">getNativeDragContext</font>!() : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunDropTargetContextPeer) <font color="#cc0033">getTargetActions</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunDropTargetContextPeer) <font color="#cc0033">getTransferable</font>*() : <a href="java_awt_datatransfer.html#type-Transferable">java_awt_datatransfer.Transferable</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunDropTargetContextPeer) <font color="#cc0033">getTransferData</font>*(p0 : <a href="java_awt_datatransfer.html#type-DataFlavor">java_awt_datatransfer.DataFlavor</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunDropTargetContextPeer) <font color="#cc0033">getTransferDataFlavors</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_awt_datatransfer.html#type-DataFlavor">java_awt_datatransfer.DataFlavor</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunDropTargetContextPeer) <font color="#cc0033">isDataFlavorSupported</font>*(p0 : <a href="java_awt_datatransfer.html#type-DataFlavor">java_awt_datatransfer.DataFlavor</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunDropTargetContextPeer) <font color="#cc0033">isTransferableJVMLocal</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunDropTargetContextPeer) <font color="#cc0033">postDropTargetEvent</font>!(    p0 : <a href="java_awt.html#type-Component">java_awt.Component</a>;
+                                                                   p1 : INTEGER;
+                                                                   p2 : INTEGER;
+                                                                   p3 : INTEGER;
+                                                                   p4 : INTEGER;
+                                                               IN  p5 : <b>ARRAY </b><b>OF </b>LONGINT;
+                                                                   p6 : LONGINT;
+                                                                   p7 : INTEGER;
+                                                                   p8 : BOOLEAN) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunDropTargetContextPeer) <font color="#cc0033">processDropMessage</font>!(p0 : <a href="#type-SunDropTargetEvent">SunDropTargetEvent</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunDropTargetContextPeer) <font color="#cc0033">processEnterMessage</font>!(p0 : <a href="#type-SunDropTargetEvent">SunDropTargetEvent</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunDropTargetContextPeer) <font color="#cc0033">processExitMessage</font>!(p0 : <a href="#type-SunDropTargetEvent">SunDropTargetEvent</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunDropTargetContextPeer) <font color="#cc0033">processMotionMessage</font>!(p0 : <a href="#type-SunDropTargetEvent">SunDropTargetEvent</a>;
+                                                                p1 : BOOLEAN)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunDropTargetContextPeer) <font color="#cc0033">rejectDrag</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunDropTargetContextPeer) <font color="#cc0033">rejectDrop</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunDropTargetContextPeer) <font color="#cc0033">setTargetActions</font>*(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-SunDropTargetContextPeer$EventDispatcher"></a>
+<b>PROCEDURE </b>(self:SunDropTargetContextPeer$EventDispatcher) <font color="#cc0033">unregisterAllEvents</font>*()<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-SunDropTargetEvent"></a>
+<b>PROCEDURE </b>(self:SunDropTargetEvent) <font color="#cc0033">consume</font>*()<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunDropTargetEvent) <font color="#cc0033">dispatch</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunDropTargetEvent) <font color="#cc0033">getDispatcher</font>*() : <a href="#type-SunDropTargetContextPeer$EventDispatcher">SunDropTargetContextPeer$EventDispatcher</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunDropTargetEvent) <font color="#cc0033">paramString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,EXTENSIBLE</b>;
+
+<b>END </b><font color="#cc0033">sun_awt_dnd</font>.
+</font></pre></hr></body></html>

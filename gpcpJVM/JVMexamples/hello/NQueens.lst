@@ -1,0 +1,113 @@
+Listing:
+
+   1 MODULE NQueens;
+   2   IMPORT RTS, Console, CPmain;
+   3 
+   4   CONST max    = 15;
+   5 
+   6   TYPE  Board  = ARRAY max+1 OF SET;
+   7 
+   8   VAR   board  : Board;
+   9         freeR  : SET;
+  10         upDiag : SET;
+  11         dnDiag : SET;
+  12         boardSize  : INTEGER;
+  13         nSolutions : INTEGER;
+  14         timeTicks : LONGINT;
+  15         dateTime  : ARRAY 64 OF CHAR;
+  16 
+  17   PROCEDURE Dump(size : INTEGER);
+**** ------------^ Warning: This procedure is not exported, called or assigned
+  18     VAR i : INTEGER;
+  19     PROCEDURE Row(s : SET; l : INTEGER);
+  20       VAR j : INTEGER;
+  21     BEGIN
+  22       FOR j := 0 TO l-1 DO
+  23         IF j IN s THEN Console.Write("X") ELSE Console.Write(".") END;
+  24       END;
+  25       Console.WriteLn;
+  26     END Row;
+  27   BEGIN
+  28     Console.WriteString("---------------------------------"); Console.WriteLn;
+  29     FOR i := 0 TO size-1 DO Row(board[i], size) END;
+  30     Console.WriteString("---------------------------------"); Console.WriteLn;
+  31     Row(freeR, 31);
+  32     Row(upDiag, 31);
+  33     Row(dnDiag, 31);
+  34   END Dump;
+  35 
+  36   PROCEDURE Clear();
+  37     VAR i : INTEGER;
+  38   BEGIN
+  39     FOR i := 0 TO max DO board[i] := {} END;
+  40     freeR := {0 .. max};
+  41     upDiag := {0 .. 31};
+  42     dnDiag := {0 .. 31};
+  43   END Clear;
+  44 
+  45   PROCEDURE free(i,j : INTEGER) : BOOLEAN;
+  46   BEGIN
+  47     RETURN  (j IN freeR )
+  48         & ((i+j) IN upDiag)
+  49         & ((max+i-j) IN dnDiag);
+  50   END free;
+  51 
+  52   PROCEDURE Insert(i,j : INTEGER);
+  53   BEGIN
+  54     INCL(board[i],j); (* insert into board *)
+  55     EXCL(freeR,j);
+  56     EXCL(upDiag, i+j);
+  57     EXCL(dnDiag, max+i-j);
+  58   END Insert;
+  59  
+  60   PROCEDURE Remove(i,j : INTEGER);
+  61   BEGIN
+  62     EXCL(board[i],j);
+  63     INCL(freeR,j);
+  64     INCL(upDiag, i+j);
+  65     INCL(dnDiag, max+i-j);
+  66   END Remove;
+  67 
+  68   PROCEDURE Try(rank : INTEGER; size : INTEGER);
+  69     VAR file : INTEGER;
+  70   BEGIN
+  71     FOR file := 0 TO size-1 DO
+  72       IF free(rank,file) THEN
+  73         IF rank = size-1 THEN 
+  74           INC(nSolutions);
+  75 (*
+  76           Insert(rank,file); Dump(size); Remove(rank,file);
+  77  *)
+  78         ELSE
+  79           Insert(rank,file); Try(rank+1, size); Remove(rank,file);
+  80         END;
+  81       END;
+  82     END;
+  83   END Try;
+  84 
+  85 BEGIN
+  86   RTS.GetDateString(dateTime);
+  87   Console.WriteString(dateTime); Console.WriteLn;
+  88   timeTicks := RTS.GetMillis();
+  89   FOR boardSize := 8 TO 14 DO
+  90     Clear();
+  91     nSolutions := 0;
+  92     Try(0, boardSize);
+  93     Console.WriteString("Number of solutions for ");
+  94     Console.WriteInt(boardSize, 0);
+  95     Console.WriteString(" is ");
+  96     Console.WriteInt(nSolutions,0);
+  97     Console.WriteLn;
+  98   END;
+  99   timeTicks := RTS.GetMillis() - timeTicks;
+ 100   Console.WriteString("NQueens ending ... elapsed time ="); 
+ 101   Console.WriteInt(SHORT(timeTicks), 0); 
+ 102   Console.WriteString(" milliseconds"); 
+ 103   Console.WriteLn;
+ 104   RTS.GetDateString(dateTime);
+ 105   Console.WriteString(dateTime); Console.WriteLn;
+ 106 END NQueens.
+
+There were: No errors, and  1 warning
+
+

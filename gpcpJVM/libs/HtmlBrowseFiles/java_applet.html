@@ -1,0 +1,145 @@
+<html><head><title>java_applet</title></head>
+<body bgcolor="white">
+<hr><pre>
+<b>FOREIGN MODULE </b><font color="#cc0033">java_applet</font>;
+
+<b>IMPORT</b>
+    <a href="javax_accessibility.html">javax_accessibility</a> := "javax.accessibility",
+    <a href="java_awt.html">java_awt</a> := "java.awt",
+    <a href="java_awt_event.html">java_awt_event</a> := "java.awt.event",
+    <a href="java_beans.html">java_beans</a> := "java.beans",
+    <a href="java_io.html">java_io</a> := "java.io",
+    <a href="java_lang.html">java_lang</a> := "java.lang",
+    <a href="java_util.html">java_util</a> := "java.util",
+    <a href="java_net.html">java_net</a> := "java.net",
+    <a href="sun_awt.html">sun_awt</a> := "sun.awt",
+    <a href="java_util_logging.html">java_util_logging</a> := "java.util.logging",
+    <a href="java_awt_peer.html">java_awt_peer</a> := "java.awt.peer",
+    <a href="sun_java2d_pipe.html">sun_java2d_pipe</a> := "sun.java2d.pipe",
+    <a href="java_awt_image.html">java_awt_image</a> := "java.awt.image",
+    <a href="java_awt_dnd.html">java_awt_dnd</a> := "java.awt.dnd",
+    <a href="java_security.html">java_security</a> := "java.security",
+    <a href="java_awt_im.html">java_awt_im</a> := "java.awt.im";
+
+<b>TYPE</b>
+
+  <a name="type-Applet"></a><font color="#cc0033">Applet</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_awt.html#type-Panel">java_awt.Panel</a>)    <a href="#meths-Applet"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+            <b>STATIC</b>
+              <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-Applet">Applet</a><b>,CONSTRUCTOR</b>;
+              <b>PROCEDURE </b><font color="#cc0033">newAudioClip</font>*(p0 : <a href="java_net.html#type-URL">java_net.URL</a>) : <a href="#type-AudioClip">AudioClip</a>;
+            <b>END</b>;
+
+  <a name="type-Applet$AccessibleApplet"></a><font color="#cc0033">Applet$AccessibleApplet</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_awt.html#type-Panel$AccessibleAWTPanel">java_awt.Panel$AccessibleAWTPanel</a>)    <a href="#meths-Applet$AccessibleApplet"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                             <b>STATIC</b>
+                               <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : <a href="#type-Applet">Applet</a>) : <a href="#type-Applet$AccessibleApplet">Applet$AccessibleApplet</a><b>,CONSTRUCTOR</b>;
+                             <b>END</b>;
+
+  <a name="type-AppletContext"></a><font color="#cc0033">AppletContext</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-AppletContext"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                   <b>END</b>;
+
+  <a name="type-AppletStub"></a><font color="#cc0033">AppletStub</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-AppletStub"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                <b>END</b>;
+
+  <a name="type-AudioClip"></a><font color="#cc0033">AudioClip</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-AudioClip"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+               <b>END</b>;
+
+
+
+<a name="meths-Applet"></a>
+<b>PROCEDURE </b>(self:Applet) <font color="#cc0033">destroy</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Applet) <font color="#cc0033">getAccessibleContext</font>*() : <a href="javax_accessibility.html#type-AccessibleContext">javax_accessibility.AccessibleContext</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Applet) <font color="#cc0033">getAppletContext</font>*() : <a href="#type-AppletContext">AppletContext</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Applet) <font color="#cc0033">getAppletInfo</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Applet) <font color="#cc0033">getAudioClip</font>*(p0 : <a href="java_net.html#type-URL">java_net.URL</a>) : <a href="#type-AudioClip">AudioClip</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Applet) <font color="#cc0033">getAudioClip</font>*(p0 : <a href="java_net.html#type-URL">java_net.URL</a>;
+                                      p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-AudioClip">AudioClip</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Applet) <font color="#cc0033">getCodeBase</font>*() : <a href="java_net.html#type-URL">java_net.URL</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Applet) <font color="#cc0033">getDocumentBase</font>*() : <a href="java_net.html#type-URL">java_net.URL</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Applet) <font color="#cc0033">getImage</font>*(p0 : <a href="java_net.html#type-URL">java_net.URL</a>) : <a href="java_awt.html#type-Image">java_awt.Image</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Applet) <font color="#cc0033">getImage</font>*(p0 : <a href="java_net.html#type-URL">java_net.URL</a>;
+                                  p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_awt.html#type-Image">java_awt.Image</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Applet) <font color="#cc0033">getLocale</font>*() : <a href="java_util.html#type-Locale">java_util.Locale</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Applet) <font color="#cc0033">getParameter</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Applet) <font color="#cc0033">getParameterInfo</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Applet) <font color="#cc0033">init</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Applet) <font color="#cc0033">isActive</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Applet) <font color="#cc0033">play</font>*(p0 : <a href="java_net.html#type-URL">java_net.URL</a>;
+                              p1 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Applet) <font color="#cc0033">play</font>*(p0 : <a href="java_net.html#type-URL">java_net.URL</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Applet) <font color="#cc0033">resize</font>*(p0 : <a href="java_awt.html#type-Dimension">java_awt.Dimension</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Applet) <font color="#cc0033">resize</font>*(p0 : INTEGER;
+                                p1 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Applet) <font color="#cc0033">setStub</font>*(p0 : <a href="#type-AppletStub">AppletStub</a>)<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:Applet) <font color="#cc0033">showStatus</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Applet) <font color="#cc0033">start</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Applet) <font color="#cc0033">stop</font>*()<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-Applet$AccessibleApplet"></a>
+<b>PROCEDURE </b>(self:Applet$AccessibleApplet) <font color="#cc0033">getAccessibleRole</font>*() : <a href="javax_accessibility.html#type-AccessibleRole">javax_accessibility.AccessibleRole</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Applet$AccessibleApplet) <font color="#cc0033">getAccessibleStateSet</font>*() : <a href="javax_accessibility.html#type-AccessibleStateSet">javax_accessibility.AccessibleStateSet</a><b>,EXTENSIBLE</b>;
+<a name="meths-AppletContext"></a>
+<b>PROCEDURE </b>(self:AppletContext) <font color="#cc0033">getApplet</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-Applet">Applet</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AppletContext) <font color="#cc0033">getApplets</font>*() : <a href="java_util.html#type-Enumeration">java_util.Enumeration</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AppletContext) <font color="#cc0033">getAudioClip</font>*(p0 : <a href="java_net.html#type-URL">java_net.URL</a>) : <a href="#type-AudioClip">AudioClip</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AppletContext) <font color="#cc0033">getImage</font>*(p0 : <a href="java_net.html#type-URL">java_net.URL</a>) : <a href="java_awt.html#type-Image">java_awt.Image</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AppletContext) <font color="#cc0033">getStream</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_io.html#type-InputStream">java_io.InputStream</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AppletContext) <font color="#cc0033">getStreamKeys</font>*() : <a href="java_util.html#type-Iterator">java_util.Iterator</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AppletContext) <font color="#cc0033">setStream</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                          p1 : <a href="java_io.html#type-InputStream">java_io.InputStream</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AppletContext) <font color="#cc0033">showDocument</font>*(p0 : <a href="java_net.html#type-URL">java_net.URL</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AppletContext) <font color="#cc0033">showDocument</font>*(p0 : <a href="java_net.html#type-URL">java_net.URL</a>;
+                                             p1 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AppletContext) <font color="#cc0033">showStatus</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-AppletStub"></a>
+<b>PROCEDURE </b>(self:AppletStub) <font color="#cc0033">appletResize</font>*(p0 : INTEGER;
+                                          p1 : INTEGER)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AppletStub) <font color="#cc0033">getAppletContext</font>*() : <a href="#type-AppletContext">AppletContext</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AppletStub) <font color="#cc0033">getCodeBase</font>*() : <a href="java_net.html#type-URL">java_net.URL</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AppletStub) <font color="#cc0033">getDocumentBase</font>*() : <a href="java_net.html#type-URL">java_net.URL</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AppletStub) <font color="#cc0033">getParameter</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AppletStub) <font color="#cc0033">isActive</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+<a name="meths-AudioClip"></a>
+<b>PROCEDURE </b>(self:AudioClip) <font color="#cc0033">loop</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AudioClip) <font color="#cc0033">play</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AudioClip) <font color="#cc0033">stop</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>END </b><font color="#cc0033">java_applet</font>.
+</font></pre></hr></body></html>

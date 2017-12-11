@@ -1,0 +1,150 @@
+<html><head><title>sun_awt_util</title></head>
+<body bgcolor="white">
+<hr><pre>
+<b>FOREIGN MODULE </b><font color="#cc0033">sun_awt_util</font>;
+
+<b>IMPORT</b>
+    <a href="java_util.html">java_util</a> := "java.util",
+    <a href="java_lang.html">java_lang</a> := "java.lang";
+
+<b>TYPE</b>
+
+  <a name="type-IdentityArrayList"></a><font color="#cc0033">IdentityArrayList</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_util.html#type-AbstractList">java_util.AbstractList</a> + <a href="java_util.html#type-List">java_util.List</a> + <a href="java_util.html#type-RandomAccess">java_util.RandomAccess</a>)    <a href="#meths-IdentityArrayList"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                       <b>STATIC</b>
+                         <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_util.html#type-Collection">java_util.Collection</a>) : <a href="#type-IdentityArrayList">IdentityArrayList</a><b>,CONSTRUCTOR</b>;
+                         <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-IdentityArrayList">IdentityArrayList</a><b>,CONSTRUCTOR</b>;
+                         <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER) : <a href="#type-IdentityArrayList">IdentityArrayList</a><b>,CONSTRUCTOR</b>;
+                       <b>END</b>;
+
+  <a name="type-IdentityLinkedList"></a><font color="#cc0033">IdentityLinkedList</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_util.html#type-AbstractSequentialList">java_util.AbstractSequentialList</a> + <a href="java_util.html#type-List">java_util.List</a> + <a href="java_util.html#type-Deque">java_util.Deque</a>)    <a href="#meths-IdentityLinkedList"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                        <b>STATIC</b>
+                          <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_util.html#type-Collection">java_util.Collection</a>) : <a href="#type-IdentityLinkedList">IdentityLinkedList</a><b>,CONSTRUCTOR</b>;
+                          <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-IdentityLinkedList">IdentityLinkedList</a><b>,CONSTRUCTOR</b>;
+                        <b>END</b>;
+
+
+
+<a name="meths-IdentityArrayList"></a>
+<b>PROCEDURE </b>(self:IdentityArrayList) <font color="#cc0033">add</font>*(p0 : INTEGER;
+                                        p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IdentityArrayList) <font color="#cc0033">add</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IdentityArrayList) <font color="#cc0033">addAll</font>*(p0 : INTEGER;
+                                           p1 : <a href="java_util.html#type-Collection">java_util.Collection</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IdentityArrayList) <font color="#cc0033">addAll</font>*(p0 : <a href="java_util.html#type-Collection">java_util.Collection</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IdentityArrayList) <font color="#cc0033">clear</font>*()<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IdentityArrayList) <font color="#cc0033">contains</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IdentityArrayList) <font color="#cc0033">ensureCapacity</font>*(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IdentityArrayList) <font color="#cc0033">get</font>*(p0 : INTEGER) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IdentityArrayList) <font color="#cc0033">indexOf</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IdentityArrayList) <font color="#cc0033">isEmpty</font>*() : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IdentityArrayList) <font color="#cc0033">lastIndexOf</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IdentityArrayList) <font color="#cc0033">remove</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IdentityArrayList) <font color="#cc0033">remove</font>*(p0 : INTEGER) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IdentityArrayList) <font color="#cc0033">removeRange</font>!(p0 : INTEGER;
+                                                p1 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IdentityArrayList) <font color="#cc0033">set</font>*(p0 : INTEGER;
+                                        p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IdentityArrayList) <font color="#cc0033">size</font>*() : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IdentityArrayList) <font color="#cc0033">toArray</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IdentityArrayList) <font color="#cc0033">toArray</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IdentityArrayList) <font color="#cc0033">trimToSize</font>*()<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-IdentityLinkedList"></a>
+<b>PROCEDURE </b>(self:IdentityLinkedList) <font color="#cc0033">add</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IdentityLinkedList) <font color="#cc0033">add</font>*(p0 : INTEGER;
+                                         p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IdentityLinkedList) <font color="#cc0033">addAll</font>*(p0 : INTEGER;
+                                            p1 : <a href="java_util.html#type-Collection">java_util.Collection</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IdentityLinkedList) <font color="#cc0033">addAll</font>*(p0 : <a href="java_util.html#type-Collection">java_util.Collection</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IdentityLinkedList) <font color="#cc0033">addFirst</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IdentityLinkedList) <font color="#cc0033">addLast</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IdentityLinkedList) <font color="#cc0033">clear</font>*()<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IdentityLinkedList) <font color="#cc0033">contains</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IdentityLinkedList) <font color="#cc0033">descendingIterator</font>*() : <a href="java_util.html#type-Iterator">java_util.Iterator</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IdentityLinkedList) <font color="#cc0033">element</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IdentityLinkedList) <font color="#cc0033">get</font>*(p0 : INTEGER) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IdentityLinkedList) <font color="#cc0033">getFirst</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IdentityLinkedList) <font color="#cc0033">getLast</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IdentityLinkedList) <font color="#cc0033">indexOf</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IdentityLinkedList) <font color="#cc0033">lastIndexOf</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IdentityLinkedList) <font color="#cc0033">listIterator</font>*(p0 : INTEGER) : <a href="java_util.html#type-ListIterator">java_util.ListIterator</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IdentityLinkedList) <font color="#cc0033">offer</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IdentityLinkedList) <font color="#cc0033">offerFirst</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IdentityLinkedList) <font color="#cc0033">offerLast</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IdentityLinkedList) <font color="#cc0033">peek</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IdentityLinkedList) <font color="#cc0033">peekFirst</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IdentityLinkedList) <font color="#cc0033">peekLast</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IdentityLinkedList) <font color="#cc0033">poll</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IdentityLinkedList) <font color="#cc0033">pollFirst</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IdentityLinkedList) <font color="#cc0033">pollLast</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IdentityLinkedList) <font color="#cc0033">pop</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IdentityLinkedList) <font color="#cc0033">push</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IdentityLinkedList) <font color="#cc0033">remove</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IdentityLinkedList) <font color="#cc0033">remove</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IdentityLinkedList) <font color="#cc0033">remove</font>*(p0 : INTEGER) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IdentityLinkedList) <font color="#cc0033">removeFirst</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IdentityLinkedList) <font color="#cc0033">removeFirstOccurrence</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IdentityLinkedList) <font color="#cc0033">removeLast</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IdentityLinkedList) <font color="#cc0033">removeLastOccurrence</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IdentityLinkedList) <font color="#cc0033">set</font>*(p0 : INTEGER;
+                                         p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IdentityLinkedList) <font color="#cc0033">size</font>*() : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IdentityLinkedList) <font color="#cc0033">toArray</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IdentityLinkedList) <font color="#cc0033">toArray</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a><b>,EXTENSIBLE</b>;
+
+<b>END </b><font color="#cc0033">sun_awt_util</font>.
+</font></pre></hr></body></html>

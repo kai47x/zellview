@@ -1,0 +1,233 @@
+<html><head><title>java_awt_datatransfer</title></head>
+<body bgcolor="white">
+<hr><pre>
+<b>FOREIGN MODULE </b><font color="#cc0033">java_awt_datatransfer</font>;
+
+<b>IMPORT</b>
+    <a href="java_lang.html">java_lang</a> := "java.lang",
+    <a href="sun_awt.html">sun_awt</a> := "sun.awt",
+    <a href="java_util.html">java_util</a> := "java.util",
+    <a href="java_security.html">java_security</a> := "java.security",
+    <a href="sun_awt_datatransfer.html">sun_awt_datatransfer</a> := "sun.awt.datatransfer",
+    <a href="java_io.html">java_io</a> := "java.io";
+
+<b>TYPE</b>
+
+  <a name="type-Clipboard"></a><font color="#cc0033">Clipboard</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-Clipboard"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                 <font color="#cc0033">owner</font>!    : <a href="#type-ClipboardOwner">ClipboardOwner</a>;
+                 <font color="#cc0033">contents</font>! : <a href="#type-Transferable">Transferable</a>;
+               <b>STATIC</b>
+                 <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-Clipboard">Clipboard</a><b>,CONSTRUCTOR</b>;
+               <b>END</b>;
+
+  <a name="type-ClipboardOwner"></a><font color="#cc0033">ClipboardOwner</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-ClipboardOwner"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                    <b>END</b>;
+
+  <a name="type-DataFlavor"></a><font color="#cc0033">DataFlavor</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_io.html#type-Externalizable">java_io.Externalizable</a> + <a href="java_lang.html#type-Cloneable">java_lang.Cloneable</a>)    <a href="#meths-DataFlavor"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                <b>STATIC</b>
+                  <a name="type-imageFlavor"></a><font color="#cc0033">imageFlavor</font>*                  : <a href="#type-DataFlavor">DataFlavor</a>;
+                  <a name="type-javaFileListFlavor"></a><font color="#cc0033">javaFileListFlavor</font>*           : <a href="#type-DataFlavor">DataFlavor</a>;
+                  <font color="#cc0033">javaJVMLocalObjectMimeType</font>*   = "application/x-java-jvm-local-objectref";
+                  <font color="#cc0033">javaRemoteObjectMimeType</font>*     = "application/x-java-remote-object";
+                  <font color="#cc0033">javaSerializedObjectMimeType</font>* = "application/x-java-serialized-object";
+                  <a name="type-plainTextFlavor"></a><font color="#cc0033">plainTextFlavor</font>*              : <a href="#type-DataFlavor">DataFlavor</a>;
+                  <a name="type-stringFlavor"></a><font color="#cc0033">stringFlavor</font>*                 : <a href="#type-DataFlavor">DataFlavor</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">getTextPlainUnicodeFlavor</font>*() : <a href="#type-DataFlavor">DataFlavor</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                  p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                  p2 : <a href="java_lang.html#type-ClassLoader">java_lang.ClassLoader</a>) : <a href="#type-DataFlavor">DataFlavor</a><b>,CONSTRUCTOR</b>;
+                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-DataFlavor">DataFlavor</a><b>,CONSTRUCTOR</b>;
+                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                  p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-DataFlavor">DataFlavor</a><b>,CONSTRUCTOR</b>;
+                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-DataFlavor">DataFlavor</a><b>,CONSTRUCTOR</b>;
+                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-Class">java_lang.Class</a>;
+                                  p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-DataFlavor">DataFlavor</a><b>,CONSTRUCTOR</b>;
+                  <b>PROCEDURE </b><font color="#cc0033">selectBestTextFlavor</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="#type-DataFlavor">DataFlavor</a>) : <a href="#type-DataFlavor">DataFlavor</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">tryToLoadClass</font>!(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                            p1 : <a href="java_lang.html#type-ClassLoader">java_lang.ClassLoader</a>) : <a href="java_lang.html#type-Class">java_lang.Class</a>;
+                <b>END</b>;
+
+  <a name="type-FlavorEvent"></a><font color="#cc0033">FlavorEvent</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_util.html#type-EventObject">java_util.EventObject</a>)
+                 <b>STATIC</b>
+                   <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="#type-Clipboard">Clipboard</a>) : <a href="#type-FlavorEvent">FlavorEvent</a><b>,CONSTRUCTOR</b>;
+                 <b>END</b>;
+
+  <a name="type-FlavorListener"></a><font color="#cc0033">FlavorListener</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_util.html#type-EventListener">java_util.EventListener</a>)    <a href="#meths-FlavorListener"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                    <b>END</b>;
+
+  <a name="type-FlavorMap"></a><font color="#cc0033">FlavorMap</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-FlavorMap"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+               <b>END</b>;
+
+  <a name="type-FlavorTable"></a><font color="#cc0033">FlavorTable</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-FlavorMap">FlavorMap</a>)    <a href="#meths-FlavorTable"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                 <b>END</b>;
+
+  <a name="type-MimeTypeParseException"></a><font color="#cc0033">MimeTypeParseException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Exception">java_lang.Exception</a>)
+                            <b>STATIC</b>
+                              <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-MimeTypeParseException">MimeTypeParseException</a><b>,CONSTRUCTOR</b>;
+                              <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-MimeTypeParseException">MimeTypeParseException</a><b>,CONSTRUCTOR</b>;
+                            <b>END</b>;
+
+  <a name="type-StringSelection"></a><font color="#cc0033">StringSelection</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-Transferable">Transferable</a> + <a href="#type-ClipboardOwner">ClipboardOwner</a>)    <a href="#meths-StringSelection"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                     <b>STATIC</b>
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-StringSelection">StringSelection</a><b>,CONSTRUCTOR</b>;
+                     <b>END</b>;
+
+  <a name="type-SystemFlavorMap"></a><font color="#cc0033">SystemFlavorMap</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-FlavorMap">FlavorMap</a> + <a href="#type-FlavorTable">FlavorTable</a>)    <a href="#meths-SystemFlavorMap"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                     <b>STATIC</b>
+                       <b>PROCEDURE </b><font color="#cc0033">decodeDataFlavor</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-DataFlavor">DataFlavor</a>;
+                       <b>PROCEDURE </b><font color="#cc0033">decodeJavaMIMEType</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-String">java_lang.String</a>;
+                       <b>PROCEDURE </b><font color="#cc0033">encodeDataFlavor</font>*(p0 : <a href="#type-DataFlavor">DataFlavor</a>) : <a href="java_lang.html#type-String">java_lang.String</a>;
+                       <b>PROCEDURE </b><font color="#cc0033">encodeJavaMIMEType</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-String">java_lang.String</a>;
+                       <b>PROCEDURE </b><font color="#cc0033">getDefaultFlavorMap</font>*() : <a href="#type-FlavorMap">FlavorMap</a>;
+                       <b>PROCEDURE </b><font color="#cc0033">isJavaMIMEType</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : BOOLEAN;
+                     <b>END</b>;
+
+  <a name="type-Transferable"></a><font color="#cc0033">Transferable</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-Transferable"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                  <b>END</b>;
+
+  <a name="type-UnsupportedFlavorException"></a><font color="#cc0033">UnsupportedFlavorException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Exception">java_lang.Exception</a>)
+                                <b>STATIC</b>
+                                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="#type-DataFlavor">DataFlavor</a>) : <a href="#type-UnsupportedFlavorException">UnsupportedFlavorException</a><b>,CONSTRUCTOR</b>;
+                                <b>END</b>;
+
+
+
+<a name="meths-Clipboard"></a>
+<b>PROCEDURE </b>(self:Clipboard) <font color="#cc0033">addFlavorListener</font>*(p0 : <a href="#type-FlavorListener">FlavorListener</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Clipboard) <font color="#cc0033">getAvailableDataFlavors</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-DataFlavor">DataFlavor</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Clipboard) <font color="#cc0033">getContents</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="#type-Transferable">Transferable</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Clipboard) <font color="#cc0033">getData</font>*(p0 : <a href="#type-DataFlavor">DataFlavor</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Clipboard) <font color="#cc0033">getFlavorListeners</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-FlavorListener">FlavorListener</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Clipboard) <font color="#cc0033">getName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Clipboard) <font color="#cc0033">isDataFlavorAvailable</font>*(p0 : <a href="#type-DataFlavor">DataFlavor</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Clipboard) <font color="#cc0033">removeFlavorListener</font>*(p0 : <a href="#type-FlavorListener">FlavorListener</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Clipboard) <font color="#cc0033">setContents</font>*(p0 : <a href="#type-Transferable">Transferable</a>;
+                                        p1 : <a href="#type-ClipboardOwner">ClipboardOwner</a>)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-ClipboardOwner"></a>
+<b>PROCEDURE </b>(self:ClipboardOwner) <font color="#cc0033">lostOwnership</font>*(p0 : <a href="#type-Clipboard">Clipboard</a>;
+                                               p1 : <a href="#type-Transferable">Transferable</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-DataFlavor"></a>
+<b>PROCEDURE </b>(self:DataFlavor) <font color="#cc0033">clone</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DataFlavor) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DataFlavor) <font color="#cc0033">equals</font>*(p0 : <a href="#type-DataFlavor">DataFlavor</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DataFlavor) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DataFlavor) <font color="#cc0033">getDefaultRepresentationClass</font>*() : <a href="java_lang.html#type-Class">java_lang.Class</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:DataFlavor) <font color="#cc0033">getDefaultRepresentationClassAsString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:DataFlavor) <font color="#cc0033">getHumanPresentableName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DataFlavor) <font color="#cc0033">getMimeType</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DataFlavor) <font color="#cc0033">getParameter</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DataFlavor) <font color="#cc0033">getPrimaryType</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DataFlavor) <font color="#cc0033">getReaderForText</font>*(p0 : <a href="#type-Transferable">Transferable</a>) : <a href="java_io.html#type-Reader">java_io.Reader</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DataFlavor) <font color="#cc0033">getRepresentationClass</font>*() : <a href="java_lang.html#type-Class">java_lang.Class</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DataFlavor) <font color="#cc0033">getSubType</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DataFlavor) <font color="#cc0033">hashCode</font>*() : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DataFlavor) <font color="#cc0033">isFlavorJavaFileListType</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DataFlavor) <font color="#cc0033">isFlavorRemoteObjectType</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DataFlavor) <font color="#cc0033">isFlavorSerializedObjectType</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DataFlavor) <font color="#cc0033">isFlavorTextType</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DataFlavor) <font color="#cc0033">isMimeTypeEqual</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DataFlavor) <font color="#cc0033">isMimeTypeEqual</font>*(p0 : <a href="#type-DataFlavor">DataFlavor</a>) : BOOLEAN<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:DataFlavor) <font color="#cc0033">isMimeTypeSerializedObject</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DataFlavor) <font color="#cc0033">isRepresentationClassByteBuffer</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DataFlavor) <font color="#cc0033">isRepresentationClassCharBuffer</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DataFlavor) <font color="#cc0033">isRepresentationClassInputStream</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DataFlavor) <font color="#cc0033">isRepresentationClassReader</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DataFlavor) <font color="#cc0033">isRepresentationClassRemote</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DataFlavor) <font color="#cc0033">isRepresentationClassSerializable</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DataFlavor) <font color="#cc0033">match</font>*(p0 : <a href="#type-DataFlavor">DataFlavor</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DataFlavor) <font color="#cc0033">normalizeMimeType</font>!(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DataFlavor) <font color="#cc0033">normalizeMimeTypeParameter</font>!(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                        p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DataFlavor) <font color="#cc0033">readExternal</font>*(p0 : <a href="java_io.html#type-ObjectInput">java_io.ObjectInput</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DataFlavor) <font color="#cc0033">setHumanPresentableName</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DataFlavor) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DataFlavor) <font color="#cc0033">writeExternal</font>*(p0 : <a href="java_io.html#type-ObjectOutput">java_io.ObjectOutput</a>)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-FlavorListener"></a>
+<b>PROCEDURE </b>(self:FlavorListener) <font color="#cc0033">flavorsChanged</font>*(p0 : <a href="#type-FlavorEvent">FlavorEvent</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-FlavorMap"></a>
+<b>PROCEDURE </b>(self:FlavorMap) <font color="#cc0033">getFlavorsForNatives</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_util.html#type-Map">java_util.Map</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:FlavorMap) <font color="#cc0033">getNativesForFlavors</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="#type-DataFlavor">DataFlavor</a>) : <a href="java_util.html#type-Map">java_util.Map</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-FlavorTable"></a>
+<b>PROCEDURE </b>(self:FlavorTable) <font color="#cc0033">getFlavorsForNative</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_util.html#type-List">java_util.List</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:FlavorTable) <font color="#cc0033">getNativesForFlavor</font>*(p0 : <a href="#type-DataFlavor">DataFlavor</a>) : <a href="java_util.html#type-List">java_util.List</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-StringSelection"></a>
+<b>PROCEDURE </b>(self:StringSelection) <font color="#cc0033">getTransferData</font>*(p0 : <a href="#type-DataFlavor">DataFlavor</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:StringSelection) <font color="#cc0033">getTransferDataFlavors</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-DataFlavor">DataFlavor</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:StringSelection) <font color="#cc0033">isDataFlavorSupported</font>*(p0 : <a href="#type-DataFlavor">DataFlavor</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:StringSelection) <font color="#cc0033">lostOwnership</font>*(p0 : <a href="#type-Clipboard">Clipboard</a>;
+                                                p1 : <a href="#type-Transferable">Transferable</a>)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-SystemFlavorMap"></a>
+<b>PROCEDURE </b>(self:SystemFlavorMap) <font color="#cc0033">addFlavorForUnencodedNative</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                              p1 : <a href="#type-DataFlavor">DataFlavor</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SystemFlavorMap) <font color="#cc0033">addUnencodedNativeForFlavor</font>*(p0 : <a href="#type-DataFlavor">DataFlavor</a>;
+                                                              p1 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SystemFlavorMap) <font color="#cc0033">getFlavorsForNative</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_util.html#type-List">java_util.List</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SystemFlavorMap) <font color="#cc0033">getFlavorsForNatives</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_util.html#type-Map">java_util.Map</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SystemFlavorMap) <font color="#cc0033">getNativesForFlavor</font>*(p0 : <a href="#type-DataFlavor">DataFlavor</a>) : <a href="java_util.html#type-List">java_util.List</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SystemFlavorMap) <font color="#cc0033">getNativesForFlavors</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="#type-DataFlavor">DataFlavor</a>) : <a href="java_util.html#type-Map">java_util.Map</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SystemFlavorMap) <font color="#cc0033">setFlavorsForNative</font>*(    p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                      IN  p1 : <b>ARRAY </b><b>OF </b><a href="#type-DataFlavor">DataFlavor</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SystemFlavorMap) <font color="#cc0033">setNativesForFlavor</font>*(    p0 : <a href="#type-DataFlavor">DataFlavor</a>;
+                                                      IN  p1 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-Transferable"></a>
+<b>PROCEDURE </b>(self:Transferable) <font color="#cc0033">getTransferData</font>*(p0 : <a href="#type-DataFlavor">DataFlavor</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Transferable) <font color="#cc0033">getTransferDataFlavors</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-DataFlavor">DataFlavor</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Transferable) <font color="#cc0033">isDataFlavorSupported</font>*(p0 : <a href="#type-DataFlavor">DataFlavor</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>END </b><font color="#cc0033">java_awt_datatransfer</font>.
+</font></pre></hr></body></html>

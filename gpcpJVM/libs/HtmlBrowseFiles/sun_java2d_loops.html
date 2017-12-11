@@ -1,0 +1,1280 @@
+<html><head><title>sun_java2d_loops</title></head>
+<body bgcolor="white">
+<hr><pre>
+<b>FOREIGN MODULE </b><font color="#cc0033">sun_java2d_loops</font>;
+
+<b>IMPORT</b>
+    <a href="sun_java2d.html">sun_java2d</a> := "sun.java2d",
+    <a href="java_awt.html">java_awt</a> := "java.awt",
+    <a href="sun_java2d_pipe.html">sun_java2d_pipe</a> := "sun.java2d.pipe",
+    <a href="java_lang.html">java_lang</a> := "java.lang",
+    <a href="java_util.html">java_util</a> := "java.util",
+    <a href="java_io.html">java_io</a> := "java.io",
+    <a href="java_lang_ref.html">java_lang_ref</a> := "java.lang.ref",
+    <a href="sun_font.html">sun_font</a> := "sun.font",
+    <a href="java_awt_geom.html">java_awt_geom</a> := "java.awt.geom",
+    <a href="java_security.html">java_security</a> := "java.security",
+    <a href="sun_nio_ch.html">sun_nio_ch</a> := "sun.nio.ch",
+    <a href="sun_misc.html">sun_misc</a> := "sun.misc",
+    <a href="java_awt_image.html">java_awt_image</a> := "java.awt.image",
+    <a href="sun_awt_image.html">sun_awt_image</a> := "sun.awt.image";
+
+<b>TYPE</b>
+
+  <a name="type-Blit"></a><font color="#cc0033">Blit</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-GraphicsPrimitive">GraphicsPrimitive</a>)    <a href="#meths-Blit"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+          <b>STATIC</b>
+            <a name="type-methodSignature"></a><font color="#cc0033">methodSignature</font>* : <a href="java_lang.html#type-String">java_lang.String</a>;
+            <a name="type-primTypeID"></a><font color="#cc0033">primTypeID</font>*      : INTEGER;
+            <b>PROCEDURE </b><font color="#cc0033">getFromCache</font>*(p0 : <a href="#type-SurfaceType">SurfaceType</a>;
+                                    p1 : <a href="#type-CompositeType">CompositeType</a>;
+                                    p2 : <a href="#type-SurfaceType">SurfaceType</a>) : <a href="#type-Blit">Blit</a>;
+            <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : LONGINT;
+                            p1 : <a href="#type-SurfaceType">SurfaceType</a>;
+                            p2 : <a href="#type-CompositeType">CompositeType</a>;
+                            p3 : <a href="#type-SurfaceType">SurfaceType</a>) : <a href="#type-Blit">Blit</a><b>,CONSTRUCTOR</b>;
+            <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : <a href="#type-SurfaceType">SurfaceType</a>;
+                            p1 : <a href="#type-CompositeType">CompositeType</a>;
+                            p2 : <a href="#type-SurfaceType">SurfaceType</a>) : <a href="#type-Blit">Blit</a><b>,CONSTRUCTOR</b>;
+            <b>PROCEDURE </b><font color="#cc0033">locate</font>*(p0 : <a href="#type-SurfaceType">SurfaceType</a>;
+                              p1 : <a href="#type-CompositeType">CompositeType</a>;
+                              p2 : <a href="#type-SurfaceType">SurfaceType</a>) : <a href="#type-Blit">Blit</a>;
+          <b>END</b>;
+
+  <a name="type-BlitBg"></a><font color="#cc0033">BlitBg</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-GraphicsPrimitive">GraphicsPrimitive</a>)    <a href="#meths-BlitBg"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+            <b>STATIC</b>
+              <a name="type-methodSignature"></a><font color="#cc0033">methodSignature</font>* : <a href="java_lang.html#type-String">java_lang.String</a>;
+              <a name="type-primTypeID"></a><font color="#cc0033">primTypeID</font>*      : INTEGER;
+              <b>PROCEDURE </b><font color="#cc0033">getFromCache</font>*(p0 : <a href="#type-SurfaceType">SurfaceType</a>;
+                                      p1 : <a href="#type-CompositeType">CompositeType</a>;
+                                      p2 : <a href="#type-SurfaceType">SurfaceType</a>) : <a href="#type-BlitBg">BlitBg</a>;
+              <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : LONGINT;
+                              p1 : <a href="#type-SurfaceType">SurfaceType</a>;
+                              p2 : <a href="#type-CompositeType">CompositeType</a>;
+                              p3 : <a href="#type-SurfaceType">SurfaceType</a>) : <a href="#type-BlitBg">BlitBg</a><b>,CONSTRUCTOR</b>;
+              <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : <a href="#type-SurfaceType">SurfaceType</a>;
+                              p1 : <a href="#type-CompositeType">CompositeType</a>;
+                              p2 : <a href="#type-SurfaceType">SurfaceType</a>) : <a href="#type-BlitBg">BlitBg</a><b>,CONSTRUCTOR</b>;
+              <b>PROCEDURE </b><font color="#cc0033">locate</font>*(p0 : <a href="#type-SurfaceType">SurfaceType</a>;
+                                p1 : <a href="#type-CompositeType">CompositeType</a>;
+                                p2 : <a href="#type-SurfaceType">SurfaceType</a>) : <a href="#type-BlitBg">BlitBg</a>;
+            <b>END</b>;
+
+  <a name="type-CompositeType"></a><font color="#cc0033">CompositeType</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-CompositeType"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                   <b>STATIC</b>
+                     <a name="type-AlphaXor"></a><font color="#cc0033">AlphaXor</font>*            : <a href="#type-CompositeType">CompositeType</a>;
+                     <a name="type-Any"></a><font color="#cc0033">Any</font>*                 : <a href="#type-CompositeType">CompositeType</a>;
+                     <a name="type-AnyAlpha"></a><font color="#cc0033">AnyAlpha</font>*            : <a href="#type-CompositeType">CompositeType</a>;
+                     <a name="type-Clear"></a><font color="#cc0033">Clear</font>*               : <a href="#type-CompositeType">CompositeType</a>;
+                     <font color="#cc0033">DESC_ALPHA_XOR</font>*      = "Porter-Duff Xor";
+                     <font color="#cc0033">DESC_ANY</font>*            = "Any CompositeContext";
+                     <font color="#cc0033">DESC_ANY_ALPHA</font>*      = "Any AlphaComposite Rule";
+                     <font color="#cc0033">DESC_CLEAR</font>*          = "Porter-Duff Clear";
+                     <font color="#cc0033">DESC_DST</font>*            = "Porter-Duff Dst";
+                     <font color="#cc0033">DESC_DST_ATOP</font>*       = "Porter-Duff Dst Atop Src";
+                     <font color="#cc0033">DESC_DST_IN</font>*         = "Porter-Duff Dst In Src";
+                     <font color="#cc0033">DESC_DST_OUT</font>*        = "Porter-Duff Dst HeldOutBy Src";
+                     <font color="#cc0033">DESC_DST_OVER</font>*       = "Porter-Duff Dst Over Src";
+                     <font color="#cc0033">DESC_SRC</font>*            = "Porter-Duff Src";
+                     <font color="#cc0033">DESC_SRC_ATOP</font>*       = "Porter-Duff Src Atop Dst";
+                     <font color="#cc0033">DESC_SRC_IN</font>*         = "Porter-Duff Src In Dst";
+                     <font color="#cc0033">DESC_SRC_NO_EA</font>*      = "Porter-Duff Src, No Extra Alpha";
+                     <font color="#cc0033">DESC_SRC_OUT</font>*        = "Porter-Duff Src HeldOutBy Dst";
+                     <font color="#cc0033">DESC_SRC_OVER</font>*       = "Porter-Duff Src Over Dst";
+                     <font color="#cc0033">DESC_SRC_OVER_NO_EA</font>* = "Porter-Duff SrcOverDst, No Extra Alpha";
+                     <font color="#cc0033">DESC_XOR</font>*            = "XOR mode";
+                     <a name="type-Dst"></a><font color="#cc0033">Dst</font>*                 : <a href="#type-CompositeType">CompositeType</a>;
+                     <a name="type-DstAtop"></a><font color="#cc0033">DstAtop</font>*             : <a href="#type-CompositeType">CompositeType</a>;
+                     <a name="type-DstIn"></a><font color="#cc0033">DstIn</font>*               : <a href="#type-CompositeType">CompositeType</a>;
+                     <a name="type-DstOut"></a><font color="#cc0033">DstOut</font>*              : <a href="#type-CompositeType">CompositeType</a>;
+                     <a name="type-DstOver"></a><font color="#cc0033">DstOver</font>*             : <a href="#type-CompositeType">CompositeType</a>;
+                     <a name="type-General"></a><font color="#cc0033">General</font>*             : <a href="#type-CompositeType">CompositeType</a>;
+                     <a name="type-OpaqueSrcOverNoEa"></a><font color="#cc0033">OpaqueSrcOverNoEa</font>*   : <a href="#type-CompositeType">CompositeType</a>;
+                     <a name="type-Src"></a><font color="#cc0033">Src</font>*                 : <a href="#type-CompositeType">CompositeType</a>;
+                     <a name="type-SrcAtop"></a><font color="#cc0033">SrcAtop</font>*             : <a href="#type-CompositeType">CompositeType</a>;
+                     <a name="type-SrcIn"></a><font color="#cc0033">SrcIn</font>*               : <a href="#type-CompositeType">CompositeType</a>;
+                     <a name="type-SrcNoEa"></a><font color="#cc0033">SrcNoEa</font>*             : <a href="#type-CompositeType">CompositeType</a>;
+                     <a name="type-SrcOut"></a><font color="#cc0033">SrcOut</font>*              : <a href="#type-CompositeType">CompositeType</a>;
+                     <a name="type-SrcOver"></a><font color="#cc0033">SrcOver</font>*             : <a href="#type-CompositeType">CompositeType</a>;
+                     <a name="type-SrcOverNoEa"></a><font color="#cc0033">SrcOverNoEa</font>*         : <a href="#type-CompositeType">CompositeType</a>;
+                     <a name="type-Xor"></a><font color="#cc0033">Xor</font>*                 : <a href="#type-CompositeType">CompositeType</a>;
+                     <b>PROCEDURE </b><font color="#cc0033">forAlphaComposite</font>*(p0 : <a href="java_awt.html#type-AlphaComposite">java_awt.AlphaComposite</a>) : <a href="#type-CompositeType">CompositeType</a>;
+                     <b>PROCEDURE </b><font color="#cc0033">makeUniqueID</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : INTEGER;
+                   <b>END</b>;
+
+  <a name="type-CustomComponent"></a><font color="#cc0033">CustomComponent</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                     <b>STATIC</b>
+                       <b>PROCEDURE </b><font color="#cc0033">getRegionOfInterest</font>*(p0 : <a href="sun_java2d.html#type-SurfaceData">sun_java2d.SurfaceData</a>;
+                                                      p1 : <a href="sun_java2d.html#type-SurfaceData">sun_java2d.SurfaceData</a>;
+                                                      p2 : <a href="sun_java2d_pipe.html#type-Region">sun_java2d_pipe.Region</a>;
+                                                      p3 : INTEGER;
+                                                      p4 : INTEGER;
+                                                      p5 : INTEGER;
+                                                      p6 : INTEGER;
+                                                      p7 : INTEGER;
+                                                      p8 : INTEGER) : <a href="sun_java2d_pipe.html#type-Region">sun_java2d_pipe.Region</a>;
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CustomComponent">CustomComponent</a><b>,CONSTRUCTOR</b>;
+                       <b>PROCEDURE </b><font color="#cc0033">register</font>*();
+                     <b>END</b>;
+
+  <a name="type-DrawGlyphList"></a><font color="#cc0033">DrawGlyphList</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-GraphicsPrimitive">GraphicsPrimitive</a>)    <a href="#meths-DrawGlyphList"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                   <b>STATIC</b>
+                     <a name="type-methodSignature"></a><font color="#cc0033">methodSignature</font>* : <a href="java_lang.html#type-String">java_lang.String</a>;
+                     <a name="type-primTypeID"></a><font color="#cc0033">primTypeID</font>*      : INTEGER;
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : LONGINT;
+                                     p1 : <a href="#type-SurfaceType">SurfaceType</a>;
+                                     p2 : <a href="#type-CompositeType">CompositeType</a>;
+                                     p3 : <a href="#type-SurfaceType">SurfaceType</a>) : <a href="#type-DrawGlyphList">DrawGlyphList</a><b>,CONSTRUCTOR</b>;
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : <a href="#type-SurfaceType">SurfaceType</a>;
+                                     p1 : <a href="#type-CompositeType">CompositeType</a>;
+                                     p2 : <a href="#type-SurfaceType">SurfaceType</a>) : <a href="#type-DrawGlyphList">DrawGlyphList</a><b>,CONSTRUCTOR</b>;
+                     <b>PROCEDURE </b><font color="#cc0033">locate</font>*(p0 : <a href="#type-SurfaceType">SurfaceType</a>;
+                                       p1 : <a href="#type-CompositeType">CompositeType</a>;
+                                       p2 : <a href="#type-SurfaceType">SurfaceType</a>) : <a href="#type-DrawGlyphList">DrawGlyphList</a>;
+                   <b>END</b>;
+
+  <a name="type-DrawGlyphListAA"></a><font color="#cc0033">DrawGlyphListAA</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-GraphicsPrimitive">GraphicsPrimitive</a>)    <a href="#meths-DrawGlyphListAA"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                     <b>STATIC</b>
+                       <a name="type-methodSignature"></a><font color="#cc0033">methodSignature</font>* : <a href="java_lang.html#type-String">java_lang.String</a>;
+                       <a name="type-primTypeID"></a><font color="#cc0033">primTypeID</font>*      : INTEGER;
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : LONGINT;
+                                       p1 : <a href="#type-SurfaceType">SurfaceType</a>;
+                                       p2 : <a href="#type-CompositeType">CompositeType</a>;
+                                       p3 : <a href="#type-SurfaceType">SurfaceType</a>) : <a href="#type-DrawGlyphListAA">DrawGlyphListAA</a><b>,CONSTRUCTOR</b>;
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : <a href="#type-SurfaceType">SurfaceType</a>;
+                                       p1 : <a href="#type-CompositeType">CompositeType</a>;
+                                       p2 : <a href="#type-SurfaceType">SurfaceType</a>) : <a href="#type-DrawGlyphListAA">DrawGlyphListAA</a><b>,CONSTRUCTOR</b>;
+                       <b>PROCEDURE </b><font color="#cc0033">locate</font>*(p0 : <a href="#type-SurfaceType">SurfaceType</a>;
+                                         p1 : <a href="#type-CompositeType">CompositeType</a>;
+                                         p2 : <a href="#type-SurfaceType">SurfaceType</a>) : <a href="#type-DrawGlyphListAA">DrawGlyphListAA</a>;
+                     <b>END</b>;
+
+  <a name="type-DrawGlyphListAA$General"></a><font color="#cc0033">DrawGlyphListAA$General</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-DrawGlyphListAA">DrawGlyphListAA</a>)    <a href="#meths-DrawGlyphListAA$General"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                             <b>STATIC</b>
+                               <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="#type-SurfaceType">SurfaceType</a>;
+                                               p1 : <a href="#type-CompositeType">CompositeType</a>;
+                                               p2 : <a href="#type-SurfaceType">SurfaceType</a>) : <a href="#type-DrawGlyphListAA$General">DrawGlyphListAA$General</a><b>,CONSTRUCTOR</b>;
+                             <b>END</b>;
+
+  <a name="type-DrawGlyphListLCD"></a><font color="#cc0033">DrawGlyphListLCD</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-GraphicsPrimitive">GraphicsPrimitive</a>)    <a href="#meths-DrawGlyphListLCD"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                      <b>STATIC</b>
+                        <a name="type-methodSignature"></a><font color="#cc0033">methodSignature</font>* : <a href="java_lang.html#type-String">java_lang.String</a>;
+                        <a name="type-primTypeID"></a><font color="#cc0033">primTypeID</font>*      : INTEGER;
+                        <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : LONGINT;
+                                        p1 : <a href="#type-SurfaceType">SurfaceType</a>;
+                                        p2 : <a href="#type-CompositeType">CompositeType</a>;
+                                        p3 : <a href="#type-SurfaceType">SurfaceType</a>) : <a href="#type-DrawGlyphListLCD">DrawGlyphListLCD</a><b>,CONSTRUCTOR</b>;
+                        <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : <a href="#type-SurfaceType">SurfaceType</a>;
+                                        p1 : <a href="#type-CompositeType">CompositeType</a>;
+                                        p2 : <a href="#type-SurfaceType">SurfaceType</a>) : <a href="#type-DrawGlyphListLCD">DrawGlyphListLCD</a><b>,CONSTRUCTOR</b>;
+                        <b>PROCEDURE </b><font color="#cc0033">locate</font>*(p0 : <a href="#type-SurfaceType">SurfaceType</a>;
+                                          p1 : <a href="#type-CompositeType">CompositeType</a>;
+                                          p2 : <a href="#type-SurfaceType">SurfaceType</a>) : <a href="#type-DrawGlyphListLCD">DrawGlyphListLCD</a>;
+                      <b>END</b>;
+
+  <a name="type-DrawLine"></a><font color="#cc0033">DrawLine</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-GraphicsPrimitive">GraphicsPrimitive</a>)    <a href="#meths-DrawLine"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+              <b>STATIC</b>
+                <a name="type-methodSignature"></a><font color="#cc0033">methodSignature</font>* : <a href="java_lang.html#type-String">java_lang.String</a>;
+                <a name="type-primTypeID"></a><font color="#cc0033">primTypeID</font>*      : INTEGER;
+                <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : LONGINT;
+                                p1 : <a href="#type-SurfaceType">SurfaceType</a>;
+                                p2 : <a href="#type-CompositeType">CompositeType</a>;
+                                p3 : <a href="#type-SurfaceType">SurfaceType</a>) : <a href="#type-DrawLine">DrawLine</a><b>,CONSTRUCTOR</b>;
+                <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : <a href="#type-SurfaceType">SurfaceType</a>;
+                                p1 : <a href="#type-CompositeType">CompositeType</a>;
+                                p2 : <a href="#type-SurfaceType">SurfaceType</a>) : <a href="#type-DrawLine">DrawLine</a><b>,CONSTRUCTOR</b>;
+                <b>PROCEDURE </b><font color="#cc0033">locate</font>*(p0 : <a href="#type-SurfaceType">SurfaceType</a>;
+                                  p1 : <a href="#type-CompositeType">CompositeType</a>;
+                                  p2 : <a href="#type-SurfaceType">SurfaceType</a>) : <a href="#type-DrawLine">DrawLine</a>;
+              <b>END</b>;
+
+  <a name="type-DrawParallelogram"></a><font color="#cc0033">DrawParallelogram</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-GraphicsPrimitive">GraphicsPrimitive</a>)    <a href="#meths-DrawParallelogram"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                       <b>STATIC</b>
+                         <a name="type-methodSignature"></a><font color="#cc0033">methodSignature</font>* : <a href="java_lang.html#type-String">java_lang.String</a>;
+                         <a name="type-primTypeID"></a><font color="#cc0033">primTypeID</font>*      : INTEGER;
+                         <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : LONGINT;
+                                         p1 : <a href="#type-SurfaceType">SurfaceType</a>;
+                                         p2 : <a href="#type-CompositeType">CompositeType</a>;
+                                         p3 : <a href="#type-SurfaceType">SurfaceType</a>) : <a href="#type-DrawParallelogram">DrawParallelogram</a><b>,CONSTRUCTOR</b>;
+                         <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : <a href="#type-SurfaceType">SurfaceType</a>;
+                                         p1 : <a href="#type-CompositeType">CompositeType</a>;
+                                         p2 : <a href="#type-SurfaceType">SurfaceType</a>) : <a href="#type-DrawParallelogram">DrawParallelogram</a><b>,CONSTRUCTOR</b>;
+                         <b>PROCEDURE </b><font color="#cc0033">locate</font>*(p0 : <a href="#type-SurfaceType">SurfaceType</a>;
+                                           p1 : <a href="#type-CompositeType">CompositeType</a>;
+                                           p2 : <a href="#type-SurfaceType">SurfaceType</a>) : <a href="#type-DrawParallelogram">DrawParallelogram</a>;
+                       <b>END</b>;
+
+  <a name="type-DrawPath"></a><font color="#cc0033">DrawPath</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-GraphicsPrimitive">GraphicsPrimitive</a>)    <a href="#meths-DrawPath"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+              <b>STATIC</b>
+                <a name="type-methodSignature"></a><font color="#cc0033">methodSignature</font>* : <a href="java_lang.html#type-String">java_lang.String</a>;
+                <a name="type-primTypeID"></a><font color="#cc0033">primTypeID</font>*      : INTEGER;
+                <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : LONGINT;
+                                p1 : <a href="#type-SurfaceType">SurfaceType</a>;
+                                p2 : <a href="#type-CompositeType">CompositeType</a>;
+                                p3 : <a href="#type-SurfaceType">SurfaceType</a>) : <a href="#type-DrawPath">DrawPath</a><b>,CONSTRUCTOR</b>;
+                <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : <a href="#type-SurfaceType">SurfaceType</a>;
+                                p1 : <a href="#type-CompositeType">CompositeType</a>;
+                                p2 : <a href="#type-SurfaceType">SurfaceType</a>) : <a href="#type-DrawPath">DrawPath</a><b>,CONSTRUCTOR</b>;
+                <b>PROCEDURE </b><font color="#cc0033">locate</font>*(p0 : <a href="#type-SurfaceType">SurfaceType</a>;
+                                  p1 : <a href="#type-CompositeType">CompositeType</a>;
+                                  p2 : <a href="#type-SurfaceType">SurfaceType</a>) : <a href="#type-DrawPath">DrawPath</a>;
+              <b>END</b>;
+
+  <a name="type-DrawPolygons"></a><font color="#cc0033">DrawPolygons</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-GraphicsPrimitive">GraphicsPrimitive</a>)    <a href="#meths-DrawPolygons"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                  <b>STATIC</b>
+                    <a name="type-methodSignature"></a><font color="#cc0033">methodSignature</font>* : <a href="java_lang.html#type-String">java_lang.String</a>;
+                    <a name="type-primTypeID"></a><font color="#cc0033">primTypeID</font>*      : INTEGER;
+                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : LONGINT;
+                                    p1 : <a href="#type-SurfaceType">SurfaceType</a>;
+                                    p2 : <a href="#type-CompositeType">CompositeType</a>;
+                                    p3 : <a href="#type-SurfaceType">SurfaceType</a>) : <a href="#type-DrawPolygons">DrawPolygons</a><b>,CONSTRUCTOR</b>;
+                    <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : <a href="#type-SurfaceType">SurfaceType</a>;
+                                    p1 : <a href="#type-CompositeType">CompositeType</a>;
+                                    p2 : <a href="#type-SurfaceType">SurfaceType</a>) : <a href="#type-DrawPolygons">DrawPolygons</a><b>,CONSTRUCTOR</b>;
+                    <b>PROCEDURE </b><font color="#cc0033">locate</font>*(p0 : <a href="#type-SurfaceType">SurfaceType</a>;
+                                      p1 : <a href="#type-CompositeType">CompositeType</a>;
+                                      p2 : <a href="#type-SurfaceType">SurfaceType</a>) : <a href="#type-DrawPolygons">DrawPolygons</a>;
+                  <b>END</b>;
+
+  <a name="type-DrawRect"></a><font color="#cc0033">DrawRect</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-GraphicsPrimitive">GraphicsPrimitive</a>)    <a href="#meths-DrawRect"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+              <b>STATIC</b>
+                <a name="type-methodSignature"></a><font color="#cc0033">methodSignature</font>* : <a href="java_lang.html#type-String">java_lang.String</a>;
+                <a name="type-primTypeID"></a><font color="#cc0033">primTypeID</font>*      : INTEGER;
+                <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : LONGINT;
+                                p1 : <a href="#type-SurfaceType">SurfaceType</a>;
+                                p2 : <a href="#type-CompositeType">CompositeType</a>;
+                                p3 : <a href="#type-SurfaceType">SurfaceType</a>) : <a href="#type-DrawRect">DrawRect</a><b>,CONSTRUCTOR</b>;
+                <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : <a href="#type-SurfaceType">SurfaceType</a>;
+                                p1 : <a href="#type-CompositeType">CompositeType</a>;
+                                p2 : <a href="#type-SurfaceType">SurfaceType</a>) : <a href="#type-DrawRect">DrawRect</a><b>,CONSTRUCTOR</b>;
+                <b>PROCEDURE </b><font color="#cc0033">locate</font>*(p0 : <a href="#type-SurfaceType">SurfaceType</a>;
+                                  p1 : <a href="#type-CompositeType">CompositeType</a>;
+                                  p2 : <a href="#type-SurfaceType">SurfaceType</a>) : <a href="#type-DrawRect">DrawRect</a>;
+              <b>END</b>;
+
+  <a name="type-FillParallelogram"></a><font color="#cc0033">FillParallelogram</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-GraphicsPrimitive">GraphicsPrimitive</a>)    <a href="#meths-FillParallelogram"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                       <b>STATIC</b>
+                         <a name="type-methodSignature"></a><font color="#cc0033">methodSignature</font>* : <a href="java_lang.html#type-String">java_lang.String</a>;
+                         <a name="type-primTypeID"></a><font color="#cc0033">primTypeID</font>*      : INTEGER;
+                         <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : LONGINT;
+                                         p1 : <a href="#type-SurfaceType">SurfaceType</a>;
+                                         p2 : <a href="#type-CompositeType">CompositeType</a>;
+                                         p3 : <a href="#type-SurfaceType">SurfaceType</a>) : <a href="#type-FillParallelogram">FillParallelogram</a><b>,CONSTRUCTOR</b>;
+                         <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : <a href="#type-SurfaceType">SurfaceType</a>;
+                                         p1 : <a href="#type-CompositeType">CompositeType</a>;
+                                         p2 : <a href="#type-SurfaceType">SurfaceType</a>) : <a href="#type-FillParallelogram">FillParallelogram</a><b>,CONSTRUCTOR</b>;
+                         <b>PROCEDURE </b><font color="#cc0033">locate</font>*(p0 : <a href="#type-SurfaceType">SurfaceType</a>;
+                                           p1 : <a href="#type-CompositeType">CompositeType</a>;
+                                           p2 : <a href="#type-SurfaceType">SurfaceType</a>) : <a href="#type-FillParallelogram">FillParallelogram</a>;
+                       <b>END</b>;
+
+  <a name="type-FillPath"></a><font color="#cc0033">FillPath</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-GraphicsPrimitive">GraphicsPrimitive</a>)    <a href="#meths-FillPath"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+              <b>STATIC</b>
+                <a name="type-methodSignature"></a><font color="#cc0033">methodSignature</font>* : <a href="java_lang.html#type-String">java_lang.String</a>;
+                <a name="type-primTypeID"></a><font color="#cc0033">primTypeID</font>*      : INTEGER;
+                <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : LONGINT;
+                                p1 : <a href="#type-SurfaceType">SurfaceType</a>;
+                                p2 : <a href="#type-CompositeType">CompositeType</a>;
+                                p3 : <a href="#type-SurfaceType">SurfaceType</a>) : <a href="#type-FillPath">FillPath</a><b>,CONSTRUCTOR</b>;
+                <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : <a href="#type-SurfaceType">SurfaceType</a>;
+                                p1 : <a href="#type-CompositeType">CompositeType</a>;
+                                p2 : <a href="#type-SurfaceType">SurfaceType</a>) : <a href="#type-FillPath">FillPath</a><b>,CONSTRUCTOR</b>;
+                <b>PROCEDURE </b><font color="#cc0033">locate</font>*(p0 : <a href="#type-SurfaceType">SurfaceType</a>;
+                                  p1 : <a href="#type-CompositeType">CompositeType</a>;
+                                  p2 : <a href="#type-SurfaceType">SurfaceType</a>) : <a href="#type-FillPath">FillPath</a>;
+              <b>END</b>;
+
+  <a name="type-FillRect"></a><font color="#cc0033">FillRect</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-GraphicsPrimitive">GraphicsPrimitive</a>)    <a href="#meths-FillRect"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+              <b>STATIC</b>
+                <a name="type-methodSignature"></a><font color="#cc0033">methodSignature</font>* : <a href="java_lang.html#type-String">java_lang.String</a>;
+                <a name="type-primTypeID"></a><font color="#cc0033">primTypeID</font>*      : INTEGER;
+                <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : LONGINT;
+                                p1 : <a href="#type-SurfaceType">SurfaceType</a>;
+                                p2 : <a href="#type-CompositeType">CompositeType</a>;
+                                p3 : <a href="#type-SurfaceType">SurfaceType</a>) : <a href="#type-FillRect">FillRect</a><b>,CONSTRUCTOR</b>;
+                <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : <a href="#type-SurfaceType">SurfaceType</a>;
+                                p1 : <a href="#type-CompositeType">CompositeType</a>;
+                                p2 : <a href="#type-SurfaceType">SurfaceType</a>) : <a href="#type-FillRect">FillRect</a><b>,CONSTRUCTOR</b>;
+                <b>PROCEDURE </b><font color="#cc0033">locate</font>*(p0 : <a href="#type-SurfaceType">SurfaceType</a>;
+                                  p1 : <a href="#type-CompositeType">CompositeType</a>;
+                                  p2 : <a href="#type-SurfaceType">SurfaceType</a>) : <a href="#type-FillRect">FillRect</a>;
+              <b>END</b>;
+
+  <a name="type-FillRect$General"></a><font color="#cc0033">FillRect$General</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-FillRect">FillRect</a>)    <a href="#meths-FillRect$General"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                        <font color="#cc0033">fillop</font>* : <a href="#type-MaskFill">MaskFill</a>;
+                      <b>STATIC</b>
+                        <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="#type-SurfaceType">SurfaceType</a>;
+                                        p1 : <a href="#type-CompositeType">CompositeType</a>;
+                                        p2 : <a href="#type-SurfaceType">SurfaceType</a>) : <a href="#type-FillRect$General">FillRect$General</a><b>,CONSTRUCTOR</b>;
+                      <b>END</b>;
+
+  <a name="type-FillSpans"></a><font color="#cc0033">FillSpans</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-GraphicsPrimitive">GraphicsPrimitive</a>)    <a href="#meths-FillSpans"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+               <b>STATIC</b>
+                 <a name="type-methodSignature"></a><font color="#cc0033">methodSignature</font>* : <a href="java_lang.html#type-String">java_lang.String</a>;
+                 <a name="type-primTypeID"></a><font color="#cc0033">primTypeID</font>*      : INTEGER;
+                 <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : LONGINT;
+                                 p1 : <a href="#type-SurfaceType">SurfaceType</a>;
+                                 p2 : <a href="#type-CompositeType">CompositeType</a>;
+                                 p3 : <a href="#type-SurfaceType">SurfaceType</a>) : <a href="#type-FillSpans">FillSpans</a><b>,CONSTRUCTOR</b>;
+                 <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : <a href="#type-SurfaceType">SurfaceType</a>;
+                                 p1 : <a href="#type-CompositeType">CompositeType</a>;
+                                 p2 : <a href="#type-SurfaceType">SurfaceType</a>) : <a href="#type-FillSpans">FillSpans</a><b>,CONSTRUCTOR</b>;
+                 <b>PROCEDURE </b><font color="#cc0033">locate</font>*(p0 : <a href="#type-SurfaceType">SurfaceType</a>;
+                                   p1 : <a href="#type-CompositeType">CompositeType</a>;
+                                   p2 : <a href="#type-SurfaceType">SurfaceType</a>) : <a href="#type-FillSpans">FillSpans</a>;
+               <b>END</b>;
+
+  <a name="type-FontInfo"></a><font color="#cc0033">FontInfo</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_lang.html#type-Cloneable">java_lang.Cloneable</a>)    <a href="#meths-FontInfo"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                <font color="#cc0033">font</font>*         : <a href="java_awt.html#type-Font">java_awt.Font</a>;
+                <font color="#cc0033">font2D</font>*       : <a href="sun_font.html#type-Font2D">sun_font.Font2D</a>;
+                <font color="#cc0033">fontStrike</font>*   : <a href="sun_font.html#type-FontStrike">sun_font.FontStrike</a>;
+                <font color="#cc0033">devTx</font>*        : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>REAL;
+                <font color="#cc0033">glyphTx</font>*      : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>REAL;
+                <font color="#cc0033">pixelHeight</font>*  : INTEGER;
+                <font color="#cc0033">originX</font>*      : SHORTREAL;
+                <font color="#cc0033">originY</font>*      : SHORTREAL;
+                <font color="#cc0033">aaHint</font>*       : INTEGER;
+                <font color="#cc0033">lcdRGBOrder</font>*  : BOOLEAN;
+                <font color="#cc0033">lcdSubPixPos</font>* : BOOLEAN;
+              <b>STATIC</b>
+                <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-FontInfo">FontInfo</a><b>,CONSTRUCTOR</b>;
+              <b>END</b>;
+
+  <a name="type-GeneralRenderer"></a><font color="#cc0033">GeneralRenderer</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                     <b>STATIC</b>
+                       <b>PROCEDURE </b><font color="#cc0033">adjustLine</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>INTEGER;
+                                                 p1 : INTEGER;
+                                                 p2 : INTEGER;
+                                                 p3 : INTEGER;
+                                                 p4 : INTEGER) : BOOLEAN;
+                       <b>PROCEDURE </b><font color="#cc0033">doDrawRect</font>*(p0 : <b>PixelWriter</b>;
+                                             p1 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                             p2 : <a href="sun_java2d.html#type-SurfaceData">sun_java2d.SurfaceData</a>;
+                                             p3 : INTEGER;
+                                             p4 : INTEGER;
+                                             p5 : INTEGER;
+                                             p6 : INTEGER);
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-GeneralRenderer">GeneralRenderer</a><b>,CONSTRUCTOR</b>;
+                       <b>PROCEDURE </b><font color="#cc0033">register</font>*();
+                     <b>END</b>;
+
+  <a name="type-GraphicsPrimitive"></a><font color="#cc0033">GraphicsPrimitive</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-GraphicsPrimitive"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                       <b>STATIC</b>
+                         <font color="#cc0033">TRACECOUNTS</font>*     = 4;
+                         <a name="type-tracefile"></a><font color="#cc0033">tracefile</font>*       : <a href="java_lang.html#type-String">java_lang.String</a>;
+                         <a name="type-traceflags"></a><font color="#cc0033">traceflags</font>*      : INTEGER;
+                         <font color="#cc0033">TRACELOG</font>*        = 1;
+                         <a name="type-traceout"></a><font color="#cc0033">traceout</font>*        : <a href="java_io.html#type-PrintStream">java_io.PrintStream</a>;
+                         <font color="#cc0033">TRACETIMESTAMP</font>*  = 2;
+                         <b>PROCEDURE </b><font color="#cc0033">convertFrom</font>!(p0 : <a href="#type-Blit">Blit</a>;
+                                                p1 : <a href="sun_java2d.html#type-SurfaceData">sun_java2d.SurfaceData</a>;
+                                                p2 : INTEGER;
+                                                p3 : INTEGER;
+                                                p4 : INTEGER;
+                                                p5 : INTEGER;
+                                                p6 : <a href="sun_java2d.html#type-SurfaceData">sun_java2d.SurfaceData</a>) : <a href="sun_java2d.html#type-SurfaceData">sun_java2d.SurfaceData</a>;
+                         <b>PROCEDURE </b><font color="#cc0033">convertFrom</font>!(p0 : <a href="#type-Blit">Blit</a>;
+                                                p1 : <a href="sun_java2d.html#type-SurfaceData">sun_java2d.SurfaceData</a>;
+                                                p2 : INTEGER;
+                                                p3 : INTEGER;
+                                                p4 : INTEGER;
+                                                p5 : INTEGER;
+                                                p6 : <a href="sun_java2d.html#type-SurfaceData">sun_java2d.SurfaceData</a>;
+                                                p7 : INTEGER) : <a href="sun_java2d.html#type-SurfaceData">sun_java2d.SurfaceData</a>;
+                         <b>PROCEDURE </b><font color="#cc0033">convertTo</font>!(p0 : <a href="#type-Blit">Blit</a>;
+                                              p1 : <a href="sun_java2d.html#type-SurfaceData">sun_java2d.SurfaceData</a>;
+                                              p2 : <a href="sun_java2d.html#type-SurfaceData">sun_java2d.SurfaceData</a>;
+                                              p3 : <a href="sun_java2d_pipe.html#type-Region">sun_java2d_pipe.Region</a>;
+                                              p4 : INTEGER;
+                                              p5 : INTEGER;
+                                              p6 : INTEGER;
+                                              p7 : INTEGER);
+                         <b>PROCEDURE </b><font color="#cc0033">createConverter</font>!(p0 : <a href="#type-SurfaceType">SurfaceType</a>;
+                                                    p1 : <a href="#type-SurfaceType">SurfaceType</a>) : <a href="#type-Blit">Blit</a>;
+                         <b>PROCEDURE </b><font color="#cc0033">getGeneralOp</font>!(p0 : INTEGER;
+                                                 p1 : <a href="#type-CompositeType">CompositeType</a>) : <a href="#type-GraphicsPrimitive">GraphicsPrimitive</a>;
+                         <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : LONGINT;
+                                         p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                         p2 : INTEGER;
+                                         p3 : <a href="#type-SurfaceType">SurfaceType</a>;
+                                         p4 : <a href="#type-CompositeType">CompositeType</a>;
+                                         p5 : <a href="#type-SurfaceType">SurfaceType</a>) : <a href="#type-GraphicsPrimitive">GraphicsPrimitive</a><b>,CONSTRUCTOR</b>;
+                         <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                         p1 : INTEGER;
+                                         p2 : <a href="#type-SurfaceType">SurfaceType</a>;
+                                         p3 : <a href="#type-CompositeType">CompositeType</a>;
+                                         p4 : <a href="#type-SurfaceType">SurfaceType</a>) : <a href="#type-GraphicsPrimitive">GraphicsPrimitive</a><b>,CONSTRUCTOR</b>;
+                         <b>PROCEDURE </b><font color="#cc0033">makePrimTypeID</font>*() : INTEGER;
+                         <b>PROCEDURE </b><font color="#cc0033">makeUniqueID</font>*(p0 : INTEGER;
+                                                 p1 : <a href="#type-SurfaceType">SurfaceType</a>;
+                                                 p2 : <a href="#type-CompositeType">CompositeType</a>;
+                                                 p3 : <a href="#type-SurfaceType">SurfaceType</a>) : INTEGER;
+                         <b>PROCEDURE </b><font color="#cc0033">simplename</font>*(p0 : <a href="#type-SurfaceType">SurfaceType</a>) : <a href="java_lang.html#type-String">java_lang.String</a>;
+                         <b>PROCEDURE </b><font color="#cc0033">simplename</font>*(p0 : <a href="#type-CompositeType">CompositeType</a>) : <a href="java_lang.html#type-String">java_lang.String</a>;
+                         <b>PROCEDURE </b><font color="#cc0033">simplename</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><b>Field</b>;
+                                                   p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_lang.html#type-String">java_lang.String</a>;
+                         <b>PROCEDURE </b><font color="#cc0033">tracePrimitive</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>);
+                         <b>PROCEDURE </b><font color="#cc0033">tracingEnabled</font>*() : BOOLEAN;
+                       <b>END</b>;
+
+  <a name="type-GraphicsPrimitive$GeneralBinaryOp"></a><font color="#cc0033">GraphicsPrimitive$GeneralBinaryOp</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-GraphicsPrimitive$GeneralBinaryOp"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                                       <b>END</b>;
+
+  <a name="type-GraphicsPrimitive$GeneralUnaryOp"></a><font color="#cc0033">GraphicsPrimitive$GeneralUnaryOp</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-GraphicsPrimitive$GeneralUnaryOp"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                                      <b>END</b>;
+
+  <a name="type-GraphicsPrimitive$TraceReporter"></a><font color="#cc0033">GraphicsPrimitive$TraceReporter</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Thread">java_lang.Thread</a>)    <a href="#meths-GraphicsPrimitive$TraceReporter"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                                     <b>STATIC</b>
+                                       <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-GraphicsPrimitive$TraceReporter">GraphicsPrimitive$TraceReporter</a><b>,CONSTRUCTOR</b>;
+                                       <b>PROCEDURE </b><font color="#cc0033">setShutdownHook</font>*();
+                                     <b>END</b>;
+
+  <a name="type-GraphicsPrimitiveMgr"></a><font color="#cc0033">GraphicsPrimitiveMgr</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                          <b>STATIC</b>
+                            <b>PROCEDURE </b><font color="#cc0033">locate</font>*(p0 : INTEGER;
+                                              p1 : <a href="#type-SurfaceType">SurfaceType</a>) : <a href="#type-GraphicsPrimitive">GraphicsPrimitive</a>;
+                            <b>PROCEDURE </b><font color="#cc0033">locate</font>*(p0 : INTEGER;
+                                              p1 : <a href="#type-SurfaceType">SurfaceType</a>;
+                                              p2 : <a href="#type-CompositeType">CompositeType</a>;
+                                              p3 : <a href="#type-SurfaceType">SurfaceType</a>) : <a href="#type-GraphicsPrimitive">GraphicsPrimitive</a>;
+                            <b>PROCEDURE </b><font color="#cc0033">locatePrim</font>*(p0 : INTEGER;
+                                                  p1 : <a href="#type-SurfaceType">SurfaceType</a>;
+                                                  p2 : <a href="#type-CompositeType">CompositeType</a>;
+                                                  p3 : <a href="#type-SurfaceType">SurfaceType</a>) : <a href="#type-GraphicsPrimitive">GraphicsPrimitive</a>;
+                            <b>PROCEDURE </b><font color="#cc0033">main</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>);
+                            <b>PROCEDURE </b><font color="#cc0033">register</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="#type-GraphicsPrimitive">GraphicsPrimitive</a>);
+                            <b>PROCEDURE </b><font color="#cc0033">registerGeneral</font>*(p0 : <a href="#type-GraphicsPrimitive">GraphicsPrimitive</a>);
+                            <b>PROCEDURE </b><font color="#cc0033">testPrimitiveInstantiation</font>*(p0 : BOOLEAN);
+                            <b>PROCEDURE </b><font color="#cc0033">testPrimitiveInstantiation</font>*();
+                          <b>END</b>;
+
+  <a name="type-GraphicsPrimitiveProxy"></a><font color="#cc0033">GraphicsPrimitiveProxy</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-GraphicsPrimitive">GraphicsPrimitive</a>)    <a href="#meths-GraphicsPrimitiveProxy"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                            <b>STATIC</b>
+                              <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-Class">java_lang.Class</a>;
+                                              p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                              p2 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                              p3 : INTEGER;
+                                              p4 : <a href="#type-SurfaceType">SurfaceType</a>;
+                                              p5 : <a href="#type-CompositeType">CompositeType</a>;
+                                              p6 : <a href="#type-SurfaceType">SurfaceType</a>) : <a href="#type-GraphicsPrimitiveProxy">GraphicsPrimitiveProxy</a><b>,CONSTRUCTOR</b>;
+                            <b>END</b>;
+
+  <a name="type-MaskBlit"></a><font color="#cc0033">MaskBlit</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-GraphicsPrimitive">GraphicsPrimitive</a>)    <a href="#meths-MaskBlit"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+              <b>STATIC</b>
+                <a name="type-methodSignature"></a><font color="#cc0033">methodSignature</font>* : <a href="java_lang.html#type-String">java_lang.String</a>;
+                <a name="type-primTypeID"></a><font color="#cc0033">primTypeID</font>*      : INTEGER;
+                <b>PROCEDURE </b><font color="#cc0033">getFromCache</font>*(p0 : <a href="#type-SurfaceType">SurfaceType</a>;
+                                        p1 : <a href="#type-CompositeType">CompositeType</a>;
+                                        p2 : <a href="#type-SurfaceType">SurfaceType</a>) : <a href="#type-MaskBlit">MaskBlit</a>;
+                <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : LONGINT;
+                                p1 : <a href="#type-SurfaceType">SurfaceType</a>;
+                                p2 : <a href="#type-CompositeType">CompositeType</a>;
+                                p3 : <a href="#type-SurfaceType">SurfaceType</a>) : <a href="#type-MaskBlit">MaskBlit</a><b>,CONSTRUCTOR</b>;
+                <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : <a href="#type-SurfaceType">SurfaceType</a>;
+                                p1 : <a href="#type-CompositeType">CompositeType</a>;
+                                p2 : <a href="#type-SurfaceType">SurfaceType</a>) : <a href="#type-MaskBlit">MaskBlit</a><b>,CONSTRUCTOR</b>;
+                <b>PROCEDURE </b><font color="#cc0033">locate</font>*(p0 : <a href="#type-SurfaceType">SurfaceType</a>;
+                                  p1 : <a href="#type-CompositeType">CompositeType</a>;
+                                  p2 : <a href="#type-SurfaceType">SurfaceType</a>) : <a href="#type-MaskBlit">MaskBlit</a>;
+              <b>END</b>;
+
+  <a name="type-MaskFill"></a><font color="#cc0033">MaskFill</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-GraphicsPrimitive">GraphicsPrimitive</a>)    <a href="#meths-MaskFill"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+              <b>STATIC</b>
+                <a name="type-methodSignature"></a><font color="#cc0033">methodSignature</font>* : <a href="java_lang.html#type-String">java_lang.String</a>;
+                <a name="type-primTypeID"></a><font color="#cc0033">primTypeID</font>*      : INTEGER;
+                <b>PROCEDURE </b><font color="#cc0033">getFromCache</font>*(p0 : <a href="#type-SurfaceType">SurfaceType</a>;
+                                        p1 : <a href="#type-CompositeType">CompositeType</a>;
+                                        p2 : <a href="#type-SurfaceType">SurfaceType</a>) : <a href="#type-MaskFill">MaskFill</a>;
+                <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : <a href="#type-SurfaceType">SurfaceType</a>;
+                                p1 : <a href="#type-CompositeType">CompositeType</a>;
+                                p2 : <a href="#type-SurfaceType">SurfaceType</a>) : <a href="#type-MaskFill">MaskFill</a><b>,CONSTRUCTOR</b>;
+                <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : LONGINT;
+                                p1 : <a href="#type-SurfaceType">SurfaceType</a>;
+                                p2 : <a href="#type-CompositeType">CompositeType</a>;
+                                p3 : <a href="#type-SurfaceType">SurfaceType</a>) : <a href="#type-MaskFill">MaskFill</a><b>,CONSTRUCTOR</b>;
+                <b>PROCEDURE </b><font color="#cc0033">locate</font>*(p0 : <a href="#type-SurfaceType">SurfaceType</a>;
+                                  p1 : <a href="#type-CompositeType">CompositeType</a>;
+                                  p2 : <a href="#type-SurfaceType">SurfaceType</a>) : <a href="#type-MaskFill">MaskFill</a>;
+                <b>PROCEDURE </b><font color="#cc0033">locatePrim</font>*(p0 : <a href="#type-SurfaceType">SurfaceType</a>;
+                                      p1 : <a href="#type-CompositeType">CompositeType</a>;
+                                      p2 : <a href="#type-SurfaceType">SurfaceType</a>) : <a href="#type-MaskFill">MaskFill</a>;
+              <b>END</b>;
+
+  <a name="type-ProcessPath"></a><font color="#cc0033">ProcessPath</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                 <b>STATIC</b>
+                   <font color="#cc0033">EPSF</font>*                  = 9.765625E-4;
+                   <font color="#cc0033">EPSFX</font>*                 = 1;
+                   <a name="type-noopEndSubPathHandler"></a><font color="#cc0033">noopEndSubPathHandler</font>* : <a href="#type-ProcessPath$EndSubPathHandler">ProcessPath$EndSubPathHandler</a>;
+                   <font color="#cc0033">PH_MODE_DRAW_CLIP</font>*     = 0;
+                   <font color="#cc0033">PH_MODE_FILL_CLIP</font>*     = 1;
+                   <b>PROCEDURE </b><font color="#cc0033">drawPath</font>*(p0 : <a href="#type-ProcessPath$DrawHandler">ProcessPath$DrawHandler</a>;
+                                       p1 : <a href="#type-ProcessPath$EndSubPathHandler">ProcessPath$EndSubPathHandler</a>;
+                                       p2 : <a href="java_awt_geom.html#type-Path2D$Float">java_awt_geom.Path2D$Float</a>;
+                                       p3 : INTEGER;
+                                       p4 : INTEGER) : BOOLEAN;
+                   <b>PROCEDURE </b><font color="#cc0033">drawPath</font>*(p0 : <a href="#type-ProcessPath$DrawHandler">ProcessPath$DrawHandler</a>;
+                                       p1 : <a href="java_awt_geom.html#type-Path2D$Float">java_awt_geom.Path2D$Float</a>;
+                                       p2 : INTEGER;
+                                       p3 : INTEGER) : BOOLEAN;
+                   <b>PROCEDURE </b><font color="#cc0033">fillPath</font>*(p0 : <a href="#type-ProcessPath$DrawHandler">ProcessPath$DrawHandler</a>;
+                                       p1 : <a href="java_awt_geom.html#type-Path2D$Float">java_awt_geom.Path2D$Float</a>;
+                                       p2 : INTEGER;
+                                       p3 : INTEGER) : BOOLEAN;
+                   <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-ProcessPath">ProcessPath</a><b>,CONSTRUCTOR</b>;
+                 <b>END</b>;
+
+  <a name="type-ProcessPath$DrawHandler"></a><font color="#cc0033">ProcessPath$DrawHandler</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-ProcessPath$DrawHandler"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                               <font color="#cc0033">xMin</font>*          : INTEGER;
+                               <font color="#cc0033">yMin</font>*          : INTEGER;
+                               <font color="#cc0033">xMax</font>*          : INTEGER;
+                               <font color="#cc0033">yMax</font>*          : INTEGER;
+                               <font color="#cc0033">xMinf</font>*         : SHORTREAL;
+                               <font color="#cc0033">yMinf</font>*         : SHORTREAL;
+                               <font color="#cc0033">xMaxf</font>*         : SHORTREAL;
+                               <font color="#cc0033">yMaxf</font>*         : SHORTREAL;
+                               <font color="#cc0033">strokeControl</font>* : INTEGER;
+                             <b>STATIC</b>
+                               <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER;
+                                               p1 : INTEGER;
+                                               p2 : INTEGER;
+                                               p3 : INTEGER) : <a href="#type-ProcessPath$DrawHandler">ProcessPath$DrawHandler</a><b>,CONSTRUCTOR</b>;
+                               <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER;
+                                               p1 : INTEGER;
+                                               p2 : INTEGER;
+                                               p3 : INTEGER;
+                                               p4 : INTEGER) : <a href="#type-ProcessPath$DrawHandler">ProcessPath$DrawHandler</a><b>,CONSTRUCTOR</b>;
+                             <b>END</b>;
+
+  <a name="type-ProcessPath$EndSubPathHandler"></a><font color="#cc0033">ProcessPath$EndSubPathHandler</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-ProcessPath$EndSubPathHandler"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                                   <b>END</b>;
+
+  <a name="type-ProcessPath$ProcessHandler"></a><font color="#cc0033">ProcessPath$ProcessHandler</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-ProcessPath$EndSubPathHandler">ProcessPath$EndSubPathHandler</a>)    <a href="#meths-ProcessPath$ProcessHandler"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                                <b>STATIC</b>
+                                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="#type-ProcessPath$DrawHandler">ProcessPath$DrawHandler</a>;
+                                                  p1 : INTEGER) : <a href="#type-ProcessPath$ProcessHandler">ProcessPath$ProcessHandler</a><b>,CONSTRUCTOR</b>;
+                                <b>END</b>;
+
+  <a name="type-RenderCache"></a><font color="#cc0033">RenderCache</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-RenderCache"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                 <b>STATIC</b>
+                   <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER) : <a href="#type-RenderCache">RenderCache</a><b>,CONSTRUCTOR</b>;
+                 <b>END</b>;
+
+  <a name="type-RenderLoops"></a><font color="#cc0033">RenderLoops</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                   <font color="#cc0033">drawLineLoop</font>*          : <a href="#type-DrawLine">DrawLine</a>;
+                   <font color="#cc0033">fillRectLoop</font>*          : <a href="#type-FillRect">FillRect</a>;
+                   <font color="#cc0033">drawRectLoop</font>*          : <a href="#type-DrawRect">DrawRect</a>;
+                   <font color="#cc0033">drawPolygonsLoop</font>*      : <a href="#type-DrawPolygons">DrawPolygons</a>;
+                   <font color="#cc0033">drawPathLoop</font>*          : <a href="#type-DrawPath">DrawPath</a>;
+                   <font color="#cc0033">fillPathLoop</font>*          : <a href="#type-FillPath">FillPath</a>;
+                   <font color="#cc0033">fillSpansLoop</font>*         : <a href="#type-FillSpans">FillSpans</a>;
+                   <font color="#cc0033">fillParallelogramLoop</font>* : <a href="#type-FillParallelogram">FillParallelogram</a>;
+                   <font color="#cc0033">drawParallelogramLoop</font>* : <a href="#type-DrawParallelogram">DrawParallelogram</a>;
+                   <font color="#cc0033">drawGlyphListLoop</font>*     : <a href="#type-DrawGlyphList">DrawGlyphList</a>;
+                   <font color="#cc0033">drawGlyphListAALoop</font>*   : <a href="#type-DrawGlyphListAA">DrawGlyphListAA</a>;
+                   <font color="#cc0033">drawGlyphListLCDLoop</font>*  : <a href="#type-DrawGlyphListLCD">DrawGlyphListLCD</a>;
+                 <b>STATIC</b>
+                   <a name="type-primTypeID"></a><font color="#cc0033">primTypeID</font>* : INTEGER;
+                   <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-RenderLoops">RenderLoops</a><b>,CONSTRUCTOR</b>;
+                 <b>END</b>;
+
+  <a name="type-ScaledBlit"></a><font color="#cc0033">ScaledBlit</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-GraphicsPrimitive">GraphicsPrimitive</a>)    <a href="#meths-ScaledBlit"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                <b>STATIC</b>
+                  <a name="type-methodSignature"></a><font color="#cc0033">methodSignature</font>* : <a href="java_lang.html#type-String">java_lang.String</a>;
+                  <a name="type-primTypeID"></a><font color="#cc0033">primTypeID</font>*      : INTEGER;
+                  <b>PROCEDURE </b><font color="#cc0033">getFromCache</font>*(p0 : <a href="#type-SurfaceType">SurfaceType</a>;
+                                          p1 : <a href="#type-CompositeType">CompositeType</a>;
+                                          p2 : <a href="#type-SurfaceType">SurfaceType</a>) : <a href="#type-ScaledBlit">ScaledBlit</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : LONGINT;
+                                  p1 : <a href="#type-SurfaceType">SurfaceType</a>;
+                                  p2 : <a href="#type-CompositeType">CompositeType</a>;
+                                  p3 : <a href="#type-SurfaceType">SurfaceType</a>) : <a href="#type-ScaledBlit">ScaledBlit</a><b>,CONSTRUCTOR</b>;
+                  <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : <a href="#type-SurfaceType">SurfaceType</a>;
+                                  p1 : <a href="#type-CompositeType">CompositeType</a>;
+                                  p2 : <a href="#type-SurfaceType">SurfaceType</a>) : <a href="#type-ScaledBlit">ScaledBlit</a><b>,CONSTRUCTOR</b>;
+                  <b>PROCEDURE </b><font color="#cc0033">locate</font>*(p0 : <a href="#type-SurfaceType">SurfaceType</a>;
+                                    p1 : <a href="#type-CompositeType">CompositeType</a>;
+                                    p2 : <a href="#type-SurfaceType">SurfaceType</a>) : <a href="#type-ScaledBlit">ScaledBlit</a>;
+                <b>END</b>;
+
+  <a name="type-SurfaceType"></a><font color="#cc0033">SurfaceType</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-SurfaceType"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                   <font color="#cc0033">pixelConverter</font>! : <a href="sun_awt_image.html#type-PixelConverter">sun_awt_image.PixelConverter</a>;
+                 <b>STATIC</b>
+                   <a name="type-Any"></a><font color="#cc0033">Any</font>*                               : <a href="#type-SurfaceType">SurfaceType</a>;
+                   <a name="type-Any3Byte"></a><font color="#cc0033">Any3Byte</font>*                          : <a href="#type-SurfaceType">SurfaceType</a>;
+                   <a name="type-Any4Byte"></a><font color="#cc0033">Any4Byte</font>*                          : <a href="#type-SurfaceType">SurfaceType</a>;
+                   <a name="type-AnyByte"></a><font color="#cc0033">AnyByte</font>*                           : <a href="#type-SurfaceType">SurfaceType</a>;
+                   <a name="type-AnyByteBinary"></a><font color="#cc0033">AnyByteBinary</font>*                     : <a href="#type-SurfaceType">SurfaceType</a>;
+                   <a name="type-AnyColor"></a><font color="#cc0033">AnyColor</font>*                          : <a href="#type-SurfaceType">SurfaceType</a>;
+                   <a name="type-AnyDcm"></a><font color="#cc0033">AnyDcm</font>*                            : <a href="#type-SurfaceType">SurfaceType</a>;
+                   <a name="type-AnyInt"></a><font color="#cc0033">AnyInt</font>*                            : <a href="#type-SurfaceType">SurfaceType</a>;
+                   <a name="type-AnyPaint"></a><font color="#cc0033">AnyPaint</font>*                          : <a href="#type-SurfaceType">SurfaceType</a>;
+                   <a name="type-AnyShort"></a><font color="#cc0033">AnyShort</font>*                          : <a href="#type-SurfaceType">SurfaceType</a>;
+                   <a name="type-ByteBinary1Bit"></a><font color="#cc0033">ByteBinary1Bit</font>*                    : <a href="#type-SurfaceType">SurfaceType</a>;
+                   <a name="type-ByteBinary2Bit"></a><font color="#cc0033">ByteBinary2Bit</font>*                    : <a href="#type-SurfaceType">SurfaceType</a>;
+                   <a name="type-ByteBinary4Bit"></a><font color="#cc0033">ByteBinary4Bit</font>*                    : <a href="#type-SurfaceType">SurfaceType</a>;
+                   <a name="type-ByteGray"></a><font color="#cc0033">ByteGray</font>*                          : <a href="#type-SurfaceType">SurfaceType</a>;
+                   <a name="type-ByteIndexed"></a><font color="#cc0033">ByteIndexed</font>*                       : <a href="#type-SurfaceType">SurfaceType</a>;
+                   <a name="type-ByteIndexedBm"></a><font color="#cc0033">ByteIndexedBm</font>*                     : <a href="#type-SurfaceType">SurfaceType</a>;
+                   <a name="type-ByteIndexedOpaque"></a><font color="#cc0033">ByteIndexedOpaque</font>*                 : <a href="#type-SurfaceType">SurfaceType</a>;
+                   <a name="type-Custom"></a><font color="#cc0033">Custom</font>*                            : <a href="#type-SurfaceType">SurfaceType</a>;
+                   <font color="#cc0033">DESC_3BYTE_BGR</font>*                    = "3 Byte BGR";
+                   <font color="#cc0033">DESC_3BYTE_RGB</font>*                    = "3 Byte RGB";
+                   <font color="#cc0033">DESC_4BYTE_ABGR</font>*                   = "4 Byte ABGR";
+                   <font color="#cc0033">DESC_4BYTE_ABGR_PRE</font>*               = "4 Byte ABGR Premultiplied";
+                   <font color="#cc0033">DESC_ANY</font>*                          = "Any Surface";
+                   <font color="#cc0033">DESC_ANY_3BYTE</font>*                    = "Any 3 Byte Component";
+                   <font color="#cc0033">DESC_ANY_4BYTE</font>*                    = "Any 4 Byte Component";
+                   <font color="#cc0033">DESC_ANY_BYTE</font>*                     = "Any Discrete Byte";
+                   <font color="#cc0033">DESC_ANY_COLOR</font>*                    = "Single Color";
+                   <font color="#cc0033">DESC_ANY_INT</font>*                      = "Any Discrete Integer";
+                   <font color="#cc0033">DESC_ANY_INT_DCM</font>*                  = "Any Integer DCM";
+                   <font color="#cc0033">DESC_ANY_PAINT</font>*                    = "Paint Object";
+                   <font color="#cc0033">DESC_ANY_SHORT</font>*                    = "Any Discrete Short";
+                   <font color="#cc0033">DESC_BYTE_BINARY</font>*                  = "Packed Binary Bitmap";
+                   <font color="#cc0033">DESC_BYTE_BINARY_1BIT</font>*             = "Packed Binary 1-bit Bitmap";
+                   <font color="#cc0033">DESC_BYTE_BINARY_2BIT</font>*             = "Packed Binary 2-bit Bitmap";
+                   <font color="#cc0033">DESC_BYTE_BINARY_4BIT</font>*             = "Packed Binary 4-bit Bitmap";
+                   <font color="#cc0033">DESC_BYTE_GRAY</font>*                    = "8-bit Gray";
+                   <font color="#cc0033">DESC_BYTE_INDEXED</font>*                 = "8-bit Indexed";
+                   <font color="#cc0033">DESC_BYTE_INDEXED_BM</font>*              = "8-bit Indexed (Bitmask)";
+                   <font color="#cc0033">DESC_BYTE_INDEXED_OPAQUE</font>*          = "8-bit Indexed (Opaque)";
+                   <font color="#cc0033">DESC_GRADIENT_PAINT</font>*               = "Gradient Paint";
+                   <font color="#cc0033">DESC_INDEX12_GRAY</font>*                 = "12-bit Palettized Gray";
+                   <font color="#cc0033">DESC_INDEX8_GRAY</font>*                  = "8-bit Palettized Gray";
+                   <font color="#cc0033">DESC_INT_ARGB</font>*                     = "Integer ARGB";
+                   <font color="#cc0033">DESC_INT_ARGB_BM</font>*                  = "Int ARGB (Bitmask)";
+                   <font color="#cc0033">DESC_INT_ARGB_PRE</font>*                 = "Integer ARGB Premultiplied";
+                   <font color="#cc0033">DESC_INT_BGR</font>*                      = "Integer BGR";
+                   <font color="#cc0033">DESC_INT_BGRx</font>*                     = "Integer BGRx";
+                   <font color="#cc0033">DESC_INT_RGB</font>*                      = "Integer RGB";
+                   <font color="#cc0033">DESC_INT_RGBx</font>*                     = "Integer RGBx";
+                   <font color="#cc0033">DESC_LINEAR_GRADIENT_PAINT</font>*        = "Linear Gradient Paint";
+                   <font color="#cc0033">DESC_OPAQUE_COLOR</font>*                 = "Opaque Color";
+                   <font color="#cc0033">DESC_OPAQUE_GRADIENT_PAINT</font>*        = "Opaque Gradient Paint";
+                   <font color="#cc0033">DESC_OPAQUE_LINEAR_GRADIENT_PAINT</font>* = "Opaque Linear Gradient Paint";
+                   <font color="#cc0033">DESC_OPAQUE_RADIAL_GRADIENT_PAINT</font>* = "Opaque Radial Gradient Paint";
+                   <font color="#cc0033">DESC_OPAQUE_TEXTURE_PAINT</font>*         = "Opaque Texture Paint";
+                   <font color="#cc0033">DESC_RADIAL_GRADIENT_PAINT</font>*        = "Radial Gradient Paint";
+                   <font color="#cc0033">DESC_TEXTURE_PAINT</font>*                = "Texture Paint";
+                   <font color="#cc0033">DESC_USHORT_4444_ARGB</font>*             = "Short 4444 ARGB";
+                   <font color="#cc0033">DESC_USHORT_555_RGB</font>*               = "Short 555 RGB";
+                   <font color="#cc0033">DESC_USHORT_555_RGBx</font>*              = "Short 555 RGBx";
+                   <font color="#cc0033">DESC_USHORT_565_RGB</font>*               = "Short 565 RGB";
+                   <font color="#cc0033">DESC_USHORT_GRAY</font>*                  = "16-bit Gray";
+                   <font color="#cc0033">DESC_USHORT_INDEXED</font>*               = "16-bit Indexed";
+                   <a name="type-FourByteAbgr"></a><font color="#cc0033">FourByteAbgr</font>*                      : <a href="#type-SurfaceType">SurfaceType</a>;
+                   <a name="type-FourByteAbgrPre"></a><font color="#cc0033">FourByteAbgrPre</font>*                   : <a href="#type-SurfaceType">SurfaceType</a>;
+                   <a name="type-GradientPaint"></a><font color="#cc0033">GradientPaint</font>*                     : <a href="#type-SurfaceType">SurfaceType</a>;
+                   <a name="type-Index12Gray"></a><font color="#cc0033">Index12Gray</font>*                       : <a href="#type-SurfaceType">SurfaceType</a>;
+                   <a name="type-Index8Gray"></a><font color="#cc0033">Index8Gray</font>*                        : <a href="#type-SurfaceType">SurfaceType</a>;
+                   <a name="type-IntArgb"></a><font color="#cc0033">IntArgb</font>*                           : <a href="#type-SurfaceType">SurfaceType</a>;
+                   <a name="type-IntArgbBm"></a><font color="#cc0033">IntArgbBm</font>*                         : <a href="#type-SurfaceType">SurfaceType</a>;
+                   <a name="type-IntArgbPre"></a><font color="#cc0033">IntArgbPre</font>*                        : <a href="#type-SurfaceType">SurfaceType</a>;
+                   <a name="type-IntBgr"></a><font color="#cc0033">IntBgr</font>*                            : <a href="#type-SurfaceType">SurfaceType</a>;
+                   <a name="type-IntBgrx"></a><font color="#cc0033">IntBgrx</font>*                           : <a href="#type-SurfaceType">SurfaceType</a>;
+                   <a name="type-IntRgb"></a><font color="#cc0033">IntRgb</font>*                            : <a href="#type-SurfaceType">SurfaceType</a>;
+                   <a name="type-IntRgbx"></a><font color="#cc0033">IntRgbx</font>*                           : <a href="#type-SurfaceType">SurfaceType</a>;
+                   <a name="type-LinearGradientPaint"></a><font color="#cc0033">LinearGradientPaint</font>*               : <a href="#type-SurfaceType">SurfaceType</a>;
+                   <a name="type-OpaqueColor"></a><font color="#cc0033">OpaqueColor</font>*                       : <a href="#type-SurfaceType">SurfaceType</a>;
+                   <a name="type-OpaqueGradientPaint"></a><font color="#cc0033">OpaqueGradientPaint</font>*               : <a href="#type-SurfaceType">SurfaceType</a>;
+                   <a name="type-OpaqueLinearGradientPaint"></a><font color="#cc0033">OpaqueLinearGradientPaint</font>*         : <a href="#type-SurfaceType">SurfaceType</a>;
+                   <a name="type-OpaqueRadialGradientPaint"></a><font color="#cc0033">OpaqueRadialGradientPaint</font>*         : <a href="#type-SurfaceType">SurfaceType</a>;
+                   <a name="type-OpaqueTexturePaint"></a><font color="#cc0033">OpaqueTexturePaint</font>*                : <a href="#type-SurfaceType">SurfaceType</a>;
+                   <a name="type-RadialGradientPaint"></a><font color="#cc0033">RadialGradientPaint</font>*               : <a href="#type-SurfaceType">SurfaceType</a>;
+                   <a name="type-TexturePaint"></a><font color="#cc0033">TexturePaint</font>*                      : <a href="#type-SurfaceType">SurfaceType</a>;
+                   <a name="type-ThreeByteBgr"></a><font color="#cc0033">ThreeByteBgr</font>*                      : <a href="#type-SurfaceType">SurfaceType</a>;
+                   <a name="type-ThreeByteRgb"></a><font color="#cc0033">ThreeByteRgb</font>*                      : <a href="#type-SurfaceType">SurfaceType</a>;
+                   <a name="type-Ushort4444Argb"></a><font color="#cc0033">Ushort4444Argb</font>*                    : <a href="#type-SurfaceType">SurfaceType</a>;
+                   <a name="type-Ushort555Rgb"></a><font color="#cc0033">Ushort555Rgb</font>*                      : <a href="#type-SurfaceType">SurfaceType</a>;
+                   <a name="type-Ushort555Rgbx"></a><font color="#cc0033">Ushort555Rgbx</font>*                     : <a href="#type-SurfaceType">SurfaceType</a>;
+                   <a name="type-Ushort565Rgb"></a><font color="#cc0033">Ushort565Rgb</font>*                      : <a href="#type-SurfaceType">SurfaceType</a>;
+                   <a name="type-UshortGray"></a><font color="#cc0033">UshortGray</font>*                        : <a href="#type-SurfaceType">SurfaceType</a>;
+                   <a name="type-UshortIndexed"></a><font color="#cc0033">UshortIndexed</font>*                     : <a href="#type-SurfaceType">SurfaceType</a>;
+                   <b>PROCEDURE </b><font color="#cc0033">makeUniqueID</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : INTEGER;
+                 <b>END</b>;
+
+  <a name="type-TransformBlit"></a><font color="#cc0033">TransformBlit</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-GraphicsPrimitive">GraphicsPrimitive</a>)    <a href="#meths-TransformBlit"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                   <b>STATIC</b>
+                     <a name="type-methodSignature"></a><font color="#cc0033">methodSignature</font>* : <a href="java_lang.html#type-String">java_lang.String</a>;
+                     <a name="type-primTypeID"></a><font color="#cc0033">primTypeID</font>*      : INTEGER;
+                     <b>PROCEDURE </b><font color="#cc0033">getFromCache</font>*(p0 : <a href="#type-SurfaceType">SurfaceType</a>;
+                                             p1 : <a href="#type-CompositeType">CompositeType</a>;
+                                             p2 : <a href="#type-SurfaceType">SurfaceType</a>) : <a href="#type-TransformBlit">TransformBlit</a>;
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : LONGINT;
+                                     p1 : <a href="#type-SurfaceType">SurfaceType</a>;
+                                     p2 : <a href="#type-CompositeType">CompositeType</a>;
+                                     p3 : <a href="#type-SurfaceType">SurfaceType</a>) : <a href="#type-TransformBlit">TransformBlit</a><b>,CONSTRUCTOR</b>;
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : <a href="#type-SurfaceType">SurfaceType</a>;
+                                     p1 : <a href="#type-CompositeType">CompositeType</a>;
+                                     p2 : <a href="#type-SurfaceType">SurfaceType</a>) : <a href="#type-TransformBlit">TransformBlit</a><b>,CONSTRUCTOR</b>;
+                     <b>PROCEDURE </b><font color="#cc0033">locate</font>*(p0 : <a href="#type-SurfaceType">SurfaceType</a>;
+                                       p1 : <a href="#type-CompositeType">CompositeType</a>;
+                                       p2 : <a href="#type-SurfaceType">SurfaceType</a>) : <a href="#type-TransformBlit">TransformBlit</a>;
+                   <b>END</b>;
+
+  <a name="type-TransformHelper"></a><font color="#cc0033">TransformHelper</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-GraphicsPrimitive">GraphicsPrimitive</a>)    <a href="#meths-TransformHelper"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                     <b>STATIC</b>
+                       <a name="type-methodSignature"></a><font color="#cc0033">methodSignature</font>* : <a href="java_lang.html#type-String">java_lang.String</a>;
+                       <a name="type-primTypeID"></a><font color="#cc0033">primTypeID</font>*      : INTEGER;
+                       <b>PROCEDURE </b><font color="#cc0033">getFromCache</font>*(p0 : <a href="#type-SurfaceType">SurfaceType</a>) : <a href="#type-TransformHelper">TransformHelper</a>;
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : LONGINT;
+                                       p1 : <a href="#type-SurfaceType">SurfaceType</a>;
+                                       p2 : <a href="#type-CompositeType">CompositeType</a>;
+                                       p3 : <a href="#type-SurfaceType">SurfaceType</a>) : <a href="#type-TransformHelper">TransformHelper</a><b>,CONSTRUCTOR</b>;
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : <a href="#type-SurfaceType">SurfaceType</a>) : <a href="#type-TransformHelper">TransformHelper</a><b>,CONSTRUCTOR</b>;
+                       <b>PROCEDURE </b><font color="#cc0033">locate</font>*(p0 : <a href="#type-SurfaceType">SurfaceType</a>) : <a href="#type-TransformHelper">TransformHelper</a>;
+                     <b>END</b>;
+
+  <a name="type-XORComposite"></a><font color="#cc0033">XORComposite</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_awt.html#type-Composite">java_awt.Composite</a>)    <a href="#meths-XORComposite"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                  <b>STATIC</b>
+                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_awt.html#type-Color">java_awt.Color</a>;
+                                    p1 : <a href="sun_java2d.html#type-SurfaceData">sun_java2d.SurfaceData</a>) : <a href="#type-XORComposite">XORComposite</a><b>,CONSTRUCTOR</b>;
+                  <b>END</b>;
+
+  <a name="type-XorPixelWriter$ByteData"></a><font color="#cc0033">XorPixelWriter$ByteData</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<b>XorPixelWriter</b>)    <a href="#meths-XorPixelWriter$ByteData"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                             <b>END</b>;
+
+  <a name="type-XorPixelWriter$DoubleData"></a><font color="#cc0033">XorPixelWriter$DoubleData</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<b>XorPixelWriter</b>)    <a href="#meths-XorPixelWriter$DoubleData"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                               <b>END</b>;
+
+  <a name="type-XorPixelWriter$FloatData"></a><font color="#cc0033">XorPixelWriter$FloatData</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<b>XorPixelWriter</b>)    <a href="#meths-XorPixelWriter$FloatData"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                              <b>END</b>;
+
+  <a name="type-XorPixelWriter$IntData"></a><font color="#cc0033">XorPixelWriter$IntData</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<b>XorPixelWriter</b>)    <a href="#meths-XorPixelWriter$IntData"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                            <b>END</b>;
+
+  <a name="type-XorPixelWriter$ShortData"></a><font color="#cc0033">XorPixelWriter$ShortData</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<b>XorPixelWriter</b>)    <a href="#meths-XorPixelWriter$ShortData"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                              <b>END</b>;
+
+
+
+<a name="meths-Blit"></a>
+<b>PROCEDURE </b>(self:Blit) <font color="#cc0033">Blit</font>*(p0 : <a href="sun_java2d.html#type-SurfaceData">sun_java2d.SurfaceData</a>;
+                            p1 : <a href="sun_java2d.html#type-SurfaceData">sun_java2d.SurfaceData</a>;
+                            p2 : <a href="java_awt.html#type-Composite">java_awt.Composite</a>;
+                            p3 : <a href="sun_java2d_pipe.html#type-Region">sun_java2d_pipe.Region</a>;
+                            p4 : INTEGER;
+                            p5 : INTEGER;
+                            p6 : INTEGER;
+                            p7 : INTEGER;
+                            p8 : INTEGER;
+                            p9 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Blit) <font color="#cc0033">makePrimitive</font>*(p0 : <a href="#type-SurfaceType">SurfaceType</a>;
+                                     p1 : <a href="#type-CompositeType">CompositeType</a>;
+                                     p2 : <a href="#type-SurfaceType">SurfaceType</a>) : <a href="#type-GraphicsPrimitive">GraphicsPrimitive</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Blit) <font color="#cc0033">traceWrap</font>*() : <a href="#type-GraphicsPrimitive">GraphicsPrimitive</a><b>,EXTENSIBLE</b>;
+<a name="meths-BlitBg"></a>
+<b>PROCEDURE </b>(self:BlitBg) <font color="#cc0033">BlitBg</font>*(p0  : <a href="sun_java2d.html#type-SurfaceData">sun_java2d.SurfaceData</a>;
+                                p1  : <a href="sun_java2d.html#type-SurfaceData">sun_java2d.SurfaceData</a>;
+                                p2  : <a href="java_awt.html#type-Composite">java_awt.Composite</a>;
+                                p3  : <a href="sun_java2d_pipe.html#type-Region">sun_java2d_pipe.Region</a>;
+                                p4  : INTEGER;
+                                p5  : INTEGER;
+                                p6  : INTEGER;
+                                p7  : INTEGER;
+                                p8  : INTEGER;
+                                p9  : INTEGER;
+                                p10 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BlitBg) <font color="#cc0033">makePrimitive</font>*(p0 : <a href="#type-SurfaceType">SurfaceType</a>;
+                                       p1 : <a href="#type-CompositeType">CompositeType</a>;
+                                       p2 : <a href="#type-SurfaceType">SurfaceType</a>) : <a href="#type-GraphicsPrimitive">GraphicsPrimitive</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BlitBg) <font color="#cc0033">traceWrap</font>*() : <a href="#type-GraphicsPrimitive">GraphicsPrimitive</a><b>,EXTENSIBLE</b>;
+<a name="meths-CompositeType"></a>
+<b>PROCEDURE </b>(self:CompositeType) <font color="#cc0033">deriveSubType</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-CompositeType">CompositeType</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CompositeType) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CompositeType) <font color="#cc0033">getDescriptor</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CompositeType) <font color="#cc0033">getSuperType</font>*() : <a href="#type-CompositeType">CompositeType</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CompositeType) <font color="#cc0033">getUniqueID</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CompositeType) <font color="#cc0033">hashCode</font>*() : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CompositeType) <font color="#cc0033">isDerivedFrom</font>*(p0 : <a href="#type-CompositeType">CompositeType</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CompositeType) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,EXTENSIBLE</b>;
+<a name="meths-DrawGlyphList"></a>
+<b>PROCEDURE </b>(self:DrawGlyphList) <font color="#cc0033">DrawGlyphList</font>*(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                              p1 : <a href="sun_java2d.html#type-SurfaceData">sun_java2d.SurfaceData</a>;
+                                              p2 : <a href="sun_font.html#type-GlyphList">sun_font.GlyphList</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DrawGlyphList) <font color="#cc0033">makePrimitive</font>*(p0 : <a href="#type-SurfaceType">SurfaceType</a>;
+                                              p1 : <a href="#type-CompositeType">CompositeType</a>;
+                                              p2 : <a href="#type-SurfaceType">SurfaceType</a>) : <a href="#type-GraphicsPrimitive">GraphicsPrimitive</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DrawGlyphList) <font color="#cc0033">traceWrap</font>*() : <a href="#type-GraphicsPrimitive">GraphicsPrimitive</a><b>,EXTENSIBLE</b>;
+<a name="meths-DrawGlyphListAA"></a>
+<b>PROCEDURE </b>(self:DrawGlyphListAA) <font color="#cc0033">DrawGlyphListAA</font>*(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                                  p1 : <a href="sun_java2d.html#type-SurfaceData">sun_java2d.SurfaceData</a>;
+                                                  p2 : <a href="sun_font.html#type-GlyphList">sun_font.GlyphList</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DrawGlyphListAA) <font color="#cc0033">makePrimitive</font>*(p0 : <a href="#type-SurfaceType">SurfaceType</a>;
+                                                p1 : <a href="#type-CompositeType">CompositeType</a>;
+                                                p2 : <a href="#type-SurfaceType">SurfaceType</a>) : <a href="#type-GraphicsPrimitive">GraphicsPrimitive</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DrawGlyphListAA) <font color="#cc0033">traceWrap</font>*() : <a href="#type-GraphicsPrimitive">GraphicsPrimitive</a><b>,EXTENSIBLE</b>;
+<a name="meths-DrawGlyphListAA$General"></a>
+<b>PROCEDURE </b>(self:DrawGlyphListAA$General) <font color="#cc0033">DrawGlyphListAA</font>*(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                                          p1 : <a href="sun_java2d.html#type-SurfaceData">sun_java2d.SurfaceData</a>;
+                                                          p2 : <a href="sun_font.html#type-GlyphList">sun_font.GlyphList</a>)<b>,EXTENSIBLE</b>;
+<a name="meths-DrawGlyphListLCD"></a>
+<b>PROCEDURE </b>(self:DrawGlyphListLCD) <font color="#cc0033">DrawGlyphListLCD</font>*(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                                    p1 : <a href="sun_java2d.html#type-SurfaceData">sun_java2d.SurfaceData</a>;
+                                                    p2 : <a href="sun_font.html#type-GlyphList">sun_font.GlyphList</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DrawGlyphListLCD) <font color="#cc0033">makePrimitive</font>*(p0 : <a href="#type-SurfaceType">SurfaceType</a>;
+                                                 p1 : <a href="#type-CompositeType">CompositeType</a>;
+                                                 p2 : <a href="#type-SurfaceType">SurfaceType</a>) : <a href="#type-GraphicsPrimitive">GraphicsPrimitive</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DrawGlyphListLCD) <font color="#cc0033">traceWrap</font>*() : <a href="#type-GraphicsPrimitive">GraphicsPrimitive</a><b>,EXTENSIBLE</b>;
+<a name="meths-DrawLine"></a>
+<b>PROCEDURE </b>(self:DrawLine) <font color="#cc0033">DrawLine</font>*(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                    p1 : <a href="sun_java2d.html#type-SurfaceData">sun_java2d.SurfaceData</a>;
+                                    p2 : INTEGER;
+                                    p3 : INTEGER;
+                                    p4 : INTEGER;
+                                    p5 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DrawLine) <font color="#cc0033">makePrimitive</font>*(p0 : <a href="#type-SurfaceType">SurfaceType</a>;
+                                         p1 : <a href="#type-CompositeType">CompositeType</a>;
+                                         p2 : <a href="#type-SurfaceType">SurfaceType</a>) : <a href="#type-GraphicsPrimitive">GraphicsPrimitive</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DrawLine) <font color="#cc0033">traceWrap</font>*() : <a href="#type-GraphicsPrimitive">GraphicsPrimitive</a><b>,EXTENSIBLE</b>;
+<a name="meths-DrawParallelogram"></a>
+<b>PROCEDURE </b>(self:DrawParallelogram) <font color="#cc0033">DrawParallelogram</font>*(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                                      p1 : <a href="sun_java2d.html#type-SurfaceData">sun_java2d.SurfaceData</a>;
+                                                      p2 : REAL;
+                                                      p3 : REAL;
+                                                      p4 : REAL;
+                                                      p5 : REAL;
+                                                      p6 : REAL;
+                                                      p7 : REAL;
+                                                      p8 : REAL;
+                                                      p9 : REAL)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DrawParallelogram) <font color="#cc0033">makePrimitive</font>*(p0 : <a href="#type-SurfaceType">SurfaceType</a>;
+                                                  p1 : <a href="#type-CompositeType">CompositeType</a>;
+                                                  p2 : <a href="#type-SurfaceType">SurfaceType</a>) : <a href="#type-GraphicsPrimitive">GraphicsPrimitive</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DrawParallelogram) <font color="#cc0033">traceWrap</font>*() : <a href="#type-GraphicsPrimitive">GraphicsPrimitive</a><b>,EXTENSIBLE</b>;
+<a name="meths-DrawPath"></a>
+<b>PROCEDURE </b>(self:DrawPath) <font color="#cc0033">DrawPath</font>*(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                    p1 : <a href="sun_java2d.html#type-SurfaceData">sun_java2d.SurfaceData</a>;
+                                    p2 : INTEGER;
+                                    p3 : INTEGER;
+                                    p4 : <a href="java_awt_geom.html#type-Path2D$Float">java_awt_geom.Path2D$Float</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DrawPath) <font color="#cc0033">makePrimitive</font>*(p0 : <a href="#type-SurfaceType">SurfaceType</a>;
+                                         p1 : <a href="#type-CompositeType">CompositeType</a>;
+                                         p2 : <a href="#type-SurfaceType">SurfaceType</a>) : <a href="#type-GraphicsPrimitive">GraphicsPrimitive</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DrawPath) <font color="#cc0033">traceWrap</font>*() : <a href="#type-GraphicsPrimitive">GraphicsPrimitive</a><b>,EXTENSIBLE</b>;
+<a name="meths-DrawPolygons"></a>
+<b>PROCEDURE </b>(self:DrawPolygons) <font color="#cc0033">DrawPolygons</font>*(    p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                                p1 : <a href="sun_java2d.html#type-SurfaceData">sun_java2d.SurfaceData</a>;
+                                            IN  p2 : <b>ARRAY </b><b>OF </b>INTEGER;
+                                            IN  p3 : <b>ARRAY </b><b>OF </b>INTEGER;
+                                            IN  p4 : <b>ARRAY </b><b>OF </b>INTEGER;
+                                                p5 : INTEGER;
+                                                p6 : INTEGER;
+                                                p7 : INTEGER;
+                                                p8 : BOOLEAN)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DrawPolygons) <font color="#cc0033">makePrimitive</font>*(p0 : <a href="#type-SurfaceType">SurfaceType</a>;
+                                             p1 : <a href="#type-CompositeType">CompositeType</a>;
+                                             p2 : <a href="#type-SurfaceType">SurfaceType</a>) : <a href="#type-GraphicsPrimitive">GraphicsPrimitive</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DrawPolygons) <font color="#cc0033">traceWrap</font>*() : <a href="#type-GraphicsPrimitive">GraphicsPrimitive</a><b>,EXTENSIBLE</b>;
+<a name="meths-DrawRect"></a>
+<b>PROCEDURE </b>(self:DrawRect) <font color="#cc0033">DrawRect</font>*(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                    p1 : <a href="sun_java2d.html#type-SurfaceData">sun_java2d.SurfaceData</a>;
+                                    p2 : INTEGER;
+                                    p3 : INTEGER;
+                                    p4 : INTEGER;
+                                    p5 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DrawRect) <font color="#cc0033">makePrimitive</font>*(p0 : <a href="#type-SurfaceType">SurfaceType</a>;
+                                         p1 : <a href="#type-CompositeType">CompositeType</a>;
+                                         p2 : <a href="#type-SurfaceType">SurfaceType</a>) : <a href="#type-GraphicsPrimitive">GraphicsPrimitive</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DrawRect) <font color="#cc0033">traceWrap</font>*() : <a href="#type-GraphicsPrimitive">GraphicsPrimitive</a><b>,EXTENSIBLE</b>;
+<a name="meths-FillParallelogram"></a>
+<b>PROCEDURE </b>(self:FillParallelogram) <font color="#cc0033">FillParallelogram</font>*(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                                      p1 : <a href="sun_java2d.html#type-SurfaceData">sun_java2d.SurfaceData</a>;
+                                                      p2 : REAL;
+                                                      p3 : REAL;
+                                                      p4 : REAL;
+                                                      p5 : REAL;
+                                                      p6 : REAL;
+                                                      p7 : REAL)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FillParallelogram) <font color="#cc0033">makePrimitive</font>*(p0 : <a href="#type-SurfaceType">SurfaceType</a>;
+                                                  p1 : <a href="#type-CompositeType">CompositeType</a>;
+                                                  p2 : <a href="#type-SurfaceType">SurfaceType</a>) : <a href="#type-GraphicsPrimitive">GraphicsPrimitive</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FillParallelogram) <font color="#cc0033">traceWrap</font>*() : <a href="#type-GraphicsPrimitive">GraphicsPrimitive</a><b>,EXTENSIBLE</b>;
+<a name="meths-FillPath"></a>
+<b>PROCEDURE </b>(self:FillPath) <font color="#cc0033">FillPath</font>*(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                    p1 : <a href="sun_java2d.html#type-SurfaceData">sun_java2d.SurfaceData</a>;
+                                    p2 : INTEGER;
+                                    p3 : INTEGER;
+                                    p4 : <a href="java_awt_geom.html#type-Path2D$Float">java_awt_geom.Path2D$Float</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FillPath) <font color="#cc0033">makePrimitive</font>*(p0 : <a href="#type-SurfaceType">SurfaceType</a>;
+                                         p1 : <a href="#type-CompositeType">CompositeType</a>;
+                                         p2 : <a href="#type-SurfaceType">SurfaceType</a>) : <a href="#type-GraphicsPrimitive">GraphicsPrimitive</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FillPath) <font color="#cc0033">traceWrap</font>*() : <a href="#type-GraphicsPrimitive">GraphicsPrimitive</a><b>,EXTENSIBLE</b>;
+<a name="meths-FillRect"></a>
+<b>PROCEDURE </b>(self:FillRect) <font color="#cc0033">FillRect</font>*(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                    p1 : <a href="sun_java2d.html#type-SurfaceData">sun_java2d.SurfaceData</a>;
+                                    p2 : INTEGER;
+                                    p3 : INTEGER;
+                                    p4 : INTEGER;
+                                    p5 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FillRect) <font color="#cc0033">makePrimitive</font>*(p0 : <a href="#type-SurfaceType">SurfaceType</a>;
+                                         p1 : <a href="#type-CompositeType">CompositeType</a>;
+                                         p2 : <a href="#type-SurfaceType">SurfaceType</a>) : <a href="#type-GraphicsPrimitive">GraphicsPrimitive</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FillRect) <font color="#cc0033">traceWrap</font>*() : <a href="#type-GraphicsPrimitive">GraphicsPrimitive</a><b>,EXTENSIBLE</b>;
+<a name="meths-FillRect$General"></a>
+<b>PROCEDURE </b>(self:FillRect$General) <font color="#cc0033">FillRect</font>*(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                            p1 : <a href="sun_java2d.html#type-SurfaceData">sun_java2d.SurfaceData</a>;
+                                            p2 : INTEGER;
+                                            p3 : INTEGER;
+                                            p4 : INTEGER;
+                                            p5 : INTEGER)<b>,EXTENSIBLE</b>;
+<a name="meths-FillSpans"></a>
+<b>PROCEDURE </b>(self:FillSpans) <font color="#cc0033">FillSpans</font>*(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                      p1 : <a href="sun_java2d.html#type-SurfaceData">sun_java2d.SurfaceData</a>;
+                                      p2 : <a href="sun_java2d_pipe.html#type-SpanIterator">sun_java2d_pipe.SpanIterator</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FillSpans) <font color="#cc0033">makePrimitive</font>*(p0 : <a href="#type-SurfaceType">SurfaceType</a>;
+                                          p1 : <a href="#type-CompositeType">CompositeType</a>;
+                                          p2 : <a href="#type-SurfaceType">SurfaceType</a>) : <a href="#type-GraphicsPrimitive">GraphicsPrimitive</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FillSpans) <font color="#cc0033">traceWrap</font>*() : <a href="#type-GraphicsPrimitive">GraphicsPrimitive</a><b>,EXTENSIBLE</b>;
+<a name="meths-FontInfo"></a>
+<b>PROCEDURE </b>(self:FontInfo) <font color="#cc0033">clone</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FontInfo) <font color="#cc0033">mtx</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>REAL) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FontInfo) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,EXTENSIBLE</b>;
+<a name="meths-GraphicsPrimitive"></a>
+<b>PROCEDURE </b>(self:GraphicsPrimitive) <font color="#cc0033">getCompositeType</font>*() : <a href="#type-CompositeType">CompositeType</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:GraphicsPrimitive) <font color="#cc0033">getDestType</font>*() : <a href="#type-SurfaceType">SurfaceType</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:GraphicsPrimitive) <font color="#cc0033">getNativePrim</font>*() : LONGINT<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:GraphicsPrimitive) <font color="#cc0033">getPrimTypeID</font>*() : INTEGER<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:GraphicsPrimitive) <font color="#cc0033">getSignature</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:GraphicsPrimitive) <font color="#cc0033">getSourceType</font>*() : <a href="#type-SurfaceType">SurfaceType</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:GraphicsPrimitive) <font color="#cc0033">getUniqueID</font>*() : INTEGER<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:GraphicsPrimitive) <font color="#cc0033">makePrimitive</font>*(p0 : <a href="#type-SurfaceType">SurfaceType</a>;
+                                                  p1 : <a href="#type-CompositeType">CompositeType</a>;
+                                                  p2 : <a href="#type-SurfaceType">SurfaceType</a>) : <a href="#type-GraphicsPrimitive">GraphicsPrimitive</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:GraphicsPrimitive) <font color="#cc0033">satisfies</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                              p1 : <a href="#type-SurfaceType">SurfaceType</a>;
+                                              p2 : <a href="#type-CompositeType">CompositeType</a>;
+                                              p3 : <a href="#type-SurfaceType">SurfaceType</a>) : BOOLEAN<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:GraphicsPrimitive) <font color="#cc0033">setupGeneralBinaryOp</font>!(p0 : <a href="#type-GraphicsPrimitive$GeneralBinaryOp">GraphicsPrimitive$GeneralBinaryOp</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:GraphicsPrimitive) <font color="#cc0033">setupGeneralUnaryOp</font>!(p0 : <a href="#type-GraphicsPrimitive$GeneralUnaryOp">GraphicsPrimitive$GeneralUnaryOp</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:GraphicsPrimitive) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:GraphicsPrimitive) <font color="#cc0033">traceWrap</font>*() : <a href="#type-GraphicsPrimitive">GraphicsPrimitive</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-GraphicsPrimitive$GeneralBinaryOp"></a>
+<b>PROCEDURE </b>(self:GraphicsPrimitive$GeneralBinaryOp) <font color="#cc0033">getCompositeType</font>*() : <a href="#type-CompositeType">CompositeType</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:GraphicsPrimitive$GeneralBinaryOp) <font color="#cc0033">getDestType</font>*() : <a href="#type-SurfaceType">SurfaceType</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:GraphicsPrimitive$GeneralBinaryOp) <font color="#cc0033">getPrimTypeID</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:GraphicsPrimitive$GeneralBinaryOp) <font color="#cc0033">getSignature</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:GraphicsPrimitive$GeneralBinaryOp) <font color="#cc0033">getSourceType</font>*() : <a href="#type-SurfaceType">SurfaceType</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:GraphicsPrimitive$GeneralBinaryOp) <font color="#cc0033">setPrimitives</font>*(p0 : <a href="#type-Blit">Blit</a>;
+                                                                  p1 : <a href="#type-Blit">Blit</a>;
+                                                                  p2 : <a href="#type-GraphicsPrimitive">GraphicsPrimitive</a>;
+                                                                  p3 : <a href="#type-Blit">Blit</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-GraphicsPrimitive$GeneralUnaryOp"></a>
+<b>PROCEDURE </b>(self:GraphicsPrimitive$GeneralUnaryOp) <font color="#cc0033">getCompositeType</font>*() : <a href="#type-CompositeType">CompositeType</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:GraphicsPrimitive$GeneralUnaryOp) <font color="#cc0033">getDestType</font>*() : <a href="#type-SurfaceType">SurfaceType</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:GraphicsPrimitive$GeneralUnaryOp) <font color="#cc0033">getPrimTypeID</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:GraphicsPrimitive$GeneralUnaryOp) <font color="#cc0033">getSignature</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:GraphicsPrimitive$GeneralUnaryOp) <font color="#cc0033">setPrimitives</font>*(p0 : <a href="#type-Blit">Blit</a>;
+                                                                 p1 : <a href="#type-GraphicsPrimitive">GraphicsPrimitive</a>;
+                                                                 p2 : <a href="#type-Blit">Blit</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-GraphicsPrimitive$TraceReporter"></a>
+<b>PROCEDURE </b>(self:GraphicsPrimitive$TraceReporter) <font color="#cc0033">run</font>*()<b>,EXTENSIBLE</b>;
+<a name="meths-GraphicsPrimitiveProxy"></a>
+<b>PROCEDURE </b>(self:GraphicsPrimitiveProxy) <font color="#cc0033">makePrimitive</font>*(p0 : <a href="#type-SurfaceType">SurfaceType</a>;
+                                                       p1 : <a href="#type-CompositeType">CompositeType</a>;
+                                                       p2 : <a href="#type-SurfaceType">SurfaceType</a>) : <a href="#type-GraphicsPrimitive">GraphicsPrimitive</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:GraphicsPrimitiveProxy) <font color="#cc0033">traceWrap</font>*() : <a href="#type-GraphicsPrimitive">GraphicsPrimitive</a><b>,EXTENSIBLE</b>;
+<a name="meths-MaskBlit"></a>
+<b>PROCEDURE </b>(self:MaskBlit) <font color="#cc0033">makePrimitive</font>*(p0 : <a href="#type-SurfaceType">SurfaceType</a>;
+                                         p1 : <a href="#type-CompositeType">CompositeType</a>;
+                                         p2 : <a href="#type-SurfaceType">SurfaceType</a>) : <a href="#type-GraphicsPrimitive">GraphicsPrimitive</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MaskBlit) <font color="#cc0033">MaskBlit</font>*(    p0  : <a href="sun_java2d.html#type-SurfaceData">sun_java2d.SurfaceData</a>;
+                                        p1  : <a href="sun_java2d.html#type-SurfaceData">sun_java2d.SurfaceData</a>;
+                                        p2  : <a href="java_awt.html#type-Composite">java_awt.Composite</a>;
+                                        p3  : <a href="sun_java2d_pipe.html#type-Region">sun_java2d_pipe.Region</a>;
+                                        p4  : INTEGER;
+                                        p5  : INTEGER;
+                                        p6  : INTEGER;
+                                        p7  : INTEGER;
+                                        p8  : INTEGER;
+                                        p9  : INTEGER;
+                                    IN  p10 : <b>ARRAY </b><b>OF </b>BYTE;
+                                        p11 : INTEGER;
+                                        p12 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MaskBlit) <font color="#cc0033">traceWrap</font>*() : <a href="#type-GraphicsPrimitive">GraphicsPrimitive</a><b>,EXTENSIBLE</b>;
+<a name="meths-MaskFill"></a>
+<b>PROCEDURE </b>(self:MaskFill) <font color="#cc0033">canDoParallelograms</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MaskFill) <font color="#cc0033">DrawAAPgram</font>*(p0  : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                       p1  : <a href="sun_java2d.html#type-SurfaceData">sun_java2d.SurfaceData</a>;
+                                       p2  : <a href="java_awt.html#type-Composite">java_awt.Composite</a>;
+                                       p3  : REAL;
+                                       p4  : REAL;
+                                       p5  : REAL;
+                                       p6  : REAL;
+                                       p7  : REAL;
+                                       p8  : REAL;
+                                       p9  : REAL;
+                                       p10 : REAL)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MaskFill) <font color="#cc0033">FillAAPgram</font>*(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                       p1 : <a href="sun_java2d.html#type-SurfaceData">sun_java2d.SurfaceData</a>;
+                                       p2 : <a href="java_awt.html#type-Composite">java_awt.Composite</a>;
+                                       p3 : REAL;
+                                       p4 : REAL;
+                                       p5 : REAL;
+                                       p6 : REAL;
+                                       p7 : REAL;
+                                       p8 : REAL)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MaskFill) <font color="#cc0033">makePrimitive</font>*(p0 : <a href="#type-SurfaceType">SurfaceType</a>;
+                                         p1 : <a href="#type-CompositeType">CompositeType</a>;
+                                         p2 : <a href="#type-SurfaceType">SurfaceType</a>) : <a href="#type-GraphicsPrimitive">GraphicsPrimitive</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MaskFill) <font color="#cc0033">MaskFill</font>*(    p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                        p1 : <a href="sun_java2d.html#type-SurfaceData">sun_java2d.SurfaceData</a>;
+                                        p2 : <a href="java_awt.html#type-Composite">java_awt.Composite</a>;
+                                        p3 : INTEGER;
+                                        p4 : INTEGER;
+                                        p5 : INTEGER;
+                                        p6 : INTEGER;
+                                    IN  p7 : <b>ARRAY </b><b>OF </b>BYTE;
+                                        p8 : INTEGER;
+                                        p9 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:MaskFill) <font color="#cc0033">traceWrap</font>*() : <a href="#type-GraphicsPrimitive">GraphicsPrimitive</a><b>,EXTENSIBLE</b>;
+<a name="meths-ProcessPath$DrawHandler"></a>
+<b>PROCEDURE </b>(self:ProcessPath$DrawHandler) <font color="#cc0033">adjustBounds</font>*(p0 : INTEGER;
+                                                       p1 : INTEGER;
+                                                       p2 : INTEGER;
+                                                       p3 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProcessPath$DrawHandler) <font color="#cc0033">drawLine</font>*(p0 : INTEGER;
+                                                   p1 : INTEGER;
+                                                   p2 : INTEGER;
+                                                   p3 : INTEGER)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ProcessPath$DrawHandler) <font color="#cc0033">drawPixel</font>*(p0 : INTEGER;
+                                                    p1 : INTEGER)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ProcessPath$DrawHandler) <font color="#cc0033">drawScanline</font>*(p0 : INTEGER;
+                                                       p1 : INTEGER;
+                                                       p2 : INTEGER)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ProcessPath$DrawHandler) <font color="#cc0033">setBounds</font>*(p0 : INTEGER;
+                                                    p1 : INTEGER;
+                                                    p2 : INTEGER;
+                                                    p3 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProcessPath$DrawHandler) <font color="#cc0033">setBounds</font>*(p0 : INTEGER;
+                                                    p1 : INTEGER;
+                                                    p2 : INTEGER;
+                                                    p3 : INTEGER;
+                                                    p4 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-ProcessPath$EndSubPathHandler"></a>
+<b>PROCEDURE </b>(self:ProcessPath$EndSubPathHandler) <font color="#cc0033">processEndSubPath</font>*()<b>,NEW,ABSTRACT</b>;
+<a name="meths-ProcessPath$ProcessHandler"></a>
+<b>PROCEDURE </b>(self:ProcessPath$ProcessHandler) <font color="#cc0033">processFixedLine</font>*(    p0 : INTEGER;
+                                                                  p1 : INTEGER;
+                                                                  p2 : INTEGER;
+                                                                  p3 : INTEGER;
+                                                              IN  p4 : <b>ARRAY </b><b>OF </b>INTEGER;
+                                                                  p5 : BOOLEAN;
+                                                                  p6 : BOOLEAN)<b>,NEW,ABSTRACT</b>;
+<a name="meths-RenderCache"></a>
+<b>PROCEDURE </b>(self:RenderCache) <font color="#cc0033">get</font>*(p0 : <a href="#type-SurfaceType">SurfaceType</a>;
+                                  p1 : <a href="#type-CompositeType">CompositeType</a>;
+                                  p2 : <a href="#type-SurfaceType">SurfaceType</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RenderCache) <font color="#cc0033">put</font>*(p0 : <a href="#type-SurfaceType">SurfaceType</a>;
+                                  p1 : <a href="#type-CompositeType">CompositeType</a>;
+                                  p2 : <a href="#type-SurfaceType">SurfaceType</a>;
+                                  p3 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-ScaledBlit"></a>
+<b>PROCEDURE </b>(self:ScaledBlit) <font color="#cc0033">makePrimitive</font>*(p0 : <a href="#type-SurfaceType">SurfaceType</a>;
+                                           p1 : <a href="#type-CompositeType">CompositeType</a>;
+                                           p2 : <a href="#type-SurfaceType">SurfaceType</a>) : <a href="#type-GraphicsPrimitive">GraphicsPrimitive</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ScaledBlit) <font color="#cc0033">Scale</font>*(p0  : <a href="sun_java2d.html#type-SurfaceData">sun_java2d.SurfaceData</a>;
+                                   p1  : <a href="sun_java2d.html#type-SurfaceData">sun_java2d.SurfaceData</a>;
+                                   p2  : <a href="java_awt.html#type-Composite">java_awt.Composite</a>;
+                                   p3  : <a href="sun_java2d_pipe.html#type-Region">sun_java2d_pipe.Region</a>;
+                                   p4  : INTEGER;
+                                   p5  : INTEGER;
+                                   p6  : INTEGER;
+                                   p7  : INTEGER;
+                                   p8  : REAL;
+                                   p9  : REAL;
+                                   p10 : REAL;
+                                   p11 : REAL)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ScaledBlit) <font color="#cc0033">traceWrap</font>*() : <a href="#type-GraphicsPrimitive">GraphicsPrimitive</a><b>,EXTENSIBLE</b>;
+<a name="meths-SurfaceType"></a>
+<b>PROCEDURE </b>(self:SurfaceType) <font color="#cc0033">deriveSubType</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                            p1 : <a href="sun_awt_image.html#type-PixelConverter">sun_awt_image.PixelConverter</a>) : <a href="#type-SurfaceType">SurfaceType</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SurfaceType) <font color="#cc0033">deriveSubType</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-SurfaceType">SurfaceType</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SurfaceType) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SurfaceType) <font color="#cc0033">getAlphaMask</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SurfaceType) <font color="#cc0033">getDescriptor</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SurfaceType) <font color="#cc0033">getPixelConverter</font>*() : <a href="sun_awt_image.html#type-PixelConverter">sun_awt_image.PixelConverter</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SurfaceType) <font color="#cc0033">getSuperType</font>*() : <a href="#type-SurfaceType">SurfaceType</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SurfaceType) <font color="#cc0033">getUniqueID</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SurfaceType) <font color="#cc0033">hashCode</font>*() : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SurfaceType) <font color="#cc0033">pixelFor</font>*(p0 : INTEGER;
+                                       p1 : <a href="java_awt_image.html#type-ColorModel">java_awt_image.ColorModel</a>) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SurfaceType) <font color="#cc0033">rgbFor</font>*(p0 : INTEGER;
+                                     p1 : <a href="java_awt_image.html#type-ColorModel">java_awt_image.ColorModel</a>) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SurfaceType) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,EXTENSIBLE</b>;
+<a name="meths-TransformBlit"></a>
+<b>PROCEDURE </b>(self:TransformBlit) <font color="#cc0033">makePrimitive</font>*(p0 : <a href="#type-SurfaceType">SurfaceType</a>;
+                                              p1 : <a href="#type-CompositeType">CompositeType</a>;
+                                              p2 : <a href="#type-SurfaceType">SurfaceType</a>) : <a href="#type-GraphicsPrimitive">GraphicsPrimitive</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TransformBlit) <font color="#cc0033">traceWrap</font>*() : <a href="#type-GraphicsPrimitive">GraphicsPrimitive</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TransformBlit) <font color="#cc0033">Transform</font>*(p0  : <a href="sun_java2d.html#type-SurfaceData">sun_java2d.SurfaceData</a>;
+                                          p1  : <a href="sun_java2d.html#type-SurfaceData">sun_java2d.SurfaceData</a>;
+                                          p2  : <a href="java_awt.html#type-Composite">java_awt.Composite</a>;
+                                          p3  : <a href="sun_java2d_pipe.html#type-Region">sun_java2d_pipe.Region</a>;
+                                          p4  : <a href="java_awt_geom.html#type-AffineTransform">java_awt_geom.AffineTransform</a>;
+                                          p5  : INTEGER;
+                                          p6  : INTEGER;
+                                          p7  : INTEGER;
+                                          p8  : INTEGER;
+                                          p9  : INTEGER;
+                                          p10 : INTEGER;
+                                          p11 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-TransformHelper"></a>
+<b>PROCEDURE </b>(self:TransformHelper) <font color="#cc0033">makePrimitive</font>*(p0 : <a href="#type-SurfaceType">SurfaceType</a>;
+                                                p1 : <a href="#type-CompositeType">CompositeType</a>;
+                                                p2 : <a href="#type-SurfaceType">SurfaceType</a>) : <a href="#type-GraphicsPrimitive">GraphicsPrimitive</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TransformHelper) <font color="#cc0033">traceWrap</font>*() : <a href="#type-GraphicsPrimitive">GraphicsPrimitive</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TransformHelper) <font color="#cc0033">Transform</font>*(    p0  : <a href="#type-MaskBlit">MaskBlit</a>;
+                                                p1  : <a href="sun_java2d.html#type-SurfaceData">sun_java2d.SurfaceData</a>;
+                                                p2  : <a href="sun_java2d.html#type-SurfaceData">sun_java2d.SurfaceData</a>;
+                                                p3  : <a href="java_awt.html#type-Composite">java_awt.Composite</a>;
+                                                p4  : <a href="sun_java2d_pipe.html#type-Region">sun_java2d_pipe.Region</a>;
+                                                p5  : <a href="java_awt_geom.html#type-AffineTransform">java_awt_geom.AffineTransform</a>;
+                                                p6  : INTEGER;
+                                                p7  : INTEGER;
+                                                p8  : INTEGER;
+                                                p9  : INTEGER;
+                                                p10 : INTEGER;
+                                                p11 : INTEGER;
+                                                p12 : INTEGER;
+                                                p13 : INTEGER;
+                                                p14 : INTEGER;
+                                            IN  p15 : <b>ARRAY </b><b>OF </b>INTEGER;
+                                                p16 : INTEGER;
+                                                p17 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-XORComposite"></a>
+<b>PROCEDURE </b>(self:XORComposite) <font color="#cc0033">createContext</font>*(p0 : <a href="java_awt_image.html#type-ColorModel">java_awt_image.ColorModel</a>;
+                                             p1 : <a href="java_awt_image.html#type-ColorModel">java_awt_image.ColorModel</a>;
+                                             p2 : <a href="java_awt.html#type-RenderingHints">java_awt.RenderingHints</a>) : <a href="java_awt.html#type-CompositeContext">java_awt.CompositeContext</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:XORComposite) <font color="#cc0033">getAlphaMask</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:XORComposite) <font color="#cc0033">getXorColor</font>*() : <a href="java_awt.html#type-Color">java_awt.Color</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:XORComposite) <font color="#cc0033">getXorPixel</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-XorPixelWriter$ByteData"></a>
+<b>PROCEDURE </b>(self:XorPixelWriter$ByteData) <font color="#cc0033">setRaster</font>*(p0 : <a href="java_awt_image.html#type-WritableRaster">java_awt_image.WritableRaster</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:XorPixelWriter$ByteData) <font color="#cc0033">writePixel</font>*(p0 : INTEGER;
+                                                     p1 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:XorPixelWriter$ByteData) <font color="#cc0033">xorPixel</font>!(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,EXTENSIBLE</b>;
+<a name="meths-XorPixelWriter$DoubleData"></a>
+<b>PROCEDURE </b>(self:XorPixelWriter$DoubleData) <font color="#cc0033">setRaster</font>*(p0 : <a href="java_awt_image.html#type-WritableRaster">java_awt_image.WritableRaster</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:XorPixelWriter$DoubleData) <font color="#cc0033">writePixel</font>*(p0 : INTEGER;
+                                                       p1 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:XorPixelWriter$DoubleData) <font color="#cc0033">xorPixel</font>!(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,EXTENSIBLE</b>;
+<a name="meths-XorPixelWriter$FloatData"></a>
+<b>PROCEDURE </b>(self:XorPixelWriter$FloatData) <font color="#cc0033">setRaster</font>*(p0 : <a href="java_awt_image.html#type-WritableRaster">java_awt_image.WritableRaster</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:XorPixelWriter$FloatData) <font color="#cc0033">writePixel</font>*(p0 : INTEGER;
+                                                      p1 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:XorPixelWriter$FloatData) <font color="#cc0033">xorPixel</font>!(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,EXTENSIBLE</b>;
+<a name="meths-XorPixelWriter$IntData"></a>
+<b>PROCEDURE </b>(self:XorPixelWriter$IntData) <font color="#cc0033">setRaster</font>*(p0 : <a href="java_awt_image.html#type-WritableRaster">java_awt_image.WritableRaster</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:XorPixelWriter$IntData) <font color="#cc0033">writePixel</font>*(p0 : INTEGER;
+                                                    p1 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:XorPixelWriter$IntData) <font color="#cc0033">xorPixel</font>!(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,EXTENSIBLE</b>;
+<a name="meths-XorPixelWriter$ShortData"></a>
+<b>PROCEDURE </b>(self:XorPixelWriter$ShortData) <font color="#cc0033">setRaster</font>*(p0 : <a href="java_awt_image.html#type-WritableRaster">java_awt_image.WritableRaster</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:XorPixelWriter$ShortData) <font color="#cc0033">writePixel</font>*(p0 : INTEGER;
+                                                      p1 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:XorPixelWriter$ShortData) <font color="#cc0033">xorPixel</font>!(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,EXTENSIBLE</b>;
+
+<b>END </b><font color="#cc0033">sun_java2d_loops</font>.
+</font></pre></hr></body></html>

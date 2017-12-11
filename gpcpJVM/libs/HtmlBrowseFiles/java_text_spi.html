@@ -1,0 +1,80 @@
+<html><head><title>java_text_spi</title></head>
+<body bgcolor="white">
+<hr><pre>
+<b>FOREIGN MODULE </b><font color="#cc0033">java_text_spi</font>;
+
+<b>IMPORT</b>
+    <a href="java_util.html">java_util</a> := "java.util",
+    <a href="java_text.html">java_text</a> := "java.text",
+    <a href="java_util_spi.html">java_util_spi</a> := "java.util.spi",
+    <a href="java_lang.html">java_lang</a> := "java.lang";
+
+<b>TYPE</b>
+
+  <a name="type-BreakIteratorProvider"></a><font color="#cc0033">BreakIteratorProvider</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_util_spi.html#type-LocaleServiceProvider">java_util_spi.LocaleServiceProvider</a>)    <a href="#meths-BreakIteratorProvider"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                           <b>STATIC</b>
+                             <b>PROCEDURE </b><font color="#cc0033">Init</font>!() : <a href="#type-BreakIteratorProvider">BreakIteratorProvider</a><b>,CONSTRUCTOR</b>;
+                           <b>END</b>;
+
+  <a name="type-CollatorProvider"></a><font color="#cc0033">CollatorProvider</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_util_spi.html#type-LocaleServiceProvider">java_util_spi.LocaleServiceProvider</a>)    <a href="#meths-CollatorProvider"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                      <b>STATIC</b>
+                        <b>PROCEDURE </b><font color="#cc0033">Init</font>!() : <a href="#type-CollatorProvider">CollatorProvider</a><b>,CONSTRUCTOR</b>;
+                      <b>END</b>;
+
+  <a name="type-DateFormatProvider"></a><font color="#cc0033">DateFormatProvider</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_util_spi.html#type-LocaleServiceProvider">java_util_spi.LocaleServiceProvider</a>)    <a href="#meths-DateFormatProvider"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                        <b>STATIC</b>
+                          <b>PROCEDURE </b><font color="#cc0033">Init</font>!() : <a href="#type-DateFormatProvider">DateFormatProvider</a><b>,CONSTRUCTOR</b>;
+                        <b>END</b>;
+
+  <a name="type-DateFormatSymbolsProvider"></a><font color="#cc0033">DateFormatSymbolsProvider</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_util_spi.html#type-LocaleServiceProvider">java_util_spi.LocaleServiceProvider</a>)    <a href="#meths-DateFormatSymbolsProvider"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                               <b>STATIC</b>
+                                 <b>PROCEDURE </b><font color="#cc0033">Init</font>!() : <a href="#type-DateFormatSymbolsProvider">DateFormatSymbolsProvider</a><b>,CONSTRUCTOR</b>;
+                               <b>END</b>;
+
+  <a name="type-DecimalFormatSymbolsProvider"></a><font color="#cc0033">DecimalFormatSymbolsProvider</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_util_spi.html#type-LocaleServiceProvider">java_util_spi.LocaleServiceProvider</a>)    <a href="#meths-DecimalFormatSymbolsProvider"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                                  <b>STATIC</b>
+                                    <b>PROCEDURE </b><font color="#cc0033">Init</font>!() : <a href="#type-DecimalFormatSymbolsProvider">DecimalFormatSymbolsProvider</a><b>,CONSTRUCTOR</b>;
+                                  <b>END</b>;
+
+  <a name="type-NumberFormatProvider"></a><font color="#cc0033">NumberFormatProvider</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_util_spi.html#type-LocaleServiceProvider">java_util_spi.LocaleServiceProvider</a>)    <a href="#meths-NumberFormatProvider"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                          <b>STATIC</b>
+                            <b>PROCEDURE </b><font color="#cc0033">Init</font>!() : <a href="#type-NumberFormatProvider">NumberFormatProvider</a><b>,CONSTRUCTOR</b>;
+                          <b>END</b>;
+
+
+
+<a name="meths-BreakIteratorProvider"></a>
+<b>PROCEDURE </b>(self:BreakIteratorProvider) <font color="#cc0033">getCharacterInstance</font>*(p0 : <a href="java_util.html#type-Locale">java_util.Locale</a>) : <a href="java_text.html#type-BreakIterator">java_text.BreakIterator</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:BreakIteratorProvider) <font color="#cc0033">getLineInstance</font>*(p0 : <a href="java_util.html#type-Locale">java_util.Locale</a>) : <a href="java_text.html#type-BreakIterator">java_text.BreakIterator</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:BreakIteratorProvider) <font color="#cc0033">getSentenceInstance</font>*(p0 : <a href="java_util.html#type-Locale">java_util.Locale</a>) : <a href="java_text.html#type-BreakIterator">java_text.BreakIterator</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:BreakIteratorProvider) <font color="#cc0033">getWordInstance</font>*(p0 : <a href="java_util.html#type-Locale">java_util.Locale</a>) : <a href="java_text.html#type-BreakIterator">java_text.BreakIterator</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-CollatorProvider"></a>
+<b>PROCEDURE </b>(self:CollatorProvider) <font color="#cc0033">getInstance</font>*(p0 : <a href="java_util.html#type-Locale">java_util.Locale</a>) : <a href="java_text.html#type-Collator">java_text.Collator</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-DateFormatProvider"></a>
+<b>PROCEDURE </b>(self:DateFormatProvider) <font color="#cc0033">getDateInstance</font>*(p0 : INTEGER;
+                                                     p1 : <a href="java_util.html#type-Locale">java_util.Locale</a>) : <a href="java_text.html#type-DateFormat">java_text.DateFormat</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DateFormatProvider) <font color="#cc0033">getDateTimeInstance</font>*(p0 : INTEGER;
+                                                         p1 : INTEGER;
+                                                         p2 : <a href="java_util.html#type-Locale">java_util.Locale</a>) : <a href="java_text.html#type-DateFormat">java_text.DateFormat</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DateFormatProvider) <font color="#cc0033">getTimeInstance</font>*(p0 : INTEGER;
+                                                     p1 : <a href="java_util.html#type-Locale">java_util.Locale</a>) : <a href="java_text.html#type-DateFormat">java_text.DateFormat</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-DateFormatSymbolsProvider"></a>
+<b>PROCEDURE </b>(self:DateFormatSymbolsProvider) <font color="#cc0033">getInstance</font>*(p0 : <a href="java_util.html#type-Locale">java_util.Locale</a>) : <a href="java_text.html#type-DateFormatSymbols">java_text.DateFormatSymbols</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-DecimalFormatSymbolsProvider"></a>
+<b>PROCEDURE </b>(self:DecimalFormatSymbolsProvider) <font color="#cc0033">getInstance</font>*(p0 : <a href="java_util.html#type-Locale">java_util.Locale</a>) : <a href="java_text.html#type-DecimalFormatSymbols">java_text.DecimalFormatSymbols</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-NumberFormatProvider"></a>
+<b>PROCEDURE </b>(self:NumberFormatProvider) <font color="#cc0033">getCurrencyInstance</font>*(p0 : <a href="java_util.html#type-Locale">java_util.Locale</a>) : <a href="java_text.html#type-NumberFormat">java_text.NumberFormat</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:NumberFormatProvider) <font color="#cc0033">getIntegerInstance</font>*(p0 : <a href="java_util.html#type-Locale">java_util.Locale</a>) : <a href="java_text.html#type-NumberFormat">java_text.NumberFormat</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:NumberFormatProvider) <font color="#cc0033">getNumberInstance</font>*(p0 : <a href="java_util.html#type-Locale">java_util.Locale</a>) : <a href="java_text.html#type-NumberFormat">java_text.NumberFormat</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:NumberFormatProvider) <font color="#cc0033">getPercentInstance</font>*(p0 : <a href="java_util.html#type-Locale">java_util.Locale</a>) : <a href="java_text.html#type-NumberFormat">java_text.NumberFormat</a><b>,NEW,ABSTRACT</b>;
+
+<b>END </b><font color="#cc0033">java_text_spi</font>.
+</font></pre></hr></body></html>

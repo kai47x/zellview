@@ -1,0 +1,4 @@
+format.access="%Ses->client.ip%  %Req->headers.referer% -  %Req->vars.auth-user% [%SYSDATE%] \"%Req->reqpb.clf-request%\" %Req->srvhdrs.clf-status% %Req->srvhdrs.content-length% %Req->headers.host%"
+64.252.130.54 - - [09/Aug/2003:00:32:41 +0200] "POST /cgi-bin/FormMail.pl HTTP/1.1" 302 0 www.zinnamturm.de
+209.79.77.198 - - [09/Aug/2003:02:46:50 +0200] "GET /CpcSearch.txt HTTP/1.0" 200 65651 www.zinnamturm.de
+12.148.209.198 - - [09/Aug/2003:05:30:52 +0200] "GET /robots.txt HTTP/1.1" 404 2977 www.zinnamturm.de

@@ -1,0 +1,334 @@
+<html><head><title>sun_security_provider_certpath</title></head>
+<body bgcolor="white">
+<hr><pre>
+<b>FOREIGN MODULE </b><font color="#cc0033">sun_security_provider_certpath</font>;
+
+<b>IMPORT</b>
+    <a href="java_util.html">java_util</a> := "java.util",
+    <a href="java_lang.html">java_lang</a> := "java.lang",
+    <a href="java_security_cert.html">java_security_cert</a> := "java.security.cert",
+    <a href="sun_security_x509.html">sun_security_x509</a> := "sun.security.x509",
+    <a href="sun_security_util.html">sun_security_util</a> := "sun.security.util",
+    <a href="java_security.html">java_security</a> := "java.security",
+    <a href="javax_security_auth_x500.html">javax_security_auth_x500</a> := "javax.security.auth.x500",
+    <a href="java_math.html">java_math</a> := "java.math",
+    <a href="java_io.html">java_io</a> := "java.io",
+    <a href="java_net.html">java_net</a> := "java.net",
+    <a href="javax_naming_directory.html">javax_naming_directory</a> := "javax.naming.directory";
+
+<b>TYPE</b>
+
+  <a name="type-AdjacencyList"></a><font color="#cc0033">AdjacencyList</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-AdjacencyList"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                   <b>STATIC</b>
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_util.html#type-List">java_util.List</a>) : <a href="#type-AdjacencyList">AdjacencyList</a><b>,CONSTRUCTOR</b>;
+                   <b>END</b>;
+
+  <a name="type-AlgorithmChecker"></a><font color="#cc0033">AlgorithmChecker</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_security_cert.html#type-PKIXCertPathChecker">java_security_cert.PKIXCertPathChecker</a>)    <a href="#meths-AlgorithmChecker"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                      <b>STATIC</b>
+                        <b>PROCEDURE </b><font color="#cc0033">check</font>*(p0 : <a href="java_security_cert.html#type-Certificate">java_security_cert.Certificate</a>);
+                      <b>END</b>;
+
+  <a name="type-Builder"></a><font color="#cc0033">Builder</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+             <b>END</b>;
+
+  <a name="type-BuildStep"></a><font color="#cc0033">BuildStep</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-BuildStep"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+               <b>STATIC</b>
+                 <font color="#cc0033">BACK</font>*     = 2;
+                 <font color="#cc0033">FAIL</font>*     = 4;
+                 <font color="#cc0033">FOLLOW</font>*   = 3;
+                 <font color="#cc0033">POSSIBLE</font>* = 1;
+                 <font color="#cc0033">SUCCEED</font>*  = 5;
+                 <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="#type-Vertex">Vertex</a>;
+                                 p1 : INTEGER) : <a href="#type-BuildStep">BuildStep</a><b>,CONSTRUCTOR</b>;
+               <b>END</b>;
+
+  <a name="type-CertId"></a><font color="#cc0033">CertId</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-CertId"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+            <b>STATIC</b>
+              <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="sun_security_util.html#type-DerInputStream">sun_security_util.DerInputStream</a>) : <a href="#type-CertId">CertId</a><b>,CONSTRUCTOR</b>;
+              <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_security_cert.html#type-X509Certificate">java_security_cert.X509Certificate</a>;
+                              p1 : <a href="sun_security_x509.html#type-SerialNumber">sun_security_x509.SerialNumber</a>) : <a href="#type-CertId">CertId</a><b>,CONSTRUCTOR</b>;
+            <b>END</b>;
+
+  <a name="type-CertPathHelper"></a><font color="#cc0033">CertPathHelper</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-CertPathHelper"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                    <b>STATIC</b>
+                      <a name="type-instance"></a><font color="#cc0033">instance</font>! : <a href="#type-CertPathHelper">CertPathHelper</a>;
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>!() : <a href="#type-CertPathHelper">CertPathHelper</a><b>,CONSTRUCTOR</b>;
+                    <b>END</b>;
+
+  <a name="type-CollectionCertStore"></a><font color="#cc0033">CollectionCertStore</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_security_cert.html#type-CertStoreSpi">java_security_cert.CertStoreSpi</a>)    <a href="#meths-CollectionCertStore"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                         <b>STATIC</b>
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_security_cert.html#type-CertStoreParameters">java_security_cert.CertStoreParameters</a>) : <a href="#type-CollectionCertStore">CollectionCertStore</a><b>,CONSTRUCTOR</b>;
+                         <b>END</b>;
+
+  <a name="type-IndexedCollectionCertStore"></a><font color="#cc0033">IndexedCollectionCertStore</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_security_cert.html#type-CertStoreSpi">java_security_cert.CertStoreSpi</a>)    <a href="#meths-IndexedCollectionCertStore"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                                <b>STATIC</b>
+                                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_security_cert.html#type-CertStoreParameters">java_security_cert.CertStoreParameters</a>) : <a href="#type-IndexedCollectionCertStore">IndexedCollectionCertStore</a><b>,CONSTRUCTOR</b>;
+                                <b>END</b>;
+
+  <a name="type-LDAPCertStore"></a><font color="#cc0033">LDAPCertStore</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_security_cert.html#type-CertStoreSpi">java_security_cert.CertStoreSpi</a>)    <a href="#meths-LDAPCertStore"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                   <b>STATIC</b>
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_security_cert.html#type-CertStoreParameters">java_security_cert.CertStoreParameters</a>) : <a href="#type-LDAPCertStore">LDAPCertStore</a><b>,CONSTRUCTOR</b>;
+                   <b>END</b>;
+
+  <a name="type-OCSP"></a><font color="#cc0033">OCSP</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+          <b>STATIC</b>
+            <b>PROCEDURE </b><font color="#cc0033">check</font>*(p0 : <a href="java_security_cert.html#type-X509Certificate">java_security_cert.X509Certificate</a>;
+                             p1 : <a href="java_security_cert.html#type-X509Certificate">java_security_cert.X509Certificate</a>;
+                             p2 : <a href="java_net.html#type-URI">java_net.URI</a>;
+                             p3 : <a href="java_security_cert.html#type-X509Certificate">java_security_cert.X509Certificate</a>;
+                             p4 : <a href="java_util.html#type-Date">java_util.Date</a>) : <a href="#type-OCSP$RevocationStatus">OCSP$RevocationStatus</a>;
+            <b>PROCEDURE </b><font color="#cc0033">check</font>*(p0 : <a href="java_security_cert.html#type-X509Certificate">java_security_cert.X509Certificate</a>;
+                             p1 : <a href="java_security_cert.html#type-X509Certificate">java_security_cert.X509Certificate</a>) : <a href="#type-OCSP$RevocationStatus">OCSP$RevocationStatus</a>;
+            <b>PROCEDURE </b><font color="#cc0033">getResponderURI</font>*(p0 : <a href="java_security_cert.html#type-X509Certificate">java_security_cert.X509Certificate</a>) : <a href="java_net.html#type-URI">java_net.URI</a>;
+          <b>END</b>;
+
+  <a name="type-OCSP$RevocationStatus"></a><font color="#cc0033">OCSP$RevocationStatus</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-OCSP$RevocationStatus"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                           <b>END</b>;
+
+  <a name="type-OCSP$RevocationStatus$CertStatus"></a><font color="#cc0033">OCSP$RevocationStatus$CertStatus</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Enum">java_lang.Enum</a>)
+                                      <b>STATIC</b>
+                                        <a name="type-GOOD"></a><font color="#cc0033">GOOD</font>*    : <a href="#type-OCSP$RevocationStatus$CertStatus">OCSP$RevocationStatus$CertStatus</a>;
+                                        <a name="type-REVOKED"></a><font color="#cc0033">REVOKED</font>* : <a href="#type-OCSP$RevocationStatus$CertStatus">OCSP$RevocationStatus$CertStatus</a>;
+                                        <a name="type-UNKNOWN"></a><font color="#cc0033">UNKNOWN</font>* : <a href="#type-OCSP$RevocationStatus$CertStatus">OCSP$RevocationStatus$CertStatus</a>;
+                                        <b>PROCEDURE </b><font color="#cc0033">valueOf</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-OCSP$RevocationStatus$CertStatus">OCSP$RevocationStatus$CertStatus</a>;
+                                        <b>PROCEDURE </b><font color="#cc0033">values</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-OCSP$RevocationStatus$CertStatus">OCSP$RevocationStatus$CertStatus</a>;
+                                      <b>END</b>;
+
+  <a name="type-OCSP$RevocationStatus$Reason"></a><font color="#cc0033">OCSP$RevocationStatus$Reason</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Enum">java_lang.Enum</a>)
+                                  <b>STATIC</b>
+                                    <a name="type-AA_COMPROMISE"></a><font color="#cc0033">AA_COMPROMISE</font>*          : <a href="#type-OCSP$RevocationStatus$Reason">OCSP$RevocationStatus$Reason</a>;
+                                    <a name="type-AFFILIATION_CHANGED"></a><font color="#cc0033">AFFILIATION_CHANGED</font>*    : <a href="#type-OCSP$RevocationStatus$Reason">OCSP$RevocationStatus$Reason</a>;
+                                    <a name="type-CA_COMPROMISE"></a><font color="#cc0033">CA_COMPROMISE</font>*          : <a href="#type-OCSP$RevocationStatus$Reason">OCSP$RevocationStatus$Reason</a>;
+                                    <a name="type-CERTIFICATE_HOLD"></a><font color="#cc0033">CERTIFICATE_HOLD</font>*       : <a href="#type-OCSP$RevocationStatus$Reason">OCSP$RevocationStatus$Reason</a>;
+                                    <a name="type-CESSATION_OF_OPERATION"></a><font color="#cc0033">CESSATION_OF_OPERATION</font>* : <a href="#type-OCSP$RevocationStatus$Reason">OCSP$RevocationStatus$Reason</a>;
+                                    <a name="type-KEY_COMPROMISE"></a><font color="#cc0033">KEY_COMPROMISE</font>*         : <a href="#type-OCSP$RevocationStatus$Reason">OCSP$RevocationStatus$Reason</a>;
+                                    <a name="type-PRIVILEGE_WITHDRAWN"></a><font color="#cc0033">PRIVILEGE_WITHDRAWN</font>*    : <a href="#type-OCSP$RevocationStatus$Reason">OCSP$RevocationStatus$Reason</a>;
+                                    <a name="type-REMOVE_FROM_CRL"></a><font color="#cc0033">REMOVE_FROM_CRL</font>*        : <a href="#type-OCSP$RevocationStatus$Reason">OCSP$RevocationStatus$Reason</a>;
+                                    <a name="type-SUPERSEDED"></a><font color="#cc0033">SUPERSEDED</font>*             : <a href="#type-OCSP$RevocationStatus$Reason">OCSP$RevocationStatus$Reason</a>;
+                                    <a name="type-UNSPECIFIED"></a><font color="#cc0033">UNSPECIFIED</font>*            : <a href="#type-OCSP$RevocationStatus$Reason">OCSP$RevocationStatus$Reason</a>;
+                                    <a name="type-UNUSED"></a><font color="#cc0033">UNUSED</font>*                 : <a href="#type-OCSP$RevocationStatus$Reason">OCSP$RevocationStatus$Reason</a>;
+                                    <b>PROCEDURE </b><font color="#cc0033">valueOf</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-OCSP$RevocationStatus$Reason">OCSP$RevocationStatus$Reason</a>;
+                                    <b>PROCEDURE </b><font color="#cc0033">values</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-OCSP$RevocationStatus$Reason">OCSP$RevocationStatus$Reason</a>;
+                                  <b>END</b>;
+
+  <a name="type-OCSPResponse"></a><font color="#cc0033">OCSPResponse</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                  <b>END</b>;
+
+  <a name="type-OCSPResponse$ResponseStatus"></a><font color="#cc0033">OCSPResponse$ResponseStatus</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Enum">java_lang.Enum</a>)
+                                 <b>STATIC</b>
+                                   <a name="type-INTERNAL_ERROR"></a><font color="#cc0033">INTERNAL_ERROR</font>*    : <a href="#type-OCSPResponse$ResponseStatus">OCSPResponse$ResponseStatus</a>;
+                                   <a name="type-MALFORMED_REQUEST"></a><font color="#cc0033">MALFORMED_REQUEST</font>* : <a href="#type-OCSPResponse$ResponseStatus">OCSPResponse$ResponseStatus</a>;
+                                   <a name="type-SIG_REQUIRED"></a><font color="#cc0033">SIG_REQUIRED</font>*      : <a href="#type-OCSPResponse$ResponseStatus">OCSPResponse$ResponseStatus</a>;
+                                   <a name="type-SUCCESSFUL"></a><font color="#cc0033">SUCCESSFUL</font>*        : <a href="#type-OCSPResponse$ResponseStatus">OCSPResponse$ResponseStatus</a>;
+                                   <a name="type-TRY_LATER"></a><font color="#cc0033">TRY_LATER</font>*         : <a href="#type-OCSPResponse$ResponseStatus">OCSPResponse$ResponseStatus</a>;
+                                   <a name="type-UNAUTHORIZED"></a><font color="#cc0033">UNAUTHORIZED</font>*      : <a href="#type-OCSPResponse$ResponseStatus">OCSPResponse$ResponseStatus</a>;
+                                   <a name="type-UNUSED"></a><font color="#cc0033">UNUSED</font>*            : <a href="#type-OCSPResponse$ResponseStatus">OCSPResponse$ResponseStatus</a>;
+                                   <b>PROCEDURE </b><font color="#cc0033">valueOf</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-OCSPResponse$ResponseStatus">OCSPResponse$ResponseStatus</a>;
+                                   <b>PROCEDURE </b><font color="#cc0033">values</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-OCSPResponse$ResponseStatus">OCSPResponse$ResponseStatus</a>;
+                                 <b>END</b>;
+
+  <a name="type-OCSPResponse$UnreliableException"></a><font color="#cc0033">OCSPResponse$UnreliableException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_security_cert.html#type-CertificateException">java_security_cert.CertificateException</a>)
+                                      <b>END</b>;
+
+  <a name="type-PKIXCertPathValidator"></a><font color="#cc0033">PKIXCertPathValidator</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_security_cert.html#type-CertPathValidatorSpi">java_security_cert.CertPathValidatorSpi</a>)    <a href="#meths-PKIXCertPathValidator"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                           <b>STATIC</b>
+                             <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-PKIXCertPathValidator">PKIXCertPathValidator</a><b>,CONSTRUCTOR</b>;
+                           <b>END</b>;
+
+  <a name="type-SunCertPathBuilder"></a><font color="#cc0033">SunCertPathBuilder</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_security_cert.html#type-CertPathBuilderSpi">java_security_cert.CertPathBuilderSpi</a>)    <a href="#meths-SunCertPathBuilder"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                        <b>STATIC</b>
+                          <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-SunCertPathBuilder">SunCertPathBuilder</a><b>,CONSTRUCTOR</b>;
+                        <b>END</b>;
+
+  <a name="type-SunCertPathBuilderException"></a><font color="#cc0033">SunCertPathBuilderException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_security_cert.html#type-CertPathBuilderException">java_security_cert.CertPathBuilderException</a>)    <a href="#meths-SunCertPathBuilderException"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                                 <b>STATIC</b>
+                                   <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-Throwable">java_lang.Throwable</a>) : <a href="#type-SunCertPathBuilderException">SunCertPathBuilderException</a><b>,CONSTRUCTOR</b>;
+                                   <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                   p1 : <a href="java_lang.html#type-Throwable">java_lang.Throwable</a>) : <a href="#type-SunCertPathBuilderException">SunCertPathBuilderException</a><b>,CONSTRUCTOR</b>;
+                                   <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-SunCertPathBuilderException">SunCertPathBuilderException</a><b>,CONSTRUCTOR</b>;
+                                   <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-SunCertPathBuilderException">SunCertPathBuilderException</a><b>,CONSTRUCTOR</b>;
+                                 <b>END</b>;
+
+  <a name="type-SunCertPathBuilderParameters"></a><font color="#cc0033">SunCertPathBuilderParameters</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_security_cert.html#type-PKIXBuilderParameters">java_security_cert.PKIXBuilderParameters</a>)    <a href="#meths-SunCertPathBuilderParameters"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                                  <b>STATIC</b>
+                                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_security.html#type-KeyStore">java_security.KeyStore</a>;
+                                                    p1 : <a href="java_security_cert.html#type-CertSelector">java_security_cert.CertSelector</a>) : <a href="#type-SunCertPathBuilderParameters">SunCertPathBuilderParameters</a><b>,CONSTRUCTOR</b>;
+                                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_util.html#type-Set">java_util.Set</a>;
+                                                    p1 : <a href="java_security_cert.html#type-CertSelector">java_security_cert.CertSelector</a>) : <a href="#type-SunCertPathBuilderParameters">SunCertPathBuilderParameters</a><b>,CONSTRUCTOR</b>;
+                                  <b>END</b>;
+
+  <a name="type-SunCertPathBuilderResult"></a><font color="#cc0033">SunCertPathBuilderResult</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_security_cert.html#type-PKIXCertPathBuilderResult">java_security_cert.PKIXCertPathBuilderResult</a>)    <a href="#meths-SunCertPathBuilderResult"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                              <b>END</b>;
+
+  <a name="type-Vertex"></a><font color="#cc0033">Vertex</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-Vertex"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+            <b>END</b>;
+
+  <a name="type-X509CertificatePair"></a><font color="#cc0033">X509CertificatePair</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-X509CertificatePair"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                         <b>STATIC</b>
+                           <b>PROCEDURE </b><font color="#cc0033">clearCache</font>*();
+                           <b>PROCEDURE </b><font color="#cc0033">generateCertificatePair</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE) : <a href="#type-X509CertificatePair">X509CertificatePair</a>;
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-X509CertificatePair">X509CertificatePair</a><b>,CONSTRUCTOR</b>;
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_security_cert.html#type-X509Certificate">java_security_cert.X509Certificate</a>;
+                                           p1 : <a href="java_security_cert.html#type-X509Certificate">java_security_cert.X509Certificate</a>) : <a href="#type-X509CertificatePair">X509CertificatePair</a><b>,CONSTRUCTOR</b>;
+                         <b>END</b>;
+
+  <a name="type-X509CertPath"></a><font color="#cc0033">X509CertPath</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_security_cert.html#type-CertPath">java_security_cert.CertPath</a>)    <a href="#meths-X509CertPath"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                  <b>STATIC</b>
+                    <b>PROCEDURE </b><font color="#cc0033">getEncodingsStatic</font>*() : <a href="java_util.html#type-Iterator">java_util.Iterator</a>;
+                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_io.html#type-InputStream">java_io.InputStream</a>;
+                                    p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-X509CertPath">X509CertPath</a><b>,CONSTRUCTOR</b>;
+                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_util.html#type-List">java_util.List</a>) : <a href="#type-X509CertPath">X509CertPath</a><b>,CONSTRUCTOR</b>;
+                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_io.html#type-InputStream">java_io.InputStream</a>) : <a href="#type-X509CertPath">X509CertPath</a><b>,CONSTRUCTOR</b>;
+                  <b>END</b>;
+
+
+
+<a name="meths-AdjacencyList"></a>
+<b>PROCEDURE </b>(self:AdjacencyList) <font color="#cc0033">iterator</font>*() : <a href="java_util.html#type-Iterator">java_util.Iterator</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AdjacencyList) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,EXTENSIBLE</b>;
+<a name="meths-AlgorithmChecker"></a>
+<b>PROCEDURE </b>(self:AlgorithmChecker) <font color="#cc0033">check</font>*(p0 : <a href="java_security_cert.html#type-Certificate">java_security_cert.Certificate</a>;
+                                         p1 : <a href="java_util.html#type-Collection">java_util.Collection</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AlgorithmChecker) <font color="#cc0033">getSupportedExtensions</font>*() : <a href="java_util.html#type-Set">java_util.Set</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AlgorithmChecker) <font color="#cc0033">init</font>*(p0 : BOOLEAN)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AlgorithmChecker) <font color="#cc0033">isForwardCheckingSupported</font>*() : BOOLEAN<b>,EXTENSIBLE</b>;
+<a name="meths-BuildStep"></a>
+<b>PROCEDURE </b>(self:BuildStep) <font color="#cc0033">fullToString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BuildStep) <font color="#cc0033">getCertificate</font>*() : <a href="java_security_cert.html#type-X509Certificate">java_security_cert.X509Certificate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BuildStep) <font color="#cc0033">getIssuerName</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BuildStep) <font color="#cc0033">getIssuerName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BuildStep) <font color="#cc0033">getResult</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BuildStep) <font color="#cc0033">getSubjectName</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BuildStep) <font color="#cc0033">getSubjectName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BuildStep) <font color="#cc0033">getThrowable</font>*() : <a href="java_lang.html#type-Throwable">java_lang.Throwable</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BuildStep) <font color="#cc0033">getVertex</font>*() : <a href="#type-Vertex">Vertex</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BuildStep) <font color="#cc0033">resultToString</font>*(p0 : INTEGER) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BuildStep) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BuildStep) <font color="#cc0033">verboseToString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-CertId"></a>
+<b>PROCEDURE </b>(self:CertId) <font color="#cc0033">encode</font>*(p0 : <a href="sun_security_util.html#type-DerOutputStream">sun_security_util.DerOutputStream</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CertId) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CertId) <font color="#cc0033">getHashAlgorithm</font>*() : <a href="sun_security_x509.html#type-AlgorithmId">sun_security_x509.AlgorithmId</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CertId) <font color="#cc0033">getIssuerKeyHash</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>BYTE<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CertId) <font color="#cc0033">getIssuerNameHash</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>BYTE<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CertId) <font color="#cc0033">getSerialNumber</font>*() : <a href="java_math.html#type-BigInteger">java_math.BigInteger</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CertId) <font color="#cc0033">hashCode</font>*() : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CertId) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,EXTENSIBLE</b>;
+<a name="meths-CertPathHelper"></a>
+<b>PROCEDURE </b>(self:CertPathHelper) <font color="#cc0033">implAddIssuer</font>!(p0 : <a href="java_security_cert.html#type-X509CRLSelector">java_security_cert.X509CRLSelector</a>;
+                                               p1 : <a href="javax_security_auth_x500.html#type-X500Principal">javax_security_auth_x500.X500Principal</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CertPathHelper) <font color="#cc0033">implGetCA</font>!(p0 : <a href="java_security_cert.html#type-TrustAnchor">java_security_cert.TrustAnchor</a>) : <a href="javax_security_auth_x500.html#type-X500Principal">javax_security_auth_x500.X500Principal</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CertPathHelper) <font color="#cc0033">implGetIssuer</font>!(p0 : <a href="java_security_cert.html#type-X509CertSelector">java_security_cert.X509CertSelector</a>) : <a href="javax_security_auth_x500.html#type-X500Principal">javax_security_auth_x500.X500Principal</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CertPathHelper) <font color="#cc0033">implGetIssuers</font>!(p0 : <a href="java_security_cert.html#type-X509CRLSelector">java_security_cert.X509CRLSelector</a>) : <a href="java_util.html#type-Collection">java_util.Collection</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CertPathHelper) <font color="#cc0033">implGetSubject</font>!(p0 : <a href="java_security_cert.html#type-X509CertSelector">java_security_cert.X509CertSelector</a>) : <a href="javax_security_auth_x500.html#type-X500Principal">javax_security_auth_x500.X500Principal</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CertPathHelper) <font color="#cc0033">implSetDateAndTime</font>!(p0 : <a href="java_security_cert.html#type-X509CRLSelector">java_security_cert.X509CRLSelector</a>;
+                                                    p1 : <a href="java_util.html#type-Date">java_util.Date</a>;
+                                                    p2 : LONGINT)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CertPathHelper) <font color="#cc0033">implSetIssuer</font>!(p0 : <a href="java_security_cert.html#type-X509CertSelector">java_security_cert.X509CertSelector</a>;
+                                               p1 : <a href="javax_security_auth_x500.html#type-X500Principal">javax_security_auth_x500.X500Principal</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CertPathHelper) <font color="#cc0033">implSetPathToNames</font>!(p0 : <a href="java_security_cert.html#type-X509CertSelector">java_security_cert.X509CertSelector</a>;
+                                                    p1 : <a href="java_util.html#type-Set">java_util.Set</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CertPathHelper) <font color="#cc0033">implSetSubject</font>!(p0 : <a href="java_security_cert.html#type-X509CertSelector">java_security_cert.X509CertSelector</a>;
+                                                p1 : <a href="javax_security_auth_x500.html#type-X500Principal">javax_security_auth_x500.X500Principal</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-CollectionCertStore"></a>
+<b>PROCEDURE </b>(self:CollectionCertStore) <font color="#cc0033">engineGetCertificates</font>*(p0 : <a href="java_security_cert.html#type-CertSelector">java_security_cert.CertSelector</a>) : <a href="java_util.html#type-Collection">java_util.Collection</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CollectionCertStore) <font color="#cc0033">engineGetCRLs</font>*(p0 : <a href="java_security_cert.html#type-CRLSelector">java_security_cert.CRLSelector</a>) : <a href="java_util.html#type-Collection">java_util.Collection</a><b>,EXTENSIBLE</b>;
+<a name="meths-IndexedCollectionCertStore"></a>
+<b>PROCEDURE </b>(self:IndexedCollectionCertStore) <font color="#cc0033">engineGetCertificates</font>*(p0 : <a href="java_security_cert.html#type-CertSelector">java_security_cert.CertSelector</a>) : <a href="java_util.html#type-Collection">java_util.Collection</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IndexedCollectionCertStore) <font color="#cc0033">engineGetCRLs</font>*(p0 : <a href="java_security_cert.html#type-CRLSelector">java_security_cert.CRLSelector</a>) : <a href="java_util.html#type-Collection">java_util.Collection</a><b>,EXTENSIBLE</b>;
+<a name="meths-LDAPCertStore"></a>
+<b>PROCEDURE </b>(self:LDAPCertStore) <font color="#cc0033">engineGetCertificates</font>*(p0 : <a href="java_security_cert.html#type-CertSelector">java_security_cert.CertSelector</a>) : <a href="java_util.html#type-Collection">java_util.Collection</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LDAPCertStore) <font color="#cc0033">engineGetCRLs</font>*(p0 : <a href="java_security_cert.html#type-CRLSelector">java_security_cert.CRLSelector</a>) : <a href="java_util.html#type-Collection">java_util.Collection</a><b>,EXTENSIBLE</b>;
+<a name="meths-OCSP$RevocationStatus"></a>
+<b>PROCEDURE </b>(self:OCSP$RevocationStatus) <font color="#cc0033">getCertStatus</font>*() : <a href="#type-OCSP$RevocationStatus$CertStatus">OCSP$RevocationStatus$CertStatus</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:OCSP$RevocationStatus) <font color="#cc0033">getRevocationReason</font>*() : <a href="#type-OCSP$RevocationStatus$Reason">OCSP$RevocationStatus$Reason</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:OCSP$RevocationStatus) <font color="#cc0033">getRevocationTime</font>*() : <a href="java_util.html#type-Date">java_util.Date</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-PKIXCertPathValidator"></a>
+<b>PROCEDURE </b>(self:PKIXCertPathValidator) <font color="#cc0033">engineValidate</font>*(p0 : <a href="java_security_cert.html#type-CertPath">java_security_cert.CertPath</a>;
+                                                       p1 : <a href="java_security_cert.html#type-CertPathParameters">java_security_cert.CertPathParameters</a>) : <a href="java_security_cert.html#type-CertPathValidatorResult">java_security_cert.CertPathValidatorResult</a><b>,EXTENSIBLE</b>;
+<a name="meths-SunCertPathBuilder"></a>
+<b>PROCEDURE </b>(self:SunCertPathBuilder) <font color="#cc0033">engineBuild</font>*(p0 : <a href="java_security_cert.html#type-CertPathParameters">java_security_cert.CertPathParameters</a>) : <a href="java_security_cert.html#type-CertPathBuilderResult">java_security_cert.CertPathBuilderResult</a><b>,EXTENSIBLE</b>;
+<a name="meths-SunCertPathBuilderException"></a>
+<b>PROCEDURE </b>(self:SunCertPathBuilderException) <font color="#cc0033">getAdjacencyList</font>*() : <a href="#type-AdjacencyList">AdjacencyList</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-SunCertPathBuilderParameters"></a>
+<b>PROCEDURE </b>(self:SunCertPathBuilderParameters) <font color="#cc0033">getBuildForward</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunCertPathBuilderParameters) <font color="#cc0033">setBuildForward</font>*(p0 : BOOLEAN)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunCertPathBuilderParameters) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,EXTENSIBLE</b>;
+<a name="meths-SunCertPathBuilderResult"></a>
+<b>PROCEDURE </b>(self:SunCertPathBuilderResult) <font color="#cc0033">getAdjacencyList</font>*() : <a href="#type-AdjacencyList">AdjacencyList</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-Vertex"></a>
+<b>PROCEDURE </b>(self:Vertex) <font color="#cc0033">certToString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Vertex) <font color="#cc0033">getCertificate</font>*() : <a href="java_security_cert.html#type-Certificate">java_security_cert.Certificate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Vertex) <font color="#cc0033">getIndex</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Vertex) <font color="#cc0033">getThrowable</font>*() : <a href="java_lang.html#type-Throwable">java_lang.Throwable</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Vertex) <font color="#cc0033">indexToString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Vertex) <font color="#cc0033">moreToString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Vertex) <font color="#cc0033">throwableToString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Vertex) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,EXTENSIBLE</b>;
+<a name="meths-X509CertificatePair"></a>
+<b>PROCEDURE </b>(self:X509CertificatePair) <font color="#cc0033">getEncoded</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>BYTE<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:X509CertificatePair) <font color="#cc0033">getForward</font>*() : <a href="java_security_cert.html#type-X509Certificate">java_security_cert.X509Certificate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:X509CertificatePair) <font color="#cc0033">getReverse</font>*() : <a href="java_security_cert.html#type-X509Certificate">java_security_cert.X509Certificate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:X509CertificatePair) <font color="#cc0033">setForward</font>*(p0 : <a href="java_security_cert.html#type-X509Certificate">java_security_cert.X509Certificate</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:X509CertificatePair) <font color="#cc0033">setReverse</font>*(p0 : <a href="java_security_cert.html#type-X509Certificate">java_security_cert.X509Certificate</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:X509CertificatePair) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,EXTENSIBLE</b>;
+<a name="meths-X509CertPath"></a>
+<b>PROCEDURE </b>(self:X509CertPath) <font color="#cc0033">getCertificates</font>*() : <a href="java_util.html#type-List">java_util.List</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:X509CertPath) <font color="#cc0033">getEncoded</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>BYTE<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:X509CertPath) <font color="#cc0033">getEncoded</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>BYTE<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:X509CertPath) <font color="#cc0033">getEncodings</font>*() : <a href="java_util.html#type-Iterator">java_util.Iterator</a><b>,EXTENSIBLE</b>;
+
+<b>END </b><font color="#cc0033">sun_security_provider_certpath</font>.
+</font></pre></hr></body></html>

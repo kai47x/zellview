@@ -1,0 +1,112 @@
+<html><head><title>javax_swing_filechooser</title></head>
+<body bgcolor="white">
+<hr><pre>
+<b>FOREIGN MODULE </b><font color="#cc0033">javax_swing_filechooser</font>;
+
+<b>IMPORT</b>
+    <a href="java_io.html">java_io</a> := "java.io",
+    <a href="java_lang.html">java_lang</a> := "java.lang",
+    <a href="java_beans.html">java_beans</a> := "java.beans",
+    <a href="java_net.html">java_net</a> := "java.net",
+    <a href="javax_swing.html">javax_swing</a> := "javax.swing",
+    <a href="sun_awt_shell.html">sun_awt_shell</a> := "sun.awt.shell";
+
+<b>TYPE</b>
+
+  <a name="type-FileFilter"></a><font color="#cc0033">FileFilter</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-FileFilter"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                <b>STATIC</b>
+                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-FileFilter">FileFilter</a><b>,CONSTRUCTOR</b>;
+                <b>END</b>;
+
+  <a name="type-FileNameExtensionFilter"></a><font color="#cc0033">FileNameExtensionFilter</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-FileFilter">FileFilter</a>)    <a href="#meths-FileNameExtensionFilter"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                             <b>STATIC</b>
+                               <b>PROCEDURE </b><font color="#cc0033">Init</font>*(    p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                               IN  p1 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-FileNameExtensionFilter">FileNameExtensionFilter</a><b>,CONSTRUCTOR</b>;
+                             <b>END</b>;
+
+  <a name="type-FileSystemView"></a><font color="#cc0033">FileSystemView</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-FileSystemView"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                    <b>STATIC</b>
+                      <b>PROCEDURE </b><font color="#cc0033">getFileSystemView</font>*() : <a href="#type-FileSystemView">FileSystemView</a>;
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-FileSystemView">FileSystemView</a><b>,CONSTRUCTOR</b>;
+                    <b>END</b>;
+
+  <a name="type-FileView"></a><font color="#cc0033">FileView</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-FileView"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+              <b>STATIC</b>
+                <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-FileView">FileView</a><b>,CONSTRUCTOR</b>;
+              <b>END</b>;
+
+
+
+<a name="meths-FileFilter"></a>
+<b>PROCEDURE </b>(self:FileFilter) <font color="#cc0033">accept</font>*(p0 : <a href="java_io.html#type-File">java_io.File</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:FileFilter) <font color="#cc0033">getDescription</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-FileNameExtensionFilter"></a>
+<b>PROCEDURE </b>(self:FileNameExtensionFilter) <font color="#cc0033">accept</font>*(p0 : <a href="java_io.html#type-File">java_io.File</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FileNameExtensionFilter) <font color="#cc0033">getDescription</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FileNameExtensionFilter) <font color="#cc0033">getExtensions</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FileNameExtensionFilter) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,EXTENSIBLE</b>;
+<a name="meths-FileSystemView"></a>
+<b>PROCEDURE </b>(self:FileSystemView) <font color="#cc0033">createFileObject</font>*(p0 : <a href="java_io.html#type-File">java_io.File</a>;
+                                                  p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_io.html#type-File">java_io.File</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FileSystemView) <font color="#cc0033">createFileObject</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_io.html#type-File">java_io.File</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FileSystemView) <font color="#cc0033">createFileSystemRoot</font>!(p0 : <a href="java_io.html#type-File">java_io.File</a>) : <a href="java_io.html#type-File">java_io.File</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FileSystemView) <font color="#cc0033">createNewFolder</font>*(p0 : <a href="java_io.html#type-File">java_io.File</a>) : <a href="java_io.html#type-File">java_io.File</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:FileSystemView) <font color="#cc0033">getChild</font>*(p0 : <a href="java_io.html#type-File">java_io.File</a>;
+                                          p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_io.html#type-File">java_io.File</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FileSystemView) <font color="#cc0033">getDefaultDirectory</font>*() : <a href="java_io.html#type-File">java_io.File</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FileSystemView) <font color="#cc0033">getFiles</font>*(p0 : <a href="java_io.html#type-File">java_io.File</a>;
+                                          p1 : BOOLEAN) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_io.html#type-File">java_io.File</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FileSystemView) <font color="#cc0033">getHomeDirectory</font>*() : <a href="java_io.html#type-File">java_io.File</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FileSystemView) <font color="#cc0033">getParentDirectory</font>*(p0 : <a href="java_io.html#type-File">java_io.File</a>) : <a href="java_io.html#type-File">java_io.File</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FileSystemView) <font color="#cc0033">getRoots</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_io.html#type-File">java_io.File</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FileSystemView) <font color="#cc0033">getSystemDisplayName</font>*(p0 : <a href="java_io.html#type-File">java_io.File</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FileSystemView) <font color="#cc0033">getSystemIcon</font>*(p0 : <a href="java_io.html#type-File">java_io.File</a>) : <a href="javax_swing.html#type-Icon">javax_swing.Icon</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FileSystemView) <font color="#cc0033">getSystemTypeDescription</font>*(p0 : <a href="java_io.html#type-File">java_io.File</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FileSystemView) <font color="#cc0033">isComputerNode</font>*(p0 : <a href="java_io.html#type-File">java_io.File</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FileSystemView) <font color="#cc0033">isDrive</font>*(p0 : <a href="java_io.html#type-File">java_io.File</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FileSystemView) <font color="#cc0033">isFileSystem</font>*(p0 : <a href="java_io.html#type-File">java_io.File</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FileSystemView) <font color="#cc0033">isFileSystemRoot</font>*(p0 : <a href="java_io.html#type-File">java_io.File</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FileSystemView) <font color="#cc0033">isFloppyDrive</font>*(p0 : <a href="java_io.html#type-File">java_io.File</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FileSystemView) <font color="#cc0033">isHiddenFile</font>*(p0 : <a href="java_io.html#type-File">java_io.File</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FileSystemView) <font color="#cc0033">isParent</font>*(p0 : <a href="java_io.html#type-File">java_io.File</a>;
+                                          p1 : <a href="java_io.html#type-File">java_io.File</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FileSystemView) <font color="#cc0033">isRoot</font>*(p0 : <a href="java_io.html#type-File">java_io.File</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FileSystemView) <font color="#cc0033">isTraversable</font>*(p0 : <a href="java_io.html#type-File">java_io.File</a>) : <a href="java_lang.html#type-Boolean">java_lang.Boolean</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-FileView"></a>
+<b>PROCEDURE </b>(self:FileView) <font color="#cc0033">getDescription</font>*(p0 : <a href="java_io.html#type-File">java_io.File</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FileView) <font color="#cc0033">getIcon</font>*(p0 : <a href="java_io.html#type-File">java_io.File</a>) : <a href="javax_swing.html#type-Icon">javax_swing.Icon</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FileView) <font color="#cc0033">getName</font>*(p0 : <a href="java_io.html#type-File">java_io.File</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FileView) <font color="#cc0033">getTypeDescription</font>*(p0 : <a href="java_io.html#type-File">java_io.File</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FileView) <font color="#cc0033">isTraversable</font>*(p0 : <a href="java_io.html#type-File">java_io.File</a>) : <a href="java_lang.html#type-Boolean">java_lang.Boolean</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>END </b><font color="#cc0033">javax_swing_filechooser</font>.
+</font></pre></hr></body></html>

@@ -1,0 +1,19 @@
+format.access="%Ses->client.ip%  %Req->headers.referer% -  %Req->vars.auth-user% [%SYSDATE%] \"%Req->reqpb.clf-request%\" %Req->srvhdrs.clf-status% %Req->srvhdrs.content-length% %Req->headers.host%"
+81.23.193.84 - - [05/Aug/2003:00:02:47 +0200] "GET / HTTP/1.0" 200 84922 www.zinnamturm.de
+81.23.193.84 - - [05/Aug/2003:00:15:50 +0200] "GET /#top HTTP/1.0" 404 2977 www.zinnamturm.de
+81.23.193.84 - - [05/Aug/2003:00:15:50 +0200] "GET /#Html HTTP/1.0" 404 2977 www.zinnamturm.de
+81.23.193.84 - - [05/Aug/2003:00:17:08 +0200] "GET /#TboxList HTTP/1.0" 404 2977 www.zinnamturm.de
+81.23.193.84 - - [05/Aug/2003:00:17:26 +0200] "GET /mailto:robert.d.campbell&#64;baesystems.com?subject=CPC HTTP/1.0" 404 2977 www.zinnamturm.de
+81.23.193.84 - - [05/Aug/2003:00:17:26 +0200] "GET /mailto:gmeunier&#64;club-internet.fr?subject=CPC%20Util HTTP/1.0" 404 2977 www.zinnamturm.de
+81.23.193.84 - - [05/Aug/2003:00:17:26 +0200] "GET /mailto:cpc&#64;zinnamturm.de?subject=CPC%20Tp2cp HTTP/1.0" 404 2977 www.zinnamturm.de
+81.23.193.84 - - [05/Aug/2003:00:17:43 +0200] "GET /mailto:gmeunier&#64;club-internet.fr?subject=CPC HTTP/1.0" 404 2977 www.zinnamturm.de
+81.23.193.84 - - [05/Aug/2003:00:17:43 +0200] "GET /mailto:gerhard.marent&#64;vkw.at?subject=CPC HTTP/1.0" 404 2977 www.zinnamturm.de
+212.127.198.30 - - [05/Aug/2003:00:52:35 +0200] "GET / HTTP/1.1" 200 84922 www.zinnamturm.de
+212.127.198.30 - - [05/Aug/2003:00:52:36 +0200] "GET /favicon.ico HTTP/1.1" 200 1406 www.zinnamturm.de
+212.127.198.30 http://www.zinnamturm.de/ - [05/Aug/2003:00:52:36 +0200] "GET /mail99.gif HTTP/1.1" 200 4196 www.zinnamturm.de
+212.127.198.30 http://www.zinnamturm.de/ - [05/Aug/2003:00:52:36 +0200] "GET /bg3.gif HTTP/1.1" 200 16276 www.zinnamturm.de
+216.88.158.142 - - [05/Aug/2003:06:42:17 +0200] "GET /robots.txt HTTP/1.1" 404 2977 www.zinnamturm.de
+203.144.77.100 http://www.oberon.ch/resources/index.html - [05/Aug/2003:07:02:07 +0200] "GET / HTTP/1.1" 304 - www.zinnamturm.de
+203.144.77.100 http://www.zinnamturm.de/ - [05/Aug/2003:07:02:09 +0200] "GET /bg3.gif HTTP/1.1" 304 - www.zinnamturm.de
+203.144.77.100 http://www.zinnamturm.de/ - [05/Aug/2003:07:02:09 +0200] "GET /mail99.gif HTTP/1.1" 304 - www.zinnamturm.de
+203.144.77.100 http://www.zinnamturm.de/ - [05/Aug/2003:07:07:52 +0200] "GET /Lib.txt HTTP/1.1" 206 251507 www.zinnamturm.de

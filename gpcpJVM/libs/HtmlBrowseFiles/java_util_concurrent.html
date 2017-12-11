@@ -1,0 +1,1518 @@
+<html><head><title>java_util_concurrent</title></head>
+<body bgcolor="white">
+<hr><pre>
+<b>FOREIGN MODULE </b><font color="#cc0033">java_util_concurrent</font>;
+
+<b>IMPORT</b>
+    <a href="java_lang.html">java_lang</a> := "java.lang",
+    <a href="java_util.html">java_util</a> := "java.util",
+    <a href="java_io.html">java_io</a> := "java.io",
+    <a href="java_util_concurrent_locks.html">java_util_concurrent_locks</a> := "java.util.concurrent.locks",
+    <a href="sun_misc.html">sun_misc</a> := "sun.misc",
+    <a href="java_util_concurrent_atomic.html">java_util_concurrent_atomic</a> := "java.util.concurrent.atomic",
+    <a href="java_security.html">java_security</a> := "java.security";
+
+<b>TYPE</b>
+
+  <a name="type-AbstractExecutorService"></a><font color="#cc0033">AbstractExecutorService</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-ExecutorService">ExecutorService</a>)    <a href="#meths-AbstractExecutorService"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                             <b>STATIC</b>
+                               <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-AbstractExecutorService">AbstractExecutorService</a><b>,CONSTRUCTOR</b>;
+                             <b>END</b>;
+
+  <a name="type-ArrayBlockingQueue"></a><font color="#cc0033">ArrayBlockingQueue</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_util.html#type-AbstractQueue">java_util.AbstractQueue</a> + <a href="#type-BlockingQueue">BlockingQueue</a> + <a href="java_io.html#type-Serializable">java_io.Serializable</a>)    <a href="#meths-ArrayBlockingQueue"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                        <b>STATIC</b>
+                          <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER;
+                                          p1 : BOOLEAN;
+                                          p2 : <a href="java_util.html#type-Collection">java_util.Collection</a>) : <a href="#type-ArrayBlockingQueue">ArrayBlockingQueue</a><b>,CONSTRUCTOR</b>;
+                          <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER;
+                                          p1 : BOOLEAN) : <a href="#type-ArrayBlockingQueue">ArrayBlockingQueue</a><b>,CONSTRUCTOR</b>;
+                          <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER) : <a href="#type-ArrayBlockingQueue">ArrayBlockingQueue</a><b>,CONSTRUCTOR</b>;
+                        <b>END</b>;
+
+  <a name="type-BlockingDeque"></a><font color="#cc0033">BlockingDeque</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-BlockingQueue">BlockingQueue</a> + <a href="java_util.html#type-Deque">java_util.Deque</a>)    <a href="#meths-BlockingDeque"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                   <b>END</b>;
+
+  <a name="type-BlockingQueue"></a><font color="#cc0033">BlockingQueue</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_util.html#type-Queue">java_util.Queue</a>)    <a href="#meths-BlockingQueue"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                   <b>END</b>;
+
+  <a name="type-BrokenBarrierException"></a><font color="#cc0033">BrokenBarrierException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Exception">java_lang.Exception</a>)
+                            <b>STATIC</b>
+                              <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-BrokenBarrierException">BrokenBarrierException</a><b>,CONSTRUCTOR</b>;
+                              <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-BrokenBarrierException">BrokenBarrierException</a><b>,CONSTRUCTOR</b>;
+                            <b>END</b>;
+
+  <a name="type-Callable"></a><font color="#cc0033">Callable</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-Callable"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+              <b>END</b>;
+
+  <a name="type-CancellationException"></a><font color="#cc0033">CancellationException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-IllegalStateException">java_lang.IllegalStateException</a>)
+                           <b>STATIC</b>
+                             <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-CancellationException">CancellationException</a><b>,CONSTRUCTOR</b>;
+                             <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CancellationException">CancellationException</a><b>,CONSTRUCTOR</b>;
+                           <b>END</b>;
+
+  <a name="type-CompletionService"></a><font color="#cc0033">CompletionService</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-CompletionService"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                       <b>END</b>;
+
+  <a name="type-ConcurrentHashMap"></a><font color="#cc0033">ConcurrentHashMap</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_util.html#type-AbstractMap">java_util.AbstractMap</a> + <a href="#type-ConcurrentMap">ConcurrentMap</a> + <a href="java_io.html#type-Serializable">java_io.Serializable</a>)    <a href="#meths-ConcurrentHashMap"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                       <b>STATIC</b>
+                         <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-ConcurrentHashMap">ConcurrentHashMap</a><b>,CONSTRUCTOR</b>;
+                         <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_util.html#type-Map">java_util.Map</a>) : <a href="#type-ConcurrentHashMap">ConcurrentHashMap</a><b>,CONSTRUCTOR</b>;
+                         <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER) : <a href="#type-ConcurrentHashMap">ConcurrentHashMap</a><b>,CONSTRUCTOR</b>;
+                         <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER;
+                                         p1 : SHORTREAL;
+                                         p2 : INTEGER) : <a href="#type-ConcurrentHashMap">ConcurrentHashMap</a><b>,CONSTRUCTOR</b>;
+                         <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER;
+                                         p1 : SHORTREAL) : <a href="#type-ConcurrentHashMap">ConcurrentHashMap</a><b>,CONSTRUCTOR</b>;
+                       <b>END</b>;
+
+  <a name="type-ConcurrentLinkedQueue"></a><font color="#cc0033">ConcurrentLinkedQueue</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_util.html#type-AbstractQueue">java_util.AbstractQueue</a> + <a href="java_util.html#type-Queue">java_util.Queue</a> + <a href="java_io.html#type-Serializable">java_io.Serializable</a>)    <a href="#meths-ConcurrentLinkedQueue"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                           <b>STATIC</b>
+                             <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_util.html#type-Collection">java_util.Collection</a>) : <a href="#type-ConcurrentLinkedQueue">ConcurrentLinkedQueue</a><b>,CONSTRUCTOR</b>;
+                             <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-ConcurrentLinkedQueue">ConcurrentLinkedQueue</a><b>,CONSTRUCTOR</b>;
+                           <b>END</b>;
+
+  <a name="type-ConcurrentMap"></a><font color="#cc0033">ConcurrentMap</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_util.html#type-Map">java_util.Map</a>)    <a href="#meths-ConcurrentMap"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                   <b>END</b>;
+
+  <a name="type-ConcurrentNavigableMap"></a><font color="#cc0033">ConcurrentNavigableMap</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-ConcurrentMap">ConcurrentMap</a> + <a href="java_util.html#type-NavigableMap">java_util.NavigableMap</a>)    <a href="#meths-ConcurrentNavigableMap"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                            <b>END</b>;
+
+  <a name="type-ConcurrentSkipListMap"></a><font color="#cc0033">ConcurrentSkipListMap</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_util.html#type-AbstractMap">java_util.AbstractMap</a> + <a href="#type-ConcurrentNavigableMap">ConcurrentNavigableMap</a> + <a href="java_lang.html#type-Cloneable">java_lang.Cloneable</a> + <a href="java_io.html#type-Serializable">java_io.Serializable</a>)    <a href="#meths-ConcurrentSkipListMap"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                           <b>STATIC</b>
+                             <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_util.html#type-Map">java_util.Map</a>) : <a href="#type-ConcurrentSkipListMap">ConcurrentSkipListMap</a><b>,CONSTRUCTOR</b>;
+                             <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_util.html#type-SortedMap">java_util.SortedMap</a>) : <a href="#type-ConcurrentSkipListMap">ConcurrentSkipListMap</a><b>,CONSTRUCTOR</b>;
+                             <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-ConcurrentSkipListMap">ConcurrentSkipListMap</a><b>,CONSTRUCTOR</b>;
+                             <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_util.html#type-Comparator">java_util.Comparator</a>) : <a href="#type-ConcurrentSkipListMap">ConcurrentSkipListMap</a><b>,CONSTRUCTOR</b>;
+                           <b>END</b>;
+
+  <a name="type-ConcurrentSkipListSet"></a><font color="#cc0033">ConcurrentSkipListSet</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_util.html#type-AbstractSet">java_util.AbstractSet</a> + <a href="java_util.html#type-NavigableSet">java_util.NavigableSet</a> + <a href="java_lang.html#type-Cloneable">java_lang.Cloneable</a> + <a href="java_io.html#type-Serializable">java_io.Serializable</a>)    <a href="#meths-ConcurrentSkipListSet"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                           <b>STATIC</b>
+                             <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_util.html#type-Collection">java_util.Collection</a>) : <a href="#type-ConcurrentSkipListSet">ConcurrentSkipListSet</a><b>,CONSTRUCTOR</b>;
+                             <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_util.html#type-SortedSet">java_util.SortedSet</a>) : <a href="#type-ConcurrentSkipListSet">ConcurrentSkipListSet</a><b>,CONSTRUCTOR</b>;
+                             <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-ConcurrentSkipListSet">ConcurrentSkipListSet</a><b>,CONSTRUCTOR</b>;
+                             <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_util.html#type-Comparator">java_util.Comparator</a>) : <a href="#type-ConcurrentSkipListSet">ConcurrentSkipListSet</a><b>,CONSTRUCTOR</b>;
+                           <b>END</b>;
+
+  <a name="type-CopyOnWriteArrayList"></a><font color="#cc0033">CopyOnWriteArrayList</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_util.html#type-List">java_util.List</a> + <a href="java_util.html#type-RandomAccess">java_util.RandomAccess</a> + <a href="java_lang.html#type-Cloneable">java_lang.Cloneable</a> + <a href="java_io.html#type-Serializable">java_io.Serializable</a>)    <a href="#meths-CopyOnWriteArrayList"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                          <b>STATIC</b>
+                            <b>PROCEDURE </b><font color="#cc0033">Init</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="#type-CopyOnWriteArrayList">CopyOnWriteArrayList</a><b>,CONSTRUCTOR</b>;
+                            <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_util.html#type-Collection">java_util.Collection</a>) : <a href="#type-CopyOnWriteArrayList">CopyOnWriteArrayList</a><b>,CONSTRUCTOR</b>;
+                            <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CopyOnWriteArrayList">CopyOnWriteArrayList</a><b>,CONSTRUCTOR</b>;
+                          <b>END</b>;
+
+  <a name="type-CopyOnWriteArraySet"></a><font color="#cc0033">CopyOnWriteArraySet</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_util.html#type-AbstractSet">java_util.AbstractSet</a> + <a href="java_io.html#type-Serializable">java_io.Serializable</a>)    <a href="#meths-CopyOnWriteArraySet"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                         <b>STATIC</b>
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_util.html#type-Collection">java_util.Collection</a>) : <a href="#type-CopyOnWriteArraySet">CopyOnWriteArraySet</a><b>,CONSTRUCTOR</b>;
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CopyOnWriteArraySet">CopyOnWriteArraySet</a><b>,CONSTRUCTOR</b>;
+                         <b>END</b>;
+
+  <a name="type-CountDownLatch"></a><font color="#cc0033">CountDownLatch</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-CountDownLatch"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                    <b>STATIC</b>
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER) : <a href="#type-CountDownLatch">CountDownLatch</a><b>,CONSTRUCTOR</b>;
+                    <b>END</b>;
+
+  <a name="type-CyclicBarrier"></a><font color="#cc0033">CyclicBarrier</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-CyclicBarrier"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                   <b>STATIC</b>
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER) : <a href="#type-CyclicBarrier">CyclicBarrier</a><b>,CONSTRUCTOR</b>;
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER;
+                                     p1 : <a href="java_lang.html#type-Runnable">java_lang.Runnable</a>) : <a href="#type-CyclicBarrier">CyclicBarrier</a><b>,CONSTRUCTOR</b>;
+                   <b>END</b>;
+
+  <a name="type-Delayed"></a><font color="#cc0033">Delayed</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_lang.html#type-Comparable">java_lang.Comparable</a>)    <a href="#meths-Delayed"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+             <b>END</b>;
+
+  <a name="type-DelayQueue"></a><font color="#cc0033">DelayQueue</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_util.html#type-AbstractQueue">java_util.AbstractQueue</a> + <a href="#type-BlockingQueue">BlockingQueue</a>)    <a href="#meths-DelayQueue"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                <b>STATIC</b>
+                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_util.html#type-Collection">java_util.Collection</a>) : <a href="#type-DelayQueue">DelayQueue</a><b>,CONSTRUCTOR</b>;
+                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-DelayQueue">DelayQueue</a><b>,CONSTRUCTOR</b>;
+                <b>END</b>;
+
+  <a name="type-Exchanger"></a><font color="#cc0033">Exchanger</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-Exchanger"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+               <b>STATIC</b>
+                 <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-Exchanger">Exchanger</a><b>,CONSTRUCTOR</b>;
+               <b>END</b>;
+
+  <a name="type-ExecutionException"></a><font color="#cc0033">ExecutionException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Exception">java_lang.Exception</a>)
+                        <b>STATIC</b>
+                          <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                          p1 : <a href="java_lang.html#type-Throwable">java_lang.Throwable</a>) : <a href="#type-ExecutionException">ExecutionException</a><b>,CONSTRUCTOR</b>;
+                          <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-Throwable">java_lang.Throwable</a>) : <a href="#type-ExecutionException">ExecutionException</a><b>,CONSTRUCTOR</b>;
+                          <b>PROCEDURE </b><font color="#cc0033">Init</font>!() : <a href="#type-ExecutionException">ExecutionException</a><b>,CONSTRUCTOR</b>;
+                          <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-ExecutionException">ExecutionException</a><b>,CONSTRUCTOR</b>;
+                        <b>END</b>;
+
+  <a name="type-Executor"></a><font color="#cc0033">Executor</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-Executor"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+              <b>END</b>;
+
+  <a name="type-ExecutorCompletionService"></a><font color="#cc0033">ExecutorCompletionService</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-CompletionService">CompletionService</a>)    <a href="#meths-ExecutorCompletionService"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                               <b>STATIC</b>
+                                 <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="#type-Executor">Executor</a>;
+                                                 p1 : <a href="#type-BlockingQueue">BlockingQueue</a>) : <a href="#type-ExecutorCompletionService">ExecutorCompletionService</a><b>,CONSTRUCTOR</b>;
+                                 <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="#type-Executor">Executor</a>) : <a href="#type-ExecutorCompletionService">ExecutorCompletionService</a><b>,CONSTRUCTOR</b>;
+                               <b>END</b>;
+
+  <a name="type-Executors"></a><font color="#cc0033">Executors</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+               <b>STATIC</b>
+                 <b>PROCEDURE </b><font color="#cc0033">callable</font>*(p0 : <a href="java_security.html#type-PrivilegedAction">java_security.PrivilegedAction</a>) : <a href="#type-Callable">Callable</a>;
+                 <b>PROCEDURE </b><font color="#cc0033">callable</font>*(p0 : <a href="java_lang.html#type-Runnable">java_lang.Runnable</a>) : <a href="#type-Callable">Callable</a>;
+                 <b>PROCEDURE </b><font color="#cc0033">callable</font>*(p0 : <a href="java_security.html#type-PrivilegedExceptionAction">java_security.PrivilegedExceptionAction</a>) : <a href="#type-Callable">Callable</a>;
+                 <b>PROCEDURE </b><font color="#cc0033">callable</font>*(p0 : <a href="java_lang.html#type-Runnable">java_lang.Runnable</a>;
+                                     p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="#type-Callable">Callable</a>;
+                 <b>PROCEDURE </b><font color="#cc0033">defaultThreadFactory</font>*() : <a href="#type-ThreadFactory">ThreadFactory</a>;
+                 <b>PROCEDURE </b><font color="#cc0033">newCachedThreadPool</font>*(p0 : <a href="#type-ThreadFactory">ThreadFactory</a>) : <a href="#type-ExecutorService">ExecutorService</a>;
+                 <b>PROCEDURE </b><font color="#cc0033">newCachedThreadPool</font>*() : <a href="#type-ExecutorService">ExecutorService</a>;
+                 <b>PROCEDURE </b><font color="#cc0033">newFixedThreadPool</font>*(p0 : INTEGER) : <a href="#type-ExecutorService">ExecutorService</a>;
+                 <b>PROCEDURE </b><font color="#cc0033">newFixedThreadPool</font>*(p0 : INTEGER;
+                                               p1 : <a href="#type-ThreadFactory">ThreadFactory</a>) : <a href="#type-ExecutorService">ExecutorService</a>;
+                 <b>PROCEDURE </b><font color="#cc0033">newScheduledThreadPool</font>*(p0 : INTEGER;
+                                                   p1 : <a href="#type-ThreadFactory">ThreadFactory</a>) : <a href="#type-ScheduledExecutorService">ScheduledExecutorService</a>;
+                 <b>PROCEDURE </b><font color="#cc0033">newScheduledThreadPool</font>*(p0 : INTEGER) : <a href="#type-ScheduledExecutorService">ScheduledExecutorService</a>;
+                 <b>PROCEDURE </b><font color="#cc0033">newSingleThreadExecutor</font>*(p0 : <a href="#type-ThreadFactory">ThreadFactory</a>) : <a href="#type-ExecutorService">ExecutorService</a>;
+                 <b>PROCEDURE </b><font color="#cc0033">newSingleThreadExecutor</font>*() : <a href="#type-ExecutorService">ExecutorService</a>;
+                 <b>PROCEDURE </b><font color="#cc0033">newSingleThreadScheduledExecutor</font>*() : <a href="#type-ScheduledExecutorService">ScheduledExecutorService</a>;
+                 <b>PROCEDURE </b><font color="#cc0033">newSingleThreadScheduledExecutor</font>*(p0 : <a href="#type-ThreadFactory">ThreadFactory</a>) : <a href="#type-ScheduledExecutorService">ScheduledExecutorService</a>;
+                 <b>PROCEDURE </b><font color="#cc0033">privilegedCallable</font>*(p0 : <a href="#type-Callable">Callable</a>) : <a href="#type-Callable">Callable</a>;
+                 <b>PROCEDURE </b><font color="#cc0033">privilegedCallableUsingCurrentClassLoader</font>*(p0 : <a href="#type-Callable">Callable</a>) : <a href="#type-Callable">Callable</a>;
+                 <b>PROCEDURE </b><font color="#cc0033">privilegedThreadFactory</font>*() : <a href="#type-ThreadFactory">ThreadFactory</a>;
+                 <b>PROCEDURE </b><font color="#cc0033">unconfigurableExecutorService</font>*(p0 : <a href="#type-ExecutorService">ExecutorService</a>) : <a href="#type-ExecutorService">ExecutorService</a>;
+                 <b>PROCEDURE </b><font color="#cc0033">unconfigurableScheduledExecutorService</font>*(p0 : <a href="#type-ScheduledExecutorService">ScheduledExecutorService</a>) : <a href="#type-ScheduledExecutorService">ScheduledExecutorService</a>;
+               <b>END</b>;
+
+  <a name="type-ExecutorService"></a><font color="#cc0033">ExecutorService</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-Executor">Executor</a>)    <a href="#meths-ExecutorService"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                     <b>END</b>;
+
+  <a name="type-Future"></a><font color="#cc0033">Future</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-Future"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+            <b>END</b>;
+
+  <a name="type-FutureTask"></a><font color="#cc0033">FutureTask</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-RunnableFuture">RunnableFuture</a>)    <a href="#meths-FutureTask"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                <b>STATIC</b>
+                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-Runnable">java_lang.Runnable</a>;
+                                  p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="#type-FutureTask">FutureTask</a><b>,CONSTRUCTOR</b>;
+                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="#type-Callable">Callable</a>) : <a href="#type-FutureTask">FutureTask</a><b>,CONSTRUCTOR</b>;
+                <b>END</b>;
+
+  <a name="type-LinkedBlockingDeque"></a><font color="#cc0033">LinkedBlockingDeque</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_util.html#type-AbstractQueue">java_util.AbstractQueue</a> + <a href="#type-BlockingDeque">BlockingDeque</a> + <a href="java_io.html#type-Serializable">java_io.Serializable</a>)    <a href="#meths-LinkedBlockingDeque"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                         <b>STATIC</b>
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_util.html#type-Collection">java_util.Collection</a>) : <a href="#type-LinkedBlockingDeque">LinkedBlockingDeque</a><b>,CONSTRUCTOR</b>;
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER) : <a href="#type-LinkedBlockingDeque">LinkedBlockingDeque</a><b>,CONSTRUCTOR</b>;
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-LinkedBlockingDeque">LinkedBlockingDeque</a><b>,CONSTRUCTOR</b>;
+                         <b>END</b>;
+
+  <a name="type-LinkedBlockingQueue"></a><font color="#cc0033">LinkedBlockingQueue</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_util.html#type-AbstractQueue">java_util.AbstractQueue</a> + <a href="#type-BlockingQueue">BlockingQueue</a> + <a href="java_io.html#type-Serializable">java_io.Serializable</a>)    <a href="#meths-LinkedBlockingQueue"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                         <b>STATIC</b>
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_util.html#type-Collection">java_util.Collection</a>) : <a href="#type-LinkedBlockingQueue">LinkedBlockingQueue</a><b>,CONSTRUCTOR</b>;
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER) : <a href="#type-LinkedBlockingQueue">LinkedBlockingQueue</a><b>,CONSTRUCTOR</b>;
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-LinkedBlockingQueue">LinkedBlockingQueue</a><b>,CONSTRUCTOR</b>;
+                         <b>END</b>;
+
+  <a name="type-PriorityBlockingQueue"></a><font color="#cc0033">PriorityBlockingQueue</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_util.html#type-AbstractQueue">java_util.AbstractQueue</a> + <a href="#type-BlockingQueue">BlockingQueue</a> + <a href="java_io.html#type-Serializable">java_io.Serializable</a>)    <a href="#meths-PriorityBlockingQueue"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                           <b>STATIC</b>
+                             <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER;
+                                             p1 : <a href="java_util.html#type-Comparator">java_util.Comparator</a>) : <a href="#type-PriorityBlockingQueue">PriorityBlockingQueue</a><b>,CONSTRUCTOR</b>;
+                             <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_util.html#type-Collection">java_util.Collection</a>) : <a href="#type-PriorityBlockingQueue">PriorityBlockingQueue</a><b>,CONSTRUCTOR</b>;
+                             <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-PriorityBlockingQueue">PriorityBlockingQueue</a><b>,CONSTRUCTOR</b>;
+                             <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER) : <a href="#type-PriorityBlockingQueue">PriorityBlockingQueue</a><b>,CONSTRUCTOR</b>;
+                           <b>END</b>;
+
+  <a name="type-RejectedExecutionException"></a><font color="#cc0033">RejectedExecutionException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-RuntimeException">java_lang.RuntimeException</a>)
+                                <b>STATIC</b>
+                                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                  p1 : <a href="java_lang.html#type-Throwable">java_lang.Throwable</a>) : <a href="#type-RejectedExecutionException">RejectedExecutionException</a><b>,CONSTRUCTOR</b>;
+                                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-Throwable">java_lang.Throwable</a>) : <a href="#type-RejectedExecutionException">RejectedExecutionException</a><b>,CONSTRUCTOR</b>;
+                                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-RejectedExecutionException">RejectedExecutionException</a><b>,CONSTRUCTOR</b>;
+                                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-RejectedExecutionException">RejectedExecutionException</a><b>,CONSTRUCTOR</b>;
+                                <b>END</b>;
+
+  <a name="type-RejectedExecutionHandler"></a><font color="#cc0033">RejectedExecutionHandler</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-RejectedExecutionHandler"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                              <b>END</b>;
+
+  <a name="type-RunnableFuture"></a><font color="#cc0033">RunnableFuture</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_lang.html#type-Runnable">java_lang.Runnable</a> + <a href="#type-Future">Future</a>)    <a href="#meths-RunnableFuture"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                    <b>END</b>;
+
+  <a name="type-RunnableScheduledFuture"></a><font color="#cc0033">RunnableScheduledFuture</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-RunnableFuture">RunnableFuture</a> + <a href="#type-ScheduledFuture">ScheduledFuture</a>)    <a href="#meths-RunnableScheduledFuture"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                             <b>END</b>;
+
+  <a name="type-ScheduledExecutorService"></a><font color="#cc0033">ScheduledExecutorService</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-ExecutorService">ExecutorService</a>)    <a href="#meths-ScheduledExecutorService"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                              <b>END</b>;
+
+  <a name="type-ScheduledFuture"></a><font color="#cc0033">ScheduledFuture</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-Delayed">Delayed</a> + <a href="#type-Future">Future</a>)
+                     <b>END</b>;
+
+  <a name="type-ScheduledThreadPoolExecutor"></a><font color="#cc0033">ScheduledThreadPoolExecutor</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-ThreadPoolExecutor">ThreadPoolExecutor</a> + <a href="#type-ScheduledExecutorService">ScheduledExecutorService</a>)    <a href="#meths-ScheduledThreadPoolExecutor"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                                 <b>STATIC</b>
+                                   <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER;
+                                                   p1 : <a href="#type-RejectedExecutionHandler">RejectedExecutionHandler</a>) : <a href="#type-ScheduledThreadPoolExecutor">ScheduledThreadPoolExecutor</a><b>,CONSTRUCTOR</b>;
+                                   <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER;
+                                                   p1 : <a href="#type-ThreadFactory">ThreadFactory</a>;
+                                                   p2 : <a href="#type-RejectedExecutionHandler">RejectedExecutionHandler</a>) : <a href="#type-ScheduledThreadPoolExecutor">ScheduledThreadPoolExecutor</a><b>,CONSTRUCTOR</b>;
+                                   <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER) : <a href="#type-ScheduledThreadPoolExecutor">ScheduledThreadPoolExecutor</a><b>,CONSTRUCTOR</b>;
+                                   <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER;
+                                                   p1 : <a href="#type-ThreadFactory">ThreadFactory</a>) : <a href="#type-ScheduledThreadPoolExecutor">ScheduledThreadPoolExecutor</a><b>,CONSTRUCTOR</b>;
+                                 <b>END</b>;
+
+  <a name="type-Semaphore"></a><font color="#cc0033">Semaphore</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_io.html#type-Serializable">java_io.Serializable</a>)    <a href="#meths-Semaphore"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+               <b>STATIC</b>
+                 <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER;
+                                 p1 : BOOLEAN) : <a href="#type-Semaphore">Semaphore</a><b>,CONSTRUCTOR</b>;
+                 <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER) : <a href="#type-Semaphore">Semaphore</a><b>,CONSTRUCTOR</b>;
+               <b>END</b>;
+
+  <a name="type-SynchronousQueue"></a><font color="#cc0033">SynchronousQueue</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_util.html#type-AbstractQueue">java_util.AbstractQueue</a> + <a href="#type-BlockingQueue">BlockingQueue</a> + <a href="java_io.html#type-Serializable">java_io.Serializable</a>)    <a href="#meths-SynchronousQueue"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                      <b>STATIC</b>
+                        <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : BOOLEAN) : <a href="#type-SynchronousQueue">SynchronousQueue</a><b>,CONSTRUCTOR</b>;
+                        <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-SynchronousQueue">SynchronousQueue</a><b>,CONSTRUCTOR</b>;
+                      <b>END</b>;
+
+  <a name="type-ThreadFactory"></a><font color="#cc0033">ThreadFactory</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-ThreadFactory"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                   <b>END</b>;
+
+  <a name="type-ThreadPoolExecutor"></a><font color="#cc0033">ThreadPoolExecutor</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-AbstractExecutorService">AbstractExecutorService</a>)    <a href="#meths-ThreadPoolExecutor"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                        <b>STATIC</b>
+                          <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER;
+                                          p1 : INTEGER;
+                                          p2 : LONGINT;
+                                          p3 : <a href="#type-TimeUnit">TimeUnit</a>;
+                                          p4 : <a href="#type-BlockingQueue">BlockingQueue</a>;
+                                          p5 : <a href="#type-RejectedExecutionHandler">RejectedExecutionHandler</a>) : <a href="#type-ThreadPoolExecutor">ThreadPoolExecutor</a><b>,CONSTRUCTOR</b>;
+                          <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER;
+                                          p1 : INTEGER;
+                                          p2 : LONGINT;
+                                          p3 : <a href="#type-TimeUnit">TimeUnit</a>;
+                                          p4 : <a href="#type-BlockingQueue">BlockingQueue</a>;
+                                          p5 : <a href="#type-ThreadFactory">ThreadFactory</a>;
+                                          p6 : <a href="#type-RejectedExecutionHandler">RejectedExecutionHandler</a>) : <a href="#type-ThreadPoolExecutor">ThreadPoolExecutor</a><b>,CONSTRUCTOR</b>;
+                          <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER;
+                                          p1 : INTEGER;
+                                          p2 : LONGINT;
+                                          p3 : <a href="#type-TimeUnit">TimeUnit</a>;
+                                          p4 : <a href="#type-BlockingQueue">BlockingQueue</a>) : <a href="#type-ThreadPoolExecutor">ThreadPoolExecutor</a><b>,CONSTRUCTOR</b>;
+                          <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER;
+                                          p1 : INTEGER;
+                                          p2 : LONGINT;
+                                          p3 : <a href="#type-TimeUnit">TimeUnit</a>;
+                                          p4 : <a href="#type-BlockingQueue">BlockingQueue</a>;
+                                          p5 : <a href="#type-ThreadFactory">ThreadFactory</a>) : <a href="#type-ThreadPoolExecutor">ThreadPoolExecutor</a><b>,CONSTRUCTOR</b>;
+                        <b>END</b>;
+
+  <a name="type-ThreadPoolExecutor$AbortPolicy"></a><font color="#cc0033">ThreadPoolExecutor$AbortPolicy</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-RejectedExecutionHandler">RejectedExecutionHandler</a>)    <a href="#meths-ThreadPoolExecutor$AbortPolicy"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                                    <b>STATIC</b>
+                                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-ThreadPoolExecutor$AbortPolicy">ThreadPoolExecutor$AbortPolicy</a><b>,CONSTRUCTOR</b>;
+                                    <b>END</b>;
+
+  <a name="type-ThreadPoolExecutor$CallerRunsPolicy"></a><font color="#cc0033">ThreadPoolExecutor$CallerRunsPolicy</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-RejectedExecutionHandler">RejectedExecutionHandler</a>)    <a href="#meths-ThreadPoolExecutor$CallerRunsPolicy"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                                         <b>STATIC</b>
+                                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-ThreadPoolExecutor$CallerRunsPolicy">ThreadPoolExecutor$CallerRunsPolicy</a><b>,CONSTRUCTOR</b>;
+                                         <b>END</b>;
+
+  <a name="type-ThreadPoolExecutor$DiscardOldestPolicy"></a><font color="#cc0033">ThreadPoolExecutor$DiscardOldestPolicy</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-RejectedExecutionHandler">RejectedExecutionHandler</a>)    <a href="#meths-ThreadPoolExecutor$DiscardOldestPolicy"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                                            <b>STATIC</b>
+                                              <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-ThreadPoolExecutor$DiscardOldestPolicy">ThreadPoolExecutor$DiscardOldestPolicy</a><b>,CONSTRUCTOR</b>;
+                                            <b>END</b>;
+
+  <a name="type-ThreadPoolExecutor$DiscardPolicy"></a><font color="#cc0033">ThreadPoolExecutor$DiscardPolicy</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-RejectedExecutionHandler">RejectedExecutionHandler</a>)    <a href="#meths-ThreadPoolExecutor$DiscardPolicy"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                                      <b>STATIC</b>
+                                        <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-ThreadPoolExecutor$DiscardPolicy">ThreadPoolExecutor$DiscardPolicy</a><b>,CONSTRUCTOR</b>;
+                                      <b>END</b>;
+
+  <a name="type-TimeoutException"></a><font color="#cc0033">TimeoutException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Exception">java_lang.Exception</a>)
+                      <b>STATIC</b>
+                        <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-TimeoutException">TimeoutException</a><b>,CONSTRUCTOR</b>;
+                        <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-TimeoutException">TimeoutException</a><b>,CONSTRUCTOR</b>;
+                      <b>END</b>;
+
+  <a name="type-TimeUnit"></a><font color="#cc0033">TimeUnit</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Enum">java_lang.Enum</a>)    <a href="#meths-TimeUnit"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+              <b>STATIC</b>
+                <a name="type-DAYS"></a><font color="#cc0033">DAYS</font>*         : <a href="#type-TimeUnit">TimeUnit</a>;
+                <a name="type-HOURS"></a><font color="#cc0033">HOURS</font>*        : <a href="#type-TimeUnit">TimeUnit</a>;
+                <a name="type-MICROSECONDS"></a><font color="#cc0033">MICROSECONDS</font>* : <a href="#type-TimeUnit">TimeUnit</a>;
+                <a name="type-MILLISECONDS"></a><font color="#cc0033">MILLISECONDS</font>* : <a href="#type-TimeUnit">TimeUnit</a>;
+                <a name="type-MINUTES"></a><font color="#cc0033">MINUTES</font>*      : <a href="#type-TimeUnit">TimeUnit</a>;
+                <a name="type-NANOSECONDS"></a><font color="#cc0033">NANOSECONDS</font>*  : <a href="#type-TimeUnit">TimeUnit</a>;
+                <a name="type-SECONDS"></a><font color="#cc0033">SECONDS</font>*      : <a href="#type-TimeUnit">TimeUnit</a>;
+                <b>PROCEDURE </b><font color="#cc0033">valueOf</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-TimeUnit">TimeUnit</a>;
+                <b>PROCEDURE </b><font color="#cc0033">values</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-TimeUnit">TimeUnit</a>;
+              <b>END</b>;
+
+
+
+<a name="meths-AbstractExecutorService"></a>
+<b>PROCEDURE </b>(self:AbstractExecutorService) <font color="#cc0033">invokeAll</font>*(p0 : <a href="java_util.html#type-Collection">java_util.Collection</a>;
+                                                    p1 : LONGINT;
+                                                    p2 : <a href="#type-TimeUnit">TimeUnit</a>) : <a href="java_util.html#type-List">java_util.List</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AbstractExecutorService) <font color="#cc0033">invokeAll</font>*(p0 : <a href="java_util.html#type-Collection">java_util.Collection</a>) : <a href="java_util.html#type-List">java_util.List</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AbstractExecutorService) <font color="#cc0033">invokeAny</font>*(p0 : <a href="java_util.html#type-Collection">java_util.Collection</a>;
+                                                    p1 : LONGINT;
+                                                    p2 : <a href="#type-TimeUnit">TimeUnit</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AbstractExecutorService) <font color="#cc0033">invokeAny</font>*(p0 : <a href="java_util.html#type-Collection">java_util.Collection</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AbstractExecutorService) <font color="#cc0033">newTaskFor</font>!(p0 : <a href="#type-Callable">Callable</a>) : <a href="#type-RunnableFuture">RunnableFuture</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AbstractExecutorService) <font color="#cc0033">newTaskFor</font>!(p0 : <a href="java_lang.html#type-Runnable">java_lang.Runnable</a>;
+                                                     p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="#type-RunnableFuture">RunnableFuture</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AbstractExecutorService) <font color="#cc0033">submit</font>*(p0 : <a href="java_lang.html#type-Runnable">java_lang.Runnable</a>) : <a href="#type-Future">Future</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AbstractExecutorService) <font color="#cc0033">submit</font>*(p0 : <a href="java_lang.html#type-Runnable">java_lang.Runnable</a>;
+                                                 p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="#type-Future">Future</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AbstractExecutorService) <font color="#cc0033">submit</font>*(p0 : <a href="#type-Callable">Callable</a>) : <a href="#type-Future">Future</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-ArrayBlockingQueue"></a>
+<b>PROCEDURE </b>(self:ArrayBlockingQueue) <font color="#cc0033">add</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ArrayBlockingQueue) <font color="#cc0033">clear</font>*()<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ArrayBlockingQueue) <font color="#cc0033">contains</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ArrayBlockingQueue) <font color="#cc0033">drainTo</font>*(p0 : <a href="java_util.html#type-Collection">java_util.Collection</a>;
+                                             p1 : INTEGER) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ArrayBlockingQueue) <font color="#cc0033">drainTo</font>*(p0 : <a href="java_util.html#type-Collection">java_util.Collection</a>) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ArrayBlockingQueue) <font color="#cc0033">iterator</font>*() : <a href="java_util.html#type-Iterator">java_util.Iterator</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ArrayBlockingQueue) <font color="#cc0033">offer</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                           p1 : LONGINT;
+                                           p2 : <a href="#type-TimeUnit">TimeUnit</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ArrayBlockingQueue) <font color="#cc0033">offer</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ArrayBlockingQueue) <font color="#cc0033">peek</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ArrayBlockingQueue) <font color="#cc0033">poll</font>*(p0 : LONGINT;
+                                          p1 : <a href="#type-TimeUnit">TimeUnit</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ArrayBlockingQueue) <font color="#cc0033">poll</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ArrayBlockingQueue) <font color="#cc0033">put</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ArrayBlockingQueue) <font color="#cc0033">remainingCapacity</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ArrayBlockingQueue) <font color="#cc0033">remove</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ArrayBlockingQueue) <font color="#cc0033">size</font>*() : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ArrayBlockingQueue) <font color="#cc0033">take</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ArrayBlockingQueue) <font color="#cc0033">toArray</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ArrayBlockingQueue) <font color="#cc0033">toArray</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ArrayBlockingQueue) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,EXTENSIBLE</b>;
+<a name="meths-BlockingDeque"></a>
+<b>PROCEDURE </b>(self:BlockingDeque) <font color="#cc0033">add</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:BlockingDeque) <font color="#cc0033">addFirst</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:BlockingDeque) <font color="#cc0033">addLast</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:BlockingDeque) <font color="#cc0033">contains</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:BlockingDeque) <font color="#cc0033">element</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:BlockingDeque) <font color="#cc0033">iterator</font>*() : <a href="java_util.html#type-Iterator">java_util.Iterator</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:BlockingDeque) <font color="#cc0033">offer</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:BlockingDeque) <font color="#cc0033">offer</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                      p1 : LONGINT;
+                                      p2 : <a href="#type-TimeUnit">TimeUnit</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:BlockingDeque) <font color="#cc0033">offerFirst</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:BlockingDeque) <font color="#cc0033">offerFirst</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                           p1 : LONGINT;
+                                           p2 : <a href="#type-TimeUnit">TimeUnit</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:BlockingDeque) <font color="#cc0033">offerLast</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:BlockingDeque) <font color="#cc0033">offerLast</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                          p1 : LONGINT;
+                                          p2 : <a href="#type-TimeUnit">TimeUnit</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:BlockingDeque) <font color="#cc0033">peek</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:BlockingDeque) <font color="#cc0033">poll</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:BlockingDeque) <font color="#cc0033">poll</font>*(p0 : LONGINT;
+                                     p1 : <a href="#type-TimeUnit">TimeUnit</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:BlockingDeque) <font color="#cc0033">pollFirst</font>*(p0 : LONGINT;
+                                          p1 : <a href="#type-TimeUnit">TimeUnit</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:BlockingDeque) <font color="#cc0033">pollLast</font>*(p0 : LONGINT;
+                                         p1 : <a href="#type-TimeUnit">TimeUnit</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:BlockingDeque) <font color="#cc0033">push</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:BlockingDeque) <font color="#cc0033">put</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:BlockingDeque) <font color="#cc0033">putFirst</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:BlockingDeque) <font color="#cc0033">putLast</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:BlockingDeque) <font color="#cc0033">remove</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:BlockingDeque) <font color="#cc0033">remove</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:BlockingDeque) <font color="#cc0033">removeFirstOccurrence</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:BlockingDeque) <font color="#cc0033">removeLastOccurrence</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:BlockingDeque) <font color="#cc0033">size</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:BlockingDeque) <font color="#cc0033">take</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:BlockingDeque) <font color="#cc0033">takeFirst</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:BlockingDeque) <font color="#cc0033">takeLast</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-BlockingQueue"></a>
+<b>PROCEDURE </b>(self:BlockingQueue) <font color="#cc0033">add</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:BlockingQueue) <font color="#cc0033">contains</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:BlockingQueue) <font color="#cc0033">drainTo</font>*(p0 : <a href="java_util.html#type-Collection">java_util.Collection</a>) : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:BlockingQueue) <font color="#cc0033">drainTo</font>*(p0 : <a href="java_util.html#type-Collection">java_util.Collection</a>;
+                                        p1 : INTEGER) : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:BlockingQueue) <font color="#cc0033">offer</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:BlockingQueue) <font color="#cc0033">offer</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                      p1 : LONGINT;
+                                      p2 : <a href="#type-TimeUnit">TimeUnit</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:BlockingQueue) <font color="#cc0033">poll</font>*(p0 : LONGINT;
+                                     p1 : <a href="#type-TimeUnit">TimeUnit</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:BlockingQueue) <font color="#cc0033">put</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:BlockingQueue) <font color="#cc0033">remainingCapacity</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:BlockingQueue) <font color="#cc0033">remove</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:BlockingQueue) <font color="#cc0033">take</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-Callable"></a>
+<b>PROCEDURE </b>(self:Callable) <font color="#cc0033">call</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-CompletionService"></a>
+<b>PROCEDURE </b>(self:CompletionService) <font color="#cc0033">poll</font>*(p0 : LONGINT;
+                                         p1 : <a href="#type-TimeUnit">TimeUnit</a>) : <a href="#type-Future">Future</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CompletionService) <font color="#cc0033">poll</font>*() : <a href="#type-Future">Future</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CompletionService) <font color="#cc0033">submit</font>*(p0 : <a href="#type-Callable">Callable</a>) : <a href="#type-Future">Future</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CompletionService) <font color="#cc0033">submit</font>*(p0 : <a href="java_lang.html#type-Runnable">java_lang.Runnable</a>;
+                                           p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="#type-Future">Future</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CompletionService) <font color="#cc0033">take</font>*() : <a href="#type-Future">Future</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-ConcurrentHashMap"></a>
+<b>PROCEDURE </b>(self:ConcurrentHashMap) <font color="#cc0033">clear</font>*()<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ConcurrentHashMap) <font color="#cc0033">contains</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ConcurrentHashMap) <font color="#cc0033">containsKey</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ConcurrentHashMap) <font color="#cc0033">containsValue</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ConcurrentHashMap) <font color="#cc0033">elements</font>*() : <a href="java_util.html#type-Enumeration">java_util.Enumeration</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ConcurrentHashMap) <font color="#cc0033">entrySet</font>*() : <a href="java_util.html#type-Set">java_util.Set</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ConcurrentHashMap) <font color="#cc0033">get</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ConcurrentHashMap) <font color="#cc0033">isEmpty</font>*() : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ConcurrentHashMap) <font color="#cc0033">keys</font>*() : <a href="java_util.html#type-Enumeration">java_util.Enumeration</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ConcurrentHashMap) <font color="#cc0033">keySet</font>*() : <a href="java_util.html#type-Set">java_util.Set</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ConcurrentHashMap) <font color="#cc0033">put</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                        p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ConcurrentHashMap) <font color="#cc0033">putAll</font>*(p0 : <a href="java_util.html#type-Map">java_util.Map</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ConcurrentHashMap) <font color="#cc0033">putIfAbsent</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ConcurrentHashMap) <font color="#cc0033">remove</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ConcurrentHashMap) <font color="#cc0033">remove</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                           p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ConcurrentHashMap) <font color="#cc0033">replace</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                            p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ConcurrentHashMap) <font color="#cc0033">replace</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                            p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                            p2 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ConcurrentHashMap) <font color="#cc0033">size</font>*() : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ConcurrentHashMap) <font color="#cc0033">values</font>*() : <a href="java_util.html#type-Collection">java_util.Collection</a><b>,EXTENSIBLE</b>;
+<a name="meths-ConcurrentLinkedQueue"></a>
+<b>PROCEDURE </b>(self:ConcurrentLinkedQueue) <font color="#cc0033">add</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ConcurrentLinkedQueue) <font color="#cc0033">contains</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ConcurrentLinkedQueue) <font color="#cc0033">isEmpty</font>*() : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ConcurrentLinkedQueue) <font color="#cc0033">iterator</font>*() : <a href="java_util.html#type-Iterator">java_util.Iterator</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ConcurrentLinkedQueue) <font color="#cc0033">offer</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ConcurrentLinkedQueue) <font color="#cc0033">peek</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ConcurrentLinkedQueue) <font color="#cc0033">poll</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ConcurrentLinkedQueue) <font color="#cc0033">remove</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ConcurrentLinkedQueue) <font color="#cc0033">size</font>*() : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ConcurrentLinkedQueue) <font color="#cc0033">toArray</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ConcurrentLinkedQueue) <font color="#cc0033">toArray</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a><b>,EXTENSIBLE</b>;
+<a name="meths-ConcurrentMap"></a>
+<b>PROCEDURE </b>(self:ConcurrentMap) <font color="#cc0033">putIfAbsent</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                            p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ConcurrentMap) <font color="#cc0033">remove</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                       p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ConcurrentMap) <font color="#cc0033">replace</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                        p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ConcurrentMap) <font color="#cc0033">replace</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                        p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                        p2 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+<a name="meths-ConcurrentNavigableMap"></a>
+<b>PROCEDURE </b>(self:ConcurrentNavigableMap) <font color="#cc0033">descendingKeySet</font>*() : <a href="java_util.html#type-NavigableSet">java_util.NavigableSet</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ConcurrentNavigableMap) <font color="#cc0033">descendingMap</font>*() : <a href="#type-ConcurrentNavigableMap">ConcurrentNavigableMap</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ConcurrentNavigableMap) <font color="#cc0033">headMap</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="#type-ConcurrentNavigableMap">ConcurrentNavigableMap</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ConcurrentNavigableMap) <font color="#cc0033">headMap</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                 p1 : BOOLEAN) : <a href="#type-ConcurrentNavigableMap">ConcurrentNavigableMap</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ConcurrentNavigableMap) <font color="#cc0033">keySet</font>*() : <a href="java_util.html#type-NavigableSet">java_util.NavigableSet</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ConcurrentNavigableMap) <font color="#cc0033">navigableKeySet</font>*() : <a href="java_util.html#type-NavigableSet">java_util.NavigableSet</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ConcurrentNavigableMap) <font color="#cc0033">subMap</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                p1 : BOOLEAN;
+                                                p2 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                p3 : BOOLEAN) : <a href="#type-ConcurrentNavigableMap">ConcurrentNavigableMap</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ConcurrentNavigableMap) <font color="#cc0033">subMap</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="#type-ConcurrentNavigableMap">ConcurrentNavigableMap</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ConcurrentNavigableMap) <font color="#cc0033">tailMap</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                 p1 : BOOLEAN) : <a href="#type-ConcurrentNavigableMap">ConcurrentNavigableMap</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ConcurrentNavigableMap) <font color="#cc0033">tailMap</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="#type-ConcurrentNavigableMap">ConcurrentNavigableMap</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-ConcurrentSkipListMap"></a>
+<b>PROCEDURE </b>(self:ConcurrentSkipListMap) <font color="#cc0033">ceilingEntry</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_util.html#type-Map$Entry">java_util.Map$Entry</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ConcurrentSkipListMap) <font color="#cc0033">ceilingKey</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ConcurrentSkipListMap) <font color="#cc0033">clear</font>*()<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ConcurrentSkipListMap) <font color="#cc0033">clone</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ConcurrentSkipListMap) <font color="#cc0033">clone</font>*() : <a href="#type-ConcurrentSkipListMap">ConcurrentSkipListMap</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ConcurrentSkipListMap) <font color="#cc0033">comparator</font>*() : <a href="java_util.html#type-Comparator">java_util.Comparator</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ConcurrentSkipListMap) <font color="#cc0033">containsKey</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ConcurrentSkipListMap) <font color="#cc0033">containsValue</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ConcurrentSkipListMap) <font color="#cc0033">descendingKeySet</font>*() : <a href="java_util.html#type-NavigableSet">java_util.NavigableSet</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ConcurrentSkipListMap) <font color="#cc0033">descendingMap</font>*() : <a href="#type-ConcurrentNavigableMap">ConcurrentNavigableMap</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ConcurrentSkipListMap) <font color="#cc0033">descendingMap</font>*() : <a href="java_util.html#type-NavigableMap">java_util.NavigableMap</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ConcurrentSkipListMap) <font color="#cc0033">entrySet</font>*() : <a href="java_util.html#type-Set">java_util.Set</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ConcurrentSkipListMap) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ConcurrentSkipListMap) <font color="#cc0033">firstEntry</font>*() : <a href="java_util.html#type-Map$Entry">java_util.Map$Entry</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ConcurrentSkipListMap) <font color="#cc0033">firstKey</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ConcurrentSkipListMap) <font color="#cc0033">floorEntry</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_util.html#type-Map$Entry">java_util.Map$Entry</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ConcurrentSkipListMap) <font color="#cc0033">floorKey</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ConcurrentSkipListMap) <font color="#cc0033">get</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ConcurrentSkipListMap) <font color="#cc0033">headMap</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_util.html#type-SortedMap">java_util.SortedMap</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ConcurrentSkipListMap) <font color="#cc0033">headMap</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                p1 : BOOLEAN) : <a href="#type-ConcurrentNavigableMap">ConcurrentNavigableMap</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ConcurrentSkipListMap) <font color="#cc0033">headMap</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                p1 : BOOLEAN) : <a href="java_util.html#type-NavigableMap">java_util.NavigableMap</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ConcurrentSkipListMap) <font color="#cc0033">headMap</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="#type-ConcurrentNavigableMap">ConcurrentNavigableMap</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ConcurrentSkipListMap) <font color="#cc0033">higherEntry</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_util.html#type-Map$Entry">java_util.Map$Entry</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ConcurrentSkipListMap) <font color="#cc0033">higherKey</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ConcurrentSkipListMap) <font color="#cc0033">isEmpty</font>*() : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ConcurrentSkipListMap) <font color="#cc0033">keySet</font>*() : <a href="java_util.html#type-NavigableSet">java_util.NavigableSet</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ConcurrentSkipListMap) <font color="#cc0033">keySet</font>*() : <a href="java_util.html#type-Set">java_util.Set</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ConcurrentSkipListMap) <font color="#cc0033">lastEntry</font>*() : <a href="java_util.html#type-Map$Entry">java_util.Map$Entry</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ConcurrentSkipListMap) <font color="#cc0033">lastKey</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ConcurrentSkipListMap) <font color="#cc0033">lowerEntry</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_util.html#type-Map$Entry">java_util.Map$Entry</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ConcurrentSkipListMap) <font color="#cc0033">lowerKey</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ConcurrentSkipListMap) <font color="#cc0033">navigableKeySet</font>*() : <a href="java_util.html#type-NavigableSet">java_util.NavigableSet</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ConcurrentSkipListMap) <font color="#cc0033">pollFirstEntry</font>*() : <a href="java_util.html#type-Map$Entry">java_util.Map$Entry</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ConcurrentSkipListMap) <font color="#cc0033">pollLastEntry</font>*() : <a href="java_util.html#type-Map$Entry">java_util.Map$Entry</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ConcurrentSkipListMap) <font color="#cc0033">put</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                            p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ConcurrentSkipListMap) <font color="#cc0033">putIfAbsent</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                    p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ConcurrentSkipListMap) <font color="#cc0033">remove</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ConcurrentSkipListMap) <font color="#cc0033">remove</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                               p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ConcurrentSkipListMap) <font color="#cc0033">replace</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ConcurrentSkipListMap) <font color="#cc0033">replace</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                p2 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ConcurrentSkipListMap) <font color="#cc0033">size</font>*() : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ConcurrentSkipListMap) <font color="#cc0033">subMap</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                               p1 : BOOLEAN;
+                                               p2 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                               p3 : BOOLEAN) : <a href="java_util.html#type-NavigableMap">java_util.NavigableMap</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ConcurrentSkipListMap) <font color="#cc0033">subMap</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                               p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_util.html#type-SortedMap">java_util.SortedMap</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ConcurrentSkipListMap) <font color="#cc0033">subMap</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                               p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="#type-ConcurrentNavigableMap">ConcurrentNavigableMap</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ConcurrentSkipListMap) <font color="#cc0033">subMap</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                               p1 : BOOLEAN;
+                                               p2 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                               p3 : BOOLEAN) : <a href="#type-ConcurrentNavigableMap">ConcurrentNavigableMap</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ConcurrentSkipListMap) <font color="#cc0033">tailMap</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="#type-ConcurrentNavigableMap">ConcurrentNavigableMap</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ConcurrentSkipListMap) <font color="#cc0033">tailMap</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                p1 : BOOLEAN) : <a href="#type-ConcurrentNavigableMap">ConcurrentNavigableMap</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ConcurrentSkipListMap) <font color="#cc0033">tailMap</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_util.html#type-SortedMap">java_util.SortedMap</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ConcurrentSkipListMap) <font color="#cc0033">tailMap</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                p1 : BOOLEAN) : <a href="java_util.html#type-NavigableMap">java_util.NavigableMap</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ConcurrentSkipListMap) <font color="#cc0033">values</font>*() : <a href="java_util.html#type-Collection">java_util.Collection</a><b>,EXTENSIBLE</b>;
+<a name="meths-ConcurrentSkipListSet"></a>
+<b>PROCEDURE </b>(self:ConcurrentSkipListSet) <font color="#cc0033">add</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ConcurrentSkipListSet) <font color="#cc0033">ceiling</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ConcurrentSkipListSet) <font color="#cc0033">clear</font>*()<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ConcurrentSkipListSet) <font color="#cc0033">clone</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ConcurrentSkipListSet) <font color="#cc0033">clone</font>*() : <a href="#type-ConcurrentSkipListSet">ConcurrentSkipListSet</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ConcurrentSkipListSet) <font color="#cc0033">comparator</font>*() : <a href="java_util.html#type-Comparator">java_util.Comparator</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ConcurrentSkipListSet) <font color="#cc0033">contains</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ConcurrentSkipListSet) <font color="#cc0033">descendingIterator</font>*() : <a href="java_util.html#type-Iterator">java_util.Iterator</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ConcurrentSkipListSet) <font color="#cc0033">descendingSet</font>*() : <a href="java_util.html#type-NavigableSet">java_util.NavigableSet</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ConcurrentSkipListSet) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ConcurrentSkipListSet) <font color="#cc0033">first</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ConcurrentSkipListSet) <font color="#cc0033">floor</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ConcurrentSkipListSet) <font color="#cc0033">headSet</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_util.html#type-NavigableSet">java_util.NavigableSet</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ConcurrentSkipListSet) <font color="#cc0033">headSet</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                p1 : BOOLEAN) : <a href="java_util.html#type-NavigableSet">java_util.NavigableSet</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ConcurrentSkipListSet) <font color="#cc0033">headSet</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_util.html#type-SortedSet">java_util.SortedSet</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ConcurrentSkipListSet) <font color="#cc0033">higher</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ConcurrentSkipListSet) <font color="#cc0033">isEmpty</font>*() : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ConcurrentSkipListSet) <font color="#cc0033">iterator</font>*() : <a href="java_util.html#type-Iterator">java_util.Iterator</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ConcurrentSkipListSet) <font color="#cc0033">last</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ConcurrentSkipListSet) <font color="#cc0033">lower</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ConcurrentSkipListSet) <font color="#cc0033">pollFirst</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ConcurrentSkipListSet) <font color="#cc0033">pollLast</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ConcurrentSkipListSet) <font color="#cc0033">remove</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ConcurrentSkipListSet) <font color="#cc0033">removeAll</font>*(p0 : <a href="java_util.html#type-Collection">java_util.Collection</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ConcurrentSkipListSet) <font color="#cc0033">size</font>*() : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ConcurrentSkipListSet) <font color="#cc0033">subSet</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                               p1 : BOOLEAN;
+                                               p2 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                               p3 : BOOLEAN) : <a href="java_util.html#type-NavigableSet">java_util.NavigableSet</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ConcurrentSkipListSet) <font color="#cc0033">subSet</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                               p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_util.html#type-SortedSet">java_util.SortedSet</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ConcurrentSkipListSet) <font color="#cc0033">subSet</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                               p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_util.html#type-NavigableSet">java_util.NavigableSet</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ConcurrentSkipListSet) <font color="#cc0033">tailSet</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_util.html#type-SortedSet">java_util.SortedSet</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ConcurrentSkipListSet) <font color="#cc0033">tailSet</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                p1 : BOOLEAN) : <a href="java_util.html#type-NavigableSet">java_util.NavigableSet</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ConcurrentSkipListSet) <font color="#cc0033">tailSet</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_util.html#type-NavigableSet">java_util.NavigableSet</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-CopyOnWriteArrayList"></a>
+<b>PROCEDURE </b>(self:CopyOnWriteArrayList) <font color="#cc0033">add</font>*(p0 : INTEGER;
+                                           p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CopyOnWriteArrayList) <font color="#cc0033">add</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CopyOnWriteArrayList) <font color="#cc0033">addAll</font>*(p0 : INTEGER;
+                                              p1 : <a href="java_util.html#type-Collection">java_util.Collection</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CopyOnWriteArrayList) <font color="#cc0033">addAll</font>*(p0 : <a href="java_util.html#type-Collection">java_util.Collection</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CopyOnWriteArrayList) <font color="#cc0033">addAllAbsent</font>*(p0 : <a href="java_util.html#type-Collection">java_util.Collection</a>) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CopyOnWriteArrayList) <font color="#cc0033">addIfAbsent</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CopyOnWriteArrayList) <font color="#cc0033">clear</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CopyOnWriteArrayList) <font color="#cc0033">clone</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CopyOnWriteArrayList) <font color="#cc0033">contains</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CopyOnWriteArrayList) <font color="#cc0033">containsAll</font>*(p0 : <a href="java_util.html#type-Collection">java_util.Collection</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CopyOnWriteArrayList) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CopyOnWriteArrayList) <font color="#cc0033">get</font>*(p0 : INTEGER) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CopyOnWriteArrayList) <font color="#cc0033">hashCode</font>*() : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CopyOnWriteArrayList) <font color="#cc0033">indexOf</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CopyOnWriteArrayList) <font color="#cc0033">indexOf</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                               p1 : INTEGER) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CopyOnWriteArrayList) <font color="#cc0033">isEmpty</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CopyOnWriteArrayList) <font color="#cc0033">iterator</font>*() : <a href="java_util.html#type-Iterator">java_util.Iterator</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CopyOnWriteArrayList) <font color="#cc0033">lastIndexOf</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                   p1 : INTEGER) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CopyOnWriteArrayList) <font color="#cc0033">lastIndexOf</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CopyOnWriteArrayList) <font color="#cc0033">listIterator</font>*(p0 : INTEGER) : <a href="java_util.html#type-ListIterator">java_util.ListIterator</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CopyOnWriteArrayList) <font color="#cc0033">listIterator</font>*() : <a href="java_util.html#type-ListIterator">java_util.ListIterator</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CopyOnWriteArrayList) <font color="#cc0033">remove</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CopyOnWriteArrayList) <font color="#cc0033">remove</font>*(p0 : INTEGER) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CopyOnWriteArrayList) <font color="#cc0033">removeAll</font>*(p0 : <a href="java_util.html#type-Collection">java_util.Collection</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CopyOnWriteArrayList) <font color="#cc0033">retainAll</font>*(p0 : <a href="java_util.html#type-Collection">java_util.Collection</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CopyOnWriteArrayList) <font color="#cc0033">set</font>*(p0 : INTEGER;
+                                           p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CopyOnWriteArrayList) <font color="#cc0033">size</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CopyOnWriteArrayList) <font color="#cc0033">subList</font>*(p0 : INTEGER;
+                                               p1 : INTEGER) : <a href="java_util.html#type-List">java_util.List</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CopyOnWriteArrayList) <font color="#cc0033">toArray</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CopyOnWriteArrayList) <font color="#cc0033">toArray</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CopyOnWriteArrayList) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,EXTENSIBLE</b>;
+<a name="meths-CopyOnWriteArraySet"></a>
+<b>PROCEDURE </b>(self:CopyOnWriteArraySet) <font color="#cc0033">add</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CopyOnWriteArraySet) <font color="#cc0033">addAll</font>*(p0 : <a href="java_util.html#type-Collection">java_util.Collection</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CopyOnWriteArraySet) <font color="#cc0033">clear</font>*()<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CopyOnWriteArraySet) <font color="#cc0033">contains</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CopyOnWriteArraySet) <font color="#cc0033">containsAll</font>*(p0 : <a href="java_util.html#type-Collection">java_util.Collection</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CopyOnWriteArraySet) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CopyOnWriteArraySet) <font color="#cc0033">isEmpty</font>*() : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CopyOnWriteArraySet) <font color="#cc0033">iterator</font>*() : <a href="java_util.html#type-Iterator">java_util.Iterator</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CopyOnWriteArraySet) <font color="#cc0033">remove</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CopyOnWriteArraySet) <font color="#cc0033">removeAll</font>*(p0 : <a href="java_util.html#type-Collection">java_util.Collection</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CopyOnWriteArraySet) <font color="#cc0033">retainAll</font>*(p0 : <a href="java_util.html#type-Collection">java_util.Collection</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CopyOnWriteArraySet) <font color="#cc0033">size</font>*() : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CopyOnWriteArraySet) <font color="#cc0033">toArray</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CopyOnWriteArraySet) <font color="#cc0033">toArray</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a><b>,EXTENSIBLE</b>;
+<a name="meths-CountDownLatch"></a>
+<b>PROCEDURE </b>(self:CountDownLatch) <font color="#cc0033">await</font>*(p0 : LONGINT;
+                                       p1 : <a href="#type-TimeUnit">TimeUnit</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CountDownLatch) <font color="#cc0033">await</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CountDownLatch) <font color="#cc0033">countDown</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CountDownLatch) <font color="#cc0033">getCount</font>*() : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CountDownLatch) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,EXTENSIBLE</b>;
+<a name="meths-CyclicBarrier"></a>
+<b>PROCEDURE </b>(self:CyclicBarrier) <font color="#cc0033">await</font>*(p0 : LONGINT;
+                                      p1 : <a href="#type-TimeUnit">TimeUnit</a>) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CyclicBarrier) <font color="#cc0033">await</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CyclicBarrier) <font color="#cc0033">getNumberWaiting</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CyclicBarrier) <font color="#cc0033">getParties</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CyclicBarrier) <font color="#cc0033">isBroken</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CyclicBarrier) <font color="#cc0033">reset</font>*()<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-Delayed"></a>
+<b>PROCEDURE </b>(self:Delayed) <font color="#cc0033">getDelay</font>*(p0 : <a href="#type-TimeUnit">TimeUnit</a>) : LONGINT<b>,NEW,ABSTRACT</b>;
+<a name="meths-DelayQueue"></a>
+<b>PROCEDURE </b>(self:DelayQueue) <font color="#cc0033">add</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DelayQueue) <font color="#cc0033">add</font>*(p0 : <a href="#type-Delayed">Delayed</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DelayQueue) <font color="#cc0033">clear</font>*()<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DelayQueue) <font color="#cc0033">drainTo</font>*(p0 : <a href="java_util.html#type-Collection">java_util.Collection</a>) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DelayQueue) <font color="#cc0033">drainTo</font>*(p0 : <a href="java_util.html#type-Collection">java_util.Collection</a>;
+                                     p1 : INTEGER) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DelayQueue) <font color="#cc0033">iterator</font>*() : <a href="java_util.html#type-Iterator">java_util.Iterator</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DelayQueue) <font color="#cc0033">offer</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                   p1 : LONGINT;
+                                   p2 : <a href="#type-TimeUnit">TimeUnit</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DelayQueue) <font color="#cc0033">offer</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DelayQueue) <font color="#cc0033">offer</font>*(p0 : <a href="#type-Delayed">Delayed</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DelayQueue) <font color="#cc0033">offer</font>*(p0 : <a href="#type-Delayed">Delayed</a>;
+                                   p1 : LONGINT;
+                                   p2 : <a href="#type-TimeUnit">TimeUnit</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DelayQueue) <font color="#cc0033">peek</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DelayQueue) <font color="#cc0033">peek</font>*() : <a href="#type-Delayed">Delayed</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DelayQueue) <font color="#cc0033">poll</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DelayQueue) <font color="#cc0033">poll</font>*(p0 : LONGINT;
+                                  p1 : <a href="#type-TimeUnit">TimeUnit</a>) : <a href="#type-Delayed">Delayed</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DelayQueue) <font color="#cc0033">poll</font>*() : <a href="#type-Delayed">Delayed</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DelayQueue) <font color="#cc0033">poll</font>*(p0 : LONGINT;
+                                  p1 : <a href="#type-TimeUnit">TimeUnit</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DelayQueue) <font color="#cc0033">put</font>*(p0 : <a href="#type-Delayed">Delayed</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DelayQueue) <font color="#cc0033">put</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DelayQueue) <font color="#cc0033">remainingCapacity</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DelayQueue) <font color="#cc0033">remove</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DelayQueue) <font color="#cc0033">size</font>*() : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DelayQueue) <font color="#cc0033">take</font>*() : <a href="#type-Delayed">Delayed</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DelayQueue) <font color="#cc0033">take</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DelayQueue) <font color="#cc0033">toArray</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DelayQueue) <font color="#cc0033">toArray</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a><b>,EXTENSIBLE</b>;
+<a name="meths-Exchanger"></a>
+<b>PROCEDURE </b>(self:Exchanger) <font color="#cc0033">exchange</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                     p1 : LONGINT;
+                                     p2 : <a href="#type-TimeUnit">TimeUnit</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Exchanger) <font color="#cc0033">exchange</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-Executor"></a>
+<b>PROCEDURE </b>(self:Executor) <font color="#cc0033">execute</font>*(p0 : <a href="java_lang.html#type-Runnable">java_lang.Runnable</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-ExecutorCompletionService"></a>
+<b>PROCEDURE </b>(self:ExecutorCompletionService) <font color="#cc0033">poll</font>*(p0 : LONGINT;
+                                                 p1 : <a href="#type-TimeUnit">TimeUnit</a>) : <a href="#type-Future">Future</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ExecutorCompletionService) <font color="#cc0033">poll</font>*() : <a href="#type-Future">Future</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ExecutorCompletionService) <font color="#cc0033">submit</font>*(p0 : <a href="#type-Callable">Callable</a>) : <a href="#type-Future">Future</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ExecutorCompletionService) <font color="#cc0033">submit</font>*(p0 : <a href="java_lang.html#type-Runnable">java_lang.Runnable</a>;
+                                                   p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="#type-Future">Future</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ExecutorCompletionService) <font color="#cc0033">take</font>*() : <a href="#type-Future">Future</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-ExecutorService"></a>
+<b>PROCEDURE </b>(self:ExecutorService) <font color="#cc0033">awaitTermination</font>*(p0 : LONGINT;
+                                                   p1 : <a href="#type-TimeUnit">TimeUnit</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ExecutorService) <font color="#cc0033">invokeAll</font>*(p0 : <a href="java_util.html#type-Collection">java_util.Collection</a>;
+                                            p1 : LONGINT;
+                                            p2 : <a href="#type-TimeUnit">TimeUnit</a>) : <a href="java_util.html#type-List">java_util.List</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ExecutorService) <font color="#cc0033">invokeAll</font>*(p0 : <a href="java_util.html#type-Collection">java_util.Collection</a>) : <a href="java_util.html#type-List">java_util.List</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ExecutorService) <font color="#cc0033">invokeAny</font>*(p0 : <a href="java_util.html#type-Collection">java_util.Collection</a>;
+                                            p1 : LONGINT;
+                                            p2 : <a href="#type-TimeUnit">TimeUnit</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ExecutorService) <font color="#cc0033">invokeAny</font>*(p0 : <a href="java_util.html#type-Collection">java_util.Collection</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ExecutorService) <font color="#cc0033">isShutdown</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ExecutorService) <font color="#cc0033">isTerminated</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ExecutorService) <font color="#cc0033">shutdown</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ExecutorService) <font color="#cc0033">shutdownNow</font>*() : <a href="java_util.html#type-List">java_util.List</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ExecutorService) <font color="#cc0033">submit</font>*(p0 : <a href="#type-Callable">Callable</a>) : <a href="#type-Future">Future</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ExecutorService) <font color="#cc0033">submit</font>*(p0 : <a href="java_lang.html#type-Runnable">java_lang.Runnable</a>;
+                                         p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="#type-Future">Future</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ExecutorService) <font color="#cc0033">submit</font>*(p0 : <a href="java_lang.html#type-Runnable">java_lang.Runnable</a>) : <a href="#type-Future">Future</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-Future"></a>
+<b>PROCEDURE </b>(self:Future) <font color="#cc0033">cancel</font>*(p0 : BOOLEAN) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Future) <font color="#cc0033">get</font>*(p0 : LONGINT;
+                             p1 : <a href="#type-TimeUnit">TimeUnit</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Future) <font color="#cc0033">get</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Future) <font color="#cc0033">isCancelled</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Future) <font color="#cc0033">isDone</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+<a name="meths-FutureTask"></a>
+<b>PROCEDURE </b>(self:FutureTask) <font color="#cc0033">cancel</font>*(p0 : BOOLEAN) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FutureTask) <font color="#cc0033">done</font>!()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FutureTask) <font color="#cc0033">get</font>*(p0 : LONGINT;
+                                 p1 : <a href="#type-TimeUnit">TimeUnit</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FutureTask) <font color="#cc0033">get</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FutureTask) <font color="#cc0033">isCancelled</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FutureTask) <font color="#cc0033">isDone</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FutureTask) <font color="#cc0033">run</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FutureTask) <font color="#cc0033">runAndReset</font>!() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FutureTask) <font color="#cc0033">set</font>!(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FutureTask) <font color="#cc0033">setException</font>!(p0 : <a href="java_lang.html#type-Throwable">java_lang.Throwable</a>)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-LinkedBlockingDeque"></a>
+<b>PROCEDURE </b>(self:LinkedBlockingDeque) <font color="#cc0033">add</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LinkedBlockingDeque) <font color="#cc0033">addFirst</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LinkedBlockingDeque) <font color="#cc0033">addLast</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LinkedBlockingDeque) <font color="#cc0033">clear</font>*()<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LinkedBlockingDeque) <font color="#cc0033">contains</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LinkedBlockingDeque) <font color="#cc0033">descendingIterator</font>*() : <a href="java_util.html#type-Iterator">java_util.Iterator</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LinkedBlockingDeque) <font color="#cc0033">drainTo</font>*(p0 : <a href="java_util.html#type-Collection">java_util.Collection</a>) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LinkedBlockingDeque) <font color="#cc0033">drainTo</font>*(p0 : <a href="java_util.html#type-Collection">java_util.Collection</a>;
+                                              p1 : INTEGER) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LinkedBlockingDeque) <font color="#cc0033">element</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LinkedBlockingDeque) <font color="#cc0033">getFirst</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LinkedBlockingDeque) <font color="#cc0033">getLast</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LinkedBlockingDeque) <font color="#cc0033">iterator</font>*() : <a href="java_util.html#type-Iterator">java_util.Iterator</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LinkedBlockingDeque) <font color="#cc0033">offer</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                            p1 : LONGINT;
+                                            p2 : <a href="#type-TimeUnit">TimeUnit</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LinkedBlockingDeque) <font color="#cc0033">offer</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LinkedBlockingDeque) <font color="#cc0033">offerFirst</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                 p1 : LONGINT;
+                                                 p2 : <a href="#type-TimeUnit">TimeUnit</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LinkedBlockingDeque) <font color="#cc0033">offerFirst</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LinkedBlockingDeque) <font color="#cc0033">offerLast</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                p1 : LONGINT;
+                                                p2 : <a href="#type-TimeUnit">TimeUnit</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LinkedBlockingDeque) <font color="#cc0033">offerLast</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LinkedBlockingDeque) <font color="#cc0033">peek</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LinkedBlockingDeque) <font color="#cc0033">peekFirst</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LinkedBlockingDeque) <font color="#cc0033">peekLast</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LinkedBlockingDeque) <font color="#cc0033">poll</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LinkedBlockingDeque) <font color="#cc0033">poll</font>*(p0 : LONGINT;
+                                           p1 : <a href="#type-TimeUnit">TimeUnit</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LinkedBlockingDeque) <font color="#cc0033">pollFirst</font>*(p0 : LONGINT;
+                                                p1 : <a href="#type-TimeUnit">TimeUnit</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LinkedBlockingDeque) <font color="#cc0033">pollFirst</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LinkedBlockingDeque) <font color="#cc0033">pollLast</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LinkedBlockingDeque) <font color="#cc0033">pollLast</font>*(p0 : LONGINT;
+                                               p1 : <a href="#type-TimeUnit">TimeUnit</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LinkedBlockingDeque) <font color="#cc0033">pop</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LinkedBlockingDeque) <font color="#cc0033">push</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LinkedBlockingDeque) <font color="#cc0033">put</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LinkedBlockingDeque) <font color="#cc0033">putFirst</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LinkedBlockingDeque) <font color="#cc0033">putLast</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LinkedBlockingDeque) <font color="#cc0033">remainingCapacity</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LinkedBlockingDeque) <font color="#cc0033">remove</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LinkedBlockingDeque) <font color="#cc0033">remove</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LinkedBlockingDeque) <font color="#cc0033">removeFirst</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LinkedBlockingDeque) <font color="#cc0033">removeFirstOccurrence</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LinkedBlockingDeque) <font color="#cc0033">removeLast</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LinkedBlockingDeque) <font color="#cc0033">removeLastOccurrence</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LinkedBlockingDeque) <font color="#cc0033">size</font>*() : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LinkedBlockingDeque) <font color="#cc0033">take</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LinkedBlockingDeque) <font color="#cc0033">takeFirst</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LinkedBlockingDeque) <font color="#cc0033">takeLast</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LinkedBlockingDeque) <font color="#cc0033">toArray</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LinkedBlockingDeque) <font color="#cc0033">toArray</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LinkedBlockingDeque) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,EXTENSIBLE</b>;
+<a name="meths-LinkedBlockingQueue"></a>
+<b>PROCEDURE </b>(self:LinkedBlockingQueue) <font color="#cc0033">clear</font>*()<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LinkedBlockingQueue) <font color="#cc0033">drainTo</font>*(p0 : <a href="java_util.html#type-Collection">java_util.Collection</a>) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LinkedBlockingQueue) <font color="#cc0033">drainTo</font>*(p0 : <a href="java_util.html#type-Collection">java_util.Collection</a>;
+                                              p1 : INTEGER) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LinkedBlockingQueue) <font color="#cc0033">iterator</font>*() : <a href="java_util.html#type-Iterator">java_util.Iterator</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LinkedBlockingQueue) <font color="#cc0033">offer</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LinkedBlockingQueue) <font color="#cc0033">offer</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                            p1 : LONGINT;
+                                            p2 : <a href="#type-TimeUnit">TimeUnit</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LinkedBlockingQueue) <font color="#cc0033">peek</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LinkedBlockingQueue) <font color="#cc0033">poll</font>*(p0 : LONGINT;
+                                           p1 : <a href="#type-TimeUnit">TimeUnit</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LinkedBlockingQueue) <font color="#cc0033">poll</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LinkedBlockingQueue) <font color="#cc0033">put</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LinkedBlockingQueue) <font color="#cc0033">remainingCapacity</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LinkedBlockingQueue) <font color="#cc0033">remove</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LinkedBlockingQueue) <font color="#cc0033">size</font>*() : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LinkedBlockingQueue) <font color="#cc0033">take</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LinkedBlockingQueue) <font color="#cc0033">toArray</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LinkedBlockingQueue) <font color="#cc0033">toArray</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LinkedBlockingQueue) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,EXTENSIBLE</b>;
+<a name="meths-PriorityBlockingQueue"></a>
+<b>PROCEDURE </b>(self:PriorityBlockingQueue) <font color="#cc0033">add</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PriorityBlockingQueue) <font color="#cc0033">clear</font>*()<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PriorityBlockingQueue) <font color="#cc0033">comparator</font>*() : <a href="java_util.html#type-Comparator">java_util.Comparator</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PriorityBlockingQueue) <font color="#cc0033">contains</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PriorityBlockingQueue) <font color="#cc0033">drainTo</font>*(p0 : <a href="java_util.html#type-Collection">java_util.Collection</a>;
+                                                p1 : INTEGER) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PriorityBlockingQueue) <font color="#cc0033">drainTo</font>*(p0 : <a href="java_util.html#type-Collection">java_util.Collection</a>) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PriorityBlockingQueue) <font color="#cc0033">iterator</font>*() : <a href="java_util.html#type-Iterator">java_util.Iterator</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PriorityBlockingQueue) <font color="#cc0033">offer</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PriorityBlockingQueue) <font color="#cc0033">offer</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                              p1 : LONGINT;
+                                              p2 : <a href="#type-TimeUnit">TimeUnit</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PriorityBlockingQueue) <font color="#cc0033">peek</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PriorityBlockingQueue) <font color="#cc0033">poll</font>*(p0 : LONGINT;
+                                             p1 : <a href="#type-TimeUnit">TimeUnit</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PriorityBlockingQueue) <font color="#cc0033">poll</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PriorityBlockingQueue) <font color="#cc0033">put</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PriorityBlockingQueue) <font color="#cc0033">remainingCapacity</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PriorityBlockingQueue) <font color="#cc0033">remove</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PriorityBlockingQueue) <font color="#cc0033">size</font>*() : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PriorityBlockingQueue) <font color="#cc0033">take</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PriorityBlockingQueue) <font color="#cc0033">toArray</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PriorityBlockingQueue) <font color="#cc0033">toArray</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PriorityBlockingQueue) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,EXTENSIBLE</b>;
+<a name="meths-RejectedExecutionHandler"></a>
+<b>PROCEDURE </b>(self:RejectedExecutionHandler) <font color="#cc0033">rejectedExecution</font>*(p0 : <a href="java_lang.html#type-Runnable">java_lang.Runnable</a>;
+                                                             p1 : <a href="#type-ThreadPoolExecutor">ThreadPoolExecutor</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-RunnableFuture"></a>
+<b>PROCEDURE </b>(self:RunnableFuture) <font color="#cc0033">run</font>*()<b>,NEW,ABSTRACT</b>;
+<a name="meths-RunnableScheduledFuture"></a>
+<b>PROCEDURE </b>(self:RunnableScheduledFuture) <font color="#cc0033">isPeriodic</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+<a name="meths-ScheduledExecutorService"></a>
+<b>PROCEDURE </b>(self:ScheduledExecutorService) <font color="#cc0033">schedule</font>*(p0 : <a href="#type-Callable">Callable</a>;
+                                                    p1 : LONGINT;
+                                                    p2 : <a href="#type-TimeUnit">TimeUnit</a>) : <a href="#type-ScheduledFuture">ScheduledFuture</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ScheduledExecutorService) <font color="#cc0033">schedule</font>*(p0 : <a href="java_lang.html#type-Runnable">java_lang.Runnable</a>;
+                                                    p1 : LONGINT;
+                                                    p2 : <a href="#type-TimeUnit">TimeUnit</a>) : <a href="#type-ScheduledFuture">ScheduledFuture</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ScheduledExecutorService) <font color="#cc0033">scheduleAtFixedRate</font>*(p0 : <a href="java_lang.html#type-Runnable">java_lang.Runnable</a>;
+                                                               p1 : LONGINT;
+                                                               p2 : LONGINT;
+                                                               p3 : <a href="#type-TimeUnit">TimeUnit</a>) : <a href="#type-ScheduledFuture">ScheduledFuture</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ScheduledExecutorService) <font color="#cc0033">scheduleWithFixedDelay</font>*(p0 : <a href="java_lang.html#type-Runnable">java_lang.Runnable</a>;
+                                                                  p1 : LONGINT;
+                                                                  p2 : LONGINT;
+                                                                  p3 : <a href="#type-TimeUnit">TimeUnit</a>) : <a href="#type-ScheduledFuture">ScheduledFuture</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-ScheduledThreadPoolExecutor"></a>
+<b>PROCEDURE </b>(self:ScheduledThreadPoolExecutor) <font color="#cc0033">decorateTask</font>!(p0 : <a href="#type-Callable">Callable</a>;
+                                                           p1 : <a href="#type-RunnableScheduledFuture">RunnableScheduledFuture</a>) : <a href="#type-RunnableScheduledFuture">RunnableScheduledFuture</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ScheduledThreadPoolExecutor) <font color="#cc0033">decorateTask</font>!(p0 : <a href="java_lang.html#type-Runnable">java_lang.Runnable</a>;
+                                                           p1 : <a href="#type-RunnableScheduledFuture">RunnableScheduledFuture</a>) : <a href="#type-RunnableScheduledFuture">RunnableScheduledFuture</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ScheduledThreadPoolExecutor) <font color="#cc0033">execute</font>*(p0 : <a href="java_lang.html#type-Runnable">java_lang.Runnable</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ScheduledThreadPoolExecutor) <font color="#cc0033">getContinueExistingPeriodicTasksAfterShutdownPolicy</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ScheduledThreadPoolExecutor) <font color="#cc0033">getExecuteExistingDelayedTasksAfterShutdownPolicy</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ScheduledThreadPoolExecutor) <font color="#cc0033">getQueue</font>*() : <a href="#type-BlockingQueue">BlockingQueue</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ScheduledThreadPoolExecutor) <font color="#cc0033">remove</font>*(p0 : <a href="java_lang.html#type-Runnable">java_lang.Runnable</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ScheduledThreadPoolExecutor) <font color="#cc0033">schedule</font>*(p0 : <a href="java_lang.html#type-Runnable">java_lang.Runnable</a>;
+                                                       p1 : LONGINT;
+                                                       p2 : <a href="#type-TimeUnit">TimeUnit</a>) : <a href="#type-ScheduledFuture">ScheduledFuture</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ScheduledThreadPoolExecutor) <font color="#cc0033">schedule</font>*(p0 : <a href="#type-Callable">Callable</a>;
+                                                       p1 : LONGINT;
+                                                       p2 : <a href="#type-TimeUnit">TimeUnit</a>) : <a href="#type-ScheduledFuture">ScheduledFuture</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ScheduledThreadPoolExecutor) <font color="#cc0033">scheduleAtFixedRate</font>*(p0 : <a href="java_lang.html#type-Runnable">java_lang.Runnable</a>;
+                                                                  p1 : LONGINT;
+                                                                  p2 : LONGINT;
+                                                                  p3 : <a href="#type-TimeUnit">TimeUnit</a>) : <a href="#type-ScheduledFuture">ScheduledFuture</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ScheduledThreadPoolExecutor) <font color="#cc0033">scheduleWithFixedDelay</font>*(p0 : <a href="java_lang.html#type-Runnable">java_lang.Runnable</a>;
+                                                                     p1 : LONGINT;
+                                                                     p2 : LONGINT;
+                                                                     p3 : <a href="#type-TimeUnit">TimeUnit</a>) : <a href="#type-ScheduledFuture">ScheduledFuture</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ScheduledThreadPoolExecutor) <font color="#cc0033">setContinueExistingPeriodicTasksAfterShutdownPolicy</font>*(p0 : BOOLEAN)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ScheduledThreadPoolExecutor) <font color="#cc0033">setExecuteExistingDelayedTasksAfterShutdownPolicy</font>*(p0 : BOOLEAN)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ScheduledThreadPoolExecutor) <font color="#cc0033">shutdown</font>*()<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ScheduledThreadPoolExecutor) <font color="#cc0033">shutdownNow</font>*() : <a href="java_util.html#type-List">java_util.List</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ScheduledThreadPoolExecutor) <font color="#cc0033">submit</font>*(p0 : <a href="java_lang.html#type-Runnable">java_lang.Runnable</a>) : <a href="#type-Future">Future</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ScheduledThreadPoolExecutor) <font color="#cc0033">submit</font>*(p0 : <a href="java_lang.html#type-Runnable">java_lang.Runnable</a>;
+                                                     p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="#type-Future">Future</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ScheduledThreadPoolExecutor) <font color="#cc0033">submit</font>*(p0 : <a href="#type-Callable">Callable</a>) : <a href="#type-Future">Future</a><b>,EXTENSIBLE</b>;
+<a name="meths-Semaphore"></a>
+<b>PROCEDURE </b>(self:Semaphore) <font color="#cc0033">acquire</font>*(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Semaphore) <font color="#cc0033">acquire</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Semaphore) <font color="#cc0033">acquireUninterruptibly</font>*(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Semaphore) <font color="#cc0033">acquireUninterruptibly</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Semaphore) <font color="#cc0033">availablePermits</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Semaphore) <font color="#cc0033">drainPermits</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Semaphore) <font color="#cc0033">getQueuedThreads</font>!() : <a href="java_util.html#type-Collection">java_util.Collection</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Semaphore) <font color="#cc0033">getQueueLength</font>*() : INTEGER<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:Semaphore) <font color="#cc0033">hasQueuedThreads</font>*() : BOOLEAN<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:Semaphore) <font color="#cc0033">isFair</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Semaphore) <font color="#cc0033">reducePermits</font>!(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Semaphore) <font color="#cc0033">release</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Semaphore) <font color="#cc0033">release</font>*(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Semaphore) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Semaphore) <font color="#cc0033">tryAcquire</font>*(p0 : LONGINT;
+                                       p1 : <a href="#type-TimeUnit">TimeUnit</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Semaphore) <font color="#cc0033">tryAcquire</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Semaphore) <font color="#cc0033">tryAcquire</font>*(p0 : INTEGER;
+                                       p1 : LONGINT;
+                                       p2 : <a href="#type-TimeUnit">TimeUnit</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Semaphore) <font color="#cc0033">tryAcquire</font>*(p0 : INTEGER) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-SynchronousQueue"></a>
+<b>PROCEDURE </b>(self:SynchronousQueue) <font color="#cc0033">clear</font>*()<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SynchronousQueue) <font color="#cc0033">contains</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SynchronousQueue) <font color="#cc0033">containsAll</font>*(p0 : <a href="java_util.html#type-Collection">java_util.Collection</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SynchronousQueue) <font color="#cc0033">drainTo</font>*(p0 : <a href="java_util.html#type-Collection">java_util.Collection</a>) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SynchronousQueue) <font color="#cc0033">drainTo</font>*(p0 : <a href="java_util.html#type-Collection">java_util.Collection</a>;
+                                           p1 : INTEGER) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SynchronousQueue) <font color="#cc0033">isEmpty</font>*() : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SynchronousQueue) <font color="#cc0033">iterator</font>*() : <a href="java_util.html#type-Iterator">java_util.Iterator</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SynchronousQueue) <font color="#cc0033">offer</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                         p1 : LONGINT;
+                                         p2 : <a href="#type-TimeUnit">TimeUnit</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SynchronousQueue) <font color="#cc0033">offer</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SynchronousQueue) <font color="#cc0033">peek</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SynchronousQueue) <font color="#cc0033">poll</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SynchronousQueue) <font color="#cc0033">poll</font>*(p0 : LONGINT;
+                                        p1 : <a href="#type-TimeUnit">TimeUnit</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SynchronousQueue) <font color="#cc0033">put</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SynchronousQueue) <font color="#cc0033">remainingCapacity</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SynchronousQueue) <font color="#cc0033">remove</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SynchronousQueue) <font color="#cc0033">removeAll</font>*(p0 : <a href="java_util.html#type-Collection">java_util.Collection</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SynchronousQueue) <font color="#cc0033">retainAll</font>*(p0 : <a href="java_util.html#type-Collection">java_util.Collection</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SynchronousQueue) <font color="#cc0033">size</font>*() : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SynchronousQueue) <font color="#cc0033">take</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SynchronousQueue) <font color="#cc0033">toArray</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SynchronousQueue) <font color="#cc0033">toArray</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a><b>,EXTENSIBLE</b>;
+<a name="meths-ThreadFactory"></a>
+<b>PROCEDURE </b>(self:ThreadFactory) <font color="#cc0033">newThread</font>*(p0 : <a href="java_lang.html#type-Runnable">java_lang.Runnable</a>) : <a href="java_lang.html#type-Thread">java_lang.Thread</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-ThreadPoolExecutor"></a>
+<b>PROCEDURE </b>(self:ThreadPoolExecutor) <font color="#cc0033">afterExecute</font>!(p0 : <a href="java_lang.html#type-Runnable">java_lang.Runnable</a>;
+                                                  p1 : <a href="java_lang.html#type-Throwable">java_lang.Throwable</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ThreadPoolExecutor) <font color="#cc0033">allowCoreThreadTimeOut</font>*(p0 : BOOLEAN)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ThreadPoolExecutor) <font color="#cc0033">allowsCoreThreadTimeOut</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ThreadPoolExecutor) <font color="#cc0033">awaitTermination</font>*(p0 : LONGINT;
+                                                      p1 : <a href="#type-TimeUnit">TimeUnit</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ThreadPoolExecutor) <font color="#cc0033">beforeExecute</font>!(p0 : <a href="java_lang.html#type-Thread">java_lang.Thread</a>;
+                                                   p1 : <a href="java_lang.html#type-Runnable">java_lang.Runnable</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ThreadPoolExecutor) <font color="#cc0033">execute</font>*(p0 : <a href="java_lang.html#type-Runnable">java_lang.Runnable</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ThreadPoolExecutor) <font color="#cc0033">finalize</font>!()<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ThreadPoolExecutor) <font color="#cc0033">getActiveCount</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ThreadPoolExecutor) <font color="#cc0033">getCompletedTaskCount</font>*() : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ThreadPoolExecutor) <font color="#cc0033">getCorePoolSize</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ThreadPoolExecutor) <font color="#cc0033">getKeepAliveTime</font>*(p0 : <a href="#type-TimeUnit">TimeUnit</a>) : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ThreadPoolExecutor) <font color="#cc0033">getLargestPoolSize</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ThreadPoolExecutor) <font color="#cc0033">getMaximumPoolSize</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ThreadPoolExecutor) <font color="#cc0033">getPoolSize</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ThreadPoolExecutor) <font color="#cc0033">getQueue</font>*() : <a href="#type-BlockingQueue">BlockingQueue</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ThreadPoolExecutor) <font color="#cc0033">getRejectedExecutionHandler</font>*() : <a href="#type-RejectedExecutionHandler">RejectedExecutionHandler</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ThreadPoolExecutor) <font color="#cc0033">getTaskCount</font>*() : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ThreadPoolExecutor) <font color="#cc0033">getThreadFactory</font>*() : <a href="#type-ThreadFactory">ThreadFactory</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ThreadPoolExecutor) <font color="#cc0033">isShutdown</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ThreadPoolExecutor) <font color="#cc0033">isTerminated</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ThreadPoolExecutor) <font color="#cc0033">isTerminating</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ThreadPoolExecutor) <font color="#cc0033">prestartAllCoreThreads</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ThreadPoolExecutor) <font color="#cc0033">prestartCoreThread</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ThreadPoolExecutor) <font color="#cc0033">purge</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ThreadPoolExecutor) <font color="#cc0033">remove</font>*(p0 : <a href="java_lang.html#type-Runnable">java_lang.Runnable</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ThreadPoolExecutor) <font color="#cc0033">setCorePoolSize</font>*(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ThreadPoolExecutor) <font color="#cc0033">setKeepAliveTime</font>*(p0 : LONGINT;
+                                                      p1 : <a href="#type-TimeUnit">TimeUnit</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ThreadPoolExecutor) <font color="#cc0033">setMaximumPoolSize</font>*(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ThreadPoolExecutor) <font color="#cc0033">setRejectedExecutionHandler</font>*(p0 : <a href="#type-RejectedExecutionHandler">RejectedExecutionHandler</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ThreadPoolExecutor) <font color="#cc0033">setThreadFactory</font>*(p0 : <a href="#type-ThreadFactory">ThreadFactory</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ThreadPoolExecutor) <font color="#cc0033">shutdown</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ThreadPoolExecutor) <font color="#cc0033">shutdownNow</font>*() : <a href="java_util.html#type-List">java_util.List</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ThreadPoolExecutor) <font color="#cc0033">terminated</font>!()<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-ThreadPoolExecutor$AbortPolicy"></a>
+<b>PROCEDURE </b>(self:ThreadPoolExecutor$AbortPolicy) <font color="#cc0033">rejectedExecution</font>*(p0 : <a href="java_lang.html#type-Runnable">java_lang.Runnable</a>;
+                                                                   p1 : <a href="#type-ThreadPoolExecutor">ThreadPoolExecutor</a>)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-ThreadPoolExecutor$CallerRunsPolicy"></a>
+<b>PROCEDURE </b>(self:ThreadPoolExecutor$CallerRunsPolicy) <font color="#cc0033">rejectedExecution</font>*(p0 : <a href="java_lang.html#type-Runnable">java_lang.Runnable</a>;
+                                                                        p1 : <a href="#type-ThreadPoolExecutor">ThreadPoolExecutor</a>)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-ThreadPoolExecutor$DiscardOldestPolicy"></a>
+<b>PROCEDURE </b>(self:ThreadPoolExecutor$DiscardOldestPolicy) <font color="#cc0033">rejectedExecution</font>*(p0 : <a href="java_lang.html#type-Runnable">java_lang.Runnable</a>;
+                                                                           p1 : <a href="#type-ThreadPoolExecutor">ThreadPoolExecutor</a>)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-ThreadPoolExecutor$DiscardPolicy"></a>
+<b>PROCEDURE </b>(self:ThreadPoolExecutor$DiscardPolicy) <font color="#cc0033">rejectedExecution</font>*(p0 : <a href="java_lang.html#type-Runnable">java_lang.Runnable</a>;
+                                                                     p1 : <a href="#type-ThreadPoolExecutor">ThreadPoolExecutor</a>)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-TimeUnit"></a>
+<b>PROCEDURE </b>(self:TimeUnit) <font color="#cc0033">convert</font>*(p0 : LONGINT;
+                                   p1 : <a href="#type-TimeUnit">TimeUnit</a>) : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TimeUnit) <font color="#cc0033">sleep</font>*(p0 : LONGINT)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TimeUnit) <font color="#cc0033">timedJoin</font>*(p0 : <a href="java_lang.html#type-Thread">java_lang.Thread</a>;
+                                     p1 : LONGINT)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TimeUnit) <font color="#cc0033">timedWait</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                     p1 : LONGINT)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TimeUnit) <font color="#cc0033">toDays</font>*(p0 : LONGINT) : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TimeUnit) <font color="#cc0033">toHours</font>*(p0 : LONGINT) : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TimeUnit) <font color="#cc0033">toMicros</font>*(p0 : LONGINT) : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TimeUnit) <font color="#cc0033">toMillis</font>*(p0 : LONGINT) : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TimeUnit) <font color="#cc0033">toMinutes</font>*(p0 : LONGINT) : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TimeUnit) <font color="#cc0033">toNanos</font>*(p0 : LONGINT) : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TimeUnit) <font color="#cc0033">toSeconds</font>*(p0 : LONGINT) : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>END </b><font color="#cc0033">java_util_concurrent</font>.
+</font></pre></hr></body></html>

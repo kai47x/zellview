@@ -1,0 +1,2157 @@
+<html><head><title>sun_java2d_pipe</title></head>
+<body bgcolor="white">
+<hr><pre>
+<b>FOREIGN MODULE </b><font color="#cc0033">sun_java2d_pipe</font>;
+
+<b>IMPORT</b>
+    <a href="sun_java2d.html">sun_java2d</a> := "sun.java2d",
+    <a href="sun_font.html">sun_font</a> := "sun.font",
+    <a href="java_lang.html">java_lang</a> := "java.lang",
+    <a href="java_awt_font.html">java_awt_font</a> := "java.awt.font",
+    <a href="java_awt.html">java_awt</a> := "java.awt",
+    <a href="java_awt_image.html">java_awt_image</a> := "java.awt.image",
+    <a href="java_lang_ref.html">java_lang_ref</a> := "java.lang.ref",
+    <a href="sun_java2d_loops.html">sun_java2d_loops</a> := "sun.java2d.loops",
+    <a href="sun_java2d_pipe_hw.html">sun_java2d_pipe_hw</a> := "sun.java2d.pipe.hw",
+    <a href="java_awt_geom.html">java_awt_geom</a> := "java.awt.geom",
+    <a href="java_util.html">java_util</a> := "java.util",
+    <a href="java_io.html">java_io</a> := "java.io",
+    <a href="sun_awt_image.html">sun_awt_image</a> := "sun.awt.image",
+    <a href="sun_dc_pr.html">sun_dc_pr</a> := "sun.dc.pr",
+    <a href="sun_dc_path.html">sun_dc_path</a> := "sun.dc.path",
+    <a href="sun_misc.html">sun_misc</a> := "sun.misc";
+
+<b>TYPE</b>
+
+  <a name="type-AATextRenderer"></a><font color="#cc0033">AATextRenderer</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-GlyphListLoopPipe">GlyphListLoopPipe</a>)    <a href="#meths-AATextRenderer"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                    <b>STATIC</b>
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-AATextRenderer">AATextRenderer</a><b>,CONSTRUCTOR</b>;
+                    <b>END</b>;
+
+  <a name="type-AlphaColorPipe"></a><font color="#cc0033">AlphaColorPipe</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-CompositePipe">CompositePipe</a> + <a href="#type-ParallelogramPipe">ParallelogramPipe</a>)    <a href="#meths-AlphaColorPipe"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                    <b>STATIC</b>
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-AlphaColorPipe">AlphaColorPipe</a><b>,CONSTRUCTOR</b>;
+                    <b>END</b>;
+
+  <a name="type-AlphaPaintPipe"></a><font color="#cc0033">AlphaPaintPipe</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-CompositePipe">CompositePipe</a>)    <a href="#meths-AlphaPaintPipe"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                    <b>STATIC</b>
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-AlphaPaintPipe">AlphaPaintPipe</a><b>,CONSTRUCTOR</b>;
+                    <b>END</b>;
+
+  <a name="type-BufferedBufImgOps"></a><font color="#cc0033">BufferedBufImgOps</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                       <b>STATIC</b>
+                         <b>PROCEDURE </b><font color="#cc0033">disableBufImgOp</font>*(p0 : <a href="#type-RenderQueue">RenderQueue</a>;
+                                                    p1 : <a href="java_awt_image.html#type-BufferedImageOp">java_awt_image.BufferedImageOp</a>);
+                         <b>PROCEDURE </b><font color="#cc0033">enableBufImgOp</font>*(p0 : <a href="#type-RenderQueue">RenderQueue</a>;
+                                                   p1 : <a href="sun_java2d.html#type-SurfaceData">sun_java2d.SurfaceData</a>;
+                                                   p2 : <a href="java_awt_image.html#type-BufferedImage">java_awt_image.BufferedImage</a>;
+                                                   p3 : <a href="java_awt_image.html#type-BufferedImageOp">java_awt_image.BufferedImageOp</a>);
+                         <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-BufferedBufImgOps">BufferedBufImgOps</a><b>,CONSTRUCTOR</b>;
+                         <b>PROCEDURE </b><font color="#cc0033">isConvolveOpValid</font>*(p0 : <a href="java_awt_image.html#type-ConvolveOp">java_awt_image.ConvolveOp</a>) : BOOLEAN;
+                         <b>PROCEDURE </b><font color="#cc0033">isLookupOpValid</font>*(p0 : <a href="java_awt_image.html#type-LookupOp">java_awt_image.LookupOp</a>;
+                                                    p1 : <a href="java_awt_image.html#type-BufferedImage">java_awt_image.BufferedImage</a>) : BOOLEAN;
+                         <b>PROCEDURE </b><font color="#cc0033">isRescaleOpValid</font>*(p0 : <a href="java_awt_image.html#type-RescaleOp">java_awt_image.RescaleOp</a>;
+                                                     p1 : <a href="java_awt_image.html#type-BufferedImage">java_awt_image.BufferedImage</a>) : BOOLEAN;
+                       <b>END</b>;
+
+  <a name="type-BufferedContext"></a><font color="#cc0033">BufferedContext</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-BufferedContext"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                       <font color="#cc0033">rq</font>!  : <a href="#type-RenderQueue">RenderQueue</a>;
+                       <font color="#cc0033">buf</font>! : <a href="#type-RenderBuffer">RenderBuffer</a>;
+                     <b>STATIC</b>
+                       <a name="type-currentContext"></a><font color="#cc0033">currentContext</font>!   : <a href="#type-BufferedContext">BufferedContext</a>;
+                       <font color="#cc0033">NO_CONTEXT_FLAGS</font>* = 0;
+                       <font color="#cc0033">SRC_IS_OPAQUE</font>*    = 1;
+                       <font color="#cc0033">USE_MASK</font>*         = 2;
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : <a href="#type-RenderQueue">RenderQueue</a>) : <a href="#type-BufferedContext">BufferedContext</a><b>,CONSTRUCTOR</b>;
+                       <b>PROCEDURE </b><font color="#cc0033">validateContext</font>*(p0 : <a href="sun_java2d_pipe_hw.html#type-AccelSurface">sun_java2d_pipe_hw.AccelSurface</a>);
+                       <b>PROCEDURE </b><font color="#cc0033">validateContext</font>*(p0 : <a href="sun_java2d_pipe_hw.html#type-AccelSurface">sun_java2d_pipe_hw.AccelSurface</a>;
+                                                  p1 : <a href="sun_java2d_pipe_hw.html#type-AccelSurface">sun_java2d_pipe_hw.AccelSurface</a>;
+                                                  p2 : <a href="#type-Region">Region</a>;
+                                                  p3 : <a href="java_awt.html#type-Composite">java_awt.Composite</a>;
+                                                  p4 : <a href="java_awt_geom.html#type-AffineTransform">java_awt_geom.AffineTransform</a>;
+                                                  p5 : <a href="java_awt.html#type-Paint">java_awt.Paint</a>;
+                                                  p6 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                                  p7 : INTEGER);
+                     <b>END</b>;
+
+  <a name="type-BufferedMaskBlit"></a><font color="#cc0033">BufferedMaskBlit</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="sun_java2d_loops.html#type-MaskBlit">sun_java2d_loops.MaskBlit</a>)    <a href="#meths-BufferedMaskBlit"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                      <b>STATIC</b>
+                        <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : <a href="#type-RenderQueue">RenderQueue</a>;
+                                        p1 : <a href="sun_java2d_loops.html#type-SurfaceType">sun_java2d_loops.SurfaceType</a>;
+                                        p2 : <a href="sun_java2d_loops.html#type-CompositeType">sun_java2d_loops.CompositeType</a>;
+                                        p3 : <a href="sun_java2d_loops.html#type-SurfaceType">sun_java2d_loops.SurfaceType</a>) : <a href="#type-BufferedMaskBlit">BufferedMaskBlit</a><b>,CONSTRUCTOR</b>;
+                      <b>END</b>;
+
+  <a name="type-BufferedMaskFill"></a><font color="#cc0033">BufferedMaskFill</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="sun_java2d_loops.html#type-MaskFill">sun_java2d_loops.MaskFill</a>)    <a href="#meths-BufferedMaskFill"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                        <font color="#cc0033">rq</font>! : <a href="#type-RenderQueue">RenderQueue</a>;
+                      <b>STATIC</b>
+                        <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : <a href="#type-RenderQueue">RenderQueue</a>;
+                                        p1 : <a href="sun_java2d_loops.html#type-SurfaceType">sun_java2d_loops.SurfaceType</a>;
+                                        p2 : <a href="sun_java2d_loops.html#type-CompositeType">sun_java2d_loops.CompositeType</a>;
+                                        p3 : <a href="sun_java2d_loops.html#type-SurfaceType">sun_java2d_loops.SurfaceType</a>) : <a href="#type-BufferedMaskFill">BufferedMaskFill</a><b>,CONSTRUCTOR</b>;
+                      <b>END</b>;
+
+  <a name="type-BufferedOpCodes"></a><font color="#cc0033">BufferedOpCodes</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                     <b>STATIC</b>
+                       <font color="#cc0033">BEGIN_SHAPE_CLIP</font>*          = 52;
+                       <font color="#cc0033">BLIT</font>*                      = 31;
+                       <font color="#cc0033">COPY_AREA</font>*                 = 30;
+                       <font color="#cc0033">DISABLE_CONVOLVE_OP</font>*       = 121;
+                       <font color="#cc0033">DISABLE_LOOKUP_OP</font>*         = 125;
+                       <font color="#cc0033">DISABLE_RESCALE_OP</font>*        = 123;
+                       <font color="#cc0033">DISPOSE_CONFIG</font>*            = 74;
+                       <font color="#cc0033">DISPOSE_SURFACE</font>*           = 73;
+                       <font color="#cc0033">DRAW_AAPARALLELOGRAM</font>*      = 16;
+                       <font color="#cc0033">DRAW_GLYPH_LIST</font>*           = 40;
+                       <font color="#cc0033">DRAW_LINE</font>*                 = 10;
+                       <font color="#cc0033">DRAW_PARALLELOGRAM</font>*        = 15;
+                       <font color="#cc0033">DRAW_PIXEL</font>*                = 13;
+                       <font color="#cc0033">DRAW_POLY</font>*                 = 12;
+                       <font color="#cc0033">DRAW_RECT</font>*                 = 11;
+                       <font color="#cc0033">DRAW_SCANLINES</font>*            = 14;
+                       <font color="#cc0033">ENABLE_CONVOLVE_OP</font>*        = 120;
+                       <font color="#cc0033">ENABLE_LOOKUP_OP</font>*          = 124;
+                       <font color="#cc0033">ENABLE_RESCALE_OP</font>*         = 122;
+                       <font color="#cc0033">END_SHAPE_CLIP</font>*            = 54;
+                       <font color="#cc0033">FILL_AAPARALLELOGRAM</font>*      = 23;
+                       <font color="#cc0033">FILL_PARALLELOGRAM</font>*        = 22;
+                       <font color="#cc0033">FILL_RECT</font>*                 = 20;
+                       <font color="#cc0033">FILL_SPANS</font>*                = 21;
+                       <font color="#cc0033">FLUSH_SURFACE</font>*             = 72;
+                       <font color="#cc0033">INVALIDATE_CONTEXT</font>*        = 75;
+                       <font color="#cc0033">MASK_BLIT</font>*                 = 33;
+                       <font color="#cc0033">MASK_FILL</font>*                 = 32;
+                       <font color="#cc0033">NOOP</font>*                      = 90;
+                       <font color="#cc0033">RESET_CLIP</font>*                = 55;
+                       <font color="#cc0033">RESET_COMPOSITE</font>*           = 58;
+                       <font color="#cc0033">RESET_PAINT</font>*               = 100;
+                       <font color="#cc0033">RESET_TRANSFORM</font>*           = 60;
+                       <font color="#cc0033">RESTORE_DEVICES</font>*           = 77;
+                       <font color="#cc0033">RESTORE_STATE</font>*             = 79;
+                       <font color="#cc0033">SAVE_STATE</font>*                = 78;
+                       <font color="#cc0033">SET_ALPHA_COMPOSITE</font>*       = 56;
+                       <font color="#cc0033">SET_COLOR</font>*                 = 101;
+                       <font color="#cc0033">SET_GRADIENT_PAINT</font>*        = 102;
+                       <font color="#cc0033">SET_LINEAR_GRADIENT_PAINT</font>* = 103;
+                       <font color="#cc0033">SET_RADIAL_GRADIENT_PAINT</font>* = 104;
+                       <font color="#cc0033">SET_RECT_CLIP</font>*             = 51;
+                       <font color="#cc0033">SET_SCRATCH_SURFACE</font>*       = 71;
+                       <font color="#cc0033">SET_SHAPE_CLIP_SPANS</font>*      = 53;
+                       <font color="#cc0033">SET_SURFACES</font>*              = 70;
+                       <font color="#cc0033">SET_TEXTURE_PAINT</font>*         = 105;
+                       <font color="#cc0033">SET_TRANSFORM</font>*             = 59;
+                       <font color="#cc0033">SET_XOR_COMPOSITE</font>*         = 57;
+                       <font color="#cc0033">SURFACE_TO_SW_BLIT</font>*        = 34;
+                       <font color="#cc0033">SWAP_BUFFERS</font>*              = 80;
+                       <font color="#cc0033">SYNC</font>*                      = 76;
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-BufferedOpCodes">BufferedOpCodes</a><b>,CONSTRUCTOR</b>;
+                     <b>END</b>;
+
+  <a name="type-BufferedPaints"></a><font color="#cc0033">BufferedPaints</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                    <b>STATIC</b>
+                      <font color="#cc0033">MULTI_MAX_FRACTIONS</font>* = 12;
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-BufferedPaints">BufferedPaints</a><b>,CONSTRUCTOR</b>;
+                    <b>END</b>;
+
+  <a name="type-BufferedRenderPipe"></a><font color="#cc0033">BufferedRenderPipe</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-PixelDrawPipe">PixelDrawPipe</a> + <a href="#type-PixelFillPipe">PixelFillPipe</a> + <a href="#type-ShapeDrawPipe">ShapeDrawPipe</a> + <a href="#type-ParallelogramPipe">ParallelogramPipe</a>)    <a href="#meths-BufferedRenderPipe"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                          <font color="#cc0033">rq</font>!  : <a href="#type-RenderQueue">RenderQueue</a>;
+                          <font color="#cc0033">buf</font>! : <a href="#type-RenderBuffer">RenderBuffer</a>;
+                        <b>STATIC</b>
+                          <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="#type-RenderQueue">RenderQueue</a>) : <a href="#type-BufferedRenderPipe">BufferedRenderPipe</a><b>,CONSTRUCTOR</b>;
+                        <b>END</b>;
+
+  <a name="type-BufferedTextPipe"></a><font color="#cc0033">BufferedTextPipe</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="#type-GlyphListPipe">GlyphListPipe</a>)    <a href="#meths-BufferedTextPipe"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                        <font color="#cc0033">rq</font>! : <a href="#type-RenderQueue">RenderQueue</a>;
+                      <b>STATIC</b>
+                        <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : <a href="#type-RenderQueue">RenderQueue</a>) : <a href="#type-BufferedTextPipe">BufferedTextPipe</a><b>,CONSTRUCTOR</b>;
+                      <b>END</b>;
+
+  <a name="type-CompositePipe"></a><font color="#cc0033">CompositePipe</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-CompositePipe"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                   <b>END</b>;
+
+  <a name="type-DrawImage"></a><font color="#cc0033">DrawImage</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-DrawImagePipe">DrawImagePipe</a>)    <a href="#meths-DrawImage"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+               <b>STATIC</b>
+                 <b>PROCEDURE </b><font color="#cc0033">closeToInteger</font>*(p0 : INTEGER;
+                                           p1 : REAL) : BOOLEAN;
+                 <b>PROCEDURE </b><font color="#cc0033">imageReady</font>!(p0 : <a href="sun_awt_image.html#type-ToolkitImage">sun_awt_image.ToolkitImage</a>;
+                                       p1 : <a href="java_awt_image.html#type-ImageObserver">java_awt_image.ImageObserver</a>) : BOOLEAN;
+                 <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-DrawImage">DrawImage</a><b>,CONSTRUCTOR</b>;
+                 <b>PROCEDURE </b><font color="#cc0033">isBgOperation</font>!(p0 : <a href="sun_java2d.html#type-SurfaceData">sun_java2d.SurfaceData</a>;
+                                          p1 : <a href="java_awt.html#type-Color">java_awt.Color</a>) : BOOLEAN;
+                 <b>PROCEDURE </b><font color="#cc0033">isSimpleTranslate</font>*(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>) : BOOLEAN;
+               <b>END</b>;
+
+  <a name="type-DrawImagePipe"></a><font color="#cc0033">DrawImagePipe</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-DrawImagePipe"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                   <b>END</b>;
+
+  <a name="type-DuctusRenderer"></a><font color="#cc0033">DuctusRenderer</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                    <b>STATIC</b>
+                      <font color="#cc0033">MinPenSizeAA</font>*          = 0.19999998807907104;
+                      <font color="#cc0033">MinPenUnits</font>*           = 100;
+                      <font color="#cc0033">MinPenUnitsAA</font>*         = 20;
+                      <font color="#cc0033">PenUnits</font>*              = 0.009999999776482582;
+                      <b>PROCEDURE </b><font color="#cc0033">createPgramRasterizer</font>*(p0 : REAL;
+                                                       p1 : REAL;
+                                                       p2 : REAL;
+                                                       p3 : REAL;
+                                                       p4 : REAL;
+                                                       p5 : REAL;
+                                                       p6 : REAL;
+                                                       p7 : REAL) : <a href="sun_dc_pr.html#type-Rasterizer">sun_dc_pr.Rasterizer</a>;
+                      <b>PROCEDURE </b><font color="#cc0033">createShapeRasterizer</font>*(p0 : <a href="java_awt_geom.html#type-PathIterator">java_awt_geom.PathIterator</a>;
+                                                       p1 : <a href="java_awt_geom.html#type-AffineTransform">java_awt_geom.AffineTransform</a>;
+                                                       p2 : <a href="java_awt.html#type-BasicStroke">java_awt.BasicStroke</a>;
+                                                       p3 : BOOLEAN;
+                                                       p4 : BOOLEAN;
+                                                       p5 : SHORTREAL) : <a href="sun_dc_pr.html#type-Rasterizer">sun_dc_pr.Rasterizer</a>;
+                      <b>PROCEDURE </b><font color="#cc0033">createStroker</font>*(p0 : <a href="sun_dc_path.html#type-PathConsumer">sun_dc_path.PathConsumer</a>;
+                                               p1 : <a href="java_awt.html#type-BasicStroke">java_awt.BasicStroke</a>;
+                                               p2 : BOOLEAN;
+                                               p3 : <a href="java_awt_geom.html#type-AffineTransform">java_awt_geom.AffineTransform</a>) : <a href="sun_dc_path.html#type-PathConsumer">sun_dc_path.PathConsumer</a>;
+                      <b>PROCEDURE </b><font color="#cc0033">disposeStroker</font>*(p0 : <a href="sun_dc_path.html#type-PathConsumer">sun_dc_path.PathConsumer</a>;
+                                                p1 : <a href="sun_dc_path.html#type-PathConsumer">sun_dc_path.PathConsumer</a>);
+                      <b>PROCEDURE </b><font color="#cc0033">dropAlphaTile</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE);
+                      <b>PROCEDURE </b><font color="#cc0033">dropRasterizer</font>*(p0 : <a href="sun_dc_pr.html#type-Rasterizer">sun_dc_pr.Rasterizer</a>);
+                      <b>PROCEDURE </b><font color="#cc0033">feedConsumer</font>*(p0 : <a href="java_awt_geom.html#type-PathIterator">java_awt_geom.PathIterator</a>;
+                                              p1 : <a href="sun_dc_path.html#type-PathConsumer">sun_dc_path.PathConsumer</a>;
+                                              p2 : BOOLEAN;
+                                              p3 : SHORTREAL);
+                      <b>PROCEDURE </b><font color="#cc0033">getAlpha</font>*(    p0 : <a href="sun_dc_pr.html#type-Rasterizer">sun_dc_pr.Rasterizer</a>;
+                                          IN  p1 : <b>ARRAY </b><b>OF </b>BYTE;
+                                              p2 : INTEGER;
+                                              p3 : INTEGER;
+                                              p4 : INTEGER);
+                      <b>PROCEDURE </b><font color="#cc0033">getAlphaTile</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>BYTE;
+                      <b>PROCEDURE </b><font color="#cc0033">getRasterizer</font>*() : <a href="sun_dc_pr.html#type-Rasterizer">sun_dc_pr.Rasterizer</a>;
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-DuctusRenderer">DuctusRenderer</a><b>,CONSTRUCTOR</b>;
+                    <b>END</b>;
+
+  <a name="type-DuctusShapeRenderer"></a><font color="#cc0033">DuctusShapeRenderer</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-ShapeDrawPipe">ShapeDrawPipe</a> + <a href="#type-ParallelogramPipe">ParallelogramPipe</a>)    <a href="#meths-DuctusShapeRenderer"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                         <b>STATIC</b>
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="#type-CompositePipe">CompositePipe</a>) : <a href="#type-DuctusShapeRenderer">DuctusShapeRenderer</a><b>,CONSTRUCTOR</b>;
+                         <b>END</b>;
+
+  <a name="type-GeneralCompositePipe"></a><font color="#cc0033">GeneralCompositePipe</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-CompositePipe">CompositePipe</a>)    <a href="#meths-GeneralCompositePipe"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                          <b>STATIC</b>
+                            <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-GeneralCompositePipe">GeneralCompositePipe</a><b>,CONSTRUCTOR</b>;
+                          <b>END</b>;
+
+  <a name="type-GlyphListLoopPipe"></a><font color="#cc0033">GlyphListLoopPipe</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="#type-GlyphListPipe">GlyphListPipe</a>)    <a href="#meths-GlyphListLoopPipe"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                       <b>STATIC</b>
+                         <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-GlyphListLoopPipe">GlyphListLoopPipe</a><b>,CONSTRUCTOR</b>;
+                       <b>END</b>;
+
+  <a name="type-GlyphListPipe"></a><font color="#cc0033">GlyphListPipe</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-TextPipe">TextPipe</a>)    <a href="#meths-GlyphListPipe"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                   <b>STATIC</b>
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-GlyphListPipe">GlyphListPipe</a><b>,CONSTRUCTOR</b>;
+                   <b>END</b>;
+
+  <a name="type-LCDTextRenderer"></a><font color="#cc0033">LCDTextRenderer</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-GlyphListLoopPipe">GlyphListLoopPipe</a>)    <a href="#meths-LCDTextRenderer"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                     <b>STATIC</b>
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-LCDTextRenderer">LCDTextRenderer</a><b>,CONSTRUCTOR</b>;
+                     <b>END</b>;
+
+  <a name="type-LoopPipe"></a><font color="#cc0033">LoopPipe</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-PixelDrawPipe">PixelDrawPipe</a> + <a href="#type-PixelFillPipe">PixelFillPipe</a> + <a href="#type-ParallelogramPipe">ParallelogramPipe</a> + <a href="#type-ShapeDrawPipe">ShapeDrawPipe</a>)    <a href="#meths-LoopPipe"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+              <b>STATIC</b>
+                <b>PROCEDURE </b><font color="#cc0033">getFillSSI</font>*(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>) : <a href="#type-ShapeSpanIterator">ShapeSpanIterator</a>;
+                <b>PROCEDURE </b><font color="#cc0033">getStrokeSpans</font>*(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                          p1 : <a href="java_awt.html#type-Shape">java_awt.Shape</a>) : <a href="#type-ShapeSpanIterator">ShapeSpanIterator</a>;
+                <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-LoopPipe">LoopPipe</a><b>,CONSTRUCTOR</b>;
+              <b>END</b>;
+
+  <a name="type-NullPipe"></a><font color="#cc0033">NullPipe</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-PixelDrawPipe">PixelDrawPipe</a> + <a href="#type-PixelFillPipe">PixelFillPipe</a> + <a href="#type-ShapeDrawPipe">ShapeDrawPipe</a> + <a href="#type-TextPipe">TextPipe</a> + <a href="#type-DrawImagePipe">DrawImagePipe</a>)    <a href="#meths-NullPipe"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+              <b>STATIC</b>
+                <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-NullPipe">NullPipe</a><b>,CONSTRUCTOR</b>;
+              <b>END</b>;
+
+  <a name="type-OutlineTextRenderer"></a><font color="#cc0033">OutlineTextRenderer</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-TextPipe">TextPipe</a>)    <a href="#meths-OutlineTextRenderer"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                         <b>STATIC</b>
+                           <font color="#cc0033">THRESHHOLD</font>* = 100;
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-OutlineTextRenderer">OutlineTextRenderer</a><b>,CONSTRUCTOR</b>;
+                         <b>END</b>;
+
+  <a name="type-ParallelogramPipe"></a><font color="#cc0033">ParallelogramPipe</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-ParallelogramPipe"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                       <b>END</b>;
+
+  <a name="type-PixelDrawPipe"></a><font color="#cc0033">PixelDrawPipe</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-PixelDrawPipe"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                   <b>END</b>;
+
+  <a name="type-PixelFillPipe"></a><font color="#cc0033">PixelFillPipe</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-PixelFillPipe"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                   <b>END</b>;
+
+  <a name="type-PixelToParallelogramConverter"></a><font color="#cc0033">PixelToParallelogramConverter</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-PixelToShapeConverter">PixelToShapeConverter</a> + <a href="#type-ShapeDrawPipe">ShapeDrawPipe</a>)    <a href="#meths-PixelToParallelogramConverter"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                                   <b>STATIC</b>
+                                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="#type-ShapeDrawPipe">ShapeDrawPipe</a>;
+                                                     p1 : <a href="#type-ParallelogramPipe">ParallelogramPipe</a>;
+                                                     p2 : REAL;
+                                                     p3 : REAL;
+                                                     p4 : BOOLEAN) : <a href="#type-PixelToParallelogramConverter">PixelToParallelogramConverter</a><b>,CONSTRUCTOR</b>;
+                                   <b>END</b>;
+
+  <a name="type-PixelToShapeConverter"></a><font color="#cc0033">PixelToShapeConverter</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-PixelDrawPipe">PixelDrawPipe</a> + <a href="#type-PixelFillPipe">PixelFillPipe</a>)    <a href="#meths-PixelToShapeConverter"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                           <b>STATIC</b>
+                             <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="#type-ShapeDrawPipe">ShapeDrawPipe</a>) : <a href="#type-PixelToShapeConverter">PixelToShapeConverter</a><b>,CONSTRUCTOR</b>;
+                           <b>END</b>;
+
+  <a name="type-Region"></a><font color="#cc0033">Region</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-Region"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+            <b>STATIC</b>
+              <a name="type-EMPTY_REGION"></a><font color="#cc0033">EMPTY_REGION</font>*    : <a href="#type-Region">Region</a>;
+              <a name="type-WHOLE_REGION"></a><font color="#cc0033">WHOLE_REGION</font>*    : <a href="#type-Region">Region</a>;
+              <b>PROCEDURE </b><font color="#cc0033">clipAdd</font>*(p0 : INTEGER;
+                                 p1 : INTEGER) : INTEGER;
+              <b>PROCEDURE </b><font color="#cc0033">dimAdd</font>*(p0 : INTEGER;
+                                p1 : INTEGER) : INTEGER;
+              <b>PROCEDURE </b><font color="#cc0033">getInstance</font>*(p0 : <a href="#type-Region">Region</a>;
+                                     p1 : BOOLEAN;
+                                     p2 : <a href="java_awt.html#type-Shape">java_awt.Shape</a>;
+                                     p3 : <a href="java_awt_geom.html#type-AffineTransform">java_awt_geom.AffineTransform</a>) : <a href="#type-Region">Region</a>;
+              <b>PROCEDURE </b><font color="#cc0033">getInstance</font>*(p0 : <a href="java_awt.html#type-Rectangle">java_awt.Rectangle</a>) : <a href="#type-Region">Region</a>;
+              <b>PROCEDURE </b><font color="#cc0033">getInstance</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>INTEGER) : <a href="#type-Region">Region</a>;
+              <b>PROCEDURE </b><font color="#cc0033">getInstance</font>*(p0 : <a href="java_awt.html#type-Shape">java_awt.Shape</a>;
+                                     p1 : <a href="java_awt_geom.html#type-AffineTransform">java_awt_geom.AffineTransform</a>) : <a href="#type-Region">Region</a>;
+              <b>PROCEDURE </b><font color="#cc0033">getInstance</font>*(p0 : <a href="#type-Region">Region</a>;
+                                     p1 : <a href="java_awt.html#type-Shape">java_awt.Shape</a>;
+                                     p2 : <a href="java_awt_geom.html#type-AffineTransform">java_awt_geom.AffineTransform</a>) : <a href="#type-Region">Region</a>;
+              <b>PROCEDURE </b><font color="#cc0033">getInstanceXYWH</font>*(p0 : INTEGER;
+                                         p1 : INTEGER;
+                                         p2 : INTEGER;
+                                         p3 : INTEGER) : <a href="#type-Region">Region</a>;
+              <b>PROCEDURE </b><font color="#cc0033">getInstanceXYXY</font>*(p0 : INTEGER;
+                                         p1 : INTEGER;
+                                         p2 : INTEGER;
+                                         p3 : INTEGER) : <a href="#type-Region">Region</a>;
+              <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : INTEGER;
+                              p1 : INTEGER;
+                              p2 : INTEGER;
+                              p3 : INTEGER) : <a href="#type-Region">Region</a><b>,CONSTRUCTOR</b>;
+            <b>END</b>;
+
+  <a name="type-RegionClipSpanIterator"></a><font color="#cc0033">RegionClipSpanIterator</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-SpanIterator">SpanIterator</a>)    <a href="#meths-RegionClipSpanIterator"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                            <b>STATIC</b>
+                              <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="#type-Region">Region</a>;
+                                              p1 : <a href="#type-SpanIterator">SpanIterator</a>) : <a href="#type-RegionClipSpanIterator">RegionClipSpanIterator</a><b>,CONSTRUCTOR</b>;
+                            <b>END</b>;
+
+  <a name="type-RegionIterator"></a><font color="#cc0033">RegionIterator</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-RegionIterator"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                    <b>END</b>;
+
+  <a name="type-RegionSpanIterator"></a><font color="#cc0033">RegionSpanIterator</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-SpanIterator">SpanIterator</a>)    <a href="#meths-RegionSpanIterator"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                        <b>STATIC</b>
+                          <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="#type-Region">Region</a>) : <a href="#type-RegionSpanIterator">RegionSpanIterator</a><b>,CONSTRUCTOR</b>;
+                        <b>END</b>;
+
+  <a name="type-RenderBuffer"></a><font color="#cc0033">RenderBuffer</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-RenderBuffer"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                    <font color="#cc0033">unsafe</font>!      : <a href="sun_misc.html#type-Unsafe">sun_misc.Unsafe</a>;
+                    <font color="#cc0033">baseAddress</font>! : LONGINT;
+                    <font color="#cc0033">endAddress</font>!  : LONGINT;
+                    <font color="#cc0033">curAddress</font>!  : LONGINT;
+                    <font color="#cc0033">capacity</font>!    : INTEGER;
+                  <b>STATIC</b>
+                    <font color="#cc0033">SIZEOF_BYTE</font>!   = 1;
+                    <font color="#cc0033">SIZEOF_DOUBLE</font>! = 8;
+                    <font color="#cc0033">SIZEOF_FLOAT</font>!  = 4;
+                    <font color="#cc0033">SIZEOF_INT</font>!    = 4;
+                    <font color="#cc0033">SIZEOF_LONG</font>!   = 8;
+                    <font color="#cc0033">SIZEOF_SHORT</font>!  = 2;
+                    <b>PROCEDURE </b><font color="#cc0033">allocate</font>*(p0 : INTEGER) : <a href="#type-RenderBuffer">RenderBuffer</a>;
+                    <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : INTEGER) : <a href="#type-RenderBuffer">RenderBuffer</a><b>,CONSTRUCTOR</b>;
+                  <b>END</b>;
+
+  <a name="type-RenderQueue"></a><font color="#cc0033">RenderQueue</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-RenderQueue"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                   <font color="#cc0033">buf</font>!    : <a href="#type-RenderBuffer">RenderBuffer</a>;
+                   <font color="#cc0033">refSet</font>! : <a href="java_util.html#type-Set">java_util.Set</a>;
+                 <b>STATIC</b>
+                   <b>PROCEDURE </b><font color="#cc0033">Init</font>!() : <a href="#type-RenderQueue">RenderQueue</a><b>,CONSTRUCTOR</b>;
+                 <b>END</b>;
+
+  <a name="type-ShapeDrawPipe"></a><font color="#cc0033">ShapeDrawPipe</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-ShapeDrawPipe"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                   <b>END</b>;
+
+  <a name="type-ShapeSpanIterator"></a><font color="#cc0033">ShapeSpanIterator</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-SpanIterator">SpanIterator</a> + <a href="sun_dc_path.html#type-PathConsumer">sun_dc_path.PathConsumer</a>)    <a href="#meths-ShapeSpanIterator"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                       <b>STATIC</b>
+                         <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : BOOLEAN) : <a href="#type-ShapeSpanIterator">ShapeSpanIterator</a><b>,CONSTRUCTOR</b>;
+                         <b>PROCEDURE </b><font color="#cc0033">initIDs</font>*();
+                       <b>END</b>;
+
+  <a name="type-SolidTextRenderer"></a><font color="#cc0033">SolidTextRenderer</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-GlyphListLoopPipe">GlyphListLoopPipe</a>)    <a href="#meths-SolidTextRenderer"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                       <b>STATIC</b>
+                         <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-SolidTextRenderer">SolidTextRenderer</a><b>,CONSTRUCTOR</b>;
+                       <b>END</b>;
+
+  <a name="type-SpanClipRenderer"></a><font color="#cc0033">SpanClipRenderer</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-CompositePipe">CompositePipe</a>)    <a href="#meths-SpanClipRenderer"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                      <b>STATIC</b>
+                        <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="#type-CompositePipe">CompositePipe</a>) : <a href="#type-SpanClipRenderer">SpanClipRenderer</a><b>,CONSTRUCTOR</b>;
+                      <b>END</b>;
+
+  <a name="type-SpanIterator"></a><font color="#cc0033">SpanIterator</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-SpanIterator"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                  <b>END</b>;
+
+  <a name="type-SpanShapeRenderer"></a><font color="#cc0033">SpanShapeRenderer</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-ShapeDrawPipe">ShapeDrawPipe</a>)    <a href="#meths-SpanShapeRenderer"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                       <b>STATIC</b>
+                         <font color="#cc0033">NON_RECTILINEAR_TRANSFORM_MASK</font>* = 48;
+                         <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-SpanShapeRenderer">SpanShapeRenderer</a><b>,CONSTRUCTOR</b>;
+                       <b>END</b>;
+
+  <a name="type-SpanShapeRenderer$Composite"></a><font color="#cc0033">SpanShapeRenderer$Composite</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-SpanShapeRenderer">SpanShapeRenderer</a>)    <a href="#meths-SpanShapeRenderer$Composite"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                                 <b>STATIC</b>
+                                   <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="#type-CompositePipe">CompositePipe</a>) : <a href="#type-SpanShapeRenderer$Composite">SpanShapeRenderer$Composite</a><b>,CONSTRUCTOR</b>;
+                                 <b>END</b>;
+
+  <a name="type-SpanShapeRenderer$Simple"></a><font color="#cc0033">SpanShapeRenderer$Simple</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-SpanShapeRenderer">SpanShapeRenderer</a>)    <a href="#meths-SpanShapeRenderer$Simple"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                              <b>STATIC</b>
+                                <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-SpanShapeRenderer$Simple">SpanShapeRenderer$Simple</a><b>,CONSTRUCTOR</b>;
+                              <b>END</b>;
+
+  <a name="type-TextPipe"></a><font color="#cc0033">TextPipe</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-TextPipe"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+              <b>END</b>;
+
+  <a name="type-TextRenderer"></a><font color="#cc0033">TextRenderer</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-GlyphListPipe">GlyphListPipe</a>)    <a href="#meths-TextRenderer"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                  <b>STATIC</b>
+                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="#type-CompositePipe">CompositePipe</a>) : <a href="#type-TextRenderer">TextRenderer</a><b>,CONSTRUCTOR</b>;
+                  <b>END</b>;
+
+  <a name="type-ValidatePipe"></a><font color="#cc0033">ValidatePipe</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-PixelDrawPipe">PixelDrawPipe</a> + <a href="#type-PixelFillPipe">PixelFillPipe</a> + <a href="#type-ShapeDrawPipe">ShapeDrawPipe</a> + <a href="#type-TextPipe">TextPipe</a> + <a href="#type-DrawImagePipe">DrawImagePipe</a>)    <a href="#meths-ValidatePipe"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                  <b>STATIC</b>
+                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-ValidatePipe">ValidatePipe</a><b>,CONSTRUCTOR</b>;
+                  <b>END</b>;
+
+
+
+<a name="meths-AATextRenderer"></a>
+<b>PROCEDURE </b>(self:AATextRenderer) <font color="#cc0033">drawGlyphList</font>!(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                               p1 : <a href="sun_font.html#type-GlyphList">sun_font.GlyphList</a>)<b>,EXTENSIBLE</b>;
+<a name="meths-AlphaColorPipe"></a>
+<b>PROCEDURE </b>(self:AlphaColorPipe) <font color="#cc0033">drawParallelogram</font>*(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                                   p1 : REAL;
+                                                   p2 : REAL;
+                                                   p3 : REAL;
+                                                   p4 : REAL;
+                                                   p5 : REAL;
+                                                   p6 : REAL;
+                                                   p7 : REAL;
+                                                   p8 : REAL)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AlphaColorPipe) <font color="#cc0033">endSequence</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AlphaColorPipe) <font color="#cc0033">fillParallelogram</font>*(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                                   p1 : REAL;
+                                                   p2 : REAL;
+                                                   p3 : REAL;
+                                                   p4 : REAL;
+                                                   p5 : REAL;
+                                                   p6 : REAL)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AlphaColorPipe) <font color="#cc0033">needTile</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                          p1 : INTEGER;
+                                          p2 : INTEGER;
+                                          p3 : INTEGER;
+                                          p4 : INTEGER) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AlphaColorPipe) <font color="#cc0033">renderPathTile</font>*(    p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                IN  p1 : <b>ARRAY </b><b>OF </b>BYTE;
+                                                    p2 : INTEGER;
+                                                    p3 : INTEGER;
+                                                    p4 : INTEGER;
+                                                    p5 : INTEGER;
+                                                    p6 : INTEGER;
+                                                    p7 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AlphaColorPipe) <font color="#cc0033">skipTile</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                          p1 : INTEGER;
+                                          p2 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AlphaColorPipe) <font color="#cc0033">startSequence</font>*(    p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                                   p1 : <a href="java_awt.html#type-Shape">java_awt.Shape</a>;
+                                                   p2 : <a href="java_awt.html#type-Rectangle">java_awt.Rectangle</a>;
+                                               IN  p3 : <b>ARRAY </b><b>OF </b>INTEGER) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-AlphaPaintPipe"></a>
+<b>PROCEDURE </b>(self:AlphaPaintPipe) <font color="#cc0033">endSequence</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AlphaPaintPipe) <font color="#cc0033">needTile</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                          p1 : INTEGER;
+                                          p2 : INTEGER;
+                                          p3 : INTEGER;
+                                          p4 : INTEGER) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AlphaPaintPipe) <font color="#cc0033">renderPathTile</font>*(    p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                IN  p1 : <b>ARRAY </b><b>OF </b>BYTE;
+                                                    p2 : INTEGER;
+                                                    p3 : INTEGER;
+                                                    p4 : INTEGER;
+                                                    p5 : INTEGER;
+                                                    p6 : INTEGER;
+                                                    p7 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AlphaPaintPipe) <font color="#cc0033">skipTile</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                          p1 : INTEGER;
+                                          p2 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AlphaPaintPipe) <font color="#cc0033">startSequence</font>*(    p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                                   p1 : <a href="java_awt.html#type-Shape">java_awt.Shape</a>;
+                                                   p2 : <a href="java_awt.html#type-Rectangle">java_awt.Rectangle</a>;
+                                               IN  p3 : <b>ARRAY </b><b>OF </b>INTEGER) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-BufferedContext"></a>
+<b>PROCEDURE </b>(self:BufferedContext) <font color="#cc0033">getRenderQueue</font>*() : <a href="#type-RenderQueue">RenderQueue</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:BufferedContext) <font color="#cc0033">invalidateContext</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BufferedContext) <font color="#cc0033">invalidateSurfaces</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BufferedContext) <font color="#cc0033">restoreState</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:BufferedContext) <font color="#cc0033">saveState</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:BufferedContext) <font color="#cc0033">validate</font>*(p0 : <a href="sun_java2d_pipe_hw.html#type-AccelSurface">sun_java2d_pipe_hw.AccelSurface</a>;
+                                           p1 : <a href="sun_java2d_pipe_hw.html#type-AccelSurface">sun_java2d_pipe_hw.AccelSurface</a>;
+                                           p2 : <a href="#type-Region">Region</a>;
+                                           p3 : <a href="java_awt.html#type-Composite">java_awt.Composite</a>;
+                                           p4 : <a href="java_awt_geom.html#type-AffineTransform">java_awt_geom.AffineTransform</a>;
+                                           p5 : <a href="java_awt.html#type-Paint">java_awt.Paint</a>;
+                                           p6 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                           p7 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-BufferedMaskBlit"></a>
+<b>PROCEDURE </b>(self:BufferedMaskBlit) <font color="#cc0033">MaskBlit</font>*(    p0  : <a href="sun_java2d.html#type-SurfaceData">sun_java2d.SurfaceData</a>;
+                                                p1  : <a href="sun_java2d.html#type-SurfaceData">sun_java2d.SurfaceData</a>;
+                                                p2  : <a href="java_awt.html#type-Composite">java_awt.Composite</a>;
+                                                p3  : <a href="#type-Region">Region</a>;
+                                                p4  : INTEGER;
+                                                p5  : INTEGER;
+                                                p6  : INTEGER;
+                                                p7  : INTEGER;
+                                                p8  : INTEGER;
+                                                p9  : INTEGER;
+                                            IN  p10 : <b>ARRAY </b><b>OF </b>BYTE;
+                                                p11 : INTEGER;
+                                                p12 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BufferedMaskBlit) <font color="#cc0033">validateContext</font>!(p0 : <a href="sun_java2d.html#type-SurfaceData">sun_java2d.SurfaceData</a>;
+                                                   p1 : <a href="java_awt.html#type-Composite">java_awt.Composite</a>;
+                                                   p2 : <a href="#type-Region">Region</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-BufferedMaskFill"></a>
+<b>PROCEDURE </b>(self:BufferedMaskFill) <font color="#cc0033">maskFill</font>!(    p0 : INTEGER;
+                                                p1 : INTEGER;
+                                                p2 : INTEGER;
+                                                p3 : INTEGER;
+                                                p4 : INTEGER;
+                                                p5 : INTEGER;
+                                                p6 : INTEGER;
+                                            IN  p7 : <b>ARRAY </b><b>OF </b>BYTE)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:BufferedMaskFill) <font color="#cc0033">MaskFill</font>*(    p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                                p1 : <a href="sun_java2d.html#type-SurfaceData">sun_java2d.SurfaceData</a>;
+                                                p2 : <a href="java_awt.html#type-Composite">java_awt.Composite</a>;
+                                                p3 : INTEGER;
+                                                p4 : INTEGER;
+                                                p5 : INTEGER;
+                                                p6 : INTEGER;
+                                            IN  p7 : <b>ARRAY </b><b>OF </b>BYTE;
+                                                p8 : INTEGER;
+                                                p9 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BufferedMaskFill) <font color="#cc0033">validateContext</font>!(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                                   p1 : <a href="java_awt.html#type-Composite">java_awt.Composite</a>;
+                                                   p2 : INTEGER)<b>,NEW,ABSTRACT</b>;
+<a name="meths-BufferedRenderPipe"></a>
+<b>PROCEDURE </b>(self:BufferedRenderPipe) <font color="#cc0033">draw</font>*(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                          p1 : <a href="java_awt.html#type-Shape">java_awt.Shape</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BufferedRenderPipe) <font color="#cc0033">drawArc</font>*(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                             p1 : INTEGER;
+                                             p2 : INTEGER;
+                                             p3 : INTEGER;
+                                             p4 : INTEGER;
+                                             p5 : INTEGER;
+                                             p6 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BufferedRenderPipe) <font color="#cc0033">drawLine</font>*(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                              p1 : INTEGER;
+                                              p2 : INTEGER;
+                                              p3 : INTEGER;
+                                              p4 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BufferedRenderPipe) <font color="#cc0033">drawOval</font>*(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                              p1 : INTEGER;
+                                              p2 : INTEGER;
+                                              p3 : INTEGER;
+                                              p4 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BufferedRenderPipe) <font color="#cc0033">drawParallelogram</font>*(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                                       p1 : REAL;
+                                                       p2 : REAL;
+                                                       p3 : REAL;
+                                                       p4 : REAL;
+                                                       p5 : REAL;
+                                                       p6 : REAL;
+                                                       p7 : REAL;
+                                                       p8 : REAL)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BufferedRenderPipe) <font color="#cc0033">drawPath</font>!(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                              p1 : <a href="java_awt_geom.html#type-Path2D$Float">java_awt_geom.Path2D$Float</a>;
+                                              p2 : INTEGER;
+                                              p3 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BufferedRenderPipe) <font color="#cc0033">drawPoly</font>!(    p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                              IN  p1 : <b>ARRAY </b><b>OF </b>INTEGER;
+                                              IN  p2 : <b>ARRAY </b><b>OF </b>INTEGER;
+                                                  p3 : INTEGER;
+                                                  p4 : BOOLEAN)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BufferedRenderPipe) <font color="#cc0033">drawPoly</font>!(IN  p0 : <b>ARRAY </b><b>OF </b>INTEGER;
+                                              IN  p1 : <b>ARRAY </b><b>OF </b>INTEGER;
+                                                  p2 : INTEGER;
+                                                  p3 : BOOLEAN;
+                                                  p4 : INTEGER;
+                                                  p5 : INTEGER)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:BufferedRenderPipe) <font color="#cc0033">drawPolygon</font>*(    p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                                 IN  p1 : <b>ARRAY </b><b>OF </b>INTEGER;
+                                                 IN  p2 : <b>ARRAY </b><b>OF </b>INTEGER;
+                                                     p3 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BufferedRenderPipe) <font color="#cc0033">drawPolyline</font>*(    p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                                  IN  p1 : <b>ARRAY </b><b>OF </b>INTEGER;
+                                                  IN  p2 : <b>ARRAY </b><b>OF </b>INTEGER;
+                                                      p3 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BufferedRenderPipe) <font color="#cc0033">drawRect</font>*(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                              p1 : INTEGER;
+                                              p2 : INTEGER;
+                                              p3 : INTEGER;
+                                              p4 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BufferedRenderPipe) <font color="#cc0033">drawRoundRect</font>*(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                                   p1 : INTEGER;
+                                                   p2 : INTEGER;
+                                                   p3 : INTEGER;
+                                                   p4 : INTEGER;
+                                                   p5 : INTEGER;
+                                                   p6 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BufferedRenderPipe) <font color="#cc0033">fill</font>*(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                          p1 : <a href="java_awt.html#type-Shape">java_awt.Shape</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BufferedRenderPipe) <font color="#cc0033">fillArc</font>*(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                             p1 : INTEGER;
+                                             p2 : INTEGER;
+                                             p3 : INTEGER;
+                                             p4 : INTEGER;
+                                             p5 : INTEGER;
+                                             p6 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BufferedRenderPipe) <font color="#cc0033">fillOval</font>*(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                              p1 : INTEGER;
+                                              p2 : INTEGER;
+                                              p3 : INTEGER;
+                                              p4 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BufferedRenderPipe) <font color="#cc0033">fillParallelogram</font>*(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                                       p1 : REAL;
+                                                       p2 : REAL;
+                                                       p3 : REAL;
+                                                       p4 : REAL;
+                                                       p5 : REAL;
+                                                       p6 : REAL)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BufferedRenderPipe) <font color="#cc0033">fillPath</font>!(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                              p1 : <a href="java_awt_geom.html#type-Path2D$Float">java_awt_geom.Path2D$Float</a>;
+                                              p2 : INTEGER;
+                                              p3 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BufferedRenderPipe) <font color="#cc0033">fillPolygon</font>*(    p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                                 IN  p1 : <b>ARRAY </b><b>OF </b>INTEGER;
+                                                 IN  p2 : <b>ARRAY </b><b>OF </b>INTEGER;
+                                                     p3 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BufferedRenderPipe) <font color="#cc0033">fillRect</font>*(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                              p1 : INTEGER;
+                                              p2 : INTEGER;
+                                              p3 : INTEGER;
+                                              p4 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BufferedRenderPipe) <font color="#cc0033">fillRoundRect</font>*(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                                   p1 : INTEGER;
+                                                   p2 : INTEGER;
+                                                   p3 : INTEGER;
+                                                   p4 : INTEGER;
+                                                   p5 : INTEGER;
+                                                   p6 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BufferedRenderPipe) <font color="#cc0033">fillSpans</font>!(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                               p1 : <a href="#type-SpanIterator">SpanIterator</a>;
+                                               p2 : INTEGER;
+                                               p3 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BufferedRenderPipe) <font color="#cc0033">getAAParallelogramPipe</font>*() : <a href="#type-ParallelogramPipe">ParallelogramPipe</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BufferedRenderPipe) <font color="#cc0033">validateContext</font>!(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:BufferedRenderPipe) <font color="#cc0033">validateContextAA</font>!(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-BufferedTextPipe"></a>
+<b>PROCEDURE </b>(self:BufferedTextPipe) <font color="#cc0033">drawGlyphList</font>!(    p0 : INTEGER;
+                                                     p1 : BOOLEAN;
+                                                     p2 : BOOLEAN;
+                                                     p3 : BOOLEAN;
+                                                     p4 : INTEGER;
+                                                     p5 : SHORTREAL;
+                                                     p6 : SHORTREAL;
+                                                 IN  p7 : <b>ARRAY </b><b>OF </b>LONGINT;
+                                                 IN  p8 : <b>ARRAY </b><b>OF </b>SHORTREAL)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:BufferedTextPipe) <font color="#cc0033">drawGlyphList</font>!(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                                 p1 : <a href="sun_font.html#type-GlyphList">sun_font.GlyphList</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BufferedTextPipe) <font color="#cc0033">validateContext</font>!(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                                   p1 : <a href="java_awt.html#type-Composite">java_awt.Composite</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-CompositePipe"></a>
+<b>PROCEDURE </b>(self:CompositePipe) <font color="#cc0033">endSequence</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CompositePipe) <font color="#cc0033">needTile</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                         p1 : INTEGER;
+                                         p2 : INTEGER;
+                                         p3 : INTEGER;
+                                         p4 : INTEGER) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CompositePipe) <font color="#cc0033">renderPathTile</font>*(    p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                               IN  p1 : <b>ARRAY </b><b>OF </b>BYTE;
+                                                   p2 : INTEGER;
+                                                   p3 : INTEGER;
+                                                   p4 : INTEGER;
+                                                   p5 : INTEGER;
+                                                   p6 : INTEGER;
+                                                   p7 : INTEGER)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CompositePipe) <font color="#cc0033">skipTile</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                         p1 : INTEGER;
+                                         p2 : INTEGER)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CompositePipe) <font color="#cc0033">startSequence</font>*(    p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                                  p1 : <a href="java_awt.html#type-Shape">java_awt.Shape</a>;
+                                                  p2 : <a href="java_awt.html#type-Rectangle">java_awt.Rectangle</a>;
+                                              IN  p3 : <b>ARRAY </b><b>OF </b>INTEGER) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-DrawImage"></a>
+<b>PROCEDURE </b>(self:DrawImage) <font color="#cc0033">blitSurfaceData</font>!(p0  : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                            p1  : <a href="#type-Region">Region</a>;
+                                            p2  : <a href="sun_java2d.html#type-SurfaceData">sun_java2d.SurfaceData</a>;
+                                            p3  : <a href="sun_java2d.html#type-SurfaceData">sun_java2d.SurfaceData</a>;
+                                            p4  : <a href="sun_java2d_loops.html#type-SurfaceType">sun_java2d_loops.SurfaceType</a>;
+                                            p5  : <a href="sun_java2d_loops.html#type-SurfaceType">sun_java2d_loops.SurfaceType</a>;
+                                            p6  : INTEGER;
+                                            p7  : INTEGER;
+                                            p8  : INTEGER;
+                                            p9  : INTEGER;
+                                            p10 : INTEGER;
+                                            p11 : INTEGER;
+                                            p12 : <a href="java_awt.html#type-Color">java_awt.Color</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DrawImage) <font color="#cc0033">copyImage</font>*(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                      p1 : <a href="java_awt.html#type-Image">java_awt.Image</a>;
+                                      p2 : INTEGER;
+                                      p3 : INTEGER;
+                                      p4 : INTEGER;
+                                      p5 : INTEGER;
+                                      p6 : INTEGER;
+                                      p7 : INTEGER;
+                                      p8 : <a href="java_awt.html#type-Color">java_awt.Color</a>;
+                                      p9 : <a href="java_awt_image.html#type-ImageObserver">java_awt_image.ImageObserver</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DrawImage) <font color="#cc0033">copyImage</font>*(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                      p1 : <a href="java_awt.html#type-Image">java_awt.Image</a>;
+                                      p2 : INTEGER;
+                                      p3 : INTEGER;
+                                      p4 : <a href="java_awt.html#type-Color">java_awt.Color</a>;
+                                      p5 : <a href="java_awt_image.html#type-ImageObserver">java_awt_image.ImageObserver</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DrawImage) <font color="#cc0033">copyImage</font>*(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                      p1 : <a href="java_awt.html#type-Image">java_awt.Image</a>;
+                                      p2 : INTEGER;
+                                      p3 : INTEGER;
+                                      p4 : INTEGER;
+                                      p5 : INTEGER;
+                                      p6 : INTEGER;
+                                      p7 : INTEGER;
+                                      p8 : <a href="java_awt.html#type-Color">java_awt.Color</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DrawImage) <font color="#cc0033">copyImage</font>*(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                      p1 : <a href="java_awt.html#type-Image">java_awt.Image</a>;
+                                      p2 : INTEGER;
+                                      p3 : INTEGER;
+                                      p4 : <a href="java_awt.html#type-Color">java_awt.Color</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DrawImage) <font color="#cc0033">getBufferedImage</font>!(p0 : <a href="java_awt.html#type-Image">java_awt.Image</a>) : <a href="java_awt_image.html#type-BufferedImage">java_awt_image.BufferedImage</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DrawImage) <font color="#cc0033">renderImageCopy</font>!(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                            p1 : <a href="java_awt.html#type-Image">java_awt.Image</a>;
+                                            p2 : <a href="java_awt.html#type-Color">java_awt.Color</a>;
+                                            p3 : INTEGER;
+                                            p4 : INTEGER;
+                                            p5 : INTEGER;
+                                            p6 : INTEGER;
+                                            p7 : INTEGER;
+                                            p8 : INTEGER) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DrawImage) <font color="#cc0033">renderImageScale</font>!(p0  : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                             p1  : <a href="java_awt.html#type-Image">java_awt.Image</a>;
+                                             p2  : <a href="java_awt.html#type-Color">java_awt.Color</a>;
+                                             p3  : INTEGER;
+                                             p4  : INTEGER;
+                                             p5  : INTEGER;
+                                             p6  : INTEGER;
+                                             p7  : INTEGER;
+                                             p8  : REAL;
+                                             p9  : REAL;
+                                             p10 : REAL;
+                                             p11 : REAL) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DrawImage) <font color="#cc0033">renderImageXform</font>!(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                             p1 : <a href="java_awt.html#type-Image">java_awt.Image</a>;
+                                             p2 : <a href="java_awt_geom.html#type-AffineTransform">java_awt_geom.AffineTransform</a>;
+                                             p3 : INTEGER;
+                                             p4 : INTEGER;
+                                             p5 : INTEGER;
+                                             p6 : INTEGER;
+                                             p7 : INTEGER;
+                                             p8 : <a href="java_awt.html#type-Color">java_awt.Color</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DrawImage) <font color="#cc0033">scaleImage</font>*(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                       p1 : <a href="java_awt.html#type-Image">java_awt.Image</a>;
+                                       p2 : INTEGER;
+                                       p3 : INTEGER;
+                                       p4 : INTEGER;
+                                       p5 : INTEGER;
+                                       p6 : <a href="java_awt.html#type-Color">java_awt.Color</a>;
+                                       p7 : <a href="java_awt_image.html#type-ImageObserver">java_awt_image.ImageObserver</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DrawImage) <font color="#cc0033">scaleImage</font>*(p0  : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                       p1  : <a href="java_awt.html#type-Image">java_awt.Image</a>;
+                                       p2  : INTEGER;
+                                       p3  : INTEGER;
+                                       p4  : INTEGER;
+                                       p5  : INTEGER;
+                                       p6  : INTEGER;
+                                       p7  : INTEGER;
+                                       p8  : INTEGER;
+                                       p9  : INTEGER;
+                                       p10 : <a href="java_awt.html#type-Color">java_awt.Color</a>;
+                                       p11 : <a href="java_awt_image.html#type-ImageObserver">java_awt_image.ImageObserver</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DrawImage) <font color="#cc0033">scaleImage</font>*(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                       p1 : <a href="java_awt.html#type-Image">java_awt.Image</a>;
+                                       p2 : INTEGER;
+                                       p3 : INTEGER;
+                                       p4 : INTEGER;
+                                       p5 : INTEGER;
+                                       p6 : <a href="java_awt.html#type-Color">java_awt.Color</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DrawImage) <font color="#cc0033">scaleImage</font>*(p0  : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                       p1  : <a href="java_awt.html#type-Image">java_awt.Image</a>;
+                                       p2  : INTEGER;
+                                       p3  : INTEGER;
+                                       p4  : INTEGER;
+                                       p5  : INTEGER;
+                                       p6  : INTEGER;
+                                       p7  : INTEGER;
+                                       p8  : INTEGER;
+                                       p9  : INTEGER;
+                                       p10 : <a href="java_awt.html#type-Color">java_awt.Color</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DrawImage) <font color="#cc0033">scaleSurfaceData</font>!(p0  : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                             p1  : <a href="#type-Region">Region</a>;
+                                             p2  : <a href="sun_java2d.html#type-SurfaceData">sun_java2d.SurfaceData</a>;
+                                             p3  : <a href="sun_java2d.html#type-SurfaceData">sun_java2d.SurfaceData</a>;
+                                             p4  : <a href="sun_java2d_loops.html#type-SurfaceType">sun_java2d_loops.SurfaceType</a>;
+                                             p5  : <a href="sun_java2d_loops.html#type-SurfaceType">sun_java2d_loops.SurfaceType</a>;
+                                             p6  : INTEGER;
+                                             p7  : INTEGER;
+                                             p8  : INTEGER;
+                                             p9  : INTEGER;
+                                             p10 : REAL;
+                                             p11 : REAL;
+                                             p12 : REAL;
+                                             p13 : REAL) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DrawImage) <font color="#cc0033">transformImage</font>*(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                           p1 : <a href="java_awt.html#type-Image">java_awt.Image</a>;
+                                           p2 : <a href="java_awt_geom.html#type-AffineTransform">java_awt_geom.AffineTransform</a>;
+                                           p3 : <a href="java_awt_image.html#type-ImageObserver">java_awt_image.ImageObserver</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DrawImage) <font color="#cc0033">transformImage</font>*(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                           p1 : <a href="java_awt_image.html#type-BufferedImage">java_awt_image.BufferedImage</a>;
+                                           p2 : <a href="java_awt_image.html#type-BufferedImageOp">java_awt_image.BufferedImageOp</a>;
+                                           p3 : INTEGER;
+                                           p4 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DrawImage) <font color="#cc0033">transformImage</font>!(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                           p1 : <a href="java_awt.html#type-Image">java_awt.Image</a>;
+                                           p2 : <a href="java_awt_geom.html#type-AffineTransform">java_awt_geom.AffineTransform</a>;
+                                           p3 : INTEGER;
+                                           p4 : INTEGER;
+                                           p5 : INTEGER;
+                                           p6 : INTEGER;
+                                           p7 : INTEGER;
+                                           p8 : <a href="java_awt.html#type-Color">java_awt.Color</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DrawImage) <font color="#cc0033">transformImage</font>!(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                           p1 : <a href="java_awt.html#type-Image">java_awt.Image</a>;
+                                           p2 : INTEGER;
+                                           p3 : INTEGER;
+                                           p4 : <a href="java_awt_geom.html#type-AffineTransform">java_awt_geom.AffineTransform</a>;
+                                           p5 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DrawImage) <font color="#cc0033">tryCopyOrScale</font>!(    p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                               p1 : <a href="java_awt.html#type-Image">java_awt.Image</a>;
+                                               p2 : INTEGER;
+                                               p3 : INTEGER;
+                                               p4 : INTEGER;
+                                               p5 : INTEGER;
+                                               p6 : <a href="java_awt.html#type-Color">java_awt.Color</a>;
+                                               p7 : INTEGER;
+                                           IN  p8 : <b>ARRAY </b><b>OF </b>REAL) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-DrawImagePipe"></a>
+<b>PROCEDURE </b>(self:DrawImagePipe) <font color="#cc0033">copyImage</font>*(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                          p1 : <a href="java_awt.html#type-Image">java_awt.Image</a>;
+                                          p2 : INTEGER;
+                                          p3 : INTEGER;
+                                          p4 : INTEGER;
+                                          p5 : INTEGER;
+                                          p6 : INTEGER;
+                                          p7 : INTEGER;
+                                          p8 : <a href="java_awt.html#type-Color">java_awt.Color</a>;
+                                          p9 : <a href="java_awt_image.html#type-ImageObserver">java_awt_image.ImageObserver</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DrawImagePipe) <font color="#cc0033">copyImage</font>*(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                          p1 : <a href="java_awt.html#type-Image">java_awt.Image</a>;
+                                          p2 : INTEGER;
+                                          p3 : INTEGER;
+                                          p4 : <a href="java_awt.html#type-Color">java_awt.Color</a>;
+                                          p5 : <a href="java_awt_image.html#type-ImageObserver">java_awt_image.ImageObserver</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DrawImagePipe) <font color="#cc0033">scaleImage</font>*(p0  : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                           p1  : <a href="java_awt.html#type-Image">java_awt.Image</a>;
+                                           p2  : INTEGER;
+                                           p3  : INTEGER;
+                                           p4  : INTEGER;
+                                           p5  : INTEGER;
+                                           p6  : INTEGER;
+                                           p7  : INTEGER;
+                                           p8  : INTEGER;
+                                           p9  : INTEGER;
+                                           p10 : <a href="java_awt.html#type-Color">java_awt.Color</a>;
+                                           p11 : <a href="java_awt_image.html#type-ImageObserver">java_awt_image.ImageObserver</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DrawImagePipe) <font color="#cc0033">scaleImage</font>*(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                           p1 : <a href="java_awt.html#type-Image">java_awt.Image</a>;
+                                           p2 : INTEGER;
+                                           p3 : INTEGER;
+                                           p4 : INTEGER;
+                                           p5 : INTEGER;
+                                           p6 : <a href="java_awt.html#type-Color">java_awt.Color</a>;
+                                           p7 : <a href="java_awt_image.html#type-ImageObserver">java_awt_image.ImageObserver</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DrawImagePipe) <font color="#cc0033">transformImage</font>*(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                               p1 : <a href="java_awt_image.html#type-BufferedImage">java_awt_image.BufferedImage</a>;
+                                               p2 : <a href="java_awt_image.html#type-BufferedImageOp">java_awt_image.BufferedImageOp</a>;
+                                               p3 : INTEGER;
+                                               p4 : INTEGER)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DrawImagePipe) <font color="#cc0033">transformImage</font>*(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                               p1 : <a href="java_awt.html#type-Image">java_awt.Image</a>;
+                                               p2 : <a href="java_awt_geom.html#type-AffineTransform">java_awt_geom.AffineTransform</a>;
+                                               p3 : <a href="java_awt_image.html#type-ImageObserver">java_awt_image.ImageObserver</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+<a name="meths-DuctusShapeRenderer"></a>
+<b>PROCEDURE </b>(self:DuctusShapeRenderer) <font color="#cc0033">draw</font>*(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                           p1 : <a href="java_awt.html#type-Shape">java_awt.Shape</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DuctusShapeRenderer) <font color="#cc0033">drawParallelogram</font>*(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                                        p1 : REAL;
+                                                        p2 : REAL;
+                                                        p3 : REAL;
+                                                        p4 : REAL;
+                                                        p5 : REAL;
+                                                        p6 : REAL;
+                                                        p7 : REAL;
+                                                        p8 : REAL)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DuctusShapeRenderer) <font color="#cc0033">fill</font>*(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                           p1 : <a href="java_awt.html#type-Shape">java_awt.Shape</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DuctusShapeRenderer) <font color="#cc0033">fillParallelogram</font>*(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                                        p1 : REAL;
+                                                        p2 : REAL;
+                                                        p3 : REAL;
+                                                        p4 : REAL;
+                                                        p5 : REAL;
+                                                        p6 : REAL)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DuctusShapeRenderer) <font color="#cc0033">renderPath</font>*(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                                 p1 : <a href="java_awt.html#type-Shape">java_awt.Shape</a>;
+                                                 p2 : <a href="java_awt.html#type-BasicStroke">java_awt.BasicStroke</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DuctusShapeRenderer) <font color="#cc0033">renderTiles</font>*(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                                  p1 : <a href="java_awt.html#type-Shape">java_awt.Shape</a>;
+                                                  p2 : <a href="sun_dc_pr.html#type-Rasterizer">sun_dc_pr.Rasterizer</a>)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-GeneralCompositePipe"></a>
+<b>PROCEDURE </b>(self:GeneralCompositePipe) <font color="#cc0033">endSequence</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:GeneralCompositePipe) <font color="#cc0033">needTile</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                p1 : INTEGER;
+                                                p2 : INTEGER;
+                                                p3 : INTEGER;
+                                                p4 : INTEGER) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:GeneralCompositePipe) <font color="#cc0033">renderPathTile</font>*(    p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                      IN  p1 : <b>ARRAY </b><b>OF </b>BYTE;
+                                                          p2 : INTEGER;
+                                                          p3 : INTEGER;
+                                                          p4 : INTEGER;
+                                                          p5 : INTEGER;
+                                                          p6 : INTEGER;
+                                                          p7 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:GeneralCompositePipe) <font color="#cc0033">skipTile</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                p1 : INTEGER;
+                                                p2 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:GeneralCompositePipe) <font color="#cc0033">startSequence</font>*(    p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                                         p1 : <a href="java_awt.html#type-Shape">java_awt.Shape</a>;
+                                                         p2 : <a href="java_awt.html#type-Rectangle">java_awt.Rectangle</a>;
+                                                     IN  p3 : <b>ARRAY </b><b>OF </b>INTEGER) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-GlyphListLoopPipe"></a>
+<b>PROCEDURE </b>(self:GlyphListLoopPipe) <font color="#cc0033">drawGlyphList</font>!(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                                  p1 : <a href="sun_font.html#type-GlyphList">sun_font.GlyphList</a>;
+                                                  p2 : INTEGER)<b>,EXTENSIBLE</b>;
+<a name="meths-GlyphListPipe"></a>
+<b>PROCEDURE </b>(self:GlyphListPipe) <font color="#cc0033">drawChars</font>*(    p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                          IN  p1 : <b>ARRAY </b><b>OF </b>CHAR;
+                                              p2 : INTEGER;
+                                              p3 : INTEGER;
+                                              p4 : INTEGER;
+                                              p5 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:GlyphListPipe) <font color="#cc0033">drawGlyphList</font>!(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                              p1 : <a href="sun_font.html#type-GlyphList">sun_font.GlyphList</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:GlyphListPipe) <font color="#cc0033">drawGlyphList</font>!(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                              p1 : <a href="sun_font.html#type-GlyphList">sun_font.GlyphList</a>;
+                                              p2 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:GlyphListPipe) <font color="#cc0033">drawGlyphVector</font>*(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                                p1 : <a href="java_awt_font.html#type-GlyphVector">java_awt_font.GlyphVector</a>;
+                                                p2 : SHORTREAL;
+                                                p3 : SHORTREAL)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:GlyphListPipe) <font color="#cc0033">drawString</font>*(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                           p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                           p2 : REAL;
+                                           p3 : REAL)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-LCDTextRenderer"></a>
+<b>PROCEDURE </b>(self:LCDTextRenderer) <font color="#cc0033">drawGlyphList</font>!(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                                p1 : <a href="sun_font.html#type-GlyphList">sun_font.GlyphList</a>)<b>,EXTENSIBLE</b>;
+<a name="meths-LoopPipe"></a>
+<b>PROCEDURE </b>(self:LoopPipe) <font color="#cc0033">draw</font>*(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                p1 : <a href="java_awt.html#type-Shape">java_awt.Shape</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LoopPipe) <font color="#cc0033">drawArc</font>*(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                   p1 : INTEGER;
+                                   p2 : INTEGER;
+                                   p3 : INTEGER;
+                                   p4 : INTEGER;
+                                   p5 : INTEGER;
+                                   p6 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LoopPipe) <font color="#cc0033">drawLine</font>*(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                    p1 : INTEGER;
+                                    p2 : INTEGER;
+                                    p3 : INTEGER;
+                                    p4 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LoopPipe) <font color="#cc0033">drawOval</font>*(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                    p1 : INTEGER;
+                                    p2 : INTEGER;
+                                    p3 : INTEGER;
+                                    p4 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LoopPipe) <font color="#cc0033">drawParallelogram</font>*(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                             p1 : REAL;
+                                             p2 : REAL;
+                                             p3 : REAL;
+                                             p4 : REAL;
+                                             p5 : REAL;
+                                             p6 : REAL;
+                                             p7 : REAL;
+                                             p8 : REAL)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LoopPipe) <font color="#cc0033">drawPolygon</font>*(    p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                       IN  p1 : <b>ARRAY </b><b>OF </b>INTEGER;
+                                       IN  p2 : <b>ARRAY </b><b>OF </b>INTEGER;
+                                           p3 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LoopPipe) <font color="#cc0033">drawPolyline</font>*(    p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                        IN  p1 : <b>ARRAY </b><b>OF </b>INTEGER;
+                                        IN  p2 : <b>ARRAY </b><b>OF </b>INTEGER;
+                                            p3 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LoopPipe) <font color="#cc0033">drawRect</font>*(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                    p1 : INTEGER;
+                                    p2 : INTEGER;
+                                    p3 : INTEGER;
+                                    p4 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LoopPipe) <font color="#cc0033">drawRoundRect</font>*(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                         p1 : INTEGER;
+                                         p2 : INTEGER;
+                                         p3 : INTEGER;
+                                         p4 : INTEGER;
+                                         p5 : INTEGER;
+                                         p6 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LoopPipe) <font color="#cc0033">fill</font>*(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                p1 : <a href="java_awt.html#type-Shape">java_awt.Shape</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LoopPipe) <font color="#cc0033">fillArc</font>*(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                   p1 : INTEGER;
+                                   p2 : INTEGER;
+                                   p3 : INTEGER;
+                                   p4 : INTEGER;
+                                   p5 : INTEGER;
+                                   p6 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LoopPipe) <font color="#cc0033">fillOval</font>*(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                    p1 : INTEGER;
+                                    p2 : INTEGER;
+                                    p3 : INTEGER;
+                                    p4 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LoopPipe) <font color="#cc0033">fillParallelogram</font>*(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                             p1 : REAL;
+                                             p2 : REAL;
+                                             p3 : REAL;
+                                             p4 : REAL;
+                                             p5 : REAL;
+                                             p6 : REAL)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LoopPipe) <font color="#cc0033">fillPolygon</font>*(    p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                       IN  p1 : <b>ARRAY </b><b>OF </b>INTEGER;
+                                       IN  p2 : <b>ARRAY </b><b>OF </b>INTEGER;
+                                           p3 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LoopPipe) <font color="#cc0033">fillRect</font>*(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                    p1 : INTEGER;
+                                    p2 : INTEGER;
+                                    p3 : INTEGER;
+                                    p4 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LoopPipe) <font color="#cc0033">fillRoundRect</font>*(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                         p1 : INTEGER;
+                                         p2 : INTEGER;
+                                         p3 : INTEGER;
+                                         p4 : INTEGER;
+                                         p5 : INTEGER;
+                                         p6 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-NullPipe"></a>
+<b>PROCEDURE </b>(self:NullPipe) <font color="#cc0033">copyImage</font>*(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                     p1 : <a href="java_awt.html#type-Image">java_awt.Image</a>;
+                                     p2 : INTEGER;
+                                     p3 : INTEGER;
+                                     p4 : INTEGER;
+                                     p5 : INTEGER;
+                                     p6 : INTEGER;
+                                     p7 : INTEGER;
+                                     p8 : <a href="java_awt.html#type-Color">java_awt.Color</a>;
+                                     p9 : <a href="java_awt_image.html#type-ImageObserver">java_awt_image.ImageObserver</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:NullPipe) <font color="#cc0033">copyImage</font>*(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                     p1 : <a href="java_awt.html#type-Image">java_awt.Image</a>;
+                                     p2 : INTEGER;
+                                     p3 : INTEGER;
+                                     p4 : <a href="java_awt.html#type-Color">java_awt.Color</a>;
+                                     p5 : <a href="java_awt_image.html#type-ImageObserver">java_awt_image.ImageObserver</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:NullPipe) <font color="#cc0033">draw</font>*(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                p1 : <a href="java_awt.html#type-Shape">java_awt.Shape</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:NullPipe) <font color="#cc0033">drawArc</font>*(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                   p1 : INTEGER;
+                                   p2 : INTEGER;
+                                   p3 : INTEGER;
+                                   p4 : INTEGER;
+                                   p5 : INTEGER;
+                                   p6 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:NullPipe) <font color="#cc0033">drawChars</font>*(    p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                     IN  p1 : <b>ARRAY </b><b>OF </b>CHAR;
+                                         p2 : INTEGER;
+                                         p3 : INTEGER;
+                                         p4 : INTEGER;
+                                         p5 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:NullPipe) <font color="#cc0033">drawGlyphVector</font>*(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                           p1 : <a href="java_awt_font.html#type-GlyphVector">java_awt_font.GlyphVector</a>;
+                                           p2 : SHORTREAL;
+                                           p3 : SHORTREAL)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:NullPipe) <font color="#cc0033">drawLine</font>*(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                    p1 : INTEGER;
+                                    p2 : INTEGER;
+                                    p3 : INTEGER;
+                                    p4 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:NullPipe) <font color="#cc0033">drawOval</font>*(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                    p1 : INTEGER;
+                                    p2 : INTEGER;
+                                    p3 : INTEGER;
+                                    p4 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:NullPipe) <font color="#cc0033">drawPolygon</font>*(    p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                       IN  p1 : <b>ARRAY </b><b>OF </b>INTEGER;
+                                       IN  p2 : <b>ARRAY </b><b>OF </b>INTEGER;
+                                           p3 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:NullPipe) <font color="#cc0033">drawPolyline</font>*(    p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                        IN  p1 : <b>ARRAY </b><b>OF </b>INTEGER;
+                                        IN  p2 : <b>ARRAY </b><b>OF </b>INTEGER;
+                                            p3 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:NullPipe) <font color="#cc0033">drawRect</font>*(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                    p1 : INTEGER;
+                                    p2 : INTEGER;
+                                    p3 : INTEGER;
+                                    p4 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:NullPipe) <font color="#cc0033">drawRoundRect</font>*(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                         p1 : INTEGER;
+                                         p2 : INTEGER;
+                                         p3 : INTEGER;
+                                         p4 : INTEGER;
+                                         p5 : INTEGER;
+                                         p6 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:NullPipe) <font color="#cc0033">drawString</font>*(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                      p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                      p2 : REAL;
+                                      p3 : REAL)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:NullPipe) <font color="#cc0033">fill</font>*(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                p1 : <a href="java_awt.html#type-Shape">java_awt.Shape</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:NullPipe) <font color="#cc0033">fillArc</font>*(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                   p1 : INTEGER;
+                                   p2 : INTEGER;
+                                   p3 : INTEGER;
+                                   p4 : INTEGER;
+                                   p5 : INTEGER;
+                                   p6 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:NullPipe) <font color="#cc0033">fillOval</font>*(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                    p1 : INTEGER;
+                                    p2 : INTEGER;
+                                    p3 : INTEGER;
+                                    p4 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:NullPipe) <font color="#cc0033">fillPolygon</font>*(    p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                       IN  p1 : <b>ARRAY </b><b>OF </b>INTEGER;
+                                       IN  p2 : <b>ARRAY </b><b>OF </b>INTEGER;
+                                           p3 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:NullPipe) <font color="#cc0033">fillRect</font>*(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                    p1 : INTEGER;
+                                    p2 : INTEGER;
+                                    p3 : INTEGER;
+                                    p4 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:NullPipe) <font color="#cc0033">fillRoundRect</font>*(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                         p1 : INTEGER;
+                                         p2 : INTEGER;
+                                         p3 : INTEGER;
+                                         p4 : INTEGER;
+                                         p5 : INTEGER;
+                                         p6 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:NullPipe) <font color="#cc0033">scaleImage</font>*(p0  : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                      p1  : <a href="java_awt.html#type-Image">java_awt.Image</a>;
+                                      p2  : INTEGER;
+                                      p3  : INTEGER;
+                                      p4  : INTEGER;
+                                      p5  : INTEGER;
+                                      p6  : INTEGER;
+                                      p7  : INTEGER;
+                                      p8  : INTEGER;
+                                      p9  : INTEGER;
+                                      p10 : <a href="java_awt.html#type-Color">java_awt.Color</a>;
+                                      p11 : <a href="java_awt_image.html#type-ImageObserver">java_awt_image.ImageObserver</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:NullPipe) <font color="#cc0033">scaleImage</font>*(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                      p1 : <a href="java_awt.html#type-Image">java_awt.Image</a>;
+                                      p2 : INTEGER;
+                                      p3 : INTEGER;
+                                      p4 : INTEGER;
+                                      p5 : INTEGER;
+                                      p6 : <a href="java_awt.html#type-Color">java_awt.Color</a>;
+                                      p7 : <a href="java_awt_image.html#type-ImageObserver">java_awt_image.ImageObserver</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:NullPipe) <font color="#cc0033">transformImage</font>*(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                          p1 : <a href="java_awt_image.html#type-BufferedImage">java_awt_image.BufferedImage</a>;
+                                          p2 : <a href="java_awt_image.html#type-BufferedImageOp">java_awt_image.BufferedImageOp</a>;
+                                          p3 : INTEGER;
+                                          p4 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:NullPipe) <font color="#cc0033">transformImage</font>*(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                          p1 : <a href="java_awt.html#type-Image">java_awt.Image</a>;
+                                          p2 : <a href="java_awt_geom.html#type-AffineTransform">java_awt_geom.AffineTransform</a>;
+                                          p3 : <a href="java_awt_image.html#type-ImageObserver">java_awt_image.ImageObserver</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-OutlineTextRenderer"></a>
+<b>PROCEDURE </b>(self:OutlineTextRenderer) <font color="#cc0033">drawChars</font>*(    p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                                IN  p1 : <b>ARRAY </b><b>OF </b>CHAR;
+                                                    p2 : INTEGER;
+                                                    p3 : INTEGER;
+                                                    p4 : INTEGER;
+                                                    p5 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:OutlineTextRenderer) <font color="#cc0033">drawGlyphVector</font>*(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                                      p1 : <a href="java_awt_font.html#type-GlyphVector">java_awt_font.GlyphVector</a>;
+                                                      p2 : SHORTREAL;
+                                                      p3 : SHORTREAL)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:OutlineTextRenderer) <font color="#cc0033">drawString</font>*(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                                 p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                 p2 : REAL;
+                                                 p3 : REAL)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-ParallelogramPipe"></a>
+<b>PROCEDURE </b>(self:ParallelogramPipe) <font color="#cc0033">drawParallelogram</font>*(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                                      p1 : REAL;
+                                                      p2 : REAL;
+                                                      p3 : REAL;
+                                                      p4 : REAL;
+                                                      p5 : REAL;
+                                                      p6 : REAL;
+                                                      p7 : REAL;
+                                                      p8 : REAL)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ParallelogramPipe) <font color="#cc0033">fillParallelogram</font>*(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                                      p1 : REAL;
+                                                      p2 : REAL;
+                                                      p3 : REAL;
+                                                      p4 : REAL;
+                                                      p5 : REAL;
+                                                      p6 : REAL)<b>,NEW,ABSTRACT</b>;
+<a name="meths-PixelDrawPipe"></a>
+<b>PROCEDURE </b>(self:PixelDrawPipe) <font color="#cc0033">drawArc</font>*(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                        p1 : INTEGER;
+                                        p2 : INTEGER;
+                                        p3 : INTEGER;
+                                        p4 : INTEGER;
+                                        p5 : INTEGER;
+                                        p6 : INTEGER)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:PixelDrawPipe) <font color="#cc0033">drawLine</font>*(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                         p1 : INTEGER;
+                                         p2 : INTEGER;
+                                         p3 : INTEGER;
+                                         p4 : INTEGER)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:PixelDrawPipe) <font color="#cc0033">drawOval</font>*(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                         p1 : INTEGER;
+                                         p2 : INTEGER;
+                                         p3 : INTEGER;
+                                         p4 : INTEGER)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:PixelDrawPipe) <font color="#cc0033">drawPolygon</font>*(    p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                            IN  p1 : <b>ARRAY </b><b>OF </b>INTEGER;
+                                            IN  p2 : <b>ARRAY </b><b>OF </b>INTEGER;
+                                                p3 : INTEGER)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:PixelDrawPipe) <font color="#cc0033">drawPolyline</font>*(    p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                             IN  p1 : <b>ARRAY </b><b>OF </b>INTEGER;
+                                             IN  p2 : <b>ARRAY </b><b>OF </b>INTEGER;
+                                                 p3 : INTEGER)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:PixelDrawPipe) <font color="#cc0033">drawRect</font>*(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                         p1 : INTEGER;
+                                         p2 : INTEGER;
+                                         p3 : INTEGER;
+                                         p4 : INTEGER)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:PixelDrawPipe) <font color="#cc0033">drawRoundRect</font>*(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                              p1 : INTEGER;
+                                              p2 : INTEGER;
+                                              p3 : INTEGER;
+                                              p4 : INTEGER;
+                                              p5 : INTEGER;
+                                              p6 : INTEGER)<b>,NEW,ABSTRACT</b>;
+<a name="meths-PixelFillPipe"></a>
+<b>PROCEDURE </b>(self:PixelFillPipe) <font color="#cc0033">fillArc</font>*(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                        p1 : INTEGER;
+                                        p2 : INTEGER;
+                                        p3 : INTEGER;
+                                        p4 : INTEGER;
+                                        p5 : INTEGER;
+                                        p6 : INTEGER)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:PixelFillPipe) <font color="#cc0033">fillOval</font>*(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                         p1 : INTEGER;
+                                         p2 : INTEGER;
+                                         p3 : INTEGER;
+                                         p4 : INTEGER)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:PixelFillPipe) <font color="#cc0033">fillPolygon</font>*(    p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                            IN  p1 : <b>ARRAY </b><b>OF </b>INTEGER;
+                                            IN  p2 : <b>ARRAY </b><b>OF </b>INTEGER;
+                                                p3 : INTEGER)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:PixelFillPipe) <font color="#cc0033">fillRect</font>*(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                         p1 : INTEGER;
+                                         p2 : INTEGER;
+                                         p3 : INTEGER;
+                                         p4 : INTEGER)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:PixelFillPipe) <font color="#cc0033">fillRoundRect</font>*(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                              p1 : INTEGER;
+                                              p2 : INTEGER;
+                                              p3 : INTEGER;
+                                              p4 : INTEGER;
+                                              p5 : INTEGER;
+                                              p6 : INTEGER)<b>,NEW,ABSTRACT</b>;
+<a name="meths-PixelToParallelogramConverter"></a>
+<b>PROCEDURE </b>(self:PixelToParallelogramConverter) <font color="#cc0033">draw</font>*(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                                     p1 : <a href="java_awt.html#type-Shape">java_awt.Shape</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PixelToParallelogramConverter) <font color="#cc0033">drawGeneralLine</font>*(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                                                p1 : REAL;
+                                                                p2 : REAL;
+                                                                p3 : REAL;
+                                                                p4 : REAL) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PixelToParallelogramConverter) <font color="#cc0033">drawLine</font>*(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                                         p1 : INTEGER;
+                                                         p2 : INTEGER;
+                                                         p3 : INTEGER;
+                                                         p4 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PixelToParallelogramConverter) <font color="#cc0033">drawRect</font>*(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                                         p1 : INTEGER;
+                                                         p2 : INTEGER;
+                                                         p3 : INTEGER;
+                                                         p4 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PixelToParallelogramConverter) <font color="#cc0033">drawRectangle</font>*(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                                              p1 : REAL;
+                                                              p2 : REAL;
+                                                              p3 : REAL;
+                                                              p4 : REAL;
+                                                              p5 : REAL)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PixelToParallelogramConverter) <font color="#cc0033">fill</font>*(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                                     p1 : <a href="java_awt.html#type-Shape">java_awt.Shape</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PixelToParallelogramConverter) <font color="#cc0033">fillOuterParallelogram</font>*(p0  : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                                                       p1  : REAL;
+                                                                       p2  : REAL;
+                                                                       p3  : REAL;
+                                                                       p4  : REAL;
+                                                                       p5  : REAL;
+                                                                       p6  : REAL;
+                                                                       p7  : REAL;
+                                                                       p8  : REAL;
+                                                                       p9  : REAL;
+                                                                       p10 : REAL)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PixelToParallelogramConverter) <font color="#cc0033">fillRect</font>*(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                                         p1 : INTEGER;
+                                                         p2 : INTEGER;
+                                                         p3 : INTEGER;
+                                                         p4 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PixelToParallelogramConverter) <font color="#cc0033">fillRectangle</font>*(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                                              p1 : REAL;
+                                                              p2 : REAL;
+                                                              p3 : REAL;
+                                                              p4 : REAL)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-PixelToShapeConverter"></a>
+<b>PROCEDURE </b>(self:PixelToShapeConverter) <font color="#cc0033">drawArc</font>*(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                                p1 : INTEGER;
+                                                p2 : INTEGER;
+                                                p3 : INTEGER;
+                                                p4 : INTEGER;
+                                                p5 : INTEGER;
+                                                p6 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PixelToShapeConverter) <font color="#cc0033">drawLine</font>*(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                                 p1 : INTEGER;
+                                                 p2 : INTEGER;
+                                                 p3 : INTEGER;
+                                                 p4 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PixelToShapeConverter) <font color="#cc0033">drawOval</font>*(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                                 p1 : INTEGER;
+                                                 p2 : INTEGER;
+                                                 p3 : INTEGER;
+                                                 p4 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PixelToShapeConverter) <font color="#cc0033">drawPolygon</font>*(    p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                                    IN  p1 : <b>ARRAY </b><b>OF </b>INTEGER;
+                                                    IN  p2 : <b>ARRAY </b><b>OF </b>INTEGER;
+                                                        p3 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PixelToShapeConverter) <font color="#cc0033">drawPolyline</font>*(    p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                                     IN  p1 : <b>ARRAY </b><b>OF </b>INTEGER;
+                                                     IN  p2 : <b>ARRAY </b><b>OF </b>INTEGER;
+                                                         p3 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PixelToShapeConverter) <font color="#cc0033">drawRect</font>*(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                                 p1 : INTEGER;
+                                                 p2 : INTEGER;
+                                                 p3 : INTEGER;
+                                                 p4 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PixelToShapeConverter) <font color="#cc0033">drawRoundRect</font>*(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                                      p1 : INTEGER;
+                                                      p2 : INTEGER;
+                                                      p3 : INTEGER;
+                                                      p4 : INTEGER;
+                                                      p5 : INTEGER;
+                                                      p6 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PixelToShapeConverter) <font color="#cc0033">fillArc</font>*(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                                p1 : INTEGER;
+                                                p2 : INTEGER;
+                                                p3 : INTEGER;
+                                                p4 : INTEGER;
+                                                p5 : INTEGER;
+                                                p6 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PixelToShapeConverter) <font color="#cc0033">fillOval</font>*(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                                 p1 : INTEGER;
+                                                 p2 : INTEGER;
+                                                 p3 : INTEGER;
+                                                 p4 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PixelToShapeConverter) <font color="#cc0033">fillPolygon</font>*(    p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                                    IN  p1 : <b>ARRAY </b><b>OF </b>INTEGER;
+                                                    IN  p2 : <b>ARRAY </b><b>OF </b>INTEGER;
+                                                        p3 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PixelToShapeConverter) <font color="#cc0033">fillRect</font>*(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                                 p1 : INTEGER;
+                                                 p2 : INTEGER;
+                                                 p3 : INTEGER;
+                                                 p4 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PixelToShapeConverter) <font color="#cc0033">fillRoundRect</font>*(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                                      p1 : INTEGER;
+                                                      p2 : INTEGER;
+                                                      p3 : INTEGER;
+                                                      p4 : INTEGER;
+                                                      p5 : INTEGER;
+                                                      p6 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-Region"></a>
+<b>PROCEDURE </b>(self:Region) <font color="#cc0033">appendSpans</font>*(p0 : <a href="#type-SpanIterator">SpanIterator</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Region) <font color="#cc0033">clipBoxToBounds</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Region) <font color="#cc0033">contains</font>*(p0 : INTEGER;
+                                  p1 : INTEGER) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Region) <font color="#cc0033">encompasses</font>*(p0 : <a href="#type-Region">Region</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Region) <font color="#cc0033">encompassesXYWH</font>*(p0 : INTEGER;
+                                         p1 : INTEGER;
+                                         p2 : INTEGER;
+                                         p3 : INTEGER) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Region) <font color="#cc0033">encompassesXYXY</font>*(p0 : INTEGER;
+                                         p1 : INTEGER;
+                                         p2 : INTEGER;
+                                         p3 : INTEGER) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Region) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Region) <font color="#cc0033">filter</font>*(p0 : <a href="#type-SpanIterator">SpanIterator</a>) : <a href="#type-SpanIterator">SpanIterator</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Region) <font color="#cc0033">getBounds</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Region) <font color="#cc0033">getBoundsIntersection</font>*(p0 : <a href="java_awt.html#type-Rectangle">java_awt.Rectangle</a>) : <a href="#type-Region">Region</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Region) <font color="#cc0033">getBoundsIntersection</font>*(p0 : <a href="#type-Region">Region</a>) : <a href="#type-Region">Region</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Region) <font color="#cc0033">getBoundsIntersectionXYWH</font>*(p0 : INTEGER;
+                                                   p1 : INTEGER;
+                                                   p2 : INTEGER;
+                                                   p3 : INTEGER) : <a href="#type-Region">Region</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Region) <font color="#cc0033">getBoundsIntersectionXYXY</font>*(p0 : INTEGER;
+                                                   p1 : INTEGER;
+                                                   p2 : INTEGER;
+                                                   p3 : INTEGER) : <a href="#type-Region">Region</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Region) <font color="#cc0033">getDifference</font>*(p0 : <a href="#type-Region">Region</a>) : <a href="#type-Region">Region</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Region) <font color="#cc0033">getExclusiveOr</font>*(p0 : <a href="#type-Region">Region</a>) : <a href="#type-Region">Region</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Region) <font color="#cc0033">getHeight</font>*() : INTEGER<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:Region) <font color="#cc0033">getHiX</font>*() : INTEGER<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:Region) <font color="#cc0033">getHiY</font>*() : INTEGER<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:Region) <font color="#cc0033">getIntersection</font>*(p0 : <a href="#type-Region">Region</a>) : <a href="#type-Region">Region</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Region) <font color="#cc0033">getIntersection</font>*(p0 : <a href="java_awt.html#type-Rectangle">java_awt.Rectangle</a>) : <a href="#type-Region">Region</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Region) <font color="#cc0033">getIntersectionXYWH</font>*(p0 : INTEGER;
+                                             p1 : INTEGER;
+                                             p2 : INTEGER;
+                                             p3 : INTEGER) : <a href="#type-Region">Region</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Region) <font color="#cc0033">getIntersectionXYXY</font>*(p0 : INTEGER;
+                                             p1 : INTEGER;
+                                             p2 : INTEGER;
+                                             p3 : INTEGER) : <a href="#type-Region">Region</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Region) <font color="#cc0033">getIterator</font>*() : <a href="#type-RegionIterator">RegionIterator</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Region) <font color="#cc0033">getLoX</font>*() : INTEGER<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:Region) <font color="#cc0033">getLoY</font>*() : INTEGER<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:Region) <font color="#cc0033">getSpanIterator</font>*() : <a href="#type-SpanIterator">SpanIterator</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Region) <font color="#cc0033">getSpanIterator</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>INTEGER) : <a href="#type-SpanIterator">SpanIterator</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Region) <font color="#cc0033">getTranslatedRegion</font>*(p0 : INTEGER;
+                                             p1 : INTEGER) : <a href="#type-Region">Region</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Region) <font color="#cc0033">getUnion</font>*(p0 : <a href="#type-Region">Region</a>) : <a href="#type-Region">Region</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Region) <font color="#cc0033">getWidth</font>*() : INTEGER<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:Region) <font color="#cc0033">hashCode</font>*() : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Region) <font color="#cc0033">intersectsQuickCheck</font>*(p0 : <a href="#type-Region">Region</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Region) <font color="#cc0033">intersectsQuickCheckXYXY</font>*(p0 : INTEGER;
+                                                  p1 : INTEGER;
+                                                  p2 : INTEGER;
+                                                  p3 : INTEGER) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Region) <font color="#cc0033">isEmpty</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Region) <font color="#cc0033">isInsideQuickCheck</font>*(p0 : <a href="#type-Region">Region</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Region) <font color="#cc0033">isInsideXYWH</font>*(p0 : INTEGER;
+                                      p1 : INTEGER;
+                                      p2 : INTEGER;
+                                      p3 : INTEGER) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Region) <font color="#cc0033">isInsideXYXY</font>*(p0 : INTEGER;
+                                      p1 : INTEGER;
+                                      p2 : INTEGER;
+                                      p3 : INTEGER) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Region) <font color="#cc0033">isRectangular</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Region) <font color="#cc0033">setOutputArea</font>*(p0 : <a href="java_awt.html#type-Rectangle">java_awt.Rectangle</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Region) <font color="#cc0033">setOutputArea</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Region) <font color="#cc0033">setOutputAreaXYWH</font>*(p0 : INTEGER;
+                                           p1 : INTEGER;
+                                           p2 : INTEGER;
+                                           p3 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Region) <font color="#cc0033">setOutputAreaXYXY</font>*(p0 : INTEGER;
+                                           p1 : INTEGER;
+                                           p2 : INTEGER;
+                                           p3 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Region) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,EXTENSIBLE</b>;
+<a name="meths-RegionClipSpanIterator"></a>
+<b>PROCEDURE </b>(self:RegionClipSpanIterator) <font color="#cc0033">finalize</font>!()<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RegionClipSpanIterator) <font color="#cc0033">getNativeIterator</font>*() : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RegionClipSpanIterator) <font color="#cc0033">getPathBox</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RegionClipSpanIterator) <font color="#cc0033">intersectClipBox</font>*(p0 : INTEGER;
+                                                          p1 : INTEGER;
+                                                          p2 : INTEGER;
+                                                          p3 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RegionClipSpanIterator) <font color="#cc0033">nextSpan</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>INTEGER) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RegionClipSpanIterator) <font color="#cc0033">skipDownTo</font>*(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-RegionIterator"></a>
+<b>PROCEDURE </b>(self:RegionIterator) <font color="#cc0033">copyStateFrom</font>*(p0 : <a href="#type-RegionIterator">RegionIterator</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RegionIterator) <font color="#cc0033">createCopy</font>*() : <a href="#type-RegionIterator">RegionIterator</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RegionIterator) <font color="#cc0033">nextXBand</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>INTEGER) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RegionIterator) <font color="#cc0033">nextYRange</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>INTEGER) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-RegionSpanIterator"></a>
+<b>PROCEDURE </b>(self:RegionSpanIterator) <font color="#cc0033">getNativeIterator</font>*() : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RegionSpanIterator) <font color="#cc0033">getPathBox</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RegionSpanIterator) <font color="#cc0033">intersectClipBox</font>*(p0 : INTEGER;
+                                                      p1 : INTEGER;
+                                                      p2 : INTEGER;
+                                                      p3 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RegionSpanIterator) <font color="#cc0033">nextSpan</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>INTEGER) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RegionSpanIterator) <font color="#cc0033">skipDownTo</font>*(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-RenderBuffer"></a>
+<b>PROCEDURE </b>(self:RenderBuffer) <font color="#cc0033">capacity</font>*() : INTEGER<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:RenderBuffer) <font color="#cc0033">clear</font>*()<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:RenderBuffer) <font color="#cc0033">getAddress</font>*() : LONGINT<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:RenderBuffer) <font color="#cc0033">position</font>*(p0 : LONGINT)<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:RenderBuffer) <font color="#cc0033">position</font>*() : INTEGER<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:RenderBuffer) <font color="#cc0033">put</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>SHORTREAL) : <a href="#type-RenderBuffer">RenderBuffer</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RenderBuffer) <font color="#cc0033">put</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>INTEGER;
+                                       p1 : INTEGER;
+                                       p2 : INTEGER) : <a href="#type-RenderBuffer">RenderBuffer</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RenderBuffer) <font color="#cc0033">put</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>INTEGER) : <a href="#type-RenderBuffer">RenderBuffer</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RenderBuffer) <font color="#cc0033">put</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>LONGINT;
+                                       p1 : INTEGER;
+                                       p2 : INTEGER) : <a href="#type-RenderBuffer">RenderBuffer</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RenderBuffer) <font color="#cc0033">put</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>LONGINT) : <a href="#type-RenderBuffer">RenderBuffer</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RenderBuffer) <font color="#cc0033">put</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>SHORTREAL;
+                                       p1 : INTEGER;
+                                       p2 : INTEGER) : <a href="#type-RenderBuffer">RenderBuffer</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RenderBuffer) <font color="#cc0033">put</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>SHORTINT;
+                                       p1 : INTEGER;
+                                       p2 : INTEGER) : <a href="#type-RenderBuffer">RenderBuffer</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RenderBuffer) <font color="#cc0033">put</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE;
+                                       p1 : INTEGER;
+                                       p2 : INTEGER) : <a href="#type-RenderBuffer">RenderBuffer</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RenderBuffer) <font color="#cc0033">put</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE) : <a href="#type-RenderBuffer">RenderBuffer</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RenderBuffer) <font color="#cc0033">put</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>SHORTINT) : <a href="#type-RenderBuffer">RenderBuffer</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RenderBuffer) <font color="#cc0033">putByte</font>*(p0 : BYTE) : <a href="#type-RenderBuffer">RenderBuffer</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:RenderBuffer) <font color="#cc0033">putDouble</font>*(p0 : REAL) : <a href="#type-RenderBuffer">RenderBuffer</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:RenderBuffer) <font color="#cc0033">putFloat</font>*(p0 : SHORTREAL) : <a href="#type-RenderBuffer">RenderBuffer</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:RenderBuffer) <font color="#cc0033">putInt</font>*(p0 : INTEGER;
+                                      p1 : INTEGER) : <a href="#type-RenderBuffer">RenderBuffer</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:RenderBuffer) <font color="#cc0033">putInt</font>*(p0 : INTEGER) : <a href="#type-RenderBuffer">RenderBuffer</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:RenderBuffer) <font color="#cc0033">putLong</font>*(p0 : LONGINT) : <a href="#type-RenderBuffer">RenderBuffer</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:RenderBuffer) <font color="#cc0033">putShort</font>*(p0 : SHORTINT) : <a href="#type-RenderBuffer">RenderBuffer</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:RenderBuffer) <font color="#cc0033">remaining</font>*() : INTEGER<b>,NEW</b>;
+<a name="meths-RenderQueue"></a>
+<b>PROCEDURE </b>(self:RenderQueue) <font color="#cc0033">addReference</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:RenderQueue) <font color="#cc0033">ensureAlignment</font>*(p0 : INTEGER)<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:RenderQueue) <font color="#cc0033">ensureCapacity</font>*(p0 : INTEGER)<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:RenderQueue) <font color="#cc0033">ensureCapacityAndAlignment</font>*(p0 : INTEGER;
+                                                         p1 : INTEGER)<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:RenderQueue) <font color="#cc0033">flushAndInvokeNow</font>*(p0 : <a href="java_lang.html#type-Runnable">java_lang.Runnable</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RenderQueue) <font color="#cc0033">flushNow</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RenderQueue) <font color="#cc0033">flushNow</font>*(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RenderQueue) <font color="#cc0033">getBuffer</font>*() : <a href="#type-RenderBuffer">RenderBuffer</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:RenderQueue) <font color="#cc0033">lock</font>*()<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:RenderQueue) <font color="#cc0033">tryLock</font>*() : BOOLEAN<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:RenderQueue) <font color="#cc0033">unlock</font>*()<b>,NEW</b>;
+<a name="meths-ShapeDrawPipe"></a>
+<b>PROCEDURE </b>(self:ShapeDrawPipe) <font color="#cc0033">draw</font>*(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                     p1 : <a href="java_awt.html#type-Shape">java_awt.Shape</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ShapeDrawPipe) <font color="#cc0033">fill</font>*(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                     p1 : <a href="java_awt.html#type-Shape">java_awt.Shape</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-ShapeSpanIterator"></a>
+<b>PROCEDURE </b>(self:ShapeSpanIterator) <font color="#cc0033">addSegment</font>*(    p0 : INTEGER;
+                                               IN  p1 : <b>ARRAY </b><b>OF </b>SHORTREAL)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ShapeSpanIterator) <font color="#cc0033">appendCubic</font>*(p0 : SHORTREAL;
+                                                p1 : SHORTREAL;
+                                                p2 : SHORTREAL;
+                                                p3 : SHORTREAL;
+                                                p4 : SHORTREAL;
+                                                p5 : SHORTREAL)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ShapeSpanIterator) <font color="#cc0033">appendLine</font>*(p0 : SHORTREAL;
+                                               p1 : SHORTREAL)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ShapeSpanIterator) <font color="#cc0033">appendPath</font>*(p0 : <a href="java_awt_geom.html#type-PathIterator">java_awt_geom.PathIterator</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ShapeSpanIterator) <font color="#cc0033">appendPoly</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>INTEGER;
+                                               IN  p1 : <b>ARRAY </b><b>OF </b>INTEGER;
+                                                   p2 : INTEGER;
+                                                   p3 : INTEGER;
+                                                   p4 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ShapeSpanIterator) <font color="#cc0033">appendQuadratic</font>*(p0 : SHORTREAL;
+                                                    p1 : SHORTREAL;
+                                                    p2 : SHORTREAL;
+                                                    p3 : SHORTREAL)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ShapeSpanIterator) <font color="#cc0033">beginPath</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ShapeSpanIterator) <font color="#cc0033">beginSubpath</font>*(p0 : SHORTREAL;
+                                                 p1 : SHORTREAL)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ShapeSpanIterator) <font color="#cc0033">closedSubpath</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ShapeSpanIterator) <font color="#cc0033">dispose</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ShapeSpanIterator) <font color="#cc0033">endPath</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ShapeSpanIterator) <font color="#cc0033">getConsumer</font>*() : <a href="sun_dc_path.html#type-PathConsumer">sun_dc_path.PathConsumer</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ShapeSpanIterator) <font color="#cc0033">getCPathConsumer</font>*() : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ShapeSpanIterator) <font color="#cc0033">getNativeIterator</font>*() : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ShapeSpanIterator) <font color="#cc0033">getPathBox</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ShapeSpanIterator) <font color="#cc0033">intersectClipBox</font>*(p0 : INTEGER;
+                                                     p1 : INTEGER;
+                                                     p2 : INTEGER;
+                                                     p3 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ShapeSpanIterator) <font color="#cc0033">nextSpan</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>INTEGER) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ShapeSpanIterator) <font color="#cc0033">setOutputArea</font>*(p0 : <a href="java_awt.html#type-Rectangle">java_awt.Rectangle</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ShapeSpanIterator) <font color="#cc0033">setOutputArea</font>*(p0 : <a href="#type-Region">Region</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ShapeSpanIterator) <font color="#cc0033">setOutputAreaXYWH</font>*(p0 : INTEGER;
+                                                      p1 : INTEGER;
+                                                      p2 : INTEGER;
+                                                      p3 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ShapeSpanIterator) <font color="#cc0033">setOutputAreaXYXY</font>*(p0 : INTEGER;
+                                                      p1 : INTEGER;
+                                                      p2 : INTEGER;
+                                                      p3 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ShapeSpanIterator) <font color="#cc0033">setRule</font>*(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ShapeSpanIterator) <font color="#cc0033">skipDownTo</font>*(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ShapeSpanIterator) <font color="#cc0033">useProxy</font>*(p0 : <a href="sun_dc_path.html#type-FastPathProducer">sun_dc_path.FastPathProducer</a>)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-SolidTextRenderer"></a>
+<b>PROCEDURE </b>(self:SolidTextRenderer) <font color="#cc0033">drawGlyphList</font>!(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                                  p1 : <a href="sun_font.html#type-GlyphList">sun_font.GlyphList</a>)<b>,EXTENSIBLE</b>;
+<a name="meths-SpanClipRenderer"></a>
+<b>PROCEDURE </b>(self:SpanClipRenderer) <font color="#cc0033">endSequence</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SpanClipRenderer) <font color="#cc0033">eraseTile</font>*(    p0 : <a href="#type-RegionIterator">RegionIterator</a>;
+                                             IN  p1 : <b>ARRAY </b><b>OF </b>BYTE;
+                                                 p2 : INTEGER;
+                                                 p3 : INTEGER;
+                                             IN  p4 : <b>ARRAY </b><b>OF </b>INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SpanClipRenderer) <font color="#cc0033">fillTile</font>*(    p0 : <a href="#type-RegionIterator">RegionIterator</a>;
+                                            IN  p1 : <b>ARRAY </b><b>OF </b>BYTE;
+                                                p2 : INTEGER;
+                                                p3 : INTEGER;
+                                            IN  p4 : <b>ARRAY </b><b>OF </b>INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SpanClipRenderer) <font color="#cc0033">needTile</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                            p1 : INTEGER;
+                                            p2 : INTEGER;
+                                            p3 : INTEGER;
+                                            p4 : INTEGER) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SpanClipRenderer) <font color="#cc0033">renderPathTile</font>*(    p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                  IN  p1 : <b>ARRAY </b><b>OF </b>BYTE;
+                                                      p2 : INTEGER;
+                                                      p3 : INTEGER;
+                                                      p4 : INTEGER;
+                                                      p5 : INTEGER;
+                                                      p6 : INTEGER;
+                                                      p7 : INTEGER;
+                                                      p8 : <a href="#type-ShapeSpanIterator">ShapeSpanIterator</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SpanClipRenderer) <font color="#cc0033">renderPathTile</font>*(    p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                  IN  p1 : <b>ARRAY </b><b>OF </b>BYTE;
+                                                      p2 : INTEGER;
+                                                      p3 : INTEGER;
+                                                      p4 : INTEGER;
+                                                      p5 : INTEGER;
+                                                      p6 : INTEGER;
+                                                      p7 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SpanClipRenderer) <font color="#cc0033">skipTile</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                            p1 : INTEGER;
+                                            p2 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SpanClipRenderer) <font color="#cc0033">startSequence</font>*(    p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                                     p1 : <a href="java_awt.html#type-Shape">java_awt.Shape</a>;
+                                                     p2 : <a href="java_awt.html#type-Rectangle">java_awt.Rectangle</a>;
+                                                 IN  p3 : <b>ARRAY </b><b>OF </b>INTEGER) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-SpanIterator"></a>
+<b>PROCEDURE </b>(self:SpanIterator) <font color="#cc0033">getNativeIterator</font>*() : LONGINT<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SpanIterator) <font color="#cc0033">getPathBox</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>INTEGER)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SpanIterator) <font color="#cc0033">intersectClipBox</font>*(p0 : INTEGER;
+                                                p1 : INTEGER;
+                                                p2 : INTEGER;
+                                                p3 : INTEGER)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SpanIterator) <font color="#cc0033">nextSpan</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>INTEGER) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SpanIterator) <font color="#cc0033">skipDownTo</font>*(p0 : INTEGER)<b>,NEW,ABSTRACT</b>;
+<a name="meths-SpanShapeRenderer"></a>
+<b>PROCEDURE </b>(self:SpanShapeRenderer) <font color="#cc0033">draw</font>*(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                         p1 : <a href="java_awt.html#type-Shape">java_awt.Shape</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SpanShapeRenderer) <font color="#cc0033">endSequence</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SpanShapeRenderer) <font color="#cc0033">fill</font>*(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                         p1 : <a href="java_awt.html#type-Shape">java_awt.Shape</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SpanShapeRenderer) <font color="#cc0033">renderBox</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                              p1 : INTEGER;
+                                              p2 : INTEGER;
+                                              p3 : INTEGER;
+                                              p4 : INTEGER)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SpanShapeRenderer) <font color="#cc0033">renderRect</font>*(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                               p1 : <a href="java_awt_geom.html#type-Rectangle2D">java_awt_geom.Rectangle2D</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SpanShapeRenderer) <font color="#cc0033">renderSpans</font>*(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                                p1 : <a href="#type-Region">Region</a>;
+                                                p2 : <a href="java_awt.html#type-Shape">java_awt.Shape</a>;
+                                                p3 : <a href="#type-ShapeSpanIterator">ShapeSpanIterator</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SpanShapeRenderer) <font color="#cc0033">spanClipLoop</font>*(    p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                     p1 : <a href="#type-SpanIterator">SpanIterator</a>;
+                                                     p2 : <a href="#type-Region">Region</a>;
+                                                 IN  p3 : <b>ARRAY </b><b>OF </b>INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SpanShapeRenderer) <font color="#cc0033">startSequence</font>*(    p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                                      p1 : <a href="java_awt.html#type-Shape">java_awt.Shape</a>;
+                                                      p2 : <a href="java_awt.html#type-Rectangle">java_awt.Rectangle</a>;
+                                                  IN  p3 : <b>ARRAY </b><b>OF </b>INTEGER) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-SpanShapeRenderer$Composite"></a>
+<b>PROCEDURE </b>(self:SpanShapeRenderer$Composite) <font color="#cc0033">endSequence</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SpanShapeRenderer$Composite) <font color="#cc0033">renderBox</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                        p1 : INTEGER;
+                                                        p2 : INTEGER;
+                                                        p3 : INTEGER;
+                                                        p4 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SpanShapeRenderer$Composite) <font color="#cc0033">startSequence</font>*(    p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                                                p1 : <a href="java_awt.html#type-Shape">java_awt.Shape</a>;
+                                                                p2 : <a href="java_awt.html#type-Rectangle">java_awt.Rectangle</a>;
+                                                            IN  p3 : <b>ARRAY </b><b>OF </b>INTEGER) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,EXTENSIBLE</b>;
+<a name="meths-SpanShapeRenderer$Simple"></a>
+<b>PROCEDURE </b>(self:SpanShapeRenderer$Simple) <font color="#cc0033">endSequence</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SpanShapeRenderer$Simple) <font color="#cc0033">renderBox</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                     p1 : INTEGER;
+                                                     p2 : INTEGER;
+                                                     p3 : INTEGER;
+                                                     p4 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SpanShapeRenderer$Simple) <font color="#cc0033">startSequence</font>*(    p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                                             p1 : <a href="java_awt.html#type-Shape">java_awt.Shape</a>;
+                                                             p2 : <a href="java_awt.html#type-Rectangle">java_awt.Rectangle</a>;
+                                                         IN  p3 : <b>ARRAY </b><b>OF </b>INTEGER) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,EXTENSIBLE</b>;
+<a name="meths-TextPipe"></a>
+<b>PROCEDURE </b>(self:TextPipe) <font color="#cc0033">drawChars</font>*(    p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                     IN  p1 : <b>ARRAY </b><b>OF </b>CHAR;
+                                         p2 : INTEGER;
+                                         p3 : INTEGER;
+                                         p4 : INTEGER;
+                                         p5 : INTEGER)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:TextPipe) <font color="#cc0033">drawGlyphVector</font>*(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                           p1 : <a href="java_awt_font.html#type-GlyphVector">java_awt_font.GlyphVector</a>;
+                                           p2 : SHORTREAL;
+                                           p3 : SHORTREAL)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:TextPipe) <font color="#cc0033">drawString</font>*(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                      p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                      p2 : REAL;
+                                      p3 : REAL)<b>,NEW,ABSTRACT</b>;
+<a name="meths-TextRenderer"></a>
+<b>PROCEDURE </b>(self:TextRenderer) <font color="#cc0033">drawGlyphList</font>!(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                             p1 : <a href="sun_font.html#type-GlyphList">sun_font.GlyphList</a>)<b>,EXTENSIBLE</b>;
+<a name="meths-ValidatePipe"></a>
+<b>PROCEDURE </b>(self:ValidatePipe) <font color="#cc0033">copyImage</font>*(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                         p1 : <a href="java_awt.html#type-Image">java_awt.Image</a>;
+                                         p2 : INTEGER;
+                                         p3 : INTEGER;
+                                         p4 : <a href="java_awt.html#type-Color">java_awt.Color</a>;
+                                         p5 : <a href="java_awt_image.html#type-ImageObserver">java_awt_image.ImageObserver</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ValidatePipe) <font color="#cc0033">copyImage</font>*(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                         p1 : <a href="java_awt.html#type-Image">java_awt.Image</a>;
+                                         p2 : INTEGER;
+                                         p3 : INTEGER;
+                                         p4 : INTEGER;
+                                         p5 : INTEGER;
+                                         p6 : INTEGER;
+                                         p7 : INTEGER;
+                                         p8 : <a href="java_awt.html#type-Color">java_awt.Color</a>;
+                                         p9 : <a href="java_awt_image.html#type-ImageObserver">java_awt_image.ImageObserver</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ValidatePipe) <font color="#cc0033">draw</font>*(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                    p1 : <a href="java_awt.html#type-Shape">java_awt.Shape</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ValidatePipe) <font color="#cc0033">drawArc</font>*(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                       p1 : INTEGER;
+                                       p2 : INTEGER;
+                                       p3 : INTEGER;
+                                       p4 : INTEGER;
+                                       p5 : INTEGER;
+                                       p6 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ValidatePipe) <font color="#cc0033">drawChars</font>*(    p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                         IN  p1 : <b>ARRAY </b><b>OF </b>CHAR;
+                                             p2 : INTEGER;
+                                             p3 : INTEGER;
+                                             p4 : INTEGER;
+                                             p5 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ValidatePipe) <font color="#cc0033">drawGlyphVector</font>*(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                               p1 : <a href="java_awt_font.html#type-GlyphVector">java_awt_font.GlyphVector</a>;
+                                               p2 : SHORTREAL;
+                                               p3 : SHORTREAL)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ValidatePipe) <font color="#cc0033">drawLine</font>*(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                        p1 : INTEGER;
+                                        p2 : INTEGER;
+                                        p3 : INTEGER;
+                                        p4 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ValidatePipe) <font color="#cc0033">drawOval</font>*(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                        p1 : INTEGER;
+                                        p2 : INTEGER;
+                                        p3 : INTEGER;
+                                        p4 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ValidatePipe) <font color="#cc0033">drawPolygon</font>*(    p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                           IN  p1 : <b>ARRAY </b><b>OF </b>INTEGER;
+                                           IN  p2 : <b>ARRAY </b><b>OF </b>INTEGER;
+                                               p3 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ValidatePipe) <font color="#cc0033">drawPolyline</font>*(    p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                            IN  p1 : <b>ARRAY </b><b>OF </b>INTEGER;
+                                            IN  p2 : <b>ARRAY </b><b>OF </b>INTEGER;
+                                                p3 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ValidatePipe) <font color="#cc0033">drawRect</font>*(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                        p1 : INTEGER;
+                                        p2 : INTEGER;
+                                        p3 : INTEGER;
+                                        p4 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ValidatePipe) <font color="#cc0033">drawRoundRect</font>*(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                             p1 : INTEGER;
+                                             p2 : INTEGER;
+                                             p3 : INTEGER;
+                                             p4 : INTEGER;
+                                             p5 : INTEGER;
+                                             p6 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ValidatePipe) <font color="#cc0033">drawString</font>*(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                          p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                          p2 : REAL;
+                                          p3 : REAL)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ValidatePipe) <font color="#cc0033">fill</font>*(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                    p1 : <a href="java_awt.html#type-Shape">java_awt.Shape</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ValidatePipe) <font color="#cc0033">fillArc</font>*(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                       p1 : INTEGER;
+                                       p2 : INTEGER;
+                                       p3 : INTEGER;
+                                       p4 : INTEGER;
+                                       p5 : INTEGER;
+                                       p6 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ValidatePipe) <font color="#cc0033">fillOval</font>*(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                        p1 : INTEGER;
+                                        p2 : INTEGER;
+                                        p3 : INTEGER;
+                                        p4 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ValidatePipe) <font color="#cc0033">fillPolygon</font>*(    p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                           IN  p1 : <b>ARRAY </b><b>OF </b>INTEGER;
+                                           IN  p2 : <b>ARRAY </b><b>OF </b>INTEGER;
+                                               p3 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ValidatePipe) <font color="#cc0033">fillRect</font>*(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                        p1 : INTEGER;
+                                        p2 : INTEGER;
+                                        p3 : INTEGER;
+                                        p4 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ValidatePipe) <font color="#cc0033">fillRoundRect</font>*(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                             p1 : INTEGER;
+                                             p2 : INTEGER;
+                                             p3 : INTEGER;
+                                             p4 : INTEGER;
+                                             p5 : INTEGER;
+                                             p6 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ValidatePipe) <font color="#cc0033">scaleImage</font>*(p0  : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                          p1  : <a href="java_awt.html#type-Image">java_awt.Image</a>;
+                                          p2  : INTEGER;
+                                          p3  : INTEGER;
+                                          p4  : INTEGER;
+                                          p5  : INTEGER;
+                                          p6  : INTEGER;
+                                          p7  : INTEGER;
+                                          p8  : INTEGER;
+                                          p9  : INTEGER;
+                                          p10 : <a href="java_awt.html#type-Color">java_awt.Color</a>;
+                                          p11 : <a href="java_awt_image.html#type-ImageObserver">java_awt_image.ImageObserver</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ValidatePipe) <font color="#cc0033">scaleImage</font>*(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                          p1 : <a href="java_awt.html#type-Image">java_awt.Image</a>;
+                                          p2 : INTEGER;
+                                          p3 : INTEGER;
+                                          p4 : INTEGER;
+                                          p5 : INTEGER;
+                                          p6 : <a href="java_awt.html#type-Color">java_awt.Color</a>;
+                                          p7 : <a href="java_awt_image.html#type-ImageObserver">java_awt_image.ImageObserver</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ValidatePipe) <font color="#cc0033">transformImage</font>*(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                              p1 : <a href="java_awt_image.html#type-BufferedImage">java_awt_image.BufferedImage</a>;
+                                              p2 : <a href="java_awt_image.html#type-BufferedImageOp">java_awt_image.BufferedImageOp</a>;
+                                              p3 : INTEGER;
+                                              p4 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ValidatePipe) <font color="#cc0033">transformImage</font>*(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>;
+                                              p1 : <a href="java_awt.html#type-Image">java_awt.Image</a>;
+                                              p2 : <a href="java_awt_geom.html#type-AffineTransform">java_awt_geom.AffineTransform</a>;
+                                              p3 : <a href="java_awt_image.html#type-ImageObserver">java_awt_image.ImageObserver</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ValidatePipe) <font color="#cc0033">validate</font>*(p0 : <a href="sun_java2d.html#type-SunGraphics2D">sun_java2d.SunGraphics2D</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>END </b><font color="#cc0033">sun_java2d_pipe</font>.
+</font></pre></hr></body></html>

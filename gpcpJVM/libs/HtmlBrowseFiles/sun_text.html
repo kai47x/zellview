@@ -1,0 +1,151 @@
+<html><head><title>sun_text</title></head>
+<body bgcolor="white">
+<hr><pre>
+<b>FOREIGN MODULE </b><font color="#cc0033">sun_text</font>;
+
+<b>IMPORT</b>
+    <a href="java_text.html">java_text</a> := "java.text",
+    <a href="java_lang.html">java_lang</a> := "java.lang",
+    <a href="sun_text_normalizer.html">sun_text_normalizer</a> := "sun.text.normalizer";
+
+<b>TYPE</b>
+
+  <a name="type-CodePointIterator"></a><font color="#cc0033">CodePointIterator</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-CodePointIterator"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                       <b>STATIC</b>
+                         <font color="#cc0033">DONE</font>*   = -1;
+                         <b>PROCEDURE </b><font color="#cc0033">create</font>*(p0 : <a href="java_lang.html#type-CharSequence">java_lang.CharSequence</a>) : <a href="#type-CodePointIterator">CodePointIterator</a>;
+                         <b>PROCEDURE </b><font color="#cc0033">create</font>*(p0 : <a href="java_text.html#type-CharacterIterator">java_text.CharacterIterator</a>) : <a href="#type-CodePointIterator">CodePointIterator</a>;
+                         <b>PROCEDURE </b><font color="#cc0033">create</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>CHAR;
+                                               p1 : INTEGER;
+                                               p2 : INTEGER) : <a href="#type-CodePointIterator">CodePointIterator</a>;
+                         <b>PROCEDURE </b><font color="#cc0033">create</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>CHAR) : <a href="#type-CodePointIterator">CodePointIterator</a>;
+                         <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CodePointIterator">CodePointIterator</a><b>,CONSTRUCTOR</b>;
+                       <b>END</b>;
+
+  <a name="type-CollatorUtilities"></a><font color="#cc0033">CollatorUtilities</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                       <b>STATIC</b>
+                         <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CollatorUtilities">CollatorUtilities</a><b>,CONSTRUCTOR</b>;
+                         <b>PROCEDURE </b><font color="#cc0033">toLegacyMode</font>*(p0 : <a href="sun_text_normalizer.html#type-NormalizerBase$Mode">sun_text_normalizer.NormalizerBase$Mode</a>) : INTEGER;
+                         <b>PROCEDURE </b><font color="#cc0033">toNormalizerMode</font>*(p0 : INTEGER) : <a href="sun_text_normalizer.html#type-NormalizerBase$Mode">sun_text_normalizer.NormalizerBase$Mode</a>;
+                       <b>END</b>;
+
+  <a name="type-CompactByteArray"></a><font color="#cc0033">CompactByteArray</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_lang.html#type-Cloneable">java_lang.Cloneable</a>)    <a href="#meths-CompactByteArray"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                      <b>STATIC</b>
+                        <font color="#cc0033">UNICODECOUNT</font>* = 65536;
+                        <b>PROCEDURE </b><font color="#cc0033">Init</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>SHORTINT;
+                                        IN  p1 : <b>ARRAY </b><b>OF </b>BYTE) : <a href="#type-CompactByteArray">CompactByteArray</a><b>,CONSTRUCTOR</b>;
+                        <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : BYTE) : <a href="#type-CompactByteArray">CompactByteArray</a><b>,CONSTRUCTOR</b>;
+                      <b>END</b>;
+
+  <a name="type-ComposedCharIter"></a><font color="#cc0033">ComposedCharIter</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-ComposedCharIter"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                      <b>STATIC</b>
+                        <font color="#cc0033">DONE</font>* = -1;
+                        <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-ComposedCharIter">ComposedCharIter</a><b>,CONSTRUCTOR</b>;
+                      <b>END</b>;
+
+  <a name="type-IntHashtable"></a><font color="#cc0033">IntHashtable</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-IntHashtable"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                  <b>STATIC</b>
+                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER) : <a href="#type-IntHashtable">IntHashtable</a><b>,CONSTRUCTOR</b>;
+                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-IntHashtable">IntHashtable</a><b>,CONSTRUCTOR</b>;
+                  <b>END</b>;
+
+  <a name="type-Normalizer"></a><font color="#cc0033">Normalizer</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                <b>STATIC</b>
+                  <font color="#cc0033">UNICODE_3_2</font>*       = 262432;
+                  <b>PROCEDURE </b><font color="#cc0033">getCombiningClass</font>*(p0 : INTEGER) : INTEGER;
+                  <b>PROCEDURE </b><font color="#cc0033">isNormalized</font>*(p0 : <a href="java_lang.html#type-CharSequence">java_lang.CharSequence</a>;
+                                          p1 : <a href="java_text.html#type-Normalizer$Form">java_text.Normalizer$Form</a>;
+                                          p2 : INTEGER) : BOOLEAN;
+                  <b>PROCEDURE </b><font color="#cc0033">normalize</font>*(p0 : <a href="java_lang.html#type-CharSequence">java_lang.CharSequence</a>;
+                                       p1 : <a href="java_text.html#type-Normalizer$Form">java_text.Normalizer$Form</a>;
+                                       p2 : INTEGER) : <a href="java_lang.html#type-String">java_lang.String</a>;
+                <b>END</b>;
+
+  <a name="type-SupplementaryCharacterData"></a><font color="#cc0033">SupplementaryCharacterData</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_lang.html#type-Cloneable">java_lang.Cloneable</a>)    <a href="#meths-SupplementaryCharacterData"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                                <b>STATIC</b>
+                                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>INTEGER) : <a href="#type-SupplementaryCharacterData">SupplementaryCharacterData</a><b>,CONSTRUCTOR</b>;
+                                <b>END</b>;
+
+  <a name="type-UCompactIntArray"></a><font color="#cc0033">UCompactIntArray</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_lang.html#type-Cloneable">java_lang.Cloneable</a>)    <a href="#meths-UCompactIntArray"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                      <b>STATIC</b>
+                        <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER) : <a href="#type-UCompactIntArray">UCompactIntArray</a><b>,CONSTRUCTOR</b>;
+                        <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-UCompactIntArray">UCompactIntArray</a><b>,CONSTRUCTOR</b>;
+                      <b>END</b>;
+
+
+
+<a name="meths-CodePointIterator"></a>
+<b>PROCEDURE </b>(self:CodePointIterator) <font color="#cc0033">charIndex</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CodePointIterator) <font color="#cc0033">next</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CodePointIterator) <font color="#cc0033">prev</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CodePointIterator) <font color="#cc0033">setToLimit</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CodePointIterator) <font color="#cc0033">setToStart</font>*()<b>,NEW,ABSTRACT</b>;
+<a name="meths-CompactByteArray"></a>
+<b>PROCEDURE </b>(self:CompactByteArray) <font color="#cc0033">clone</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CompactByteArray) <font color="#cc0033">compact</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CompactByteArray) <font color="#cc0033">elementAt</font>*(p0 : CHAR) : BYTE<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CompactByteArray) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CompactByteArray) <font color="#cc0033">getIndexArray</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>SHORTINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CompactByteArray) <font color="#cc0033">getStringArray</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>BYTE<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CompactByteArray) <font color="#cc0033">hashCode</font>*() : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CompactByteArray) <font color="#cc0033">setElementAt</font>*(p0 : CHAR;
+                                                p1 : BYTE)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CompactByteArray) <font color="#cc0033">setElementAt</font>*(p0 : CHAR;
+                                                p1 : CHAR;
+                                                p2 : BYTE)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-ComposedCharIter"></a>
+<b>PROCEDURE </b>(self:ComposedCharIter) <font color="#cc0033">decomposition</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ComposedCharIter) <font color="#cc0033">next</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-IntHashtable"></a>
+<b>PROCEDURE </b>(self:IntHashtable) <font color="#cc0033">clone</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IntHashtable) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IntHashtable) <font color="#cc0033">get</font>*(p0 : INTEGER) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IntHashtable) <font color="#cc0033">getDefaultValue</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IntHashtable) <font color="#cc0033">hashCode</font>*() : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IntHashtable) <font color="#cc0033">isEmpty</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IntHashtable) <font color="#cc0033">put</font>*(p0 : INTEGER;
+                                   p1 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IntHashtable) <font color="#cc0033">putInternal</font>*(p0 : INTEGER;
+                                           p1 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IntHashtable) <font color="#cc0033">remove</font>*(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IntHashtable) <font color="#cc0033">setDefaultValue</font>*(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IntHashtable) <font color="#cc0033">size</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-SupplementaryCharacterData"></a>
+<b>PROCEDURE </b>(self:SupplementaryCharacterData) <font color="#cc0033">getArray</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SupplementaryCharacterData) <font color="#cc0033">getValue</font>*(p0 : INTEGER) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-UCompactIntArray"></a>
+<b>PROCEDURE </b>(self:UCompactIntArray) <font color="#cc0033">compact</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:UCompactIntArray) <font color="#cc0033">elementAt</font>*(p0 : INTEGER) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:UCompactIntArray) <font color="#cc0033">getKSize</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:UCompactIntArray) <font color="#cc0033">setElementAt</font>*(p0 : INTEGER;
+                                                p1 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>END </b><font color="#cc0033">sun_text</font>.
+</font></pre></hr></body></html>

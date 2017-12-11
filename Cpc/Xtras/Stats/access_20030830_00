@@ -1,0 +1,19 @@
+format.access="%Ses->client.ip%  %Req->headers.referer% -  %Req->vars.auth-user% [%SYSDATE%] \"%Req->reqpb.clf-request%\" %Req->srvhdrs.clf-status% %Req->srvhdrs.content-length% %Req->headers.host%"
+67.121.4.116 http://search.netscape.com/nscp_results.adp?query=Helpdesk.pps%20zinn - [30/Aug/2003:00:25:55 +0200] "GET / HTTP/1.1" 200 84555 www.zinnamturm.de
+67.121.4.116 - - [30/Aug/2003:00:25:55 +0200] "GET /favicon.ico HTTP/1.1" 200 1406 www.zinnamturm.de
+67.121.4.116 http://www.zinnamturm.de/ - [30/Aug/2003:00:25:55 +0200] "GET /mail99.gif HTTP/1.1" 200 4196 www.zinnamturm.de
+67.121.4.116 http://www.zinnamturm.de/ - [30/Aug/2003:00:25:55 +0200] "GET /bg3.gif HTTP/1.1" 200 16276 www.zinnamturm.de
+67.121.4.116 http://www.zinnamturm.de/ - [30/Aug/2003:00:27:16 +0200] "GET /Helpdesk.pps HTTP/1.1" 200 430592 www.zinnamturm.de
+67.127.252.11 - - [30/Aug/2003:00:48:43 +0200] "GET /cgi-bin/formmail/FormMail.cgi HTTP/1.1" 302 0 www.zinnamturm.de
+67.127.252.11 - - [30/Aug/2003:00:48:43 +0200] "GET /cgi-bin/formmail/FormMail.pl HTTP/1.1" 302 0 www.zinnamturm.de
+67.127.252.11 - - [30/Aug/2003:01:00:30 +0200] "GET /cgi-bin/formmail/FormMail.pl HTTP/1.1" 302 0 www.zinnamturm.de
+67.127.252.11 - - [30/Aug/2003:01:00:34 +0200] "GET /cgi-bin/formmail/FormMail.cgi HTTP/1.1" 302 0 www.zinnamturm.de
+62.227.60.224 http://brisbane.t-online.de/fast-cgi/tsc?PortalLanguage=de&UserLanguage=de&device=html&lang=primary&lang=primary&language=de&mandant=toi&num=10&q=uk9&start=0&tpc=service&tsc_frames=1&type=all&ocr=no&context=internet-tab-service&pe=false&overture_start=0&overture_num=10&www_start=0&www_num=10 - [30/Aug/2003:01:27:18 +0200] "GET /Filter.txt HTTP/1.1" 403 142 www.zinnamturm.de
+200.168.1.77 http://www.zinnamturm.de/ - [30/Aug/2003:01:34:35 +0200] "GET /bg3.gif HTTP/1.1" 200 16276 www.zinnamturm.de
+200.168.1.77 http://www.zinnamturm.de/ - [30/Aug/2003:01:34:37 +0200] "GET /mail99.gif HTTP/1.1" 200 4196 www.zinnamturm.de
+200.168.1.77 http://www.google.com/search?q=component+pascal&hl=en&lr=&ie=UTF-8&safe=off&start=20&sa=N - [30/Aug/2003:01:34:40 +0200] "GET / HTTP/1.1" 200 84555 www.zinnamturm.de
+64.68.82.14 - - [30/Aug/2003:06:10:35 +0200] "GET / HTTP/1.0" 200 84555 www.zinnamturm.de
+67.127.252.11 - - [30/Aug/2003:06:44:00 +0200] "GET /cgi-bin/formmail/FormMail.pl HTTP/1.1" 302 0 www.zinnamturm.de
+67.127.252.11 - - [30/Aug/2003:06:44:00 +0200] "GET /cgi-bin/formmail/FormMail.pl HTTP/1.1" 302 0 www.zinnamturm.de
+67.127.252.11 - - [30/Aug/2003:06:44:00 +0200] "GET /cgi-bin/formmail/FormMail.cgi HTTP/1.1" 302 0 www.zinnamturm.de
+67.127.252.11 - - [30/Aug/2003:06:44:03 +0200] "GET /cgi-bin/formmail/FormMail.cgi HTTP/1.1" 302 0 www.zinnamturm.de

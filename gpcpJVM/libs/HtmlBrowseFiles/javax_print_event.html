@@ -1,0 +1,104 @@
+<html><head><title>javax_print_event</title></head>
+<body bgcolor="white">
+<hr><pre>
+<b>FOREIGN MODULE </b><font color="#cc0033">javax_print_event</font>;
+
+<b>IMPORT</b>
+    <a href="java_lang.html">java_lang</a> := "java.lang",
+    <a href="java_util.html">java_util</a> := "java.util",
+    <a href="java_io.html">java_io</a> := "java.io",
+    <a href="javax_print_attribute.html">javax_print_attribute</a> := "javax.print.attribute",
+    <a href="javax_print.html">javax_print</a> := "javax.print";
+
+<b>TYPE</b>
+
+  <a name="type-PrintEvent"></a><font color="#cc0033">PrintEvent</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_util.html#type-EventObject">java_util.EventObject</a>)    <a href="#meths-PrintEvent"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                <b>STATIC</b>
+                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="#type-PrintEvent">PrintEvent</a><b>,CONSTRUCTOR</b>;
+                <b>END</b>;
+
+  <a name="type-PrintJobAdapter"></a><font color="#cc0033">PrintJobAdapter</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-PrintJobListener">PrintJobListener</a>)    <a href="#meths-PrintJobAdapter"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                     <b>STATIC</b>
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-PrintJobAdapter">PrintJobAdapter</a><b>,CONSTRUCTOR</b>;
+                     <b>END</b>;
+
+  <a name="type-PrintJobAttributeEvent"></a><font color="#cc0033">PrintJobAttributeEvent</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-PrintEvent">PrintEvent</a>)    <a href="#meths-PrintJobAttributeEvent"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                            <b>STATIC</b>
+                              <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="javax_print.html#type-DocPrintJob">javax_print.DocPrintJob</a>;
+                                              p1 : <a href="javax_print_attribute.html#type-PrintJobAttributeSet">javax_print_attribute.PrintJobAttributeSet</a>) : <a href="#type-PrintJobAttributeEvent">PrintJobAttributeEvent</a><b>,CONSTRUCTOR</b>;
+                            <b>END</b>;
+
+  <a name="type-PrintJobAttributeListener"></a><font color="#cc0033">PrintJobAttributeListener</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-PrintJobAttributeListener"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                               <b>END</b>;
+
+  <a name="type-PrintJobEvent"></a><font color="#cc0033">PrintJobEvent</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-PrintEvent">PrintEvent</a>)    <a href="#meths-PrintJobEvent"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                   <b>STATIC</b>
+                     <font color="#cc0033">DATA_TRANSFER_COMPLETE</font>* = 106;
+                     <font color="#cc0033">JOB_CANCELED</font>*           = 101;
+                     <font color="#cc0033">JOB_COMPLETE</font>*           = 102;
+                     <font color="#cc0033">JOB_FAILED</font>*             = 103;
+                     <font color="#cc0033">NO_MORE_EVENTS</font>*         = 105;
+                     <font color="#cc0033">REQUIRES_ATTENTION</font>*     = 104;
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="javax_print.html#type-DocPrintJob">javax_print.DocPrintJob</a>;
+                                     p1 : INTEGER) : <a href="#type-PrintJobEvent">PrintJobEvent</a><b>,CONSTRUCTOR</b>;
+                   <b>END</b>;
+
+  <a name="type-PrintJobListener"></a><font color="#cc0033">PrintJobListener</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-PrintJobListener"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                      <b>END</b>;
+
+  <a name="type-PrintServiceAttributeEvent"></a><font color="#cc0033">PrintServiceAttributeEvent</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-PrintEvent">PrintEvent</a>)    <a href="#meths-PrintServiceAttributeEvent"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                                <b>STATIC</b>
+                                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="javax_print.html#type-PrintService">javax_print.PrintService</a>;
+                                                  p1 : <a href="javax_print_attribute.html#type-PrintServiceAttributeSet">javax_print_attribute.PrintServiceAttributeSet</a>) : <a href="#type-PrintServiceAttributeEvent">PrintServiceAttributeEvent</a><b>,CONSTRUCTOR</b>;
+                                <b>END</b>;
+
+  <a name="type-PrintServiceAttributeListener"></a><font color="#cc0033">PrintServiceAttributeListener</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-PrintServiceAttributeListener"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                                   <b>END</b>;
+
+
+
+<a name="meths-PrintEvent"></a>
+<b>PROCEDURE </b>(self:PrintEvent) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,EXTENSIBLE</b>;
+<a name="meths-PrintJobAdapter"></a>
+<b>PROCEDURE </b>(self:PrintJobAdapter) <font color="#cc0033">printDataTransferCompleted</font>*(p0 : <a href="#type-PrintJobEvent">PrintJobEvent</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PrintJobAdapter) <font color="#cc0033">printJobCanceled</font>*(p0 : <a href="#type-PrintJobEvent">PrintJobEvent</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PrintJobAdapter) <font color="#cc0033">printJobCompleted</font>*(p0 : <a href="#type-PrintJobEvent">PrintJobEvent</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PrintJobAdapter) <font color="#cc0033">printJobFailed</font>*(p0 : <a href="#type-PrintJobEvent">PrintJobEvent</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PrintJobAdapter) <font color="#cc0033">printJobNoMoreEvents</font>*(p0 : <a href="#type-PrintJobEvent">PrintJobEvent</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PrintJobAdapter) <font color="#cc0033">printJobRequiresAttention</font>*(p0 : <a href="#type-PrintJobEvent">PrintJobEvent</a>)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-PrintJobAttributeEvent"></a>
+<b>PROCEDURE </b>(self:PrintJobAttributeEvent) <font color="#cc0033">getAttributes</font>*() : <a href="javax_print_attribute.html#type-PrintJobAttributeSet">javax_print_attribute.PrintJobAttributeSet</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PrintJobAttributeEvent) <font color="#cc0033">getPrintJob</font>*() : <a href="javax_print.html#type-DocPrintJob">javax_print.DocPrintJob</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-PrintJobAttributeListener"></a>
+<b>PROCEDURE </b>(self:PrintJobAttributeListener) <font color="#cc0033">attributeUpdate</font>*(p0 : <a href="#type-PrintJobAttributeEvent">PrintJobAttributeEvent</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-PrintJobEvent"></a>
+<b>PROCEDURE </b>(self:PrintJobEvent) <font color="#cc0033">getPrintEventType</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PrintJobEvent) <font color="#cc0033">getPrintJob</font>*() : <a href="javax_print.html#type-DocPrintJob">javax_print.DocPrintJob</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-PrintJobListener"></a>
+<b>PROCEDURE </b>(self:PrintJobListener) <font color="#cc0033">printDataTransferCompleted</font>*(p0 : <a href="#type-PrintJobEvent">PrintJobEvent</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:PrintJobListener) <font color="#cc0033">printJobCanceled</font>*(p0 : <a href="#type-PrintJobEvent">PrintJobEvent</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:PrintJobListener) <font color="#cc0033">printJobCompleted</font>*(p0 : <a href="#type-PrintJobEvent">PrintJobEvent</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:PrintJobListener) <font color="#cc0033">printJobFailed</font>*(p0 : <a href="#type-PrintJobEvent">PrintJobEvent</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:PrintJobListener) <font color="#cc0033">printJobNoMoreEvents</font>*(p0 : <a href="#type-PrintJobEvent">PrintJobEvent</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:PrintJobListener) <font color="#cc0033">printJobRequiresAttention</font>*(p0 : <a href="#type-PrintJobEvent">PrintJobEvent</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-PrintServiceAttributeEvent"></a>
+<b>PROCEDURE </b>(self:PrintServiceAttributeEvent) <font color="#cc0033">getAttributes</font>*() : <a href="javax_print_attribute.html#type-PrintServiceAttributeSet">javax_print_attribute.PrintServiceAttributeSet</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PrintServiceAttributeEvent) <font color="#cc0033">getPrintService</font>*() : <a href="javax_print.html#type-PrintService">javax_print.PrintService</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-PrintServiceAttributeListener"></a>
+<b>PROCEDURE </b>(self:PrintServiceAttributeListener) <font color="#cc0033">attributeUpdate</font>*(p0 : <a href="#type-PrintServiceAttributeEvent">PrintServiceAttributeEvent</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>END </b><font color="#cc0033">javax_print_event</font>.
+</font></pre></hr></body></html>

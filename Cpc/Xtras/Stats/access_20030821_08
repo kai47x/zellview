@@ -1,0 +1,21 @@
+format.access="%Ses->client.ip%  %Req->headers.referer% -  %Req->vars.auth-user% [%SYSDATE%] \"%Req->reqpb.clf-request%\" %Req->srvhdrs.clf-status% %Req->srvhdrs.content-length% %Req->headers.host%"
+64.68.82.14 - - [21/Aug/2003:08:28:20 +0200] "GET /CpcSpell.txt HTTP/1.0" 200 13984 www.zinnamturm.de
+64.68.82.28 - - [21/Aug/2003:08:28:20 +0200] "GET /Tabmult.txt HTTP/1.0" 200 57058 www.zinnamturm.de
+64.68.82.38 - - [21/Aug/2003:08:28:50 +0200] "GET /Media.txt HTTP/1.0" 200 60130 www.zinnamturm.de
+64.68.82.38 - - [21/Aug/2003:08:32:41 +0200] "GET /Wands.txt HTTP/1.0" 403 142 www.zinnamturm.de
+64.68.82.7 - - [21/Aug/2003:08:42:00 +0200] "GET /TboxPhoto.txt HTTP/1.0" 200 12808 www.zinnamturm.de
+64.68.82.14 - - [21/Aug/2003:08:54:39 +0200] "GET /TboxTimer.txt HTTP/1.0" 200 7935 www.zinnamturm.de
+64.68.82.170 - - [21/Aug/2003:09:16:43 +0200] "GET /Nav.txt HTTP/1.0" 200 165946 www.zinnamturm.de
+62.2.169.218 - - [21/Aug/2003:10:08:52 +0200] "GET / HTTP/1.0" 200 84552 www.zinnamturm.de
+212.135.173.243 - - [21/Aug/2003:10:42:51 +0200] "GET / HTTP/1.1" 304 - www.zinnamturm.de
+212.135.173.243 http://www.zinnamturm.de/ - [21/Aug/2003:10:42:51 +0200] "GET /mail99.gif HTTP/1.1" 304 - www.zinnamturm.de
+212.135.173.243 http://www.zinnamturm.de/ - [21/Aug/2003:10:42:51 +0200] "GET /bg3.gif HTTP/1.1" 304 - www.zinnamturm.de
+217.3.37.250 http://www.google.de/search?q=HMF+683+K4&btnG=Google+Suche&hl=de&ie=UTF-8&oe=UTF-8 - [21/Aug/2003:19:56:26 +0200] "GET /Info.txt HTTP/1.1" 200 127058 www.zinnamturm.de
+217.3.37.250 http://www.google.de/search?q=HMF+683+K4&btnG=Google+Suche&hl=de&ie=UTF-8&oe=UTF-8 - [21/Aug/2003:19:59:48 +0200] "GET /Opal.txt HTTP/1.1" 200 58013 www.zinnamturm.de
+68.76.85.202 - - [21/Aug/2003:22:27:16 +0200] "GET /bg3.gif HTTP/1.1" 304 - www.zinnamturm.de
+68.76.85.202 - - [21/Aug/2003:22:27:16 +0200] "GET /mail99.gif HTTP/1.1" 304 - www.zinnamturm.de
+68.76.85.202 - - [21/Aug/2003:22:27:16 +0200] "GET / HTTP/1.1" 200 84555 www.zinnamturm.de
+24.55.3.63 - - [21/Aug/2003:23:01:24 +0200] "GET /cgi-bin/formmail/FormMail.pl HTTP/1.1" 302 0 www.zinnamturm.de
+24.55.3.63 - - [21/Aug/2003:23:01:24 +0200] "GET /cgi-bin/formmail/FormMail.cgi HTTP/1.1" 302 0 www.zinnamturm.de
+24.55.3.63 - - [21/Aug/2003:23:06:18 +0200] "GET /cgi-bin/formmail/FormMail.cgi HTTP/1.1" 302 0 www.zinnamturm.de
+24.55.3.63 - - [21/Aug/2003:23:06:22 +0200] "GET /cgi-bin/formmail/FormMail.pl HTTP/1.1" 302 0 www.zinnamturm.de

@@ -1,0 +1,8 @@
+format.access="%Ses->client.ip%  %Req->headers.referer% -  %Req->vars.auth-user% [%SYSDATE%] \"%Req->reqpb.clf-request%\" %Req->srvhdrs.clf-status% %Req->srvhdrs.content-length% %Req->headers.host%"
+158.108.35.123 - - [08/Aug/2003:02:57:30 +0200] "GET /robots.txt HTTP/1.1" 404 2977 www.zinnamturm.de
+158.108.35.123 - - [08/Aug/2003:02:57:33 +0200] "GET / HTTP/1.1" 200 84552 www.zinnamturm.de
+211.81.49.54 http://www.zinnamturm.de/ - [08/Aug/2003:04:13:37 +0200] "GET /bg3.gif HTTP/1.1" 200 16276 www.zinnamturm.de
+211.81.49.54 http://www.google.com/search?q=water+waves+source+code+download+opengl&hl=zh-CN&lr=&ie=UTF-8&oe=UTF-8&start=50&sa=N - [08/Aug/2003:04:13:37 +0200] "GET / HTTP/1.1" 200 84552 www.zinnamturm.de
+211.81.49.54 http://www.zinnamturm.de/ - [08/Aug/2003:04:13:37 +0200] "GET /mail99.gif HTTP/1.1" 200 4196 www.zinnamturm.de
+62.225.53.211 - - [08/Aug/2003:05:54:33 +0200] "GET / HTTP/1.0" 200 84552 www.zinnamturm.de
+62.3.32.55 http://www.google.com/search?q=q8se&hl=ar&lr=&ie=UTF-8&oe=UTF-8&start=10&sa=N - [08/Aug/2003:07:08:20 +0200] "GET /Opal.txt HTTP/1.1" 200 58013 www.zinnamturm.de

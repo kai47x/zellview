@@ -1,0 +1,423 @@
+<html><head><title>java_util_concurrent_atomic</title></head>
+<body bgcolor="white">
+<hr><pre>
+<b>FOREIGN MODULE </b><font color="#cc0033">java_util_concurrent_atomic</font>;
+
+<b>IMPORT</b>
+    <a href="java_io.html">java_io</a> := "java.io",
+    <a href="sun_misc.html">sun_misc</a> := "sun.misc",
+    <a href="java_lang.html">java_lang</a> := "java.lang";
+
+<b>TYPE</b>
+
+  <a name="type-AtomicBoolean"></a><font color="#cc0033">AtomicBoolean</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_io.html#type-Serializable">java_io.Serializable</a>)    <a href="#meths-AtomicBoolean"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                   <b>STATIC</b>
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-AtomicBoolean">AtomicBoolean</a><b>,CONSTRUCTOR</b>;
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : BOOLEAN) : <a href="#type-AtomicBoolean">AtomicBoolean</a><b>,CONSTRUCTOR</b>;
+                   <b>END</b>;
+
+  <a name="type-AtomicInteger"></a><font color="#cc0033">AtomicInteger</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Number">java_lang.Number</a> + <a href="java_io.html#type-Serializable">java_io.Serializable</a>)    <a href="#meths-AtomicInteger"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                   <b>STATIC</b>
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-AtomicInteger">AtomicInteger</a><b>,CONSTRUCTOR</b>;
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER) : <a href="#type-AtomicInteger">AtomicInteger</a><b>,CONSTRUCTOR</b>;
+                   <b>END</b>;
+
+  <a name="type-AtomicIntegerArray"></a><font color="#cc0033">AtomicIntegerArray</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_io.html#type-Serializable">java_io.Serializable</a>)    <a href="#meths-AtomicIntegerArray"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                        <b>STATIC</b>
+                          <b>PROCEDURE </b><font color="#cc0033">Init</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>INTEGER) : <a href="#type-AtomicIntegerArray">AtomicIntegerArray</a><b>,CONSTRUCTOR</b>;
+                          <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER) : <a href="#type-AtomicIntegerArray">AtomicIntegerArray</a><b>,CONSTRUCTOR</b>;
+                        <b>END</b>;
+
+  <a name="type-AtomicIntegerFieldUpdater"></a><font color="#cc0033">AtomicIntegerFieldUpdater</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-AtomicIntegerFieldUpdater"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                               <b>STATIC</b>
+                                 <b>PROCEDURE </b><font color="#cc0033">Init</font>!() : <a href="#type-AtomicIntegerFieldUpdater">AtomicIntegerFieldUpdater</a><b>,CONSTRUCTOR</b>;
+                                 <b>PROCEDURE </b><font color="#cc0033">newUpdater</font>*(p0 : <a href="java_lang.html#type-Class">java_lang.Class</a>;
+                                                       p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-AtomicIntegerFieldUpdater">AtomicIntegerFieldUpdater</a>;
+                               <b>END</b>;
+
+  <a name="type-AtomicLong"></a><font color="#cc0033">AtomicLong</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Number">java_lang.Number</a> + <a href="java_io.html#type-Serializable">java_io.Serializable</a>)    <a href="#meths-AtomicLong"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                <b>STATIC</b>
+                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-AtomicLong">AtomicLong</a><b>,CONSTRUCTOR</b>;
+                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : LONGINT) : <a href="#type-AtomicLong">AtomicLong</a><b>,CONSTRUCTOR</b>;
+                <b>END</b>;
+
+  <a name="type-AtomicLongArray"></a><font color="#cc0033">AtomicLongArray</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_io.html#type-Serializable">java_io.Serializable</a>)    <a href="#meths-AtomicLongArray"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                     <b>STATIC</b>
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>LONGINT) : <a href="#type-AtomicLongArray">AtomicLongArray</a><b>,CONSTRUCTOR</b>;
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER) : <a href="#type-AtomicLongArray">AtomicLongArray</a><b>,CONSTRUCTOR</b>;
+                     <b>END</b>;
+
+  <a name="type-AtomicLongFieldUpdater"></a><font color="#cc0033">AtomicLongFieldUpdater</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-AtomicLongFieldUpdater"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                            <b>STATIC</b>
+                              <b>PROCEDURE </b><font color="#cc0033">Init</font>!() : <a href="#type-AtomicLongFieldUpdater">AtomicLongFieldUpdater</a><b>,CONSTRUCTOR</b>;
+                              <b>PROCEDURE </b><font color="#cc0033">newUpdater</font>*(p0 : <a href="java_lang.html#type-Class">java_lang.Class</a>;
+                                                    p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-AtomicLongFieldUpdater">AtomicLongFieldUpdater</a>;
+                            <b>END</b>;
+
+  <a name="type-AtomicMarkableReference"></a><font color="#cc0033">AtomicMarkableReference</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-AtomicMarkableReference"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                             <b>STATIC</b>
+                               <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                               p1 : BOOLEAN) : <a href="#type-AtomicMarkableReference">AtomicMarkableReference</a><b>,CONSTRUCTOR</b>;
+                             <b>END</b>;
+
+  <a name="type-AtomicReference"></a><font color="#cc0033">AtomicReference</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_io.html#type-Serializable">java_io.Serializable</a>)    <a href="#meths-AtomicReference"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                     <b>STATIC</b>
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-AtomicReference">AtomicReference</a><b>,CONSTRUCTOR</b>;
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="#type-AtomicReference">AtomicReference</a><b>,CONSTRUCTOR</b>;
+                     <b>END</b>;
+
+  <a name="type-AtomicReferenceArray"></a><font color="#cc0033">AtomicReferenceArray</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_io.html#type-Serializable">java_io.Serializable</a>)    <a href="#meths-AtomicReferenceArray"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                          <b>STATIC</b>
+                            <b>PROCEDURE </b><font color="#cc0033">Init</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="#type-AtomicReferenceArray">AtomicReferenceArray</a><b>,CONSTRUCTOR</b>;
+                            <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER) : <a href="#type-AtomicReferenceArray">AtomicReferenceArray</a><b>,CONSTRUCTOR</b>;
+                          <b>END</b>;
+
+  <a name="type-AtomicReferenceFieldUpdater"></a><font color="#cc0033">AtomicReferenceFieldUpdater</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-AtomicReferenceFieldUpdater"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                                 <b>STATIC</b>
+                                   <b>PROCEDURE </b><font color="#cc0033">Init</font>!() : <a href="#type-AtomicReferenceFieldUpdater">AtomicReferenceFieldUpdater</a><b>,CONSTRUCTOR</b>;
+                                   <b>PROCEDURE </b><font color="#cc0033">newUpdater</font>*(p0 : <a href="java_lang.html#type-Class">java_lang.Class</a>;
+                                                         p1 : <a href="java_lang.html#type-Class">java_lang.Class</a>;
+                                                         p2 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-AtomicReferenceFieldUpdater">AtomicReferenceFieldUpdater</a>;
+                                 <b>END</b>;
+
+  <a name="type-AtomicStampedReference"></a><font color="#cc0033">AtomicStampedReference</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-AtomicStampedReference"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                            <b>STATIC</b>
+                              <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                              p1 : INTEGER) : <a href="#type-AtomicStampedReference">AtomicStampedReference</a><b>,CONSTRUCTOR</b>;
+                            <b>END</b>;
+
+
+
+<a name="meths-AtomicBoolean"></a>
+<b>PROCEDURE </b>(self:AtomicBoolean) <font color="#cc0033">compareAndSet</font>*(p0 : BOOLEAN;
+                                              p1 : BOOLEAN) : BOOLEAN<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:AtomicBoolean) <font color="#cc0033">get</font>*() : BOOLEAN<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:AtomicBoolean) <font color="#cc0033">getAndSet</font>*(p0 : BOOLEAN) : BOOLEAN<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:AtomicBoolean) <font color="#cc0033">lazySet</font>*(p0 : BOOLEAN)<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:AtomicBoolean) <font color="#cc0033">set</font>*(p0 : BOOLEAN)<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:AtomicBoolean) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AtomicBoolean) <font color="#cc0033">weakCompareAndSet</font>*(p0 : BOOLEAN;
+                                                  p1 : BOOLEAN) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-AtomicInteger"></a>
+<b>PROCEDURE </b>(self:AtomicInteger) <font color="#cc0033">addAndGet</font>*(p0 : INTEGER) : INTEGER<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:AtomicInteger) <font color="#cc0033">compareAndSet</font>*(p0 : INTEGER;
+                                              p1 : INTEGER) : BOOLEAN<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:AtomicInteger) <font color="#cc0033">decrementAndGet</font>*() : INTEGER<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:AtomicInteger) <font color="#cc0033">doubleValue</font>*() : REAL<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AtomicInteger) <font color="#cc0033">floatValue</font>*() : SHORTREAL<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AtomicInteger) <font color="#cc0033">get</font>*() : INTEGER<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:AtomicInteger) <font color="#cc0033">getAndAdd</font>*(p0 : INTEGER) : INTEGER<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:AtomicInteger) <font color="#cc0033">getAndDecrement</font>*() : INTEGER<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:AtomicInteger) <font color="#cc0033">getAndIncrement</font>*() : INTEGER<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:AtomicInteger) <font color="#cc0033">getAndSet</font>*(p0 : INTEGER) : INTEGER<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:AtomicInteger) <font color="#cc0033">incrementAndGet</font>*() : INTEGER<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:AtomicInteger) <font color="#cc0033">intValue</font>*() : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AtomicInteger) <font color="#cc0033">lazySet</font>*(p0 : INTEGER)<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:AtomicInteger) <font color="#cc0033">longValue</font>*() : LONGINT<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AtomicInteger) <font color="#cc0033">set</font>*(p0 : INTEGER)<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:AtomicInteger) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AtomicInteger) <font color="#cc0033">weakCompareAndSet</font>*(p0 : INTEGER;
+                                                  p1 : INTEGER) : BOOLEAN<b>,NEW</b>;
+<a name="meths-AtomicIntegerArray"></a>
+<b>PROCEDURE </b>(self:AtomicIntegerArray) <font color="#cc0033">addAndGet</font>*(p0 : INTEGER;
+                                               p1 : INTEGER) : INTEGER<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:AtomicIntegerArray) <font color="#cc0033">compareAndSet</font>*(p0 : INTEGER;
+                                                   p1 : INTEGER;
+                                                   p2 : INTEGER) : BOOLEAN<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:AtomicIntegerArray) <font color="#cc0033">decrementAndGet</font>*(p0 : INTEGER) : INTEGER<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:AtomicIntegerArray) <font color="#cc0033">get</font>*(p0 : INTEGER) : INTEGER<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:AtomicIntegerArray) <font color="#cc0033">getAndAdd</font>*(p0 : INTEGER;
+                                               p1 : INTEGER) : INTEGER<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:AtomicIntegerArray) <font color="#cc0033">getAndDecrement</font>*(p0 : INTEGER) : INTEGER<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:AtomicIntegerArray) <font color="#cc0033">getAndIncrement</font>*(p0 : INTEGER) : INTEGER<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:AtomicIntegerArray) <font color="#cc0033">getAndSet</font>*(p0 : INTEGER;
+                                               p1 : INTEGER) : INTEGER<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:AtomicIntegerArray) <font color="#cc0033">incrementAndGet</font>*(p0 : INTEGER) : INTEGER<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:AtomicIntegerArray) <font color="#cc0033">lazySet</font>*(p0 : INTEGER;
+                                             p1 : INTEGER)<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:AtomicIntegerArray) <font color="#cc0033">length</font>*() : INTEGER<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:AtomicIntegerArray) <font color="#cc0033">set</font>*(p0 : INTEGER;
+                                         p1 : INTEGER)<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:AtomicIntegerArray) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AtomicIntegerArray) <font color="#cc0033">weakCompareAndSet</font>*(p0 : INTEGER;
+                                                       p1 : INTEGER;
+                                                       p2 : INTEGER) : BOOLEAN<b>,NEW</b>;
+<a name="meths-AtomicIntegerFieldUpdater"></a>
+<b>PROCEDURE </b>(self:AtomicIntegerFieldUpdater) <font color="#cc0033">addAndGet</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                      p1 : INTEGER) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AtomicIntegerFieldUpdater) <font color="#cc0033">compareAndSet</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                          p1 : INTEGER;
+                                                          p2 : INTEGER) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AtomicIntegerFieldUpdater) <font color="#cc0033">decrementAndGet</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AtomicIntegerFieldUpdater) <font color="#cc0033">get</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AtomicIntegerFieldUpdater) <font color="#cc0033">getAndAdd</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                      p1 : INTEGER) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AtomicIntegerFieldUpdater) <font color="#cc0033">getAndDecrement</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AtomicIntegerFieldUpdater) <font color="#cc0033">getAndIncrement</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AtomicIntegerFieldUpdater) <font color="#cc0033">getAndSet</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                      p1 : INTEGER) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AtomicIntegerFieldUpdater) <font color="#cc0033">incrementAndGet</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AtomicIntegerFieldUpdater) <font color="#cc0033">lazySet</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                    p1 : INTEGER)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AtomicIntegerFieldUpdater) <font color="#cc0033">set</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                p1 : INTEGER)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AtomicIntegerFieldUpdater) <font color="#cc0033">weakCompareAndSet</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                              p1 : INTEGER;
+                                                              p2 : INTEGER) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+<a name="meths-AtomicLong"></a>
+<b>PROCEDURE </b>(self:AtomicLong) <font color="#cc0033">addAndGet</font>*(p0 : LONGINT) : LONGINT<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:AtomicLong) <font color="#cc0033">compareAndSet</font>*(p0 : LONGINT;
+                                           p1 : LONGINT) : BOOLEAN<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:AtomicLong) <font color="#cc0033">decrementAndGet</font>*() : LONGINT<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:AtomicLong) <font color="#cc0033">doubleValue</font>*() : REAL<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AtomicLong) <font color="#cc0033">floatValue</font>*() : SHORTREAL<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AtomicLong) <font color="#cc0033">get</font>*() : LONGINT<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:AtomicLong) <font color="#cc0033">getAndAdd</font>*(p0 : LONGINT) : LONGINT<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:AtomicLong) <font color="#cc0033">getAndDecrement</font>*() : LONGINT<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:AtomicLong) <font color="#cc0033">getAndIncrement</font>*() : LONGINT<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:AtomicLong) <font color="#cc0033">getAndSet</font>*(p0 : LONGINT) : LONGINT<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:AtomicLong) <font color="#cc0033">incrementAndGet</font>*() : LONGINT<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:AtomicLong) <font color="#cc0033">intValue</font>*() : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AtomicLong) <font color="#cc0033">lazySet</font>*(p0 : LONGINT)<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:AtomicLong) <font color="#cc0033">longValue</font>*() : LONGINT<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AtomicLong) <font color="#cc0033">set</font>*(p0 : LONGINT)<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:AtomicLong) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AtomicLong) <font color="#cc0033">weakCompareAndSet</font>*(p0 : LONGINT;
+                                               p1 : LONGINT) : BOOLEAN<b>,NEW</b>;
+<a name="meths-AtomicLongArray"></a>
+<b>PROCEDURE </b>(self:AtomicLongArray) <font color="#cc0033">addAndGet</font>*(p0 : INTEGER;
+                                            p1 : LONGINT) : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AtomicLongArray) <font color="#cc0033">compareAndSet</font>*(p0 : INTEGER;
+                                                p1 : LONGINT;
+                                                p2 : LONGINT) : BOOLEAN<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:AtomicLongArray) <font color="#cc0033">decrementAndGet</font>*(p0 : INTEGER) : LONGINT<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:AtomicLongArray) <font color="#cc0033">get</font>*(p0 : INTEGER) : LONGINT<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:AtomicLongArray) <font color="#cc0033">getAndAdd</font>*(p0 : INTEGER;
+                                            p1 : LONGINT) : LONGINT<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:AtomicLongArray) <font color="#cc0033">getAndDecrement</font>*(p0 : INTEGER) : LONGINT<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:AtomicLongArray) <font color="#cc0033">getAndIncrement</font>*(p0 : INTEGER) : LONGINT<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:AtomicLongArray) <font color="#cc0033">getAndSet</font>*(p0 : INTEGER;
+                                            p1 : LONGINT) : LONGINT<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:AtomicLongArray) <font color="#cc0033">incrementAndGet</font>*(p0 : INTEGER) : LONGINT<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:AtomicLongArray) <font color="#cc0033">lazySet</font>*(p0 : INTEGER;
+                                          p1 : LONGINT)<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:AtomicLongArray) <font color="#cc0033">length</font>*() : INTEGER<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:AtomicLongArray) <font color="#cc0033">set</font>*(p0 : INTEGER;
+                                      p1 : LONGINT)<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:AtomicLongArray) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AtomicLongArray) <font color="#cc0033">weakCompareAndSet</font>*(p0 : INTEGER;
+                                                    p1 : LONGINT;
+                                                    p2 : LONGINT) : BOOLEAN<b>,NEW</b>;
+<a name="meths-AtomicLongFieldUpdater"></a>
+<b>PROCEDURE </b>(self:AtomicLongFieldUpdater) <font color="#cc0033">addAndGet</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                   p1 : LONGINT) : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AtomicLongFieldUpdater) <font color="#cc0033">compareAndSet</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                       p1 : LONGINT;
+                                                       p2 : LONGINT) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AtomicLongFieldUpdater) <font color="#cc0033">decrementAndGet</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AtomicLongFieldUpdater) <font color="#cc0033">get</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : LONGINT<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AtomicLongFieldUpdater) <font color="#cc0033">getAndAdd</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                   p1 : LONGINT) : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AtomicLongFieldUpdater) <font color="#cc0033">getAndDecrement</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AtomicLongFieldUpdater) <font color="#cc0033">getAndIncrement</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AtomicLongFieldUpdater) <font color="#cc0033">getAndSet</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                   p1 : LONGINT) : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AtomicLongFieldUpdater) <font color="#cc0033">incrementAndGet</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AtomicLongFieldUpdater) <font color="#cc0033">lazySet</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                 p1 : LONGINT)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AtomicLongFieldUpdater) <font color="#cc0033">set</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                             p1 : LONGINT)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AtomicLongFieldUpdater) <font color="#cc0033">weakCompareAndSet</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                           p1 : LONGINT;
+                                                           p2 : LONGINT) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+<a name="meths-AtomicMarkableReference"></a>
+<b>PROCEDURE </b>(self:AtomicMarkableReference) <font color="#cc0033">attemptMark</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                      p1 : BOOLEAN) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AtomicMarkableReference) <font color="#cc0033">compareAndSet</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                        p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                        p2 : BOOLEAN;
+                                                        p3 : BOOLEAN) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AtomicMarkableReference) <font color="#cc0033">get</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>BOOLEAN) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AtomicMarkableReference) <font color="#cc0033">getReference</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AtomicMarkableReference) <font color="#cc0033">isMarked</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AtomicMarkableReference) <font color="#cc0033">set</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                              p1 : BOOLEAN)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AtomicMarkableReference) <font color="#cc0033">weakCompareAndSet</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                            p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                            p2 : BOOLEAN;
+                                                            p3 : BOOLEAN) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-AtomicReference"></a>
+<b>PROCEDURE </b>(self:AtomicReference) <font color="#cc0033">compareAndSet</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:AtomicReference) <font color="#cc0033">get</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:AtomicReference) <font color="#cc0033">getAndSet</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:AtomicReference) <font color="#cc0033">lazySet</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:AtomicReference) <font color="#cc0033">set</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:AtomicReference) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AtomicReference) <font color="#cc0033">weakCompareAndSet</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                    p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW</b>;
+<a name="meths-AtomicReferenceArray"></a>
+<b>PROCEDURE </b>(self:AtomicReferenceArray) <font color="#cc0033">compareAndSet</font>*(p0 : INTEGER;
+                                                     p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                     p2 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:AtomicReferenceArray) <font color="#cc0033">get</font>*(p0 : INTEGER) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:AtomicReferenceArray) <font color="#cc0033">getAndSet</font>*(p0 : INTEGER;
+                                                 p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:AtomicReferenceArray) <font color="#cc0033">lazySet</font>*(p0 : INTEGER;
+                                               p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:AtomicReferenceArray) <font color="#cc0033">length</font>*() : INTEGER<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:AtomicReferenceArray) <font color="#cc0033">set</font>*(p0 : INTEGER;
+                                           p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:AtomicReferenceArray) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AtomicReferenceArray) <font color="#cc0033">weakCompareAndSet</font>*(p0 : INTEGER;
+                                                         p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                         p2 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW</b>;
+<a name="meths-AtomicReferenceFieldUpdater"></a>
+<b>PROCEDURE </b>(self:AtomicReferenceFieldUpdater) <font color="#cc0033">compareAndSet</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                            p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                            p2 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AtomicReferenceFieldUpdater) <font color="#cc0033">get</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AtomicReferenceFieldUpdater) <font color="#cc0033">getAndSet</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                        p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AtomicReferenceFieldUpdater) <font color="#cc0033">lazySet</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                      p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AtomicReferenceFieldUpdater) <font color="#cc0033">set</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                  p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AtomicReferenceFieldUpdater) <font color="#cc0033">weakCompareAndSet</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                                p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                                p2 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+<a name="meths-AtomicStampedReference"></a>
+<b>PROCEDURE </b>(self:AtomicStampedReference) <font color="#cc0033">attemptStamp</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                      p1 : INTEGER) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AtomicStampedReference) <font color="#cc0033">compareAndSet</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                       p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                       p2 : INTEGER;
+                                                       p3 : INTEGER) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AtomicStampedReference) <font color="#cc0033">get</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>INTEGER) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AtomicStampedReference) <font color="#cc0033">getReference</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AtomicStampedReference) <font color="#cc0033">getStamp</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AtomicStampedReference) <font color="#cc0033">set</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                             p1 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AtomicStampedReference) <font color="#cc0033">weakCompareAndSet</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                           p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                           p2 : INTEGER;
+                                                           p3 : INTEGER) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>END </b><font color="#cc0033">java_util_concurrent_atomic</font>.
+</font></pre></hr></body></html>

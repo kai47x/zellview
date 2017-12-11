@@ -1,0 +1,232 @@
+<html><head><title>javax_swing_undo</title></head>
+<body bgcolor="white">
+<hr><pre>
+<b>FOREIGN MODULE </b><font color="#cc0033">javax_swing_undo</font>;
+
+<b>IMPORT</b>
+    <a href="java_io.html">java_io</a> := "java.io",
+    <a href="java_lang.html">java_lang</a> := "java.lang",
+    <a href="java_util.html">java_util</a> := "java.util",
+    <a href="javax_swing_event.html">javax_swing_event</a> := "javax.swing.event";
+
+<b>TYPE</b>
+
+  <a name="type-AbstractUndoableEdit"></a><font color="#cc0033">AbstractUndoableEdit</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-UndoableEdit">UndoableEdit</a> + <a href="java_io.html#type-Serializable">java_io.Serializable</a>)    <a href="#meths-AbstractUndoableEdit"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                          <b>STATIC</b>
+                            <font color="#cc0033">RedoName</font>! = "Redo";
+                            <font color="#cc0033">UndoName</font>! = "Undo";
+                            <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-AbstractUndoableEdit">AbstractUndoableEdit</a><b>,CONSTRUCTOR</b>;
+                          <b>END</b>;
+
+  <a name="type-CannotRedoException"></a><font color="#cc0033">CannotRedoException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-RuntimeException">java_lang.RuntimeException</a>)
+                         <b>STATIC</b>
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CannotRedoException">CannotRedoException</a><b>,CONSTRUCTOR</b>;
+                         <b>END</b>;
+
+  <a name="type-CannotUndoException"></a><font color="#cc0033">CannotUndoException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-RuntimeException">java_lang.RuntimeException</a>)
+                         <b>STATIC</b>
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CannotUndoException">CannotUndoException</a><b>,CONSTRUCTOR</b>;
+                         <b>END</b>;
+
+  <a name="type-CompoundEdit"></a><font color="#cc0033">CompoundEdit</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-AbstractUndoableEdit">AbstractUndoableEdit</a>)    <a href="#meths-CompoundEdit"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                    <font color="#cc0033">edits</font>! : <a href="java_util.html#type-Vector">java_util.Vector</a>;
+                  <b>STATIC</b>
+                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CompoundEdit">CompoundEdit</a><b>,CONSTRUCTOR</b>;
+                  <b>END</b>;
+
+  <a name="type-StateEdit"></a><font color="#cc0033">StateEdit</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-AbstractUndoableEdit">AbstractUndoableEdit</a>)    <a href="#meths-StateEdit"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                 <font color="#cc0033">object</font>!       : <a href="#type-StateEditable">StateEditable</a>;
+                 <font color="#cc0033">preState</font>!     : <a href="java_util.html#type-Hashtable">java_util.Hashtable</a>;
+                 <font color="#cc0033">postState</font>!    : <a href="java_util.html#type-Hashtable">java_util.Hashtable</a>;
+                 <font color="#cc0033">undoRedoName</font>! : <a href="java_lang.html#type-String">java_lang.String</a>;
+               <b>STATIC</b>
+                 <font color="#cc0033">RCSID</font>! = "$Id: StateEdit.java,v 1.6 1997/10/01 20:05:51 sandipc Exp $";
+                 <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="#type-StateEditable">StateEditable</a>;
+                                 p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-StateEdit">StateEdit</a><b>,CONSTRUCTOR</b>;
+                 <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="#type-StateEditable">StateEditable</a>) : <a href="#type-StateEdit">StateEdit</a><b>,CONSTRUCTOR</b>;
+               <b>END</b>;
+
+  <a name="type-StateEditable"></a><font color="#cc0033">StateEditable</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-StateEditable"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                   <b>STATIC</b>
+                     <font color="#cc0033">RCSID</font>* = "$Id: StateEditable.java,v 1.2 1997/09/08 19:39:08 marklin Exp $";
+                   <b>END</b>;
+
+  <a name="type-UndoableEdit"></a><font color="#cc0033">UndoableEdit</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-UndoableEdit"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                  <b>END</b>;
+
+  <a name="type-UndoableEditSupport"></a><font color="#cc0033">UndoableEditSupport</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-UndoableEditSupport"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                           <font color="#cc0033">updateLevel</font>!  : INTEGER;
+                           <font color="#cc0033">compoundEdit</font>! : <a href="#type-CompoundEdit">CompoundEdit</a>;
+                           <font color="#cc0033">listeners</font>!    : <a href="java_util.html#type-Vector">java_util.Vector</a>;
+                           <font color="#cc0033">realSource</font>!   : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                         <b>STATIC</b>
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="#type-UndoableEditSupport">UndoableEditSupport</a><b>,CONSTRUCTOR</b>;
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-UndoableEditSupport">UndoableEditSupport</a><b>,CONSTRUCTOR</b>;
+                         <b>END</b>;
+
+  <a name="type-UndoManager"></a><font color="#cc0033">UndoManager</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-CompoundEdit">CompoundEdit</a> + <a href="javax_swing_event.html#type-UndoableEditListener">javax_swing_event.UndoableEditListener</a>)    <a href="#meths-UndoManager"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                 <b>STATIC</b>
+                   <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-UndoManager">UndoManager</a><b>,CONSTRUCTOR</b>;
+                 <b>END</b>;
+
+
+
+<a name="meths-AbstractUndoableEdit"></a>
+<b>PROCEDURE </b>(self:AbstractUndoableEdit) <font color="#cc0033">addEdit</font>*(p0 : <a href="#type-UndoableEdit">UndoableEdit</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AbstractUndoableEdit) <font color="#cc0033">canRedo</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AbstractUndoableEdit) <font color="#cc0033">canUndo</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AbstractUndoableEdit) <font color="#cc0033">die</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AbstractUndoableEdit) <font color="#cc0033">getPresentationName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AbstractUndoableEdit) <font color="#cc0033">getRedoPresentationName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AbstractUndoableEdit) <font color="#cc0033">getUndoPresentationName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AbstractUndoableEdit) <font color="#cc0033">isSignificant</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AbstractUndoableEdit) <font color="#cc0033">redo</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AbstractUndoableEdit) <font color="#cc0033">replaceEdit</font>*(p0 : <a href="#type-UndoableEdit">UndoableEdit</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AbstractUndoableEdit) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AbstractUndoableEdit) <font color="#cc0033">undo</font>*()<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-CompoundEdit"></a>
+<b>PROCEDURE </b>(self:CompoundEdit) <font color="#cc0033">addEdit</font>*(p0 : <a href="#type-UndoableEdit">UndoableEdit</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CompoundEdit) <font color="#cc0033">canRedo</font>*() : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CompoundEdit) <font color="#cc0033">canUndo</font>*() : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CompoundEdit) <font color="#cc0033">die</font>*()<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CompoundEdit) <font color="#cc0033">end</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CompoundEdit) <font color="#cc0033">getPresentationName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CompoundEdit) <font color="#cc0033">getRedoPresentationName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CompoundEdit) <font color="#cc0033">getUndoPresentationName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CompoundEdit) <font color="#cc0033">isInProgress</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CompoundEdit) <font color="#cc0033">isSignificant</font>*() : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CompoundEdit) <font color="#cc0033">lastEdit</font>!() : <a href="#type-UndoableEdit">UndoableEdit</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CompoundEdit) <font color="#cc0033">redo</font>*()<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CompoundEdit) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CompoundEdit) <font color="#cc0033">undo</font>*()<b>,EXTENSIBLE</b>;
+<a name="meths-StateEdit"></a>
+<b>PROCEDURE </b>(self:StateEdit) <font color="#cc0033">end</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:StateEdit) <font color="#cc0033">getPresentationName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:StateEdit) <font color="#cc0033">init</font>!(p0 : <a href="#type-StateEditable">StateEditable</a>;
+                                 p1 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:StateEdit) <font color="#cc0033">redo</font>*()<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:StateEdit) <font color="#cc0033">removeRedundantState</font>!()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:StateEdit) <font color="#cc0033">undo</font>*()<b>,EXTENSIBLE</b>;
+<a name="meths-StateEditable"></a>
+<b>PROCEDURE </b>(self:StateEditable) <font color="#cc0033">restoreState</font>*(p0 : <a href="java_util.html#type-Hashtable">java_util.Hashtable</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:StateEditable) <font color="#cc0033">storeState</font>*(p0 : <a href="java_util.html#type-Hashtable">java_util.Hashtable</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-UndoableEdit"></a>
+<b>PROCEDURE </b>(self:UndoableEdit) <font color="#cc0033">addEdit</font>*(p0 : <a href="#type-UndoableEdit">UndoableEdit</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:UndoableEdit) <font color="#cc0033">canRedo</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:UndoableEdit) <font color="#cc0033">canUndo</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:UndoableEdit) <font color="#cc0033">die</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:UndoableEdit) <font color="#cc0033">getPresentationName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:UndoableEdit) <font color="#cc0033">getRedoPresentationName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:UndoableEdit) <font color="#cc0033">getUndoPresentationName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:UndoableEdit) <font color="#cc0033">isSignificant</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:UndoableEdit) <font color="#cc0033">redo</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:UndoableEdit) <font color="#cc0033">replaceEdit</font>*(p0 : <a href="#type-UndoableEdit">UndoableEdit</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:UndoableEdit) <font color="#cc0033">undo</font>*()<b>,NEW,ABSTRACT</b>;
+<a name="meths-UndoableEditSupport"></a>
+<b>PROCEDURE </b>(self:UndoableEditSupport) <font color="#cc0033">addUndoableEditListener</font>*(p0 : <a href="javax_swing_event.html#type-UndoableEditListener">javax_swing_event.UndoableEditListener</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:UndoableEditSupport) <font color="#cc0033">beginUpdate</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:UndoableEditSupport) <font color="#cc0033">createCompoundEdit</font>!() : <a href="#type-CompoundEdit">CompoundEdit</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:UndoableEditSupport) <font color="#cc0033">endUpdate</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:UndoableEditSupport) <font color="#cc0033">getUndoableEditListeners</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="javax_swing_event.html#type-UndoableEditListener">javax_swing_event.UndoableEditListener</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:UndoableEditSupport) <font color="#cc0033">getUpdateLevel</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:UndoableEditSupport) <font color="#cc0033">postEdit</font>*(p0 : <a href="#type-UndoableEdit">UndoableEdit</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:UndoableEditSupport) <font color="#cc0033">removeUndoableEditListener</font>*(p0 : <a href="javax_swing_event.html#type-UndoableEditListener">javax_swing_event.UndoableEditListener</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:UndoableEditSupport) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:UndoableEditSupport) <font color="#cc0033">_postEdit</font>!(p0 : <a href="#type-UndoableEdit">UndoableEdit</a>)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-UndoManager"></a>
+<b>PROCEDURE </b>(self:UndoManager) <font color="#cc0033">addEdit</font>*(p0 : <a href="#type-UndoableEdit">UndoableEdit</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:UndoManager) <font color="#cc0033">canRedo</font>*() : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:UndoManager) <font color="#cc0033">canUndo</font>*() : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:UndoManager) <font color="#cc0033">canUndoOrRedo</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:UndoManager) <font color="#cc0033">discardAllEdits</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:UndoManager) <font color="#cc0033">editToBeRedone</font>!() : <a href="#type-UndoableEdit">UndoableEdit</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:UndoManager) <font color="#cc0033">editToBeUndone</font>!() : <a href="#type-UndoableEdit">UndoableEdit</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:UndoManager) <font color="#cc0033">end</font>*()<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:UndoManager) <font color="#cc0033">getLimit</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:UndoManager) <font color="#cc0033">getRedoPresentationName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:UndoManager) <font color="#cc0033">getUndoOrRedoPresentationName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:UndoManager) <font color="#cc0033">getUndoPresentationName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:UndoManager) <font color="#cc0033">redo</font>*()<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:UndoManager) <font color="#cc0033">redoTo</font>!(p0 : <a href="#type-UndoableEdit">UndoableEdit</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:UndoManager) <font color="#cc0033">setLimit</font>*(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:UndoManager) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:UndoManager) <font color="#cc0033">trimEdits</font>!(p0 : INTEGER;
+                                        p1 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:UndoManager) <font color="#cc0033">trimForLimit</font>!()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:UndoManager) <font color="#cc0033">undo</font>*()<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:UndoManager) <font color="#cc0033">undoableEditHappened</font>*(p0 : <a href="javax_swing_event.html#type-UndoableEditEvent">javax_swing_event.UndoableEditEvent</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:UndoManager) <font color="#cc0033">undoOrRedo</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:UndoManager) <font color="#cc0033">undoTo</font>!(p0 : <a href="#type-UndoableEdit">UndoableEdit</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>END </b><font color="#cc0033">javax_swing_undo</font>.
+</font></pre></hr></body></html>

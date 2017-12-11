@@ -1,0 +1,91 @@
+<html><head><title>sun_reflect_generics_repository</title></head>
+<body bgcolor="white">
+<hr><pre>
+<b>FOREIGN MODULE </b><font color="#cc0033">sun_reflect_generics_repository</font>;
+
+<b>IMPORT</b>
+    <a href="sun_reflect_generics_factory.html">sun_reflect_generics_factory</a> := "sun.reflect.generics.factory",
+    <a href="sun_reflect_generics_tree.html">sun_reflect_generics_tree</a> := "sun.reflect.generics.tree",
+    <a href="sun_reflect_generics_visitor.html">sun_reflect_generics_visitor</a> := "sun.reflect.generics.visitor",
+    <a href="java_lang.html">java_lang</a> := "java.lang",
+    <a href="java_lang_reflect.html">java_lang_reflect</a> := "java.lang.reflect";
+
+<b>TYPE</b>
+
+  <a name="type-AbstractRepository"></a><font color="#cc0033">AbstractRepository</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-AbstractRepository"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                        <b>STATIC</b>
+                          <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                          p1 : <a href="sun_reflect_generics_factory.html#type-GenericsFactory">sun_reflect_generics_factory.GenericsFactory</a>) : <a href="#type-AbstractRepository">AbstractRepository</a><b>,CONSTRUCTOR</b>;
+                        <b>END</b>;
+
+  <a name="type-ClassRepository"></a><font color="#cc0033">ClassRepository</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-GenericDeclRepository">GenericDeclRepository</a>)    <a href="#meths-ClassRepository"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                     <b>STATIC</b>
+                       <b>PROCEDURE </b><font color="#cc0033">make</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                       p1 : <a href="sun_reflect_generics_factory.html#type-GenericsFactory">sun_reflect_generics_factory.GenericsFactory</a>) : <a href="#type-ClassRepository">ClassRepository</a>;
+                     <b>END</b>;
+
+  <a name="type-ConstructorRepository"></a><font color="#cc0033">ConstructorRepository</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-GenericDeclRepository">GenericDeclRepository</a>)    <a href="#meths-ConstructorRepository"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                           <b>STATIC</b>
+                             <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                             p1 : <a href="sun_reflect_generics_factory.html#type-GenericsFactory">sun_reflect_generics_factory.GenericsFactory</a>) : <a href="#type-ConstructorRepository">ConstructorRepository</a><b>,CONSTRUCTOR</b>;
+                             <b>PROCEDURE </b><font color="#cc0033">make</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                             p1 : <a href="sun_reflect_generics_factory.html#type-GenericsFactory">sun_reflect_generics_factory.GenericsFactory</a>) : <a href="#type-ConstructorRepository">ConstructorRepository</a>;
+                           <b>END</b>;
+
+  <a name="type-FieldRepository"></a><font color="#cc0033">FieldRepository</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-AbstractRepository">AbstractRepository</a>)    <a href="#meths-FieldRepository"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                     <b>STATIC</b>
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                       p1 : <a href="sun_reflect_generics_factory.html#type-GenericsFactory">sun_reflect_generics_factory.GenericsFactory</a>) : <a href="#type-FieldRepository">FieldRepository</a><b>,CONSTRUCTOR</b>;
+                       <b>PROCEDURE </b><font color="#cc0033">make</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                       p1 : <a href="sun_reflect_generics_factory.html#type-GenericsFactory">sun_reflect_generics_factory.GenericsFactory</a>) : <a href="#type-FieldRepository">FieldRepository</a>;
+                     <b>END</b>;
+
+  <a name="type-GenericDeclRepository"></a><font color="#cc0033">GenericDeclRepository</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="#type-AbstractRepository">AbstractRepository</a>)    <a href="#meths-GenericDeclRepository"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                           <b>STATIC</b>
+                             <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                             p1 : <a href="sun_reflect_generics_factory.html#type-GenericsFactory">sun_reflect_generics_factory.GenericsFactory</a>) : <a href="#type-GenericDeclRepository">GenericDeclRepository</a><b>,CONSTRUCTOR</b>;
+                           <b>END</b>;
+
+  <a name="type-MethodRepository"></a><font color="#cc0033">MethodRepository</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-ConstructorRepository">ConstructorRepository</a>)    <a href="#meths-MethodRepository"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                      <b>STATIC</b>
+                        <b>PROCEDURE </b><font color="#cc0033">make</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                        p1 : <a href="sun_reflect_generics_factory.html#type-GenericsFactory">sun_reflect_generics_factory.GenericsFactory</a>) : <a href="#type-MethodRepository">MethodRepository</a>;
+                      <b>END</b>;
+
+
+
+<a name="meths-AbstractRepository"></a>
+<b>PROCEDURE </b>(self:AbstractRepository) <font color="#cc0033">getReifier</font>!() : <a href="sun_reflect_generics_visitor.html#type-Reifier">sun_reflect_generics_visitor.Reifier</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AbstractRepository) <font color="#cc0033">getTree</font>!() : <a href="sun_reflect_generics_tree.html#type-Tree">sun_reflect_generics_tree.Tree</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AbstractRepository) <font color="#cc0033">parse</font>!(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="sun_reflect_generics_tree.html#type-Tree">sun_reflect_generics_tree.Tree</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-ClassRepository"></a>
+<b>PROCEDURE </b>(self:ClassRepository) <font color="#cc0033">getSuperclass</font>*() : <a href="java_lang_reflect.html#type-Type">java_lang_reflect.Type</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ClassRepository) <font color="#cc0033">getSuperInterfaces</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang_reflect.html#type-Type">java_lang_reflect.Type</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ClassRepository) <font color="#cc0033">parse</font>!(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="sun_reflect_generics_tree.html#type-Tree">sun_reflect_generics_tree.Tree</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ClassRepository) <font color="#cc0033">parse</font>!(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="sun_reflect_generics_tree.html#type-ClassSignature">sun_reflect_generics_tree.ClassSignature</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-ConstructorRepository"></a>
+<b>PROCEDURE </b>(self:ConstructorRepository) <font color="#cc0033">getExceptionTypes</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang_reflect.html#type-Type">java_lang_reflect.Type</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ConstructorRepository) <font color="#cc0033">getParameterTypes</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang_reflect.html#type-Type">java_lang_reflect.Type</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ConstructorRepository) <font color="#cc0033">parse</font>!(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="sun_reflect_generics_tree.html#type-Tree">sun_reflect_generics_tree.Tree</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ConstructorRepository) <font color="#cc0033">parse</font>!(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="sun_reflect_generics_tree.html#type-MethodTypeSignature">sun_reflect_generics_tree.MethodTypeSignature</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-FieldRepository"></a>
+<b>PROCEDURE </b>(self:FieldRepository) <font color="#cc0033">getGenericType</font>*() : <a href="java_lang_reflect.html#type-Type">java_lang_reflect.Type</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FieldRepository) <font color="#cc0033">parse</font>!(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="sun_reflect_generics_tree.html#type-Tree">sun_reflect_generics_tree.Tree</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FieldRepository) <font color="#cc0033">parse</font>!(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="sun_reflect_generics_tree.html#type-TypeSignature">sun_reflect_generics_tree.TypeSignature</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-GenericDeclRepository"></a>
+<b>PROCEDURE </b>(self:GenericDeclRepository) <font color="#cc0033">getTypeParameters</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang_reflect.html#type-TypeVariable">java_lang_reflect.TypeVariable</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-MethodRepository"></a>
+<b>PROCEDURE </b>(self:MethodRepository) <font color="#cc0033">getReturnType</font>*() : <a href="java_lang_reflect.html#type-Type">java_lang_reflect.Type</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>END </b><font color="#cc0033">sun_reflect_generics_repository</font>.
+</font></pre></hr></body></html>

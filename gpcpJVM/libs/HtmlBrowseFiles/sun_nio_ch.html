@@ -1,0 +1,476 @@
+<html><head><title>sun_nio_ch</title></head>
+<body bgcolor="white">
+<hr><pre>
+<b>FOREIGN MODULE </b><font color="#cc0033">sun_nio_ch</font>;
+
+<b>IMPORT</b>
+    <a href="java_lang.html">java_lang</a> := "java.lang",
+    <a href="sun_misc.html">sun_misc</a> := "sun.misc",
+    <a href="java_nio.html">java_nio</a> := "java.nio",
+    <a href="java_io.html">java_io</a> := "java.io",
+    <a href="java_nio_channels.html">java_nio_channels</a> := "java.nio.channels",
+    <a href="java_net.html">java_net</a> := "java.net",
+    <a href="java_nio_channels_spi.html">java_nio_channels_spi</a> := "java.nio.channels.spi",
+    <a href="java_lang_ref.html">java_lang_ref</a> := "java.lang.ref",
+    <a href="java_util_concurrent.html">java_util_concurrent</a> := "java.util.concurrent",
+    <a href="java_util.html">java_util</a> := "java.util",
+    <a href="java_security.html">java_security</a> := "java.security",
+    <a href="java_lang_reflect.html">java_lang_reflect</a> := "java.lang.reflect",
+    <a href="java_util_concurrent_atomic.html">java_util_concurrent_atomic</a> := "java.util.concurrent.atomic";
+
+<b>TYPE</b>
+
+  <a name="type-AlreadyBoundException"></a><font color="#cc0033">AlreadyBoundException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-IllegalStateException">java_lang.IllegalStateException</a>)
+                           <b>STATIC</b>
+                             <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-AlreadyBoundException">AlreadyBoundException</a><b>,CONSTRUCTOR</b>;
+                           <b>END</b>;
+
+  <a name="type-ChannelInputStream"></a><font color="#cc0033">ChannelInputStream</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_io.html#type-InputStream">java_io.InputStream</a>)    <a href="#meths-ChannelInputStream"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                          <font color="#cc0033">ch</font>! : <a href="java_nio_channels.html#type-ReadableByteChannel">java_nio_channels.ReadableByteChannel</a>;
+                        <b>STATIC</b>
+                          <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_nio_channels.html#type-ReadableByteChannel">java_nio_channels.ReadableByteChannel</a>) : <a href="#type-ChannelInputStream">ChannelInputStream</a><b>,CONSTRUCTOR</b>;
+                          <b>PROCEDURE </b><font color="#cc0033">read</font>*(p0 : <a href="java_nio_channels.html#type-ReadableByteChannel">java_nio_channels.ReadableByteChannel</a>;
+                                          p1 : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>;
+                                          p2 : BOOLEAN) : INTEGER;
+                        <b>END</b>;
+
+  <a name="type-DatagramSocketAdaptor"></a><font color="#cc0033">DatagramSocketAdaptor</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_net.html#type-DatagramSocket">java_net.DatagramSocket</a>)    <a href="#meths-DatagramSocketAdaptor"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                           <b>STATIC</b>
+                             <b>PROCEDURE </b><font color="#cc0033">create</font>*(p0 : <b>DatagramChannelImpl</b>) : <a href="java_net.html#type-DatagramSocket">java_net.DatagramSocket</a>;
+                           <b>END</b>;
+
+  <a name="type-DefaultSelectorProvider"></a><font color="#cc0033">DefaultSelectorProvider</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                             <b>STATIC</b>
+                               <b>PROCEDURE </b><font color="#cc0033">create</font>*() : <a href="java_nio_channels_spi.html#type-SelectorProvider">java_nio_channels_spi.SelectorProvider</a>;
+                             <b>END</b>;
+
+  <a name="type-DirectBuffer"></a><font color="#cc0033">DirectBuffer</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-DirectBuffer"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                  <b>END</b>;
+
+  <a name="type-FileChannelImpl"></a><font color="#cc0033">FileChannelImpl</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_nio_channels.html#type-FileChannel">java_nio_channels.FileChannel</a>)    <a href="#meths-FileChannelImpl"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                     <b>STATIC</b>
+                       <font color="#cc0033">INTERRUPTED</font>* = 2;
+                       <font color="#cc0033">LOCKED</font>*      = 0;
+                       <font color="#cc0033">NO_LOCK</font>*     = -1;
+                       <font color="#cc0033">RET_EX_LOCK</font>* = 1;
+                       <b>PROCEDURE </b><font color="#cc0033">open</font>*(p0 : <a href="java_io.html#type-FileDescriptor">java_io.FileDescriptor</a>;
+                                       p1 : BOOLEAN;
+                                       p2 : BOOLEAN;
+                                       p3 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                       p4 : BOOLEAN) : <a href="java_nio_channels.html#type-FileChannel">java_nio_channels.FileChannel</a>;
+                       <b>PROCEDURE </b><font color="#cc0033">open</font>*(p0 : <a href="java_io.html#type-FileDescriptor">java_io.FileDescriptor</a>;
+                                       p1 : BOOLEAN;
+                                       p2 : BOOLEAN;
+                                       p3 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_nio_channels.html#type-FileChannel">java_nio_channels.FileChannel</a>;
+                     <b>END</b>;
+
+  <a name="type-FileChannelImpl$FileLockTable$Releaser"></a><font color="#cc0033">FileChannelImpl$FileLockTable$Releaser</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-FileChannelImpl$FileLockTable$Releaser"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                                            <b>END</b>;
+
+  <a name="type-FileKey"></a><font color="#cc0033">FileKey</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-FileKey"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+             <b>STATIC</b>
+               <b>PROCEDURE </b><font color="#cc0033">create</font>*(p0 : <a href="java_io.html#type-FileDescriptor">java_io.FileDescriptor</a>) : <a href="#type-FileKey">FileKey</a>;
+             <b>END</b>;
+
+  <a name="type-FileLockImpl"></a><font color="#cc0033">FileLockImpl</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_nio_channels.html#type-FileLock">java_nio_channels.FileLock</a>)    <a href="#meths-FileLockImpl"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                  <b>END</b>;
+
+  <a name="type-Interruptible"></a><font color="#cc0033">Interruptible</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-Interruptible"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                   <b>END</b>;
+
+  <a name="type-Secrets"></a><font color="#cc0033">Secrets</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+             <b>STATIC</b>
+               <b>PROCEDURE </b><font color="#cc0033">newServerSocketChannel</font>*(p0 : INTEGER) : <a href="java_nio_channels.html#type-ServerSocketChannel">java_nio_channels.ServerSocketChannel</a>;
+               <b>PROCEDURE </b><font color="#cc0033">newSocketChannel</font>*(p0 : INTEGER) : <a href="java_nio_channels.html#type-SocketChannel">java_nio_channels.SocketChannel</a>;
+             <b>END</b>;
+
+  <a name="type-SelectorProviderImpl"></a><font color="#cc0033">SelectorProviderImpl</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_nio_channels_spi.html#type-SelectorProvider">java_nio_channels_spi.SelectorProvider</a>)    <a href="#meths-SelectorProviderImpl"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                          <b>STATIC</b>
+                            <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-SelectorProviderImpl">SelectorProviderImpl</a><b>,CONSTRUCTOR</b>;
+                          <b>END</b>;
+
+  <a name="type-ServerSocketAdaptor"></a><font color="#cc0033">ServerSocketAdaptor</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_net.html#type-ServerSocket">java_net.ServerSocket</a>)    <a href="#meths-ServerSocketAdaptor"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                         <b>STATIC</b>
+                           <b>PROCEDURE </b><font color="#cc0033">create</font>*(p0 : <b>ServerSocketChannelImpl</b>) : <a href="java_net.html#type-ServerSocket">java_net.ServerSocket</a>;
+                         <b>END</b>;
+
+  <a name="type-SocketAdaptor"></a><font color="#cc0033">SocketAdaptor</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_net.html#type-Socket">java_net.Socket</a>)    <a href="#meths-SocketAdaptor"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                   <b>STATIC</b>
+                     <b>PROCEDURE </b><font color="#cc0033">create</font>*(p0 : <b>SocketChannelImpl</b>) : <a href="java_net.html#type-Socket">java_net.Socket</a>;
+                   <b>END</b>;
+
+  <a name="type-SocketOpts"></a><font color="#cc0033">SocketOpts</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-SocketOpts"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                <b>END</b>;
+
+  <a name="type-SocketOpts$IP"></a><font color="#cc0033">SocketOpts$IP</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-SocketOpts">SocketOpts</a>)    <a href="#meths-SocketOpts$IP"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                   <b>STATIC</b>
+                     <font color="#cc0033">TOS_LOWDELAY</font>*    = 16;
+                     <font color="#cc0033">TOS_MINCOST</font>*     = 2;
+                     <font color="#cc0033">TOS_RELIABILITY</font>* = 4;
+                     <font color="#cc0033">TOS_THROUGHPUT</font>*  = 8;
+                   <b>END</b>;
+
+  <a name="type-SocketOpts$IP$TCP"></a><font color="#cc0033">SocketOpts$IP$TCP</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-SocketOpts$IP">SocketOpts$IP</a>)    <a href="#meths-SocketOpts$IP$TCP"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                       <b>END</b>;
+
+  <a name="type-SocketOptsImpl$IP$TCP"></a><font color="#cc0033">SocketOptsImpl$IP$TCP</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<b>SocketOptsImpl$IP</b> + <a href="#type-SocketOpts$IP$TCP">SocketOpts$IP$TCP</a>)    <a href="#meths-SocketOptsImpl$IP$TCP"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                           <b>END</b>;
+
+  <a name="type-WindowsSelectorProvider"></a><font color="#cc0033">WindowsSelectorProvider</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-SelectorProviderImpl">SelectorProviderImpl</a>)    <a href="#meths-WindowsSelectorProvider"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                             <b>STATIC</b>
+                               <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-WindowsSelectorProvider">WindowsSelectorProvider</a><b>,CONSTRUCTOR</b>;
+                             <b>END</b>;
+
+
+
+<a name="meths-ChannelInputStream"></a>
+<b>PROCEDURE </b>(self:ChannelInputStream) <font color="#cc0033">close</font>*()<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ChannelInputStream) <font color="#cc0033">read</font>!(p0 : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ChannelInputStream) <font color="#cc0033">read</font>*() : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ChannelInputStream) <font color="#cc0033">read</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE;
+                                              p1 : INTEGER;
+                                              p2 : INTEGER) : INTEGER<b>,EXTENSIBLE</b>;
+<a name="meths-DatagramSocketAdaptor"></a>
+<b>PROCEDURE </b>(self:DatagramSocketAdaptor) <font color="#cc0033">bind</font>*(p0 : <a href="java_net.html#type-SocketAddress">java_net.SocketAddress</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DatagramSocketAdaptor) <font color="#cc0033">close</font>*()<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DatagramSocketAdaptor) <font color="#cc0033">connect</font>*(p0 : <a href="java_net.html#type-SocketAddress">java_net.SocketAddress</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DatagramSocketAdaptor) <font color="#cc0033">connect</font>*(p0 : <a href="java_net.html#type-InetAddress">java_net.InetAddress</a>;
+                                                p1 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DatagramSocketAdaptor) <font color="#cc0033">disconnect</font>*()<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DatagramSocketAdaptor) <font color="#cc0033">getBroadcast</font>*() : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DatagramSocketAdaptor) <font color="#cc0033">getChannel</font>*() : <a href="java_nio_channels.html#type-DatagramChannel">java_nio_channels.DatagramChannel</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DatagramSocketAdaptor) <font color="#cc0033">getInetAddress</font>*() : <a href="java_net.html#type-InetAddress">java_net.InetAddress</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DatagramSocketAdaptor) <font color="#cc0033">getLocalAddress</font>*() : <a href="java_net.html#type-InetAddress">java_net.InetAddress</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DatagramSocketAdaptor) <font color="#cc0033">getLocalPort</font>*() : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DatagramSocketAdaptor) <font color="#cc0033">getPort</font>*() : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DatagramSocketAdaptor) <font color="#cc0033">getReceiveBufferSize</font>*() : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DatagramSocketAdaptor) <font color="#cc0033">getReuseAddress</font>*() : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DatagramSocketAdaptor) <font color="#cc0033">getSendBufferSize</font>*() : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DatagramSocketAdaptor) <font color="#cc0033">getSoTimeout</font>*() : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DatagramSocketAdaptor) <font color="#cc0033">getTrafficClass</font>*() : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DatagramSocketAdaptor) <font color="#cc0033">isBound</font>*() : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DatagramSocketAdaptor) <font color="#cc0033">isClosed</font>*() : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DatagramSocketAdaptor) <font color="#cc0033">isConnected</font>*() : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DatagramSocketAdaptor) <font color="#cc0033">receive</font>*(p0 : <a href="java_net.html#type-DatagramPacket">java_net.DatagramPacket</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DatagramSocketAdaptor) <font color="#cc0033">send</font>*(p0 : <a href="java_net.html#type-DatagramPacket">java_net.DatagramPacket</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DatagramSocketAdaptor) <font color="#cc0033">setBroadcast</font>*(p0 : BOOLEAN)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DatagramSocketAdaptor) <font color="#cc0033">setReceiveBufferSize</font>*(p0 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DatagramSocketAdaptor) <font color="#cc0033">setReuseAddress</font>*(p0 : BOOLEAN)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DatagramSocketAdaptor) <font color="#cc0033">setSendBufferSize</font>*(p0 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DatagramSocketAdaptor) <font color="#cc0033">setSoTimeout</font>*(p0 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DatagramSocketAdaptor) <font color="#cc0033">setTrafficClass</font>*(p0 : INTEGER)<b>,EXTENSIBLE</b>;
+<a name="meths-DirectBuffer"></a>
+<b>PROCEDURE </b>(self:DirectBuffer) <font color="#cc0033">address</font>*() : LONGINT<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DirectBuffer) <font color="#cc0033">cleaner</font>*() : <a href="sun_misc.html#type-Cleaner">sun_misc.Cleaner</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DirectBuffer) <font color="#cc0033">viewedBuffer</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-FileChannelImpl"></a>
+<b>PROCEDURE </b>(self:FileChannelImpl) <font color="#cc0033">force</font>*(p0 : BOOLEAN)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FileChannelImpl) <font color="#cc0033">implCloseChannel</font>!()<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FileChannelImpl) <font color="#cc0033">lock</font>*(p0 : LONGINT;
+                                       p1 : LONGINT;
+                                       p2 : BOOLEAN) : <a href="java_nio_channels.html#type-FileLock">java_nio_channels.FileLock</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FileChannelImpl) <font color="#cc0033">map</font>*(p0 : <a href="java_nio_channels.html#type-FileChannel$MapMode">java_nio_channels.FileChannel$MapMode</a>;
+                                      p1 : LONGINT;
+                                      p2 : LONGINT) : <a href="java_nio.html#type-MappedByteBuffer">java_nio.MappedByteBuffer</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FileChannelImpl) <font color="#cc0033">position</font>*(p0 : LONGINT) : <a href="java_nio_channels.html#type-FileChannel">java_nio_channels.FileChannel</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FileChannelImpl) <font color="#cc0033">position</font>*() : LONGINT<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FileChannelImpl) <font color="#cc0033">read</font>*(p0 : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>;
+                                       p1 : LONGINT) : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FileChannelImpl) <font color="#cc0033">read</font>*(p0 : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>) : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FileChannelImpl) <font color="#cc0033">read</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>;
+                                           p1 : INTEGER;
+                                           p2 : INTEGER) : LONGINT<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FileChannelImpl) <font color="#cc0033">size</font>*() : LONGINT<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FileChannelImpl) <font color="#cc0033">transferFrom</font>*(p0 : <a href="java_nio_channels.html#type-ReadableByteChannel">java_nio_channels.ReadableByteChannel</a>;
+                                               p1 : LONGINT;
+                                               p2 : LONGINT) : LONGINT<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FileChannelImpl) <font color="#cc0033">transferTo</font>*(p0 : LONGINT;
+                                             p1 : LONGINT;
+                                             p2 : <a href="java_nio_channels.html#type-WritableByteChannel">java_nio_channels.WritableByteChannel</a>) : LONGINT<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FileChannelImpl) <font color="#cc0033">truncate</font>*(p0 : LONGINT) : <a href="java_nio_channels.html#type-FileChannel">java_nio_channels.FileChannel</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FileChannelImpl) <font color="#cc0033">tryLock</font>*(p0 : LONGINT;
+                                          p1 : LONGINT;
+                                          p2 : BOOLEAN) : <a href="java_nio_channels.html#type-FileLock">java_nio_channels.FileLock</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FileChannelImpl) <font color="#cc0033">write</font>*(p0 : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>) : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FileChannelImpl) <font color="#cc0033">write</font>*(p0 : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>;
+                                        p1 : LONGINT) : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FileChannelImpl) <font color="#cc0033">write</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>;
+                                            p1 : INTEGER;
+                                            p2 : INTEGER) : LONGINT<b>,EXTENSIBLE</b>;
+<a name="meths-FileChannelImpl$FileLockTable$Releaser"></a>
+<b>PROCEDURE </b>(self:FileChannelImpl$FileLockTable$Releaser) <font color="#cc0033">release</font>*(p0 : <a href="java_nio_channels.html#type-FileLock">java_nio_channels.FileLock</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-FileKey"></a>
+<b>PROCEDURE </b>(self:FileKey) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FileKey) <font color="#cc0033">hashCode</font>*() : INTEGER<b>,EXTENSIBLE</b>;
+<a name="meths-FileLockImpl"></a>
+<b>PROCEDURE </b>(self:FileLockImpl) <font color="#cc0033">isValid</font>*() : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FileLockImpl) <font color="#cc0033">release</font>*()<b>,EXTENSIBLE</b>;
+<a name="meths-Interruptible"></a>
+<b>PROCEDURE </b>(self:Interruptible) <font color="#cc0033">interrupt</font>*()<b>,NEW,ABSTRACT</b>;
+<a name="meths-SelectorProviderImpl"></a>
+<b>PROCEDURE </b>(self:SelectorProviderImpl) <font color="#cc0033">openDatagramChannel</font>*() : <a href="java_nio_channels.html#type-DatagramChannel">java_nio_channels.DatagramChannel</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SelectorProviderImpl) <font color="#cc0033">openPipe</font>*() : <a href="java_nio_channels.html#type-Pipe">java_nio_channels.Pipe</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SelectorProviderImpl) <font color="#cc0033">openSelector</font>*() : <a href="java_nio_channels_spi.html#type-AbstractSelector">java_nio_channels_spi.AbstractSelector</a><b>,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SelectorProviderImpl) <font color="#cc0033">openServerSocketChannel</font>*() : <a href="java_nio_channels.html#type-ServerSocketChannel">java_nio_channels.ServerSocketChannel</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SelectorProviderImpl) <font color="#cc0033">openSocketChannel</font>*() : <a href="java_nio_channels.html#type-SocketChannel">java_nio_channels.SocketChannel</a><b>,EXTENSIBLE</b>;
+<a name="meths-ServerSocketAdaptor"></a>
+<b>PROCEDURE </b>(self:ServerSocketAdaptor) <font color="#cc0033">accept</font>*() : <a href="java_net.html#type-Socket">java_net.Socket</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ServerSocketAdaptor) <font color="#cc0033">bind</font>*(p0 : <a href="java_net.html#type-SocketAddress">java_net.SocketAddress</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ServerSocketAdaptor) <font color="#cc0033">bind</font>*(p0 : <a href="java_net.html#type-SocketAddress">java_net.SocketAddress</a>;
+                                           p1 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ServerSocketAdaptor) <font color="#cc0033">close</font>*()<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ServerSocketAdaptor) <font color="#cc0033">getChannel</font>*() : <a href="java_nio_channels.html#type-ServerSocketChannel">java_nio_channels.ServerSocketChannel</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ServerSocketAdaptor) <font color="#cc0033">getInetAddress</font>*() : <a href="java_net.html#type-InetAddress">java_net.InetAddress</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ServerSocketAdaptor) <font color="#cc0033">getLocalPort</font>*() : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ServerSocketAdaptor) <font color="#cc0033">getReceiveBufferSize</font>*() : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ServerSocketAdaptor) <font color="#cc0033">getReuseAddress</font>*() : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ServerSocketAdaptor) <font color="#cc0033">getSoTimeout</font>*() : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ServerSocketAdaptor) <font color="#cc0033">isBound</font>*() : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ServerSocketAdaptor) <font color="#cc0033">isClosed</font>*() : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ServerSocketAdaptor) <font color="#cc0033">setReceiveBufferSize</font>*(p0 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ServerSocketAdaptor) <font color="#cc0033">setReuseAddress</font>*(p0 : BOOLEAN)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ServerSocketAdaptor) <font color="#cc0033">setSoTimeout</font>*(p0 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ServerSocketAdaptor) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,EXTENSIBLE</b>;
+<a name="meths-SocketAdaptor"></a>
+<b>PROCEDURE </b>(self:SocketAdaptor) <font color="#cc0033">bind</font>*(p0 : <a href="java_net.html#type-SocketAddress">java_net.SocketAddress</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SocketAdaptor) <font color="#cc0033">close</font>*()<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SocketAdaptor) <font color="#cc0033">connect</font>*(p0 : <a href="java_net.html#type-SocketAddress">java_net.SocketAddress</a>;
+                                        p1 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SocketAdaptor) <font color="#cc0033">connect</font>*(p0 : <a href="java_net.html#type-SocketAddress">java_net.SocketAddress</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SocketAdaptor) <font color="#cc0033">getChannel</font>*() : <a href="java_nio_channels.html#type-SocketChannel">java_nio_channels.SocketChannel</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SocketAdaptor) <font color="#cc0033">getInetAddress</font>*() : <a href="java_net.html#type-InetAddress">java_net.InetAddress</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SocketAdaptor) <font color="#cc0033">getInputStream</font>*() : <a href="java_io.html#type-InputStream">java_io.InputStream</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SocketAdaptor) <font color="#cc0033">getKeepAlive</font>*() : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SocketAdaptor) <font color="#cc0033">getLocalAddress</font>*() : <a href="java_net.html#type-InetAddress">java_net.InetAddress</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SocketAdaptor) <font color="#cc0033">getLocalPort</font>*() : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SocketAdaptor) <font color="#cc0033">getOOBInline</font>*() : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SocketAdaptor) <font color="#cc0033">getOutputStream</font>*() : <a href="java_io.html#type-OutputStream">java_io.OutputStream</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SocketAdaptor) <font color="#cc0033">getPort</font>*() : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SocketAdaptor) <font color="#cc0033">getReceiveBufferSize</font>*() : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SocketAdaptor) <font color="#cc0033">getReuseAddress</font>*() : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SocketAdaptor) <font color="#cc0033">getSendBufferSize</font>*() : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SocketAdaptor) <font color="#cc0033">getSoLinger</font>*() : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SocketAdaptor) <font color="#cc0033">getSoTimeout</font>*() : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SocketAdaptor) <font color="#cc0033">getTcpNoDelay</font>*() : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SocketAdaptor) <font color="#cc0033">getTrafficClass</font>*() : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SocketAdaptor) <font color="#cc0033">isBound</font>*() : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SocketAdaptor) <font color="#cc0033">isClosed</font>*() : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SocketAdaptor) <font color="#cc0033">isConnected</font>*() : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SocketAdaptor) <font color="#cc0033">isInputShutdown</font>*() : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SocketAdaptor) <font color="#cc0033">isOutputShutdown</font>*() : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SocketAdaptor) <font color="#cc0033">sendUrgentData</font>*(p0 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SocketAdaptor) <font color="#cc0033">setKeepAlive</font>*(p0 : BOOLEAN)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SocketAdaptor) <font color="#cc0033">setOOBInline</font>*(p0 : BOOLEAN)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SocketAdaptor) <font color="#cc0033">setReceiveBufferSize</font>*(p0 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SocketAdaptor) <font color="#cc0033">setReuseAddress</font>*(p0 : BOOLEAN)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SocketAdaptor) <font color="#cc0033">setSendBufferSize</font>*(p0 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SocketAdaptor) <font color="#cc0033">setSoLinger</font>*(p0 : BOOLEAN;
+                                            p1 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SocketAdaptor) <font color="#cc0033">setSoTimeout</font>*(p0 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SocketAdaptor) <font color="#cc0033">setTcpNoDelay</font>*(p0 : BOOLEAN)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SocketAdaptor) <font color="#cc0033">setTrafficClass</font>*(p0 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SocketAdaptor) <font color="#cc0033">shutdownInput</font>*()<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SocketAdaptor) <font color="#cc0033">shutdownOutput</font>*()<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SocketAdaptor) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,EXTENSIBLE</b>;
+<a name="meths-SocketOpts"></a>
+<b>PROCEDURE </b>(self:SocketOpts) <font color="#cc0033">broadcast</font>*(p0 : BOOLEAN) : <a href="#type-SocketOpts">SocketOpts</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SocketOpts) <font color="#cc0033">broadcast</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SocketOpts) <font color="#cc0033">keepAlive</font>*(p0 : BOOLEAN) : <a href="#type-SocketOpts">SocketOpts</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SocketOpts) <font color="#cc0033">keepAlive</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SocketOpts) <font color="#cc0033">linger</font>*(p0 : INTEGER) : <a href="#type-SocketOpts">SocketOpts</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SocketOpts) <font color="#cc0033">linger</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SocketOpts) <font color="#cc0033">outOfBandInline</font>*(p0 : BOOLEAN) : <a href="#type-SocketOpts">SocketOpts</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SocketOpts) <font color="#cc0033">outOfBandInline</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SocketOpts) <font color="#cc0033">receiveBufferSize</font>*(p0 : INTEGER) : <a href="#type-SocketOpts">SocketOpts</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SocketOpts) <font color="#cc0033">receiveBufferSize</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SocketOpts) <font color="#cc0033">reuseAddress</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SocketOpts) <font color="#cc0033">reuseAddress</font>*(p0 : BOOLEAN) : <a href="#type-SocketOpts">SocketOpts</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SocketOpts) <font color="#cc0033">sendBufferSize</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SocketOpts) <font color="#cc0033">sendBufferSize</font>*(p0 : INTEGER) : <a href="#type-SocketOpts">SocketOpts</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-SocketOpts$IP"></a>
+<b>PROCEDURE </b>(self:SocketOpts$IP) <font color="#cc0033">multicastInterface</font>*(p0 : <a href="java_net.html#type-NetworkInterface">java_net.NetworkInterface</a>) : <a href="#type-SocketOpts$IP">SocketOpts$IP</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SocketOpts$IP) <font color="#cc0033">multicastInterface</font>*() : <a href="java_net.html#type-NetworkInterface">java_net.NetworkInterface</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SocketOpts$IP) <font color="#cc0033">multicastLoop</font>*(p0 : BOOLEAN) : <a href="#type-SocketOpts$IP">SocketOpts$IP</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SocketOpts$IP) <font color="#cc0033">multicastLoop</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SocketOpts$IP) <font color="#cc0033">typeOfService</font>*(p0 : INTEGER) : <a href="#type-SocketOpts$IP">SocketOpts$IP</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SocketOpts$IP) <font color="#cc0033">typeOfService</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+<a name="meths-SocketOpts$IP$TCP"></a>
+<b>PROCEDURE </b>(self:SocketOpts$IP$TCP) <font color="#cc0033">noDelay</font>*(p0 : BOOLEAN) : <a href="#type-SocketOpts$IP$TCP">SocketOpts$IP$TCP</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:SocketOpts$IP$TCP) <font color="#cc0033">noDelay</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+<a name="meths-SocketOptsImpl$IP$TCP"></a>
+<b>PROCEDURE </b>(self:SocketOptsImpl$IP$TCP) <font color="#cc0033">broadcast</font>*() : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SocketOptsImpl$IP$TCP) <font color="#cc0033">broadcast</font>*(p0 : BOOLEAN) : <a href="#type-SocketOpts">SocketOpts</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SocketOptsImpl$IP$TCP) <font color="#cc0033">keepAlive</font>*() : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SocketOptsImpl$IP$TCP) <font color="#cc0033">keepAlive</font>*(p0 : BOOLEAN) : <a href="#type-SocketOpts">SocketOpts</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SocketOptsImpl$IP$TCP) <font color="#cc0033">linger</font>*() : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SocketOptsImpl$IP$TCP) <font color="#cc0033">linger</font>*(p0 : INTEGER) : <a href="#type-SocketOpts">SocketOpts</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SocketOptsImpl$IP$TCP) <font color="#cc0033">multicastInterface</font>*() : <a href="java_net.html#type-NetworkInterface">java_net.NetworkInterface</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SocketOptsImpl$IP$TCP) <font color="#cc0033">multicastInterface</font>*(p0 : <a href="java_net.html#type-NetworkInterface">java_net.NetworkInterface</a>) : <a href="#type-SocketOpts$IP">SocketOpts$IP</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SocketOptsImpl$IP$TCP) <font color="#cc0033">multicastLoop</font>*(p0 : BOOLEAN) : <a href="#type-SocketOpts$IP">SocketOpts$IP</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SocketOptsImpl$IP$TCP) <font color="#cc0033">multicastLoop</font>*() : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SocketOptsImpl$IP$TCP) <font color="#cc0033">noDelay</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SocketOptsImpl$IP$TCP) <font color="#cc0033">noDelay</font>*(p0 : BOOLEAN) : <a href="#type-SocketOpts$IP$TCP">SocketOpts$IP$TCP</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SocketOptsImpl$IP$TCP) <font color="#cc0033">outOfBandInline</font>*(p0 : BOOLEAN) : <a href="#type-SocketOpts">SocketOpts</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SocketOptsImpl$IP$TCP) <font color="#cc0033">outOfBandInline</font>*() : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SocketOptsImpl$IP$TCP) <font color="#cc0033">receiveBufferSize</font>*() : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SocketOptsImpl$IP$TCP) <font color="#cc0033">receiveBufferSize</font>*(p0 : INTEGER) : <a href="#type-SocketOpts">SocketOpts</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SocketOptsImpl$IP$TCP) <font color="#cc0033">reuseAddress</font>*() : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SocketOptsImpl$IP$TCP) <font color="#cc0033">reuseAddress</font>*(p0 : BOOLEAN) : <a href="#type-SocketOpts">SocketOpts</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SocketOptsImpl$IP$TCP) <font color="#cc0033">sendBufferSize</font>*() : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SocketOptsImpl$IP$TCP) <font color="#cc0033">sendBufferSize</font>*(p0 : INTEGER) : <a href="#type-SocketOpts">SocketOpts</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SocketOptsImpl$IP$TCP) <font color="#cc0033">toString</font>!(p0 : <a href="java_lang.html#type-StringBuffer">java_lang.StringBuffer</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SocketOptsImpl$IP$TCP) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SocketOptsImpl$IP$TCP) <font color="#cc0033">typeOfService</font>*(p0 : INTEGER) : <a href="#type-SocketOpts$IP">SocketOpts$IP</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SocketOptsImpl$IP$TCP) <font color="#cc0033">typeOfService</font>*() : INTEGER<b>,EXTENSIBLE</b>;
+<a name="meths-WindowsSelectorProvider"></a>
+<b>PROCEDURE </b>(self:WindowsSelectorProvider) <font color="#cc0033">openSelector</font>*() : <a href="java_nio_channels_spi.html#type-AbstractSelector">java_nio_channels_spi.AbstractSelector</a><b>,EXTENSIBLE</b>;
+
+<b>END </b><font color="#cc0033">sun_nio_ch</font>.
+</font></pre></hr></body></html>

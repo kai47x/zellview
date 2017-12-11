@@ -1,0 +1,1581 @@
+<html><head><title>sun_misc</title></head>
+<body bgcolor="white">
+<hr><pre>
+<b>FOREIGN MODULE </b><font color="#cc0033">sun_misc</font>;
+
+<b>IMPORT</b>
+    <a href="java_util.html">java_util</a> := "java.util",
+    <a href="java_lang.html">java_lang</a> := "java.lang",
+    <a href="java_io.html">java_io</a> := "java.io",
+    <a href="java_nio.html">java_nio</a> := "java.nio",
+    <a href="java_lang_ref.html">java_lang_ref</a> := "java.lang.ref",
+    <a href="java_net.html">java_net</a> := "java.net",
+    <a href="java_security.html">java_security</a> := "java.security",
+    <a href="java_util_jar.html">java_util_jar</a> := "java.util.jar",
+    <a href="java_util_concurrent_atomic.html">java_util_concurrent_atomic</a> := "java.util.concurrent.atomic",
+    <a href="java_util_regex.html">java_util_regex</a> := "java.util.regex",
+    <a href="sun_nio_ch.html">sun_nio_ch</a> := "sun.nio.ch",
+    <a href="java_nio_charset.html">java_nio_charset</a> := "java.nio.charset",
+    <a href="sun_reflect.html">sun_reflect</a> := "sun.reflect",
+    <a href="sun_reflect_annotation.html">sun_reflect_annotation</a> := "sun.reflect.annotation",
+    <a href="java_lang_reflect.html">java_lang_reflect</a> := "java.lang.reflect",
+    <a href="sun_security_util.html">sun_security_util</a> := "sun.security.util",
+    <a href="java_security_cert.html">java_security_cert</a> := "java.security.cert";
+
+<b>TYPE</b>
+
+  <a name="type-ASCIICaseInsensitiveComparator"></a><font color="#cc0033">ASCIICaseInsensitiveComparator</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_util.html#type-Comparator">java_util.Comparator</a>)    <a href="#meths-ASCIICaseInsensitiveComparator"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                                    <b>STATIC</b>
+                                      <a name="type-CASE_INSENSITIVE_ORDER"></a><font color="#cc0033">CASE_INSENSITIVE_ORDER</font>* : <a href="java_util.html#type-Comparator">java_util.Comparator</a>;
+                                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-ASCIICaseInsensitiveComparator">ASCIICaseInsensitiveComparator</a><b>,CONSTRUCTOR</b>;
+                                      <b>PROCEDURE </b><font color="#cc0033">lowerCaseHashCode</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : INTEGER;
+                                    <b>END</b>;
+
+  <a name="type-AtomicLong"></a><font color="#cc0033">AtomicLong</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-AtomicLong"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                <b>STATIC</b>
+                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-AtomicLong">AtomicLong</a><b>,CONSTRUCTOR</b>;
+                  <b>PROCEDURE </b><font color="#cc0033">newAtomicLong</font>*(p0 : LONGINT) : <a href="#type-AtomicLong">AtomicLong</a>;
+                <b>END</b>;
+
+  <a name="type-BASE64Decoder"></a><font color="#cc0033">BASE64Decoder</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-CharacterDecoder">CharacterDecoder</a>)    <a href="#meths-BASE64Decoder"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                   <b>STATIC</b>
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-BASE64Decoder">BASE64Decoder</a><b>,CONSTRUCTOR</b>;
+                   <b>END</b>;
+
+  <a name="type-BASE64Encoder"></a><font color="#cc0033">BASE64Encoder</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-CharacterEncoder">CharacterEncoder</a>)    <a href="#meths-BASE64Encoder"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                   <b>STATIC</b>
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-BASE64Encoder">BASE64Encoder</a><b>,CONSTRUCTOR</b>;
+                   <b>END</b>;
+
+  <a name="type-Cache"></a><font color="#cc0033">Cache</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_util.html#type-Dictionary">java_util.Dictionary</a>)    <a href="#meths-Cache"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+           <b>STATIC</b>
+             <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-Cache">Cache</a><b>,CONSTRUCTOR</b>;
+             <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER) : <a href="#type-Cache">Cache</a><b>,CONSTRUCTOR</b>;
+             <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER;
+                             p1 : SHORTREAL) : <a href="#type-Cache">Cache</a><b>,CONSTRUCTOR</b>;
+           <b>END</b>;
+
+  <a name="type-CEFormatException"></a><font color="#cc0033">CEFormatException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_io.html#type-IOException">java_io.IOException</a>)
+                       <b>STATIC</b>
+                         <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-CEFormatException">CEFormatException</a><b>,CONSTRUCTOR</b>;
+                       <b>END</b>;
+
+  <a name="type-CEStreamExhausted"></a><font color="#cc0033">CEStreamExhausted</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_io.html#type-IOException">java_io.IOException</a>)
+                       <b>STATIC</b>
+                         <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CEStreamExhausted">CEStreamExhausted</a><b>,CONSTRUCTOR</b>;
+                       <b>END</b>;
+
+  <a name="type-CharacterDecoder"></a><font color="#cc0033">CharacterDecoder</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-CharacterDecoder"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                      <b>STATIC</b>
+                        <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CharacterDecoder">CharacterDecoder</a><b>,CONSTRUCTOR</b>;
+                      <b>END</b>;
+
+  <a name="type-CharacterEncoder"></a><font color="#cc0033">CharacterEncoder</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-CharacterEncoder"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                        <font color="#cc0033">pStream</font>! : <a href="java_io.html#type-PrintStream">java_io.PrintStream</a>;
+                      <b>STATIC</b>
+                        <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CharacterEncoder">CharacterEncoder</a><b>,CONSTRUCTOR</b>;
+                      <b>END</b>;
+
+  <a name="type-ClassFileTransformer"></a><font color="#cc0033">ClassFileTransformer</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-ClassFileTransformer"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                          <b>STATIC</b>
+                            <b>PROCEDURE </b><font color="#cc0033">add</font>*(p0 : <a href="#type-ClassFileTransformer">ClassFileTransformer</a>);
+                            <b>PROCEDURE </b><font color="#cc0033">getTransformers</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+                            <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-ClassFileTransformer">ClassFileTransformer</a><b>,CONSTRUCTOR</b>;
+                          <b>END</b>;
+
+  <a name="type-ClassLoaderUtil"></a><font color="#cc0033">ClassLoaderUtil</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                     <b>STATIC</b>
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-ClassLoaderUtil">ClassLoaderUtil</a><b>,CONSTRUCTOR</b>;
+                       <b>PROCEDURE </b><font color="#cc0033">releaseLoader</font>*(p0 : <a href="java_net.html#type-URLClassLoader">java_net.URLClassLoader</a>;
+                                                p1 : <a href="java_util.html#type-List">java_util.List</a>) : <a href="java_util.html#type-List">java_util.List</a>;
+                       <b>PROCEDURE </b><font color="#cc0033">releaseLoader</font>*(p0 : <a href="java_net.html#type-URLClassLoader">java_net.URLClassLoader</a>);
+                     <b>END</b>;
+
+  <a name="type-Cleaner"></a><font color="#cc0033">Cleaner</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang_ref.html#type-PhantomReference">java_lang_ref.PhantomReference</a>)    <a href="#meths-Cleaner"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+             <b>STATIC</b>
+               <b>PROCEDURE </b><font color="#cc0033">create</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                 p1 : <a href="java_lang.html#type-Runnable">java_lang.Runnable</a>) : <a href="#type-Cleaner">Cleaner</a>;
+             <b>END</b>;
+
+  <a name="type-Compare"></a><font color="#cc0033">Compare</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-Compare"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+             <b>END</b>;
+
+  <a name="type-CompoundEnumeration"></a><font color="#cc0033">CompoundEnumeration</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_util.html#type-Enumeration">java_util.Enumeration</a>)    <a href="#meths-CompoundEnumeration"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                         <b>STATIC</b>
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="java_util.html#type-Enumeration">java_util.Enumeration</a>) : <a href="#type-CompoundEnumeration">CompoundEnumeration</a><b>,CONSTRUCTOR</b>;
+                         <b>END</b>;
+
+  <a name="type-ConditionLock"></a><font color="#cc0033">ConditionLock</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-Lock">Lock</a>)    <a href="#meths-ConditionLock"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                   <b>STATIC</b>
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER) : <a href="#type-ConditionLock">ConditionLock</a><b>,CONSTRUCTOR</b>;
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-ConditionLock">ConditionLock</a><b>,CONSTRUCTOR</b>;
+                   <b>END</b>;
+
+  <a name="type-CRC16"></a><font color="#cc0033">CRC16</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-CRC16"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+             <font color="#cc0033">value</font>* : INTEGER;
+           <b>STATIC</b>
+             <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CRC16">CRC16</a><b>,CONSTRUCTOR</b>;
+           <b>END</b>;
+
+  <a name="type-DoubleConsts"></a><font color="#cc0033">DoubleConsts</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                  <b>STATIC</b>
+                    <font color="#cc0033">EXP_BIAS</font>*          = 1023;
+                    <font color="#cc0033">EXP_BIT_MASK</font>*      = 9218868437227405312;
+                    <font color="#cc0033">MAX_EXPONENT</font>*      = 1023;
+                    <font color="#cc0033">MAX_VALUE</font>*         = 1.7976931348623157E308;
+                    <font color="#cc0033">MIN_EXPONENT</font>*      = -1022;
+                    <font color="#cc0033">MIN_NORMAL</font>*        = 2.2250738585072014E-308;
+                    <font color="#cc0033">MIN_SUB_EXPONENT</font>*  = -1074;
+                    <font color="#cc0033">MIN_VALUE</font>*         = 4.9E-324;
+                    <font color="#cc0033">NaN</font>*               = NaN;
+                    <font color="#cc0033">NEGATIVE_INFINITY</font>* = -Infinity;
+                    <font color="#cc0033">POSITIVE_INFINITY</font>* = Infinity;
+                    <font color="#cc0033">SIGNIFICAND_WIDTH</font>* = 53;
+                    <font color="#cc0033">SIGNIF_BIT_MASK</font>*   = 4503599627370495;
+                    <font color="#cc0033">SIGN_BIT_MASK</font>*     = -9223372036854775808;
+                  <b>END</b>;
+
+  <a name="type-ExtensionDependency"></a><font color="#cc0033">ExtensionDependency</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-ExtensionDependency"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                         <b>STATIC</b>
+                           <b>PROCEDURE </b><font color="#cc0033">addExtensionInstallationProvider</font>*(p0 : <a href="#type-ExtensionInstallationProvider">ExtensionInstallationProvider</a>);
+                           <b>PROCEDURE </b><font color="#cc0033">checkExtensionsDependencies</font>*(p0 : <a href="java_util_jar.html#type-JarFile">java_util_jar.JarFile</a>) : BOOLEAN;
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-ExtensionDependency">ExtensionDependency</a><b>,CONSTRUCTOR</b>;
+                           <b>PROCEDURE </b><font color="#cc0033">removeExtensionInstallationProvider</font>*(p0 : <a href="#type-ExtensionInstallationProvider">ExtensionInstallationProvider</a>);
+                         <b>END</b>;
+
+  <a name="type-ExtensionInfo"></a><font color="#cc0033">ExtensionInfo</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-ExtensionInfo"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                     <font color="#cc0033">title</font>*                 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                     <font color="#cc0033">name</font>*                  : <a href="java_lang.html#type-String">java_lang.String</a>;
+                     <font color="#cc0033">specVersion</font>*           : <a href="java_lang.html#type-String">java_lang.String</a>;
+                     <font color="#cc0033">specVendor</font>*            : <a href="java_lang.html#type-String">java_lang.String</a>;
+                     <font color="#cc0033">implementationVersion</font>* : <a href="java_lang.html#type-String">java_lang.String</a>;
+                     <font color="#cc0033">vendor</font>*                : <a href="java_lang.html#type-String">java_lang.String</a>;
+                     <font color="#cc0033">vendorId</font>*              : <a href="java_lang.html#type-String">java_lang.String</a>;
+                     <font color="#cc0033">url</font>*                   : <a href="java_lang.html#type-String">java_lang.String</a>;
+                   <b>STATIC</b>
+                     <font color="#cc0033">COMPATIBLE</font>*                     = 0;
+                     <font color="#cc0033">INCOMPATIBLE</font>*                   = 4;
+                     <font color="#cc0033">REQUIRE_IMPLEMENTATION_UPGRADE</font>* = 2;
+                     <font color="#cc0033">REQUIRE_SPECIFICATION_UPGRADE</font>*  = 1;
+                     <font color="#cc0033">REQUIRE_VENDOR_SWITCH</font>*          = 3;
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                     p1 : <a href="java_util_jar.html#type-Attributes">java_util_jar.Attributes</a>) : <a href="#type-ExtensionInfo">ExtensionInfo</a><b>,CONSTRUCTOR</b>;
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-ExtensionInfo">ExtensionInfo</a><b>,CONSTRUCTOR</b>;
+                   <b>END</b>;
+
+  <a name="type-ExtensionInstallationException"></a><font color="#cc0033">ExtensionInstallationException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Exception">java_lang.Exception</a>)
+                                    <b>STATIC</b>
+                                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-ExtensionInstallationException">ExtensionInstallationException</a><b>,CONSTRUCTOR</b>;
+                                    <b>END</b>;
+
+  <a name="type-ExtensionInstallationProvider"></a><font color="#cc0033">ExtensionInstallationProvider</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-ExtensionInstallationProvider"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                                   <b>END</b>;
+
+  <a name="type-FileURLMapper"></a><font color="#cc0033">FileURLMapper</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-FileURLMapper"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                   <b>STATIC</b>
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_net.html#type-URL">java_net.URL</a>) : <a href="#type-FileURLMapper">FileURLMapper</a><b>,CONSTRUCTOR</b>;
+                   <b>END</b>;
+
+  <a name="type-FloatConsts"></a><font color="#cc0033">FloatConsts</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                 <b>STATIC</b>
+                   <font color="#cc0033">EXP_BIAS</font>*          = 127;
+                   <font color="#cc0033">EXP_BIT_MASK</font>*      = 2139095040;
+                   <font color="#cc0033">MAX_EXPONENT</font>*      = 127;
+                   <font color="#cc0033">MAX_VALUE</font>*         = 3.4028234663852886E38;
+                   <font color="#cc0033">MIN_EXPONENT</font>*      = -126;
+                   <font color="#cc0033">MIN_NORMAL</font>*        = 1.1754943508222875E-38;
+                   <font color="#cc0033">MIN_SUB_EXPONENT</font>*  = -149;
+                   <font color="#cc0033">MIN_VALUE</font>*         = 1.401298464324817E-45;
+                   <font color="#cc0033">NaN</font>*               = NaN;
+                   <font color="#cc0033">NEGATIVE_INFINITY</font>* = -Infinity;
+                   <font color="#cc0033">POSITIVE_INFINITY</font>* = Infinity;
+                   <font color="#cc0033">SIGNIFICAND_WIDTH</font>* = 24;
+                   <font color="#cc0033">SIGNIF_BIT_MASK</font>*   = 8388607;
+                   <font color="#cc0033">SIGN_BIT_MASK</font>*     = -2147483648;
+                 <b>END</b>;
+
+  <a name="type-FloatingDecimal"></a><font color="#cc0033">FloatingDecimal</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-FloatingDecimal"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                     <b>STATIC</b>
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : SHORTREAL) : <a href="#type-FloatingDecimal">FloatingDecimal</a><b>,CONSTRUCTOR</b>;
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : REAL) : <a href="#type-FloatingDecimal">FloatingDecimal</a><b>,CONSTRUCTOR</b>;
+                       <b>PROCEDURE </b><font color="#cc0033">readJavaFormatString</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-FloatingDecimal">FloatingDecimal</a>;
+                     <b>END</b>;
+
+  <a name="type-FormattedFloatingDecimal"></a><font color="#cc0033">FormattedFloatingDecimal</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-FormattedFloatingDecimal"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                              <b>STATIC</b>
+                                <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : SHORTREAL) : <a href="#type-FormattedFloatingDecimal">FormattedFloatingDecimal</a><b>,CONSTRUCTOR</b>;
+                                <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : SHORTREAL;
+                                                p1 : INTEGER;
+                                                p2 : <a href="#type-FormattedFloatingDecimal$Form">FormattedFloatingDecimal$Form</a>) : <a href="#type-FormattedFloatingDecimal">FormattedFloatingDecimal</a><b>,CONSTRUCTOR</b>;
+                                <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : REAL) : <a href="#type-FormattedFloatingDecimal">FormattedFloatingDecimal</a><b>,CONSTRUCTOR</b>;
+                                <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : REAL;
+                                                p1 : INTEGER;
+                                                p2 : <a href="#type-FormattedFloatingDecimal$Form">FormattedFloatingDecimal$Form</a>) : <a href="#type-FormattedFloatingDecimal">FormattedFloatingDecimal</a><b>,CONSTRUCTOR</b>;
+                                <b>PROCEDURE </b><font color="#cc0033">readJavaFormatString</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-FormattedFloatingDecimal">FormattedFloatingDecimal</a>;
+                              <b>END</b>;
+
+  <a name="type-FormattedFloatingDecimal$Form"></a><font color="#cc0033">FormattedFloatingDecimal$Form</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Enum">java_lang.Enum</a>)
+                                   <b>STATIC</b>
+                                     <a name="type-COMPATIBLE"></a><font color="#cc0033">COMPATIBLE</font>*    : <a href="#type-FormattedFloatingDecimal$Form">FormattedFloatingDecimal$Form</a>;
+                                     <a name="type-DECIMAL_FLOAT"></a><font color="#cc0033">DECIMAL_FLOAT</font>* : <a href="#type-FormattedFloatingDecimal$Form">FormattedFloatingDecimal$Form</a>;
+                                     <a name="type-GENERAL"></a><font color="#cc0033">GENERAL</font>*       : <a href="#type-FormattedFloatingDecimal$Form">FormattedFloatingDecimal$Form</a>;
+                                     <a name="type-SCIENTIFIC"></a><font color="#cc0033">SCIENTIFIC</font>*    : <a href="#type-FormattedFloatingDecimal$Form">FormattedFloatingDecimal$Form</a>;
+                                     <b>PROCEDURE </b><font color="#cc0033">valueOf</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-FormattedFloatingDecimal$Form">FormattedFloatingDecimal$Form</a>;
+                                     <b>PROCEDURE </b><font color="#cc0033">values</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-FormattedFloatingDecimal$Form">FormattedFloatingDecimal$Form</a>;
+                                   <b>END</b>;
+
+  <a name="type-FpUtils"></a><font color="#cc0033">FpUtils</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+             <b>STATIC</b>
+               <b>PROCEDURE </b><font color="#cc0033">copySign</font>*(p0 : SHORTREAL;
+                                   p1 : SHORTREAL) : SHORTREAL;
+               <b>PROCEDURE </b><font color="#cc0033">copySign</font>*(p0 : REAL;
+                                   p1 : REAL) : REAL;
+               <b>PROCEDURE </b><font color="#cc0033">getExponent</font>*(p0 : REAL) : INTEGER;
+               <b>PROCEDURE </b><font color="#cc0033">getExponent</font>*(p0 : SHORTREAL) : INTEGER;
+               <b>PROCEDURE </b><font color="#cc0033">ilogb</font>*(p0 : REAL) : INTEGER;
+               <b>PROCEDURE </b><font color="#cc0033">ilogb</font>*(p0 : SHORTREAL) : INTEGER;
+               <b>PROCEDURE </b><font color="#cc0033">isFinite</font>*(p0 : SHORTREAL) : BOOLEAN;
+               <b>PROCEDURE </b><font color="#cc0033">isFinite</font>*(p0 : REAL) : BOOLEAN;
+               <b>PROCEDURE </b><font color="#cc0033">isInfinite</font>*(p0 : REAL) : BOOLEAN;
+               <b>PROCEDURE </b><font color="#cc0033">isInfinite</font>*(p0 : SHORTREAL) : BOOLEAN;
+               <b>PROCEDURE </b><font color="#cc0033">isNaN</font>*(p0 : REAL) : BOOLEAN;
+               <b>PROCEDURE </b><font color="#cc0033">isNaN</font>*(p0 : SHORTREAL) : BOOLEAN;
+               <b>PROCEDURE </b><font color="#cc0033">isUnordered</font>*(p0 : REAL;
+                                      p1 : REAL) : BOOLEAN;
+               <b>PROCEDURE </b><font color="#cc0033">isUnordered</font>*(p0 : SHORTREAL;
+                                      p1 : SHORTREAL) : BOOLEAN;
+               <b>PROCEDURE </b><font color="#cc0033">nextAfter</font>*(p0 : REAL;
+                                    p1 : REAL) : REAL;
+               <b>PROCEDURE </b><font color="#cc0033">nextAfter</font>*(p0 : SHORTREAL;
+                                    p1 : REAL) : SHORTREAL;
+               <b>PROCEDURE </b><font color="#cc0033">nextDown</font>*(p0 : REAL) : REAL;
+               <b>PROCEDURE </b><font color="#cc0033">nextDown</font>*(p0 : SHORTREAL) : REAL;
+               <b>PROCEDURE </b><font color="#cc0033">nextUp</font>*(p0 : SHORTREAL) : SHORTREAL;
+               <b>PROCEDURE </b><font color="#cc0033">nextUp</font>*(p0 : REAL) : REAL;
+               <b>PROCEDURE </b><font color="#cc0033">rawCopySign</font>*(p0 : SHORTREAL;
+                                      p1 : SHORTREAL) : SHORTREAL;
+               <b>PROCEDURE </b><font color="#cc0033">rawCopySign</font>*(p0 : REAL;
+                                      p1 : REAL) : REAL;
+               <b>PROCEDURE </b><font color="#cc0033">scalb</font>*(p0 : REAL;
+                                p1 : INTEGER) : REAL;
+               <b>PROCEDURE </b><font color="#cc0033">scalb</font>*(p0 : SHORTREAL;
+                                p1 : INTEGER) : SHORTREAL;
+               <b>PROCEDURE </b><font color="#cc0033">signum</font>*(p0 : REAL) : REAL;
+               <b>PROCEDURE </b><font color="#cc0033">signum</font>*(p0 : SHORTREAL) : SHORTREAL;
+               <b>PROCEDURE </b><font color="#cc0033">ulp</font>*(p0 : REAL) : REAL;
+               <b>PROCEDURE </b><font color="#cc0033">ulp</font>*(p0 : SHORTREAL) : SHORTREAL;
+             <b>END</b>;
+
+  <a name="type-GC"></a><font color="#cc0033">GC</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+        <b>STATIC</b>
+          <b>PROCEDURE </b><font color="#cc0033">currentLatencyTarget</font>*() : LONGINT;
+          <b>PROCEDURE </b><font color="#cc0033">maxObjectInspectionAge</font>*() : LONGINT;
+          <b>PROCEDURE </b><font color="#cc0033">requestLatency</font>*(p0 : LONGINT) : <a href="#type-GC$LatencyRequest">GC$LatencyRequest</a>;
+        <b>END</b>;
+
+  <a name="type-GC$LatencyRequest"></a><font color="#cc0033">GC$LatencyRequest</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_lang.html#type-Comparable">java_lang.Comparable</a>)    <a href="#meths-GC$LatencyRequest"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                       <b>END</b>;
+
+  <a name="type-HexDumpEncoder"></a><font color="#cc0033">HexDumpEncoder</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-CharacterEncoder">CharacterEncoder</a>)    <a href="#meths-HexDumpEncoder"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                    <b>STATIC</b>
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-HexDumpEncoder">HexDumpEncoder</a><b>,CONSTRUCTOR</b>;
+                    <b>END</b>;
+
+  <a name="type-InvalidJarIndexException"></a><font color="#cc0033">InvalidJarIndexException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-RuntimeException">java_lang.RuntimeException</a>)
+                              <b>STATIC</b>
+                                <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-InvalidJarIndexException">InvalidJarIndexException</a><b>,CONSTRUCTOR</b>;
+                                <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-InvalidJarIndexException">InvalidJarIndexException</a><b>,CONSTRUCTOR</b>;
+                              <b>END</b>;
+
+  <a name="type-IOUtils"></a><font color="#cc0033">IOUtils</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+             <b>STATIC</b>
+               <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-IOUtils">IOUtils</a><b>,CONSTRUCTOR</b>;
+               <b>PROCEDURE </b><font color="#cc0033">readFully</font>*(p0 : <a href="java_io.html#type-InputStream">java_io.InputStream</a>;
+                                    p1 : INTEGER;
+                                    p2 : BOOLEAN) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>BYTE;
+             <b>END</b>;
+
+  <a name="type-JarFilter"></a><font color="#cc0033">JarFilter</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_io.html#type-FilenameFilter">java_io.FilenameFilter</a>)    <a href="#meths-JarFilter"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+               <b>STATIC</b>
+                 <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-JarFilter">JarFilter</a><b>,CONSTRUCTOR</b>;
+               <b>END</b>;
+
+  <a name="type-JarIndex"></a><font color="#cc0033">JarIndex</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-JarIndex"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+              <b>STATIC</b>
+                <font color="#cc0033">INDEX_NAME</font>*  = "META-INF/INDEX.LIST";
+                <b>PROCEDURE </b><font color="#cc0033">getJarIndex</font>*(p0 : <a href="java_util_jar.html#type-JarFile">java_util_jar.JarFile</a>) : <a href="#type-JarIndex">JarIndex</a>;
+                <b>PROCEDURE </b><font color="#cc0033">getJarIndex</font>*(p0 : <a href="java_util_jar.html#type-JarFile">java_util_jar.JarFile</a>;
+                                       p1 : <a href="#type-MetaIndex">MetaIndex</a>) : <a href="#type-JarIndex">JarIndex</a>;
+                <b>PROCEDURE </b><font color="#cc0033">Init</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-JarIndex">JarIndex</a><b>,CONSTRUCTOR</b>;
+                <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-JarIndex">JarIndex</a><b>,CONSTRUCTOR</b>;
+                <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_io.html#type-InputStream">java_io.InputStream</a>) : <a href="#type-JarIndex">JarIndex</a><b>,CONSTRUCTOR</b>;
+              <b>END</b>;
+
+  <a name="type-JavaIOAccess"></a><font color="#cc0033">JavaIOAccess</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-JavaIOAccess"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                  <b>END</b>;
+
+  <a name="type-JavaIOFileDescriptorAccess"></a><font color="#cc0033">JavaIOFileDescriptorAccess</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-JavaIOFileDescriptorAccess"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                                <b>END</b>;
+
+  <a name="type-JavaLangAccess"></a><font color="#cc0033">JavaLangAccess</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-JavaLangAccess"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                    <b>END</b>;
+
+  <a name="type-JavaNetAccess"></a><font color="#cc0033">JavaNetAccess</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-JavaNetAccess"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                   <b>END</b>;
+
+  <a name="type-JavaSecurityAccess"></a><font color="#cc0033">JavaSecurityAccess</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-JavaSecurityAccess"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                        <b>END</b>;
+
+  <a name="type-JavaSecurityProtectionDomainAccess"></a><font color="#cc0033">JavaSecurityProtectionDomainAccess</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-JavaSecurityProtectionDomainAccess"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                                        <b>END</b>;
+
+  <a name="type-JavaSecurityProtectionDomainAccess$ProtectionDomainCache"></a><font color="#cc0033">JavaSecurityProtectionDomainAccess$ProtectionDomainCache</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-JavaSecurityProtectionDomainAccess$ProtectionDomainCache"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                                                              <b>END</b>;
+
+  <a name="type-JavaUtilJarAccess"></a><font color="#cc0033">JavaUtilJarAccess</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-JavaUtilJarAccess"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                       <b>END</b>;
+
+  <a name="type-Launcher"></a><font color="#cc0033">Launcher</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-Launcher"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+              <b>STATIC</b>
+                <b>PROCEDURE </b><font color="#cc0033">addURLToAppClassLoader</font>*(p0 : <a href="java_net.html#type-URL">java_net.URL</a>);
+                <b>PROCEDURE </b><font color="#cc0033">addURLToExtClassLoader</font>*(p0 : <a href="java_net.html#type-URL">java_net.URL</a>);
+                <b>PROCEDURE </b><font color="#cc0033">flushBootstrapClassPath</font>*();
+                <b>PROCEDURE </b><font color="#cc0033">getBootstrapClassPath</font>*() : <a href="#type-URLClassPath">URLClassPath</a>;
+                <b>PROCEDURE </b><font color="#cc0033">getLauncher</font>*() : <a href="#type-Launcher">Launcher</a>;
+                <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-Launcher">Launcher</a><b>,CONSTRUCTOR</b>;
+              <b>END</b>;
+
+  <a name="type-Lock"></a><font color="#cc0033">Lock</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-Lock"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+          <b>STATIC</b>
+            <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-Lock">Lock</a><b>,CONSTRUCTOR</b>;
+          <b>END</b>;
+
+  <a name="type-LRUCache"></a><font color="#cc0033">LRUCache</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-LRUCache"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+              <b>STATIC</b>
+                <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER) : <a href="#type-LRUCache">LRUCache</a><b>,CONSTRUCTOR</b>;
+                <b>PROCEDURE </b><font color="#cc0033">moveToFront</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                           p1 : INTEGER);
+              <b>END</b>;
+
+  <a name="type-MessageUtils"></a><font color="#cc0033">MessageUtils</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                  <b>STATIC</b>
+                    <b>PROCEDURE </b><font color="#cc0033">err</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>);
+                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-MessageUtils">MessageUtils</a><b>,CONSTRUCTOR</b>;
+                    <b>PROCEDURE </b><font color="#cc0033">out</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>);
+                    <b>PROCEDURE </b><font color="#cc0033">subst</font>*(    p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                     IN  p1 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-String">java_lang.String</a>;
+                    <b>PROCEDURE </b><font color="#cc0033">subst</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                     p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-String">java_lang.String</a>;
+                    <b>PROCEDURE </b><font color="#cc0033">subst</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                     p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                     p2 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-String">java_lang.String</a>;
+                    <b>PROCEDURE </b><font color="#cc0033">subst</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                     p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                     p2 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                     p3 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-String">java_lang.String</a>;
+                    <b>PROCEDURE </b><font color="#cc0033">substProp</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                         p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                         p2 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                         p3 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-String">java_lang.String</a>;
+                    <b>PROCEDURE </b><font color="#cc0033">substProp</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                         p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                         p2 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-String">java_lang.String</a>;
+                    <b>PROCEDURE </b><font color="#cc0033">substProp</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                         p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-String">java_lang.String</a>;
+                    <b>PROCEDURE </b><font color="#cc0033">toStderr</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>);
+                    <b>PROCEDURE </b><font color="#cc0033">toStdout</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>);
+                    <b>PROCEDURE </b><font color="#cc0033">where</font>*();
+                  <b>END</b>;
+
+  <a name="type-MetaIndex"></a><font color="#cc0033">MetaIndex</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-MetaIndex"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+               <b>STATIC</b>
+                 <b>PROCEDURE </b><font color="#cc0033">forJar</font>*(p0 : <a href="java_io.html#type-File">java_io.File</a>) : <a href="#type-MetaIndex">MetaIndex</a>;
+                 <b>PROCEDURE </b><font color="#cc0033">registerDirectory</font>*(p0 : <a href="java_io.html#type-File">java_io.File</a>);
+               <b>END</b>;
+
+  <a name="type-OSEnvironment"></a><font color="#cc0033">OSEnvironment</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                   <b>STATIC</b>
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-OSEnvironment">OSEnvironment</a><b>,CONSTRUCTOR</b>;
+                     <b>PROCEDURE </b><font color="#cc0033">initialize</font>*();
+                   <b>END</b>;
+
+  <a name="type-Perf"></a><font color="#cc0033">Perf</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-Perf"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+          <b>STATIC</b>
+            <b>PROCEDURE </b><font color="#cc0033">getPerf</font>*() : <a href="#type-Perf">Perf</a>;
+          <b>END</b>;
+
+  <a name="type-Perf$GetPerfAction"></a><font color="#cc0033">Perf$GetPerfAction</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_security.html#type-PrivilegedAction">java_security.PrivilegedAction</a>)    <a href="#meths-Perf$GetPerfAction"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                        <b>STATIC</b>
+                          <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-Perf$GetPerfAction">Perf$GetPerfAction</a><b>,CONSTRUCTOR</b>;
+                        <b>END</b>;
+
+  <a name="type-PerformanceLogger"></a><font color="#cc0033">PerformanceLogger</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                       <b>STATIC</b>
+                         <b>PROCEDURE </b><font color="#cc0033">getMessageAtIndex</font>*(p0 : INTEGER) : <a href="java_lang.html#type-String">java_lang.String</a>;
+                         <b>PROCEDURE </b><font color="#cc0033">getStartTime</font>*() : LONGINT;
+                         <b>PROCEDURE </b><font color="#cc0033">getTimeAtIndex</font>*(p0 : INTEGER) : LONGINT;
+                         <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-PerformanceLogger">PerformanceLogger</a><b>,CONSTRUCTOR</b>;
+                         <b>PROCEDURE </b><font color="#cc0033">loggingEnabled</font>*() : BOOLEAN;
+                         <b>PROCEDURE </b><font color="#cc0033">outputLog</font>*(p0 : <a href="java_io.html#type-Writer">java_io.Writer</a>);
+                         <b>PROCEDURE </b><font color="#cc0033">outputLog</font>*();
+                         <b>PROCEDURE </b><font color="#cc0033">setBaseTime</font>*(p0 : LONGINT);
+                         <b>PROCEDURE </b><font color="#cc0033">setStartTime</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>);
+                         <b>PROCEDURE </b><font color="#cc0033">setStartTime</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                 p1 : LONGINT);
+                         <b>PROCEDURE </b><font color="#cc0033">setTime</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : INTEGER;
+                         <b>PROCEDURE </b><font color="#cc0033">setTime</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                            p1 : LONGINT) : INTEGER;
+                       <b>END</b>;
+
+  <a name="type-PostVMInitHook"></a><font color="#cc0033">PostVMInitHook</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                    <b>STATIC</b>
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-PostVMInitHook">PostVMInitHook</a><b>,CONSTRUCTOR</b>;
+                      <b>PROCEDURE </b><font color="#cc0033">run</font>*();
+                    <b>END</b>;
+
+  <a name="type-ProxyGenerator"></a><font color="#cc0033">ProxyGenerator</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                    <b>STATIC</b>
+                      <b>PROCEDURE </b><font color="#cc0033">generateProxyClass</font>*(    p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                    IN  p1 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Class">java_lang.Class</a>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>BYTE;
+                    <b>END</b>;
+
+  <a name="type-Queue"></a><font color="#cc0033">Queue</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-Queue"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+           <b>STATIC</b>
+             <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-Queue">Queue</a><b>,CONSTRUCTOR</b>;
+           <b>END</b>;
+
+  <a name="type-REException"></a><font color="#cc0033">REException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Exception">java_lang.Exception</a>)
+                 <b>END</b>;
+
+  <a name="type-Ref"></a><font color="#cc0033">Ref</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-Ref"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+         <b>STATIC</b>
+           <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="#type-Ref">Ref</a><b>,CONSTRUCTOR</b>;
+           <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-Ref">Ref</a><b>,CONSTRUCTOR</b>;
+         <b>END</b>;
+
+  <a name="type-Regexp"></a><font color="#cc0033">Regexp</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+              <font color="#cc0033">ignoreCase</font>* : BOOLEAN;
+              <font color="#cc0033">exp</font>*        : <a href="java_lang.html#type-String">java_lang.String</a>;
+              <font color="#cc0033">prefix</font>*     : <a href="java_lang.html#type-String">java_lang.String</a>;
+              <font color="#cc0033">suffix</font>*     : <a href="java_lang.html#type-String">java_lang.String</a>;
+              <font color="#cc0033">exact</font>*      : BOOLEAN;
+              <font color="#cc0033">prefixLen</font>*  : INTEGER;
+              <font color="#cc0033">suffixLen</font>*  : INTEGER;
+              <font color="#cc0033">totalLen</font>*   : INTEGER;
+              <font color="#cc0033">mids</font>*       : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>;
+            <b>STATIC</b>
+              <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-Regexp">Regexp</a><b>,CONSTRUCTOR</b>;
+            <b>END</b>;
+
+  <a name="type-RegexpPool"></a><font color="#cc0033">RegexpPool</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-RegexpPool"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                <b>STATIC</b>
+                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-RegexpPool">RegexpPool</a><b>,CONSTRUCTOR</b>;
+                <b>END</b>;
+
+  <a name="type-RegexpTarget"></a><font color="#cc0033">RegexpTarget</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-RegexpTarget"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                  <b>END</b>;
+
+  <a name="type-Request"></a><font color="#cc0033">Request</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-Request"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+             <b>STATIC</b>
+               <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-Request">Request</a><b>,CONSTRUCTOR</b>;
+             <b>END</b>;
+
+  <a name="type-RequestProcessor"></a><font color="#cc0033">RequestProcessor</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_lang.html#type-Runnable">java_lang.Runnable</a>)    <a href="#meths-RequestProcessor"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                      <b>STATIC</b>
+                        <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-RequestProcessor">RequestProcessor</a><b>,CONSTRUCTOR</b>;
+                        <b>PROCEDURE </b><font color="#cc0033">postRequest</font>*(p0 : <a href="#type-Request">Request</a>);
+                        <b>PROCEDURE </b><font color="#cc0033">startProcessing</font>*();
+                      <b>END</b>;
+
+  <a name="type-Resource"></a><font color="#cc0033">Resource</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-Resource"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+              <b>STATIC</b>
+                <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-Resource">Resource</a><b>,CONSTRUCTOR</b>;
+              <b>END</b>;
+
+  <a name="type-Service"></a><font color="#cc0033">Service</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+             <b>STATIC</b>
+               <b>PROCEDURE </b><font color="#cc0033">installedProviders</font>*(p0 : <a href="java_lang.html#type-Class">java_lang.Class</a>) : <a href="java_util.html#type-Iterator">java_util.Iterator</a>;
+               <b>PROCEDURE </b><font color="#cc0033">providers</font>*(p0 : <a href="java_lang.html#type-Class">java_lang.Class</a>) : <a href="java_util.html#type-Iterator">java_util.Iterator</a>;
+               <b>PROCEDURE </b><font color="#cc0033">providers</font>*(p0 : <a href="java_lang.html#type-Class">java_lang.Class</a>;
+                                    p1 : <a href="java_lang.html#type-ClassLoader">java_lang.ClassLoader</a>) : <a href="java_util.html#type-Iterator">java_util.Iterator</a>;
+             <b>END</b>;
+
+  <a name="type-ServiceConfigurationError"></a><font color="#cc0033">ServiceConfigurationError</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Error">java_lang.Error</a>)
+                               <b>STATIC</b>
+                                 <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-Throwable">java_lang.Throwable</a>) : <a href="#type-ServiceConfigurationError">ServiceConfigurationError</a><b>,CONSTRUCTOR</b>;
+                                 <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-ServiceConfigurationError">ServiceConfigurationError</a><b>,CONSTRUCTOR</b>;
+                               <b>END</b>;
+
+  <a name="type-SharedSecrets"></a><font color="#cc0033">SharedSecrets</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                   <b>STATIC</b>
+                     <b>PROCEDURE </b><font color="#cc0033">getJavaIOAccess</font>*() : <a href="#type-JavaIOAccess">JavaIOAccess</a>;
+                     <b>PROCEDURE </b><font color="#cc0033">getJavaIOFileDescriptorAccess</font>*() : <a href="#type-JavaIOFileDescriptorAccess">JavaIOFileDescriptorAccess</a>;
+                     <b>PROCEDURE </b><font color="#cc0033">getJavaLangAccess</font>*() : <a href="#type-JavaLangAccess">JavaLangAccess</a>;
+                     <b>PROCEDURE </b><font color="#cc0033">getJavaNetAccess</font>*() : <a href="#type-JavaNetAccess">JavaNetAccess</a>;
+                     <b>PROCEDURE </b><font color="#cc0033">getJavaSecurityAccess</font>*() : <a href="#type-JavaSecurityAccess">JavaSecurityAccess</a>;
+                     <b>PROCEDURE </b><font color="#cc0033">getJavaSecurityProtectionDomainAccess</font>*() : <a href="#type-JavaSecurityProtectionDomainAccess">JavaSecurityProtectionDomainAccess</a>;
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-SharedSecrets">SharedSecrets</a><b>,CONSTRUCTOR</b>;
+                     <b>PROCEDURE </b><font color="#cc0033">javaUtilJarAccess</font>*() : <a href="#type-JavaUtilJarAccess">JavaUtilJarAccess</a>;
+                     <b>PROCEDURE </b><font color="#cc0033">setJavaIOAccess</font>*(p0 : <a href="#type-JavaIOAccess">JavaIOAccess</a>);
+                     <b>PROCEDURE </b><font color="#cc0033">setJavaIOFileDescriptorAccess</font>*(p0 : <a href="#type-JavaIOFileDescriptorAccess">JavaIOFileDescriptorAccess</a>);
+                     <b>PROCEDURE </b><font color="#cc0033">setJavaLangAccess</font>*(p0 : <a href="#type-JavaLangAccess">JavaLangAccess</a>);
+                     <b>PROCEDURE </b><font color="#cc0033">setJavaNetAccess</font>*(p0 : <a href="#type-JavaNetAccess">JavaNetAccess</a>);
+                     <b>PROCEDURE </b><font color="#cc0033">setJavaSecurityAccess</font>*(p0 : <a href="#type-JavaSecurityAccess">JavaSecurityAccess</a>);
+                     <b>PROCEDURE </b><font color="#cc0033">setJavaSecurityProtectionDomainAccess</font>*(p0 : <a href="#type-JavaSecurityProtectionDomainAccess">JavaSecurityProtectionDomainAccess</a>);
+                     <b>PROCEDURE </b><font color="#cc0033">setJavaUtilJarAccess</font>*(p0 : <a href="#type-JavaUtilJarAccess">JavaUtilJarAccess</a>);
+                   <b>END</b>;
+
+  <a name="type-Signal"></a><font color="#cc0033">Signal</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-Signal"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+            <b>STATIC</b>
+              <b>PROCEDURE </b><font color="#cc0033">handle</font>*(p0 : <a href="#type-Signal">Signal</a>;
+                                p1 : <a href="#type-SignalHandler">SignalHandler</a>) : <a href="#type-SignalHandler">SignalHandler</a>;
+              <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-Signal">Signal</a><b>,CONSTRUCTOR</b>;
+              <b>PROCEDURE </b><font color="#cc0033">raise</font>*(p0 : <a href="#type-Signal">Signal</a>);
+            <b>END</b>;
+
+  <a name="type-SignalHandler"></a><font color="#cc0033">SignalHandler</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-SignalHandler"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                   <b>STATIC</b>
+                     <a name="type-SIG_DFL"></a><font color="#cc0033">SIG_DFL</font>* : <a href="#type-SignalHandler">SignalHandler</a>;
+                     <a name="type-SIG_IGN"></a><font color="#cc0033">SIG_IGN</font>* : <a href="#type-SignalHandler">SignalHandler</a>;
+                   <b>END</b>;
+
+  <a name="type-SoftCache"></a><font color="#cc0033">SoftCache</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_util.html#type-AbstractMap">java_util.AbstractMap</a> + <a href="java_util.html#type-Map">java_util.Map</a>)    <a href="#meths-SoftCache"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+               <b>STATIC</b>
+                 <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-SoftCache">SoftCache</a><b>,CONSTRUCTOR</b>;
+                 <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER) : <a href="#type-SoftCache">SoftCache</a><b>,CONSTRUCTOR</b>;
+                 <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER;
+                                 p1 : SHORTREAL) : <a href="#type-SoftCache">SoftCache</a><b>,CONSTRUCTOR</b>;
+               <b>END</b>;
+
+  <a name="type-Sort"></a><font color="#cc0033">Sort</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+          <b>STATIC</b>
+            <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-Sort">Sort</a><b>,CONSTRUCTOR</b>;
+            <b>PROCEDURE </b><font color="#cc0033">quicksort</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                     p1 : <a href="#type-Compare">Compare</a>);
+            <b>PROCEDURE </b><font color="#cc0033">quicksort</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                     p1 : INTEGER;
+                                     p2 : INTEGER;
+                                     p3 : <a href="#type-Compare">Compare</a>);
+          <b>END</b>;
+
+  <a name="type-Timeable"></a><font color="#cc0033">Timeable</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-Timeable"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+              <b>END</b>;
+
+  <a name="type-Timer"></a><font color="#cc0033">Timer</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-Timer"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+             <font color="#cc0033">owner</font>* : <a href="#type-Timeable">Timeable</a>;
+           <b>STATIC</b>
+             <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="#type-Timeable">Timeable</a>;
+                             p1 : LONGINT) : <a href="#type-Timer">Timer</a><b>,CONSTRUCTOR</b>;
+           <b>END</b>;
+
+  <a name="type-UCDecoder"></a><font color="#cc0033">UCDecoder</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-CharacterDecoder">CharacterDecoder</a>)    <a href="#meths-UCDecoder"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+               <b>STATIC</b>
+                 <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-UCDecoder">UCDecoder</a><b>,CONSTRUCTOR</b>;
+               <b>END</b>;
+
+  <a name="type-UCEncoder"></a><font color="#cc0033">UCEncoder</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-CharacterEncoder">CharacterEncoder</a>)    <a href="#meths-UCEncoder"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+               <b>STATIC</b>
+                 <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-UCEncoder">UCEncoder</a><b>,CONSTRUCTOR</b>;
+               <b>END</b>;
+
+  <a name="type-Unsafe"></a><font color="#cc0033">Unsafe</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-Unsafe"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+            <b>STATIC</b>
+              <font color="#cc0033">INVALID_FIELD_OFFSET</font>* = -1;
+              <b>PROCEDURE </b><font color="#cc0033">getUnsafe</font>*() : <a href="#type-Unsafe">Unsafe</a>;
+            <b>END</b>;
+
+  <a name="type-URLClassPath"></a><font color="#cc0033">URLClassPath</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-URLClassPath"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                  <b>STATIC</b>
+                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="java_net.html#type-URL">java_net.URL</a>) : <a href="#type-URLClassPath">URLClassPath</a><b>,CONSTRUCTOR</b>;
+                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="java_net.html#type-URL">java_net.URL</a>;
+                                        p1 : <a href="java_net.html#type-URLStreamHandlerFactory">java_net.URLStreamHandlerFactory</a>) : <a href="#type-URLClassPath">URLClassPath</a><b>,CONSTRUCTOR</b>;
+                    <b>PROCEDURE </b><font color="#cc0033">pathToURLs</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_net.html#type-URL">java_net.URL</a>;
+                  <b>END</b>;
+
+  <a name="type-UUDecoder"></a><font color="#cc0033">UUDecoder</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-CharacterDecoder">CharacterDecoder</a>)    <a href="#meths-UUDecoder"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                 <font color="#cc0033">bufferName</font>* : <a href="java_lang.html#type-String">java_lang.String</a>;
+                 <font color="#cc0033">mode</font>*       : INTEGER;
+               <b>STATIC</b>
+                 <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-UUDecoder">UUDecoder</a><b>,CONSTRUCTOR</b>;
+               <b>END</b>;
+
+  <a name="type-UUEncoder"></a><font color="#cc0033">UUEncoder</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-CharacterEncoder">CharacterEncoder</a>)    <a href="#meths-UUEncoder"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+               <b>STATIC</b>
+                 <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                 p1 : INTEGER) : <a href="#type-UUEncoder">UUEncoder</a><b>,CONSTRUCTOR</b>;
+                 <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-UUEncoder">UUEncoder</a><b>,CONSTRUCTOR</b>;
+                 <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-UUEncoder">UUEncoder</a><b>,CONSTRUCTOR</b>;
+               <b>END</b>;
+
+  <a name="type-Version"></a><font color="#cc0033">Version</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+             <b>STATIC</b>
+               <b>PROCEDURE </b><font color="#cc0033">getJdkSpecialVersion</font>*() : <a href="java_lang.html#type-String">java_lang.String</a>;
+               <b>PROCEDURE </b><font color="#cc0033">getJvmSpecialVersion</font>*() : <a href="java_lang.html#type-String">java_lang.String</a>;
+               <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-Version">Version</a><b>,CONSTRUCTOR</b>;
+               <b>PROCEDURE </b><font color="#cc0033">init</font>*();
+               <b>PROCEDURE </b><font color="#cc0033">jdkBuildNumber</font>*() : INTEGER;
+               <b>PROCEDURE </b><font color="#cc0033">jdkMajorVersion</font>*() : INTEGER;
+               <b>PROCEDURE </b><font color="#cc0033">jdkMicroVersion</font>*() : INTEGER;
+               <b>PROCEDURE </b><font color="#cc0033">jdkMinorVersion</font>*() : INTEGER;
+               <b>PROCEDURE </b><font color="#cc0033">jdkSpecialVersion</font>*() : <a href="java_lang.html#type-String">java_lang.String</a>;
+               <b>PROCEDURE </b><font color="#cc0033">jdkUpdateVersion</font>*() : INTEGER;
+               <b>PROCEDURE </b><font color="#cc0033">jvmBuildNumber</font>*() : INTEGER;
+               <b>PROCEDURE </b><font color="#cc0033">jvmMajorVersion</font>*() : INTEGER;
+               <b>PROCEDURE </b><font color="#cc0033">jvmMicroVersion</font>*() : INTEGER;
+               <b>PROCEDURE </b><font color="#cc0033">jvmMinorVersion</font>*() : INTEGER;
+               <b>PROCEDURE </b><font color="#cc0033">jvmSpecialVersion</font>*() : <a href="java_lang.html#type-String">java_lang.String</a>;
+               <b>PROCEDURE </b><font color="#cc0033">jvmUpdateVersion</font>*() : INTEGER;
+               <b>PROCEDURE </b><font color="#cc0033">print</font>*();
+               <b>PROCEDURE </b><font color="#cc0033">print</font>*(p0 : <a href="java_io.html#type-PrintStream">java_io.PrintStream</a>);
+             <b>END</b>;
+
+  <a name="type-VM"></a><font color="#cc0033">VM</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+        <b>STATIC</b>
+          <font color="#cc0033">STATE_GREEN</font>*             = 1;
+          <font color="#cc0033">STATE_RED</font>*               = 3;
+          <font color="#cc0033">STATE_YELLOW</font>*            = 2;
+          <b>PROCEDURE </b><font color="#cc0033">addFinalRefCount</font>*(p0 : INTEGER);
+          <b>PROCEDURE </b><font color="#cc0033">allowArraySyntax</font>*() : BOOLEAN;
+          <b>PROCEDURE </b><font color="#cc0033">allowThreadSuspension</font>*(p0 : <a href="java_lang.html#type-ThreadGroup">java_lang.ThreadGroup</a>;
+                                           p1 : BOOLEAN) : BOOLEAN;
+          <b>PROCEDURE </b><font color="#cc0033">asChange</font>*(p0 : INTEGER;
+                              p1 : INTEGER);
+          <b>PROCEDURE </b><font color="#cc0033">asChange_otherthread</font>*(p0 : INTEGER;
+                                          p1 : INTEGER);
+          <b>PROCEDURE </b><font color="#cc0033">booted</font>*();
+          <b>PROCEDURE </b><font color="#cc0033">getFinalRefCount</font>*() : INTEGER;
+          <b>PROCEDURE </b><font color="#cc0033">getPeakFinalRefCount</font>*() : INTEGER;
+          <b>PROCEDURE </b><font color="#cc0033">getState</font>*() : INTEGER;
+          <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-VM">VM</a><b>,CONSTRUCTOR</b>;
+          <b>PROCEDURE </b><font color="#cc0033">initializeOSEnvironment</font>*();
+          <b>PROCEDURE </b><font color="#cc0033">isBooted</font>*() : BOOLEAN;
+          <b>PROCEDURE </b><font color="#cc0033">maxDirectMemory</font>*() : LONGINT;
+          <b>PROCEDURE </b><font color="#cc0033">registerVMNotification</font>*(p0 : <a href="#type-VMNotification">VMNotification</a>);
+          <b>PROCEDURE </b><font color="#cc0033">suspendThreads</font>*() : BOOLEAN;
+          <b>PROCEDURE </b><font color="#cc0033">threadsSuspended</font>*() : BOOLEAN;
+          <b>PROCEDURE </b><font color="#cc0033">toThreadState</font>*(p0 : INTEGER) : <a href="java_lang.html#type-Thread$State">java_lang.Thread$State</a>;
+          <b>PROCEDURE </b><font color="#cc0033">unsuspendSomeThreads</font>*();
+          <b>PROCEDURE </b><font color="#cc0033">unsuspendThreads</font>*();
+        <b>END</b>;
+
+  <a name="type-VMNotification"></a><font color="#cc0033">VMNotification</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-VMNotification"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                    <b>END</b>;
+
+  <a name="type-VMSupport"></a><font color="#cc0033">VMSupport</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+               <b>STATIC</b>
+                 <b>PROCEDURE </b><font color="#cc0033">getAgentProperties</font>*() : <a href="java_util.html#type-Properties">java_util.Properties</a>;
+                 <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-VMSupport">VMSupport</a><b>,CONSTRUCTOR</b>;
+                 <b>PROCEDURE </b><font color="#cc0033">isClassPathAttributePresent</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : BOOLEAN;
+                 <b>PROCEDURE </b><font color="#cc0033">serializeAgentPropertiesToByteArray</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>BYTE;
+                 <b>PROCEDURE </b><font color="#cc0033">serializePropertiesToByteArray</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>BYTE;
+               <b>END</b>;
+
+
+
+<a name="meths-ASCIICaseInsensitiveComparator"></a>
+<b>PROCEDURE </b>(self:ASCIICaseInsensitiveComparator) <font color="#cc0033">compare</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                                         p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-AtomicLong"></a>
+<b>PROCEDURE </b>(self:AtomicLong) <font color="#cc0033">attemptAdd</font>*(p0 : LONGINT) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AtomicLong) <font color="#cc0033">attemptIncrememt</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AtomicLong) <font color="#cc0033">attemptSet</font>*(p0 : LONGINT) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AtomicLong) <font color="#cc0033">attemptUpdate</font>*(p0 : LONGINT;
+                                           p1 : LONGINT) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AtomicLong) <font color="#cc0033">get</font>*() : LONGINT<b>,NEW,ABSTRACT</b>;
+<a name="meths-BASE64Decoder"></a>
+<b>PROCEDURE </b>(self:BASE64Decoder) <font color="#cc0033">bytesPerAtom</font>!() : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BASE64Decoder) <font color="#cc0033">bytesPerLine</font>!() : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BASE64Decoder) <font color="#cc0033">decodeAtom</font>!(p0 : <a href="java_io.html#type-PushbackInputStream">java_io.PushbackInputStream</a>;
+                                           p1 : <a href="java_io.html#type-OutputStream">java_io.OutputStream</a>;
+                                           p2 : INTEGER)<b>,EXTENSIBLE</b>;
+<a name="meths-BASE64Encoder"></a>
+<b>PROCEDURE </b>(self:BASE64Encoder) <font color="#cc0033">bytesPerAtom</font>!() : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BASE64Encoder) <font color="#cc0033">bytesPerLine</font>!() : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BASE64Encoder) <font color="#cc0033">encodeAtom</font>!(    p0 : <a href="java_io.html#type-OutputStream">java_io.OutputStream</a>;
+                                           IN  p1 : <b>ARRAY </b><b>OF </b>BYTE;
+                                               p2 : INTEGER;
+                                               p3 : INTEGER)<b>,EXTENSIBLE</b>;
+<a name="meths-Cache"></a>
+<b>PROCEDURE </b>(self:Cache) <font color="#cc0033">elements</font>*() : <a href="java_util.html#type-Enumeration">java_util.Enumeration</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Cache) <font color="#cc0033">get</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Cache) <font color="#cc0033">isEmpty</font>*() : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Cache) <font color="#cc0033">keys</font>*() : <a href="java_util.html#type-Enumeration">java_util.Enumeration</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Cache) <font color="#cc0033">put</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                            p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Cache) <font color="#cc0033">rehash</font>!()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Cache) <font color="#cc0033">remove</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Cache) <font color="#cc0033">size</font>*() : INTEGER<b>,EXTENSIBLE</b>;
+<a name="meths-CharacterDecoder"></a>
+<b>PROCEDURE </b>(self:CharacterDecoder) <font color="#cc0033">bytesPerAtom</font>!() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CharacterDecoder) <font color="#cc0033">bytesPerLine</font>!() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CharacterDecoder) <font color="#cc0033">decodeAtom</font>!(p0 : <a href="java_io.html#type-PushbackInputStream">java_io.PushbackInputStream</a>;
+                                              p1 : <a href="java_io.html#type-OutputStream">java_io.OutputStream</a>;
+                                              p2 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CharacterDecoder) <font color="#cc0033">decodeBuffer</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>BYTE<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CharacterDecoder) <font color="#cc0033">decodeBuffer</font>*(p0 : <a href="java_io.html#type-InputStream">java_io.InputStream</a>;
+                                                p1 : <a href="java_io.html#type-OutputStream">java_io.OutputStream</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CharacterDecoder) <font color="#cc0033">decodeBuffer</font>*(p0 : <a href="java_io.html#type-InputStream">java_io.InputStream</a>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>BYTE<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CharacterDecoder) <font color="#cc0033">decodeBufferPrefix</font>!(p0 : <a href="java_io.html#type-PushbackInputStream">java_io.PushbackInputStream</a>;
+                                                      p1 : <a href="java_io.html#type-OutputStream">java_io.OutputStream</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CharacterDecoder) <font color="#cc0033">decodeBufferSuffix</font>!(p0 : <a href="java_io.html#type-PushbackInputStream">java_io.PushbackInputStream</a>;
+                                                      p1 : <a href="java_io.html#type-OutputStream">java_io.OutputStream</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CharacterDecoder) <font color="#cc0033">decodeBufferToByteBuffer</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CharacterDecoder) <font color="#cc0033">decodeBufferToByteBuffer</font>*(p0 : <a href="java_io.html#type-InputStream">java_io.InputStream</a>) : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CharacterDecoder) <font color="#cc0033">decodeLinePrefix</font>!(p0 : <a href="java_io.html#type-PushbackInputStream">java_io.PushbackInputStream</a>;
+                                                    p1 : <a href="java_io.html#type-OutputStream">java_io.OutputStream</a>) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CharacterDecoder) <font color="#cc0033">decodeLineSuffix</font>!(p0 : <a href="java_io.html#type-PushbackInputStream">java_io.PushbackInputStream</a>;
+                                                    p1 : <a href="java_io.html#type-OutputStream">java_io.OutputStream</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CharacterDecoder) <font color="#cc0033">readFully</font>!(    p0 : <a href="java_io.html#type-InputStream">java_io.InputStream</a>;
+                                             IN  p1 : <b>ARRAY </b><b>OF </b>BYTE;
+                                                 p2 : INTEGER;
+                                                 p3 : INTEGER) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-CharacterEncoder"></a>
+<b>PROCEDURE </b>(self:CharacterEncoder) <font color="#cc0033">bytesPerAtom</font>!() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CharacterEncoder) <font color="#cc0033">bytesPerLine</font>!() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CharacterEncoder) <font color="#cc0033">encode</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE;
+                                              p1 : <a href="java_io.html#type-OutputStream">java_io.OutputStream</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CharacterEncoder) <font color="#cc0033">encode</font>*(p0 : <a href="java_io.html#type-InputStream">java_io.InputStream</a>;
+                                          p1 : <a href="java_io.html#type-OutputStream">java_io.OutputStream</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CharacterEncoder) <font color="#cc0033">encode</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CharacterEncoder) <font color="#cc0033">encode</font>*(p0 : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CharacterEncoder) <font color="#cc0033">encode</font>*(p0 : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>;
+                                          p1 : <a href="java_io.html#type-OutputStream">java_io.OutputStream</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CharacterEncoder) <font color="#cc0033">encodeAtom</font>!(    p0 : <a href="java_io.html#type-OutputStream">java_io.OutputStream</a>;
+                                              IN  p1 : <b>ARRAY </b><b>OF </b>BYTE;
+                                                  p2 : INTEGER;
+                                                  p3 : INTEGER)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CharacterEncoder) <font color="#cc0033">encodeBuffer</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE;
+                                                    p1 : <a href="java_io.html#type-OutputStream">java_io.OutputStream</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CharacterEncoder) <font color="#cc0033">encodeBuffer</font>*(p0 : <a href="java_io.html#type-InputStream">java_io.InputStream</a>;
+                                                p1 : <a href="java_io.html#type-OutputStream">java_io.OutputStream</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CharacterEncoder) <font color="#cc0033">encodeBuffer</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CharacterEncoder) <font color="#cc0033">encodeBuffer</font>*(p0 : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CharacterEncoder) <font color="#cc0033">encodeBuffer</font>*(p0 : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>;
+                                                p1 : <a href="java_io.html#type-OutputStream">java_io.OutputStream</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CharacterEncoder) <font color="#cc0033">encodeBufferPrefix</font>!(p0 : <a href="java_io.html#type-OutputStream">java_io.OutputStream</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CharacterEncoder) <font color="#cc0033">encodeBufferSuffix</font>!(p0 : <a href="java_io.html#type-OutputStream">java_io.OutputStream</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CharacterEncoder) <font color="#cc0033">encodeLinePrefix</font>!(p0 : <a href="java_io.html#type-OutputStream">java_io.OutputStream</a>;
+                                                    p1 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CharacterEncoder) <font color="#cc0033">encodeLineSuffix</font>!(p0 : <a href="java_io.html#type-OutputStream">java_io.OutputStream</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CharacterEncoder) <font color="#cc0033">readFully</font>!(    p0 : <a href="java_io.html#type-InputStream">java_io.InputStream</a>;
+                                             IN  p1 : <b>ARRAY </b><b>OF </b>BYTE) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-ClassFileTransformer"></a>
+<b>PROCEDURE </b>(self:ClassFileTransformer) <font color="#cc0033">transform</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE;
+                                                     p1 : INTEGER;
+                                                     p2 : INTEGER) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>BYTE<b>,NEW,ABSTRACT</b>;
+<a name="meths-Cleaner"></a>
+<b>PROCEDURE </b>(self:Cleaner) <font color="#cc0033">clean</font>*()<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-Compare"></a>
+<b>PROCEDURE </b>(self:Compare) <font color="#cc0033">doCompare</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                    p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : INTEGER<b>,NEW,ABSTRACT</b>;
+<a name="meths-CompoundEnumeration"></a>
+<b>PROCEDURE </b>(self:CompoundEnumeration) <font color="#cc0033">hasMoreElements</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CompoundEnumeration) <font color="#cc0033">nextElement</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-ConditionLock"></a>
+<b>PROCEDURE </b>(self:ConditionLock) <font color="#cc0033">lockWhen</font>*(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ConditionLock) <font color="#cc0033">unlockWith</font>*(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-CRC16"></a>
+<b>PROCEDURE </b>(self:CRC16) <font color="#cc0033">reset</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CRC16) <font color="#cc0033">update</font>*(p0 : BYTE)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-ExtensionDependency"></a>
+<b>PROCEDURE </b>(self:ExtensionDependency) <font color="#cc0033">checkExtension</font>!(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                     p1 : <a href="java_util_jar.html#type-Attributes">java_util_jar.Attributes</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ExtensionDependency) <font color="#cc0033">checkExtensionAgainst</font>!(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                            p1 : <a href="java_util_jar.html#type-Attributes">java_util_jar.Attributes</a>;
+                                                            p2 : <a href="java_io.html#type-File">java_io.File</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ExtensionDependency) <font color="#cc0033">checkExtensions</font>!(p0 : <a href="java_util_jar.html#type-JarFile">java_util_jar.JarFile</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ExtensionDependency) <font color="#cc0033">installExtension</font>!(p0 : <a href="#type-ExtensionInfo">ExtensionInfo</a>;
+                                                       p1 : <a href="#type-ExtensionInfo">ExtensionInfo</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-ExtensionInfo"></a>
+<b>PROCEDURE </b>(self:ExtensionInfo) <font color="#cc0033">isCompatibleWith</font>*(p0 : <a href="#type-ExtensionInfo">ExtensionInfo</a>) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ExtensionInfo) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,EXTENSIBLE</b>;
+<a name="meths-ExtensionInstallationProvider"></a>
+<b>PROCEDURE </b>(self:ExtensionInstallationProvider) <font color="#cc0033">installExtension</font>*(p0 : <a href="#type-ExtensionInfo">ExtensionInfo</a>;
+                                                                 p1 : <a href="#type-ExtensionInfo">ExtensionInfo</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+<a name="meths-FileURLMapper"></a>
+<b>PROCEDURE </b>(self:FileURLMapper) <font color="#cc0033">exists</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FileURLMapper) <font color="#cc0033">getPath</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-FloatingDecimal"></a>
+<b>PROCEDURE </b>(self:FloatingDecimal) <font color="#cc0033">appendTo</font>*(p0 : <a href="java_lang.html#type-Appendable">java_lang.Appendable</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FloatingDecimal) <font color="#cc0033">doubleValue</font>*() : REAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FloatingDecimal) <font color="#cc0033">floatValue</font>*() : SHORTREAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FloatingDecimal) <font color="#cc0033">toJavaFormatString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FloatingDecimal) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,EXTENSIBLE</b>;
+<a name="meths-FormattedFloatingDecimal"></a>
+<b>PROCEDURE </b>(self:FormattedFloatingDecimal) <font color="#cc0033">appendTo</font>*(p0 : <a href="java_lang.html#type-Appendable">java_lang.Appendable</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FormattedFloatingDecimal) <font color="#cc0033">doubleValue</font>*() : REAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FormattedFloatingDecimal) <font color="#cc0033">floatValue</font>*() : SHORTREAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FormattedFloatingDecimal) <font color="#cc0033">getChars</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>CHAR) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FormattedFloatingDecimal) <font color="#cc0033">getExponent</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FormattedFloatingDecimal) <font color="#cc0033">getExponentRounded</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FormattedFloatingDecimal) <font color="#cc0033">toJavaFormatString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FormattedFloatingDecimal) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,EXTENSIBLE</b>;
+<a name="meths-GC$LatencyRequest"></a>
+<b>PROCEDURE </b>(self:GC$LatencyRequest) <font color="#cc0033">cancel</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:GC$LatencyRequest) <font color="#cc0033">compareTo</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:GC$LatencyRequest) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,EXTENSIBLE</b>;
+<a name="meths-HexDumpEncoder"></a>
+<b>PROCEDURE </b>(self:HexDumpEncoder) <font color="#cc0033">bytesPerAtom</font>!() : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HexDumpEncoder) <font color="#cc0033">bytesPerLine</font>!() : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HexDumpEncoder) <font color="#cc0033">encodeAtom</font>!(    p0 : <a href="java_io.html#type-OutputStream">java_io.OutputStream</a>;
+                                            IN  p1 : <b>ARRAY </b><b>OF </b>BYTE;
+                                                p2 : INTEGER;
+                                                p3 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HexDumpEncoder) <font color="#cc0033">encodeBufferPrefix</font>!(p0 : <a href="java_io.html#type-OutputStream">java_io.OutputStream</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HexDumpEncoder) <font color="#cc0033">encodeLinePrefix</font>!(p0 : <a href="java_io.html#type-OutputStream">java_io.OutputStream</a>;
+                                                  p1 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:HexDumpEncoder) <font color="#cc0033">encodeLineSuffix</font>!(p0 : <a href="java_io.html#type-OutputStream">java_io.OutputStream</a>)<b>,EXTENSIBLE</b>;
+<a name="meths-JarFilter"></a>
+<b>PROCEDURE </b>(self:JarFilter) <font color="#cc0033">accept</font>*(p0 : <a href="java_io.html#type-File">java_io.File</a>;
+                                   p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-JarIndex"></a>
+<b>PROCEDURE </b>(self:JarIndex) <font color="#cc0033">add</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                               p1 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:JarIndex) <font color="#cc0033">get</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_util.html#type-LinkedList">java_util.LinkedList</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:JarIndex) <font color="#cc0033">getJarFiles</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:JarIndex) <font color="#cc0033">merge</font>*(p0 : <a href="#type-JarIndex">JarIndex</a>;
+                                 p1 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:JarIndex) <font color="#cc0033">read</font>*(p0 : <a href="java_io.html#type-InputStream">java_io.InputStream</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:JarIndex) <font color="#cc0033">write</font>*(p0 : <a href="java_io.html#type-OutputStream">java_io.OutputStream</a>)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-JavaIOAccess"></a>
+<b>PROCEDURE </b>(self:JavaIOAccess) <font color="#cc0033">charset</font>*() : <a href="java_nio_charset.html#type-Charset">java_nio_charset.Charset</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:JavaIOAccess) <font color="#cc0033">console</font>*() : <a href="java_io.html#type-Console">java_io.Console</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-JavaIOFileDescriptorAccess"></a>
+<b>PROCEDURE </b>(self:JavaIOFileDescriptorAccess) <font color="#cc0033">get</font>*(p0 : <a href="java_io.html#type-FileDescriptor">java_io.FileDescriptor</a>) : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:JavaIOFileDescriptorAccess) <font color="#cc0033">getHandle</font>*(p0 : <a href="java_io.html#type-FileDescriptor">java_io.FileDescriptor</a>) : LONGINT<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:JavaIOFileDescriptorAccess) <font color="#cc0033">set</font>*(p0 : <a href="java_io.html#type-FileDescriptor">java_io.FileDescriptor</a>;
+                                                 p1 : INTEGER)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:JavaIOFileDescriptorAccess) <font color="#cc0033">setHandle</font>*(p0 : <a href="java_io.html#type-FileDescriptor">java_io.FileDescriptor</a>;
+                                                       p1 : LONGINT)<b>,NEW,ABSTRACT</b>;
+<a name="meths-JavaLangAccess"></a>
+<b>PROCEDURE </b>(self:JavaLangAccess) <font color="#cc0033">blockedOn</font>*(p0 : <a href="java_lang.html#type-Thread">java_lang.Thread</a>;
+                                           p1 : <a href="sun_nio_ch.html#type-Interruptible">sun_nio_ch.Interruptible</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:JavaLangAccess) <font color="#cc0033">getAnnotationType</font>*(p0 : <a href="java_lang.html#type-Class">java_lang.Class</a>) : <a href="sun_reflect_annotation.html#type-AnnotationType">sun_reflect_annotation.AnnotationType</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:JavaLangAccess) <font color="#cc0033">getConstantPool</font>*(p0 : <a href="java_lang.html#type-Class">java_lang.Class</a>) : <a href="sun_reflect.html#type-ConstantPool">sun_reflect.ConstantPool</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:JavaLangAccess) <font color="#cc0033">getEnumConstantsShared</font>*(p0 : <a href="java_lang.html#type-Class">java_lang.Class</a>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Enum">java_lang.Enum</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:JavaLangAccess) <font color="#cc0033">getStackTraceDepth</font>*(p0 : <a href="java_lang.html#type-Throwable">java_lang.Throwable</a>) : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:JavaLangAccess) <font color="#cc0033">getStackTraceElement</font>*(p0 : <a href="java_lang.html#type-Throwable">java_lang.Throwable</a>;
+                                                      p1 : INTEGER) : <a href="java_lang.html#type-StackTraceElement">java_lang.StackTraceElement</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:JavaLangAccess) <font color="#cc0033">registerShutdownHook</font>*(p0 : INTEGER;
+                                                      p1 : <a href="java_lang.html#type-Runnable">java_lang.Runnable</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:JavaLangAccess) <font color="#cc0033">setAnnotationType</font>*(p0 : <a href="java_lang.html#type-Class">java_lang.Class</a>;
+                                                   p1 : <a href="sun_reflect_annotation.html#type-AnnotationType">sun_reflect_annotation.AnnotationType</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-JavaNetAccess"></a>
+<b>PROCEDURE </b>(self:JavaNetAccess) <font color="#cc0033">getURLClassPath</font>*(p0 : <a href="java_net.html#type-URLClassLoader">java_net.URLClassLoader</a>) : <a href="#type-URLClassPath">URLClassPath</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-JavaSecurityAccess"></a>
+<b>PROCEDURE </b>(self:JavaSecurityAccess) <font color="#cc0033">doIntersectionPrivilege</font>*(p0 : <a href="java_security.html#type-PrivilegedAction">java_security.PrivilegedAction</a>;
+                                                             p1 : <a href="java_security.html#type-AccessControlContext">java_security.AccessControlContext</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:JavaSecurityAccess) <font color="#cc0033">doIntersectionPrivilege</font>*(p0 : <a href="java_security.html#type-PrivilegedAction">java_security.PrivilegedAction</a>;
+                                                             p1 : <a href="java_security.html#type-AccessControlContext">java_security.AccessControlContext</a>;
+                                                             p2 : <a href="java_security.html#type-AccessControlContext">java_security.AccessControlContext</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-JavaSecurityProtectionDomainAccess"></a>
+<b>PROCEDURE </b>(self:JavaSecurityProtectionDomainAccess) <font color="#cc0033">getProtectionDomainCache</font>*() : <a href="#type-JavaSecurityProtectionDomainAccess$ProtectionDomainCache">JavaSecurityProtectionDomainAccess$ProtectionDomainCache</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-JavaSecurityProtectionDomainAccess$ProtectionDomainCache"></a>
+<b>PROCEDURE </b>(self:JavaSecurityProtectionDomainAccess$ProtectionDomainCache) <font color="#cc0033">get</font>*(p0 : <a href="java_security.html#type-ProtectionDomain">java_security.ProtectionDomain</a>) : <a href="java_security.html#type-PermissionCollection">java_security.PermissionCollection</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:JavaSecurityProtectionDomainAccess$ProtectionDomainCache) <font color="#cc0033">put</font>*(p0 : <a href="java_security.html#type-ProtectionDomain">java_security.ProtectionDomain</a>;
+                                                                               p1 : <a href="java_security.html#type-PermissionCollection">java_security.PermissionCollection</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-JavaUtilJarAccess"></a>
+<b>PROCEDURE </b>(self:JavaUtilJarAccess) <font color="#cc0033">entries2</font>*(p0 : <a href="java_util_jar.html#type-JarFile">java_util_jar.JarFile</a>) : <a href="java_util.html#type-Enumeration">java_util.Enumeration</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:JavaUtilJarAccess) <font color="#cc0033">entryNames</font>*(    p0 : <a href="java_util_jar.html#type-JarFile">java_util_jar.JarFile</a>;
+                                               IN  p1 : <b>ARRAY </b><b>OF </b><a href="java_security.html#type-CodeSource">java_security.CodeSource</a>) : <a href="java_util.html#type-Enumeration">java_util.Enumeration</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:JavaUtilJarAccess) <font color="#cc0033">getCodeSource</font>*(p0 : <a href="java_util_jar.html#type-JarFile">java_util_jar.JarFile</a>;
+                                                  p1 : <a href="java_net.html#type-URL">java_net.URL</a>;
+                                                  p2 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_security.html#type-CodeSource">java_security.CodeSource</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:JavaUtilJarAccess) <font color="#cc0033">getCodeSources</font>*(p0 : <a href="java_util_jar.html#type-JarFile">java_util_jar.JarFile</a>;
+                                                   p1 : <a href="java_net.html#type-URL">java_net.URL</a>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_security.html#type-CodeSource">java_security.CodeSource</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:JavaUtilJarAccess) <font color="#cc0033">getManifestDigests</font>*(p0 : <a href="java_util_jar.html#type-JarFile">java_util_jar.JarFile</a>) : <a href="java_util.html#type-List">java_util.List</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:JavaUtilJarAccess) <font color="#cc0033">jarFileHasClassPathAttribute</font>*(p0 : <a href="java_util_jar.html#type-JarFile">java_util_jar.JarFile</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:JavaUtilJarAccess) <font color="#cc0033">setEagerValidation</font>*(p0 : <a href="java_util_jar.html#type-JarFile">java_util_jar.JarFile</a>;
+                                                       p1 : BOOLEAN)<b>,NEW,ABSTRACT</b>;
+<a name="meths-Launcher"></a>
+<b>PROCEDURE </b>(self:Launcher) <font color="#cc0033">getClassLoader</font>*() : <a href="java_lang.html#type-ClassLoader">java_lang.ClassLoader</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-Lock"></a>
+<b>PROCEDURE </b>(self:Lock) <font color="#cc0033">lock</font>*()<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:Lock) <font color="#cc0033">unlock</font>*()<b>,NEW</b>;
+<a name="meths-LRUCache"></a>
+<b>PROCEDURE </b>(self:LRUCache) <font color="#cc0033">create</font>!(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:LRUCache) <font color="#cc0033">forName</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LRUCache) <font color="#cc0033">hasName</font>!(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                   p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+<a name="meths-MetaIndex"></a>
+<b>PROCEDURE </b>(self:MetaIndex) <font color="#cc0033">mayContain</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-Perf"></a>
+<b>PROCEDURE </b>(self:Perf) <font color="#cc0033">attach</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                              p1 : INTEGER;
+                              p2 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Perf) <font color="#cc0033">attach</font>*(p0 : INTEGER;
+                              p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Perf) <font color="#cc0033">createByteArray</font>*(    p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                           p1 : INTEGER;
+                                           p2 : INTEGER;
+                                       IN  p3 : <b>ARRAY </b><b>OF </b>BYTE;
+                                           p4 : INTEGER) : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Perf) <font color="#cc0033">createLong</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                  p1 : INTEGER;
+                                  p2 : INTEGER;
+                                  p3 : LONGINT) : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Perf) <font color="#cc0033">createString</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                    p1 : INTEGER;
+                                    p2 : INTEGER;
+                                    p3 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Perf) <font color="#cc0033">createString</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                    p1 : INTEGER;
+                                    p2 : INTEGER;
+                                    p3 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                    p4 : INTEGER) : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Perf) <font color="#cc0033">highResCounter</font>*() : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Perf) <font color="#cc0033">highResFrequency</font>*() : LONGINT<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-Perf$GetPerfAction"></a>
+<b>PROCEDURE </b>(self:Perf$GetPerfAction) <font color="#cc0033">run</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-Queue"></a>
+<b>PROCEDURE </b>(self:Queue) <font color="#cc0033">dequeue</font>*(p0 : LONGINT) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Queue) <font color="#cc0033">dequeue</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Queue) <font color="#cc0033">dump</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Queue) <font color="#cc0033">elements</font>*() : <a href="java_util.html#type-Enumeration">java_util.Enumeration</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:Queue) <font color="#cc0033">enqueue</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Queue) <font color="#cc0033">isEmpty</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Queue) <font color="#cc0033">reverseElements</font>*() : <a href="java_util.html#type-Enumeration">java_util.Enumeration</a><b>,NEW</b>;
+<a name="meths-Ref"></a>
+<b>PROCEDURE </b>(self:Ref) <font color="#cc0033">check</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Ref) <font color="#cc0033">flush</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Ref) <font color="#cc0033">get</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Ref) <font color="#cc0033">reconstitute</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Ref) <font color="#cc0033">setThing</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-RegexpPool"></a>
+<b>PROCEDURE </b>(self:RegexpPool) <font color="#cc0033">add</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                 p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RegexpPool) <font color="#cc0033">delete</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RegexpPool) <font color="#cc0033">match</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RegexpPool) <font color="#cc0033">matchNext</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RegexpPool) <font color="#cc0033">print</font>*(p0 : <a href="java_io.html#type-PrintStream">java_io.PrintStream</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RegexpPool) <font color="#cc0033">replace</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                     p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RegexpPool) <font color="#cc0033">reset</font>*()<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-RegexpTarget"></a>
+<b>PROCEDURE </b>(self:RegexpTarget) <font color="#cc0033">found</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-Request"></a>
+<b>PROCEDURE </b>(self:Request) <font color="#cc0033">execute</font>*()<b>,NEW,ABSTRACT</b>;
+<a name="meths-RequestProcessor"></a>
+<b>PROCEDURE </b>(self:RequestProcessor) <font color="#cc0033">run</font>*()<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-Resource"></a>
+<b>PROCEDURE </b>(self:Resource) <font color="#cc0033">getByteBuffer</font>*() : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Resource) <font color="#cc0033">getBytes</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>BYTE<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Resource) <font color="#cc0033">getCertificates</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_security_cert.html#type-Certificate">java_security_cert.Certificate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Resource) <font color="#cc0033">getCodeSigners</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_security.html#type-CodeSigner">java_security.CodeSigner</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Resource) <font color="#cc0033">getCodeSourceURL</font>*() : <a href="java_net.html#type-URL">java_net.URL</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Resource) <font color="#cc0033">getContentLength</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Resource) <font color="#cc0033">getInputStream</font>*() : <a href="java_io.html#type-InputStream">java_io.InputStream</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Resource) <font color="#cc0033">getManifest</font>*() : <a href="java_util_jar.html#type-Manifest">java_util_jar.Manifest</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Resource) <font color="#cc0033">getName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Resource) <font color="#cc0033">getURL</font>*() : <a href="java_net.html#type-URL">java_net.URL</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-Signal"></a>
+<b>PROCEDURE </b>(self:Signal) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Signal) <font color="#cc0033">getName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Signal) <font color="#cc0033">getNumber</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Signal) <font color="#cc0033">hashCode</font>*() : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Signal) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,EXTENSIBLE</b>;
+<a name="meths-SignalHandler"></a>
+<b>PROCEDURE </b>(self:SignalHandler) <font color="#cc0033">handle</font>*(p0 : <a href="#type-Signal">Signal</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-SoftCache"></a>
+<b>PROCEDURE </b>(self:SoftCache) <font color="#cc0033">clear</font>*()<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SoftCache) <font color="#cc0033">containsKey</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SoftCache) <font color="#cc0033">entrySet</font>*() : <a href="java_util.html#type-Set">java_util.Set</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SoftCache) <font color="#cc0033">fill</font>!(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SoftCache) <font color="#cc0033">get</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SoftCache) <font color="#cc0033">isEmpty</font>*() : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SoftCache) <font color="#cc0033">put</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SoftCache) <font color="#cc0033">remove</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SoftCache) <font color="#cc0033">size</font>*() : INTEGER<b>,EXTENSIBLE</b>;
+<a name="meths-Timeable"></a>
+<b>PROCEDURE </b>(self:Timeable) <font color="#cc0033">tick</font>*(p0 : <a href="#type-Timer">Timer</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-Timer"></a>
+<b>PROCEDURE </b>(self:Timer) <font color="#cc0033">cont</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Timer) <font color="#cc0033">getInterval</font>*() : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Timer) <font color="#cc0033">getRemainingTime</font>*() : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Timer) <font color="#cc0033">getStopTime</font>*() : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Timer) <font color="#cc0033">getTimerThread</font>!() : <a href="java_lang.html#type-Thread">java_lang.Thread</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Timer) <font color="#cc0033">isStopped</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Timer) <font color="#cc0033">reset</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Timer) <font color="#cc0033">setInterval</font>*(p0 : LONGINT)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Timer) <font color="#cc0033">setRegular</font>*(p0 : BOOLEAN)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Timer) <font color="#cc0033">setRemainingTime</font>*(p0 : LONGINT)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Timer) <font color="#cc0033">stop</font>*()<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-UCDecoder"></a>
+<b>PROCEDURE </b>(self:UCDecoder) <font color="#cc0033">bytesPerAtom</font>!() : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:UCDecoder) <font color="#cc0033">bytesPerLine</font>!() : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:UCDecoder) <font color="#cc0033">decodeAtom</font>!(p0 : <a href="java_io.html#type-PushbackInputStream">java_io.PushbackInputStream</a>;
+                                       p1 : <a href="java_io.html#type-OutputStream">java_io.OutputStream</a>;
+                                       p2 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:UCDecoder) <font color="#cc0033">decodeBufferPrefix</font>!(p0 : <a href="java_io.html#type-PushbackInputStream">java_io.PushbackInputStream</a>;
+                                               p1 : <a href="java_io.html#type-OutputStream">java_io.OutputStream</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:UCDecoder) <font color="#cc0033">decodeLinePrefix</font>!(p0 : <a href="java_io.html#type-PushbackInputStream">java_io.PushbackInputStream</a>;
+                                             p1 : <a href="java_io.html#type-OutputStream">java_io.OutputStream</a>) : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:UCDecoder) <font color="#cc0033">decodeLineSuffix</font>!(p0 : <a href="java_io.html#type-PushbackInputStream">java_io.PushbackInputStream</a>;
+                                             p1 : <a href="java_io.html#type-OutputStream">java_io.OutputStream</a>)<b>,EXTENSIBLE</b>;
+<a name="meths-UCEncoder"></a>
+<b>PROCEDURE </b>(self:UCEncoder) <font color="#cc0033">bytesPerAtom</font>!() : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:UCEncoder) <font color="#cc0033">bytesPerLine</font>!() : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:UCEncoder) <font color="#cc0033">encodeAtom</font>!(    p0 : <a href="java_io.html#type-OutputStream">java_io.OutputStream</a>;
+                                       IN  p1 : <b>ARRAY </b><b>OF </b>BYTE;
+                                           p2 : INTEGER;
+                                           p3 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:UCEncoder) <font color="#cc0033">encodeBufferPrefix</font>!(p0 : <a href="java_io.html#type-OutputStream">java_io.OutputStream</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:UCEncoder) <font color="#cc0033">encodeLinePrefix</font>!(p0 : <a href="java_io.html#type-OutputStream">java_io.OutputStream</a>;
+                                             p1 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:UCEncoder) <font color="#cc0033">encodeLineSuffix</font>!(p0 : <a href="java_io.html#type-OutputStream">java_io.OutputStream</a>)<b>,EXTENSIBLE</b>;
+<a name="meths-Unsafe"></a>
+<b>PROCEDURE </b>(self:Unsafe) <font color="#cc0033">addressSize</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Unsafe) <font color="#cc0033">allocateInstance</font>*(p0 : <a href="java_lang.html#type-Class">java_lang.Class</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Unsafe) <font color="#cc0033">allocateMemory</font>*(p0 : LONGINT) : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Unsafe) <font color="#cc0033">arrayBaseOffset</font>*(p0 : <a href="java_lang.html#type-Class">java_lang.Class</a>) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Unsafe) <font color="#cc0033">arrayIndexScale</font>*(p0 : <a href="java_lang.html#type-Class">java_lang.Class</a>) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Unsafe) <font color="#cc0033">compareAndSwapInt</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                           p1 : LONGINT;
+                                           p2 : INTEGER;
+                                           p3 : INTEGER) : BOOLEAN<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:Unsafe) <font color="#cc0033">compareAndSwapLong</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                            p1 : LONGINT;
+                                            p2 : LONGINT;
+                                            p3 : LONGINT) : BOOLEAN<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:Unsafe) <font color="#cc0033">compareAndSwapObject</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                              p1 : LONGINT;
+                                              p2 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                              p3 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:Unsafe) <font color="#cc0033">copyMemory</font>*(p0 : LONGINT;
+                                    p1 : LONGINT;
+                                    p2 : LONGINT)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Unsafe) <font color="#cc0033">copyMemory</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                    p1 : LONGINT;
+                                    p2 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                    p3 : LONGINT;
+                                    p4 : LONGINT)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Unsafe) <font color="#cc0033">defineClass</font>*(    p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                     IN  p1 : <b>ARRAY </b><b>OF </b>BYTE;
+                                         p2 : INTEGER;
+                                         p3 : INTEGER) : <a href="java_lang.html#type-Class">java_lang.Class</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Unsafe) <font color="#cc0033">defineClass</font>*(    p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                     IN  p1 : <b>ARRAY </b><b>OF </b>BYTE;
+                                         p2 : INTEGER;
+                                         p3 : INTEGER;
+                                         p4 : <a href="java_lang.html#type-ClassLoader">java_lang.ClassLoader</a>;
+                                         p5 : <a href="java_security.html#type-ProtectionDomain">java_security.ProtectionDomain</a>) : <a href="java_lang.html#type-Class">java_lang.Class</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Unsafe) <font color="#cc0033">ensureClassInitialized</font>*(p0 : <a href="java_lang.html#type-Class">java_lang.Class</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Unsafe) <font color="#cc0033">fieldOffset</font>*(p0 : <a href="java_lang_reflect.html#type-Field">java_lang_reflect.Field</a>) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Unsafe) <font color="#cc0033">freeMemory</font>*(p0 : LONGINT)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Unsafe) <font color="#cc0033">getAddress</font>*(p0 : LONGINT) : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Unsafe) <font color="#cc0033">getBoolean</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                    p1 : LONGINT) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Unsafe) <font color="#cc0033">getBoolean</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                    p1 : INTEGER) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Unsafe) <font color="#cc0033">getBooleanVolatile</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                            p1 : LONGINT) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Unsafe) <font color="#cc0033">getByte</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                 p1 : INTEGER) : BYTE<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Unsafe) <font color="#cc0033">getByte</font>*(p0 : LONGINT) : BYTE<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Unsafe) <font color="#cc0033">getByte</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                 p1 : LONGINT) : BYTE<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Unsafe) <font color="#cc0033">getByteVolatile</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                         p1 : LONGINT) : BYTE<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Unsafe) <font color="#cc0033">getChar</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                 p1 : INTEGER) : CHAR<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Unsafe) <font color="#cc0033">getChar</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                 p1 : LONGINT) : CHAR<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Unsafe) <font color="#cc0033">getChar</font>*(p0 : LONGINT) : CHAR<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Unsafe) <font color="#cc0033">getCharVolatile</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                         p1 : LONGINT) : CHAR<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Unsafe) <font color="#cc0033">getDouble</font>*(p0 : LONGINT) : REAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Unsafe) <font color="#cc0033">getDouble</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                   p1 : INTEGER) : REAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Unsafe) <font color="#cc0033">getDouble</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                   p1 : LONGINT) : REAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Unsafe) <font color="#cc0033">getDoubleVolatile</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                           p1 : LONGINT) : REAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Unsafe) <font color="#cc0033">getFloat</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                  p1 : INTEGER) : SHORTREAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Unsafe) <font color="#cc0033">getFloat</font>*(p0 : LONGINT) : SHORTREAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Unsafe) <font color="#cc0033">getFloat</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                  p1 : LONGINT) : SHORTREAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Unsafe) <font color="#cc0033">getFloatVolatile</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                          p1 : LONGINT) : SHORTREAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Unsafe) <font color="#cc0033">getInt</font>*(p0 : LONGINT) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Unsafe) <font color="#cc0033">getInt</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                p1 : LONGINT) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Unsafe) <font color="#cc0033">getInt</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                p1 : INTEGER) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Unsafe) <font color="#cc0033">getIntVolatile</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                        p1 : LONGINT) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Unsafe) <font color="#cc0033">getLoadAverage</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>REAL;
+                                            p1 : INTEGER) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Unsafe) <font color="#cc0033">getLong</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                 p1 : LONGINT) : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Unsafe) <font color="#cc0033">getLong</font>*(p0 : LONGINT) : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Unsafe) <font color="#cc0033">getLong</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                 p1 : INTEGER) : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Unsafe) <font color="#cc0033">getLongVolatile</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                         p1 : LONGINT) : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Unsafe) <font color="#cc0033">getObject</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                   p1 : INTEGER) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Unsafe) <font color="#cc0033">getObject</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                   p1 : LONGINT) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Unsafe) <font color="#cc0033">getObjectVolatile</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                           p1 : LONGINT) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Unsafe) <font color="#cc0033">getShort</font>*(p0 : LONGINT) : SHORTINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Unsafe) <font color="#cc0033">getShort</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                  p1 : LONGINT) : SHORTINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Unsafe) <font color="#cc0033">getShort</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                  p1 : INTEGER) : SHORTINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Unsafe) <font color="#cc0033">getShortVolatile</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                          p1 : LONGINT) : SHORTINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Unsafe) <font color="#cc0033">monitorEnter</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Unsafe) <font color="#cc0033">monitorExit</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Unsafe) <font color="#cc0033">objectFieldOffset</font>*(p0 : <a href="java_lang_reflect.html#type-Field">java_lang_reflect.Field</a>) : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Unsafe) <font color="#cc0033">pageSize</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Unsafe) <font color="#cc0033">park</font>*(p0 : BOOLEAN;
+                              p1 : LONGINT)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Unsafe) <font color="#cc0033">putAddress</font>*(p0 : LONGINT;
+                                    p1 : LONGINT)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Unsafe) <font color="#cc0033">putBoolean</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                    p1 : INTEGER;
+                                    p2 : BOOLEAN)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Unsafe) <font color="#cc0033">putBoolean</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                    p1 : LONGINT;
+                                    p2 : BOOLEAN)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Unsafe) <font color="#cc0033">putBooleanVolatile</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                            p1 : LONGINT;
+                                            p2 : BOOLEAN)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Unsafe) <font color="#cc0033">putByte</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                 p1 : INTEGER;
+                                 p2 : BYTE)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Unsafe) <font color="#cc0033">putByte</font>*(p0 : LONGINT;
+                                 p1 : BYTE)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Unsafe) <font color="#cc0033">putByte</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                 p1 : LONGINT;
+                                 p2 : BYTE)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Unsafe) <font color="#cc0033">putByteVolatile</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                         p1 : LONGINT;
+                                         p2 : BYTE)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Unsafe) <font color="#cc0033">putChar</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                 p1 : INTEGER;
+                                 p2 : CHAR)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Unsafe) <font color="#cc0033">putChar</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                 p1 : LONGINT;
+                                 p2 : CHAR)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Unsafe) <font color="#cc0033">putChar</font>*(p0 : LONGINT;
+                                 p1 : CHAR)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Unsafe) <font color="#cc0033">putCharVolatile</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                         p1 : LONGINT;
+                                         p2 : CHAR)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Unsafe) <font color="#cc0033">putDouble</font>*(p0 : LONGINT;
+                                   p1 : REAL)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Unsafe) <font color="#cc0033">putDouble</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                   p1 : LONGINT;
+                                   p2 : REAL)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Unsafe) <font color="#cc0033">putDouble</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                   p1 : INTEGER;
+                                   p2 : REAL)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Unsafe) <font color="#cc0033">putDoubleVolatile</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                           p1 : LONGINT;
+                                           p2 : REAL)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Unsafe) <font color="#cc0033">putFloat</font>*(p0 : LONGINT;
+                                  p1 : SHORTREAL)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Unsafe) <font color="#cc0033">putFloat</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                  p1 : LONGINT;
+                                  p2 : SHORTREAL)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Unsafe) <font color="#cc0033">putFloat</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                  p1 : INTEGER;
+                                  p2 : SHORTREAL)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Unsafe) <font color="#cc0033">putFloatVolatile</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                          p1 : LONGINT;
+                                          p2 : SHORTREAL)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Unsafe) <font color="#cc0033">putInt</font>*(p0 : LONGINT;
+                                p1 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Unsafe) <font color="#cc0033">putInt</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                p1 : INTEGER;
+                                p2 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Unsafe) <font color="#cc0033">putInt</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                p1 : LONGINT;
+                                p2 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Unsafe) <font color="#cc0033">putIntVolatile</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                        p1 : LONGINT;
+                                        p2 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Unsafe) <font color="#cc0033">putLong</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                 p1 : INTEGER;
+                                 p2 : LONGINT)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Unsafe) <font color="#cc0033">putLong</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                 p1 : LONGINT;
+                                 p2 : LONGINT)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Unsafe) <font color="#cc0033">putLong</font>*(p0 : LONGINT;
+                                 p1 : LONGINT)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Unsafe) <font color="#cc0033">putLongVolatile</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                         p1 : LONGINT;
+                                         p2 : LONGINT)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Unsafe) <font color="#cc0033">putObject</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                   p1 : LONGINT;
+                                   p2 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Unsafe) <font color="#cc0033">putObject</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                   p1 : INTEGER;
+                                   p2 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Unsafe) <font color="#cc0033">putObjectVolatile</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                           p1 : LONGINT;
+                                           p2 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Unsafe) <font color="#cc0033">putOrderedInt</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                       p1 : LONGINT;
+                                       p2 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Unsafe) <font color="#cc0033">putOrderedLong</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                        p1 : LONGINT;
+                                        p2 : LONGINT)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Unsafe) <font color="#cc0033">putOrderedObject</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                          p1 : LONGINT;
+                                          p2 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Unsafe) <font color="#cc0033">putShort</font>*(p0 : LONGINT;
+                                  p1 : SHORTINT)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Unsafe) <font color="#cc0033">putShort</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                  p1 : LONGINT;
+                                  p2 : SHORTINT)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Unsafe) <font color="#cc0033">putShort</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                  p1 : INTEGER;
+                                  p2 : SHORTINT)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Unsafe) <font color="#cc0033">putShortVolatile</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                          p1 : LONGINT;
+                                          p2 : SHORTINT)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Unsafe) <font color="#cc0033">reallocateMemory</font>*(p0 : LONGINT;
+                                          p1 : LONGINT) : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Unsafe) <font color="#cc0033">setMemory</font>*(p0 : LONGINT;
+                                   p1 : LONGINT;
+                                   p2 : BYTE)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Unsafe) <font color="#cc0033">staticFieldBase</font>*(p0 : <a href="java_lang.html#type-Class">java_lang.Class</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Unsafe) <font color="#cc0033">staticFieldBase</font>*(p0 : <a href="java_lang_reflect.html#type-Field">java_lang_reflect.Field</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Unsafe) <font color="#cc0033">staticFieldOffset</font>*(p0 : <a href="java_lang_reflect.html#type-Field">java_lang_reflect.Field</a>) : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Unsafe) <font color="#cc0033">throwException</font>*(p0 : <a href="java_lang.html#type-Throwable">java_lang.Throwable</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Unsafe) <font color="#cc0033">tryMonitorEnter</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Unsafe) <font color="#cc0033">unpark</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-URLClassPath"></a>
+<b>PROCEDURE </b>(self:URLClassPath) <font color="#cc0033">addURL</font>*(p0 : <a href="java_net.html#type-URL">java_net.URL</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:URLClassPath) <font color="#cc0033">checkURL</font>*(p0 : <a href="java_net.html#type-URL">java_net.URL</a>) : <a href="java_net.html#type-URL">java_net.URL</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:URLClassPath) <font color="#cc0033">findResource</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                            p1 : BOOLEAN) : <a href="java_net.html#type-URL">java_net.URL</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:URLClassPath) <font color="#cc0033">findResources</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                             p1 : BOOLEAN) : <a href="java_util.html#type-Enumeration">java_util.Enumeration</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:URLClassPath) <font color="#cc0033">getResource</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-Resource">Resource</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:URLClassPath) <font color="#cc0033">getResource</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                           p1 : BOOLEAN) : <a href="#type-Resource">Resource</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:URLClassPath) <font color="#cc0033">getResources</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_util.html#type-Enumeration">java_util.Enumeration</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:URLClassPath) <font color="#cc0033">getResources</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                            p1 : BOOLEAN) : <a href="java_util.html#type-Enumeration">java_util.Enumeration</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:URLClassPath) <font color="#cc0033">getURLs</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_net.html#type-URL">java_net.URL</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-UUDecoder"></a>
+<b>PROCEDURE </b>(self:UUDecoder) <font color="#cc0033">bytesPerAtom</font>!() : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:UUDecoder) <font color="#cc0033">bytesPerLine</font>!() : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:UUDecoder) <font color="#cc0033">decodeAtom</font>!(p0 : <a href="java_io.html#type-PushbackInputStream">java_io.PushbackInputStream</a>;
+                                       p1 : <a href="java_io.html#type-OutputStream">java_io.OutputStream</a>;
+                                       p2 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:UUDecoder) <font color="#cc0033">decodeBufferPrefix</font>!(p0 : <a href="java_io.html#type-PushbackInputStream">java_io.PushbackInputStream</a>;
+                                               p1 : <a href="java_io.html#type-OutputStream">java_io.OutputStream</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:UUDecoder) <font color="#cc0033">decodeBufferSuffix</font>!(p0 : <a href="java_io.html#type-PushbackInputStream">java_io.PushbackInputStream</a>;
+                                               p1 : <a href="java_io.html#type-OutputStream">java_io.OutputStream</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:UUDecoder) <font color="#cc0033">decodeLinePrefix</font>!(p0 : <a href="java_io.html#type-PushbackInputStream">java_io.PushbackInputStream</a>;
+                                             p1 : <a href="java_io.html#type-OutputStream">java_io.OutputStream</a>) : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:UUDecoder) <font color="#cc0033">decodeLineSuffix</font>!(p0 : <a href="java_io.html#type-PushbackInputStream">java_io.PushbackInputStream</a>;
+                                             p1 : <a href="java_io.html#type-OutputStream">java_io.OutputStream</a>)<b>,EXTENSIBLE</b>;
+<a name="meths-UUEncoder"></a>
+<b>PROCEDURE </b>(self:UUEncoder) <font color="#cc0033">bytesPerAtom</font>!() : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:UUEncoder) <font color="#cc0033">bytesPerLine</font>!() : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:UUEncoder) <font color="#cc0033">encodeAtom</font>!(    p0 : <a href="java_io.html#type-OutputStream">java_io.OutputStream</a>;
+                                       IN  p1 : <b>ARRAY </b><b>OF </b>BYTE;
+                                           p2 : INTEGER;
+                                           p3 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:UUEncoder) <font color="#cc0033">encodeBufferPrefix</font>!(p0 : <a href="java_io.html#type-OutputStream">java_io.OutputStream</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:UUEncoder) <font color="#cc0033">encodeBufferSuffix</font>!(p0 : <a href="java_io.html#type-OutputStream">java_io.OutputStream</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:UUEncoder) <font color="#cc0033">encodeLinePrefix</font>!(p0 : <a href="java_io.html#type-OutputStream">java_io.OutputStream</a>;
+                                             p1 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:UUEncoder) <font color="#cc0033">encodeLineSuffix</font>!(p0 : <a href="java_io.html#type-OutputStream">java_io.OutputStream</a>)<b>,EXTENSIBLE</b>;
+<a name="meths-VMNotification"></a>
+<b>PROCEDURE </b>(self:VMNotification) <font color="#cc0033">newAllocState</font>*(p0 : INTEGER;
+                                               p1 : INTEGER;
+                                               p2 : BOOLEAN)<b>,NEW,ABSTRACT</b>;
+
+<b>END </b><font color="#cc0033">sun_misc</font>.
+</font></pre></hr></body></html>

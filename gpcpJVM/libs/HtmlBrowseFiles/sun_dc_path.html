@@ -1,0 +1,87 @@
+<html><head><title>sun_dc_path</title></head>
+<body bgcolor="white">
+<hr><pre>
+<b>FOREIGN MODULE </b><font color="#cc0033">sun_dc_path</font>;
+
+<b>IMPORT</b>
+    <a href="java_lang.html">java_lang</a> := "java.lang",
+    <a href="java_io.html">java_io</a> := "java.io";
+
+<b>TYPE</b>
+
+  <a name="type-FastPathProducer"></a><font color="#cc0033">FastPathProducer</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-FastPathProducer"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                      <b>END</b>;
+
+  <a name="type-PathConsumer"></a><font color="#cc0033">PathConsumer</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-PathConsumer"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                  <b>END</b>;
+
+  <a name="type-PathError"></a><font color="#cc0033">PathError</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-RuntimeException">java_lang.RuntimeException</a>)
+               <b>STATIC</b>
+                 <font color="#cc0033">BAD_boxdest</font>*          = "getBox: invalid box destination array";
+                 <font color="#cc0033">BAD_pathconsumer</font>*     = "sendTo: invalid path consumer";
+                 <font color="#cc0033">DUMMY</font>*                = "";
+                 <font color="#cc0033">INTERRUPTED</font>*          = "";
+                 <font color="#cc0033">UNEX_appendCubic</font>*     = "appendCubic: unexpected";
+                 <font color="#cc0033">UNEX_appendLine</font>*      = "appendLine: unexpected";
+                 <font color="#cc0033">UNEX_appendQuadratic</font>* = "appendQuadratic: unexpected";
+                 <font color="#cc0033">UNEX_beginPath</font>*       = "beginPath: unexpected";
+                 <font color="#cc0033">UNEX_beginSubpath</font>*    = "beginSubpath: unexpected";
+                 <font color="#cc0033">UNEX_closedSubpath</font>*   = "closedSubpath: unexpected";
+                 <font color="#cc0033">UNEX_endPath</font>*         = "endPath: unexpected";
+                 <font color="#cc0033">UNEX_getBox</font>*          = "getBox: unexpected";
+                 <font color="#cc0033">UNEX_sendTo</font>*          = "sendTo: unexpected";
+                 <font color="#cc0033">UNEX_useProxy</font>*        = "useProxy: unexpected";
+                 <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-PathError">PathError</a><b>,CONSTRUCTOR</b>;
+                 <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-PathError">PathError</a><b>,CONSTRUCTOR</b>;
+               <b>END</b>;
+
+  <a name="type-PathException"></a><font color="#cc0033">PathException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Exception">java_lang.Exception</a>)
+                   <b>STATIC</b>
+                     <font color="#cc0033">BAD_PATH_endPath</font>*  = "endPath: bad path";
+                     <font color="#cc0033">BAD_PATH_useProxy</font>* = "useProxy: bad path";
+                     <font color="#cc0033">DUMMY</font>*             = "";
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-PathException">PathException</a><b>,CONSTRUCTOR</b>;
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-PathException">PathException</a><b>,CONSTRUCTOR</b>;
+                   <b>END</b>;
+
+
+
+<a name="meths-FastPathProducer"></a>
+<b>PROCEDURE </b>(self:FastPathProducer) <font color="#cc0033">getBox</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>SHORTREAL)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:FastPathProducer) <font color="#cc0033">sendTo</font>*(p0 : <a href="#type-PathConsumer">PathConsumer</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-PathConsumer"></a>
+<b>PROCEDURE </b>(self:PathConsumer) <font color="#cc0033">appendCubic</font>*(p0 : SHORTREAL;
+                                           p1 : SHORTREAL;
+                                           p2 : SHORTREAL;
+                                           p3 : SHORTREAL;
+                                           p4 : SHORTREAL;
+                                           p5 : SHORTREAL)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:PathConsumer) <font color="#cc0033">appendLine</font>*(p0 : SHORTREAL;
+                                          p1 : SHORTREAL)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:PathConsumer) <font color="#cc0033">appendQuadratic</font>*(p0 : SHORTREAL;
+                                               p1 : SHORTREAL;
+                                               p2 : SHORTREAL;
+                                               p3 : SHORTREAL)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:PathConsumer) <font color="#cc0033">beginPath</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:PathConsumer) <font color="#cc0033">beginSubpath</font>*(p0 : SHORTREAL;
+                                            p1 : SHORTREAL)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:PathConsumer) <font color="#cc0033">closedSubpath</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:PathConsumer) <font color="#cc0033">dispose</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:PathConsumer) <font color="#cc0033">endPath</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:PathConsumer) <font color="#cc0033">getConsumer</font>*() : <a href="#type-PathConsumer">PathConsumer</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:PathConsumer) <font color="#cc0033">getCPathConsumer</font>*() : LONGINT<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:PathConsumer) <font color="#cc0033">useProxy</font>*(p0 : <a href="#type-FastPathProducer">FastPathProducer</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>END </b><font color="#cc0033">sun_dc_path</font>.
+</font></pre></hr></body></html>

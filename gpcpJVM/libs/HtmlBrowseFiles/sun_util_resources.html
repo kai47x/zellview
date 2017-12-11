@@ -1,0 +1,1326 @@
+<html><head><title>sun_util_resources</title></head>
+<body bgcolor="white">
+<hr><pre>
+<b>FOREIGN MODULE </b><font color="#cc0033">sun_util_resources</font>;
+
+<b>IMPORT</b>
+    <a href="java_lang.html">java_lang</a> := "java.lang",
+    <a href="java_util.html">java_util</a> := "java.util",
+    <a href="java_util_concurrent.html">java_util_concurrent</a> := "java.util.concurrent",
+    <a href="java_lang_ref.html">java_lang_ref</a> := "java.lang.ref",
+    <a href="java_security.html">java_security</a> := "java.security",
+    <a href="java_io.html">java_io</a> := "java.io";
+
+<b>TYPE</b>
+
+  <a name="type-CalendarData"></a><font color="#cc0033">CalendarData</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-CalendarData"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                  <b>STATIC</b>
+                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CalendarData">CalendarData</a><b>,CONSTRUCTOR</b>;
+                  <b>END</b>;
+
+  <a name="type-CalendarData_be"></a><font color="#cc0033">CalendarData_be</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-CalendarData_be"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                     <b>STATIC</b>
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CalendarData_be">CalendarData_be</a><b>,CONSTRUCTOR</b>;
+                     <b>END</b>;
+
+  <a name="type-CalendarData_bg"></a><font color="#cc0033">CalendarData_bg</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-CalendarData_bg"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                     <b>STATIC</b>
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CalendarData_bg">CalendarData_bg</a><b>,CONSTRUCTOR</b>;
+                     <b>END</b>;
+
+  <a name="type-CalendarData_ca"></a><font color="#cc0033">CalendarData_ca</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-CalendarData_ca"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                     <b>STATIC</b>
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CalendarData_ca">CalendarData_ca</a><b>,CONSTRUCTOR</b>;
+                     <b>END</b>;
+
+  <a name="type-CalendarData_cs"></a><font color="#cc0033">CalendarData_cs</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-CalendarData_cs"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                     <b>STATIC</b>
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CalendarData_cs">CalendarData_cs</a><b>,CONSTRUCTOR</b>;
+                     <b>END</b>;
+
+  <a name="type-CalendarData_da"></a><font color="#cc0033">CalendarData_da</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-CalendarData_da"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                     <b>STATIC</b>
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CalendarData_da">CalendarData_da</a><b>,CONSTRUCTOR</b>;
+                     <b>END</b>;
+
+  <a name="type-CalendarData_de"></a><font color="#cc0033">CalendarData_de</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-CalendarData_de"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                     <b>STATIC</b>
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CalendarData_de">CalendarData_de</a><b>,CONSTRUCTOR</b>;
+                     <b>END</b>;
+
+  <a name="type-CalendarData_el"></a><font color="#cc0033">CalendarData_el</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-CalendarData_el"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                     <b>STATIC</b>
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CalendarData_el">CalendarData_el</a><b>,CONSTRUCTOR</b>;
+                     <b>END</b>;
+
+  <a name="type-CalendarData_el_CY"></a><font color="#cc0033">CalendarData_el_CY</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-CalendarData_el_CY"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                        <b>STATIC</b>
+                          <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CalendarData_el_CY">CalendarData_el_CY</a><b>,CONSTRUCTOR</b>;
+                        <b>END</b>;
+
+  <a name="type-CalendarData_en"></a><font color="#cc0033">CalendarData_en</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-CalendarData_en"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                     <b>STATIC</b>
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CalendarData_en">CalendarData_en</a><b>,CONSTRUCTOR</b>;
+                     <b>END</b>;
+
+  <a name="type-CalendarData_en_GB"></a><font color="#cc0033">CalendarData_en_GB</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-CalendarData_en_GB"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                        <b>STATIC</b>
+                          <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CalendarData_en_GB">CalendarData_en_GB</a><b>,CONSTRUCTOR</b>;
+                        <b>END</b>;
+
+  <a name="type-CalendarData_en_IE"></a><font color="#cc0033">CalendarData_en_IE</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-CalendarData_en_IE"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                        <b>STATIC</b>
+                          <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CalendarData_en_IE">CalendarData_en_IE</a><b>,CONSTRUCTOR</b>;
+                        <b>END</b>;
+
+  <a name="type-CalendarData_en_MT"></a><font color="#cc0033">CalendarData_en_MT</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-CalendarData_en_MT"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                        <b>STATIC</b>
+                          <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CalendarData_en_MT">CalendarData_en_MT</a><b>,CONSTRUCTOR</b>;
+                        <b>END</b>;
+
+  <a name="type-CalendarData_es"></a><font color="#cc0033">CalendarData_es</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-CalendarData_es"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                     <b>STATIC</b>
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CalendarData_es">CalendarData_es</a><b>,CONSTRUCTOR</b>;
+                     <b>END</b>;
+
+  <a name="type-CalendarData_es_ES"></a><font color="#cc0033">CalendarData_es_ES</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-CalendarData_es_ES"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                        <b>STATIC</b>
+                          <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CalendarData_es_ES">CalendarData_es_ES</a><b>,CONSTRUCTOR</b>;
+                        <b>END</b>;
+
+  <a name="type-CalendarData_es_US"></a><font color="#cc0033">CalendarData_es_US</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-CalendarData_es_US"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                        <b>STATIC</b>
+                          <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CalendarData_es_US">CalendarData_es_US</a><b>,CONSTRUCTOR</b>;
+                        <b>END</b>;
+
+  <a name="type-CalendarData_et"></a><font color="#cc0033">CalendarData_et</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-CalendarData_et"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                     <b>STATIC</b>
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CalendarData_et">CalendarData_et</a><b>,CONSTRUCTOR</b>;
+                     <b>END</b>;
+
+  <a name="type-CalendarData_fi"></a><font color="#cc0033">CalendarData_fi</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-CalendarData_fi"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                     <b>STATIC</b>
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CalendarData_fi">CalendarData_fi</a><b>,CONSTRUCTOR</b>;
+                     <b>END</b>;
+
+  <a name="type-CalendarData_fr"></a><font color="#cc0033">CalendarData_fr</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-CalendarData_fr"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                     <b>STATIC</b>
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CalendarData_fr">CalendarData_fr</a><b>,CONSTRUCTOR</b>;
+                     <b>END</b>;
+
+  <a name="type-CalendarData_fr_CA"></a><font color="#cc0033">CalendarData_fr_CA</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-CalendarData_fr_CA"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                        <b>STATIC</b>
+                          <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CalendarData_fr_CA">CalendarData_fr_CA</a><b>,CONSTRUCTOR</b>;
+                        <b>END</b>;
+
+  <a name="type-CalendarData_hr"></a><font color="#cc0033">CalendarData_hr</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-CalendarData_hr"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                     <b>STATIC</b>
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CalendarData_hr">CalendarData_hr</a><b>,CONSTRUCTOR</b>;
+                     <b>END</b>;
+
+  <a name="type-CalendarData_hu"></a><font color="#cc0033">CalendarData_hu</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-CalendarData_hu"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                     <b>STATIC</b>
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CalendarData_hu">CalendarData_hu</a><b>,CONSTRUCTOR</b>;
+                     <b>END</b>;
+
+  <a name="type-CalendarData_in_ID"></a><font color="#cc0033">CalendarData_in_ID</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-CalendarData_in_ID"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                        <b>STATIC</b>
+                          <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CalendarData_in_ID">CalendarData_in_ID</a><b>,CONSTRUCTOR</b>;
+                        <b>END</b>;
+
+  <a name="type-CalendarData_is"></a><font color="#cc0033">CalendarData_is</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-CalendarData_is"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                     <b>STATIC</b>
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CalendarData_is">CalendarData_is</a><b>,CONSTRUCTOR</b>;
+                     <b>END</b>;
+
+  <a name="type-CalendarData_it"></a><font color="#cc0033">CalendarData_it</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-CalendarData_it"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                     <b>STATIC</b>
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CalendarData_it">CalendarData_it</a><b>,CONSTRUCTOR</b>;
+                     <b>END</b>;
+
+  <a name="type-CalendarData_lt"></a><font color="#cc0033">CalendarData_lt</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-CalendarData_lt"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                     <b>STATIC</b>
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CalendarData_lt">CalendarData_lt</a><b>,CONSTRUCTOR</b>;
+                     <b>END</b>;
+
+  <a name="type-CalendarData_lv"></a><font color="#cc0033">CalendarData_lv</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-CalendarData_lv"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                     <b>STATIC</b>
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CalendarData_lv">CalendarData_lv</a><b>,CONSTRUCTOR</b>;
+                     <b>END</b>;
+
+  <a name="type-CalendarData_mk"></a><font color="#cc0033">CalendarData_mk</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-CalendarData_mk"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                     <b>STATIC</b>
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CalendarData_mk">CalendarData_mk</a><b>,CONSTRUCTOR</b>;
+                     <b>END</b>;
+
+  <a name="type-CalendarData_ms_MY"></a><font color="#cc0033">CalendarData_ms_MY</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-CalendarData_ms_MY"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                        <b>STATIC</b>
+                          <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CalendarData_ms_MY">CalendarData_ms_MY</a><b>,CONSTRUCTOR</b>;
+                        <b>END</b>;
+
+  <a name="type-CalendarData_mt"></a><font color="#cc0033">CalendarData_mt</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-CalendarData_mt"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                     <b>STATIC</b>
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CalendarData_mt">CalendarData_mt</a><b>,CONSTRUCTOR</b>;
+                     <b>END</b>;
+
+  <a name="type-CalendarData_mt_MT"></a><font color="#cc0033">CalendarData_mt_MT</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-CalendarData_mt_MT"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                        <b>STATIC</b>
+                          <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CalendarData_mt_MT">CalendarData_mt_MT</a><b>,CONSTRUCTOR</b>;
+                        <b>END</b>;
+
+  <a name="type-CalendarData_nl"></a><font color="#cc0033">CalendarData_nl</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-CalendarData_nl"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                     <b>STATIC</b>
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CalendarData_nl">CalendarData_nl</a><b>,CONSTRUCTOR</b>;
+                     <b>END</b>;
+
+  <a name="type-CalendarData_no"></a><font color="#cc0033">CalendarData_no</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-CalendarData_no"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                     <b>STATIC</b>
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CalendarData_no">CalendarData_no</a><b>,CONSTRUCTOR</b>;
+                     <b>END</b>;
+
+  <a name="type-CalendarData_pl"></a><font color="#cc0033">CalendarData_pl</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-CalendarData_pl"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                     <b>STATIC</b>
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CalendarData_pl">CalendarData_pl</a><b>,CONSTRUCTOR</b>;
+                     <b>END</b>;
+
+  <a name="type-CalendarData_pt"></a><font color="#cc0033">CalendarData_pt</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-CalendarData_pt"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                     <b>STATIC</b>
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CalendarData_pt">CalendarData_pt</a><b>,CONSTRUCTOR</b>;
+                     <b>END</b>;
+
+  <a name="type-CalendarData_pt_PT"></a><font color="#cc0033">CalendarData_pt_PT</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-CalendarData_pt_PT"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                        <b>STATIC</b>
+                          <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CalendarData_pt_PT">CalendarData_pt_PT</a><b>,CONSTRUCTOR</b>;
+                        <b>END</b>;
+
+  <a name="type-CalendarData_ro"></a><font color="#cc0033">CalendarData_ro</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-CalendarData_ro"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                     <b>STATIC</b>
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CalendarData_ro">CalendarData_ro</a><b>,CONSTRUCTOR</b>;
+                     <b>END</b>;
+
+  <a name="type-CalendarData_ru"></a><font color="#cc0033">CalendarData_ru</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-CalendarData_ru"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                     <b>STATIC</b>
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CalendarData_ru">CalendarData_ru</a><b>,CONSTRUCTOR</b>;
+                     <b>END</b>;
+
+  <a name="type-CalendarData_sk"></a><font color="#cc0033">CalendarData_sk</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-CalendarData_sk"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                     <b>STATIC</b>
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CalendarData_sk">CalendarData_sk</a><b>,CONSTRUCTOR</b>;
+                     <b>END</b>;
+
+  <a name="type-CalendarData_sl"></a><font color="#cc0033">CalendarData_sl</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-CalendarData_sl"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                     <b>STATIC</b>
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CalendarData_sl">CalendarData_sl</a><b>,CONSTRUCTOR</b>;
+                     <b>END</b>;
+
+  <a name="type-CalendarData_sq"></a><font color="#cc0033">CalendarData_sq</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-CalendarData_sq"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                     <b>STATIC</b>
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CalendarData_sq">CalendarData_sq</a><b>,CONSTRUCTOR</b>;
+                     <b>END</b>;
+
+  <a name="type-CalendarData_sr"></a><font color="#cc0033">CalendarData_sr</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-CalendarData_sr"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                     <b>STATIC</b>
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CalendarData_sr">CalendarData_sr</a><b>,CONSTRUCTOR</b>;
+                     <b>END</b>;
+
+  <a name="type-CalendarData_sv"></a><font color="#cc0033">CalendarData_sv</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-CalendarData_sv"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                     <b>STATIC</b>
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CalendarData_sv">CalendarData_sv</a><b>,CONSTRUCTOR</b>;
+                     <b>END</b>;
+
+  <a name="type-CalendarData_tr"></a><font color="#cc0033">CalendarData_tr</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-CalendarData_tr"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                     <b>STATIC</b>
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CalendarData_tr">CalendarData_tr</a><b>,CONSTRUCTOR</b>;
+                     <b>END</b>;
+
+  <a name="type-CalendarData_uk"></a><font color="#cc0033">CalendarData_uk</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-CalendarData_uk"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                     <b>STATIC</b>
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CalendarData_uk">CalendarData_uk</a><b>,CONSTRUCTOR</b>;
+                     <b>END</b>;
+
+  <a name="type-CurrencyNames"></a><font color="#cc0033">CurrencyNames</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-CurrencyNames"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                   <b>STATIC</b>
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CurrencyNames">CurrencyNames</a><b>,CONSTRUCTOR</b>;
+                   <b>END</b>;
+
+  <a name="type-CurrencyNames_be_BY"></a><font color="#cc0033">CurrencyNames_be_BY</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-CurrencyNames_be_BY"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                         <b>STATIC</b>
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CurrencyNames_be_BY">CurrencyNames_be_BY</a><b>,CONSTRUCTOR</b>;
+                         <b>END</b>;
+
+  <a name="type-CurrencyNames_bg_BG"></a><font color="#cc0033">CurrencyNames_bg_BG</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-CurrencyNames_bg_BG"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                         <b>STATIC</b>
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CurrencyNames_bg_BG">CurrencyNames_bg_BG</a><b>,CONSTRUCTOR</b>;
+                         <b>END</b>;
+
+  <a name="type-CurrencyNames_ca_ES"></a><font color="#cc0033">CurrencyNames_ca_ES</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-CurrencyNames_ca_ES"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                         <b>STATIC</b>
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CurrencyNames_ca_ES">CurrencyNames_ca_ES</a><b>,CONSTRUCTOR</b>;
+                         <b>END</b>;
+
+  <a name="type-CurrencyNames_cs_CZ"></a><font color="#cc0033">CurrencyNames_cs_CZ</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-CurrencyNames_cs_CZ"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                         <b>STATIC</b>
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CurrencyNames_cs_CZ">CurrencyNames_cs_CZ</a><b>,CONSTRUCTOR</b>;
+                         <b>END</b>;
+
+  <a name="type-CurrencyNames_da_DK"></a><font color="#cc0033">CurrencyNames_da_DK</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-CurrencyNames_da_DK"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                         <b>STATIC</b>
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CurrencyNames_da_DK">CurrencyNames_da_DK</a><b>,CONSTRUCTOR</b>;
+                         <b>END</b>;
+
+  <a name="type-CurrencyNames_de_AT"></a><font color="#cc0033">CurrencyNames_de_AT</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-CurrencyNames_de_AT"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                         <b>STATIC</b>
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CurrencyNames_de_AT">CurrencyNames_de_AT</a><b>,CONSTRUCTOR</b>;
+                         <b>END</b>;
+
+  <a name="type-CurrencyNames_de_CH"></a><font color="#cc0033">CurrencyNames_de_CH</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-CurrencyNames_de_CH"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                         <b>STATIC</b>
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CurrencyNames_de_CH">CurrencyNames_de_CH</a><b>,CONSTRUCTOR</b>;
+                         <b>END</b>;
+
+  <a name="type-CurrencyNames_de_DE"></a><font color="#cc0033">CurrencyNames_de_DE</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-CurrencyNames_de_DE"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                         <b>STATIC</b>
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CurrencyNames_de_DE">CurrencyNames_de_DE</a><b>,CONSTRUCTOR</b>;
+                         <b>END</b>;
+
+  <a name="type-CurrencyNames_de_GR"></a><font color="#cc0033">CurrencyNames_de_GR</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-CurrencyNames_de_GR"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                         <b>STATIC</b>
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CurrencyNames_de_GR">CurrencyNames_de_GR</a><b>,CONSTRUCTOR</b>;
+                         <b>END</b>;
+
+  <a name="type-CurrencyNames_de_LU"></a><font color="#cc0033">CurrencyNames_de_LU</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-CurrencyNames_de_LU"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                         <b>STATIC</b>
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CurrencyNames_de_LU">CurrencyNames_de_LU</a><b>,CONSTRUCTOR</b>;
+                         <b>END</b>;
+
+  <a name="type-CurrencyNames_el_CY"></a><font color="#cc0033">CurrencyNames_el_CY</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-CurrencyNames_el_CY"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                         <b>STATIC</b>
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CurrencyNames_el_CY">CurrencyNames_el_CY</a><b>,CONSTRUCTOR</b>;
+                         <b>END</b>;
+
+  <a name="type-CurrencyNames_el_GR"></a><font color="#cc0033">CurrencyNames_el_GR</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-CurrencyNames_el_GR"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                         <b>STATIC</b>
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CurrencyNames_el_GR">CurrencyNames_el_GR</a><b>,CONSTRUCTOR</b>;
+                         <b>END</b>;
+
+  <a name="type-CurrencyNames_en_AU"></a><font color="#cc0033">CurrencyNames_en_AU</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-CurrencyNames_en_AU"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                         <b>STATIC</b>
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CurrencyNames_en_AU">CurrencyNames_en_AU</a><b>,CONSTRUCTOR</b>;
+                         <b>END</b>;
+
+  <a name="type-CurrencyNames_en_CA"></a><font color="#cc0033">CurrencyNames_en_CA</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-CurrencyNames_en_CA"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                         <b>STATIC</b>
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CurrencyNames_en_CA">CurrencyNames_en_CA</a><b>,CONSTRUCTOR</b>;
+                         <b>END</b>;
+
+  <a name="type-CurrencyNames_en_GB"></a><font color="#cc0033">CurrencyNames_en_GB</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-CurrencyNames_en_GB"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                         <b>STATIC</b>
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CurrencyNames_en_GB">CurrencyNames_en_GB</a><b>,CONSTRUCTOR</b>;
+                         <b>END</b>;
+
+  <a name="type-CurrencyNames_en_IE"></a><font color="#cc0033">CurrencyNames_en_IE</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-CurrencyNames_en_IE"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                         <b>STATIC</b>
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CurrencyNames_en_IE">CurrencyNames_en_IE</a><b>,CONSTRUCTOR</b>;
+                         <b>END</b>;
+
+  <a name="type-CurrencyNames_en_IN"></a><font color="#cc0033">CurrencyNames_en_IN</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-CurrencyNames_en_IN"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                         <b>STATIC</b>
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CurrencyNames_en_IN">CurrencyNames_en_IN</a><b>,CONSTRUCTOR</b>;
+                         <b>END</b>;
+
+  <a name="type-CurrencyNames_en_MT"></a><font color="#cc0033">CurrencyNames_en_MT</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-CurrencyNames_en_MT"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                         <b>STATIC</b>
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CurrencyNames_en_MT">CurrencyNames_en_MT</a><b>,CONSTRUCTOR</b>;
+                         <b>END</b>;
+
+  <a name="type-CurrencyNames_en_NZ"></a><font color="#cc0033">CurrencyNames_en_NZ</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-CurrencyNames_en_NZ"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                         <b>STATIC</b>
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CurrencyNames_en_NZ">CurrencyNames_en_NZ</a><b>,CONSTRUCTOR</b>;
+                         <b>END</b>;
+
+  <a name="type-CurrencyNames_en_PH"></a><font color="#cc0033">CurrencyNames_en_PH</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-CurrencyNames_en_PH"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                         <b>STATIC</b>
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CurrencyNames_en_PH">CurrencyNames_en_PH</a><b>,CONSTRUCTOR</b>;
+                         <b>END</b>;
+
+  <a name="type-CurrencyNames_en_SG"></a><font color="#cc0033">CurrencyNames_en_SG</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-CurrencyNames_en_SG"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                         <b>STATIC</b>
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CurrencyNames_en_SG">CurrencyNames_en_SG</a><b>,CONSTRUCTOR</b>;
+                         <b>END</b>;
+
+  <a name="type-CurrencyNames_en_US"></a><font color="#cc0033">CurrencyNames_en_US</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-CurrencyNames_en_US"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                         <b>STATIC</b>
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CurrencyNames_en_US">CurrencyNames_en_US</a><b>,CONSTRUCTOR</b>;
+                         <b>END</b>;
+
+  <a name="type-CurrencyNames_en_ZA"></a><font color="#cc0033">CurrencyNames_en_ZA</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-CurrencyNames_en_ZA"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                         <b>STATIC</b>
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CurrencyNames_en_ZA">CurrencyNames_en_ZA</a><b>,CONSTRUCTOR</b>;
+                         <b>END</b>;
+
+  <a name="type-CurrencyNames_es_AR"></a><font color="#cc0033">CurrencyNames_es_AR</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-CurrencyNames_es_AR"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                         <b>STATIC</b>
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CurrencyNames_es_AR">CurrencyNames_es_AR</a><b>,CONSTRUCTOR</b>;
+                         <b>END</b>;
+
+  <a name="type-CurrencyNames_es_BO"></a><font color="#cc0033">CurrencyNames_es_BO</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-CurrencyNames_es_BO"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                         <b>STATIC</b>
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CurrencyNames_es_BO">CurrencyNames_es_BO</a><b>,CONSTRUCTOR</b>;
+                         <b>END</b>;
+
+  <a name="type-CurrencyNames_es_CL"></a><font color="#cc0033">CurrencyNames_es_CL</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-CurrencyNames_es_CL"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                         <b>STATIC</b>
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CurrencyNames_es_CL">CurrencyNames_es_CL</a><b>,CONSTRUCTOR</b>;
+                         <b>END</b>;
+
+  <a name="type-CurrencyNames_es_CO"></a><font color="#cc0033">CurrencyNames_es_CO</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-CurrencyNames_es_CO"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                         <b>STATIC</b>
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CurrencyNames_es_CO">CurrencyNames_es_CO</a><b>,CONSTRUCTOR</b>;
+                         <b>END</b>;
+
+  <a name="type-CurrencyNames_es_CR"></a><font color="#cc0033">CurrencyNames_es_CR</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-CurrencyNames_es_CR"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                         <b>STATIC</b>
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CurrencyNames_es_CR">CurrencyNames_es_CR</a><b>,CONSTRUCTOR</b>;
+                         <b>END</b>;
+
+  <a name="type-CurrencyNames_es_DO"></a><font color="#cc0033">CurrencyNames_es_DO</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-CurrencyNames_es_DO"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                         <b>STATIC</b>
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CurrencyNames_es_DO">CurrencyNames_es_DO</a><b>,CONSTRUCTOR</b>;
+                         <b>END</b>;
+
+  <a name="type-CurrencyNames_es_EC"></a><font color="#cc0033">CurrencyNames_es_EC</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-CurrencyNames_es_EC"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                         <b>STATIC</b>
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CurrencyNames_es_EC">CurrencyNames_es_EC</a><b>,CONSTRUCTOR</b>;
+                         <b>END</b>;
+
+  <a name="type-CurrencyNames_es_ES"></a><font color="#cc0033">CurrencyNames_es_ES</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-CurrencyNames_es_ES"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                         <b>STATIC</b>
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CurrencyNames_es_ES">CurrencyNames_es_ES</a><b>,CONSTRUCTOR</b>;
+                         <b>END</b>;
+
+  <a name="type-CurrencyNames_es_GT"></a><font color="#cc0033">CurrencyNames_es_GT</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-CurrencyNames_es_GT"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                         <b>STATIC</b>
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CurrencyNames_es_GT">CurrencyNames_es_GT</a><b>,CONSTRUCTOR</b>;
+                         <b>END</b>;
+
+  <a name="type-CurrencyNames_es_HN"></a><font color="#cc0033">CurrencyNames_es_HN</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-CurrencyNames_es_HN"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                         <b>STATIC</b>
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CurrencyNames_es_HN">CurrencyNames_es_HN</a><b>,CONSTRUCTOR</b>;
+                         <b>END</b>;
+
+  <a name="type-CurrencyNames_es_MX"></a><font color="#cc0033">CurrencyNames_es_MX</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-CurrencyNames_es_MX"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                         <b>STATIC</b>
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CurrencyNames_es_MX">CurrencyNames_es_MX</a><b>,CONSTRUCTOR</b>;
+                         <b>END</b>;
+
+  <a name="type-CurrencyNames_es_NI"></a><font color="#cc0033">CurrencyNames_es_NI</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-CurrencyNames_es_NI"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                         <b>STATIC</b>
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CurrencyNames_es_NI">CurrencyNames_es_NI</a><b>,CONSTRUCTOR</b>;
+                         <b>END</b>;
+
+  <a name="type-CurrencyNames_es_PA"></a><font color="#cc0033">CurrencyNames_es_PA</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-CurrencyNames_es_PA"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                         <b>STATIC</b>
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CurrencyNames_es_PA">CurrencyNames_es_PA</a><b>,CONSTRUCTOR</b>;
+                         <b>END</b>;
+
+  <a name="type-CurrencyNames_es_PE"></a><font color="#cc0033">CurrencyNames_es_PE</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-CurrencyNames_es_PE"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                         <b>STATIC</b>
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CurrencyNames_es_PE">CurrencyNames_es_PE</a><b>,CONSTRUCTOR</b>;
+                         <b>END</b>;
+
+  <a name="type-CurrencyNames_es_PR"></a><font color="#cc0033">CurrencyNames_es_PR</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-CurrencyNames_es_PR"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                         <b>STATIC</b>
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CurrencyNames_es_PR">CurrencyNames_es_PR</a><b>,CONSTRUCTOR</b>;
+                         <b>END</b>;
+
+  <a name="type-CurrencyNames_es_PY"></a><font color="#cc0033">CurrencyNames_es_PY</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-CurrencyNames_es_PY"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                         <b>STATIC</b>
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CurrencyNames_es_PY">CurrencyNames_es_PY</a><b>,CONSTRUCTOR</b>;
+                         <b>END</b>;
+
+  <a name="type-CurrencyNames_es_SV"></a><font color="#cc0033">CurrencyNames_es_SV</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-CurrencyNames_es_SV"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                         <b>STATIC</b>
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CurrencyNames_es_SV">CurrencyNames_es_SV</a><b>,CONSTRUCTOR</b>;
+                         <b>END</b>;
+
+  <a name="type-CurrencyNames_es_US"></a><font color="#cc0033">CurrencyNames_es_US</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-CurrencyNames_es_US"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                         <b>STATIC</b>
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CurrencyNames_es_US">CurrencyNames_es_US</a><b>,CONSTRUCTOR</b>;
+                         <b>END</b>;
+
+  <a name="type-CurrencyNames_es_UY"></a><font color="#cc0033">CurrencyNames_es_UY</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-CurrencyNames_es_UY"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                         <b>STATIC</b>
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CurrencyNames_es_UY">CurrencyNames_es_UY</a><b>,CONSTRUCTOR</b>;
+                         <b>END</b>;
+
+  <a name="type-CurrencyNames_es_VE"></a><font color="#cc0033">CurrencyNames_es_VE</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-CurrencyNames_es_VE"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                         <b>STATIC</b>
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CurrencyNames_es_VE">CurrencyNames_es_VE</a><b>,CONSTRUCTOR</b>;
+                         <b>END</b>;
+
+  <a name="type-CurrencyNames_et_EE"></a><font color="#cc0033">CurrencyNames_et_EE</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-CurrencyNames_et_EE"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                         <b>STATIC</b>
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CurrencyNames_et_EE">CurrencyNames_et_EE</a><b>,CONSTRUCTOR</b>;
+                         <b>END</b>;
+
+  <a name="type-CurrencyNames_fi_FI"></a><font color="#cc0033">CurrencyNames_fi_FI</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-CurrencyNames_fi_FI"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                         <b>STATIC</b>
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CurrencyNames_fi_FI">CurrencyNames_fi_FI</a><b>,CONSTRUCTOR</b>;
+                         <b>END</b>;
+
+  <a name="type-CurrencyNames_fr_BE"></a><font color="#cc0033">CurrencyNames_fr_BE</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-CurrencyNames_fr_BE"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                         <b>STATIC</b>
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CurrencyNames_fr_BE">CurrencyNames_fr_BE</a><b>,CONSTRUCTOR</b>;
+                         <b>END</b>;
+
+  <a name="type-CurrencyNames_fr_CA"></a><font color="#cc0033">CurrencyNames_fr_CA</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-CurrencyNames_fr_CA"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                         <b>STATIC</b>
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CurrencyNames_fr_CA">CurrencyNames_fr_CA</a><b>,CONSTRUCTOR</b>;
+                         <b>END</b>;
+
+  <a name="type-CurrencyNames_fr_CH"></a><font color="#cc0033">CurrencyNames_fr_CH</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-CurrencyNames_fr_CH"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                         <b>STATIC</b>
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CurrencyNames_fr_CH">CurrencyNames_fr_CH</a><b>,CONSTRUCTOR</b>;
+                         <b>END</b>;
+
+  <a name="type-CurrencyNames_fr_FR"></a><font color="#cc0033">CurrencyNames_fr_FR</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-CurrencyNames_fr_FR"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                         <b>STATIC</b>
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CurrencyNames_fr_FR">CurrencyNames_fr_FR</a><b>,CONSTRUCTOR</b>;
+                         <b>END</b>;
+
+  <a name="type-CurrencyNames_fr_LU"></a><font color="#cc0033">CurrencyNames_fr_LU</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-CurrencyNames_fr_LU"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                         <b>STATIC</b>
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CurrencyNames_fr_LU">CurrencyNames_fr_LU</a><b>,CONSTRUCTOR</b>;
+                         <b>END</b>;
+
+  <a name="type-CurrencyNames_ga_IE"></a><font color="#cc0033">CurrencyNames_ga_IE</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-CurrencyNames_ga_IE"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                         <b>STATIC</b>
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CurrencyNames_ga_IE">CurrencyNames_ga_IE</a><b>,CONSTRUCTOR</b>;
+                         <b>END</b>;
+
+  <a name="type-CurrencyNames_hr_HR"></a><font color="#cc0033">CurrencyNames_hr_HR</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-CurrencyNames_hr_HR"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                         <b>STATIC</b>
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CurrencyNames_hr_HR">CurrencyNames_hr_HR</a><b>,CONSTRUCTOR</b>;
+                         <b>END</b>;
+
+  <a name="type-CurrencyNames_hu_HU"></a><font color="#cc0033">CurrencyNames_hu_HU</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-CurrencyNames_hu_HU"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                         <b>STATIC</b>
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CurrencyNames_hu_HU">CurrencyNames_hu_HU</a><b>,CONSTRUCTOR</b>;
+                         <b>END</b>;
+
+  <a name="type-CurrencyNames_in_ID"></a><font color="#cc0033">CurrencyNames_in_ID</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-CurrencyNames_in_ID"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                         <b>STATIC</b>
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CurrencyNames_in_ID">CurrencyNames_in_ID</a><b>,CONSTRUCTOR</b>;
+                         <b>END</b>;
+
+  <a name="type-CurrencyNames_is_IS"></a><font color="#cc0033">CurrencyNames_is_IS</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-CurrencyNames_is_IS"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                         <b>STATIC</b>
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CurrencyNames_is_IS">CurrencyNames_is_IS</a><b>,CONSTRUCTOR</b>;
+                         <b>END</b>;
+
+  <a name="type-CurrencyNames_it_CH"></a><font color="#cc0033">CurrencyNames_it_CH</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-CurrencyNames_it_CH"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                         <b>STATIC</b>
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CurrencyNames_it_CH">CurrencyNames_it_CH</a><b>,CONSTRUCTOR</b>;
+                         <b>END</b>;
+
+  <a name="type-CurrencyNames_it_IT"></a><font color="#cc0033">CurrencyNames_it_IT</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-CurrencyNames_it_IT"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                         <b>STATIC</b>
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CurrencyNames_it_IT">CurrencyNames_it_IT</a><b>,CONSTRUCTOR</b>;
+                         <b>END</b>;
+
+  <a name="type-CurrencyNames_lt_LT"></a><font color="#cc0033">CurrencyNames_lt_LT</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-CurrencyNames_lt_LT"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                         <b>STATIC</b>
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CurrencyNames_lt_LT">CurrencyNames_lt_LT</a><b>,CONSTRUCTOR</b>;
+                         <b>END</b>;
+
+  <a name="type-CurrencyNames_lv_LV"></a><font color="#cc0033">CurrencyNames_lv_LV</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-CurrencyNames_lv_LV"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                         <b>STATIC</b>
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CurrencyNames_lv_LV">CurrencyNames_lv_LV</a><b>,CONSTRUCTOR</b>;
+                         <b>END</b>;
+
+  <a name="type-CurrencyNames_mk_MK"></a><font color="#cc0033">CurrencyNames_mk_MK</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-CurrencyNames_mk_MK"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                         <b>STATIC</b>
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CurrencyNames_mk_MK">CurrencyNames_mk_MK</a><b>,CONSTRUCTOR</b>;
+                         <b>END</b>;
+
+  <a name="type-CurrencyNames_ms_MY"></a><font color="#cc0033">CurrencyNames_ms_MY</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-CurrencyNames_ms_MY"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                         <b>STATIC</b>
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CurrencyNames_ms_MY">CurrencyNames_ms_MY</a><b>,CONSTRUCTOR</b>;
+                         <b>END</b>;
+
+  <a name="type-CurrencyNames_mt_MT"></a><font color="#cc0033">CurrencyNames_mt_MT</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-CurrencyNames_mt_MT"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                         <b>STATIC</b>
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CurrencyNames_mt_MT">CurrencyNames_mt_MT</a><b>,CONSTRUCTOR</b>;
+                         <b>END</b>;
+
+  <a name="type-CurrencyNames_nl_BE"></a><font color="#cc0033">CurrencyNames_nl_BE</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-CurrencyNames_nl_BE"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                         <b>STATIC</b>
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CurrencyNames_nl_BE">CurrencyNames_nl_BE</a><b>,CONSTRUCTOR</b>;
+                         <b>END</b>;
+
+  <a name="type-CurrencyNames_nl_NL"></a><font color="#cc0033">CurrencyNames_nl_NL</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-CurrencyNames_nl_NL"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                         <b>STATIC</b>
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CurrencyNames_nl_NL">CurrencyNames_nl_NL</a><b>,CONSTRUCTOR</b>;
+                         <b>END</b>;
+
+  <a name="type-CurrencyNames_no_NO"></a><font color="#cc0033">CurrencyNames_no_NO</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-CurrencyNames_no_NO"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                         <b>STATIC</b>
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CurrencyNames_no_NO">CurrencyNames_no_NO</a><b>,CONSTRUCTOR</b>;
+                         <b>END</b>;
+
+  <a name="type-CurrencyNames_pl_PL"></a><font color="#cc0033">CurrencyNames_pl_PL</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-CurrencyNames_pl_PL"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                         <b>STATIC</b>
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CurrencyNames_pl_PL">CurrencyNames_pl_PL</a><b>,CONSTRUCTOR</b>;
+                         <b>END</b>;
+
+  <a name="type-CurrencyNames_pt_BR"></a><font color="#cc0033">CurrencyNames_pt_BR</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-CurrencyNames_pt_BR"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                         <b>STATIC</b>
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CurrencyNames_pt_BR">CurrencyNames_pt_BR</a><b>,CONSTRUCTOR</b>;
+                         <b>END</b>;
+
+  <a name="type-CurrencyNames_pt_PT"></a><font color="#cc0033">CurrencyNames_pt_PT</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-CurrencyNames_pt_PT"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                         <b>STATIC</b>
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CurrencyNames_pt_PT">CurrencyNames_pt_PT</a><b>,CONSTRUCTOR</b>;
+                         <b>END</b>;
+
+  <a name="type-CurrencyNames_ro_RO"></a><font color="#cc0033">CurrencyNames_ro_RO</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-CurrencyNames_ro_RO"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                         <b>STATIC</b>
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CurrencyNames_ro_RO">CurrencyNames_ro_RO</a><b>,CONSTRUCTOR</b>;
+                         <b>END</b>;
+
+  <a name="type-CurrencyNames_ru_RU"></a><font color="#cc0033">CurrencyNames_ru_RU</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-CurrencyNames_ru_RU"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                         <b>STATIC</b>
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CurrencyNames_ru_RU">CurrencyNames_ru_RU</a><b>,CONSTRUCTOR</b>;
+                         <b>END</b>;
+
+  <a name="type-CurrencyNames_sk_SK"></a><font color="#cc0033">CurrencyNames_sk_SK</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-CurrencyNames_sk_SK"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                         <b>STATIC</b>
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CurrencyNames_sk_SK">CurrencyNames_sk_SK</a><b>,CONSTRUCTOR</b>;
+                         <b>END</b>;
+
+  <a name="type-CurrencyNames_sl_SI"></a><font color="#cc0033">CurrencyNames_sl_SI</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-CurrencyNames_sl_SI"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                         <b>STATIC</b>
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CurrencyNames_sl_SI">CurrencyNames_sl_SI</a><b>,CONSTRUCTOR</b>;
+                         <b>END</b>;
+
+  <a name="type-CurrencyNames_sq_AL"></a><font color="#cc0033">CurrencyNames_sq_AL</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-CurrencyNames_sq_AL"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                         <b>STATIC</b>
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CurrencyNames_sq_AL">CurrencyNames_sq_AL</a><b>,CONSTRUCTOR</b>;
+                         <b>END</b>;
+
+  <a name="type-CurrencyNames_sr_BA"></a><font color="#cc0033">CurrencyNames_sr_BA</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-CurrencyNames_sr_BA"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                         <b>STATIC</b>
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CurrencyNames_sr_BA">CurrencyNames_sr_BA</a><b>,CONSTRUCTOR</b>;
+                         <b>END</b>;
+
+  <a name="type-CurrencyNames_sr_CS"></a><font color="#cc0033">CurrencyNames_sr_CS</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-CurrencyNames_sr_CS"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                         <b>STATIC</b>
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CurrencyNames_sr_CS">CurrencyNames_sr_CS</a><b>,CONSTRUCTOR</b>;
+                         <b>END</b>;
+
+  <a name="type-CurrencyNames_sr_ME"></a><font color="#cc0033">CurrencyNames_sr_ME</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-CurrencyNames_sr_ME"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                         <b>STATIC</b>
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CurrencyNames_sr_ME">CurrencyNames_sr_ME</a><b>,CONSTRUCTOR</b>;
+                         <b>END</b>;
+
+  <a name="type-CurrencyNames_sv_SE"></a><font color="#cc0033">CurrencyNames_sv_SE</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-CurrencyNames_sv_SE"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                         <b>STATIC</b>
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CurrencyNames_sv_SE">CurrencyNames_sv_SE</a><b>,CONSTRUCTOR</b>;
+                         <b>END</b>;
+
+  <a name="type-CurrencyNames_tr_TR"></a><font color="#cc0033">CurrencyNames_tr_TR</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-CurrencyNames_tr_TR"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                         <b>STATIC</b>
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CurrencyNames_tr_TR">CurrencyNames_tr_TR</a><b>,CONSTRUCTOR</b>;
+                         <b>END</b>;
+
+  <a name="type-CurrencyNames_uk_UA"></a><font color="#cc0033">CurrencyNames_uk_UA</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-CurrencyNames_uk_UA"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                         <b>STATIC</b>
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CurrencyNames_uk_UA">CurrencyNames_uk_UA</a><b>,CONSTRUCTOR</b>;
+                         <b>END</b>;
+
+  <a name="type-LocaleData"></a><font color="#cc0033">LocaleData</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                <b>STATIC</b>
+                  <b>PROCEDURE </b><font color="#cc0033">getAvailableLocales</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_util.html#type-Locale">java_util.Locale</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">getCalendarData</font>*(p0 : <a href="java_util.html#type-Locale">java_util.Locale</a>) : <a href="java_util.html#type-ResourceBundle">java_util.ResourceBundle</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">getCollationData</font>*(p0 : <a href="java_util.html#type-Locale">java_util.Locale</a>) : <a href="java_util.html#type-ResourceBundle">java_util.ResourceBundle</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">getCurrencyNames</font>*(p0 : <a href="java_util.html#type-Locale">java_util.Locale</a>) : <a href="java_util.html#type-ResourceBundle">java_util.ResourceBundle</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">getDateFormatData</font>*(p0 : <a href="java_util.html#type-Locale">java_util.Locale</a>) : <a href="java_util.html#type-ResourceBundle">java_util.ResourceBundle</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">getLocaleNames</font>*(p0 : <a href="java_util.html#type-Locale">java_util.Locale</a>) : <a href="#type-OpenListResourceBundle">OpenListResourceBundle</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">getNumberFormatData</font>*(p0 : <a href="java_util.html#type-Locale">java_util.Locale</a>) : <a href="java_util.html#type-ResourceBundle">java_util.ResourceBundle</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">getTimeZoneNames</font>*(p0 : <a href="java_util.html#type-Locale">java_util.Locale</a>) : <a href="#type-OpenListResourceBundle">OpenListResourceBundle</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-LocaleData">LocaleData</a><b>,CONSTRUCTOR</b>;
+                <b>END</b>;
+
+  <a name="type-LocaleNames"></a><font color="#cc0033">LocaleNames</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-LocaleNames"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                 <b>STATIC</b>
+                   <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-LocaleNames">LocaleNames</a><b>,CONSTRUCTOR</b>;
+                 <b>END</b>;
+
+  <a name="type-LocaleNamesBundle"></a><font color="#cc0033">LocaleNamesBundle</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="#type-OpenListResourceBundle">OpenListResourceBundle</a>)
+                       <b>STATIC</b>
+                         <b>PROCEDURE </b><font color="#cc0033">Init</font>!() : <a href="#type-LocaleNamesBundle">LocaleNamesBundle</a><b>,CONSTRUCTOR</b>;
+                       <b>END</b>;
+
+  <a name="type-LocaleNames_be"></a><font color="#cc0033">LocaleNames_be</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-LocaleNames_be"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                    <b>STATIC</b>
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-LocaleNames_be">LocaleNames_be</a><b>,CONSTRUCTOR</b>;
+                    <b>END</b>;
+
+  <a name="type-LocaleNames_bg"></a><font color="#cc0033">LocaleNames_bg</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-LocaleNames_bg"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                    <b>STATIC</b>
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-LocaleNames_bg">LocaleNames_bg</a><b>,CONSTRUCTOR</b>;
+                    <b>END</b>;
+
+  <a name="type-LocaleNames_ca"></a><font color="#cc0033">LocaleNames_ca</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-LocaleNames_ca"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                    <b>STATIC</b>
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-LocaleNames_ca">LocaleNames_ca</a><b>,CONSTRUCTOR</b>;
+                    <b>END</b>;
+
+  <a name="type-LocaleNames_cs"></a><font color="#cc0033">LocaleNames_cs</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-LocaleNames_cs"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                    <b>STATIC</b>
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-LocaleNames_cs">LocaleNames_cs</a><b>,CONSTRUCTOR</b>;
+                    <b>END</b>;
+
+  <a name="type-LocaleNames_da"></a><font color="#cc0033">LocaleNames_da</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-LocaleNames_da"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                    <b>STATIC</b>
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-LocaleNames_da">LocaleNames_da</a><b>,CONSTRUCTOR</b>;
+                    <b>END</b>;
+
+  <a name="type-LocaleNames_de"></a><font color="#cc0033">LocaleNames_de</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-LocaleNames_de"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                    <b>STATIC</b>
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-LocaleNames_de">LocaleNames_de</a><b>,CONSTRUCTOR</b>;
+                    <b>END</b>;
+
+  <a name="type-LocaleNames_el"></a><font color="#cc0033">LocaleNames_el</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-LocaleNames_el"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                    <b>STATIC</b>
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-LocaleNames_el">LocaleNames_el</a><b>,CONSTRUCTOR</b>;
+                    <b>END</b>;
+
+  <a name="type-LocaleNames_el_CY"></a><font color="#cc0033">LocaleNames_el_CY</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-LocaleNames_el_CY"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                       <b>STATIC</b>
+                         <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-LocaleNames_el_CY">LocaleNames_el_CY</a><b>,CONSTRUCTOR</b>;
+                       <b>END</b>;
+
+  <a name="type-LocaleNames_en"></a><font color="#cc0033">LocaleNames_en</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-LocaleNames_en"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                    <b>STATIC</b>
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-LocaleNames_en">LocaleNames_en</a><b>,CONSTRUCTOR</b>;
+                    <b>END</b>;
+
+  <a name="type-LocaleNames_en_MT"></a><font color="#cc0033">LocaleNames_en_MT</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-LocaleNames_en_MT"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                       <b>STATIC</b>
+                         <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-LocaleNames_en_MT">LocaleNames_en_MT</a><b>,CONSTRUCTOR</b>;
+                       <b>END</b>;
+
+  <a name="type-LocaleNames_en_PH"></a><font color="#cc0033">LocaleNames_en_PH</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-LocaleNames_en_PH"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                       <b>STATIC</b>
+                         <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-LocaleNames_en_PH">LocaleNames_en_PH</a><b>,CONSTRUCTOR</b>;
+                       <b>END</b>;
+
+  <a name="type-LocaleNames_en_SG"></a><font color="#cc0033">LocaleNames_en_SG</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-LocaleNames_en_SG"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                       <b>STATIC</b>
+                         <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-LocaleNames_en_SG">LocaleNames_en_SG</a><b>,CONSTRUCTOR</b>;
+                       <b>END</b>;
+
+  <a name="type-LocaleNames_es"></a><font color="#cc0033">LocaleNames_es</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-LocaleNames_es"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                    <b>STATIC</b>
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-LocaleNames_es">LocaleNames_es</a><b>,CONSTRUCTOR</b>;
+                    <b>END</b>;
+
+  <a name="type-LocaleNames_es_US"></a><font color="#cc0033">LocaleNames_es_US</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-LocaleNames_es_US"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                       <b>STATIC</b>
+                         <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-LocaleNames_es_US">LocaleNames_es_US</a><b>,CONSTRUCTOR</b>;
+                       <b>END</b>;
+
+  <a name="type-LocaleNames_et"></a><font color="#cc0033">LocaleNames_et</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-LocaleNames_et"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                    <b>STATIC</b>
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-LocaleNames_et">LocaleNames_et</a><b>,CONSTRUCTOR</b>;
+                    <b>END</b>;
+
+  <a name="type-LocaleNames_fi"></a><font color="#cc0033">LocaleNames_fi</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-LocaleNames_fi"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                    <b>STATIC</b>
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-LocaleNames_fi">LocaleNames_fi</a><b>,CONSTRUCTOR</b>;
+                    <b>END</b>;
+
+  <a name="type-LocaleNames_fr"></a><font color="#cc0033">LocaleNames_fr</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-LocaleNames_fr"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                    <b>STATIC</b>
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-LocaleNames_fr">LocaleNames_fr</a><b>,CONSTRUCTOR</b>;
+                    <b>END</b>;
+
+  <a name="type-LocaleNames_ga"></a><font color="#cc0033">LocaleNames_ga</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-LocaleNames_ga"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                    <b>STATIC</b>
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-LocaleNames_ga">LocaleNames_ga</a><b>,CONSTRUCTOR</b>;
+                    <b>END</b>;
+
+  <a name="type-LocaleNames_hr"></a><font color="#cc0033">LocaleNames_hr</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-LocaleNames_hr"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                    <b>STATIC</b>
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-LocaleNames_hr">LocaleNames_hr</a><b>,CONSTRUCTOR</b>;
+                    <b>END</b>;
+
+  <a name="type-LocaleNames_hu"></a><font color="#cc0033">LocaleNames_hu</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-LocaleNames_hu"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                    <b>STATIC</b>
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-LocaleNames_hu">LocaleNames_hu</a><b>,CONSTRUCTOR</b>;
+                    <b>END</b>;
+
+  <a name="type-LocaleNames_in"></a><font color="#cc0033">LocaleNames_in</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-LocaleNames_in"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                    <b>STATIC</b>
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-LocaleNames_in">LocaleNames_in</a><b>,CONSTRUCTOR</b>;
+                    <b>END</b>;
+
+  <a name="type-LocaleNames_is"></a><font color="#cc0033">LocaleNames_is</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-LocaleNames_is"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                    <b>STATIC</b>
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-LocaleNames_is">LocaleNames_is</a><b>,CONSTRUCTOR</b>;
+                    <b>END</b>;
+
+  <a name="type-LocaleNames_it"></a><font color="#cc0033">LocaleNames_it</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-LocaleNames_it"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                    <b>STATIC</b>
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-LocaleNames_it">LocaleNames_it</a><b>,CONSTRUCTOR</b>;
+                    <b>END</b>;
+
+  <a name="type-LocaleNames_lt"></a><font color="#cc0033">LocaleNames_lt</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-LocaleNames_lt"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                    <b>STATIC</b>
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-LocaleNames_lt">LocaleNames_lt</a><b>,CONSTRUCTOR</b>;
+                    <b>END</b>;
+
+  <a name="type-LocaleNames_lv"></a><font color="#cc0033">LocaleNames_lv</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-LocaleNames_lv"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                    <b>STATIC</b>
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-LocaleNames_lv">LocaleNames_lv</a><b>,CONSTRUCTOR</b>;
+                    <b>END</b>;
+
+  <a name="type-LocaleNames_mk"></a><font color="#cc0033">LocaleNames_mk</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-LocaleNames_mk"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                    <b>STATIC</b>
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-LocaleNames_mk">LocaleNames_mk</a><b>,CONSTRUCTOR</b>;
+                    <b>END</b>;
+
+  <a name="type-LocaleNames_ms"></a><font color="#cc0033">LocaleNames_ms</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-LocaleNames_ms"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                    <b>STATIC</b>
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-LocaleNames_ms">LocaleNames_ms</a><b>,CONSTRUCTOR</b>;
+                    <b>END</b>;
+
+  <a name="type-LocaleNames_mt"></a><font color="#cc0033">LocaleNames_mt</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-LocaleNames_mt"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                    <b>STATIC</b>
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-LocaleNames_mt">LocaleNames_mt</a><b>,CONSTRUCTOR</b>;
+                    <b>END</b>;
+
+  <a name="type-LocaleNames_nl"></a><font color="#cc0033">LocaleNames_nl</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-LocaleNames_nl"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                    <b>STATIC</b>
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-LocaleNames_nl">LocaleNames_nl</a><b>,CONSTRUCTOR</b>;
+                    <b>END</b>;
+
+  <a name="type-LocaleNames_no"></a><font color="#cc0033">LocaleNames_no</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-LocaleNames_no"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                    <b>STATIC</b>
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-LocaleNames_no">LocaleNames_no</a><b>,CONSTRUCTOR</b>;
+                    <b>END</b>;
+
+  <a name="type-LocaleNames_pl"></a><font color="#cc0033">LocaleNames_pl</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-LocaleNames_pl"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                    <b>STATIC</b>
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-LocaleNames_pl">LocaleNames_pl</a><b>,CONSTRUCTOR</b>;
+                    <b>END</b>;
+
+  <a name="type-LocaleNames_pt"></a><font color="#cc0033">LocaleNames_pt</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-LocaleNames_pt"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                    <b>STATIC</b>
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-LocaleNames_pt">LocaleNames_pt</a><b>,CONSTRUCTOR</b>;
+                    <b>END</b>;
+
+  <a name="type-LocaleNames_pt_BR"></a><font color="#cc0033">LocaleNames_pt_BR</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-LocaleNames_pt_BR"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                       <b>STATIC</b>
+                         <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-LocaleNames_pt_BR">LocaleNames_pt_BR</a><b>,CONSTRUCTOR</b>;
+                       <b>END</b>;
+
+  <a name="type-LocaleNames_pt_PT"></a><font color="#cc0033">LocaleNames_pt_PT</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-LocaleNames_pt_PT"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                       <b>STATIC</b>
+                         <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-LocaleNames_pt_PT">LocaleNames_pt_PT</a><b>,CONSTRUCTOR</b>;
+                       <b>END</b>;
+
+  <a name="type-LocaleNames_ro"></a><font color="#cc0033">LocaleNames_ro</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-LocaleNames_ro"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                    <b>STATIC</b>
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-LocaleNames_ro">LocaleNames_ro</a><b>,CONSTRUCTOR</b>;
+                    <b>END</b>;
+
+  <a name="type-LocaleNames_ru"></a><font color="#cc0033">LocaleNames_ru</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-LocaleNames_ru"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                    <b>STATIC</b>
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-LocaleNames_ru">LocaleNames_ru</a><b>,CONSTRUCTOR</b>;
+                    <b>END</b>;
+
+  <a name="type-LocaleNames_sk"></a><font color="#cc0033">LocaleNames_sk</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-LocaleNames_sk"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                    <b>STATIC</b>
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-LocaleNames_sk">LocaleNames_sk</a><b>,CONSTRUCTOR</b>;
+                    <b>END</b>;
+
+  <a name="type-LocaleNames_sl"></a><font color="#cc0033">LocaleNames_sl</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-LocaleNames_sl"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                    <b>STATIC</b>
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-LocaleNames_sl">LocaleNames_sl</a><b>,CONSTRUCTOR</b>;
+                    <b>END</b>;
+
+  <a name="type-LocaleNames_sq"></a><font color="#cc0033">LocaleNames_sq</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-LocaleNames_sq"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                    <b>STATIC</b>
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-LocaleNames_sq">LocaleNames_sq</a><b>,CONSTRUCTOR</b>;
+                    <b>END</b>;
+
+  <a name="type-LocaleNames_sr"></a><font color="#cc0033">LocaleNames_sr</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-LocaleNames_sr"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                    <b>STATIC</b>
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-LocaleNames_sr">LocaleNames_sr</a><b>,CONSTRUCTOR</b>;
+                    <b>END</b>;
+
+  <a name="type-LocaleNames_sv"></a><font color="#cc0033">LocaleNames_sv</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-LocaleNames_sv"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                    <b>STATIC</b>
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-LocaleNames_sv">LocaleNames_sv</a><b>,CONSTRUCTOR</b>;
+                    <b>END</b>;
+
+  <a name="type-LocaleNames_tr"></a><font color="#cc0033">LocaleNames_tr</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-LocaleNames_tr"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                    <b>STATIC</b>
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-LocaleNames_tr">LocaleNames_tr</a><b>,CONSTRUCTOR</b>;
+                    <b>END</b>;
+
+  <a name="type-LocaleNames_uk"></a><font color="#cc0033">LocaleNames_uk</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-LocaleNamesBundle">LocaleNamesBundle</a>)    <a href="#meths-LocaleNames_uk"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                    <b>STATIC</b>
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-LocaleNames_uk">LocaleNames_uk</a><b>,CONSTRUCTOR</b>;
+                    <b>END</b>;
+
+  <a name="type-OpenListResourceBundle"></a><font color="#cc0033">OpenListResourceBundle</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_util.html#type-ResourceBundle">java_util.ResourceBundle</a>)    <a href="#meths-OpenListResourceBundle"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                            <b>STATIC</b>
+                              <b>PROCEDURE </b><font color="#cc0033">Init</font>!() : <a href="#type-OpenListResourceBundle">OpenListResourceBundle</a><b>,CONSTRUCTOR</b>;
+                            <b>END</b>;
+
+  <a name="type-TimeZoneNames"></a><font color="#cc0033">TimeZoneNames</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-TimeZoneNamesBundle">TimeZoneNamesBundle</a>)    <a href="#meths-TimeZoneNames"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                   <b>STATIC</b>
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-TimeZoneNames">TimeZoneNames</a><b>,CONSTRUCTOR</b>;
+                   <b>END</b>;
+
+  <a name="type-TimeZoneNamesBundle"></a><font color="#cc0033">TimeZoneNamesBundle</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="#type-OpenListResourceBundle">OpenListResourceBundle</a>)    <a href="#meths-TimeZoneNamesBundle"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                         <b>STATIC</b>
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-TimeZoneNamesBundle">TimeZoneNamesBundle</a><b>,CONSTRUCTOR</b>;
+                         <b>END</b>;
+
+  <a name="type-TimeZoneNames_de"></a><font color="#cc0033">TimeZoneNames_de</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-TimeZoneNamesBundle">TimeZoneNamesBundle</a>)    <a href="#meths-TimeZoneNames_de"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                      <b>STATIC</b>
+                        <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-TimeZoneNames_de">TimeZoneNames_de</a><b>,CONSTRUCTOR</b>;
+                      <b>END</b>;
+
+  <a name="type-TimeZoneNames_en"></a><font color="#cc0033">TimeZoneNames_en</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-TimeZoneNamesBundle">TimeZoneNamesBundle</a>)    <a href="#meths-TimeZoneNames_en"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                      <b>STATIC</b>
+                        <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-TimeZoneNames_en">TimeZoneNames_en</a><b>,CONSTRUCTOR</b>;
+                      <b>END</b>;
+
+  <a name="type-TimeZoneNames_en_CA"></a><font color="#cc0033">TimeZoneNames_en_CA</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-TimeZoneNamesBundle">TimeZoneNamesBundle</a>)    <a href="#meths-TimeZoneNames_en_CA"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                         <b>STATIC</b>
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-TimeZoneNames_en_CA">TimeZoneNames_en_CA</a><b>,CONSTRUCTOR</b>;
+                         <b>END</b>;
+
+  <a name="type-TimeZoneNames_en_GB"></a><font color="#cc0033">TimeZoneNames_en_GB</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-TimeZoneNamesBundle">TimeZoneNamesBundle</a>)    <a href="#meths-TimeZoneNames_en_GB"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                         <b>STATIC</b>
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-TimeZoneNames_en_GB">TimeZoneNames_en_GB</a><b>,CONSTRUCTOR</b>;
+                         <b>END</b>;
+
+  <a name="type-TimeZoneNames_en_IE"></a><font color="#cc0033">TimeZoneNames_en_IE</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-TimeZoneNamesBundle">TimeZoneNamesBundle</a>)    <a href="#meths-TimeZoneNames_en_IE"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                         <b>STATIC</b>
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-TimeZoneNames_en_IE">TimeZoneNames_en_IE</a><b>,CONSTRUCTOR</b>;
+                         <b>END</b>;
+
+  <a name="type-TimeZoneNames_es"></a><font color="#cc0033">TimeZoneNames_es</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-TimeZoneNamesBundle">TimeZoneNamesBundle</a>)    <a href="#meths-TimeZoneNames_es"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                      <b>STATIC</b>
+                        <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-TimeZoneNames_es">TimeZoneNames_es</a><b>,CONSTRUCTOR</b>;
+                      <b>END</b>;
+
+  <a name="type-TimeZoneNames_fr"></a><font color="#cc0033">TimeZoneNames_fr</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-TimeZoneNamesBundle">TimeZoneNamesBundle</a>)    <a href="#meths-TimeZoneNames_fr"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                      <b>STATIC</b>
+                        <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-TimeZoneNames_fr">TimeZoneNames_fr</a><b>,CONSTRUCTOR</b>;
+                      <b>END</b>;
+
+  <a name="type-TimeZoneNames_it"></a><font color="#cc0033">TimeZoneNames_it</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-TimeZoneNamesBundle">TimeZoneNamesBundle</a>)    <a href="#meths-TimeZoneNames_it"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                      <b>STATIC</b>
+                        <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-TimeZoneNames_it">TimeZoneNames_it</a><b>,CONSTRUCTOR</b>;
+                      <b>END</b>;
+
+  <a name="type-TimeZoneNames_pt_BR"></a><font color="#cc0033">TimeZoneNames_pt_BR</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-TimeZoneNamesBundle">TimeZoneNamesBundle</a>)    <a href="#meths-TimeZoneNames_pt_BR"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                         <b>STATIC</b>
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-TimeZoneNames_pt_BR">TimeZoneNames_pt_BR</a><b>,CONSTRUCTOR</b>;
+                         <b>END</b>;
+
+  <a name="type-TimeZoneNames_sv"></a><font color="#cc0033">TimeZoneNames_sv</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="#type-TimeZoneNamesBundle">TimeZoneNamesBundle</a>)    <a href="#meths-TimeZoneNames_sv"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                      <b>STATIC</b>
+                        <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-TimeZoneNames_sv">TimeZoneNames_sv</a><b>,CONSTRUCTOR</b>;
+                      <b>END</b>;
+
+
+
+<a name="meths-CalendarData"></a>
+<b>PROCEDURE </b>(self:CalendarData) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-CalendarData_be"></a>
+<b>PROCEDURE </b>(self:CalendarData_be) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-CalendarData_bg"></a>
+<b>PROCEDURE </b>(self:CalendarData_bg) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-CalendarData_ca"></a>
+<b>PROCEDURE </b>(self:CalendarData_ca) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-CalendarData_cs"></a>
+<b>PROCEDURE </b>(self:CalendarData_cs) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-CalendarData_da"></a>
+<b>PROCEDURE </b>(self:CalendarData_da) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-CalendarData_de"></a>
+<b>PROCEDURE </b>(self:CalendarData_de) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-CalendarData_el"></a>
+<b>PROCEDURE </b>(self:CalendarData_el) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-CalendarData_el_CY"></a>
+<b>PROCEDURE </b>(self:CalendarData_el_CY) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-CalendarData_en"></a>
+<b>PROCEDURE </b>(self:CalendarData_en) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-CalendarData_en_GB"></a>
+<b>PROCEDURE </b>(self:CalendarData_en_GB) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-CalendarData_en_IE"></a>
+<b>PROCEDURE </b>(self:CalendarData_en_IE) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-CalendarData_en_MT"></a>
+<b>PROCEDURE </b>(self:CalendarData_en_MT) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-CalendarData_es"></a>
+<b>PROCEDURE </b>(self:CalendarData_es) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-CalendarData_es_ES"></a>
+<b>PROCEDURE </b>(self:CalendarData_es_ES) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-CalendarData_es_US"></a>
+<b>PROCEDURE </b>(self:CalendarData_es_US) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-CalendarData_et"></a>
+<b>PROCEDURE </b>(self:CalendarData_et) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-CalendarData_fi"></a>
+<b>PROCEDURE </b>(self:CalendarData_fi) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-CalendarData_fr"></a>
+<b>PROCEDURE </b>(self:CalendarData_fr) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-CalendarData_fr_CA"></a>
+<b>PROCEDURE </b>(self:CalendarData_fr_CA) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-CalendarData_hr"></a>
+<b>PROCEDURE </b>(self:CalendarData_hr) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-CalendarData_hu"></a>
+<b>PROCEDURE </b>(self:CalendarData_hu) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-CalendarData_in_ID"></a>
+<b>PROCEDURE </b>(self:CalendarData_in_ID) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-CalendarData_is"></a>
+<b>PROCEDURE </b>(self:CalendarData_is) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-CalendarData_it"></a>
+<b>PROCEDURE </b>(self:CalendarData_it) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-CalendarData_lt"></a>
+<b>PROCEDURE </b>(self:CalendarData_lt) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-CalendarData_lv"></a>
+<b>PROCEDURE </b>(self:CalendarData_lv) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-CalendarData_mk"></a>
+<b>PROCEDURE </b>(self:CalendarData_mk) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-CalendarData_ms_MY"></a>
+<b>PROCEDURE </b>(self:CalendarData_ms_MY) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-CalendarData_mt"></a>
+<b>PROCEDURE </b>(self:CalendarData_mt) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-CalendarData_mt_MT"></a>
+<b>PROCEDURE </b>(self:CalendarData_mt_MT) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-CalendarData_nl"></a>
+<b>PROCEDURE </b>(self:CalendarData_nl) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-CalendarData_no"></a>
+<b>PROCEDURE </b>(self:CalendarData_no) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-CalendarData_pl"></a>
+<b>PROCEDURE </b>(self:CalendarData_pl) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-CalendarData_pt"></a>
+<b>PROCEDURE </b>(self:CalendarData_pt) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-CalendarData_pt_PT"></a>
+<b>PROCEDURE </b>(self:CalendarData_pt_PT) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-CalendarData_ro"></a>
+<b>PROCEDURE </b>(self:CalendarData_ro) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-CalendarData_ru"></a>
+<b>PROCEDURE </b>(self:CalendarData_ru) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-CalendarData_sk"></a>
+<b>PROCEDURE </b>(self:CalendarData_sk) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-CalendarData_sl"></a>
+<b>PROCEDURE </b>(self:CalendarData_sl) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-CalendarData_sq"></a>
+<b>PROCEDURE </b>(self:CalendarData_sq) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-CalendarData_sr"></a>
+<b>PROCEDURE </b>(self:CalendarData_sr) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-CalendarData_sv"></a>
+<b>PROCEDURE </b>(self:CalendarData_sv) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-CalendarData_tr"></a>
+<b>PROCEDURE </b>(self:CalendarData_tr) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-CalendarData_uk"></a>
+<b>PROCEDURE </b>(self:CalendarData_uk) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-CurrencyNames"></a>
+<b>PROCEDURE </b>(self:CurrencyNames) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-CurrencyNames_be_BY"></a>
+<b>PROCEDURE </b>(self:CurrencyNames_be_BY) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-CurrencyNames_bg_BG"></a>
+<b>PROCEDURE </b>(self:CurrencyNames_bg_BG) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-CurrencyNames_ca_ES"></a>
+<b>PROCEDURE </b>(self:CurrencyNames_ca_ES) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-CurrencyNames_cs_CZ"></a>
+<b>PROCEDURE </b>(self:CurrencyNames_cs_CZ) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-CurrencyNames_da_DK"></a>
+<b>PROCEDURE </b>(self:CurrencyNames_da_DK) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-CurrencyNames_de_AT"></a>
+<b>PROCEDURE </b>(self:CurrencyNames_de_AT) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-CurrencyNames_de_CH"></a>
+<b>PROCEDURE </b>(self:CurrencyNames_de_CH) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-CurrencyNames_de_DE"></a>
+<b>PROCEDURE </b>(self:CurrencyNames_de_DE) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-CurrencyNames_de_GR"></a>
+<b>PROCEDURE </b>(self:CurrencyNames_de_GR) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-CurrencyNames_de_LU"></a>
+<b>PROCEDURE </b>(self:CurrencyNames_de_LU) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-CurrencyNames_el_CY"></a>
+<b>PROCEDURE </b>(self:CurrencyNames_el_CY) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-CurrencyNames_el_GR"></a>
+<b>PROCEDURE </b>(self:CurrencyNames_el_GR) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-CurrencyNames_en_AU"></a>
+<b>PROCEDURE </b>(self:CurrencyNames_en_AU) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-CurrencyNames_en_CA"></a>
+<b>PROCEDURE </b>(self:CurrencyNames_en_CA) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-CurrencyNames_en_GB"></a>
+<b>PROCEDURE </b>(self:CurrencyNames_en_GB) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-CurrencyNames_en_IE"></a>
+<b>PROCEDURE </b>(self:CurrencyNames_en_IE) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-CurrencyNames_en_IN"></a>
+<b>PROCEDURE </b>(self:CurrencyNames_en_IN) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-CurrencyNames_en_MT"></a>
+<b>PROCEDURE </b>(self:CurrencyNames_en_MT) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-CurrencyNames_en_NZ"></a>
+<b>PROCEDURE </b>(self:CurrencyNames_en_NZ) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-CurrencyNames_en_PH"></a>
+<b>PROCEDURE </b>(self:CurrencyNames_en_PH) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-CurrencyNames_en_SG"></a>
+<b>PROCEDURE </b>(self:CurrencyNames_en_SG) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-CurrencyNames_en_US"></a>
+<b>PROCEDURE </b>(self:CurrencyNames_en_US) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-CurrencyNames_en_ZA"></a>
+<b>PROCEDURE </b>(self:CurrencyNames_en_ZA) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-CurrencyNames_es_AR"></a>
+<b>PROCEDURE </b>(self:CurrencyNames_es_AR) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-CurrencyNames_es_BO"></a>
+<b>PROCEDURE </b>(self:CurrencyNames_es_BO) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-CurrencyNames_es_CL"></a>
+<b>PROCEDURE </b>(self:CurrencyNames_es_CL) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-CurrencyNames_es_CO"></a>
+<b>PROCEDURE </b>(self:CurrencyNames_es_CO) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-CurrencyNames_es_CR"></a>
+<b>PROCEDURE </b>(self:CurrencyNames_es_CR) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-CurrencyNames_es_DO"></a>
+<b>PROCEDURE </b>(self:CurrencyNames_es_DO) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-CurrencyNames_es_EC"></a>
+<b>PROCEDURE </b>(self:CurrencyNames_es_EC) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-CurrencyNames_es_ES"></a>
+<b>PROCEDURE </b>(self:CurrencyNames_es_ES) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-CurrencyNames_es_GT"></a>
+<b>PROCEDURE </b>(self:CurrencyNames_es_GT) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-CurrencyNames_es_HN"></a>
+<b>PROCEDURE </b>(self:CurrencyNames_es_HN) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-CurrencyNames_es_MX"></a>
+<b>PROCEDURE </b>(self:CurrencyNames_es_MX) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-CurrencyNames_es_NI"></a>
+<b>PROCEDURE </b>(self:CurrencyNames_es_NI) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-CurrencyNames_es_PA"></a>
+<b>PROCEDURE </b>(self:CurrencyNames_es_PA) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-CurrencyNames_es_PE"></a>
+<b>PROCEDURE </b>(self:CurrencyNames_es_PE) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-CurrencyNames_es_PR"></a>
+<b>PROCEDURE </b>(self:CurrencyNames_es_PR) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-CurrencyNames_es_PY"></a>
+<b>PROCEDURE </b>(self:CurrencyNames_es_PY) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-CurrencyNames_es_SV"></a>
+<b>PROCEDURE </b>(self:CurrencyNames_es_SV) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-CurrencyNames_es_US"></a>
+<b>PROCEDURE </b>(self:CurrencyNames_es_US) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-CurrencyNames_es_UY"></a>
+<b>PROCEDURE </b>(self:CurrencyNames_es_UY) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-CurrencyNames_es_VE"></a>
+<b>PROCEDURE </b>(self:CurrencyNames_es_VE) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-CurrencyNames_et_EE"></a>
+<b>PROCEDURE </b>(self:CurrencyNames_et_EE) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-CurrencyNames_fi_FI"></a>
+<b>PROCEDURE </b>(self:CurrencyNames_fi_FI) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-CurrencyNames_fr_BE"></a>
+<b>PROCEDURE </b>(self:CurrencyNames_fr_BE) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-CurrencyNames_fr_CA"></a>
+<b>PROCEDURE </b>(self:CurrencyNames_fr_CA) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-CurrencyNames_fr_CH"></a>
+<b>PROCEDURE </b>(self:CurrencyNames_fr_CH) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-CurrencyNames_fr_FR"></a>
+<b>PROCEDURE </b>(self:CurrencyNames_fr_FR) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-CurrencyNames_fr_LU"></a>
+<b>PROCEDURE </b>(self:CurrencyNames_fr_LU) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-CurrencyNames_ga_IE"></a>
+<b>PROCEDURE </b>(self:CurrencyNames_ga_IE) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-CurrencyNames_hr_HR"></a>
+<b>PROCEDURE </b>(self:CurrencyNames_hr_HR) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-CurrencyNames_hu_HU"></a>
+<b>PROCEDURE </b>(self:CurrencyNames_hu_HU) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-CurrencyNames_in_ID"></a>
+<b>PROCEDURE </b>(self:CurrencyNames_in_ID) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-CurrencyNames_is_IS"></a>
+<b>PROCEDURE </b>(self:CurrencyNames_is_IS) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-CurrencyNames_it_CH"></a>
+<b>PROCEDURE </b>(self:CurrencyNames_it_CH) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-CurrencyNames_it_IT"></a>
+<b>PROCEDURE </b>(self:CurrencyNames_it_IT) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-CurrencyNames_lt_LT"></a>
+<b>PROCEDURE </b>(self:CurrencyNames_lt_LT) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-CurrencyNames_lv_LV"></a>
+<b>PROCEDURE </b>(self:CurrencyNames_lv_LV) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-CurrencyNames_mk_MK"></a>
+<b>PROCEDURE </b>(self:CurrencyNames_mk_MK) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-CurrencyNames_ms_MY"></a>
+<b>PROCEDURE </b>(self:CurrencyNames_ms_MY) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-CurrencyNames_mt_MT"></a>
+<b>PROCEDURE </b>(self:CurrencyNames_mt_MT) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-CurrencyNames_nl_BE"></a>
+<b>PROCEDURE </b>(self:CurrencyNames_nl_BE) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-CurrencyNames_nl_NL"></a>
+<b>PROCEDURE </b>(self:CurrencyNames_nl_NL) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-CurrencyNames_no_NO"></a>
+<b>PROCEDURE </b>(self:CurrencyNames_no_NO) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-CurrencyNames_pl_PL"></a>
+<b>PROCEDURE </b>(self:CurrencyNames_pl_PL) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-CurrencyNames_pt_BR"></a>
+<b>PROCEDURE </b>(self:CurrencyNames_pt_BR) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-CurrencyNames_pt_PT"></a>
+<b>PROCEDURE </b>(self:CurrencyNames_pt_PT) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-CurrencyNames_ro_RO"></a>
+<b>PROCEDURE </b>(self:CurrencyNames_ro_RO) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-CurrencyNames_ru_RU"></a>
+<b>PROCEDURE </b>(self:CurrencyNames_ru_RU) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-CurrencyNames_sk_SK"></a>
+<b>PROCEDURE </b>(self:CurrencyNames_sk_SK) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-CurrencyNames_sl_SI"></a>
+<b>PROCEDURE </b>(self:CurrencyNames_sl_SI) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-CurrencyNames_sq_AL"></a>
+<b>PROCEDURE </b>(self:CurrencyNames_sq_AL) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-CurrencyNames_sr_BA"></a>
+<b>PROCEDURE </b>(self:CurrencyNames_sr_BA) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-CurrencyNames_sr_CS"></a>
+<b>PROCEDURE </b>(self:CurrencyNames_sr_CS) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-CurrencyNames_sr_ME"></a>
+<b>PROCEDURE </b>(self:CurrencyNames_sr_ME) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-CurrencyNames_sv_SE"></a>
+<b>PROCEDURE </b>(self:CurrencyNames_sv_SE) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-CurrencyNames_tr_TR"></a>
+<b>PROCEDURE </b>(self:CurrencyNames_tr_TR) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-CurrencyNames_uk_UA"></a>
+<b>PROCEDURE </b>(self:CurrencyNames_uk_UA) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-LocaleNames"></a>
+<b>PROCEDURE </b>(self:LocaleNames) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-LocaleNames_be"></a>
+<b>PROCEDURE </b>(self:LocaleNames_be) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-LocaleNames_bg"></a>
+<b>PROCEDURE </b>(self:LocaleNames_bg) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-LocaleNames_ca"></a>
+<b>PROCEDURE </b>(self:LocaleNames_ca) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-LocaleNames_cs"></a>
+<b>PROCEDURE </b>(self:LocaleNames_cs) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-LocaleNames_da"></a>
+<b>PROCEDURE </b>(self:LocaleNames_da) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-LocaleNames_de"></a>
+<b>PROCEDURE </b>(self:LocaleNames_de) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-LocaleNames_el"></a>
+<b>PROCEDURE </b>(self:LocaleNames_el) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-LocaleNames_el_CY"></a>
+<b>PROCEDURE </b>(self:LocaleNames_el_CY) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-LocaleNames_en"></a>
+<b>PROCEDURE </b>(self:LocaleNames_en) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-LocaleNames_en_MT"></a>
+<b>PROCEDURE </b>(self:LocaleNames_en_MT) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-LocaleNames_en_PH"></a>
+<b>PROCEDURE </b>(self:LocaleNames_en_PH) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-LocaleNames_en_SG"></a>
+<b>PROCEDURE </b>(self:LocaleNames_en_SG) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-LocaleNames_es"></a>
+<b>PROCEDURE </b>(self:LocaleNames_es) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-LocaleNames_es_US"></a>
+<b>PROCEDURE </b>(self:LocaleNames_es_US) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-LocaleNames_et"></a>
+<b>PROCEDURE </b>(self:LocaleNames_et) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-LocaleNames_fi"></a>
+<b>PROCEDURE </b>(self:LocaleNames_fi) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-LocaleNames_fr"></a>
+<b>PROCEDURE </b>(self:LocaleNames_fr) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-LocaleNames_ga"></a>
+<b>PROCEDURE </b>(self:LocaleNames_ga) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-LocaleNames_hr"></a>
+<b>PROCEDURE </b>(self:LocaleNames_hr) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-LocaleNames_hu"></a>
+<b>PROCEDURE </b>(self:LocaleNames_hu) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-LocaleNames_in"></a>
+<b>PROCEDURE </b>(self:LocaleNames_in) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-LocaleNames_is"></a>
+<b>PROCEDURE </b>(self:LocaleNames_is) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-LocaleNames_it"></a>
+<b>PROCEDURE </b>(self:LocaleNames_it) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-LocaleNames_lt"></a>
+<b>PROCEDURE </b>(self:LocaleNames_lt) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-LocaleNames_lv"></a>
+<b>PROCEDURE </b>(self:LocaleNames_lv) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-LocaleNames_mk"></a>
+<b>PROCEDURE </b>(self:LocaleNames_mk) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-LocaleNames_ms"></a>
+<b>PROCEDURE </b>(self:LocaleNames_ms) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-LocaleNames_mt"></a>
+<b>PROCEDURE </b>(self:LocaleNames_mt) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-LocaleNames_nl"></a>
+<b>PROCEDURE </b>(self:LocaleNames_nl) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-LocaleNames_no"></a>
+<b>PROCEDURE </b>(self:LocaleNames_no) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-LocaleNames_pl"></a>
+<b>PROCEDURE </b>(self:LocaleNames_pl) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-LocaleNames_pt"></a>
+<b>PROCEDURE </b>(self:LocaleNames_pt) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-LocaleNames_pt_BR"></a>
+<b>PROCEDURE </b>(self:LocaleNames_pt_BR) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-LocaleNames_pt_PT"></a>
+<b>PROCEDURE </b>(self:LocaleNames_pt_PT) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-LocaleNames_ro"></a>
+<b>PROCEDURE </b>(self:LocaleNames_ro) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-LocaleNames_ru"></a>
+<b>PROCEDURE </b>(self:LocaleNames_ru) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-LocaleNames_sk"></a>
+<b>PROCEDURE </b>(self:LocaleNames_sk) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-LocaleNames_sl"></a>
+<b>PROCEDURE </b>(self:LocaleNames_sl) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-LocaleNames_sq"></a>
+<b>PROCEDURE </b>(self:LocaleNames_sq) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-LocaleNames_sr"></a>
+<b>PROCEDURE </b>(self:LocaleNames_sr) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-LocaleNames_sv"></a>
+<b>PROCEDURE </b>(self:LocaleNames_sv) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-LocaleNames_tr"></a>
+<b>PROCEDURE </b>(self:LocaleNames_tr) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-LocaleNames_uk"></a>
+<b>PROCEDURE </b>(self:LocaleNames_uk) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-OpenListResourceBundle"></a>
+<b>PROCEDURE </b>(self:OpenListResourceBundle) <font color="#cc0033">createMap</font>!(p0 : INTEGER) : <a href="java_util.html#type-Map">java_util.Map</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:OpenListResourceBundle) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:OpenListResourceBundle) <font color="#cc0033">getKeys</font>*() : <a href="java_util.html#type-Enumeration">java_util.Enumeration</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:OpenListResourceBundle) <font color="#cc0033">getParent</font>*() : <a href="#type-OpenListResourceBundle">OpenListResourceBundle</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:OpenListResourceBundle) <font color="#cc0033">handleGetKeys</font>*() : <a href="java_util.html#type-Set">java_util.Set</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:OpenListResourceBundle) <font color="#cc0033">handleGetObject</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,EXTENSIBLE</b>;
+<a name="meths-TimeZoneNames"></a>
+<b>PROCEDURE </b>(self:TimeZoneNames) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-TimeZoneNamesBundle"></a>
+<b>PROCEDURE </b>(self:TimeZoneNamesBundle) <font color="#cc0033">createMap</font>!(p0 : INTEGER) : <a href="java_util.html#type-Map">java_util.Map</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TimeZoneNamesBundle) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a><b>,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:TimeZoneNamesBundle) <font color="#cc0033">handleGetObject</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,EXTENSIBLE</b>;
+<a name="meths-TimeZoneNames_de"></a>
+<b>PROCEDURE </b>(self:TimeZoneNames_de) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-TimeZoneNames_en"></a>
+<b>PROCEDURE </b>(self:TimeZoneNames_en) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-TimeZoneNames_en_CA"></a>
+<b>PROCEDURE </b>(self:TimeZoneNames_en_CA) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-TimeZoneNames_en_GB"></a>
+<b>PROCEDURE </b>(self:TimeZoneNames_en_GB) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-TimeZoneNames_en_IE"></a>
+<b>PROCEDURE </b>(self:TimeZoneNames_en_IE) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-TimeZoneNames_es"></a>
+<b>PROCEDURE </b>(self:TimeZoneNames_es) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-TimeZoneNames_fr"></a>
+<b>PROCEDURE </b>(self:TimeZoneNames_fr) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-TimeZoneNames_it"></a>
+<b>PROCEDURE </b>(self:TimeZoneNames_it) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-TimeZoneNames_pt_BR"></a>
+<b>PROCEDURE </b>(self:TimeZoneNames_pt_BR) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+<a name="meths-TimeZoneNames_sv"></a>
+<b>PROCEDURE </b>(self:TimeZoneNames_sv) <font color="#cc0033">getContents</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a>;
+
+<b>END </b><font color="#cc0033">sun_util_resources</font>.
+</font></pre></hr></body></html>

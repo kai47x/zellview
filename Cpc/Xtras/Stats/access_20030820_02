@@ -1,0 +1,8 @@
+format.access="%Ses->client.ip%  %Req->headers.referer% -  %Req->vars.auth-user% [%SYSDATE%] \"%Req->reqpb.clf-request%\" %Req->srvhdrs.clf-status% %Req->srvhdrs.content-length% %Req->headers.host%"
+68.122.145.79 - - [20/Aug/2003:02:14:10 +0200] "GET /cgi-bin/formmail/FormMail.pl HTTP/1.1" 302 0 www.zinnamturm.de
+68.122.145.79 - - [20/Aug/2003:02:14:12 +0200] "GET /cgi-bin/formmail/FormMail.cgi HTTP/1.1" 302 0 www.zinnamturm.de
+68.122.145.79 - - [20/Aug/2003:03:41:58 +0200] "GET /cgi-bin/formmail/FormMail.cgi HTTP/1.1" 302 0 www.zinnamturm.de
+68.122.145.79 - - [20/Aug/2003:03:41:58 +0200] "GET /cgi-bin/formmail/FormMail.pl HTTP/1.1" 302 0 www.zinnamturm.de
+68.122.145.79 - - [20/Aug/2003:06:13:25 +0200] "GET /cgi-bin/formmail/FormMail.cgi HTTP/1.1" 302 0 www.zinnamturm.de
+68.122.145.79 - - [20/Aug/2003:06:13:25 +0200] "GET /cgi-bin/formmail/FormMail.pl HTTP/1.1" 302 0 www.zinnamturm.de
+216.250.221.100 - - [20/Aug/2003:06:33:06 +0200] "GET / HTTP/1.1" 200 84552 www.zinnamturm.de

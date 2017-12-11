@@ -1,0 +1,297 @@
+<html><head><title>sun_net</title></head>
+<body bgcolor="white">
+<hr><pre>
+<b>FOREIGN MODULE </b><font color="#cc0033">sun_net</font>;
+
+<b>IMPORT</b>
+    <a href="java_net.html">java_net</a> := "java.net",
+    <a href="java_lang.html">java_lang</a> := "java.lang",
+    <a href="java_io.html">java_io</a> := "java.io",
+    <a href="java_security.html">java_security</a> := "java.security",
+    <a href="java_util.html">java_util</a> := "java.util",
+    <a href="java_util_concurrent_atomic.html">java_util_concurrent_atomic</a> := "java.util.concurrent.atomic";
+
+<b>TYPE</b>
+
+  <a name="type-ApplicationProxy"></a><font color="#cc0033">ApplicationProxy</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_net.html#type-Proxy">java_net.Proxy</a>)
+                      <b>STATIC</b>
+                        <b>PROCEDURE </b><font color="#cc0033">create</font>*(p0 : <a href="java_net.html#type-Proxy">java_net.Proxy</a>) : <a href="#type-ApplicationProxy">ApplicationProxy</a>;
+                      <b>END</b>;
+
+  <a name="type-ConnectionResetException"></a><font color="#cc0033">ConnectionResetException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_net.html#type-SocketException">java_net.SocketException</a>)
+                              <b>STATIC</b>
+                                <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-ConnectionResetException">ConnectionResetException</a><b>,CONSTRUCTOR</b>;
+                                <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-ConnectionResetException">ConnectionResetException</a><b>,CONSTRUCTOR</b>;
+                              <b>END</b>;
+
+  <a name="type-InetAddressCachePolicy"></a><font color="#cc0033">InetAddressCachePolicy</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                            <b>STATIC</b>
+                              <font color="#cc0033">DEFAULT_POSITIVE</font>*    = 30;
+                              <font color="#cc0033">FOREVER</font>*             = -1;
+                              <font color="#cc0033">NEVER</font>*               = 0;
+                              <b>PROCEDURE </b><font color="#cc0033">get</font>*() : INTEGER;
+                              <b>PROCEDURE </b><font color="#cc0033">getNegative</font>*() : INTEGER;
+                              <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-InetAddressCachePolicy">InetAddressCachePolicy</a><b>,CONSTRUCTOR</b>;
+                              <b>PROCEDURE </b><font color="#cc0033">setIfNotSet</font>*(p0 : INTEGER);
+                              <b>PROCEDURE </b><font color="#cc0033">setNegativeIfNotSet</font>*(p0 : INTEGER);
+                            <b>END</b>;
+
+  <a name="type-NetProperties"></a><font color="#cc0033">NetProperties</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                   <b>STATIC</b>
+                     <b>PROCEDURE </b><font color="#cc0033">get</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-String">java_lang.String</a>;
+                     <b>PROCEDURE </b><font color="#cc0033">getBoolean</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-Boolean">java_lang.Boolean</a>;
+                     <b>PROCEDURE </b><font color="#cc0033">getInteger</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                           p1 : INTEGER) : <a href="java_lang.html#type-Integer">java_lang.Integer</a>;
+                   <b>END</b>;
+
+  <a name="type-NetworkClient"></a><font color="#cc0033">NetworkClient</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-NetworkClient"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                     <font color="#cc0033">proxy</font>!          : <a href="java_net.html#type-Proxy">java_net.Proxy</a>;
+                     <font color="#cc0033">serverSocket</font>!   : <a href="java_net.html#type-Socket">java_net.Socket</a>;
+                     <font color="#cc0033">serverOutput</font>*   : <a href="java_io.html#type-PrintStream">java_io.PrintStream</a>;
+                     <font color="#cc0033">serverInput</font>*    : <a href="java_io.html#type-InputStream">java_io.InputStream</a>;
+                     <font color="#cc0033">readTimeout</font>!    : INTEGER;
+                     <font color="#cc0033">connectTimeout</font>! : INTEGER;
+                   <b>STATIC</b>
+                     <a name="type-defaultConnectTimeout"></a><font color="#cc0033">defaultConnectTimeout</font>! : INTEGER;
+                     <a name="type-defaultSoTimeout"></a><font color="#cc0033">defaultSoTimeout</font>!      : INTEGER;
+                     <a name="type-encoding"></a><font color="#cc0033">encoding</font>!              : <a href="java_lang.html#type-String">java_lang.String</a>;
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-NetworkClient">NetworkClient</a><b>,CONSTRUCTOR</b>;
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                     p1 : INTEGER) : <a href="#type-NetworkClient">NetworkClient</a><b>,CONSTRUCTOR</b>;
+                   <b>END</b>;
+
+  <a name="type-NetworkServer"></a><font color="#cc0033">NetworkServer</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_lang.html#type-Runnable">java_lang.Runnable</a> + <a href="java_lang.html#type-Cloneable">java_lang.Cloneable</a>)    <a href="#meths-NetworkServer"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                     <font color="#cc0033">clientSocket</font>* : <a href="java_net.html#type-Socket">java_net.Socket</a>;
+                     <font color="#cc0033">clientOutput</font>* : <a href="java_io.html#type-PrintStream">java_io.PrintStream</a>;
+                     <font color="#cc0033">clientInput</font>*  : <a href="java_io.html#type-InputStream">java_io.InputStream</a>;
+                   <b>STATIC</b>
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-NetworkServer">NetworkServer</a><b>,CONSTRUCTOR</b>;
+                     <b>PROCEDURE </b><font color="#cc0033">main</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>);
+                   <b>END</b>;
+
+  <a name="type-ProgressEvent"></a><font color="#cc0033">ProgressEvent</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_util.html#type-EventObject">java_util.EventObject</a>)    <a href="#meths-ProgressEvent"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                   <b>STATIC</b>
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="#type-ProgressSource">ProgressSource</a>;
+                                     p1 : <a href="java_net.html#type-URL">java_net.URL</a>;
+                                     p2 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                     p3 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                     p4 : <a href="#type-ProgressSource$State">ProgressSource$State</a>;
+                                     p5 : INTEGER;
+                                     p6 : INTEGER) : <a href="#type-ProgressEvent">ProgressEvent</a><b>,CONSTRUCTOR</b>;
+                   <b>END</b>;
+
+  <a name="type-ProgressListener"></a><font color="#cc0033">ProgressListener</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_util.html#type-EventListener">java_util.EventListener</a>)    <a href="#meths-ProgressListener"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                      <b>END</b>;
+
+  <a name="type-ProgressMeteringPolicy"></a><font color="#cc0033">ProgressMeteringPolicy</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-ProgressMeteringPolicy"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                            <b>END</b>;
+
+  <a name="type-ProgressMonitor"></a><font color="#cc0033">ProgressMonitor</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-ProgressMonitor"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                     <b>STATIC</b>
+                       <b>PROCEDURE </b><font color="#cc0033">getDefault</font>*() : <a href="#type-ProgressMonitor">ProgressMonitor</a>;
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-ProgressMonitor">ProgressMonitor</a><b>,CONSTRUCTOR</b>;
+                       <b>PROCEDURE </b><font color="#cc0033">setDefault</font>*(p0 : <a href="#type-ProgressMonitor">ProgressMonitor</a>);
+                       <b>PROCEDURE </b><font color="#cc0033">setMeteringPolicy</font>*(p0 : <a href="#type-ProgressMeteringPolicy">ProgressMeteringPolicy</a>);
+                     <b>END</b>;
+
+  <a name="type-ProgressSource"></a><font color="#cc0033">ProgressSource</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-ProgressSource"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                    <b>STATIC</b>
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_net.html#type-URL">java_net.URL</a>;
+                                      p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                      p2 : INTEGER) : <a href="#type-ProgressSource">ProgressSource</a><b>,CONSTRUCTOR</b>;
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_net.html#type-URL">java_net.URL</a>;
+                                      p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-ProgressSource">ProgressSource</a><b>,CONSTRUCTOR</b>;
+                    <b>END</b>;
+
+  <a name="type-ProgressSource$State"></a><font color="#cc0033">ProgressSource$State</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Enum">java_lang.Enum</a>)
+                          <b>STATIC</b>
+                            <a name="type-CONNECTED"></a><font color="#cc0033">CONNECTED</font>* : <a href="#type-ProgressSource$State">ProgressSource$State</a>;
+                            <a name="type-DELETE"></a><font color="#cc0033">DELETE</font>*    : <a href="#type-ProgressSource$State">ProgressSource$State</a>;
+                            <a name="type-NEW"></a><font color="#cc0033">NEW</font>*       : <a href="#type-ProgressSource$State">ProgressSource$State</a>;
+                            <a name="type-UPDATE"></a><font color="#cc0033">UPDATE</font>*    : <a href="#type-ProgressSource$State">ProgressSource$State</a>;
+                            <b>PROCEDURE </b><font color="#cc0033">valueOf</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-ProgressSource$State">ProgressSource$State</a>;
+                            <b>PROCEDURE </b><font color="#cc0033">values</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-ProgressSource$State">ProgressSource$State</a>;
+                          <b>END</b>;
+
+  <a name="type-ResourceManager"></a><font color="#cc0033">ResourceManager</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                     <b>STATIC</b>
+                       <b>PROCEDURE </b><font color="#cc0033">afterUdpClose</font>*();
+                       <b>PROCEDURE </b><font color="#cc0033">beforeUdpCreate</font>*();
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-ResourceManager">ResourceManager</a><b>,CONSTRUCTOR</b>;
+                     <b>END</b>;
+
+  <a name="type-TelnetInputStream"></a><font color="#cc0033">TelnetInputStream</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_io.html#type-FilterInputStream">java_io.FilterInputStream</a>)    <a href="#meths-TelnetInputStream"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                         <font color="#cc0033">binaryMode</font>* : BOOLEAN;
+                       <b>STATIC</b>
+                         <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_io.html#type-InputStream">java_io.InputStream</a>;
+                                         p1 : BOOLEAN) : <a href="#type-TelnetInputStream">TelnetInputStream</a><b>,CONSTRUCTOR</b>;
+                       <b>END</b>;
+
+  <a name="type-TelnetOutputStream"></a><font color="#cc0033">TelnetOutputStream</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_io.html#type-BufferedOutputStream">java_io.BufferedOutputStream</a>)    <a href="#meths-TelnetOutputStream"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                          <font color="#cc0033">binaryMode</font>* : BOOLEAN;
+                        <b>STATIC</b>
+                          <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_io.html#type-OutputStream">java_io.OutputStream</a>;
+                                          p1 : BOOLEAN) : <a href="#type-TelnetOutputStream">TelnetOutputStream</a><b>,CONSTRUCTOR</b>;
+                        <b>END</b>;
+
+  <a name="type-TelnetProtocolException"></a><font color="#cc0033">TelnetProtocolException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_io.html#type-IOException">java_io.IOException</a>)
+                             <b>STATIC</b>
+                               <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-TelnetProtocolException">TelnetProtocolException</a><b>,CONSTRUCTOR</b>;
+                             <b>END</b>;
+
+  <a name="type-TransferProtocolClient"></a><font color="#cc0033">TransferProtocolClient</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-NetworkClient">NetworkClient</a>)    <a href="#meths-TransferProtocolClient"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                              <font color="#cc0033">serverResponse</font>! : <a href="java_util.html#type-Vector">java_util.Vector</a>;
+                              <font color="#cc0033">lastReplyCode</font>!  : INTEGER;
+                            <b>STATIC</b>
+                              <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-TransferProtocolClient">TransferProtocolClient</a><b>,CONSTRUCTOR</b>;
+                              <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                              p1 : INTEGER) : <a href="#type-TransferProtocolClient">TransferProtocolClient</a><b>,CONSTRUCTOR</b>;
+                            <b>END</b>;
+
+  <a name="type-URLCanonicalizer"></a><font color="#cc0033">URLCanonicalizer</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-URLCanonicalizer"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                      <b>STATIC</b>
+                        <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-URLCanonicalizer">URLCanonicalizer</a><b>,CONSTRUCTOR</b>;
+                      <b>END</b>;
+
+
+
+<a name="meths-NetworkClient"></a>
+<b>PROCEDURE </b>(self:NetworkClient) <font color="#cc0033">closeServer</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:NetworkClient) <font color="#cc0033">createSocket</font>!() : <a href="java_net.html#type-Socket">java_net.Socket</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:NetworkClient) <font color="#cc0033">doConnect</font>!(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                          p1 : INTEGER) : <a href="java_net.html#type-Socket">java_net.Socket</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:NetworkClient) <font color="#cc0033">getConnectTimeout</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:NetworkClient) <font color="#cc0033">getLocalAddress</font>!() : <a href="java_net.html#type-InetAddress">java_net.InetAddress</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:NetworkClient) <font color="#cc0033">getReadTimeout</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:NetworkClient) <font color="#cc0033">openServer</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                           p1 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:NetworkClient) <font color="#cc0033">serverIsOpen</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:NetworkClient) <font color="#cc0033">setConnectTimeout</font>*(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:NetworkClient) <font color="#cc0033">setReadTimeout</font>*(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-NetworkServer"></a>
+<b>PROCEDURE </b>(self:NetworkServer) <font color="#cc0033">clientIsOpen</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:NetworkServer) <font color="#cc0033">clone</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:NetworkServer) <font color="#cc0033">close</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:NetworkServer) <font color="#cc0033">run</font>*()<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:NetworkServer) <font color="#cc0033">serviceRequest</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:NetworkServer) <font color="#cc0033">startServer</font>*(p0 : INTEGER)<b>,NEW</b>;
+<a name="meths-ProgressEvent"></a>
+<b>PROCEDURE </b>(self:ProgressEvent) <font color="#cc0033">getContentType</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProgressEvent) <font color="#cc0033">getExpected</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProgressEvent) <font color="#cc0033">getMethod</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProgressEvent) <font color="#cc0033">getProgress</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProgressEvent) <font color="#cc0033">getState</font>*() : <a href="#type-ProgressSource$State">ProgressSource$State</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProgressEvent) <font color="#cc0033">getURL</font>*() : <a href="java_net.html#type-URL">java_net.URL</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProgressEvent) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,EXTENSIBLE</b>;
+<a name="meths-ProgressListener"></a>
+<b>PROCEDURE </b>(self:ProgressListener) <font color="#cc0033">progressFinish</font>*(p0 : <a href="#type-ProgressEvent">ProgressEvent</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ProgressListener) <font color="#cc0033">progressStart</font>*(p0 : <a href="#type-ProgressEvent">ProgressEvent</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ProgressListener) <font color="#cc0033">progressUpdate</font>*(p0 : <a href="#type-ProgressEvent">ProgressEvent</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-ProgressMeteringPolicy"></a>
+<b>PROCEDURE </b>(self:ProgressMeteringPolicy) <font color="#cc0033">getProgressUpdateThreshold</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ProgressMeteringPolicy) <font color="#cc0033">shouldMeterInput</font>*(p0 : <a href="java_net.html#type-URL">java_net.URL</a>;
+                                                          p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+<a name="meths-ProgressMonitor"></a>
+<b>PROCEDURE </b>(self:ProgressMonitor) <font color="#cc0033">addProgressListener</font>*(p0 : <a href="#type-ProgressListener">ProgressListener</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProgressMonitor) <font color="#cc0033">getProgressSources</font>*() : <a href="java_util.html#type-ArrayList">java_util.ArrayList</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProgressMonitor) <font color="#cc0033">getProgressUpdateThreshold</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProgressMonitor) <font color="#cc0033">registerSource</font>*(p0 : <a href="#type-ProgressSource">ProgressSource</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProgressMonitor) <font color="#cc0033">removeProgressListener</font>*(p0 : <a href="#type-ProgressListener">ProgressListener</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProgressMonitor) <font color="#cc0033">shouldMeterInput</font>*(p0 : <a href="java_net.html#type-URL">java_net.URL</a>;
+                                                   p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProgressMonitor) <font color="#cc0033">unregisterSource</font>*(p0 : <a href="#type-ProgressSource">ProgressSource</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProgressMonitor) <font color="#cc0033">updateProgress</font>*(p0 : <a href="#type-ProgressSource">ProgressSource</a>)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-ProgressSource"></a>
+<b>PROCEDURE </b>(self:ProgressSource) <font color="#cc0033">beginTracking</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProgressSource) <font color="#cc0033">clone</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProgressSource) <font color="#cc0033">close</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProgressSource) <font color="#cc0033">connected</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProgressSource) <font color="#cc0033">finishTracking</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProgressSource) <font color="#cc0033">getContentType</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProgressSource) <font color="#cc0033">getExpected</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProgressSource) <font color="#cc0033">getMethod</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProgressSource) <font color="#cc0033">getProgress</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProgressSource) <font color="#cc0033">getState</font>*() : <a href="#type-ProgressSource$State">ProgressSource$State</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProgressSource) <font color="#cc0033">getURL</font>*() : <a href="java_net.html#type-URL">java_net.URL</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProgressSource) <font color="#cc0033">setContentType</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProgressSource) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProgressSource) <font color="#cc0033">updateProgress</font>*(p0 : INTEGER;
+                                                p1 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-TelnetInputStream"></a>
+<b>PROCEDURE </b>(self:TelnetInputStream) <font color="#cc0033">read</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE) : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TelnetInputStream) <font color="#cc0033">read</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE;
+                                             p1 : INTEGER;
+                                             p2 : INTEGER) : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TelnetInputStream) <font color="#cc0033">read</font>*() : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TelnetInputStream) <font color="#cc0033">setStickyCRLF</font>*(p0 : BOOLEAN)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-TelnetOutputStream"></a>
+<b>PROCEDURE </b>(self:TelnetOutputStream) <font color="#cc0033">setStickyCRLF</font>*(p0 : BOOLEAN)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TelnetOutputStream) <font color="#cc0033">write</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE;
+                                               p1 : INTEGER;
+                                               p2 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TelnetOutputStream) <font color="#cc0033">write</font>*(p0 : INTEGER)<b>,EXTENSIBLE</b>;
+<a name="meths-TransferProtocolClient"></a>
+<b>PROCEDURE </b>(self:TransferProtocolClient) <font color="#cc0033">getResponseString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TransferProtocolClient) <font color="#cc0033">getResponseStrings</font>*() : <a href="java_util.html#type-Vector">java_util.Vector</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TransferProtocolClient) <font color="#cc0033">readServerResponse</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:TransferProtocolClient) <font color="#cc0033">sendServer</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-URLCanonicalizer"></a>
+<b>PROCEDURE </b>(self:URLCanonicalizer) <font color="#cc0033">canonicalize</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:URLCanonicalizer) <font color="#cc0033">hasProtocolName</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:URLCanonicalizer) <font color="#cc0033">isSimpleHostName</font>!(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>END </b><font color="#cc0033">sun_net</font>.
+</font></pre></hr></body></html>

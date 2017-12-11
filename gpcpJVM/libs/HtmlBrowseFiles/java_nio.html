@@ -1,0 +1,631 @@
+<html><head><title>java_nio</title></head>
+<body bgcolor="white">
+<hr><pre>
+<b>FOREIGN MODULE </b><font color="#cc0033">java_nio</font>;
+
+<b>IMPORT</b>
+    <a href="sun_misc.html">sun_misc</a> := "sun.misc",
+    <a href="java_lang.html">java_lang</a> := "java.lang",
+    <a href="java_io.html">java_io</a> := "java.io",
+    <a href="sun_nio_ch.html">sun_nio_ch</a> := "sun.nio.ch";
+
+<b>TYPE</b>
+
+  <a name="type-Buffer"></a><font color="#cc0033">Buffer</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-Buffer"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+            <b>END</b>;
+
+  <a name="type-BufferOverflowException"></a><font color="#cc0033">BufferOverflowException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-RuntimeException">java_lang.RuntimeException</a>)
+                             <b>STATIC</b>
+                               <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-BufferOverflowException">BufferOverflowException</a><b>,CONSTRUCTOR</b>;
+                             <b>END</b>;
+
+  <a name="type-BufferUnderflowException"></a><font color="#cc0033">BufferUnderflowException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-RuntimeException">java_lang.RuntimeException</a>)
+                              <b>STATIC</b>
+                                <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-BufferUnderflowException">BufferUnderflowException</a><b>,CONSTRUCTOR</b>;
+                              <b>END</b>;
+
+  <a name="type-ByteBuffer"></a><font color="#cc0033">ByteBuffer</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="#type-Buffer">Buffer</a> + <a href="java_lang.html#type-Comparable">java_lang.Comparable</a>)    <a href="#meths-ByteBuffer"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                <b>STATIC</b>
+                  <b>PROCEDURE </b><font color="#cc0033">allocate</font>*(p0 : INTEGER) : <a href="#type-ByteBuffer">ByteBuffer</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">allocateDirect</font>*(p0 : INTEGER) : <a href="#type-ByteBuffer">ByteBuffer</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">wrap</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE) : <a href="#type-ByteBuffer">ByteBuffer</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">wrap</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE;
+                                      p1 : INTEGER;
+                                      p2 : INTEGER) : <a href="#type-ByteBuffer">ByteBuffer</a>;
+                <b>END</b>;
+
+  <a name="type-ByteOrder"></a><font color="#cc0033">ByteOrder</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-ByteOrder"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+               <b>STATIC</b>
+                 <a name="type-BIG_ENDIAN"></a><font color="#cc0033">BIG_ENDIAN</font>*    : <a href="#type-ByteOrder">ByteOrder</a>;
+                 <a name="type-LITTLE_ENDIAN"></a><font color="#cc0033">LITTLE_ENDIAN</font>* : <a href="#type-ByteOrder">ByteOrder</a>;
+                 <b>PROCEDURE </b><font color="#cc0033">nativeOrder</font>*() : <a href="#type-ByteOrder">ByteOrder</a>;
+               <b>END</b>;
+
+  <a name="type-CharBuffer"></a><font color="#cc0033">CharBuffer</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="#type-Buffer">Buffer</a> + <a href="java_lang.html#type-Comparable">java_lang.Comparable</a> + <a href="java_lang.html#type-Appendable">java_lang.Appendable</a> + <a href="java_lang.html#type-CharSequence">java_lang.CharSequence</a> + <a href="java_lang.html#type-Readable">java_lang.Readable</a>)    <a href="#meths-CharBuffer"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                <b>STATIC</b>
+                  <b>PROCEDURE </b><font color="#cc0033">allocate</font>*(p0 : INTEGER) : <a href="#type-CharBuffer">CharBuffer</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">wrap</font>*(p0 : <a href="java_lang.html#type-CharSequence">java_lang.CharSequence</a>;
+                                  p1 : INTEGER;
+                                  p2 : INTEGER) : <a href="#type-CharBuffer">CharBuffer</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">wrap</font>*(p0 : <a href="java_lang.html#type-CharSequence">java_lang.CharSequence</a>) : <a href="#type-CharBuffer">CharBuffer</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">wrap</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>CHAR;
+                                      p1 : INTEGER;
+                                      p2 : INTEGER) : <a href="#type-CharBuffer">CharBuffer</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">wrap</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>CHAR) : <a href="#type-CharBuffer">CharBuffer</a>;
+                <b>END</b>;
+
+  <a name="type-DoubleBuffer"></a><font color="#cc0033">DoubleBuffer</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="#type-Buffer">Buffer</a> + <a href="java_lang.html#type-Comparable">java_lang.Comparable</a>)    <a href="#meths-DoubleBuffer"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                  <b>STATIC</b>
+                    <b>PROCEDURE </b><font color="#cc0033">allocate</font>*(p0 : INTEGER) : <a href="#type-DoubleBuffer">DoubleBuffer</a>;
+                    <b>PROCEDURE </b><font color="#cc0033">wrap</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>REAL) : <a href="#type-DoubleBuffer">DoubleBuffer</a>;
+                    <b>PROCEDURE </b><font color="#cc0033">wrap</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>REAL;
+                                        p1 : INTEGER;
+                                        p2 : INTEGER) : <a href="#type-DoubleBuffer">DoubleBuffer</a>;
+                  <b>END</b>;
+
+  <a name="type-FloatBuffer"></a><font color="#cc0033">FloatBuffer</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="#type-Buffer">Buffer</a> + <a href="java_lang.html#type-Comparable">java_lang.Comparable</a>)    <a href="#meths-FloatBuffer"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                 <b>STATIC</b>
+                   <b>PROCEDURE </b><font color="#cc0033">allocate</font>*(p0 : INTEGER) : <a href="#type-FloatBuffer">FloatBuffer</a>;
+                   <b>PROCEDURE </b><font color="#cc0033">wrap</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>SHORTREAL) : <a href="#type-FloatBuffer">FloatBuffer</a>;
+                   <b>PROCEDURE </b><font color="#cc0033">wrap</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>SHORTREAL;
+                                       p1 : INTEGER;
+                                       p2 : INTEGER) : <a href="#type-FloatBuffer">FloatBuffer</a>;
+                 <b>END</b>;
+
+  <a name="type-IntBuffer"></a><font color="#cc0033">IntBuffer</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="#type-Buffer">Buffer</a> + <a href="java_lang.html#type-Comparable">java_lang.Comparable</a>)    <a href="#meths-IntBuffer"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+               <b>STATIC</b>
+                 <b>PROCEDURE </b><font color="#cc0033">allocate</font>*(p0 : INTEGER) : <a href="#type-IntBuffer">IntBuffer</a>;
+                 <b>PROCEDURE </b><font color="#cc0033">wrap</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>INTEGER) : <a href="#type-IntBuffer">IntBuffer</a>;
+                 <b>PROCEDURE </b><font color="#cc0033">wrap</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>INTEGER;
+                                     p1 : INTEGER;
+                                     p2 : INTEGER) : <a href="#type-IntBuffer">IntBuffer</a>;
+               <b>END</b>;
+
+  <a name="type-InvalidMarkException"></a><font color="#cc0033">InvalidMarkException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-IllegalStateException">java_lang.IllegalStateException</a>)
+                          <b>STATIC</b>
+                            <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-InvalidMarkException">InvalidMarkException</a><b>,CONSTRUCTOR</b>;
+                          <b>END</b>;
+
+  <a name="type-LongBuffer"></a><font color="#cc0033">LongBuffer</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="#type-Buffer">Buffer</a> + <a href="java_lang.html#type-Comparable">java_lang.Comparable</a>)    <a href="#meths-LongBuffer"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                <b>STATIC</b>
+                  <b>PROCEDURE </b><font color="#cc0033">allocate</font>*(p0 : INTEGER) : <a href="#type-LongBuffer">LongBuffer</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">wrap</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>LONGINT) : <a href="#type-LongBuffer">LongBuffer</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">wrap</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>LONGINT;
+                                      p1 : INTEGER;
+                                      p2 : INTEGER) : <a href="#type-LongBuffer">LongBuffer</a>;
+                <b>END</b>;
+
+  <a name="type-MappedByteBuffer"></a><font color="#cc0033">MappedByteBuffer</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="#type-ByteBuffer">ByteBuffer</a>)    <a href="#meths-MappedByteBuffer"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                      <b>END</b>;
+
+  <a name="type-ReadOnlyBufferException"></a><font color="#cc0033">ReadOnlyBufferException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-UnsupportedOperationException">java_lang.UnsupportedOperationException</a>)
+                             <b>STATIC</b>
+                               <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-ReadOnlyBufferException">ReadOnlyBufferException</a><b>,CONSTRUCTOR</b>;
+                             <b>END</b>;
+
+  <a name="type-ShortBuffer"></a><font color="#cc0033">ShortBuffer</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="#type-Buffer">Buffer</a> + <a href="java_lang.html#type-Comparable">java_lang.Comparable</a>)    <a href="#meths-ShortBuffer"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                 <b>STATIC</b>
+                   <b>PROCEDURE </b><font color="#cc0033">allocate</font>*(p0 : INTEGER) : <a href="#type-ShortBuffer">ShortBuffer</a>;
+                   <b>PROCEDURE </b><font color="#cc0033">wrap</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>SHORTINT) : <a href="#type-ShortBuffer">ShortBuffer</a>;
+                   <b>PROCEDURE </b><font color="#cc0033">wrap</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>SHORTINT;
+                                       p1 : INTEGER;
+                                       p2 : INTEGER) : <a href="#type-ShortBuffer">ShortBuffer</a>;
+                 <b>END</b>;
+
+
+
+<a name="meths-Buffer"></a>
+<b>PROCEDURE </b>(self:Buffer) <font color="#cc0033">array</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Buffer) <font color="#cc0033">arrayOffset</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Buffer) <font color="#cc0033">capacity</font>*() : INTEGER<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:Buffer) <font color="#cc0033">clear</font>*() : <a href="#type-Buffer">Buffer</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:Buffer) <font color="#cc0033">flip</font>*() : <a href="#type-Buffer">Buffer</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:Buffer) <font color="#cc0033">hasArray</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Buffer) <font color="#cc0033">hasRemaining</font>*() : BOOLEAN<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:Buffer) <font color="#cc0033">isDirect</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Buffer) <font color="#cc0033">isReadOnly</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Buffer) <font color="#cc0033">limit</font>*(p0 : INTEGER) : <a href="#type-Buffer">Buffer</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:Buffer) <font color="#cc0033">limit</font>*() : INTEGER<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:Buffer) <font color="#cc0033">mark</font>*() : <a href="#type-Buffer">Buffer</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:Buffer) <font color="#cc0033">position</font>*() : INTEGER<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:Buffer) <font color="#cc0033">position</font>*(p0 : INTEGER) : <a href="#type-Buffer">Buffer</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:Buffer) <font color="#cc0033">remaining</font>*() : INTEGER<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:Buffer) <font color="#cc0033">reset</font>*() : <a href="#type-Buffer">Buffer</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:Buffer) <font color="#cc0033">rewind</font>*() : <a href="#type-Buffer">Buffer</a><b>,NEW</b>;
+<a name="meths-ByteBuffer"></a>
+<b>PROCEDURE </b>(self:ByteBuffer) <font color="#cc0033">array</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>BYTE<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:ByteBuffer) <font color="#cc0033">array</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ByteBuffer) <font color="#cc0033">arrayOffset</font>*() : INTEGER;
+
+<b>PROCEDURE </b>(self:ByteBuffer) <font color="#cc0033">asCharBuffer</font>*() : <a href="#type-CharBuffer">CharBuffer</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ByteBuffer) <font color="#cc0033">asDoubleBuffer</font>*() : <a href="#type-DoubleBuffer">DoubleBuffer</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ByteBuffer) <font color="#cc0033">asFloatBuffer</font>*() : <a href="#type-FloatBuffer">FloatBuffer</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ByteBuffer) <font color="#cc0033">asIntBuffer</font>*() : <a href="#type-IntBuffer">IntBuffer</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ByteBuffer) <font color="#cc0033">asLongBuffer</font>*() : <a href="#type-LongBuffer">LongBuffer</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ByteBuffer) <font color="#cc0033">asReadOnlyBuffer</font>*() : <a href="#type-ByteBuffer">ByteBuffer</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ByteBuffer) <font color="#cc0033">asShortBuffer</font>*() : <a href="#type-ShortBuffer">ShortBuffer</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ByteBuffer) <font color="#cc0033">compact</font>*() : <a href="#type-ByteBuffer">ByteBuffer</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ByteBuffer) <font color="#cc0033">compareTo</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ByteBuffer) <font color="#cc0033">compareTo</font>*(p0 : <a href="#type-ByteBuffer">ByteBuffer</a>) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ByteBuffer) <font color="#cc0033">duplicate</font>*() : <a href="#type-ByteBuffer">ByteBuffer</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ByteBuffer) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ByteBuffer) <font color="#cc0033">get</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE) : <a href="#type-ByteBuffer">ByteBuffer</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ByteBuffer) <font color="#cc0033">get</font>*(p0 : INTEGER) : BYTE<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ByteBuffer) <font color="#cc0033">get</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE;
+                                     p1 : INTEGER;
+                                     p2 : INTEGER) : <a href="#type-ByteBuffer">ByteBuffer</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ByteBuffer) <font color="#cc0033">get</font>*() : BYTE<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ByteBuffer) <font color="#cc0033">getChar</font>*() : CHAR<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ByteBuffer) <font color="#cc0033">getChar</font>*(p0 : INTEGER) : CHAR<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ByteBuffer) <font color="#cc0033">getDouble</font>*(p0 : INTEGER) : REAL<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ByteBuffer) <font color="#cc0033">getDouble</font>*() : REAL<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ByteBuffer) <font color="#cc0033">getFloat</font>*(p0 : INTEGER) : SHORTREAL<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ByteBuffer) <font color="#cc0033">getFloat</font>*() : SHORTREAL<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ByteBuffer) <font color="#cc0033">getInt</font>*(p0 : INTEGER) : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ByteBuffer) <font color="#cc0033">getInt</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ByteBuffer) <font color="#cc0033">getLong</font>*(p0 : INTEGER) : LONGINT<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ByteBuffer) <font color="#cc0033">getLong</font>*() : LONGINT<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ByteBuffer) <font color="#cc0033">getShort</font>*(p0 : INTEGER) : SHORTINT<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ByteBuffer) <font color="#cc0033">getShort</font>*() : SHORTINT<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ByteBuffer) <font color="#cc0033">hasArray</font>*() : BOOLEAN;
+
+<b>PROCEDURE </b>(self:ByteBuffer) <font color="#cc0033">hashCode</font>*() : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ByteBuffer) <font color="#cc0033">isDirect</font>*() : BOOLEAN<b>,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ByteBuffer) <font color="#cc0033">order</font>*(p0 : <a href="#type-ByteOrder">ByteOrder</a>) : <a href="#type-ByteBuffer">ByteBuffer</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:ByteBuffer) <font color="#cc0033">order</font>*() : <a href="#type-ByteOrder">ByteOrder</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:ByteBuffer) <font color="#cc0033">put</font>*(p0 : BYTE) : <a href="#type-ByteBuffer">ByteBuffer</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ByteBuffer) <font color="#cc0033">put</font>*(p0 : <a href="#type-ByteBuffer">ByteBuffer</a>) : <a href="#type-ByteBuffer">ByteBuffer</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ByteBuffer) <font color="#cc0033">put</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE) : <a href="#type-ByteBuffer">ByteBuffer</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:ByteBuffer) <font color="#cc0033">put</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE;
+                                     p1 : INTEGER;
+                                     p2 : INTEGER) : <a href="#type-ByteBuffer">ByteBuffer</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ByteBuffer) <font color="#cc0033">put</font>*(p0 : INTEGER;
+                                 p1 : BYTE) : <a href="#type-ByteBuffer">ByteBuffer</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ByteBuffer) <font color="#cc0033">putChar</font>*(p0 : CHAR) : <a href="#type-ByteBuffer">ByteBuffer</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ByteBuffer) <font color="#cc0033">putChar</font>*(p0 : INTEGER;
+                                     p1 : CHAR) : <a href="#type-ByteBuffer">ByteBuffer</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ByteBuffer) <font color="#cc0033">putDouble</font>*(p0 : INTEGER;
+                                       p1 : REAL) : <a href="#type-ByteBuffer">ByteBuffer</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ByteBuffer) <font color="#cc0033">putDouble</font>*(p0 : REAL) : <a href="#type-ByteBuffer">ByteBuffer</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ByteBuffer) <font color="#cc0033">putFloat</font>*(p0 : INTEGER;
+                                      p1 : SHORTREAL) : <a href="#type-ByteBuffer">ByteBuffer</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ByteBuffer) <font color="#cc0033">putFloat</font>*(p0 : SHORTREAL) : <a href="#type-ByteBuffer">ByteBuffer</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ByteBuffer) <font color="#cc0033">putInt</font>*(p0 : INTEGER;
+                                    p1 : INTEGER) : <a href="#type-ByteBuffer">ByteBuffer</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ByteBuffer) <font color="#cc0033">putInt</font>*(p0 : INTEGER) : <a href="#type-ByteBuffer">ByteBuffer</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ByteBuffer) <font color="#cc0033">putLong</font>*(p0 : INTEGER;
+                                     p1 : LONGINT) : <a href="#type-ByteBuffer">ByteBuffer</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ByteBuffer) <font color="#cc0033">putLong</font>*(p0 : LONGINT) : <a href="#type-ByteBuffer">ByteBuffer</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ByteBuffer) <font color="#cc0033">putShort</font>*(p0 : SHORTINT) : <a href="#type-ByteBuffer">ByteBuffer</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ByteBuffer) <font color="#cc0033">putShort</font>*(p0 : INTEGER;
+                                      p1 : SHORTINT) : <a href="#type-ByteBuffer">ByteBuffer</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ByteBuffer) <font color="#cc0033">slice</font>*() : <a href="#type-ByteBuffer">ByteBuffer</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ByteBuffer) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,EXTENSIBLE</b>;
+<a name="meths-ByteOrder"></a>
+<b>PROCEDURE </b>(self:ByteOrder) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,EXTENSIBLE</b>;
+<a name="meths-CharBuffer"></a>
+<b>PROCEDURE </b>(self:CharBuffer) <font color="#cc0033">append</font>*(p0 : CHAR) : <a href="#type-CharBuffer">CharBuffer</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CharBuffer) <font color="#cc0033">append</font>*(p0 : <a href="java_lang.html#type-CharSequence">java_lang.CharSequence</a>;
+                                    p1 : INTEGER;
+                                    p2 : INTEGER) : <a href="#type-CharBuffer">CharBuffer</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CharBuffer) <font color="#cc0033">append</font>*(p0 : <a href="java_lang.html#type-CharSequence">java_lang.CharSequence</a>) : <a href="#type-CharBuffer">CharBuffer</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CharBuffer) <font color="#cc0033">append</font>*(p0 : <a href="java_lang.html#type-CharSequence">java_lang.CharSequence</a>;
+                                    p1 : INTEGER;
+                                    p2 : INTEGER) : <a href="java_lang.html#type-Appendable">java_lang.Appendable</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CharBuffer) <font color="#cc0033">append</font>*(p0 : <a href="java_lang.html#type-CharSequence">java_lang.CharSequence</a>) : <a href="java_lang.html#type-Appendable">java_lang.Appendable</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CharBuffer) <font color="#cc0033">append</font>*(p0 : CHAR) : <a href="java_lang.html#type-Appendable">java_lang.Appendable</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CharBuffer) <font color="#cc0033">array</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>CHAR<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:CharBuffer) <font color="#cc0033">array</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CharBuffer) <font color="#cc0033">arrayOffset</font>*() : INTEGER;
+
+<b>PROCEDURE </b>(self:CharBuffer) <font color="#cc0033">asReadOnlyBuffer</font>*() : <a href="#type-CharBuffer">CharBuffer</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CharBuffer) <font color="#cc0033">charAt</font>*(p0 : INTEGER) : CHAR<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:CharBuffer) <font color="#cc0033">compact</font>*() : <a href="#type-CharBuffer">CharBuffer</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CharBuffer) <font color="#cc0033">compareTo</font>*(p0 : <a href="#type-CharBuffer">CharBuffer</a>) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CharBuffer) <font color="#cc0033">compareTo</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CharBuffer) <font color="#cc0033">duplicate</font>*() : <a href="#type-CharBuffer">CharBuffer</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CharBuffer) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CharBuffer) <font color="#cc0033">get</font>*() : CHAR<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CharBuffer) <font color="#cc0033">get</font>*(p0 : INTEGER) : CHAR<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CharBuffer) <font color="#cc0033">get</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>CHAR;
+                                     p1 : INTEGER;
+                                     p2 : INTEGER) : <a href="#type-CharBuffer">CharBuffer</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CharBuffer) <font color="#cc0033">get</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>CHAR) : <a href="#type-CharBuffer">CharBuffer</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CharBuffer) <font color="#cc0033">hasArray</font>*() : BOOLEAN;
+
+<b>PROCEDURE </b>(self:CharBuffer) <font color="#cc0033">hashCode</font>*() : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CharBuffer) <font color="#cc0033">isDirect</font>*() : BOOLEAN<b>,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CharBuffer) <font color="#cc0033">length</font>*() : INTEGER<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:CharBuffer) <font color="#cc0033">order</font>*() : <a href="#type-ByteOrder">ByteOrder</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CharBuffer) <font color="#cc0033">put</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                 p1 : INTEGER;
+                                 p2 : INTEGER) : <a href="#type-CharBuffer">CharBuffer</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CharBuffer) <font color="#cc0033">put</font>*(p0 : <a href="#type-CharBuffer">CharBuffer</a>) : <a href="#type-CharBuffer">CharBuffer</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CharBuffer) <font color="#cc0033">put</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-CharBuffer">CharBuffer</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:CharBuffer) <font color="#cc0033">put</font>*(p0 : INTEGER;
+                                 p1 : CHAR) : <a href="#type-CharBuffer">CharBuffer</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CharBuffer) <font color="#cc0033">put</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>CHAR;
+                                     p1 : INTEGER;
+                                     p2 : INTEGER) : <a href="#type-CharBuffer">CharBuffer</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CharBuffer) <font color="#cc0033">put</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>CHAR) : <a href="#type-CharBuffer">CharBuffer</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:CharBuffer) <font color="#cc0033">put</font>*(p0 : CHAR) : <a href="#type-CharBuffer">CharBuffer</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CharBuffer) <font color="#cc0033">read</font>*(p0 : <a href="#type-CharBuffer">CharBuffer</a>) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CharBuffer) <font color="#cc0033">slice</font>*() : <a href="#type-CharBuffer">CharBuffer</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CharBuffer) <font color="#cc0033">subSequence</font>*(p0 : INTEGER;
+                                         p1 : INTEGER) : <a href="java_lang.html#type-CharSequence">java_lang.CharSequence</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CharBuffer) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,EXTENSIBLE</b>;
+<a name="meths-DoubleBuffer"></a>
+<b>PROCEDURE </b>(self:DoubleBuffer) <font color="#cc0033">array</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DoubleBuffer) <font color="#cc0033">array</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>REAL<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:DoubleBuffer) <font color="#cc0033">arrayOffset</font>*() : INTEGER;
+
+<b>PROCEDURE </b>(self:DoubleBuffer) <font color="#cc0033">asReadOnlyBuffer</font>*() : <a href="#type-DoubleBuffer">DoubleBuffer</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DoubleBuffer) <font color="#cc0033">compact</font>*() : <a href="#type-DoubleBuffer">DoubleBuffer</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DoubleBuffer) <font color="#cc0033">compareTo</font>*(p0 : <a href="#type-DoubleBuffer">DoubleBuffer</a>) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DoubleBuffer) <font color="#cc0033">compareTo</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DoubleBuffer) <font color="#cc0033">duplicate</font>*() : <a href="#type-DoubleBuffer">DoubleBuffer</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DoubleBuffer) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DoubleBuffer) <font color="#cc0033">get</font>*() : REAL<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DoubleBuffer) <font color="#cc0033">get</font>*(p0 : INTEGER) : REAL<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DoubleBuffer) <font color="#cc0033">get</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>REAL) : <a href="#type-DoubleBuffer">DoubleBuffer</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DoubleBuffer) <font color="#cc0033">get</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>REAL;
+                                       p1 : INTEGER;
+                                       p2 : INTEGER) : <a href="#type-DoubleBuffer">DoubleBuffer</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DoubleBuffer) <font color="#cc0033">hasArray</font>*() : BOOLEAN;
+
+<b>PROCEDURE </b>(self:DoubleBuffer) <font color="#cc0033">hashCode</font>*() : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DoubleBuffer) <font color="#cc0033">isDirect</font>*() : BOOLEAN<b>,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DoubleBuffer) <font color="#cc0033">order</font>*() : <a href="#type-ByteOrder">ByteOrder</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DoubleBuffer) <font color="#cc0033">put</font>*(p0 : <a href="#type-DoubleBuffer">DoubleBuffer</a>) : <a href="#type-DoubleBuffer">DoubleBuffer</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DoubleBuffer) <font color="#cc0033">put</font>*(p0 : INTEGER;
+                                   p1 : REAL) : <a href="#type-DoubleBuffer">DoubleBuffer</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DoubleBuffer) <font color="#cc0033">put</font>*(p0 : REAL) : <a href="#type-DoubleBuffer">DoubleBuffer</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DoubleBuffer) <font color="#cc0033">put</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>REAL) : <a href="#type-DoubleBuffer">DoubleBuffer</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:DoubleBuffer) <font color="#cc0033">put</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>REAL;
+                                       p1 : INTEGER;
+                                       p2 : INTEGER) : <a href="#type-DoubleBuffer">DoubleBuffer</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DoubleBuffer) <font color="#cc0033">slice</font>*() : <a href="#type-DoubleBuffer">DoubleBuffer</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DoubleBuffer) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,EXTENSIBLE</b>;
+<a name="meths-FloatBuffer"></a>
+<b>PROCEDURE </b>(self:FloatBuffer) <font color="#cc0033">array</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FloatBuffer) <font color="#cc0033">array</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>SHORTREAL<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:FloatBuffer) <font color="#cc0033">arrayOffset</font>*() : INTEGER;
+
+<b>PROCEDURE </b>(self:FloatBuffer) <font color="#cc0033">asReadOnlyBuffer</font>*() : <a href="#type-FloatBuffer">FloatBuffer</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:FloatBuffer) <font color="#cc0033">compact</font>*() : <a href="#type-FloatBuffer">FloatBuffer</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:FloatBuffer) <font color="#cc0033">compareTo</font>*(p0 : <a href="#type-FloatBuffer">FloatBuffer</a>) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FloatBuffer) <font color="#cc0033">compareTo</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FloatBuffer) <font color="#cc0033">duplicate</font>*() : <a href="#type-FloatBuffer">FloatBuffer</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:FloatBuffer) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FloatBuffer) <font color="#cc0033">get</font>*() : SHORTREAL<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:FloatBuffer) <font color="#cc0033">get</font>*(p0 : INTEGER) : SHORTREAL<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:FloatBuffer) <font color="#cc0033">get</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>SHORTREAL) : <a href="#type-FloatBuffer">FloatBuffer</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FloatBuffer) <font color="#cc0033">get</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>SHORTREAL;
+                                      p1 : INTEGER;
+                                      p2 : INTEGER) : <a href="#type-FloatBuffer">FloatBuffer</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FloatBuffer) <font color="#cc0033">hasArray</font>*() : BOOLEAN;
+
+<b>PROCEDURE </b>(self:FloatBuffer) <font color="#cc0033">hashCode</font>*() : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FloatBuffer) <font color="#cc0033">isDirect</font>*() : BOOLEAN<b>,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:FloatBuffer) <font color="#cc0033">order</font>*() : <a href="#type-ByteOrder">ByteOrder</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:FloatBuffer) <font color="#cc0033">put</font>*(p0 : <a href="#type-FloatBuffer">FloatBuffer</a>) : <a href="#type-FloatBuffer">FloatBuffer</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FloatBuffer) <font color="#cc0033">put</font>*(p0 : INTEGER;
+                                  p1 : SHORTREAL) : <a href="#type-FloatBuffer">FloatBuffer</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:FloatBuffer) <font color="#cc0033">put</font>*(p0 : SHORTREAL) : <a href="#type-FloatBuffer">FloatBuffer</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:FloatBuffer) <font color="#cc0033">put</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>SHORTREAL) : <a href="#type-FloatBuffer">FloatBuffer</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:FloatBuffer) <font color="#cc0033">put</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>SHORTREAL;
+                                      p1 : INTEGER;
+                                      p2 : INTEGER) : <a href="#type-FloatBuffer">FloatBuffer</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:FloatBuffer) <font color="#cc0033">slice</font>*() : <a href="#type-FloatBuffer">FloatBuffer</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:FloatBuffer) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,EXTENSIBLE</b>;
+<a name="meths-IntBuffer"></a>
+<b>PROCEDURE </b>(self:IntBuffer) <font color="#cc0033">array</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IntBuffer) <font color="#cc0033">array</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>INTEGER<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:IntBuffer) <font color="#cc0033">arrayOffset</font>*() : INTEGER;
+
+<b>PROCEDURE </b>(self:IntBuffer) <font color="#cc0033">asReadOnlyBuffer</font>*() : <a href="#type-IntBuffer">IntBuffer</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:IntBuffer) <font color="#cc0033">compact</font>*() : <a href="#type-IntBuffer">IntBuffer</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:IntBuffer) <font color="#cc0033">compareTo</font>*(p0 : <a href="#type-IntBuffer">IntBuffer</a>) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IntBuffer) <font color="#cc0033">compareTo</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IntBuffer) <font color="#cc0033">duplicate</font>*() : <a href="#type-IntBuffer">IntBuffer</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:IntBuffer) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IntBuffer) <font color="#cc0033">get</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:IntBuffer) <font color="#cc0033">get</font>*(p0 : INTEGER) : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:IntBuffer) <font color="#cc0033">get</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>INTEGER) : <a href="#type-IntBuffer">IntBuffer</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IntBuffer) <font color="#cc0033">get</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>INTEGER;
+                                    p1 : INTEGER;
+                                    p2 : INTEGER) : <a href="#type-IntBuffer">IntBuffer</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IntBuffer) <font color="#cc0033">hasArray</font>*() : BOOLEAN;
+
+<b>PROCEDURE </b>(self:IntBuffer) <font color="#cc0033">hashCode</font>*() : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IntBuffer) <font color="#cc0033">isDirect</font>*() : BOOLEAN<b>,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:IntBuffer) <font color="#cc0033">order</font>*() : <a href="#type-ByteOrder">ByteOrder</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:IntBuffer) <font color="#cc0033">put</font>*(p0 : <a href="#type-IntBuffer">IntBuffer</a>) : <a href="#type-IntBuffer">IntBuffer</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IntBuffer) <font color="#cc0033">put</font>*(p0 : INTEGER;
+                                p1 : INTEGER) : <a href="#type-IntBuffer">IntBuffer</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:IntBuffer) <font color="#cc0033">put</font>*(p0 : INTEGER) : <a href="#type-IntBuffer">IntBuffer</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:IntBuffer) <font color="#cc0033">put</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>INTEGER) : <a href="#type-IntBuffer">IntBuffer</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:IntBuffer) <font color="#cc0033">put</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>INTEGER;
+                                    p1 : INTEGER;
+                                    p2 : INTEGER) : <a href="#type-IntBuffer">IntBuffer</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IntBuffer) <font color="#cc0033">slice</font>*() : <a href="#type-IntBuffer">IntBuffer</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:IntBuffer) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,EXTENSIBLE</b>;
+<a name="meths-LongBuffer"></a>
+<b>PROCEDURE </b>(self:LongBuffer) <font color="#cc0033">array</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LongBuffer) <font color="#cc0033">array</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>LONGINT<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:LongBuffer) <font color="#cc0033">arrayOffset</font>*() : INTEGER;
+
+<b>PROCEDURE </b>(self:LongBuffer) <font color="#cc0033">asReadOnlyBuffer</font>*() : <a href="#type-LongBuffer">LongBuffer</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:LongBuffer) <font color="#cc0033">compact</font>*() : <a href="#type-LongBuffer">LongBuffer</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:LongBuffer) <font color="#cc0033">compareTo</font>*(p0 : <a href="#type-LongBuffer">LongBuffer</a>) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LongBuffer) <font color="#cc0033">compareTo</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LongBuffer) <font color="#cc0033">duplicate</font>*() : <a href="#type-LongBuffer">LongBuffer</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:LongBuffer) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LongBuffer) <font color="#cc0033">get</font>*() : LONGINT<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:LongBuffer) <font color="#cc0033">get</font>*(p0 : INTEGER) : LONGINT<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:LongBuffer) <font color="#cc0033">get</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>LONGINT) : <a href="#type-LongBuffer">LongBuffer</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LongBuffer) <font color="#cc0033">get</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>LONGINT;
+                                     p1 : INTEGER;
+                                     p2 : INTEGER) : <a href="#type-LongBuffer">LongBuffer</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LongBuffer) <font color="#cc0033">hasArray</font>*() : BOOLEAN;
+
+<b>PROCEDURE </b>(self:LongBuffer) <font color="#cc0033">hashCode</font>*() : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LongBuffer) <font color="#cc0033">isDirect</font>*() : BOOLEAN<b>,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:LongBuffer) <font color="#cc0033">order</font>*() : <a href="#type-ByteOrder">ByteOrder</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:LongBuffer) <font color="#cc0033">put</font>*(p0 : <a href="#type-LongBuffer">LongBuffer</a>) : <a href="#type-LongBuffer">LongBuffer</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LongBuffer) <font color="#cc0033">put</font>*(p0 : INTEGER;
+                                 p1 : LONGINT) : <a href="#type-LongBuffer">LongBuffer</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:LongBuffer) <font color="#cc0033">put</font>*(p0 : LONGINT) : <a href="#type-LongBuffer">LongBuffer</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:LongBuffer) <font color="#cc0033">put</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>LONGINT) : <a href="#type-LongBuffer">LongBuffer</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:LongBuffer) <font color="#cc0033">put</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>LONGINT;
+                                     p1 : INTEGER;
+                                     p2 : INTEGER) : <a href="#type-LongBuffer">LongBuffer</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LongBuffer) <font color="#cc0033">slice</font>*() : <a href="#type-LongBuffer">LongBuffer</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:LongBuffer) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,EXTENSIBLE</b>;
+<a name="meths-MappedByteBuffer"></a>
+<b>PROCEDURE </b>(self:MappedByteBuffer) <font color="#cc0033">force</font>*() : <a href="#type-MappedByteBuffer">MappedByteBuffer</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:MappedByteBuffer) <font color="#cc0033">isLoaded</font>*() : BOOLEAN<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:MappedByteBuffer) <font color="#cc0033">load</font>*() : <a href="#type-MappedByteBuffer">MappedByteBuffer</a><b>,NEW</b>;
+<a name="meths-ShortBuffer"></a>
+<b>PROCEDURE </b>(self:ShortBuffer) <font color="#cc0033">array</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ShortBuffer) <font color="#cc0033">array</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>SHORTINT<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:ShortBuffer) <font color="#cc0033">arrayOffset</font>*() : INTEGER;
+
+<b>PROCEDURE </b>(self:ShortBuffer) <font color="#cc0033">asReadOnlyBuffer</font>*() : <a href="#type-ShortBuffer">ShortBuffer</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ShortBuffer) <font color="#cc0033">compact</font>*() : <a href="#type-ShortBuffer">ShortBuffer</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ShortBuffer) <font color="#cc0033">compareTo</font>*(p0 : <a href="#type-ShortBuffer">ShortBuffer</a>) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ShortBuffer) <font color="#cc0033">compareTo</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ShortBuffer) <font color="#cc0033">duplicate</font>*() : <a href="#type-ShortBuffer">ShortBuffer</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ShortBuffer) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ShortBuffer) <font color="#cc0033">get</font>*() : SHORTINT<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ShortBuffer) <font color="#cc0033">get</font>*(p0 : INTEGER) : SHORTINT<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ShortBuffer) <font color="#cc0033">get</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>SHORTINT) : <a href="#type-ShortBuffer">ShortBuffer</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ShortBuffer) <font color="#cc0033">get</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>SHORTINT;
+                                      p1 : INTEGER;
+                                      p2 : INTEGER) : <a href="#type-ShortBuffer">ShortBuffer</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ShortBuffer) <font color="#cc0033">hasArray</font>*() : BOOLEAN;
+
+<b>PROCEDURE </b>(self:ShortBuffer) <font color="#cc0033">hashCode</font>*() : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ShortBuffer) <font color="#cc0033">isDirect</font>*() : BOOLEAN<b>,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ShortBuffer) <font color="#cc0033">order</font>*() : <a href="#type-ByteOrder">ByteOrder</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ShortBuffer) <font color="#cc0033">put</font>*(p0 : <a href="#type-ShortBuffer">ShortBuffer</a>) : <a href="#type-ShortBuffer">ShortBuffer</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ShortBuffer) <font color="#cc0033">put</font>*(p0 : INTEGER;
+                                  p1 : SHORTINT) : <a href="#type-ShortBuffer">ShortBuffer</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ShortBuffer) <font color="#cc0033">put</font>*(p0 : SHORTINT) : <a href="#type-ShortBuffer">ShortBuffer</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ShortBuffer) <font color="#cc0033">put</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>SHORTINT) : <a href="#type-ShortBuffer">ShortBuffer</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:ShortBuffer) <font color="#cc0033">put</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>SHORTINT;
+                                      p1 : INTEGER;
+                                      p2 : INTEGER) : <a href="#type-ShortBuffer">ShortBuffer</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ShortBuffer) <font color="#cc0033">slice</font>*() : <a href="#type-ShortBuffer">ShortBuffer</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ShortBuffer) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,EXTENSIBLE</b>;
+
+<b>END </b><font color="#cc0033">java_nio</font>.
+</font></pre></hr></body></html>

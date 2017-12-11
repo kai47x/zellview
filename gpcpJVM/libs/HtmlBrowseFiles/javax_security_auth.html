@@ -1,0 +1,137 @@
+<html><head><title>javax_security_auth</title></head>
+<body bgcolor="white">
+<hr><pre>
+<b>FOREIGN MODULE </b><font color="#cc0033">javax_security_auth</font>;
+
+<b>IMPORT</b>
+    <a href="java_lang.html">java_lang</a> := "java.lang",
+    <a href="java_security.html">java_security</a> := "java.security",
+    <a href="java_io.html">java_io</a> := "java.io",
+    <a href="java_util.html">java_util</a> := "java.util",
+    <a href="java_lang_ref.html">java_lang_ref</a> := "java.lang.ref",
+    <a href="sun_security_util.html">sun_security_util</a> := "sun.security.util";
+
+<b>TYPE</b>
+
+  <a name="type-AuthPermission"></a><font color="#cc0033">AuthPermission</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_security.html#type-BasicPermission">java_security.BasicPermission</a>)
+                    <b>STATIC</b>
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                      p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-AuthPermission">AuthPermission</a><b>,CONSTRUCTOR</b>;
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-AuthPermission">AuthPermission</a><b>,CONSTRUCTOR</b>;
+                    <b>END</b>;
+
+  <a name="type-Destroyable"></a><font color="#cc0033">Destroyable</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-Destroyable"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                 <b>END</b>;
+
+  <a name="type-DestroyFailedException"></a><font color="#cc0033">DestroyFailedException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Exception">java_lang.Exception</a>)
+                            <b>STATIC</b>
+                              <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-DestroyFailedException">DestroyFailedException</a><b>,CONSTRUCTOR</b>;
+                              <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-DestroyFailedException">DestroyFailedException</a><b>,CONSTRUCTOR</b>;
+                            <b>END</b>;
+
+  <a name="type-Policy"></a><font color="#cc0033">Policy</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-Policy"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+            <b>STATIC</b>
+              <b>PROCEDURE </b><font color="#cc0033">getPolicy</font>*() : <a href="#type-Policy">Policy</a>;
+              <b>PROCEDURE </b><font color="#cc0033">Init</font>!() : <a href="#type-Policy">Policy</a><b>,CONSTRUCTOR</b>;
+              <b>PROCEDURE </b><font color="#cc0033">setPolicy</font>*(p0 : <a href="#type-Policy">Policy</a>);
+            <b>END</b>;
+
+  <a name="type-PrivateCredentialPermission"></a><font color="#cc0033">PrivateCredentialPermission</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_security.html#type-Permission">java_security.Permission</a>)    <a href="#meths-PrivateCredentialPermission"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                                 <b>STATIC</b>
+                                   <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                   p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-PrivateCredentialPermission">PrivateCredentialPermission</a><b>,CONSTRUCTOR</b>;
+                                 <b>END</b>;
+
+  <a name="type-Refreshable"></a><font color="#cc0033">Refreshable</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-Refreshable"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                 <b>END</b>;
+
+  <a name="type-RefreshFailedException"></a><font color="#cc0033">RefreshFailedException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Exception">java_lang.Exception</a>)
+                            <b>STATIC</b>
+                              <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-RefreshFailedException">RefreshFailedException</a><b>,CONSTRUCTOR</b>;
+                              <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-RefreshFailedException">RefreshFailedException</a><b>,CONSTRUCTOR</b>;
+                            <b>END</b>;
+
+  <a name="type-Subject"></a><font color="#cc0033">Subject</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_io.html#type-Serializable">java_io.Serializable</a>)    <a href="#meths-Subject"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+             <b>STATIC</b>
+               <b>PROCEDURE </b><font color="#cc0033">doAs</font>*(p0 : <a href="#type-Subject">Subject</a>;
+                               p1 : <a href="java_security.html#type-PrivilegedAction">java_security.PrivilegedAction</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+               <b>PROCEDURE </b><font color="#cc0033">doAs</font>*(p0 : <a href="#type-Subject">Subject</a>;
+                               p1 : <a href="java_security.html#type-PrivilegedExceptionAction">java_security.PrivilegedExceptionAction</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+               <b>PROCEDURE </b><font color="#cc0033">doAsPrivileged</font>*(p0 : <a href="#type-Subject">Subject</a>;
+                                         p1 : <a href="java_security.html#type-PrivilegedAction">java_security.PrivilegedAction</a>;
+                                         p2 : <a href="java_security.html#type-AccessControlContext">java_security.AccessControlContext</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+               <b>PROCEDURE </b><font color="#cc0033">doAsPrivileged</font>*(p0 : <a href="#type-Subject">Subject</a>;
+                                         p1 : <a href="java_security.html#type-PrivilegedExceptionAction">java_security.PrivilegedExceptionAction</a>;
+                                         p2 : <a href="java_security.html#type-AccessControlContext">java_security.AccessControlContext</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+               <b>PROCEDURE </b><font color="#cc0033">getSubject</font>*(p0 : <a href="java_security.html#type-AccessControlContext">java_security.AccessControlContext</a>) : <a href="#type-Subject">Subject</a>;
+               <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : BOOLEAN;
+                               p1 : <a href="java_util.html#type-Set">java_util.Set</a>;
+                               p2 : <a href="java_util.html#type-Set">java_util.Set</a>;
+                               p3 : <a href="java_util.html#type-Set">java_util.Set</a>) : <a href="#type-Subject">Subject</a><b>,CONSTRUCTOR</b>;
+               <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-Subject">Subject</a><b>,CONSTRUCTOR</b>;
+             <b>END</b>;
+
+  <a name="type-SubjectDomainCombiner"></a><font color="#cc0033">SubjectDomainCombiner</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_security.html#type-DomainCombiner">java_security.DomainCombiner</a>)    <a href="#meths-SubjectDomainCombiner"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                           <b>STATIC</b>
+                             <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="#type-Subject">Subject</a>) : <a href="#type-SubjectDomainCombiner">SubjectDomainCombiner</a><b>,CONSTRUCTOR</b>;
+                           <b>END</b>;
+
+
+
+<a name="meths-Destroyable"></a>
+<b>PROCEDURE </b>(self:Destroyable) <font color="#cc0033">destroy</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Destroyable) <font color="#cc0033">isDestroyed</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+<a name="meths-Policy"></a>
+<b>PROCEDURE </b>(self:Policy) <font color="#cc0033">getPermissions</font>*(p0 : <a href="#type-Subject">Subject</a>;
+                                        p1 : <a href="java_security.html#type-CodeSource">java_security.CodeSource</a>) : <a href="java_security.html#type-PermissionCollection">java_security.PermissionCollection</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Policy) <font color="#cc0033">refresh</font>*()<b>,NEW,ABSTRACT</b>;
+<a name="meths-PrivateCredentialPermission"></a>
+<b>PROCEDURE </b>(self:PrivateCredentialPermission) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PrivateCredentialPermission) <font color="#cc0033">getActions</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PrivateCredentialPermission) <font color="#cc0033">getCredentialClass</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PrivateCredentialPermission) <font color="#cc0033">getPrincipals</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PrivateCredentialPermission) <font color="#cc0033">hashCode</font>*() : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PrivateCredentialPermission) <font color="#cc0033">implies</font>*(p0 : <a href="java_security.html#type-Permission">java_security.Permission</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PrivateCredentialPermission) <font color="#cc0033">newPermissionCollection</font>*() : <a href="java_security.html#type-PermissionCollection">java_security.PermissionCollection</a><b>,EXTENSIBLE</b>;
+<a name="meths-Refreshable"></a>
+<b>PROCEDURE </b>(self:Refreshable) <font color="#cc0033">isCurrent</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Refreshable) <font color="#cc0033">refresh</font>*()<b>,NEW,ABSTRACT</b>;
+<a name="meths-Subject"></a>
+<b>PROCEDURE </b>(self:Subject) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Subject) <font color="#cc0033">getPrincipals</font>*(p0 : <a href="java_lang.html#type-Class">java_lang.Class</a>) : <a href="java_util.html#type-Set">java_util.Set</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Subject) <font color="#cc0033">getPrincipals</font>*() : <a href="java_util.html#type-Set">java_util.Set</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Subject) <font color="#cc0033">getPrivateCredentials</font>*() : <a href="java_util.html#type-Set">java_util.Set</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Subject) <font color="#cc0033">getPrivateCredentials</font>*(p0 : <a href="java_lang.html#type-Class">java_lang.Class</a>) : <a href="java_util.html#type-Set">java_util.Set</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Subject) <font color="#cc0033">getPublicCredentials</font>*(p0 : <a href="java_lang.html#type-Class">java_lang.Class</a>) : <a href="java_util.html#type-Set">java_util.Set</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Subject) <font color="#cc0033">getPublicCredentials</font>*() : <a href="java_util.html#type-Set">java_util.Set</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Subject) <font color="#cc0033">hashCode</font>*() : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Subject) <font color="#cc0033">isReadOnly</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Subject) <font color="#cc0033">setReadOnly</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Subject) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,EXTENSIBLE</b>;
+<a name="meths-SubjectDomainCombiner"></a>
+<b>PROCEDURE </b>(self:SubjectDomainCombiner) <font color="#cc0033">combine</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="java_security.html#type-ProtectionDomain">java_security.ProtectionDomain</a>;
+                                                IN  p1 : <b>ARRAY </b><b>OF </b><a href="java_security.html#type-ProtectionDomain">java_security.ProtectionDomain</a>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_security.html#type-ProtectionDomain">java_security.ProtectionDomain</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SubjectDomainCombiner) <font color="#cc0033">getSubject</font>*() : <a href="#type-Subject">Subject</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>END </b><font color="#cc0033">javax_security_auth</font>.
+</font></pre></hr></body></html>

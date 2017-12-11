@@ -1,0 +1,1886 @@
+<html><head><title>sun_print</title></head>
+<body bgcolor="white">
+<hr><pre>
+<b>FOREIGN MODULE </b><font color="#cc0033">sun_print</font>;
+
+<b>IMPORT</b>
+    <a href="javax_print_attribute.html">javax_print_attribute</a> := "javax.print.attribute",
+    <a href="java_lang.html">java_lang</a> := "java.lang",
+    <a href="java_util.html">java_util</a> := "java.util",
+    <a href="javax_print_attribute_standard.html">javax_print_attribute_standard</a> := "javax.print.attribute.standard",
+    <a href="java_io.html">java_io</a> := "java.io",
+    <a href="java_awt.html">java_awt</a> := "java.awt",
+    <a href="java_awt_print.html">java_awt_print</a> := "java.awt.print",
+    <a href="java_awt_image.html">java_awt_image</a> := "java.awt.image",
+    <a href="java_net.html">java_net</a> := "java.net",
+    <a href="javax_print.html">javax_print</a> := "javax.print",
+    <a href="java_lang_ref.html">java_lang_ref</a> := "java.lang.ref",
+    <a href="java_awt_geom.html">java_awt_geom</a> := "java.awt.geom",
+    <a href="java_awt_font.html">java_awt_font</a> := "java.awt.font",
+    <a href="java_text.html">java_text</a> := "java.text",
+    <a href="sun_font.html">sun_font</a> := "sun.font",
+    <a href="java_awt_image_renderable.html">java_awt_image_renderable</a> := "java.awt.image.renderable",
+    <a href="sun_java2d.html">sun_java2d</a> := "sun.java2d",
+    <a href="sun_awt.html">sun_awt</a> := "sun.awt",
+    <a href="java_security.html">java_security</a> := "java.security",
+    <a href="javax_print_event.html">javax_print_event</a> := "javax.print.event",
+    <a href="java_awt_event.html">java_awt_event</a> := "java.awt.event",
+    <a href="javax_swing.html">javax_swing</a> := "javax.swing",
+    <a href="javax_swing_event.html">javax_swing_event</a> := "javax.swing.event",
+    <a href="java_beans.html">java_beans</a> := "java.beans",
+    <a href="javax_accessibility.html">javax_accessibility</a> := "javax.accessibility",
+    <a href="javax_swing_plaf.html">javax_swing_plaf</a> := "javax.swing.plaf",
+    <a href="javax_swing_border.html">javax_swing_border</a> := "javax.swing.border",
+    <a href="java_util_logging.html">java_util_logging</a> := "java.util.logging",
+    <a href="java_awt_peer.html">java_awt_peer</a> := "java.awt.peer",
+    <a href="sun_java2d_pipe.html">sun_java2d_pipe</a> := "sun.java2d.pipe",
+    <a href="java_awt_dnd.html">java_awt_dnd</a> := "java.awt.dnd",
+    <a href="java_awt_im.html">java_awt_im</a> := "java.awt.im",
+    <a href="javax_swing_filechooser.html">javax_swing_filechooser</a> := "javax.swing.filechooser",
+    <a href="sun_awt_util.html">sun_awt_util</a> := "sun.awt.util",
+    <a href="java_util_concurrent_atomic.html">java_util_concurrent_atomic</a> := "java.util.concurrent.atomic",
+    <a href="sun_nio_ch.html">sun_nio_ch</a> := "sun.nio.ch",
+    <a href="sun_misc.html">sun_misc</a> := "sun.misc";
+
+<b>TYPE</b>
+
+  <a name="type-BackgroundLookupListener"></a><font color="#cc0033">BackgroundLookupListener</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-BackgroundLookupListener"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                              <b>END</b>;
+
+  <a name="type-BackgroundServiceLookup"></a><font color="#cc0033">BackgroundServiceLookup</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-BackgroundServiceLookup"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                             <b>END</b>;
+
+  <a name="type-DialogOwner"></a><font color="#cc0033">DialogOwner</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="javax_print_attribute.html#type-PrintRequestAttribute">javax_print_attribute.PrintRequestAttribute</a>)    <a href="#meths-DialogOwner"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                 <b>STATIC</b>
+                   <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_awt.html#type-Frame">java_awt.Frame</a>) : <a href="#type-DialogOwner">DialogOwner</a><b>,CONSTRUCTOR</b>;
+                 <b>END</b>;
+
+  <a name="type-DialogTypeSelection"></a><font color="#cc0033">DialogTypeSelection</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="javax_print_attribute.html#type-EnumSyntax">javax_print_attribute.EnumSyntax</a> + <a href="javax_print_attribute.html#type-PrintRequestAttribute">javax_print_attribute.PrintRequestAttribute</a>)    <a href="#meths-DialogTypeSelection"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                         <b>STATIC</b>
+                           <a name="type-COMMON"></a><font color="#cc0033">COMMON</font>* : <a href="#type-DialogTypeSelection">DialogTypeSelection</a>;
+                           <a name="type-NATIVE"></a><font color="#cc0033">NATIVE</font>* : <a href="#type-DialogTypeSelection">DialogTypeSelection</a>;
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : INTEGER) : <a href="#type-DialogTypeSelection">DialogTypeSelection</a><b>,CONSTRUCTOR</b>;
+                         <b>END</b>;
+
+  <a name="type-PageableDoc"></a><font color="#cc0033">PageableDoc</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="javax_print.html#type-Doc">javax_print.Doc</a>)    <a href="#meths-PageableDoc"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                 <b>STATIC</b>
+                   <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_awt_print.html#type-Pageable">java_awt_print.Pageable</a>) : <a href="#type-PageableDoc">PageableDoc</a><b>,CONSTRUCTOR</b>;
+                 <b>END</b>;
+
+  <a name="type-PathGraphics"></a><font color="#cc0033">PathGraphics</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="#type-ProxyGraphics2D">ProxyGraphics2D</a>)    <a href="#meths-PathGraphics"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                    <font color="#cc0033">printingGlyphVector</font>! : BOOLEAN;
+                  <b>STATIC</b>
+                    <a name="type-fontMapRef"></a><font color="#cc0033">fontMapRef</font>! : <a href="java_lang_ref.html#type-SoftReference">java_lang_ref.SoftReference</a>;
+                    <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : <a href="java_awt.html#type-Graphics2D">java_awt.Graphics2D</a>;
+                                    p1 : <a href="java_awt_print.html#type-PrinterJob">java_awt_print.PrinterJob</a>;
+                                    p2 : <a href="java_awt_print.html#type-Printable">java_awt_print.Printable</a>;
+                                    p3 : <a href="java_awt_print.html#type-PageFormat">java_awt_print.PageFormat</a>;
+                                    p4 : INTEGER;
+                                    p5 : BOOLEAN) : <a href="#type-PathGraphics">PathGraphics</a><b>,CONSTRUCTOR</b>;
+                  <b>END</b>;
+
+  <a name="type-PeekGraphics"></a><font color="#cc0033">PeekGraphics</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_awt.html#type-Graphics2D">java_awt.Graphics2D</a> + <a href="java_awt_print.html#type-PrinterGraphics">java_awt_print.PrinterGraphics</a> + <a href="java_awt_image.html#type-ImageObserver">java_awt_image.ImageObserver</a> + <a href="java_lang.html#type-Cloneable">java_lang.Cloneable</a>)    <a href="#meths-PeekGraphics"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                  <b>STATIC</b>
+                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_awt.html#type-Graphics2D">java_awt.Graphics2D</a>;
+                                    p1 : <a href="java_awt_print.html#type-PrinterJob">java_awt_print.PrinterJob</a>) : <a href="#type-PeekGraphics">PeekGraphics</a><b>,CONSTRUCTOR</b>;
+                  <b>END</b>;
+
+  <a name="type-PeekGraphics$ImageWaiter"></a><font color="#cc0033">PeekGraphics$ImageWaiter</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_awt_image.html#type-ImageObserver">java_awt_image.ImageObserver</a>)    <a href="#meths-PeekGraphics$ImageWaiter"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                              <b>END</b>;
+
+  <a name="type-PeekMetrics"></a><font color="#cc0033">PeekMetrics</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-PeekMetrics"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                 <b>STATIC</b>
+                   <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-PeekMetrics">PeekMetrics</a><b>,CONSTRUCTOR</b>;
+                 <b>END</b>;
+
+  <a name="type-PrinterGraphicsConfig"></a><font color="#cc0033">PrinterGraphicsConfig</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_awt.html#type-GraphicsConfiguration">java_awt.GraphicsConfiguration</a>)    <a href="#meths-PrinterGraphicsConfig"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                           <b>STATIC</b>
+                             <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                             p1 : <a href="java_awt_geom.html#type-AffineTransform">java_awt_geom.AffineTransform</a>;
+                                             p2 : INTEGER;
+                                             p3 : INTEGER) : <a href="#type-PrinterGraphicsConfig">PrinterGraphicsConfig</a><b>,CONSTRUCTOR</b>;
+                           <b>END</b>;
+
+  <a name="type-PrinterGraphicsDevice"></a><font color="#cc0033">PrinterGraphicsDevice</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_awt.html#type-GraphicsDevice">java_awt.GraphicsDevice</a>)    <a href="#meths-PrinterGraphicsDevice"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                           <b>STATIC</b>
+                             <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : <a href="java_awt.html#type-GraphicsConfiguration">java_awt.GraphicsConfiguration</a>;
+                                             p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-PrinterGraphicsDevice">PrinterGraphicsDevice</a><b>,CONSTRUCTOR</b>;
+                           <b>END</b>;
+
+  <a name="type-PrintJob2D"></a><font color="#cc0033">PrintJob2D</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_awt.html#type-PrintJob">java_awt.PrintJob</a> + <a href="java_awt_print.html#type-Printable">java_awt_print.Printable</a> + <a href="java_lang.html#type-Runnable">java_lang.Runnable</a>)    <a href="#meths-PrintJob2D"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                <b>STATIC</b>
+                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_awt.html#type-Frame">java_awt.Frame</a>;
+                                  p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                  p2 : <a href="java_awt.html#type-JobAttributes">java_awt.JobAttributes</a>;
+                                  p3 : <a href="java_awt.html#type-PageAttributes">java_awt.PageAttributes</a>) : <a href="#type-PrintJob2D">PrintJob2D</a><b>,CONSTRUCTOR</b>;
+                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_awt.html#type-Frame">java_awt.Frame</a>;
+                                  p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                  p2 : <a href="java_util.html#type-Properties">java_util.Properties</a>) : <a href="#type-PrintJob2D">PrintJob2D</a><b>,CONSTRUCTOR</b>;
+                  <b>PROCEDURE </b><font color="#cc0033">mapMedia</font>*(p0 : <a href="java_awt.html#type-PageAttributes$MediaType">java_awt.PageAttributes$MediaType</a>) : <a href="javax_print_attribute_standard.html#type-MediaSizeName">javax_print_attribute_standard.MediaSizeName</a>;
+                  <b>PROCEDURE </b><font color="#cc0033">unMapMedia</font>*(p0 : <a href="javax_print_attribute_standard.html#type-MediaSizeName">javax_print_attribute_standard.MediaSizeName</a>) : <a href="java_awt.html#type-PageAttributes$MediaType">java_awt.PageAttributes$MediaType</a>;
+                <b>END</b>;
+
+  <a name="type-ProxyGraphics"></a><font color="#cc0033">ProxyGraphics</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_awt.html#type-Graphics">java_awt.Graphics</a>)    <a href="#meths-ProxyGraphics"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                   <b>STATIC</b>
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_awt.html#type-Graphics">java_awt.Graphics</a>) : <a href="#type-ProxyGraphics">ProxyGraphics</a><b>,CONSTRUCTOR</b>;
+                   <b>END</b>;
+
+  <a name="type-ProxyGraphics2D"></a><font color="#cc0033">ProxyGraphics2D</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_awt.html#type-Graphics2D">java_awt.Graphics2D</a> + <a href="java_awt_print.html#type-PrinterGraphics">java_awt_print.PrinterGraphics</a>)    <a href="#meths-ProxyGraphics2D"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                     <b>STATIC</b>
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_awt.html#type-Graphics2D">java_awt.Graphics2D</a>;
+                                       p1 : <a href="java_awt_print.html#type-PrinterJob">java_awt_print.PrinterJob</a>) : <a href="#type-ProxyGraphics2D">ProxyGraphics2D</a><b>,CONSTRUCTOR</b>;
+                     <b>END</b>;
+
+  <a name="type-ProxyPrintGraphics"></a><font color="#cc0033">ProxyPrintGraphics</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-ProxyGraphics">ProxyGraphics</a> + <a href="java_awt.html#type-PrintGraphics">java_awt.PrintGraphics</a>)    <a href="#meths-ProxyPrintGraphics"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                        <b>STATIC</b>
+                          <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_awt.html#type-Graphics">java_awt.Graphics</a>;
+                                          p1 : <a href="java_awt.html#type-PrintJob">java_awt.PrintJob</a>) : <a href="#type-ProxyPrintGraphics">ProxyPrintGraphics</a><b>,CONSTRUCTOR</b>;
+                        <b>END</b>;
+
+  <a name="type-PSPrinterJob"></a><font color="#cc0033">PSPrinterJob</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-RasterPrinterJob">RasterPrinterJob</a>)    <a href="#meths-PSPrinterJob"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                  <b>STATIC</b>
+                    <font color="#cc0033">FILL_EVEN_ODD</font>! = 1;
+                    <font color="#cc0033">FILL_WINDING</font>!  = 2;
+                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-PSPrinterJob">PSPrinterJob</a><b>,CONSTRUCTOR</b>;
+                  <b>END</b>;
+
+  <a name="type-PSPrinterJob$EPSPrinter"></a><font color="#cc0033">PSPrinterJob$EPSPrinter</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_awt_print.html#type-Pageable">java_awt_print.Pageable</a>)    <a href="#meths-PSPrinterJob$EPSPrinter"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                             <b>STATIC</b>
+                               <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_awt_print.html#type-Printable">java_awt_print.Printable</a>;
+                                               p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                               p2 : <a href="java_io.html#type-PrintStream">java_io.PrintStream</a>;
+                                               p3 : INTEGER;
+                                               p4 : INTEGER;
+                                               p5 : INTEGER;
+                                               p6 : INTEGER) : <a href="#type-PSPrinterJob$EPSPrinter">PSPrinterJob$EPSPrinter</a><b>,CONSTRUCTOR</b>;
+                             <b>END</b>;
+
+  <a name="type-PSPrinterJob$PluginPrinter"></a><font color="#cc0033">PSPrinterJob$PluginPrinter</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_awt_print.html#type-Printable">java_awt_print.Printable</a>)    <a href="#meths-PSPrinterJob$PluginPrinter"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                                <b>STATIC</b>
+                                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_awt.html#type-Component">java_awt.Component</a>;
+                                                  p1 : <a href="java_io.html#type-PrintStream">java_io.PrintStream</a>;
+                                                  p2 : INTEGER;
+                                                  p3 : INTEGER;
+                                                  p4 : INTEGER;
+                                                  p5 : INTEGER) : <a href="#type-PSPrinterJob$PluginPrinter">PSPrinterJob$PluginPrinter</a><b>,CONSTRUCTOR</b>;
+                                <b>END</b>;
+
+  <a name="type-PSStreamPrinterFactory"></a><font color="#cc0033">PSStreamPrinterFactory</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="javax_print.html#type-StreamPrintServiceFactory">javax_print.StreamPrintServiceFactory</a>)    <a href="#meths-PSStreamPrinterFactory"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                            <b>STATIC</b>
+                              <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-PSStreamPrinterFactory">PSStreamPrinterFactory</a><b>,CONSTRUCTOR</b>;
+                            <b>END</b>;
+
+  <a name="type-PSStreamPrintJob"></a><font color="#cc0033">PSStreamPrintJob</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="javax_print.html#type-CancelablePrintJob">javax_print.CancelablePrintJob</a>)    <a href="#meths-PSStreamPrintJob"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                      <b>END</b>;
+
+  <a name="type-PSStreamPrintService"></a><font color="#cc0033">PSStreamPrintService</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="javax_print.html#type-StreamPrintService">javax_print.StreamPrintService</a> + <a href="#type-SunPrinterJobService">SunPrinterJobService</a>)    <a href="#meths-PSStreamPrintService"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                          <b>STATIC</b>
+                            <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_io.html#type-OutputStream">java_io.OutputStream</a>) : <a href="#type-PSStreamPrintService">PSStreamPrintService</a><b>,CONSTRUCTOR</b>;
+                          <b>END</b>;
+
+  <a name="type-RasterPrinterJob"></a><font color="#cc0033">RasterPrinterJob</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_awt_print.html#type-PrinterJob">java_awt_print.PrinterJob</a>)    <a href="#meths-RasterPrinterJob"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                        <font color="#cc0033">sidesAttr</font>!           : <a href="javax_print_attribute_standard.html#type-Sides">javax_print_attribute_standard.Sides</a>;
+                        <font color="#cc0033">destinationAttr</font>!     : <a href="java_lang.html#type-String">java_lang.String</a>;
+                        <font color="#cc0033">noJobSheet</font>!          : BOOLEAN;
+                        <font color="#cc0033">mDestType</font>!           : INTEGER;
+                        <font color="#cc0033">mDestination</font>!        : <a href="java_lang.html#type-String">java_lang.String</a>;
+                        <font color="#cc0033">collateAttReq</font>!       : BOOLEAN;
+                        <font color="#cc0033">landscapeRotates270</font>! : BOOLEAN;
+                        <font color="#cc0033">attributes</font>!          : <a href="javax_print_attribute.html#type-PrintRequestAttributeSet">javax_print_attribute.PrintRequestAttributeSet</a>;
+                        <font color="#cc0033">myService</font>!           : <a href="javax_print.html#type-PrintService">javax_print.PrintService</a>;
+                      <b>STATIC</b>
+                        <a name="type-debugPrint"></a><font color="#cc0033">debugPrint</font>*                : BOOLEAN;
+                        <font color="#cc0033">FILE</font>!                      = 1;
+                        <a name="type-forcePDL"></a><font color="#cc0033">forcePDL</font>*                  : BOOLEAN;
+                        <a name="type-forceRaster"></a><font color="#cc0033">forceRaster</font>*               : BOOLEAN;
+                        <font color="#cc0033">PRINTER</font>!                   = 0;
+                        <a name="type-shapeTextProp"></a><font color="#cc0033">shapeTextProp</font>*             : BOOLEAN;
+                        <font color="#cc0033">STREAM</font>!                    = 2;
+                        <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-RasterPrinterJob">RasterPrinterJob</a><b>,CONSTRUCTOR</b>;
+                        <b>PROCEDURE </b><font color="#cc0033">lookupDefaultPrintService</font>!() : <a href="javax_print.html#type-PrintService">javax_print.PrintService</a>;
+                      <b>END</b>;
+
+  <a name="type-ServiceDialog"></a><font color="#cc0033">ServiceDialog</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="javax_swing.html#type-JDialog">javax_swing.JDialog</a> + <a href="java_awt_event.html#type-ActionListener">java_awt_event.ActionListener</a>)    <a href="#meths-ServiceDialog"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                   <b>STATIC</b>
+                     <font color="#cc0033">APPROVE</font>*            = 1;
+                     <font color="#cc0033">CANCEL</font>*             = 2;
+                     <font color="#cc0033">WAITING</font>*            = 0;
+                     <b>PROCEDURE </b><font color="#cc0033">getMsg</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-String">java_lang.String</a>;
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_awt.html#type-GraphicsConfiguration">java_awt.GraphicsConfiguration</a>;
+                                     p1 : INTEGER;
+                                     p2 : INTEGER;
+                                     p3 : <a href="javax_print.html#type-PrintService">javax_print.PrintService</a>;
+                                     p4 : <a href="javax_print.html#type-DocFlavor">javax_print.DocFlavor</a>;
+                                     p5 : <a href="javax_print_attribute.html#type-PrintRequestAttributeSet">javax_print_attribute.PrintRequestAttributeSet</a>;
+                                     p6 : <a href="java_awt.html#type-Frame">java_awt.Frame</a>) : <a href="#type-ServiceDialog">ServiceDialog</a><b>,CONSTRUCTOR</b>;
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_awt.html#type-GraphicsConfiguration">java_awt.GraphicsConfiguration</a>;
+                                     p1 : INTEGER;
+                                     p2 : INTEGER;
+                                     p3 : <a href="javax_print.html#type-PrintService">javax_print.PrintService</a>;
+                                     p4 : <a href="javax_print.html#type-DocFlavor">javax_print.DocFlavor</a>;
+                                     p5 : <a href="javax_print_attribute.html#type-PrintRequestAttributeSet">javax_print_attribute.PrintRequestAttributeSet</a>;
+                                     p6 : <a href="java_awt.html#type-Dialog">java_awt.Dialog</a>) : <a href="#type-ServiceDialog">ServiceDialog</a><b>,CONSTRUCTOR</b>;
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*(    p0 : <a href="java_awt.html#type-GraphicsConfiguration">java_awt.GraphicsConfiguration</a>;
+                                         p1 : INTEGER;
+                                         p2 : INTEGER;
+                                     IN  p3 : <b>ARRAY </b><b>OF </b><a href="javax_print.html#type-PrintService">javax_print.PrintService</a>;
+                                         p4 : INTEGER;
+                                         p5 : <a href="javax_print.html#type-DocFlavor">javax_print.DocFlavor</a>;
+                                         p6 : <a href="javax_print_attribute.html#type-PrintRequestAttributeSet">javax_print_attribute.PrintRequestAttributeSet</a>;
+                                         p7 : <a href="java_awt.html#type-Dialog">java_awt.Dialog</a>) : <a href="#type-ServiceDialog">ServiceDialog</a><b>,CONSTRUCTOR</b>;
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*(    p0 : <a href="java_awt.html#type-GraphicsConfiguration">java_awt.GraphicsConfiguration</a>;
+                                         p1 : INTEGER;
+                                         p2 : INTEGER;
+                                     IN  p3 : <b>ARRAY </b><b>OF </b><a href="javax_print.html#type-PrintService">javax_print.PrintService</a>;
+                                         p4 : INTEGER;
+                                         p5 : <a href="javax_print.html#type-DocFlavor">javax_print.DocFlavor</a>;
+                                         p6 : <a href="javax_print_attribute.html#type-PrintRequestAttributeSet">javax_print_attribute.PrintRequestAttributeSet</a>;
+                                         p7 : <a href="java_awt.html#type-Frame">java_awt.Frame</a>) : <a href="#type-ServiceDialog">ServiceDialog</a><b>,CONSTRUCTOR</b>;
+                     <b>PROCEDURE </b><font color="#cc0033">initResource</font>*();
+                     <b>PROCEDURE </b><font color="#cc0033">showNoPrintService</font>*(p0 : <a href="java_awt.html#type-GraphicsConfiguration">java_awt.GraphicsConfiguration</a>);
+                   <b>END</b>;
+
+  <a name="type-SunAlternateMedia"></a><font color="#cc0033">SunAlternateMedia</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="javax_print_attribute.html#type-PrintRequestAttribute">javax_print_attribute.PrintRequestAttribute</a>)    <a href="#meths-SunAlternateMedia"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                       <b>STATIC</b>
+                         <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="javax_print_attribute_standard.html#type-Media">javax_print_attribute_standard.Media</a>) : <a href="#type-SunAlternateMedia">SunAlternateMedia</a><b>,CONSTRUCTOR</b>;
+                       <b>END</b>;
+
+  <a name="type-SunMinMaxPage"></a><font color="#cc0033">SunMinMaxPage</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="javax_print_attribute.html#type-PrintRequestAttribute">javax_print_attribute.PrintRequestAttribute</a>)    <a href="#meths-SunMinMaxPage"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                   <b>STATIC</b>
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER;
+                                     p1 : INTEGER) : <a href="#type-SunMinMaxPage">SunMinMaxPage</a><b>,CONSTRUCTOR</b>;
+                   <b>END</b>;
+
+  <a name="type-SunPageSelection"></a><font color="#cc0033">SunPageSelection</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="javax_print_attribute.html#type-PrintRequestAttribute">javax_print_attribute.PrintRequestAttribute</a>)    <a href="#meths-SunPageSelection"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                      <b>STATIC</b>
+                        <a name="type-ALL"></a><font color="#cc0033">ALL</font>*       : <a href="#type-SunPageSelection">SunPageSelection</a>;
+                        <a name="type-RANGE"></a><font color="#cc0033">RANGE</font>*     : <a href="#type-SunPageSelection">SunPageSelection</a>;
+                        <a name="type-SELECTION"></a><font color="#cc0033">SELECTION</font>* : <a href="#type-SunPageSelection">SunPageSelection</a>;
+                        <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : INTEGER) : <a href="#type-SunPageSelection">SunPageSelection</a><b>,CONSTRUCTOR</b>;
+                      <b>END</b>;
+
+  <a name="type-SunPrinterJobService"></a><font color="#cc0033">SunPrinterJobService</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-SunPrinterJobService"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                          <b>END</b>;
+
+  <a name="type-Win32MediaTray"></a><font color="#cc0033">Win32MediaTray</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="javax_print_attribute_standard.html#type-MediaTray">javax_print_attribute_standard.MediaTray</a>)    <a href="#meths-Win32MediaTray"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                      <font color="#cc0033">winID</font>* : INTEGER;
+                    <b>STATIC</b>
+                      <b>PROCEDURE </b><font color="#cc0033">getTraySize</font>!() : INTEGER;
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : INTEGER;
+                                      p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-Win32MediaTray">Win32MediaTray</a><b>,CONSTRUCTOR</b>;
+                    <b>END</b>;
+
+  <a name="type-Win32PrintJob"></a><font color="#cc0033">Win32PrintJob</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="javax_print.html#type-CancelablePrintJob">javax_print.CancelablePrintJob</a>)    <a href="#meths-Win32PrintJob"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                   <b>END</b>;
+
+  <a name="type-Win32PrintService"></a><font color="#cc0033">Win32PrintService</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="javax_print.html#type-PrintService">javax_print.PrintService</a> + <b>AttributeUpdater</b> + <a href="#type-SunPrinterJobService">SunPrinterJobService</a>)    <a href="#meths-Win32PrintService"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                       <b>STATIC</b>
+                         <a name="type-dmPaperToPrintService"></a><font color="#cc0033">dmPaperToPrintService</font>* : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="javax_print_attribute_standard.html#type-MediaSizeName">javax_print_attribute_standard.MediaSizeName</a>;
+                         <a name="type-predefMedia"></a><font color="#cc0033">predefMedia</font>*           : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="javax_print_attribute_standard.html#type-MediaSize">javax_print_attribute_standard.MediaSize</a>;
+                       <b>END</b>;
+
+  <a name="type-Win32PrintServiceLookup"></a><font color="#cc0033">Win32PrintServiceLookup</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="javax_print.html#type-PrintServiceLookup">javax_print.PrintServiceLookup</a>)    <a href="#meths-Win32PrintServiceLookup"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                             <b>STATIC</b>
+                               <b>PROCEDURE </b><font color="#cc0033">getWin32PrintLUS</font>*() : <a href="#type-Win32PrintServiceLookup">Win32PrintServiceLookup</a>;
+                               <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-Win32PrintServiceLookup">Win32PrintServiceLookup</a><b>,CONSTRUCTOR</b>;
+                             <b>END</b>;
+
+
+
+<a name="meths-BackgroundLookupListener"></a>
+<b>PROCEDURE </b>(self:BackgroundLookupListener) <font color="#cc0033">notifyServices</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="javax_print.html#type-PrintService">javax_print.PrintService</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-BackgroundServiceLookup"></a>
+<b>PROCEDURE </b>(self:BackgroundServiceLookup) <font color="#cc0033">getServicesInbackground</font>*(p0 : <a href="#type-BackgroundLookupListener">BackgroundLookupListener</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-DialogOwner"></a>
+<b>PROCEDURE </b>(self:DialogOwner) <font color="#cc0033">getCategory</font>*() : <a href="java_lang.html#type-Class">java_lang.Class</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:DialogOwner) <font color="#cc0033">getName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:DialogOwner) <font color="#cc0033">getOwner</font>*() : <a href="java_awt.html#type-Frame">java_awt.Frame</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-DialogTypeSelection"></a>
+<b>PROCEDURE </b>(self:DialogTypeSelection) <font color="#cc0033">getCategory</font>*() : <a href="java_lang.html#type-Class">java_lang.Class</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:DialogTypeSelection) <font color="#cc0033">getEnumValueTable</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="javax_print_attribute.html#type-EnumSyntax">javax_print_attribute.EnumSyntax</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DialogTypeSelection) <font color="#cc0033">getName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:DialogTypeSelection) <font color="#cc0033">getStringTable</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a><b>,EXTENSIBLE</b>;
+<a name="meths-PageableDoc"></a>
+<b>PROCEDURE </b>(self:PageableDoc) <font color="#cc0033">getAttributes</font>*() : <a href="javax_print_attribute.html#type-DocAttributeSet">javax_print_attribute.DocAttributeSet</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PageableDoc) <font color="#cc0033">getDocFlavor</font>*() : <a href="javax_print.html#type-DocFlavor">javax_print.DocFlavor</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PageableDoc) <font color="#cc0033">getPrintData</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PageableDoc) <font color="#cc0033">getReaderForText</font>*() : <a href="java_io.html#type-Reader">java_io.Reader</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PageableDoc) <font color="#cc0033">getStreamForBytes</font>*() : <a href="java_io.html#type-InputStream">java_io.InputStream</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-PathGraphics"></a>
+<b>PROCEDURE </b>(self:PathGraphics) <font color="#cc0033">canDoRedraws</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PathGraphics) <font color="#cc0033">canDrawStringToWidth</font>!() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PathGraphics) <font color="#cc0033">clearRect</font>*(p0 : INTEGER;
+                                         p1 : INTEGER;
+                                         p2 : INTEGER;
+                                         p3 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PathGraphics) <font color="#cc0033">deviceClip</font>!(p0 : <a href="java_awt_geom.html#type-PathIterator">java_awt_geom.PathIterator</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:PathGraphics) <font color="#cc0033">deviceDrawLine</font>!(p0 : INTEGER;
+                                              p1 : INTEGER;
+                                              p2 : INTEGER;
+                                              p3 : INTEGER;
+                                              p4 : <a href="java_awt.html#type-Color">java_awt.Color</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:PathGraphics) <font color="#cc0033">deviceFill</font>!(p0 : <a href="java_awt_geom.html#type-PathIterator">java_awt_geom.PathIterator</a>;
+                                          p1 : <a href="java_awt.html#type-Color">java_awt.Color</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:PathGraphics) <font color="#cc0033">deviceFillRect</font>!(p0 : INTEGER;
+                                              p1 : INTEGER;
+                                              p2 : INTEGER;
+                                              p3 : INTEGER;
+                                              p4 : <a href="java_awt.html#type-Color">java_awt.Color</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:PathGraphics) <font color="#cc0033">deviceFrameRect</font>!(p0 : INTEGER;
+                                               p1 : INTEGER;
+                                               p2 : INTEGER;
+                                               p3 : INTEGER;
+                                               p4 : <a href="java_awt.html#type-Color">java_awt.Color</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:PathGraphics) <font color="#cc0033">draw</font>*(p0 : <a href="java_awt.html#type-Shape">java_awt.Shape</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PathGraphics) <font color="#cc0033">drawArc</font>*(p0 : INTEGER;
+                                       p1 : INTEGER;
+                                       p2 : INTEGER;
+                                       p3 : INTEGER;
+                                       p4 : INTEGER;
+                                       p5 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PathGraphics) <font color="#cc0033">drawBitmaskImage</font>!(p0 : <a href="java_awt_image.html#type-BufferedImage">java_awt_image.BufferedImage</a>;
+                                                p1 : <a href="java_awt_geom.html#type-AffineTransform">java_awt_geom.AffineTransform</a>;
+                                                p2 : <a href="java_awt.html#type-Color">java_awt.Color</a>;
+                                                p3 : INTEGER;
+                                                p4 : INTEGER;
+                                                p5 : INTEGER;
+                                                p6 : INTEGER) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PathGraphics) <font color="#cc0033">drawGlyphVector</font>*(p0 : <a href="java_awt_font.html#type-GlyphVector">java_awt_font.GlyphVector</a>;
+                                               p1 : SHORTREAL;
+                                               p2 : SHORTREAL)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PathGraphics) <font color="#cc0033">drawImage</font>*(p0 : <a href="java_awt.html#type-Image">java_awt.Image</a>;
+                                         p1 : INTEGER;
+                                         p2 : INTEGER;
+                                         p3 : INTEGER;
+                                         p4 : INTEGER;
+                                         p5 : <a href="java_awt_image.html#type-ImageObserver">java_awt_image.ImageObserver</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PathGraphics) <font color="#cc0033">drawImage</font>*(p0 : <a href="java_awt.html#type-Image">java_awt.Image</a>;
+                                         p1 : INTEGER;
+                                         p2 : INTEGER;
+                                         p3 : <a href="java_awt_image.html#type-ImageObserver">java_awt_image.ImageObserver</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PathGraphics) <font color="#cc0033">drawImage</font>*(p0 : <a href="java_awt.html#type-Image">java_awt.Image</a>;
+                                         p1 : INTEGER;
+                                         p2 : INTEGER;
+                                         p3 : INTEGER;
+                                         p4 : INTEGER;
+                                         p5 : INTEGER;
+                                         p6 : INTEGER;
+                                         p7 : INTEGER;
+                                         p8 : INTEGER;
+                                         p9 : <a href="java_awt_image.html#type-ImageObserver">java_awt_image.ImageObserver</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PathGraphics) <font color="#cc0033">drawImage</font>*(p0 : <a href="java_awt.html#type-Image">java_awt.Image</a>;
+                                         p1 : INTEGER;
+                                         p2 : INTEGER;
+                                         p3 : INTEGER;
+                                         p4 : INTEGER;
+                                         p5 : <a href="java_awt.html#type-Color">java_awt.Color</a>;
+                                         p6 : <a href="java_awt_image.html#type-ImageObserver">java_awt_image.ImageObserver</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PathGraphics) <font color="#cc0033">drawImage</font>*(p0  : <a href="java_awt.html#type-Image">java_awt.Image</a>;
+                                         p1  : INTEGER;
+                                         p2  : INTEGER;
+                                         p3  : INTEGER;
+                                         p4  : INTEGER;
+                                         p5  : INTEGER;
+                                         p6  : INTEGER;
+                                         p7  : INTEGER;
+                                         p8  : INTEGER;
+                                         p9  : <a href="java_awt.html#type-Color">java_awt.Color</a>;
+                                         p10 : <a href="java_awt_image.html#type-ImageObserver">java_awt_image.ImageObserver</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PathGraphics) <font color="#cc0033">drawImage</font>*(p0 : <a href="java_awt_image.html#type-BufferedImage">java_awt_image.BufferedImage</a>;
+                                         p1 : <a href="java_awt_image.html#type-BufferedImageOp">java_awt_image.BufferedImageOp</a>;
+                                         p2 : INTEGER;
+                                         p3 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PathGraphics) <font color="#cc0033">drawImage</font>*(p0 : <a href="java_awt.html#type-Image">java_awt.Image</a>;
+                                         p1 : <a href="java_awt_geom.html#type-AffineTransform">java_awt_geom.AffineTransform</a>;
+                                         p2 : <a href="java_awt_image.html#type-ImageObserver">java_awt_image.ImageObserver</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PathGraphics) <font color="#cc0033">drawImage</font>*(p0 : <a href="java_awt.html#type-Image">java_awt.Image</a>;
+                                         p1 : INTEGER;
+                                         p2 : INTEGER;
+                                         p3 : <a href="java_awt.html#type-Color">java_awt.Color</a>;
+                                         p4 : <a href="java_awt_image.html#type-ImageObserver">java_awt_image.ImageObserver</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PathGraphics) <font color="#cc0033">drawImageToPlatform</font>!(p0 : <a href="java_awt.html#type-Image">java_awt.Image</a>;
+                                                   p1 : <a href="java_awt_geom.html#type-AffineTransform">java_awt_geom.AffineTransform</a>;
+                                                   p2 : <a href="java_awt.html#type-Color">java_awt.Color</a>;
+                                                   p3 : INTEGER;
+                                                   p4 : INTEGER;
+                                                   p5 : INTEGER;
+                                                   p6 : INTEGER;
+                                                   p7 : BOOLEAN) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:PathGraphics) <font color="#cc0033">drawLine</font>*(p0 : INTEGER;
+                                        p1 : INTEGER;
+                                        p2 : INTEGER;
+                                        p3 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PathGraphics) <font color="#cc0033">drawOval</font>*(p0 : INTEGER;
+                                        p1 : INTEGER;
+                                        p2 : INTEGER;
+                                        p3 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PathGraphics) <font color="#cc0033">drawPolygon</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>INTEGER;
+                                           IN  p1 : <b>ARRAY </b><b>OF </b>INTEGER;
+                                               p2 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PathGraphics) <font color="#cc0033">drawPolygon</font>*(p0 : <a href="java_awt.html#type-Polygon">java_awt.Polygon</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PathGraphics) <font color="#cc0033">drawPolyline</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>INTEGER;
+                                            IN  p1 : <b>ARRAY </b><b>OF </b>INTEGER;
+                                                p2 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PathGraphics) <font color="#cc0033">drawRect</font>*(p0 : INTEGER;
+                                        p1 : INTEGER;
+                                        p2 : INTEGER;
+                                        p3 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PathGraphics) <font color="#cc0033">drawRenderedImage</font>*(p0 : <a href="java_awt_image.html#type-RenderedImage">java_awt_image.RenderedImage</a>;
+                                                 p1 : <a href="java_awt_geom.html#type-AffineTransform">java_awt_geom.AffineTransform</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PathGraphics) <font color="#cc0033">drawRoundRect</font>*(p0 : INTEGER;
+                                             p1 : INTEGER;
+                                             p2 : INTEGER;
+                                             p3 : INTEGER;
+                                             p4 : INTEGER;
+                                             p5 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PathGraphics) <font color="#cc0033">drawString</font>!(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                          p1 : SHORTREAL;
+                                          p2 : SHORTREAL;
+                                          p3 : <a href="java_awt.html#type-Font">java_awt.Font</a>;
+                                          p4 : <a href="java_awt_font.html#type-FontRenderContext">java_awt_font.FontRenderContext</a>;
+                                          p5 : SHORTREAL)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PathGraphics) <font color="#cc0033">drawString</font>*(p0 : <a href="java_text.html#type-AttributedCharacterIterator">java_text.AttributedCharacterIterator</a>;
+                                          p1 : INTEGER;
+                                          p2 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PathGraphics) <font color="#cc0033">drawString</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                          p1 : INTEGER;
+                                          p2 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PathGraphics) <font color="#cc0033">drawString</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                          p1 : SHORTREAL;
+                                          p2 : SHORTREAL)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PathGraphics) <font color="#cc0033">drawString</font>*(p0 : <a href="java_text.html#type-AttributedCharacterIterator">java_text.AttributedCharacterIterator</a>;
+                                          p1 : SHORTREAL;
+                                          p2 : SHORTREAL)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PathGraphics) <font color="#cc0033">fill</font>*(p0 : <a href="java_awt.html#type-Shape">java_awt.Shape</a>;
+                                    p1 : <a href="java_awt.html#type-Color">java_awt.Color</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PathGraphics) <font color="#cc0033">fill</font>*(p0 : <a href="java_awt.html#type-Shape">java_awt.Shape</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PathGraphics) <font color="#cc0033">fillArc</font>*(p0 : INTEGER;
+                                       p1 : INTEGER;
+                                       p2 : INTEGER;
+                                       p3 : INTEGER;
+                                       p4 : INTEGER;
+                                       p5 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PathGraphics) <font color="#cc0033">fillOval</font>*(p0 : INTEGER;
+                                        p1 : INTEGER;
+                                        p2 : INTEGER;
+                                        p3 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PathGraphics) <font color="#cc0033">fillPolygon</font>*(p0 : <a href="java_awt.html#type-Polygon">java_awt.Polygon</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PathGraphics) <font color="#cc0033">fillPolygon</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>INTEGER;
+                                           IN  p1 : <b>ARRAY </b><b>OF </b>INTEGER;
+                                               p2 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PathGraphics) <font color="#cc0033">fillRect</font>*(p0 : INTEGER;
+                                        p1 : INTEGER;
+                                        p2 : INTEGER;
+                                        p3 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PathGraphics) <font color="#cc0033">fillRoundRect</font>*(p0 : INTEGER;
+                                             p1 : INTEGER;
+                                             p2 : INTEGER;
+                                             p3 : INTEGER;
+                                             p4 : INTEGER;
+                                             p5 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PathGraphics) <font color="#cc0033">getBufferedImage</font>!(p0 : <a href="java_awt.html#type-Image">java_awt.Image</a>) : <a href="java_awt_image.html#type-BufferedImage">java_awt_image.BufferedImage</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PathGraphics) <font color="#cc0033">getPageFormat</font>!() : <a href="java_awt_print.html#type-PageFormat">java_awt_print.PageFormat</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PathGraphics) <font color="#cc0033">getPageIndex</font>!() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PathGraphics) <font color="#cc0033">getPrintable</font>!() : <a href="java_awt_print.html#type-Printable">java_awt_print.Printable</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PathGraphics) <font color="#cc0033">hasTransparentPixels</font>!(p0 : <a href="java_awt_image.html#type-BufferedImage">java_awt_image.BufferedImage</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PathGraphics) <font color="#cc0033">isBitmaskTransparency</font>!(p0 : <a href="java_awt_image.html#type-BufferedImage">java_awt_image.BufferedImage</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PathGraphics) <font color="#cc0033">platformFontCount</font>!(p0 : <a href="java_awt.html#type-Font">java_awt.Font</a>;
+                                                 p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PathGraphics) <font color="#cc0033">redrawRegion</font>*(p0 : <a href="java_awt_geom.html#type-Rectangle2D">java_awt_geom.Rectangle2D</a>;
+                                            p1 : REAL;
+                                            p2 : REAL;
+                                            p3 : <a href="java_awt.html#type-Shape">java_awt.Shape</a>;
+                                            p4 : <a href="java_awt_geom.html#type-AffineTransform">java_awt_geom.AffineTransform</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-PeekGraphics"></a>
+<b>PROCEDURE </b>(self:PeekGraphics) <font color="#cc0033">addRenderingHints</font>*(p0 : <a href="java_util.html#type-Map">java_util.Map</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PeekGraphics) <font color="#cc0033">clearRect</font>*(p0 : INTEGER;
+                                         p1 : INTEGER;
+                                         p2 : INTEGER;
+                                         p3 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PeekGraphics) <font color="#cc0033">clip</font>*(p0 : <a href="java_awt.html#type-Shape">java_awt.Shape</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PeekGraphics) <font color="#cc0033">clipRect</font>*(p0 : INTEGER;
+                                        p1 : INTEGER;
+                                        p2 : INTEGER;
+                                        p3 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PeekGraphics) <font color="#cc0033">copyArea</font>*(p0 : INTEGER;
+                                        p1 : INTEGER;
+                                        p2 : INTEGER;
+                                        p3 : INTEGER;
+                                        p4 : INTEGER;
+                                        p5 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PeekGraphics) <font color="#cc0033">create</font>*() : <a href="java_awt.html#type-Graphics">java_awt.Graphics</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PeekGraphics) <font color="#cc0033">dispose</font>*()<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PeekGraphics) <font color="#cc0033">draw</font>*(p0 : <a href="java_awt.html#type-Shape">java_awt.Shape</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PeekGraphics) <font color="#cc0033">drawArc</font>*(p0 : INTEGER;
+                                       p1 : INTEGER;
+                                       p2 : INTEGER;
+                                       p3 : INTEGER;
+                                       p4 : INTEGER;
+                                       p5 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PeekGraphics) <font color="#cc0033">drawGlyphVector</font>*(p0 : <a href="java_awt_font.html#type-GlyphVector">java_awt_font.GlyphVector</a>;
+                                               p1 : SHORTREAL;
+                                               p2 : SHORTREAL)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PeekGraphics) <font color="#cc0033">drawImage</font>*(p0 : <a href="java_awt.html#type-Image">java_awt.Image</a>;
+                                         p1 : INTEGER;
+                                         p2 : INTEGER;
+                                         p3 : <a href="java_awt.html#type-Color">java_awt.Color</a>;
+                                         p4 : <a href="java_awt_image.html#type-ImageObserver">java_awt_image.ImageObserver</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PeekGraphics) <font color="#cc0033">drawImage</font>*(p0 : <a href="java_awt.html#type-Image">java_awt.Image</a>;
+                                         p1 : INTEGER;
+                                         p2 : INTEGER;
+                                         p3 : INTEGER;
+                                         p4 : INTEGER;
+                                         p5 : <a href="java_awt.html#type-Color">java_awt.Color</a>;
+                                         p6 : <a href="java_awt_image.html#type-ImageObserver">java_awt_image.ImageObserver</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PeekGraphics) <font color="#cc0033">drawImage</font>*(p0 : <a href="java_awt.html#type-Image">java_awt.Image</a>;
+                                         p1 : INTEGER;
+                                         p2 : INTEGER;
+                                         p3 : <a href="java_awt_image.html#type-ImageObserver">java_awt_image.ImageObserver</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PeekGraphics) <font color="#cc0033">drawImage</font>*(p0 : <a href="java_awt.html#type-Image">java_awt.Image</a>;
+                                         p1 : INTEGER;
+                                         p2 : INTEGER;
+                                         p3 : INTEGER;
+                                         p4 : INTEGER;
+                                         p5 : <a href="java_awt_image.html#type-ImageObserver">java_awt_image.ImageObserver</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PeekGraphics) <font color="#cc0033">drawImage</font>*(p0 : <a href="java_awt.html#type-Image">java_awt.Image</a>;
+                                         p1 : <a href="java_awt_geom.html#type-AffineTransform">java_awt_geom.AffineTransform</a>;
+                                         p2 : <a href="java_awt_image.html#type-ImageObserver">java_awt_image.ImageObserver</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PeekGraphics) <font color="#cc0033">drawImage</font>*(p0 : <a href="java_awt_image.html#type-BufferedImage">java_awt_image.BufferedImage</a>;
+                                         p1 : <a href="java_awt_image.html#type-BufferedImageOp">java_awt_image.BufferedImageOp</a>;
+                                         p2 : INTEGER;
+                                         p3 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PeekGraphics) <font color="#cc0033">drawImage</font>*(p0 : <a href="java_awt.html#type-Image">java_awt.Image</a>;
+                                         p1 : INTEGER;
+                                         p2 : INTEGER;
+                                         p3 : INTEGER;
+                                         p4 : INTEGER;
+                                         p5 : INTEGER;
+                                         p6 : INTEGER;
+                                         p7 : INTEGER;
+                                         p8 : INTEGER;
+                                         p9 : <a href="java_awt_image.html#type-ImageObserver">java_awt_image.ImageObserver</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PeekGraphics) <font color="#cc0033">drawImage</font>*(p0  : <a href="java_awt.html#type-Image">java_awt.Image</a>;
+                                         p1  : INTEGER;
+                                         p2  : INTEGER;
+                                         p3  : INTEGER;
+                                         p4  : INTEGER;
+                                         p5  : INTEGER;
+                                         p6  : INTEGER;
+                                         p7  : INTEGER;
+                                         p8  : INTEGER;
+                                         p9  : <a href="java_awt.html#type-Color">java_awt.Color</a>;
+                                         p10 : <a href="java_awt_image.html#type-ImageObserver">java_awt_image.ImageObserver</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PeekGraphics) <font color="#cc0033">drawLine</font>*(p0 : INTEGER;
+                                        p1 : INTEGER;
+                                        p2 : INTEGER;
+                                        p3 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PeekGraphics) <font color="#cc0033">drawOval</font>*(p0 : INTEGER;
+                                        p1 : INTEGER;
+                                        p2 : INTEGER;
+                                        p3 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PeekGraphics) <font color="#cc0033">drawPolygon</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>INTEGER;
+                                           IN  p1 : <b>ARRAY </b><b>OF </b>INTEGER;
+                                               p2 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PeekGraphics) <font color="#cc0033">drawPolyline</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>INTEGER;
+                                            IN  p1 : <b>ARRAY </b><b>OF </b>INTEGER;
+                                                p2 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PeekGraphics) <font color="#cc0033">drawRenderableImage</font>*(p0 : <a href="java_awt_image_renderable.html#type-RenderableImage">java_awt_image_renderable.RenderableImage</a>;
+                                                   p1 : <a href="java_awt_geom.html#type-AffineTransform">java_awt_geom.AffineTransform</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PeekGraphics) <font color="#cc0033">drawRenderedImage</font>*(p0 : <a href="java_awt_image.html#type-RenderedImage">java_awt_image.RenderedImage</a>;
+                                                 p1 : <a href="java_awt_geom.html#type-AffineTransform">java_awt_geom.AffineTransform</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PeekGraphics) <font color="#cc0033">drawRoundRect</font>*(p0 : INTEGER;
+                                             p1 : INTEGER;
+                                             p2 : INTEGER;
+                                             p3 : INTEGER;
+                                             p4 : INTEGER;
+                                             p5 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PeekGraphics) <font color="#cc0033">drawString</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                          p1 : SHORTREAL;
+                                          p2 : SHORTREAL)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PeekGraphics) <font color="#cc0033">drawString</font>*(p0 : <a href="java_text.html#type-AttributedCharacterIterator">java_text.AttributedCharacterIterator</a>;
+                                          p1 : SHORTREAL;
+                                          p2 : SHORTREAL)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PeekGraphics) <font color="#cc0033">drawString</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                          p1 : INTEGER;
+                                          p2 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PeekGraphics) <font color="#cc0033">drawString</font>*(p0 : <a href="java_text.html#type-AttributedCharacterIterator">java_text.AttributedCharacterIterator</a>;
+                                          p1 : INTEGER;
+                                          p2 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PeekGraphics) <font color="#cc0033">fill</font>*(p0 : <a href="java_awt.html#type-Shape">java_awt.Shape</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PeekGraphics) <font color="#cc0033">fillArc</font>*(p0 : INTEGER;
+                                       p1 : INTEGER;
+                                       p2 : INTEGER;
+                                       p3 : INTEGER;
+                                       p4 : INTEGER;
+                                       p5 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PeekGraphics) <font color="#cc0033">fillOval</font>*(p0 : INTEGER;
+                                        p1 : INTEGER;
+                                        p2 : INTEGER;
+                                        p3 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PeekGraphics) <font color="#cc0033">fillPolygon</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>INTEGER;
+                                           IN  p1 : <b>ARRAY </b><b>OF </b>INTEGER;
+                                               p2 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PeekGraphics) <font color="#cc0033">fillRect</font>*(p0 : INTEGER;
+                                        p1 : INTEGER;
+                                        p2 : INTEGER;
+                                        p3 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PeekGraphics) <font color="#cc0033">fillRoundRect</font>*(p0 : INTEGER;
+                                             p1 : INTEGER;
+                                             p2 : INTEGER;
+                                             p3 : INTEGER;
+                                             p4 : INTEGER;
+                                             p5 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PeekGraphics) <font color="#cc0033">finalize</font>*()<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PeekGraphics) <font color="#cc0033">getAWTDrawingOnly</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PeekGraphics) <font color="#cc0033">getBackground</font>*() : <a href="java_awt.html#type-Color">java_awt.Color</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PeekGraphics) <font color="#cc0033">getClip</font>*() : <a href="java_awt.html#type-Shape">java_awt.Shape</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PeekGraphics) <font color="#cc0033">getClipBounds</font>*() : <a href="java_awt.html#type-Rectangle">java_awt.Rectangle</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PeekGraphics) <font color="#cc0033">getColor</font>*() : <a href="java_awt.html#type-Color">java_awt.Color</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PeekGraphics) <font color="#cc0033">getComposite</font>*() : <a href="java_awt.html#type-Composite">java_awt.Composite</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PeekGraphics) <font color="#cc0033">getDelegate</font>*() : <a href="java_awt.html#type-Graphics2D">java_awt.Graphics2D</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PeekGraphics) <font color="#cc0033">getDeviceConfiguration</font>*() : <a href="java_awt.html#type-GraphicsConfiguration">java_awt.GraphicsConfiguration</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PeekGraphics) <font color="#cc0033">getDrawingArea</font>*() : <a href="sun_java2d.html#type-Spans">sun_java2d.Spans</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PeekGraphics) <font color="#cc0033">getFont</font>*() : <a href="java_awt.html#type-Font">java_awt.Font</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PeekGraphics) <font color="#cc0033">getFontMetrics</font>*(p0 : <a href="java_awt.html#type-Font">java_awt.Font</a>) : <a href="java_awt.html#type-FontMetrics">java_awt.FontMetrics</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PeekGraphics) <font color="#cc0033">getFontRenderContext</font>*() : <a href="java_awt_font.html#type-FontRenderContext">java_awt_font.FontRenderContext</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PeekGraphics) <font color="#cc0033">getMetrics</font>*() : <a href="#type-PeekMetrics">PeekMetrics</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PeekGraphics) <font color="#cc0033">getPaint</font>*() : <a href="java_awt.html#type-Paint">java_awt.Paint</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PeekGraphics) <font color="#cc0033">getPrinterJob</font>*() : <a href="java_awt_print.html#type-PrinterJob">java_awt_print.PrinterJob</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PeekGraphics) <font color="#cc0033">getRenderingHint</font>*(p0 : <a href="java_awt.html#type-RenderingHints$Key">java_awt.RenderingHints$Key</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PeekGraphics) <font color="#cc0033">getRenderingHints</font>*() : <a href="java_awt.html#type-RenderingHints">java_awt.RenderingHints</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PeekGraphics) <font color="#cc0033">getStroke</font>*() : <a href="java_awt.html#type-Stroke">java_awt.Stroke</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PeekGraphics) <font color="#cc0033">getTransform</font>*() : <a href="java_awt_geom.html#type-AffineTransform">java_awt_geom.AffineTransform</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PeekGraphics) <font color="#cc0033">hit</font>*(p0 : <a href="java_awt.html#type-Rectangle">java_awt.Rectangle</a>;
+                                   p1 : <a href="java_awt.html#type-Shape">java_awt.Shape</a>;
+                                   p2 : BOOLEAN) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PeekGraphics) <font color="#cc0033">hitsDrawingArea</font>*(p0 : <a href="java_awt.html#type-Rectangle">java_awt.Rectangle</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PeekGraphics) <font color="#cc0033">imageUpdate</font>*(p0 : <a href="java_awt.html#type-Image">java_awt.Image</a>;
+                                           p1 : INTEGER;
+                                           p2 : INTEGER;
+                                           p3 : INTEGER;
+                                           p4 : INTEGER;
+                                           p5 : INTEGER) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PeekGraphics) <font color="#cc0033">rotate</font>*(p0 : REAL)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PeekGraphics) <font color="#cc0033">rotate</font>*(p0 : REAL;
+                                      p1 : REAL;
+                                      p2 : REAL)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PeekGraphics) <font color="#cc0033">scale</font>*(p0 : REAL;
+                                     p1 : REAL)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PeekGraphics) <font color="#cc0033">setAWTDrawingOnly</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PeekGraphics) <font color="#cc0033">setBackground</font>*(p0 : <a href="java_awt.html#type-Color">java_awt.Color</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PeekGraphics) <font color="#cc0033">setClip</font>*(p0 : INTEGER;
+                                       p1 : INTEGER;
+                                       p2 : INTEGER;
+                                       p3 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PeekGraphics) <font color="#cc0033">setClip</font>*(p0 : <a href="java_awt.html#type-Shape">java_awt.Shape</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PeekGraphics) <font color="#cc0033">setColor</font>*(p0 : <a href="java_awt.html#type-Color">java_awt.Color</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PeekGraphics) <font color="#cc0033">setComposite</font>*(p0 : <a href="java_awt.html#type-Composite">java_awt.Composite</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PeekGraphics) <font color="#cc0033">setDelegate</font>*(p0 : <a href="java_awt.html#type-Graphics2D">java_awt.Graphics2D</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PeekGraphics) <font color="#cc0033">setFont</font>*(p0 : <a href="java_awt.html#type-Font">java_awt.Font</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PeekGraphics) <font color="#cc0033">setPaint</font>*(p0 : <a href="java_awt.html#type-Paint">java_awt.Paint</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PeekGraphics) <font color="#cc0033">setPaintMode</font>*()<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PeekGraphics) <font color="#cc0033">setRenderingHint</font>*(p0 : <a href="java_awt.html#type-RenderingHints$Key">java_awt.RenderingHints$Key</a>;
+                                                p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PeekGraphics) <font color="#cc0033">setRenderingHints</font>*(p0 : <a href="java_util.html#type-Map">java_util.Map</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PeekGraphics) <font color="#cc0033">setStroke</font>*(p0 : <a href="java_awt.html#type-Stroke">java_awt.Stroke</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PeekGraphics) <font color="#cc0033">setTransform</font>*(p0 : <a href="java_awt_geom.html#type-AffineTransform">java_awt_geom.AffineTransform</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PeekGraphics) <font color="#cc0033">setXORMode</font>*(p0 : <a href="java_awt.html#type-Color">java_awt.Color</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PeekGraphics) <font color="#cc0033">shear</font>*(p0 : REAL;
+                                     p1 : REAL)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PeekGraphics) <font color="#cc0033">transform</font>*(p0 : <a href="java_awt_geom.html#type-AffineTransform">java_awt_geom.AffineTransform</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PeekGraphics) <font color="#cc0033">translate</font>*(p0 : REAL;
+                                         p1 : REAL)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PeekGraphics) <font color="#cc0033">translate</font>*(p0 : INTEGER;
+                                         p1 : INTEGER)<b>,EXTENSIBLE</b>;
+<a name="meths-PeekGraphics$ImageWaiter"></a>
+<b>PROCEDURE </b>(self:PeekGraphics$ImageWaiter) <font color="#cc0033">getHeight</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PeekGraphics$ImageWaiter) <font color="#cc0033">getWidth</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PeekGraphics$ImageWaiter) <font color="#cc0033">imageUpdate</font>*(p0 : <a href="java_awt.html#type-Image">java_awt.Image</a>;
+                                                       p1 : INTEGER;
+                                                       p2 : INTEGER;
+                                                       p3 : INTEGER;
+                                                       p4 : INTEGER;
+                                                       p5 : INTEGER) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-PeekMetrics"></a>
+<b>PROCEDURE </b>(self:PeekMetrics) <font color="#cc0033">clear</font>*(p0 : <a href="java_awt.html#type-Graphics2D">java_awt.Graphics2D</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PeekMetrics) <font color="#cc0033">draw</font>*(p0 : <a href="java_awt.html#type-Graphics2D">java_awt.Graphics2D</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PeekMetrics) <font color="#cc0033">drawImage</font>*(p0 : <a href="java_awt.html#type-Graphics2D">java_awt.Graphics2D</a>;
+                                        p1 : <a href="java_awt_image.html#type-RenderedImage">java_awt_image.RenderedImage</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PeekMetrics) <font color="#cc0033">drawImage</font>*(p0 : <a href="java_awt.html#type-Graphics2D">java_awt.Graphics2D</a>;
+                                        p1 : <a href="java_awt.html#type-Image">java_awt.Image</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PeekMetrics) <font color="#cc0033">drawImage</font>*(p0 : <a href="java_awt.html#type-Graphics2D">java_awt.Graphics2D</a>;
+                                        p1 : <a href="java_awt_image_renderable.html#type-RenderableImage">java_awt_image_renderable.RenderableImage</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PeekMetrics) <font color="#cc0033">drawText</font>*(p0 : <a href="java_awt.html#type-Graphics2D">java_awt.Graphics2D</a>;
+                                       p1 : <a href="java_awt_font.html#type-TextLayout">java_awt_font.TextLayout</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PeekMetrics) <font color="#cc0033">drawText</font>*(p0 : <a href="java_awt.html#type-Graphics2D">java_awt.Graphics2D</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PeekMetrics) <font color="#cc0033">fill</font>*(p0 : <a href="java_awt.html#type-Graphics2D">java_awt.Graphics2D</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PeekMetrics) <font color="#cc0033">hasCompositing</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PeekMetrics) <font color="#cc0033">hasImages</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PeekMetrics) <font color="#cc0033">hasNonSolidColors</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PeekMetrics) <font color="#cc0033">hasText</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-PrinterGraphicsConfig"></a>
+<b>PROCEDURE </b>(self:PrinterGraphicsConfig) <font color="#cc0033">createCompatibleImage</font>*(p0 : INTEGER;
+                                                              p1 : INTEGER) : <a href="java_awt_image.html#type-BufferedImage">java_awt_image.BufferedImage</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PrinterGraphicsConfig) <font color="#cc0033">getBounds</font>*() : <a href="java_awt.html#type-Rectangle">java_awt.Rectangle</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PrinterGraphicsConfig) <font color="#cc0033">getColorModel</font>*(p0 : INTEGER) : <a href="java_awt_image.html#type-ColorModel">java_awt_image.ColorModel</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PrinterGraphicsConfig) <font color="#cc0033">getColorModel</font>*() : <a href="java_awt_image.html#type-ColorModel">java_awt_image.ColorModel</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PrinterGraphicsConfig) <font color="#cc0033">getDefaultTransform</font>*() : <a href="java_awt_geom.html#type-AffineTransform">java_awt_geom.AffineTransform</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PrinterGraphicsConfig) <font color="#cc0033">getDevice</font>*() : <a href="java_awt.html#type-GraphicsDevice">java_awt.GraphicsDevice</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PrinterGraphicsConfig) <font color="#cc0033">getNormalizingTransform</font>*() : <a href="java_awt_geom.html#type-AffineTransform">java_awt_geom.AffineTransform</a><b>,EXTENSIBLE</b>;
+<a name="meths-PrinterGraphicsDevice"></a>
+<b>PROCEDURE </b>(self:PrinterGraphicsDevice) <font color="#cc0033">getConfigurations</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_awt.html#type-GraphicsConfiguration">java_awt.GraphicsConfiguration</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PrinterGraphicsDevice) <font color="#cc0033">getDefaultConfiguration</font>*() : <a href="java_awt.html#type-GraphicsConfiguration">java_awt.GraphicsConfiguration</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PrinterGraphicsDevice) <font color="#cc0033">getFullScreenWindow</font>*() : <a href="java_awt.html#type-Window">java_awt.Window</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PrinterGraphicsDevice) <font color="#cc0033">getIDstring</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PrinterGraphicsDevice) <font color="#cc0033">getType</font>*() : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PrinterGraphicsDevice) <font color="#cc0033">setFullScreenWindow</font>*(p0 : <a href="java_awt.html#type-Window">java_awt.Window</a>)<b>,EXTENSIBLE</b>;
+<a name="meths-PrintJob2D"></a>
+<b>PROCEDURE </b>(self:PrintJob2D) <font color="#cc0033">end</font>*()<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PrintJob2D) <font color="#cc0033">finalize</font>*()<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PrintJob2D) <font color="#cc0033">getGraphics</font>*() : <a href="java_awt.html#type-Graphics">java_awt.Graphics</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PrintJob2D) <font color="#cc0033">getPageDimension</font>*() : <a href="java_awt.html#type-Dimension">java_awt.Dimension</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PrintJob2D) <font color="#cc0033">getPageResolution</font>*() : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PrintJob2D) <font color="#cc0033">lastPageFirst</font>*() : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PrintJob2D) <font color="#cc0033">print</font>*(p0 : <a href="java_awt.html#type-Graphics">java_awt.Graphics</a>;
+                                   p1 : <a href="java_awt_print.html#type-PageFormat">java_awt_print.PageFormat</a>;
+                                   p2 : INTEGER) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PrintJob2D) <font color="#cc0033">printDialog</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PrintJob2D) <font color="#cc0033">run</font>*()<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-ProxyGraphics"></a>
+<b>PROCEDURE </b>(self:ProxyGraphics) <font color="#cc0033">clearRect</font>*(p0 : INTEGER;
+                                          p1 : INTEGER;
+                                          p2 : INTEGER;
+                                          p3 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProxyGraphics) <font color="#cc0033">clipRect</font>*(p0 : INTEGER;
+                                         p1 : INTEGER;
+                                         p2 : INTEGER;
+                                         p3 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProxyGraphics) <font color="#cc0033">copyArea</font>*(p0 : INTEGER;
+                                         p1 : INTEGER;
+                                         p2 : INTEGER;
+                                         p3 : INTEGER;
+                                         p4 : INTEGER;
+                                         p5 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProxyGraphics) <font color="#cc0033">create</font>*(p0 : INTEGER;
+                                       p1 : INTEGER;
+                                       p2 : INTEGER;
+                                       p3 : INTEGER) : <a href="java_awt.html#type-Graphics">java_awt.Graphics</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProxyGraphics) <font color="#cc0033">create</font>*() : <a href="java_awt.html#type-Graphics">java_awt.Graphics</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProxyGraphics) <font color="#cc0033">dispose</font>*()<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProxyGraphics) <font color="#cc0033">draw3DRect</font>*(p0 : INTEGER;
+                                           p1 : INTEGER;
+                                           p2 : INTEGER;
+                                           p3 : INTEGER;
+                                           p4 : BOOLEAN)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProxyGraphics) <font color="#cc0033">drawArc</font>*(p0 : INTEGER;
+                                        p1 : INTEGER;
+                                        p2 : INTEGER;
+                                        p3 : INTEGER;
+                                        p4 : INTEGER;
+                                        p5 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProxyGraphics) <font color="#cc0033">drawBytes</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE;
+                                              p1 : INTEGER;
+                                              p2 : INTEGER;
+                                              p3 : INTEGER;
+                                              p4 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProxyGraphics) <font color="#cc0033">drawChars</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>CHAR;
+                                              p1 : INTEGER;
+                                              p2 : INTEGER;
+                                              p3 : INTEGER;
+                                              p4 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProxyGraphics) <font color="#cc0033">drawImage</font>*(p0 : <a href="java_awt.html#type-Image">java_awt.Image</a>;
+                                          p1 : INTEGER;
+                                          p2 : INTEGER;
+                                          p3 : <a href="java_awt.html#type-Color">java_awt.Color</a>;
+                                          p4 : <a href="java_awt_image.html#type-ImageObserver">java_awt_image.ImageObserver</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProxyGraphics) <font color="#cc0033">drawImage</font>*(p0  : <a href="java_awt.html#type-Image">java_awt.Image</a>;
+                                          p1  : INTEGER;
+                                          p2  : INTEGER;
+                                          p3  : INTEGER;
+                                          p4  : INTEGER;
+                                          p5  : INTEGER;
+                                          p6  : INTEGER;
+                                          p7  : INTEGER;
+                                          p8  : INTEGER;
+                                          p9  : <a href="java_awt.html#type-Color">java_awt.Color</a>;
+                                          p10 : <a href="java_awt_image.html#type-ImageObserver">java_awt_image.ImageObserver</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProxyGraphics) <font color="#cc0033">drawImage</font>*(p0 : <a href="java_awt.html#type-Image">java_awt.Image</a>;
+                                          p1 : INTEGER;
+                                          p2 : INTEGER;
+                                          p3 : INTEGER;
+                                          p4 : INTEGER;
+                                          p5 : <a href="java_awt.html#type-Color">java_awt.Color</a>;
+                                          p6 : <a href="java_awt_image.html#type-ImageObserver">java_awt_image.ImageObserver</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProxyGraphics) <font color="#cc0033">drawImage</font>*(p0 : <a href="java_awt.html#type-Image">java_awt.Image</a>;
+                                          p1 : INTEGER;
+                                          p2 : INTEGER;
+                                          p3 : <a href="java_awt_image.html#type-ImageObserver">java_awt_image.ImageObserver</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProxyGraphics) <font color="#cc0033">drawImage</font>*(p0 : <a href="java_awt.html#type-Image">java_awt.Image</a>;
+                                          p1 : INTEGER;
+                                          p2 : INTEGER;
+                                          p3 : INTEGER;
+                                          p4 : INTEGER;
+                                          p5 : <a href="java_awt_image.html#type-ImageObserver">java_awt_image.ImageObserver</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProxyGraphics) <font color="#cc0033">drawImage</font>*(p0 : <a href="java_awt.html#type-Image">java_awt.Image</a>;
+                                          p1 : INTEGER;
+                                          p2 : INTEGER;
+                                          p3 : INTEGER;
+                                          p4 : INTEGER;
+                                          p5 : INTEGER;
+                                          p6 : INTEGER;
+                                          p7 : INTEGER;
+                                          p8 : INTEGER;
+                                          p9 : <a href="java_awt_image.html#type-ImageObserver">java_awt_image.ImageObserver</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProxyGraphics) <font color="#cc0033">drawLine</font>*(p0 : INTEGER;
+                                         p1 : INTEGER;
+                                         p2 : INTEGER;
+                                         p3 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProxyGraphics) <font color="#cc0033">drawOval</font>*(p0 : INTEGER;
+                                         p1 : INTEGER;
+                                         p2 : INTEGER;
+                                         p3 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProxyGraphics) <font color="#cc0033">drawPolygon</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>INTEGER;
+                                            IN  p1 : <b>ARRAY </b><b>OF </b>INTEGER;
+                                                p2 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProxyGraphics) <font color="#cc0033">drawPolygon</font>*(p0 : <a href="java_awt.html#type-Polygon">java_awt.Polygon</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProxyGraphics) <font color="#cc0033">drawPolyline</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>INTEGER;
+                                             IN  p1 : <b>ARRAY </b><b>OF </b>INTEGER;
+                                                 p2 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProxyGraphics) <font color="#cc0033">drawRect</font>*(p0 : INTEGER;
+                                         p1 : INTEGER;
+                                         p2 : INTEGER;
+                                         p3 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProxyGraphics) <font color="#cc0033">drawRoundRect</font>*(p0 : INTEGER;
+                                              p1 : INTEGER;
+                                              p2 : INTEGER;
+                                              p3 : INTEGER;
+                                              p4 : INTEGER;
+                                              p5 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProxyGraphics) <font color="#cc0033">drawString</font>*(p0 : <a href="java_text.html#type-AttributedCharacterIterator">java_text.AttributedCharacterIterator</a>;
+                                           p1 : INTEGER;
+                                           p2 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProxyGraphics) <font color="#cc0033">drawString</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                           p1 : INTEGER;
+                                           p2 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProxyGraphics) <font color="#cc0033">fill3DRect</font>*(p0 : INTEGER;
+                                           p1 : INTEGER;
+                                           p2 : INTEGER;
+                                           p3 : INTEGER;
+                                           p4 : BOOLEAN)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProxyGraphics) <font color="#cc0033">fillArc</font>*(p0 : INTEGER;
+                                        p1 : INTEGER;
+                                        p2 : INTEGER;
+                                        p3 : INTEGER;
+                                        p4 : INTEGER;
+                                        p5 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProxyGraphics) <font color="#cc0033">fillOval</font>*(p0 : INTEGER;
+                                         p1 : INTEGER;
+                                         p2 : INTEGER;
+                                         p3 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProxyGraphics) <font color="#cc0033">fillPolygon</font>*(p0 : <a href="java_awt.html#type-Polygon">java_awt.Polygon</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProxyGraphics) <font color="#cc0033">fillPolygon</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>INTEGER;
+                                            IN  p1 : <b>ARRAY </b><b>OF </b>INTEGER;
+                                                p2 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProxyGraphics) <font color="#cc0033">fillRect</font>*(p0 : INTEGER;
+                                         p1 : INTEGER;
+                                         p2 : INTEGER;
+                                         p3 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProxyGraphics) <font color="#cc0033">fillRoundRect</font>*(p0 : INTEGER;
+                                              p1 : INTEGER;
+                                              p2 : INTEGER;
+                                              p3 : INTEGER;
+                                              p4 : INTEGER;
+                                              p5 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProxyGraphics) <font color="#cc0033">finalize</font>*()<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProxyGraphics) <font color="#cc0033">getClip</font>*() : <a href="java_awt.html#type-Shape">java_awt.Shape</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProxyGraphics) <font color="#cc0033">getClipBounds</font>*(p0 : <a href="java_awt.html#type-Rectangle">java_awt.Rectangle</a>) : <a href="java_awt.html#type-Rectangle">java_awt.Rectangle</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProxyGraphics) <font color="#cc0033">getClipBounds</font>*() : <a href="java_awt.html#type-Rectangle">java_awt.Rectangle</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProxyGraphics) <font color="#cc0033">getClipRect</font>*() : <a href="java_awt.html#type-Rectangle">java_awt.Rectangle</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProxyGraphics) <font color="#cc0033">getColor</font>*() : <a href="java_awt.html#type-Color">java_awt.Color</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProxyGraphics) <font color="#cc0033">getFont</font>*() : <a href="java_awt.html#type-Font">java_awt.Font</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProxyGraphics) <font color="#cc0033">getFontMetrics</font>*() : <a href="java_awt.html#type-FontMetrics">java_awt.FontMetrics</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProxyGraphics) <font color="#cc0033">getFontMetrics</font>*(p0 : <a href="java_awt.html#type-Font">java_awt.Font</a>) : <a href="java_awt.html#type-FontMetrics">java_awt.FontMetrics</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProxyGraphics) <font color="#cc0033">hitClip</font>*(p0 : INTEGER;
+                                        p1 : INTEGER;
+                                        p2 : INTEGER;
+                                        p3 : INTEGER) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProxyGraphics) <font color="#cc0033">setClip</font>*(p0 : <a href="java_awt.html#type-Shape">java_awt.Shape</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProxyGraphics) <font color="#cc0033">setClip</font>*(p0 : INTEGER;
+                                        p1 : INTEGER;
+                                        p2 : INTEGER;
+                                        p3 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProxyGraphics) <font color="#cc0033">setColor</font>*(p0 : <a href="java_awt.html#type-Color">java_awt.Color</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProxyGraphics) <font color="#cc0033">setFont</font>*(p0 : <a href="java_awt.html#type-Font">java_awt.Font</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProxyGraphics) <font color="#cc0033">setPaintMode</font>*()<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProxyGraphics) <font color="#cc0033">setXORMode</font>*(p0 : <a href="java_awt.html#type-Color">java_awt.Color</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProxyGraphics) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProxyGraphics) <font color="#cc0033">translate</font>*(p0 : INTEGER;
+                                          p1 : INTEGER)<b>,EXTENSIBLE</b>;
+<a name="meths-ProxyGraphics2D"></a>
+<b>PROCEDURE </b>(self:ProxyGraphics2D) <font color="#cc0033">addRenderingHints</font>*(p0 : <a href="java_util.html#type-Map">java_util.Map</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProxyGraphics2D) <font color="#cc0033">clearRect</font>*(p0 : INTEGER;
+                                            p1 : INTEGER;
+                                            p2 : INTEGER;
+                                            p3 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProxyGraphics2D) <font color="#cc0033">clip</font>*(p0 : <a href="java_awt.html#type-Shape">java_awt.Shape</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProxyGraphics2D) <font color="#cc0033">clipRect</font>*(p0 : INTEGER;
+                                           p1 : INTEGER;
+                                           p2 : INTEGER;
+                                           p3 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProxyGraphics2D) <font color="#cc0033">copyArea</font>*(p0 : INTEGER;
+                                           p1 : INTEGER;
+                                           p2 : INTEGER;
+                                           p3 : INTEGER;
+                                           p4 : INTEGER;
+                                           p5 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProxyGraphics2D) <font color="#cc0033">create</font>*() : <a href="java_awt.html#type-Graphics">java_awt.Graphics</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProxyGraphics2D) <font color="#cc0033">dispose</font>*()<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProxyGraphics2D) <font color="#cc0033">draw</font>*(p0 : <a href="java_awt.html#type-Shape">java_awt.Shape</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProxyGraphics2D) <font color="#cc0033">drawArc</font>*(p0 : INTEGER;
+                                          p1 : INTEGER;
+                                          p2 : INTEGER;
+                                          p3 : INTEGER;
+                                          p4 : INTEGER;
+                                          p5 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProxyGraphics2D) <font color="#cc0033">drawGlyphVector</font>*(p0 : <a href="java_awt_font.html#type-GlyphVector">java_awt_font.GlyphVector</a>;
+                                                  p1 : SHORTREAL;
+                                                  p2 : SHORTREAL)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProxyGraphics2D) <font color="#cc0033">drawImage</font>*(p0 : <a href="java_awt.html#type-Image">java_awt.Image</a>;
+                                            p1 : INTEGER;
+                                            p2 : INTEGER;
+                                            p3 : <a href="java_awt.html#type-Color">java_awt.Color</a>;
+                                            p4 : <a href="java_awt_image.html#type-ImageObserver">java_awt_image.ImageObserver</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProxyGraphics2D) <font color="#cc0033">drawImage</font>*(p0 : <a href="java_awt.html#type-Image">java_awt.Image</a>;
+                                            p1 : INTEGER;
+                                            p2 : INTEGER;
+                                            p3 : INTEGER;
+                                            p4 : INTEGER;
+                                            p5 : <a href="java_awt.html#type-Color">java_awt.Color</a>;
+                                            p6 : <a href="java_awt_image.html#type-ImageObserver">java_awt_image.ImageObserver</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProxyGraphics2D) <font color="#cc0033">drawImage</font>*(p0 : <a href="java_awt.html#type-Image">java_awt.Image</a>;
+                                            p1 : INTEGER;
+                                            p2 : INTEGER;
+                                            p3 : <a href="java_awt_image.html#type-ImageObserver">java_awt_image.ImageObserver</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProxyGraphics2D) <font color="#cc0033">drawImage</font>*(p0 : <a href="java_awt.html#type-Image">java_awt.Image</a>;
+                                            p1 : INTEGER;
+                                            p2 : INTEGER;
+                                            p3 : INTEGER;
+                                            p4 : INTEGER;
+                                            p5 : <a href="java_awt_image.html#type-ImageObserver">java_awt_image.ImageObserver</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProxyGraphics2D) <font color="#cc0033">drawImage</font>*(p0 : <a href="java_awt.html#type-Image">java_awt.Image</a>;
+                                            p1 : <a href="java_awt_geom.html#type-AffineTransform">java_awt_geom.AffineTransform</a>;
+                                            p2 : <a href="java_awt_image.html#type-ImageObserver">java_awt_image.ImageObserver</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProxyGraphics2D) <font color="#cc0033">drawImage</font>*(p0 : <a href="java_awt_image.html#type-BufferedImage">java_awt_image.BufferedImage</a>;
+                                            p1 : <a href="java_awt_image.html#type-BufferedImageOp">java_awt_image.BufferedImageOp</a>;
+                                            p2 : INTEGER;
+                                            p3 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProxyGraphics2D) <font color="#cc0033">drawImage</font>*(p0 : <a href="java_awt.html#type-Image">java_awt.Image</a>;
+                                            p1 : INTEGER;
+                                            p2 : INTEGER;
+                                            p3 : INTEGER;
+                                            p4 : INTEGER;
+                                            p5 : INTEGER;
+                                            p6 : INTEGER;
+                                            p7 : INTEGER;
+                                            p8 : INTEGER;
+                                            p9 : <a href="java_awt_image.html#type-ImageObserver">java_awt_image.ImageObserver</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProxyGraphics2D) <font color="#cc0033">drawImage</font>*(p0  : <a href="java_awt.html#type-Image">java_awt.Image</a>;
+                                            p1  : INTEGER;
+                                            p2  : INTEGER;
+                                            p3  : INTEGER;
+                                            p4  : INTEGER;
+                                            p5  : INTEGER;
+                                            p6  : INTEGER;
+                                            p7  : INTEGER;
+                                            p8  : INTEGER;
+                                            p9  : <a href="java_awt.html#type-Color">java_awt.Color</a>;
+                                            p10 : <a href="java_awt_image.html#type-ImageObserver">java_awt_image.ImageObserver</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProxyGraphics2D) <font color="#cc0033">drawLine</font>*(p0 : INTEGER;
+                                           p1 : INTEGER;
+                                           p2 : INTEGER;
+                                           p3 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProxyGraphics2D) <font color="#cc0033">drawOval</font>*(p0 : INTEGER;
+                                           p1 : INTEGER;
+                                           p2 : INTEGER;
+                                           p3 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProxyGraphics2D) <font color="#cc0033">drawPolygon</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>INTEGER;
+                                              IN  p1 : <b>ARRAY </b><b>OF </b>INTEGER;
+                                                  p2 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProxyGraphics2D) <font color="#cc0033">drawPolyline</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>INTEGER;
+                                               IN  p1 : <b>ARRAY </b><b>OF </b>INTEGER;
+                                                   p2 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProxyGraphics2D) <font color="#cc0033">drawRenderableImage</font>*(p0 : <a href="java_awt_image_renderable.html#type-RenderableImage">java_awt_image_renderable.RenderableImage</a>;
+                                                      p1 : <a href="java_awt_geom.html#type-AffineTransform">java_awt_geom.AffineTransform</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProxyGraphics2D) <font color="#cc0033">drawRenderedImage</font>*(p0 : <a href="java_awt_image.html#type-RenderedImage">java_awt_image.RenderedImage</a>;
+                                                    p1 : <a href="java_awt_geom.html#type-AffineTransform">java_awt_geom.AffineTransform</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProxyGraphics2D) <font color="#cc0033">drawRoundRect</font>*(p0 : INTEGER;
+                                                p1 : INTEGER;
+                                                p2 : INTEGER;
+                                                p3 : INTEGER;
+                                                p4 : INTEGER;
+                                                p5 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProxyGraphics2D) <font color="#cc0033">drawString</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                             p1 : SHORTREAL;
+                                             p2 : SHORTREAL)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProxyGraphics2D) <font color="#cc0033">drawString</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                             p1 : INTEGER;
+                                             p2 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProxyGraphics2D) <font color="#cc0033">drawString</font>*(p0 : <a href="java_text.html#type-AttributedCharacterIterator">java_text.AttributedCharacterIterator</a>;
+                                             p1 : INTEGER;
+                                             p2 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProxyGraphics2D) <font color="#cc0033">drawString</font>*(p0 : <a href="java_text.html#type-AttributedCharacterIterator">java_text.AttributedCharacterIterator</a>;
+                                             p1 : SHORTREAL;
+                                             p2 : SHORTREAL)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProxyGraphics2D) <font color="#cc0033">fill</font>*(p0 : <a href="java_awt.html#type-Shape">java_awt.Shape</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProxyGraphics2D) <font color="#cc0033">fillArc</font>*(p0 : INTEGER;
+                                          p1 : INTEGER;
+                                          p2 : INTEGER;
+                                          p3 : INTEGER;
+                                          p4 : INTEGER;
+                                          p5 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProxyGraphics2D) <font color="#cc0033">fillOval</font>*(p0 : INTEGER;
+                                           p1 : INTEGER;
+                                           p2 : INTEGER;
+                                           p3 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProxyGraphics2D) <font color="#cc0033">fillPolygon</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>INTEGER;
+                                              IN  p1 : <b>ARRAY </b><b>OF </b>INTEGER;
+                                                  p2 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProxyGraphics2D) <font color="#cc0033">fillRect</font>*(p0 : INTEGER;
+                                           p1 : INTEGER;
+                                           p2 : INTEGER;
+                                           p3 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProxyGraphics2D) <font color="#cc0033">fillRoundRect</font>*(p0 : INTEGER;
+                                                p1 : INTEGER;
+                                                p2 : INTEGER;
+                                                p3 : INTEGER;
+                                                p4 : INTEGER;
+                                                p5 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProxyGraphics2D) <font color="#cc0033">finalize</font>*()<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProxyGraphics2D) <font color="#cc0033">getBackground</font>*() : <a href="java_awt.html#type-Color">java_awt.Color</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProxyGraphics2D) <font color="#cc0033">getClip</font>*() : <a href="java_awt.html#type-Shape">java_awt.Shape</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProxyGraphics2D) <font color="#cc0033">getClipBounds</font>*() : <a href="java_awt.html#type-Rectangle">java_awt.Rectangle</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProxyGraphics2D) <font color="#cc0033">getColor</font>*() : <a href="java_awt.html#type-Color">java_awt.Color</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProxyGraphics2D) <font color="#cc0033">getComposite</font>*() : <a href="java_awt.html#type-Composite">java_awt.Composite</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProxyGraphics2D) <font color="#cc0033">getDelegate</font>*() : <a href="java_awt.html#type-Graphics2D">java_awt.Graphics2D</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProxyGraphics2D) <font color="#cc0033">getDeviceConfiguration</font>*() : <a href="java_awt.html#type-GraphicsConfiguration">java_awt.GraphicsConfiguration</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProxyGraphics2D) <font color="#cc0033">getFont</font>*() : <a href="java_awt.html#type-Font">java_awt.Font</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProxyGraphics2D) <font color="#cc0033">getFontMetrics</font>*(p0 : <a href="java_awt.html#type-Font">java_awt.Font</a>) : <a href="java_awt.html#type-FontMetrics">java_awt.FontMetrics</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProxyGraphics2D) <font color="#cc0033">getFontRenderContext</font>*() : <a href="java_awt_font.html#type-FontRenderContext">java_awt_font.FontRenderContext</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProxyGraphics2D) <font color="#cc0033">getPaint</font>*() : <a href="java_awt.html#type-Paint">java_awt.Paint</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProxyGraphics2D) <font color="#cc0033">getPrinterJob</font>*() : <a href="java_awt_print.html#type-PrinterJob">java_awt_print.PrinterJob</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProxyGraphics2D) <font color="#cc0033">getRenderingHint</font>*(p0 : <a href="java_awt.html#type-RenderingHints$Key">java_awt.RenderingHints$Key</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProxyGraphics2D) <font color="#cc0033">getRenderingHints</font>*() : <a href="java_awt.html#type-RenderingHints">java_awt.RenderingHints</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProxyGraphics2D) <font color="#cc0033">getStroke</font>*() : <a href="java_awt.html#type-Stroke">java_awt.Stroke</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProxyGraphics2D) <font color="#cc0033">getTransform</font>*() : <a href="java_awt_geom.html#type-AffineTransform">java_awt_geom.AffineTransform</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProxyGraphics2D) <font color="#cc0033">hit</font>*(p0 : <a href="java_awt.html#type-Rectangle">java_awt.Rectangle</a>;
+                                      p1 : <a href="java_awt.html#type-Shape">java_awt.Shape</a>;
+                                      p2 : BOOLEAN) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProxyGraphics2D) <font color="#cc0033">rotate</font>*(p0 : REAL;
+                                         p1 : REAL;
+                                         p2 : REAL)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProxyGraphics2D) <font color="#cc0033">rotate</font>*(p0 : REAL)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProxyGraphics2D) <font color="#cc0033">scale</font>*(p0 : REAL;
+                                        p1 : REAL)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProxyGraphics2D) <font color="#cc0033">setBackground</font>*(p0 : <a href="java_awt.html#type-Color">java_awt.Color</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProxyGraphics2D) <font color="#cc0033">setClip</font>*(p0 : <a href="java_awt.html#type-Shape">java_awt.Shape</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProxyGraphics2D) <font color="#cc0033">setClip</font>*(p0 : INTEGER;
+                                          p1 : INTEGER;
+                                          p2 : INTEGER;
+                                          p3 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProxyGraphics2D) <font color="#cc0033">setColor</font>*(p0 : <a href="java_awt.html#type-Color">java_awt.Color</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProxyGraphics2D) <font color="#cc0033">setComposite</font>*(p0 : <a href="java_awt.html#type-Composite">java_awt.Composite</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProxyGraphics2D) <font color="#cc0033">setDelegate</font>*(p0 : <a href="java_awt.html#type-Graphics2D">java_awt.Graphics2D</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProxyGraphics2D) <font color="#cc0033">setFont</font>*(p0 : <a href="java_awt.html#type-Font">java_awt.Font</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProxyGraphics2D) <font color="#cc0033">setPaint</font>*(p0 : <a href="java_awt.html#type-Paint">java_awt.Paint</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProxyGraphics2D) <font color="#cc0033">setPaintMode</font>*()<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProxyGraphics2D) <font color="#cc0033">setRenderingHint</font>*(p0 : <a href="java_awt.html#type-RenderingHints$Key">java_awt.RenderingHints$Key</a>;
+                                                   p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProxyGraphics2D) <font color="#cc0033">setRenderingHints</font>*(p0 : <a href="java_util.html#type-Map">java_util.Map</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProxyGraphics2D) <font color="#cc0033">setStroke</font>*(p0 : <a href="java_awt.html#type-Stroke">java_awt.Stroke</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProxyGraphics2D) <font color="#cc0033">setTransform</font>*(p0 : <a href="java_awt_geom.html#type-AffineTransform">java_awt_geom.AffineTransform</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProxyGraphics2D) <font color="#cc0033">setXORMode</font>*(p0 : <a href="java_awt.html#type-Color">java_awt.Color</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProxyGraphics2D) <font color="#cc0033">shear</font>*(p0 : REAL;
+                                        p1 : REAL)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProxyGraphics2D) <font color="#cc0033">transform</font>*(p0 : <a href="java_awt_geom.html#type-AffineTransform">java_awt_geom.AffineTransform</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProxyGraphics2D) <font color="#cc0033">translate</font>*(p0 : REAL;
+                                            p1 : REAL)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProxyGraphics2D) <font color="#cc0033">translate</font>*(p0 : INTEGER;
+                                            p1 : INTEGER)<b>,EXTENSIBLE</b>;
+<a name="meths-ProxyPrintGraphics"></a>
+<b>PROCEDURE </b>(self:ProxyPrintGraphics) <font color="#cc0033">create</font>*(p0 : INTEGER;
+                                            p1 : INTEGER;
+                                            p2 : INTEGER;
+                                            p3 : INTEGER) : <a href="java_awt.html#type-Graphics">java_awt.Graphics</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProxyPrintGraphics) <font color="#cc0033">create</font>*() : <a href="java_awt.html#type-Graphics">java_awt.Graphics</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProxyPrintGraphics) <font color="#cc0033">dispose</font>*()<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProxyPrintGraphics) <font color="#cc0033">getGraphics</font>*() : <a href="java_awt.html#type-Graphics">java_awt.Graphics</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProxyPrintGraphics) <font color="#cc0033">getPrintJob</font>*() : <a href="java_awt.html#type-PrintJob">java_awt.PrintJob</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-PSPrinterJob"></a>
+<b>PROCEDURE </b>(self:PSPrinterJob) <font color="#cc0033">abortDoc</font>!()<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PSPrinterJob) <font color="#cc0033">beginPath</font>!()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PSPrinterJob) <font color="#cc0033">bezierTo</font>!(p0 : SHORTREAL;
+                                        p1 : SHORTREAL;
+                                        p2 : SHORTREAL;
+                                        p3 : SHORTREAL;
+                                        p4 : SHORTREAL;
+                                        p5 : SHORTREAL)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PSPrinterJob) <font color="#cc0033">closeSubpath</font>!()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PSPrinterJob) <font color="#cc0033">createPathGraphics</font>!(p0 : <a href="#type-PeekGraphics">PeekGraphics</a>;
+                                                  p1 : <a href="java_awt_print.html#type-PrinterJob">java_awt_print.PrinterJob</a>;
+                                                  p2 : <a href="java_awt_print.html#type-Printable">java_awt_print.Printable</a>;
+                                                  p3 : <a href="java_awt_print.html#type-PageFormat">java_awt_print.PageFormat</a>;
+                                                  p4 : INTEGER) : <a href="java_awt.html#type-Graphics2D">java_awt.Graphics2D</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PSPrinterJob) <font color="#cc0033">deviceFill</font>!(p0 : <a href="java_awt_geom.html#type-PathIterator">java_awt_geom.PathIterator</a>;
+                                          p1 : <a href="java_awt.html#type-Color">java_awt.Color</a>;
+                                          p2 : <a href="java_awt_geom.html#type-AffineTransform">java_awt_geom.AffineTransform</a>;
+                                          p3 : <a href="java_awt.html#type-Shape">java_awt.Shape</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PSPrinterJob) <font color="#cc0033">drawImageBGR</font>!(IN  p0  : <b>ARRAY </b><b>OF </b>BYTE;
+                                                p1  : SHORTREAL;
+                                                p2  : SHORTREAL;
+                                                p3  : SHORTREAL;
+                                                p4  : SHORTREAL;
+                                                p5  : SHORTREAL;
+                                                p6  : SHORTREAL;
+                                                p7  : SHORTREAL;
+                                                p8  : SHORTREAL;
+                                                p9  : INTEGER;
+                                                p10 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PSPrinterJob) <font color="#cc0033">endDoc</font>!()<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PSPrinterJob) <font color="#cc0033">endPage</font>!(p0 : <a href="java_awt_print.html#type-PageFormat">java_awt_print.PageFormat</a>;
+                                       p1 : <a href="java_awt_print.html#type-Printable">java_awt_print.Printable</a>;
+                                       p2 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PSPrinterJob) <font color="#cc0033">fillPath</font>!()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PSPrinterJob) <font color="#cc0033">getCollatedCopies</font>!() : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PSPrinterJob) <font color="#cc0033">getNoncollatedCopies</font>!() : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PSPrinterJob) <font color="#cc0033">getPenX</font>!() : SHORTREAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PSPrinterJob) <font color="#cc0033">getPenY</font>!() : SHORTREAL<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PSPrinterJob) <font color="#cc0033">getPhysicalPageHeight</font>!(p0 : <a href="java_awt_print.html#type-Paper">java_awt_print.Paper</a>) : REAL<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PSPrinterJob) <font color="#cc0033">getPhysicalPageWidth</font>!(p0 : <a href="java_awt_print.html#type-Paper">java_awt_print.Paper</a>) : REAL<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PSPrinterJob) <font color="#cc0033">getPhysicalPrintableHeight</font>!(p0 : <a href="java_awt_print.html#type-Paper">java_awt_print.Paper</a>) : REAL<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PSPrinterJob) <font color="#cc0033">getPhysicalPrintableWidth</font>!(p0 : <a href="java_awt_print.html#type-Paper">java_awt_print.Paper</a>) : REAL<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PSPrinterJob) <font color="#cc0033">getPhysicalPrintableX</font>!(p0 : <a href="java_awt_print.html#type-Paper">java_awt_print.Paper</a>) : REAL<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PSPrinterJob) <font color="#cc0033">getPhysicalPrintableY</font>!(p0 : <a href="java_awt_print.html#type-Paper">java_awt_print.Paper</a>) : REAL<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PSPrinterJob) <font color="#cc0033">getXRes</font>!() : REAL<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PSPrinterJob) <font color="#cc0033">getYRes</font>!() : REAL<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PSPrinterJob) <font color="#cc0033">lineTo</font>!(p0 : SHORTREAL;
+                                      p1 : SHORTREAL)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PSPrinterJob) <font color="#cc0033">moveTo</font>!(p0 : SHORTREAL;
+                                      p1 : SHORTREAL)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PSPrinterJob) <font color="#cc0033">platformFontCount</font>!(p0 : <a href="java_awt.html#type-Font">java_awt.Font</a>;
+                                                 p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PSPrinterJob) <font color="#cc0033">printBand</font>!(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE;
+                                             p1 : INTEGER;
+                                             p2 : INTEGER;
+                                             p3 : INTEGER;
+                                             p4 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PSPrinterJob) <font color="#cc0033">printDialog</font>*() : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PSPrinterJob) <font color="#cc0033">selectClipPath</font>!()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PSPrinterJob) <font color="#cc0033">setClip</font>!(p0 : <a href="java_awt.html#type-Shape">java_awt.Shape</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PSPrinterJob) <font color="#cc0033">setColor</font>!(p0 : <a href="java_awt.html#type-Color">java_awt.Color</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PSPrinterJob) <font color="#cc0033">setFillMode</font>!(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PSPrinterJob) <font color="#cc0033">setFont</font>!(p0 : <a href="java_awt.html#type-Font">java_awt.Font</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PSPrinterJob) <font color="#cc0033">setTransform</font>!(p0 : <a href="java_awt_geom.html#type-AffineTransform">java_awt_geom.AffineTransform</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PSPrinterJob) <font color="#cc0033">startDoc</font>!()<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PSPrinterJob) <font color="#cc0033">startPage</font>!(p0 : <a href="java_awt_print.html#type-PageFormat">java_awt_print.PageFormat</a>;
+                                         p1 : <a href="java_awt_print.html#type-Printable">java_awt_print.Printable</a>;
+                                         p2 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PSPrinterJob) <font color="#cc0033">textOut</font>!(p0 : <a href="java_awt.html#type-Graphics">java_awt.Graphics</a>;
+                                       p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                       p2 : SHORTREAL;
+                                       p3 : SHORTREAL;
+                                       p4 : <a href="java_awt.html#type-Font">java_awt.Font</a>;
+                                       p5 : <a href="java_awt_font.html#type-FontRenderContext">java_awt_font.FontRenderContext</a>;
+                                       p6 : SHORTREAL) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-PSPrinterJob$EPSPrinter"></a>
+<b>PROCEDURE </b>(self:PSPrinterJob$EPSPrinter) <font color="#cc0033">getNumberOfPages</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PSPrinterJob$EPSPrinter) <font color="#cc0033">getPageFormat</font>*(p0 : INTEGER) : <a href="java_awt_print.html#type-PageFormat">java_awt_print.PageFormat</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PSPrinterJob$EPSPrinter) <font color="#cc0033">getPrintable</font>*(p0 : INTEGER) : <a href="java_awt_print.html#type-Printable">java_awt_print.Printable</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PSPrinterJob$EPSPrinter) <font color="#cc0033">print</font>*()<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-PSPrinterJob$PluginPrinter"></a>
+<b>PROCEDURE </b>(self:PSPrinterJob$PluginPrinter) <font color="#cc0033">print</font>*(p0 : <a href="java_awt.html#type-Graphics">java_awt.Graphics</a>;
+                                                   p1 : <a href="java_awt_print.html#type-PageFormat">java_awt_print.PageFormat</a>;
+                                                   p2 : INTEGER) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PSPrinterJob$PluginPrinter) <font color="#cc0033">printAll</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PSPrinterJob$PluginPrinter) <font color="#cc0033">printPluginApplet</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PSPrinterJob$PluginPrinter) <font color="#cc0033">printPluginPSHeader</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PSPrinterJob$PluginPrinter) <font color="#cc0033">printPluginPSTrailer</font>*()<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-PSStreamPrinterFactory"></a>
+<b>PROCEDURE </b>(self:PSStreamPrinterFactory) <font color="#cc0033">getOutputFormat</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PSStreamPrinterFactory) <font color="#cc0033">getPrintService</font>*(p0 : <a href="java_io.html#type-OutputStream">java_io.OutputStream</a>) : <a href="javax_print.html#type-StreamPrintService">javax_print.StreamPrintService</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PSStreamPrinterFactory) <font color="#cc0033">getSupportedDocFlavors</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="javax_print.html#type-DocFlavor">javax_print.DocFlavor</a><b>,EXTENSIBLE</b>;
+<a name="meths-PSStreamPrintJob"></a>
+<b>PROCEDURE </b>(self:PSStreamPrintJob) <font color="#cc0033">addPrintJobAttributeListener</font>*(p0 : <a href="javax_print_event.html#type-PrintJobAttributeListener">javax_print_event.PrintJobAttributeListener</a>;
+                                                                p1 : <a href="javax_print_attribute.html#type-PrintJobAttributeSet">javax_print_attribute.PrintJobAttributeSet</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PSStreamPrintJob) <font color="#cc0033">addPrintJobListener</font>*(p0 : <a href="javax_print_event.html#type-PrintJobListener">javax_print_event.PrintJobListener</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PSStreamPrintJob) <font color="#cc0033">cancel</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PSStreamPrintJob) <font color="#cc0033">getAttributes</font>*() : <a href="javax_print_attribute.html#type-PrintJobAttributeSet">javax_print_attribute.PrintJobAttributeSet</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PSStreamPrintJob) <font color="#cc0033">getPrintService</font>*() : <a href="javax_print.html#type-PrintService">javax_print.PrintService</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PSStreamPrintJob) <font color="#cc0033">pageableJob</font>*(p0 : <a href="java_awt_print.html#type-Pageable">java_awt_print.Pageable</a>;
+                                               p1 : <a href="javax_print_attribute.html#type-PrintRequestAttributeSet">javax_print_attribute.PrintRequestAttributeSet</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PSStreamPrintJob) <font color="#cc0033">print</font>*(p0 : <a href="javax_print.html#type-Doc">javax_print.Doc</a>;
+                                         p1 : <a href="javax_print_attribute.html#type-PrintRequestAttributeSet">javax_print_attribute.PrintRequestAttributeSet</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PSStreamPrintJob) <font color="#cc0033">printableJob</font>*(p0 : <a href="java_awt_print.html#type-Printable">java_awt_print.Printable</a>;
+                                                p1 : <a href="javax_print_attribute.html#type-PrintRequestAttributeSet">javax_print_attribute.PrintRequestAttributeSet</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PSStreamPrintJob) <font color="#cc0033">removePrintJobAttributeListener</font>*(p0 : <a href="javax_print_event.html#type-PrintJobAttributeListener">javax_print_event.PrintJobAttributeListener</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PSStreamPrintJob) <font color="#cc0033">removePrintJobListener</font>*(p0 : <a href="javax_print_event.html#type-PrintJobListener">javax_print_event.PrintJobListener</a>)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-PSStreamPrintService"></a>
+<b>PROCEDURE </b>(self:PSStreamPrintService) <font color="#cc0033">addPrintServiceAttributeListener</font>*(p0 : <a href="javax_print_event.html#type-PrintServiceAttributeListener">javax_print_event.PrintServiceAttributeListener</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PSStreamPrintService) <font color="#cc0033">createPrintJob</font>*() : <a href="javax_print.html#type-DocPrintJob">javax_print.DocPrintJob</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PSStreamPrintService) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PSStreamPrintService) <font color="#cc0033">getAttribute</font>*(p0 : <a href="java_lang.html#type-Class">java_lang.Class</a>) : <a href="javax_print_attribute.html#type-PrintServiceAttribute">javax_print_attribute.PrintServiceAttribute</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PSStreamPrintService) <font color="#cc0033">getAttributes</font>*() : <a href="javax_print_attribute.html#type-PrintServiceAttributeSet">javax_print_attribute.PrintServiceAttributeSet</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PSStreamPrintService) <font color="#cc0033">getDefaultAttributeValue</font>*(p0 : <a href="java_lang.html#type-Class">java_lang.Class</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PSStreamPrintService) <font color="#cc0033">getName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PSStreamPrintService) <font color="#cc0033">getOutputFormat</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PSStreamPrintService) <font color="#cc0033">getServiceUIFactory</font>*() : <a href="javax_print.html#type-ServiceUIFactory">javax_print.ServiceUIFactory</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PSStreamPrintService) <font color="#cc0033">getSupportedAttributeCategories</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Class">java_lang.Class</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PSStreamPrintService) <font color="#cc0033">getSupportedAttributeValues</font>*(p0 : <a href="java_lang.html#type-Class">java_lang.Class</a>;
+                                                                   p1 : <a href="javax_print.html#type-DocFlavor">javax_print.DocFlavor</a>;
+                                                                   p2 : <a href="javax_print_attribute.html#type-AttributeSet">javax_print_attribute.AttributeSet</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PSStreamPrintService) <font color="#cc0033">getSupportedDocFlavors</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="javax_print.html#type-DocFlavor">javax_print.DocFlavor</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PSStreamPrintService) <font color="#cc0033">getUnsupportedAttributes</font>*(p0 : <a href="javax_print.html#type-DocFlavor">javax_print.DocFlavor</a>;
+                                                                p1 : <a href="javax_print_attribute.html#type-AttributeSet">javax_print_attribute.AttributeSet</a>) : <a href="javax_print_attribute.html#type-AttributeSet">javax_print_attribute.AttributeSet</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PSStreamPrintService) <font color="#cc0033">hashCode</font>*() : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PSStreamPrintService) <font color="#cc0033">isAttributeCategorySupported</font>*(p0 : <a href="java_lang.html#type-Class">java_lang.Class</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PSStreamPrintService) <font color="#cc0033">isAttributeValueSupported</font>*(p0 : <a href="javax_print_attribute.html#type-Attribute">javax_print_attribute.Attribute</a>;
+                                                                 p1 : <a href="javax_print.html#type-DocFlavor">javax_print.DocFlavor</a>;
+                                                                 p2 : <a href="javax_print_attribute.html#type-AttributeSet">javax_print_attribute.AttributeSet</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PSStreamPrintService) <font color="#cc0033">isDocFlavorSupported</font>*(p0 : <a href="javax_print.html#type-DocFlavor">javax_print.DocFlavor</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PSStreamPrintService) <font color="#cc0033">removePrintServiceAttributeListener</font>*(p0 : <a href="javax_print_event.html#type-PrintServiceAttributeListener">javax_print_event.PrintServiceAttributeListener</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PSStreamPrintService) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PSStreamPrintService) <font color="#cc0033">usesClass</font>*(p0 : <a href="java_lang.html#type-Class">java_lang.Class</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-RasterPrinterJob"></a>
+<b>PROCEDURE </b>(self:RasterPrinterJob) <font color="#cc0033">abortDoc</font>!()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RasterPrinterJob) <font color="#cc0033">cancel</font>*()<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RasterPrinterJob) <font color="#cc0033">checkAllowedToPrintToFile</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RasterPrinterJob) <font color="#cc0033">createPathGraphics</font>!(p0 : <a href="#type-PeekGraphics">PeekGraphics</a>;
+                                                      p1 : <a href="java_awt_print.html#type-PrinterJob">java_awt_print.PrinterJob</a>;
+                                                      p2 : <a href="java_awt_print.html#type-Printable">java_awt_print.Printable</a>;
+                                                      p3 : <a href="java_awt_print.html#type-PageFormat">java_awt_print.PageFormat</a>;
+                                                      p4 : INTEGER) : <a href="java_awt.html#type-Graphics2D">java_awt.Graphics2D</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RasterPrinterJob) <font color="#cc0033">createPeekGraphics</font>!(p0 : <a href="java_awt.html#type-Graphics2D">java_awt.Graphics2D</a>;
+                                                      p1 : <a href="java_awt_print.html#type-PrinterJob">java_awt_print.PrinterJob</a>) : <a href="#type-PeekGraphics">PeekGraphics</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RasterPrinterJob) <font color="#cc0033">debug_println</font>!(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RasterPrinterJob) <font color="#cc0033">defaultPage</font>*(p0 : <a href="java_awt_print.html#type-PageFormat">java_awt_print.PageFormat</a>) : <a href="java_awt_print.html#type-PageFormat">java_awt_print.PageFormat</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RasterPrinterJob) <font color="#cc0033">endDoc</font>!()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RasterPrinterJob) <font color="#cc0033">endPage</font>!(p0 : <a href="java_awt_print.html#type-PageFormat">java_awt_print.PageFormat</a>;
+                                           p1 : <a href="java_awt_print.html#type-Printable">java_awt_print.Printable</a>;
+                                           p2 : INTEGER)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RasterPrinterJob) <font color="#cc0033">getCollatedCopies</font>!() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RasterPrinterJob) <font color="#cc0033">getCopies</font>*() : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RasterPrinterJob) <font color="#cc0033">getCopiesInt</font>!() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RasterPrinterJob) <font color="#cc0033">getFirstPage</font>!() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RasterPrinterJob) <font color="#cc0033">getJobName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RasterPrinterJob) <font color="#cc0033">getJobNameInt</font>!() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RasterPrinterJob) <font color="#cc0033">getLastPage</font>!() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RasterPrinterJob) <font color="#cc0033">getNoncollatedCopies</font>!() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RasterPrinterJob) <font color="#cc0033">getPageable</font>!() : <a href="java_awt_print.html#type-Pageable">java_awt_print.Pageable</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RasterPrinterJob) <font color="#cc0033">getPhysicalPageHeight</font>!(p0 : <a href="java_awt_print.html#type-Paper">java_awt_print.Paper</a>) : REAL<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RasterPrinterJob) <font color="#cc0033">getPhysicalPageWidth</font>!(p0 : <a href="java_awt_print.html#type-Paper">java_awt_print.Paper</a>) : REAL<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RasterPrinterJob) <font color="#cc0033">getPhysicalPrintableHeight</font>!(p0 : <a href="java_awt_print.html#type-Paper">java_awt_print.Paper</a>) : REAL<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RasterPrinterJob) <font color="#cc0033">getPhysicalPrintableWidth</font>!(p0 : <a href="java_awt_print.html#type-Paper">java_awt_print.Paper</a>) : REAL<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RasterPrinterJob) <font color="#cc0033">getPhysicalPrintableX</font>!(p0 : <a href="java_awt_print.html#type-Paper">java_awt_print.Paper</a>) : REAL<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RasterPrinterJob) <font color="#cc0033">getPhysicalPrintableY</font>!(p0 : <a href="java_awt_print.html#type-Paper">java_awt_print.Paper</a>) : REAL<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RasterPrinterJob) <font color="#cc0033">getPrintService</font>*() : <a href="javax_print.html#type-PrintService">javax_print.PrintService</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RasterPrinterJob) <font color="#cc0033">getUserName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RasterPrinterJob) <font color="#cc0033">getUserNameInt</font>!() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RasterPrinterJob) <font color="#cc0033">getXRes</font>!() : REAL<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RasterPrinterJob) <font color="#cc0033">getYRes</font>!() : REAL<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RasterPrinterJob) <font color="#cc0033">initPrinter</font>!()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RasterPrinterJob) <font color="#cc0033">isCancelled</font>*() : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RasterPrinterJob) <font color="#cc0033">isCollated</font>!() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RasterPrinterJob) <font color="#cc0033">isSupportedValue</font>!(p0 : <a href="javax_print_attribute.html#type-Attribute">javax_print_attribute.Attribute</a>;
+                                                    p1 : <a href="javax_print_attribute.html#type-PrintRequestAttributeSet">javax_print_attribute.PrintRequestAttributeSet</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RasterPrinterJob) <font color="#cc0033">pageDialog</font>*(p0 : <a href="javax_print_attribute.html#type-PrintRequestAttributeSet">javax_print_attribute.PrintRequestAttributeSet</a>) : <a href="java_awt_print.html#type-PageFormat">java_awt_print.PageFormat</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RasterPrinterJob) <font color="#cc0033">pageDialog</font>*(p0 : <a href="java_awt_print.html#type-PageFormat">java_awt_print.PageFormat</a>) : <a href="java_awt_print.html#type-PageFormat">java_awt_print.PageFormat</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RasterPrinterJob) <font color="#cc0033">print</font>*(p0 : <a href="javax_print_attribute.html#type-PrintRequestAttributeSet">javax_print_attribute.PrintRequestAttributeSet</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RasterPrinterJob) <font color="#cc0033">print</font>*()<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RasterPrinterJob) <font color="#cc0033">printBand</font>!(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE;
+                                                 p1 : INTEGER;
+                                                 p2 : INTEGER;
+                                                 p3 : INTEGER;
+                                                 p4 : INTEGER)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RasterPrinterJob) <font color="#cc0033">printDialog</font>*() : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RasterPrinterJob) <font color="#cc0033">printDialog</font>*(p0 : <a href="javax_print_attribute.html#type-PrintRequestAttributeSet">javax_print_attribute.PrintRequestAttributeSet</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RasterPrinterJob) <font color="#cc0033">printPage</font>!(p0 : <a href="java_awt_print.html#type-Pageable">java_awt_print.Pageable</a>;
+                                             p1 : INTEGER) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RasterPrinterJob) <font color="#cc0033">removeControlChars</font>!(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RasterPrinterJob) <font color="#cc0033">saveState</font>*(p0 : <a href="java_awt_geom.html#type-AffineTransform">java_awt_geom.AffineTransform</a>;
+                                             p1 : <a href="java_awt.html#type-Shape">java_awt.Shape</a>;
+                                             p2 : <a href="java_awt_geom.html#type-Rectangle2D">java_awt_geom.Rectangle2D</a>;
+                                             p3 : REAL;
+                                             p4 : REAL)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RasterPrinterJob) <font color="#cc0033">setAttributes</font>!(p0 : <a href="javax_print_attribute.html#type-PrintRequestAttributeSet">javax_print_attribute.PrintRequestAttributeSet</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RasterPrinterJob) <font color="#cc0033">setCollated</font>!(p0 : BOOLEAN)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RasterPrinterJob) <font color="#cc0033">setCopies</font>*(p0 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RasterPrinterJob) <font color="#cc0033">setJobName</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RasterPrinterJob) <font color="#cc0033">setPageable</font>*(p0 : <a href="java_awt_print.html#type-Pageable">java_awt_print.Pageable</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RasterPrinterJob) <font color="#cc0033">setPageRange</font>!(p0 : INTEGER;
+                                                p1 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RasterPrinterJob) <font color="#cc0033">setPrintable</font>*(p0 : <a href="java_awt_print.html#type-Printable">java_awt_print.Printable</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RasterPrinterJob) <font color="#cc0033">setPrintable</font>*(p0 : <a href="java_awt_print.html#type-Printable">java_awt_print.Printable</a>;
+                                                p1 : <a href="java_awt_print.html#type-PageFormat">java_awt_print.PageFormat</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RasterPrinterJob) <font color="#cc0033">setPrintService</font>*(p0 : <a href="javax_print.html#type-PrintService">javax_print.PrintService</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RasterPrinterJob) <font color="#cc0033">startDoc</font>!()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RasterPrinterJob) <font color="#cc0033">startPage</font>!(p0 : <a href="java_awt_print.html#type-PageFormat">java_awt_print.PageFormat</a>;
+                                             p1 : <a href="java_awt_print.html#type-Printable">java_awt_print.Printable</a>;
+                                             p2 : INTEGER)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RasterPrinterJob) <font color="#cc0033">updatePageAttributes</font>!(p0 : <a href="javax_print.html#type-PrintService">javax_print.PrintService</a>;
+                                                        p1 : <a href="java_awt_print.html#type-PageFormat">java_awt_print.PageFormat</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RasterPrinterJob) <font color="#cc0033">validatePage</font>*(p0 : <a href="java_awt_print.html#type-PageFormat">java_awt_print.PageFormat</a>) : <a href="java_awt_print.html#type-PageFormat">java_awt_print.PageFormat</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:RasterPrinterJob) <font color="#cc0033">validatePaper</font>!(p0 : <a href="java_awt_print.html#type-Paper">java_awt_print.Paper</a>;
+                                                 p1 : <a href="java_awt_print.html#type-Paper">java_awt_print.Paper</a>)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-ServiceDialog"></a>
+<b>PROCEDURE </b>(self:ServiceDialog) <font color="#cc0033">actionPerformed</font>*(p0 : <a href="java_awt_event.html#type-ActionEvent">java_awt_event.ActionEvent</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ServiceDialog) <font color="#cc0033">dispose</font>*(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ServiceDialog) <font color="#cc0033">getAttributes</font>*() : <a href="javax_print_attribute.html#type-PrintRequestAttributeSet">javax_print_attribute.PrintRequestAttributeSet</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ServiceDialog) <font color="#cc0033">getPrintService</font>*() : <a href="javax_print.html#type-PrintService">javax_print.PrintService</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ServiceDialog) <font color="#cc0033">getStatus</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-SunAlternateMedia"></a>
+<b>PROCEDURE </b>(self:SunAlternateMedia) <font color="#cc0033">getCategory</font>*() : <a href="java_lang.html#type-Class">java_lang.Class</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:SunAlternateMedia) <font color="#cc0033">getMedia</font>*() : <a href="javax_print_attribute_standard.html#type-Media">javax_print_attribute_standard.Media</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunAlternateMedia) <font color="#cc0033">getName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:SunAlternateMedia) <font color="#cc0033">hashCode</font>*() : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SunAlternateMedia) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,EXTENSIBLE</b>;
+<a name="meths-SunMinMaxPage"></a>
+<b>PROCEDURE </b>(self:SunMinMaxPage) <font color="#cc0033">getCategory</font>*() : <a href="java_lang.html#type-Class">java_lang.Class</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:SunMinMaxPage) <font color="#cc0033">getMax</font>*() : INTEGER<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:SunMinMaxPage) <font color="#cc0033">getMin</font>*() : INTEGER<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:SunMinMaxPage) <font color="#cc0033">getName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW</b>;
+<a name="meths-SunPageSelection"></a>
+<b>PROCEDURE </b>(self:SunPageSelection) <font color="#cc0033">getCategory</font>*() : <a href="java_lang.html#type-Class">java_lang.Class</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:SunPageSelection) <font color="#cc0033">getName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:SunPageSelection) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,EXTENSIBLE</b>;
+<a name="meths-SunPrinterJobService"></a>
+<b>PROCEDURE </b>(self:SunPrinterJobService) <font color="#cc0033">usesClass</font>*(p0 : <a href="java_lang.html#type-Class">java_lang.Class</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+<a name="meths-Win32MediaTray"></a>
+<b>PROCEDURE </b>(self:Win32MediaTray) <font color="#cc0033">getEnumValueTable</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="javax_print_attribute.html#type-EnumSyntax">javax_print_attribute.EnumSyntax</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Win32MediaTray) <font color="#cc0033">getStringTable</font>!() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a><b>,EXTENSIBLE</b>;
+<a name="meths-Win32PrintJob"></a>
+<b>PROCEDURE </b>(self:Win32PrintJob) <font color="#cc0033">addPrintJobAttributeListener</font>*(p0 : <a href="javax_print_event.html#type-PrintJobAttributeListener">javax_print_event.PrintJobAttributeListener</a>;
+                                                             p1 : <a href="javax_print_attribute.html#type-PrintJobAttributeSet">javax_print_attribute.PrintJobAttributeSet</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Win32PrintJob) <font color="#cc0033">addPrintJobListener</font>*(p0 : <a href="javax_print_event.html#type-PrintJobListener">javax_print_event.PrintJobListener</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Win32PrintJob) <font color="#cc0033">cancel</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Win32PrintJob) <font color="#cc0033">getAttributes</font>*() : <a href="javax_print_attribute.html#type-PrintJobAttributeSet">javax_print_attribute.PrintJobAttributeSet</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Win32PrintJob) <font color="#cc0033">getPrintService</font>*() : <a href="javax_print.html#type-PrintService">javax_print.PrintService</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Win32PrintJob) <font color="#cc0033">pageableJob</font>*(p0 : <a href="java_awt_print.html#type-Pageable">java_awt_print.Pageable</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Win32PrintJob) <font color="#cc0033">print</font>*(p0 : <a href="javax_print.html#type-Doc">javax_print.Doc</a>;
+                                      p1 : <a href="javax_print_attribute.html#type-PrintRequestAttributeSet">javax_print_attribute.PrintRequestAttributeSet</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Win32PrintJob) <font color="#cc0033">printableJob</font>*(p0 : <a href="java_awt_print.html#type-Printable">java_awt_print.Printable</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Win32PrintJob) <font color="#cc0033">removePrintJobAttributeListener</font>*(p0 : <a href="javax_print_event.html#type-PrintJobAttributeListener">javax_print_event.PrintJobAttributeListener</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Win32PrintJob) <font color="#cc0033">removePrintJobListener</font>*(p0 : <a href="javax_print_event.html#type-PrintJobListener">javax_print_event.PrintJobListener</a>)<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-Win32PrintService"></a>
+<b>PROCEDURE </b>(self:Win32PrintService) <font color="#cc0033">addPrintServiceAttributeListener</font>*(p0 : <a href="javax_print_event.html#type-PrintServiceAttributeListener">javax_print_event.PrintServiceAttributeListener</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Win32PrintService) <font color="#cc0033">createPrintJob</font>*() : <a href="javax_print.html#type-DocPrintJob">javax_print.DocPrintJob</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Win32PrintService) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Win32PrintService) <font color="#cc0033">findMatchingMediaSizeNameMM</font>*(p0 : SHORTREAL;
+                                                                p1 : SHORTREAL) : <a href="javax_print_attribute_standard.html#type-MediaSizeName">javax_print_attribute_standard.MediaSizeName</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Win32PrintService) <font color="#cc0033">findWin32Media</font>*(p0 : INTEGER) : <a href="javax_print_attribute_standard.html#type-MediaSizeName">javax_print_attribute_standard.MediaSizeName</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Win32PrintService) <font color="#cc0033">getAttribute</font>*(p0 : <a href="java_lang.html#type-Class">java_lang.Class</a>) : <a href="javax_print_attribute.html#type-PrintServiceAttribute">javax_print_attribute.PrintServiceAttribute</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Win32PrintService) <font color="#cc0033">getAttributes</font>*() : <a href="javax_print_attribute.html#type-PrintServiceAttributeSet">javax_print_attribute.PrintServiceAttributeSet</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Win32PrintService) <font color="#cc0033">getDefaultAttributeValue</font>*(p0 : <a href="java_lang.html#type-Class">java_lang.Class</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Win32PrintService) <font color="#cc0033">getName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Win32PrintService) <font color="#cc0033">getServiceUIFactory</font>*() : <a href="javax_print.html#type-ServiceUIFactory">javax_print.ServiceUIFactory</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Win32PrintService) <font color="#cc0033">getSupportedAttributeCategories</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Class">java_lang.Class</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Win32PrintService) <font color="#cc0033">getSupportedAttributeValues</font>*(p0 : <a href="java_lang.html#type-Class">java_lang.Class</a>;
+                                                                p1 : <a href="javax_print.html#type-DocFlavor">javax_print.DocFlavor</a>;
+                                                                p2 : <a href="javax_print_attribute.html#type-AttributeSet">javax_print_attribute.AttributeSet</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Win32PrintService) <font color="#cc0033">getSupportedDocFlavors</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="javax_print.html#type-DocFlavor">javax_print.DocFlavor</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Win32PrintService) <font color="#cc0033">getUnsupportedAttributes</font>*(p0 : <a href="javax_print.html#type-DocFlavor">javax_print.DocFlavor</a>;
+                                                             p1 : <a href="javax_print_attribute.html#type-AttributeSet">javax_print_attribute.AttributeSet</a>) : <a href="javax_print_attribute.html#type-AttributeSet">javax_print_attribute.AttributeSet</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Win32PrintService) <font color="#cc0033">getUpdatedAttributes</font>*() : <a href="javax_print_attribute.html#type-PrintServiceAttributeSet">javax_print_attribute.PrintServiceAttributeSet</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Win32PrintService) <font color="#cc0033">hashCode</font>*() : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Win32PrintService) <font color="#cc0033">invalidateService</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Win32PrintService) <font color="#cc0033">isAttributeCategorySupported</font>*(p0 : <a href="java_lang.html#type-Class">java_lang.Class</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Win32PrintService) <font color="#cc0033">isAttributeValueSupported</font>*(p0 : <a href="javax_print_attribute.html#type-Attribute">javax_print_attribute.Attribute</a>;
+                                                              p1 : <a href="javax_print.html#type-DocFlavor">javax_print.DocFlavor</a>;
+                                                              p2 : <a href="javax_print_attribute.html#type-AttributeSet">javax_print_attribute.AttributeSet</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Win32PrintService) <font color="#cc0033">isDocFlavorSupported</font>*(p0 : <a href="javax_print.html#type-DocFlavor">javax_print.DocFlavor</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Win32PrintService) <font color="#cc0033">removePrintServiceAttributeListener</font>*(p0 : <a href="javax_print_event.html#type-PrintServiceAttributeListener">javax_print_event.PrintServiceAttributeListener</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Win32PrintService) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Win32PrintService) <font color="#cc0033">usesClass</font>*(p0 : <a href="java_lang.html#type-Class">java_lang.Class</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Win32PrintService) <font color="#cc0033">wakeNotifier</font>*()<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-Win32PrintServiceLookup"></a>
+<b>PROCEDURE </b>(self:Win32PrintServiceLookup) <font color="#cc0033">getDefaultPrintService</font>*() : <a href="javax_print.html#type-PrintService">javax_print.PrintService</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Win32PrintServiceLookup) <font color="#cc0033">getMultiDocPrintServices</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="javax_print.html#type-DocFlavor">javax_print.DocFlavor</a>;
+                                                                       p1 : <a href="javax_print_attribute.html#type-AttributeSet">javax_print_attribute.AttributeSet</a>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="javax_print.html#type-MultiDocPrintService">javax_print.MultiDocPrintService</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Win32PrintServiceLookup) <font color="#cc0033">getPrintServiceByName</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="javax_print.html#type-PrintService">javax_print.PrintService</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Win32PrintServiceLookup) <font color="#cc0033">getPrintServices</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="javax_print.html#type-PrintService">javax_print.PrintService</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Win32PrintServiceLookup) <font color="#cc0033">getPrintServices</font>*(p0 : <a href="javax_print.html#type-DocFlavor">javax_print.DocFlavor</a>;
+                                                           p1 : <a href="javax_print_attribute.html#type-AttributeSet">javax_print_attribute.AttributeSet</a>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="javax_print.html#type-PrintService">javax_print.PrintService</a><b>,EXTENSIBLE</b>;
+
+<b>END </b><font color="#cc0033">sun_print</font>.
+</font></pre></hr></body></html>

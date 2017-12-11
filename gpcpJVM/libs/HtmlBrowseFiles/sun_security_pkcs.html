@@ -1,0 +1,367 @@
+<html><head><title>sun_security_pkcs</title></head>
+<body bgcolor="white">
+<hr><pre>
+<b>FOREIGN MODULE </b><font color="#cc0033">sun_security_pkcs</font>;
+
+<b>IMPORT</b>
+    <a href="sun_security_util.html">sun_security_util</a> := "sun.security.util",
+    <a href="java_lang.html">java_lang</a> := "java.lang",
+    <a href="java_io.html">java_io</a> := "java.io",
+    <a href="sun_security_x509.html">sun_security_x509</a> := "sun.security.x509",
+    <a href="sun_misc.html">sun_misc</a> := "sun.misc",
+    <a href="java_security.html">java_security</a> := "java.security",
+    <a href="java_util.html">java_util</a> := "java.util",
+    <a href="java_math.html">java_math</a> := "java.math",
+    <a href="java_security_cert.html">java_security_cert</a> := "java.security.cert";
+
+<b>TYPE</b>
+
+  <a name="type-ContentInfo"></a><font color="#cc0033">ContentInfo</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-ContentInfo"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                 <b>STATIC</b>
+                   <a name="type-DATA_OID"></a><font color="#cc0033">DATA_OID</font>*                      : <a href="sun_security_util.html#type-ObjectIdentifier">sun_security_util.ObjectIdentifier</a>;
+                   <a name="type-DIGESTED_DATA_OID"></a><font color="#cc0033">DIGESTED_DATA_OID</font>*             : <a href="sun_security_util.html#type-ObjectIdentifier">sun_security_util.ObjectIdentifier</a>;
+                   <a name="type-ENCRYPTED_DATA_OID"></a><font color="#cc0033">ENCRYPTED_DATA_OID</font>*            : <a href="sun_security_util.html#type-ObjectIdentifier">sun_security_util.ObjectIdentifier</a>;
+                   <a name="type-ENVELOPED_DATA_OID"></a><font color="#cc0033">ENVELOPED_DATA_OID</font>*            : <a href="sun_security_util.html#type-ObjectIdentifier">sun_security_util.ObjectIdentifier</a>;
+                   <a name="type-NETSCAPE_CERT_SEQUENCE_OID"></a><font color="#cc0033">NETSCAPE_CERT_SEQUENCE_OID</font>*    : <a href="sun_security_util.html#type-ObjectIdentifier">sun_security_util.ObjectIdentifier</a>;
+                   <a name="type-OLD_DATA_OID"></a><font color="#cc0033">OLD_DATA_OID</font>*                  : <a href="sun_security_util.html#type-ObjectIdentifier">sun_security_util.ObjectIdentifier</a>;
+                   <a name="type-OLD_SIGNED_DATA_OID"></a><font color="#cc0033">OLD_SIGNED_DATA_OID</font>*           : <a href="sun_security_util.html#type-ObjectIdentifier">sun_security_util.ObjectIdentifier</a>;
+                   <a name="type-PKCS7_OID"></a><font color="#cc0033">PKCS7_OID</font>*                     : <a href="sun_security_util.html#type-ObjectIdentifier">sun_security_util.ObjectIdentifier</a>;
+                   <a name="type-SIGNED_AND_ENVELOPED_DATA_OID"></a><font color="#cc0033">SIGNED_AND_ENVELOPED_DATA_OID</font>* : <a href="sun_security_util.html#type-ObjectIdentifier">sun_security_util.ObjectIdentifier</a>;
+                   <a name="type-SIGNED_DATA_OID"></a><font color="#cc0033">SIGNED_DATA_OID</font>*               : <a href="sun_security_util.html#type-ObjectIdentifier">sun_security_util.ObjectIdentifier</a>;
+                   <a name="type-TIMESTAMP_TOKEN_INFO_OID"></a><font color="#cc0033">TIMESTAMP_TOKEN_INFO_OID</font>*      : <a href="sun_security_util.html#type-ObjectIdentifier">sun_security_util.ObjectIdentifier</a>;
+                   <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="sun_security_util.html#type-DerInputStream">sun_security_util.DerInputStream</a>) : <a href="#type-ContentInfo">ContentInfo</a><b>,CONSTRUCTOR</b>;
+                   <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="sun_security_util.html#type-DerInputStream">sun_security_util.DerInputStream</a>;
+                                   p1 : BOOLEAN) : <a href="#type-ContentInfo">ContentInfo</a><b>,CONSTRUCTOR</b>;
+                   <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="sun_security_util.html#type-ObjectIdentifier">sun_security_util.ObjectIdentifier</a>;
+                                   p1 : <a href="sun_security_util.html#type-DerValue">sun_security_util.DerValue</a>) : <a href="#type-ContentInfo">ContentInfo</a><b>,CONSTRUCTOR</b>;
+                   <b>PROCEDURE </b><font color="#cc0033">Init</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE) : <a href="#type-ContentInfo">ContentInfo</a><b>,CONSTRUCTOR</b>;
+                 <b>END</b>;
+
+  <a name="type-EncodingException"></a><font color="#cc0033">EncodingException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Exception">java_lang.Exception</a>)
+                       <b>STATIC</b>
+                         <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-EncodingException">EncodingException</a><b>,CONSTRUCTOR</b>;
+                         <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-EncodingException">EncodingException</a><b>,CONSTRUCTOR</b>;
+                       <b>END</b>;
+
+  <a name="type-EncryptedPrivateKeyInfo"></a><font color="#cc0033">EncryptedPrivateKeyInfo</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-EncryptedPrivateKeyInfo"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                             <b>STATIC</b>
+                               <b>PROCEDURE </b><font color="#cc0033">Init</font>*(    p0 : <a href="sun_security_x509.html#type-AlgorithmId">sun_security_x509.AlgorithmId</a>;
+                                               IN  p1 : <b>ARRAY </b><b>OF </b>BYTE) : <a href="#type-EncryptedPrivateKeyInfo">EncryptedPrivateKeyInfo</a><b>,CONSTRUCTOR</b>;
+                               <b>PROCEDURE </b><font color="#cc0033">Init</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE) : <a href="#type-EncryptedPrivateKeyInfo">EncryptedPrivateKeyInfo</a><b>,CONSTRUCTOR</b>;
+                             <b>END</b>;
+
+  <a name="type-ParsingException"></a><font color="#cc0033">ParsingException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_io.html#type-IOException">java_io.IOException</a>)
+                      <b>STATIC</b>
+                        <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-ParsingException">ParsingException</a><b>,CONSTRUCTOR</b>;
+                        <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-ParsingException">ParsingException</a><b>,CONSTRUCTOR</b>;
+                      <b>END</b>;
+
+  <a name="type-PKCS10"></a><font color="#cc0033">PKCS10</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-PKCS10"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+            <b>STATIC</b>
+              <b>PROCEDURE </b><font color="#cc0033">Init</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE) : <a href="#type-PKCS10">PKCS10</a><b>,CONSTRUCTOR</b>;
+              <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_security.html#type-PublicKey">java_security.PublicKey</a>;
+                              p1 : <a href="#type-PKCS10Attributes">PKCS10Attributes</a>) : <a href="#type-PKCS10">PKCS10</a><b>,CONSTRUCTOR</b>;
+              <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_security.html#type-PublicKey">java_security.PublicKey</a>) : <a href="#type-PKCS10">PKCS10</a><b>,CONSTRUCTOR</b>;
+            <b>END</b>;
+
+  <a name="type-PKCS10Attribute"></a><font color="#cc0033">PKCS10Attribute</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="sun_security_util.html#type-DerEncoder">sun_security_util.DerEncoder</a>)    <a href="#meths-PKCS10Attribute"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                       <font color="#cc0033">attributeId</font>!    : <a href="sun_security_util.html#type-ObjectIdentifier">sun_security_util.ObjectIdentifier</a>;
+                       <font color="#cc0033">attributeValue</font>! : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                     <b>STATIC</b>
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="#type-PKCS9Attribute">PKCS9Attribute</a>) : <a href="#type-PKCS10Attribute">PKCS10Attribute</a><b>,CONSTRUCTOR</b>;
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="sun_security_util.html#type-ObjectIdentifier">sun_security_util.ObjectIdentifier</a>;
+                                       p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="#type-PKCS10Attribute">PKCS10Attribute</a><b>,CONSTRUCTOR</b>;
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="sun_security_util.html#type-DerValue">sun_security_util.DerValue</a>) : <a href="#type-PKCS10Attribute">PKCS10Attribute</a><b>,CONSTRUCTOR</b>;
+                     <b>END</b>;
+
+  <a name="type-PKCS10Attributes"></a><font color="#cc0033">PKCS10Attributes</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="sun_security_util.html#type-DerEncoder">sun_security_util.DerEncoder</a>)    <a href="#meths-PKCS10Attributes"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                      <b>STATIC</b>
+                        <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="sun_security_util.html#type-DerInputStream">sun_security_util.DerInputStream</a>) : <a href="#type-PKCS10Attributes">PKCS10Attributes</a><b>,CONSTRUCTOR</b>;
+                        <b>PROCEDURE </b><font color="#cc0033">Init</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="#type-PKCS10Attribute">PKCS10Attribute</a>) : <a href="#type-PKCS10Attributes">PKCS10Attributes</a><b>,CONSTRUCTOR</b>;
+                        <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-PKCS10Attributes">PKCS10Attributes</a><b>,CONSTRUCTOR</b>;
+                      <b>END</b>;
+
+  <a name="type-PKCS7"></a><font color="#cc0033">PKCS7</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-PKCS7"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+           <b>STATIC</b>
+             <b>PROCEDURE </b><font color="#cc0033">Init</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE) : <a href="#type-PKCS7">PKCS7</a><b>,CONSTRUCTOR</b>;
+             <b>PROCEDURE </b><font color="#cc0033">Init</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="sun_security_x509.html#type-AlgorithmId">sun_security_x509.AlgorithmId</a>;
+                                 p1 : <a href="#type-ContentInfo">ContentInfo</a>;
+                             IN  p2 : <b>ARRAY </b><b>OF </b><a href="java_security_cert.html#type-X509Certificate">java_security_cert.X509Certificate</a>;
+                             IN  p3 : <b>ARRAY </b><b>OF </b><a href="#type-SignerInfo">SignerInfo</a>) : <a href="#type-PKCS7">PKCS7</a><b>,CONSTRUCTOR</b>;
+             <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_io.html#type-InputStream">java_io.InputStream</a>) : <a href="#type-PKCS7">PKCS7</a><b>,CONSTRUCTOR</b>;
+             <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="sun_security_util.html#type-DerInputStream">sun_security_util.DerInputStream</a>) : <a href="#type-PKCS7">PKCS7</a><b>,CONSTRUCTOR</b>;
+           <b>END</b>;
+
+  <a name="type-PKCS8Key"></a><font color="#cc0033">PKCS8Key</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_security.html#type-PrivateKey">java_security.PrivateKey</a>)    <a href="#meths-PKCS8Key"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                <font color="#cc0033">algid</font>!      : <a href="sun_security_x509.html#type-AlgorithmId">sun_security_x509.AlgorithmId</a>;
+                <font color="#cc0033">key</font>!        : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>BYTE;
+                <font color="#cc0033">encodedKey</font>! : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>BYTE;
+              <b>STATIC</b>
+                <a name="type-version"></a><font color="#cc0033">version</font>*  : <a href="java_math.html#type-BigInteger">java_math.BigInteger</a>;
+                <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-PKCS8Key">PKCS8Key</a><b>,CONSTRUCTOR</b>;
+                <b>PROCEDURE </b><font color="#cc0033">parse</font>*(p0 : <a href="sun_security_util.html#type-DerValue">sun_security_util.DerValue</a>) : <a href="#type-PKCS8Key">PKCS8Key</a>;
+                <b>PROCEDURE </b><font color="#cc0033">parseKey</font>*(p0 : <a href="sun_security_util.html#type-DerValue">sun_security_util.DerValue</a>) : <a href="java_security.html#type-PrivateKey">java_security.PrivateKey</a>;
+              <b>END</b>;
+
+  <a name="type-PKCS9Attribute"></a><font color="#cc0033">PKCS9Attribute</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="sun_security_util.html#type-DerEncoder">sun_security_util.DerEncoder</a>)    <a href="#meths-PKCS9Attribute"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                    <b>STATIC</b>
+                      <a name="type-CHALLENGE_PASSWORD_OID"></a><font color="#cc0033">CHALLENGE_PASSWORD_OID</font>*              : <a href="sun_security_util.html#type-ObjectIdentifier">sun_security_util.ObjectIdentifier</a>;
+                      <font color="#cc0033">CHALLENGE_PASSWORD_STR</font>*              = "ChallengePassword";
+                      <a name="type-CONTENT_TYPE_OID"></a><font color="#cc0033">CONTENT_TYPE_OID</font>*                    : <a href="sun_security_util.html#type-ObjectIdentifier">sun_security_util.ObjectIdentifier</a>;
+                      <font color="#cc0033">CONTENT_TYPE_STR</font>*                    = "ContentType";
+                      <a name="type-COUNTERSIGNATURE_OID"></a><font color="#cc0033">COUNTERSIGNATURE_OID</font>*                : <a href="sun_security_util.html#type-ObjectIdentifier">sun_security_util.ObjectIdentifier</a>;
+                      <font color="#cc0033">COUNTERSIGNATURE_STR</font>*                = "Countersignature";
+                      <a name="type-EMAIL_ADDRESS_OID"></a><font color="#cc0033">EMAIL_ADDRESS_OID</font>*                   : <a href="sun_security_util.html#type-ObjectIdentifier">sun_security_util.ObjectIdentifier</a>;
+                      <font color="#cc0033">EMAIL_ADDRESS_STR</font>*                   = "EmailAddress";
+                      <a name="type-EXTENDED_CERTIFICATE_ATTRIBUTES_OID"></a><font color="#cc0033">EXTENDED_CERTIFICATE_ATTRIBUTES_OID</font>* : <a href="sun_security_util.html#type-ObjectIdentifier">sun_security_util.ObjectIdentifier</a>;
+                      <font color="#cc0033">EXTENDED_CERTIFICATE_ATTRIBUTES_STR</font>* = "ExtendedCertificateAttributes";
+                      <a name="type-EXTENSION_REQUEST_OID"></a><font color="#cc0033">EXTENSION_REQUEST_OID</font>*               : <a href="sun_security_util.html#type-ObjectIdentifier">sun_security_util.ObjectIdentifier</a>;
+                      <font color="#cc0033">EXTENSION_REQUEST_STR</font>*               = "ExtensionRequest";
+                      <a name="type-ISSUER_SERIALNUMBER_OID"></a><font color="#cc0033">ISSUER_SERIALNUMBER_OID</font>*             : <a href="sun_security_util.html#type-ObjectIdentifier">sun_security_util.ObjectIdentifier</a>;
+                      <font color="#cc0033">ISSUER_SERIALNUMBER_STR</font>*             = "IssuerAndSerialNumber";
+                      <a name="type-MESSAGE_DIGEST_OID"></a><font color="#cc0033">MESSAGE_DIGEST_OID</font>*                  : <a href="sun_security_util.html#type-ObjectIdentifier">sun_security_util.ObjectIdentifier</a>;
+                      <font color="#cc0033">MESSAGE_DIGEST_STR</font>*                  = "MessageDigest";
+                      <a name="type-SIGNATURE_TIMESTAMP_TOKEN_OID"></a><font color="#cc0033">SIGNATURE_TIMESTAMP_TOKEN_OID</font>*       : <a href="sun_security_util.html#type-ObjectIdentifier">sun_security_util.ObjectIdentifier</a>;
+                      <font color="#cc0033">SIGNATURE_TIMESTAMP_TOKEN_STR</font>*       = "SignatureTimestampToken";
+                      <a name="type-SIGNING_CERTIFICATE_OID"></a><font color="#cc0033">SIGNING_CERTIFICATE_OID</font>*             : <a href="sun_security_util.html#type-ObjectIdentifier">sun_security_util.ObjectIdentifier</a>;
+                      <font color="#cc0033">SIGNING_CERTIFICATE_STR</font>*             = "SigningCertificate";
+                      <a name="type-SIGNING_TIME_OID"></a><font color="#cc0033">SIGNING_TIME_OID</font>*                    : <a href="sun_security_util.html#type-ObjectIdentifier">sun_security_util.ObjectIdentifier</a>;
+                      <font color="#cc0033">SIGNING_TIME_STR</font>*                    = "SigningTime";
+                      <a name="type-SMIME_CAPABILITY_OID"></a><font color="#cc0033">SMIME_CAPABILITY_OID</font>*                : <a href="sun_security_util.html#type-ObjectIdentifier">sun_security_util.ObjectIdentifier</a>;
+                      <font color="#cc0033">SMIME_CAPABILITY_STR</font>*                = "SMIMECapability";
+                      <a name="type-UNSTRUCTURED_ADDRESS_OID"></a><font color="#cc0033">UNSTRUCTURED_ADDRESS_OID</font>*            : <a href="sun_security_util.html#type-ObjectIdentifier">sun_security_util.ObjectIdentifier</a>;
+                      <font color="#cc0033">UNSTRUCTURED_ADDRESS_STR</font>*            = "UnstructuredAddress";
+                      <a name="type-UNSTRUCTURED_NAME_OID"></a><font color="#cc0033">UNSTRUCTURED_NAME_OID</font>*               : <a href="sun_security_util.html#type-ObjectIdentifier">sun_security_util.ObjectIdentifier</a>;
+                      <font color="#cc0033">UNSTRUCTURED_NAME_STR</font>*               = "UnstructuredName";
+                      <b>PROCEDURE </b><font color="#cc0033">getName</font>*(p0 : <a href="sun_security_util.html#type-ObjectIdentifier">sun_security_util.ObjectIdentifier</a>) : <a href="java_lang.html#type-String">java_lang.String</a>;
+                      <b>PROCEDURE </b><font color="#cc0033">getOID</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="sun_security_util.html#type-ObjectIdentifier">sun_security_util.ObjectIdentifier</a>;
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="sun_security_util.html#type-DerValue">sun_security_util.DerValue</a>) : <a href="#type-PKCS9Attribute">PKCS9Attribute</a><b>,CONSTRUCTOR</b>;
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="sun_security_util.html#type-ObjectIdentifier">sun_security_util.ObjectIdentifier</a>;
+                                      p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="#type-PKCS9Attribute">PKCS9Attribute</a><b>,CONSTRUCTOR</b>;
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                      p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="#type-PKCS9Attribute">PKCS9Attribute</a><b>,CONSTRUCTOR</b>;
+                    <b>END</b>;
+
+  <a name="type-PKCS9Attributes"></a><font color="#cc0033">PKCS9Attributes</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-PKCS9Attributes"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                     <b>STATIC</b>
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="sun_security_util.html#type-DerInputStream">sun_security_util.DerInputStream</a>;
+                                       p1 : BOOLEAN) : <a href="#type-PKCS9Attributes">PKCS9Attributes</a><b>,CONSTRUCTOR</b>;
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="#type-PKCS9Attribute">PKCS9Attribute</a>) : <a href="#type-PKCS9Attributes">PKCS9Attributes</a><b>,CONSTRUCTOR</b>;
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="sun_security_util.html#type-ObjectIdentifier">sun_security_util.ObjectIdentifier</a>;
+                                           p1 : <a href="sun_security_util.html#type-DerInputStream">sun_security_util.DerInputStream</a>) : <a href="#type-PKCS9Attributes">PKCS9Attributes</a><b>,CONSTRUCTOR</b>;
+                       <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="sun_security_util.html#type-DerInputStream">sun_security_util.DerInputStream</a>) : <a href="#type-PKCS9Attributes">PKCS9Attributes</a><b>,CONSTRUCTOR</b>;
+                     <b>END</b>;
+
+  <a name="type-SignerInfo"></a><font color="#cc0033">SignerInfo</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="sun_security_util.html#type-DerEncoder">sun_security_util.DerEncoder</a>)    <a href="#meths-SignerInfo"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                <b>STATIC</b>
+                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="sun_security_util.html#type-DerInputStream">sun_security_util.DerInputStream</a>) : <a href="#type-SignerInfo">SignerInfo</a><b>,CONSTRUCTOR</b>;
+                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="sun_security_util.html#type-DerInputStream">sun_security_util.DerInputStream</a>;
+                                  p1 : BOOLEAN) : <a href="#type-SignerInfo">SignerInfo</a><b>,CONSTRUCTOR</b>;
+                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*(    p0 : <a href="sun_security_x509.html#type-X500Name">sun_security_x509.X500Name</a>;
+                                      p1 : <a href="java_math.html#type-BigInteger">java_math.BigInteger</a>;
+                                      p2 : <a href="sun_security_x509.html#type-AlgorithmId">sun_security_x509.AlgorithmId</a>;
+                                      p3 : <a href="sun_security_x509.html#type-AlgorithmId">sun_security_x509.AlgorithmId</a>;
+                                  IN  p4 : <b>ARRAY </b><b>OF </b>BYTE) : <a href="#type-SignerInfo">SignerInfo</a><b>,CONSTRUCTOR</b>;
+                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*(    p0 : <a href="sun_security_x509.html#type-X500Name">sun_security_x509.X500Name</a>;
+                                      p1 : <a href="java_math.html#type-BigInteger">java_math.BigInteger</a>;
+                                      p2 : <a href="sun_security_x509.html#type-AlgorithmId">sun_security_x509.AlgorithmId</a>;
+                                      p3 : <a href="#type-PKCS9Attributes">PKCS9Attributes</a>;
+                                      p4 : <a href="sun_security_x509.html#type-AlgorithmId">sun_security_x509.AlgorithmId</a>;
+                                  IN  p5 : <b>ARRAY </b><b>OF </b>BYTE;
+                                      p6 : <a href="#type-PKCS9Attributes">PKCS9Attributes</a>) : <a href="#type-SignerInfo">SignerInfo</a><b>,CONSTRUCTOR</b>;
+                <b>END</b>;
+
+  <a name="type-SigningCertificateInfo"></a><font color="#cc0033">SigningCertificateInfo</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-SigningCertificateInfo"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                            <b>STATIC</b>
+                              <b>PROCEDURE </b><font color="#cc0033">Init</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE) : <a href="#type-SigningCertificateInfo">SigningCertificateInfo</a><b>,CONSTRUCTOR</b>;
+                            <b>END</b>;
+
+
+
+<a name="meths-ContentInfo"></a>
+<b>PROCEDURE </b>(self:ContentInfo) <font color="#cc0033">encode</font>*(p0 : <a href="sun_security_util.html#type-DerOutputStream">sun_security_util.DerOutputStream</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ContentInfo) <font color="#cc0033">getContent</font>*() : <a href="sun_security_util.html#type-DerValue">sun_security_util.DerValue</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ContentInfo) <font color="#cc0033">getContentBytes</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>BYTE<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ContentInfo) <font color="#cc0033">getContentType</font>*() : <a href="sun_security_util.html#type-ObjectIdentifier">sun_security_util.ObjectIdentifier</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ContentInfo) <font color="#cc0033">getData</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>BYTE<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ContentInfo) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,EXTENSIBLE</b>;
+<a name="meths-EncryptedPrivateKeyInfo"></a>
+<b>PROCEDURE </b>(self:EncryptedPrivateKeyInfo) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:EncryptedPrivateKeyInfo) <font color="#cc0033">getAlgorithm</font>*() : <a href="sun_security_x509.html#type-AlgorithmId">sun_security_x509.AlgorithmId</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:EncryptedPrivateKeyInfo) <font color="#cc0033">getEncoded</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>BYTE<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:EncryptedPrivateKeyInfo) <font color="#cc0033">getEncryptedData</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>BYTE<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:EncryptedPrivateKeyInfo) <font color="#cc0033">hashCode</font>*() : INTEGER<b>,EXTENSIBLE</b>;
+<a name="meths-PKCS10"></a>
+<b>PROCEDURE </b>(self:PKCS10) <font color="#cc0033">encodeAndSign</font>*(p0 : <a href="sun_security_x509.html#type-X500Signer">sun_security_x509.X500Signer</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PKCS10) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PKCS10) <font color="#cc0033">getAttributes</font>*() : <a href="#type-PKCS10Attributes">PKCS10Attributes</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PKCS10) <font color="#cc0033">getEncoded</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>BYTE<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PKCS10) <font color="#cc0033">getSubjectName</font>*() : <a href="sun_security_x509.html#type-X500Name">sun_security_x509.X500Name</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PKCS10) <font color="#cc0033">getSubjectPublicKeyInfo</font>*() : <a href="java_security.html#type-PublicKey">java_security.PublicKey</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PKCS10) <font color="#cc0033">hashCode</font>*() : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PKCS10) <font color="#cc0033">print</font>*(p0 : <a href="java_io.html#type-PrintStream">java_io.PrintStream</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PKCS10) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,EXTENSIBLE</b>;
+<a name="meths-PKCS10Attribute"></a>
+<b>PROCEDURE </b>(self:PKCS10Attribute) <font color="#cc0033">derEncode</font>*(p0 : <a href="java_io.html#type-OutputStream">java_io.OutputStream</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PKCS10Attribute) <font color="#cc0033">getAttributeId</font>*() : <a href="sun_security_util.html#type-ObjectIdentifier">sun_security_util.ObjectIdentifier</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PKCS10Attribute) <font color="#cc0033">getAttributeValue</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PKCS10Attribute) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,EXTENSIBLE</b>;
+<a name="meths-PKCS10Attributes"></a>
+<b>PROCEDURE </b>(self:PKCS10Attributes) <font color="#cc0033">deleteAttribute</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PKCS10Attributes) <font color="#cc0033">derEncode</font>*(p0 : <a href="java_io.html#type-OutputStream">java_io.OutputStream</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PKCS10Attributes) <font color="#cc0033">encode</font>*(p0 : <a href="java_io.html#type-OutputStream">java_io.OutputStream</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PKCS10Attributes) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PKCS10Attributes) <font color="#cc0033">getAttribute</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PKCS10Attributes) <font color="#cc0033">getAttributes</font>*() : <a href="java_util.html#type-Collection">java_util.Collection</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PKCS10Attributes) <font color="#cc0033">getElements</font>*() : <a href="java_util.html#type-Enumeration">java_util.Enumeration</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PKCS10Attributes) <font color="#cc0033">hashCode</font>*() : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PKCS10Attributes) <font color="#cc0033">setAttribute</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                p1 : <a href="java_lang.html#type-Object">java_lang.Object</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PKCS10Attributes) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,EXTENSIBLE</b>;
+<a name="meths-PKCS7"></a>
+<b>PROCEDURE </b>(self:PKCS7) <font color="#cc0033">encodeSignedData</font>*(p0 : <a href="sun_security_util.html#type-DerOutputStream">sun_security_util.DerOutputStream</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PKCS7) <font color="#cc0033">encodeSignedData</font>*(p0 : <a href="java_io.html#type-OutputStream">java_io.OutputStream</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PKCS7) <font color="#cc0033">getCertificate</font>*(p0 : <a href="java_math.html#type-BigInteger">java_math.BigInteger</a>;
+                                       p1 : <a href="sun_security_x509.html#type-X500Name">sun_security_x509.X500Name</a>) : <a href="java_security_cert.html#type-X509Certificate">java_security_cert.X509Certificate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PKCS7) <font color="#cc0033">getCertificates</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_security_cert.html#type-X509Certificate">java_security_cert.X509Certificate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PKCS7) <font color="#cc0033">getContentInfo</font>*() : <a href="#type-ContentInfo">ContentInfo</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PKCS7) <font color="#cc0033">getCRLs</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_security_cert.html#type-X509CRL">java_security_cert.X509CRL</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PKCS7) <font color="#cc0033">getDigestAlgorithmIds</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="sun_security_x509.html#type-AlgorithmId">sun_security_x509.AlgorithmId</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PKCS7) <font color="#cc0033">getSignerInfos</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-SignerInfo">SignerInfo</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PKCS7) <font color="#cc0033">getVersion</font>*() : <a href="java_math.html#type-BigInteger">java_math.BigInteger</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PKCS7) <font color="#cc0033">isOldStyle</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PKCS7) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PKCS7) <font color="#cc0033">verify</font>*(    p0 : <a href="#type-SignerInfo">SignerInfo</a>;
+                               IN  p1 : <b>ARRAY </b><b>OF </b>BYTE) : <a href="#type-SignerInfo">SignerInfo</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PKCS7) <font color="#cc0033">verify</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-SignerInfo">SignerInfo</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PKCS7) <font color="#cc0033">verify</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-SignerInfo">SignerInfo</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-PKCS8Key"></a>
+<b>PROCEDURE </b>(self:PKCS8Key) <font color="#cc0033">decode</font>*(p0 : <a href="java_io.html#type-InputStream">java_io.InputStream</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PKCS8Key) <font color="#cc0033">decode</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PKCS8Key) <font color="#cc0033">encode</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>BYTE<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PKCS8Key) <font color="#cc0033">encode</font>*(p0 : <a href="sun_security_util.html#type-DerOutputStream">sun_security_util.DerOutputStream</a>)<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:PKCS8Key) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PKCS8Key) <font color="#cc0033">getAlgorithm</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PKCS8Key) <font color="#cc0033">getAlgorithmId</font>*() : <a href="sun_security_x509.html#type-AlgorithmId">sun_security_x509.AlgorithmId</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PKCS8Key) <font color="#cc0033">getEncoded</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>BYTE<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PKCS8Key) <font color="#cc0033">getFormat</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PKCS8Key) <font color="#cc0033">hashCode</font>*() : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PKCS8Key) <font color="#cc0033">parseKeyBits</font>!()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PKCS8Key) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PKCS8Key) <font color="#cc0033">writeReplace</font>!() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-PKCS9Attribute"></a>
+<b>PROCEDURE </b>(self:PKCS9Attribute) <font color="#cc0033">derEncode</font>*(p0 : <a href="java_io.html#type-OutputStream">java_io.OutputStream</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PKCS9Attribute) <font color="#cc0033">getName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PKCS9Attribute) <font color="#cc0033">getOID</font>*() : <a href="sun_security_util.html#type-ObjectIdentifier">sun_security_util.ObjectIdentifier</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PKCS9Attribute) <font color="#cc0033">getValue</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PKCS9Attribute) <font color="#cc0033">isSingleValued</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PKCS9Attribute) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,EXTENSIBLE</b>;
+<a name="meths-PKCS9Attributes"></a>
+<b>PROCEDURE </b>(self:PKCS9Attributes) <font color="#cc0033">encode</font>*(p0 : BYTE;
+                                         p1 : <a href="java_io.html#type-OutputStream">java_io.OutputStream</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PKCS9Attributes) <font color="#cc0033">getAttribute</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-PKCS9Attribute">PKCS9Attribute</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PKCS9Attributes) <font color="#cc0033">getAttribute</font>*(p0 : <a href="sun_security_util.html#type-ObjectIdentifier">sun_security_util.ObjectIdentifier</a>) : <a href="#type-PKCS9Attribute">PKCS9Attribute</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PKCS9Attributes) <font color="#cc0033">getAttributes</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-PKCS9Attribute">PKCS9Attribute</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PKCS9Attributes) <font color="#cc0033">getAttributeValue</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PKCS9Attributes) <font color="#cc0033">getAttributeValue</font>*(p0 : <a href="sun_security_util.html#type-ObjectIdentifier">sun_security_util.ObjectIdentifier</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PKCS9Attributes) <font color="#cc0033">getDerEncoding</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>BYTE<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:PKCS9Attributes) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,EXTENSIBLE</b>;
+<a name="meths-SignerInfo"></a>
+<b>PROCEDURE </b>(self:SignerInfo) <font color="#cc0033">derEncode</font>*(p0 : <a href="java_io.html#type-OutputStream">java_io.OutputStream</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SignerInfo) <font color="#cc0033">encode</font>*(p0 : <a href="sun_security_util.html#type-DerOutputStream">sun_security_util.DerOutputStream</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SignerInfo) <font color="#cc0033">getAuthenticatedAttributes</font>*() : <a href="#type-PKCS9Attributes">PKCS9Attributes</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SignerInfo) <font color="#cc0033">getCertificate</font>*(p0 : <a href="#type-PKCS7">PKCS7</a>) : <a href="java_security_cert.html#type-X509Certificate">java_security_cert.X509Certificate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SignerInfo) <font color="#cc0033">getCertificateChain</font>*(p0 : <a href="#type-PKCS7">PKCS7</a>) : <a href="java_util.html#type-ArrayList">java_util.ArrayList</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SignerInfo) <font color="#cc0033">getCertificateSerialNumber</font>*() : <a href="java_math.html#type-BigInteger">java_math.BigInteger</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SignerInfo) <font color="#cc0033">getDigestAlgorithmId</font>*() : <a href="sun_security_x509.html#type-AlgorithmId">sun_security_x509.AlgorithmId</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SignerInfo) <font color="#cc0033">getDigestEncryptionAlgorithmId</font>*() : <a href="sun_security_x509.html#type-AlgorithmId">sun_security_x509.AlgorithmId</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SignerInfo) <font color="#cc0033">getEncryptedDigest</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>BYTE<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SignerInfo) <font color="#cc0033">getIssuerName</font>*() : <a href="sun_security_x509.html#type-X500Name">sun_security_x509.X500Name</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SignerInfo) <font color="#cc0033">getUnauthenticatedAttributes</font>*() : <a href="#type-PKCS9Attributes">PKCS9Attributes</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SignerInfo) <font color="#cc0033">getVersion</font>*() : <a href="java_math.html#type-BigInteger">java_math.BigInteger</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SignerInfo) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,EXTENSIBLE</b>;
+<a name="meths-SigningCertificateInfo"></a>
+<b>PROCEDURE </b>(self:SigningCertificateInfo) <font color="#cc0033">parse</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:SigningCertificateInfo) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,EXTENSIBLE</b>;
+
+<b>END </b><font color="#cc0033">sun_security_pkcs</font>.
+</font></pre></hr></body></html>

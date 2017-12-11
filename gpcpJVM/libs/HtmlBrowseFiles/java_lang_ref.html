@@ -1,0 +1,65 @@
+<html><head><title>java_lang_ref</title></head>
+<body bgcolor="white">
+<hr><pre>
+<b>FOREIGN MODULE </b><font color="#cc0033">java_lang_ref</font>;
+
+<b>IMPORT</b>
+    <a href="java_security.html">java_security</a> := "java.security",
+    <a href="java_lang.html">java_lang</a> := "java.lang",
+    <a href="sun_nio_ch.html">sun_nio_ch</a> := "sun.nio.ch",
+    <a href="sun_misc.html">sun_misc</a> := "sun.misc",
+    <a href="java_util.html">java_util</a> := "java.util";
+
+<b>TYPE</b>
+
+  <a name="type-PhantomReference"></a><font color="#cc0033">PhantomReference</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-Reference">Reference</a>)    <a href="#meths-PhantomReference"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                      <b>STATIC</b>
+                        <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                        p1 : <a href="#type-ReferenceQueue">ReferenceQueue</a>) : <a href="#type-PhantomReference">PhantomReference</a><b>,CONSTRUCTOR</b>;
+                      <b>END</b>;
+
+  <a name="type-Reference"></a><font color="#cc0033">Reference</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-Reference"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+               <b>END</b>;
+
+  <a name="type-ReferenceQueue"></a><font color="#cc0033">ReferenceQueue</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-ReferenceQueue"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                    <b>STATIC</b>
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-ReferenceQueue">ReferenceQueue</a><b>,CONSTRUCTOR</b>;
+                    <b>END</b>;
+
+  <a name="type-SoftReference"></a><font color="#cc0033">SoftReference</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-Reference">Reference</a>)    <a href="#meths-SoftReference"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                   <b>STATIC</b>
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                     p1 : <a href="#type-ReferenceQueue">ReferenceQueue</a>) : <a href="#type-SoftReference">SoftReference</a><b>,CONSTRUCTOR</b>;
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="#type-SoftReference">SoftReference</a><b>,CONSTRUCTOR</b>;
+                   <b>END</b>;
+
+  <a name="type-WeakReference"></a><font color="#cc0033">WeakReference</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-Reference">Reference</a>)
+                   <b>STATIC</b>
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                     p1 : <a href="#type-ReferenceQueue">ReferenceQueue</a>) : <a href="#type-WeakReference">WeakReference</a><b>,CONSTRUCTOR</b>;
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="#type-WeakReference">WeakReference</a><b>,CONSTRUCTOR</b>;
+                   <b>END</b>;
+
+
+
+<a name="meths-PhantomReference"></a>
+<b>PROCEDURE </b>(self:PhantomReference) <font color="#cc0033">get</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,EXTENSIBLE</b>;
+<a name="meths-Reference"></a>
+<b>PROCEDURE </b>(self:Reference) <font color="#cc0033">clear</font>*()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Reference) <font color="#cc0033">enqueue</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Reference) <font color="#cc0033">get</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Reference) <font color="#cc0033">isEnqueued</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-ReferenceQueue"></a>
+<b>PROCEDURE </b>(self:ReferenceQueue) <font color="#cc0033">poll</font>*() : <a href="#type-Reference">Reference</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ReferenceQueue) <font color="#cc0033">remove</font>*() : <a href="#type-Reference">Reference</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ReferenceQueue) <font color="#cc0033">remove</font>*(p0 : LONGINT) : <a href="#type-Reference">Reference</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-SoftReference"></a>
+<b>PROCEDURE </b>(self:SoftReference) <font color="#cc0033">get</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,EXTENSIBLE</b>;
+
+<b>END </b><font color="#cc0033">java_lang_ref</font>.
+</font></pre></hr></body></html>

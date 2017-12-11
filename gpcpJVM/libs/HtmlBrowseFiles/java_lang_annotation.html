@@ -1,0 +1,95 @@
+<html><head><title>java_lang_annotation</title></head>
+<body bgcolor="white">
+<hr><pre>
+<b>FOREIGN MODULE </b><font color="#cc0033">java_lang_annotation</font>;
+
+<b>IMPORT</b>
+    <a href="java_lang.html">java_lang</a> := "java.lang",
+    <a href="java_io.html">java_io</a> := "java.io",
+    <a href="java_lang_reflect.html">java_lang_reflect</a> := "java.lang.reflect";
+
+<b>TYPE</b>
+
+  <a name="type-Annotation"></a><font color="#cc0033">Annotation</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-Annotation"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                <b>END</b>;
+
+  <a name="type-AnnotationFormatError"></a><font color="#cc0033">AnnotationFormatError</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Error">java_lang.Error</a>)
+                           <b>STATIC</b>
+                             <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-Throwable">java_lang.Throwable</a>) : <a href="#type-AnnotationFormatError">AnnotationFormatError</a><b>,CONSTRUCTOR</b>;
+                             <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                             p1 : <a href="java_lang.html#type-Throwable">java_lang.Throwable</a>) : <a href="#type-AnnotationFormatError">AnnotationFormatError</a><b>,CONSTRUCTOR</b>;
+                             <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-AnnotationFormatError">AnnotationFormatError</a><b>,CONSTRUCTOR</b>;
+                           <b>END</b>;
+
+  <a name="type-AnnotationTypeMismatchException"></a><font color="#cc0033">AnnotationTypeMismatchException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-RuntimeException">java_lang.RuntimeException</a>)    <a href="#meths-AnnotationTypeMismatchException"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                                     <b>STATIC</b>
+                                       <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang_reflect.html#type-Method">java_lang_reflect.Method</a>;
+                                                       p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-AnnotationTypeMismatchException">AnnotationTypeMismatchException</a><b>,CONSTRUCTOR</b>;
+                                     <b>END</b>;
+
+  <a name="type-Documented"></a><font color="#cc0033">Documented</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-Annotation">Annotation</a>)
+                <b>END</b>;
+
+  <a name="type-ElementType"></a><font color="#cc0033">ElementType</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Enum">java_lang.Enum</a>)
+                 <b>STATIC</b>
+                   <a name="type-ANNOTATION_TYPE"></a><font color="#cc0033">ANNOTATION_TYPE</font>* : <a href="#type-ElementType">ElementType</a>;
+                   <a name="type-CONSTRUCTOR"></a><font color="#cc0033">CONSTRUCTOR</font>*     : <a href="#type-ElementType">ElementType</a>;
+                   <a name="type-FIELD"></a><font color="#cc0033">FIELD</font>*           : <a href="#type-ElementType">ElementType</a>;
+                   <a name="type-LOCAL_VARIABLE"></a><font color="#cc0033">LOCAL_VARIABLE</font>*  : <a href="#type-ElementType">ElementType</a>;
+                   <a name="type-METHOD"></a><font color="#cc0033">METHOD</font>*          : <a href="#type-ElementType">ElementType</a>;
+                   <a name="type-PACKAGE"></a><font color="#cc0033">PACKAGE</font>*         : <a href="#type-ElementType">ElementType</a>;
+                   <a name="type-PARAMETER"></a><font color="#cc0033">PARAMETER</font>*       : <a href="#type-ElementType">ElementType</a>;
+                   <a name="type-TYPE"></a><font color="#cc0033">TYPE</font>*            : <a href="#type-ElementType">ElementType</a>;
+                   <b>PROCEDURE </b><font color="#cc0033">valueOf</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-ElementType">ElementType</a>;
+                   <b>PROCEDURE </b><font color="#cc0033">values</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-ElementType">ElementType</a>;
+                 <b>END</b>;
+
+  <a name="type-IncompleteAnnotationException"></a><font color="#cc0033">IncompleteAnnotationException</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-RuntimeException">java_lang.RuntimeException</a>)    <a href="#meths-IncompleteAnnotationException"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                                   <b>STATIC</b>
+                                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-Class">java_lang.Class</a>;
+                                                     p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-IncompleteAnnotationException">IncompleteAnnotationException</a><b>,CONSTRUCTOR</b>;
+                                   <b>END</b>;
+
+  <a name="type-Inherited"></a><font color="#cc0033">Inherited</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-Annotation">Annotation</a>)
+               <b>END</b>;
+
+  <a name="type-Retention"></a><font color="#cc0033">Retention</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-Annotation">Annotation</a>)    <a href="#meths-Retention"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+               <b>END</b>;
+
+  <a name="type-RetentionPolicy"></a><font color="#cc0033">RetentionPolicy</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Enum">java_lang.Enum</a>)
+                     <b>STATIC</b>
+                       <a name="type-CLASS"></a><font color="#cc0033">CLASS</font>*   : <a href="#type-RetentionPolicy">RetentionPolicy</a>;
+                       <a name="type-RUNTIME"></a><font color="#cc0033">RUNTIME</font>* : <a href="#type-RetentionPolicy">RetentionPolicy</a>;
+                       <a name="type-SOURCE"></a><font color="#cc0033">SOURCE</font>*  : <a href="#type-RetentionPolicy">RetentionPolicy</a>;
+                       <b>PROCEDURE </b><font color="#cc0033">valueOf</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-RetentionPolicy">RetentionPolicy</a>;
+                       <b>PROCEDURE </b><font color="#cc0033">values</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-RetentionPolicy">RetentionPolicy</a>;
+                     <b>END</b>;
+
+  <a name="type-Target"></a><font color="#cc0033">Target</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-Annotation">Annotation</a>)    <a href="#meths-Target"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+            <b>END</b>;
+
+
+
+<a name="meths-Annotation"></a>
+<b>PROCEDURE </b>(self:Annotation) <font color="#cc0033">annotationType</font>*() : <a href="java_lang.html#type-Class">java_lang.Class</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Annotation) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Annotation) <font color="#cc0033">hashCode</font>*() : INTEGER<b>,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:Annotation) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,ABSTRACT</b>;
+<a name="meths-AnnotationTypeMismatchException"></a>
+<b>PROCEDURE </b>(self:AnnotationTypeMismatchException) <font color="#cc0033">element</font>*() : <a href="java_lang_reflect.html#type-Method">java_lang_reflect.Method</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AnnotationTypeMismatchException) <font color="#cc0033">foundType</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-IncompleteAnnotationException"></a>
+<b>PROCEDURE </b>(self:IncompleteAnnotationException) <font color="#cc0033">annotationType</font>*() : <a href="java_lang.html#type-Class">java_lang.Class</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:IncompleteAnnotationException) <font color="#cc0033">elementName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-Retention"></a>
+<b>PROCEDURE </b>(self:Retention) <font color="#cc0033">value</font>*() : <a href="#type-RetentionPolicy">RetentionPolicy</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-Target"></a>
+<b>PROCEDURE </b>(self:Target) <font color="#cc0033">value</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-ElementType">ElementType</a><b>,NEW,ABSTRACT</b>;
+
+<b>END </b><font color="#cc0033">java_lang_annotation</font>.
+</font></pre></hr></body></html>

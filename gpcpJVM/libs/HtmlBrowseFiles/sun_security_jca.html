@@ -1,0 +1,137 @@
+<html><head><title>sun_security_jca</title></head>
+<body bgcolor="white">
+<hr><pre>
+<b>FOREIGN MODULE </b><font color="#cc0033">sun_security_jca</font>;
+
+<b>IMPORT</b>
+    <a href="java_lang.html">java_lang</a> := "java.lang",
+    <a href="java_security.html">java_security</a> := "java.security",
+    <a href="java_util.html">java_util</a> := "java.util",
+    <a href="sun_security_util.html">sun_security_util</a> := "sun.security.util",
+    <a href="java_io.html">java_io</a> := "java.io";
+
+<b>TYPE</b>
+
+  <a name="type-GetInstance"></a><font color="#cc0033">GetInstance</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                 <b>STATIC</b>
+                   <b>PROCEDURE </b><font color="#cc0033">checkSuperClass</font>*(p0 : <a href="java_security.html#type-Provider$Service">java_security.Provider$Service</a>;
+                                              p1 : <a href="java_lang.html#type-Class">java_lang.Class</a>;
+                                              p2 : <a href="java_lang.html#type-Class">java_lang.Class</a>);
+                   <b>PROCEDURE </b><font color="#cc0033">getInstance</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                          p1 : <a href="java_lang.html#type-Class">java_lang.Class</a>;
+                                          p2 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                          p3 : <a href="java_security.html#type-Provider">java_security.Provider</a>) : <a href="#type-GetInstance$Instance">GetInstance$Instance</a>;
+                   <b>PROCEDURE </b><font color="#cc0033">getInstance</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                          p1 : <a href="java_lang.html#type-Class">java_lang.Class</a>;
+                                          p2 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                          p3 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                          p4 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-GetInstance$Instance">GetInstance$Instance</a>;
+                   <b>PROCEDURE </b><font color="#cc0033">getInstance</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                          p1 : <a href="java_lang.html#type-Class">java_lang.Class</a>;
+                                          p2 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                          p3 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-GetInstance$Instance">GetInstance$Instance</a>;
+                   <b>PROCEDURE </b><font color="#cc0033">getInstance</font>*(p0 : <a href="java_security.html#type-Provider$Service">java_security.Provider$Service</a>;
+                                          p1 : <a href="java_lang.html#type-Class">java_lang.Class</a>;
+                                          p2 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="#type-GetInstance$Instance">GetInstance$Instance</a>;
+                   <b>PROCEDURE </b><font color="#cc0033">getInstance</font>*(p0 : <a href="java_security.html#type-Provider$Service">java_security.Provider$Service</a>;
+                                          p1 : <a href="java_lang.html#type-Class">java_lang.Class</a>) : <a href="#type-GetInstance$Instance">GetInstance$Instance</a>;
+                   <b>PROCEDURE </b><font color="#cc0033">getInstance</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                          p1 : <a href="java_lang.html#type-Class">java_lang.Class</a>;
+                                          p2 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                          p3 : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                                          p4 : <a href="java_security.html#type-Provider">java_security.Provider</a>) : <a href="#type-GetInstance$Instance">GetInstance$Instance</a>;
+                   <b>PROCEDURE </b><font color="#cc0033">getInstance</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                          p1 : <a href="java_lang.html#type-Class">java_lang.Class</a>;
+                                          p2 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                          p3 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : <a href="#type-GetInstance$Instance">GetInstance$Instance</a>;
+                   <b>PROCEDURE </b><font color="#cc0033">getInstance</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                          p1 : <a href="java_lang.html#type-Class">java_lang.Class</a>;
+                                          p2 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-GetInstance$Instance">GetInstance$Instance</a>;
+                   <b>PROCEDURE </b><font color="#cc0033">getService</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                         p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                         p2 : <a href="java_security.html#type-Provider">java_security.Provider</a>) : <a href="java_security.html#type-Provider$Service">java_security.Provider$Service</a>;
+                   <b>PROCEDURE </b><font color="#cc0033">getService</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                         p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                         p2 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_security.html#type-Provider$Service">java_security.Provider$Service</a>;
+                   <b>PROCEDURE </b><font color="#cc0033">getService</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                         p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_security.html#type-Provider$Service">java_security.Provider$Service</a>;
+                   <b>PROCEDURE </b><font color="#cc0033">getServices</font>*(p0 : <a href="java_util.html#type-List">java_util.List</a>) : <a href="java_util.html#type-List">java_util.List</a>;
+                   <b>PROCEDURE </b><font color="#cc0033">getServices</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                          p1 : <a href="java_util.html#type-List">java_util.List</a>) : <a href="java_util.html#type-List">java_util.List</a>;
+                   <b>PROCEDURE </b><font color="#cc0033">getServices</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                          p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_util.html#type-List">java_util.List</a>;
+                 <b>END</b>;
+
+  <a name="type-GetInstance$Instance"></a><font color="#cc0033">GetInstance$Instance</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-GetInstance$Instance"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                            <font color="#cc0033">provider</font>* : <a href="java_security.html#type-Provider">java_security.Provider</a>;
+                            <font color="#cc0033">impl</font>*     : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                          <b>END</b>;
+
+  <a name="type-JCAUtil"></a><font color="#cc0033">JCAUtil</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+             <b>STATIC</b>
+               <b>PROCEDURE </b><font color="#cc0033">getSecureRandom</font>*() : <a href="java_security.html#type-SecureRandom">java_security.SecureRandom</a>;
+               <b>PROCEDURE </b><font color="#cc0033">getTempArraySize</font>*(p0 : INTEGER) : INTEGER;
+             <b>END</b>;
+
+  <a name="type-ProviderList"></a><font color="#cc0033">ProviderList</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-ProviderList"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                  <b>STATIC</b>
+                    <b>PROCEDURE </b><font color="#cc0033">add</font>*(p0 : <a href="#type-ProviderList">ProviderList</a>;
+                                   p1 : <a href="java_security.html#type-Provider">java_security.Provider</a>) : <a href="#type-ProviderList">ProviderList</a>;
+                    <b>PROCEDURE </b><font color="#cc0033">insertAt</font>*(p0 : <a href="#type-ProviderList">ProviderList</a>;
+                                        p1 : <a href="java_security.html#type-Provider">java_security.Provider</a>;
+                                        p2 : INTEGER) : <a href="#type-ProviderList">ProviderList</a>;
+                    <b>PROCEDURE </b><font color="#cc0033">newList</font>*(IN  p0 : <b>ARRAY </b><b>OF </b><a href="java_security.html#type-Provider">java_security.Provider</a>) : <a href="#type-ProviderList">ProviderList</a>;
+                    <b>PROCEDURE </b><font color="#cc0033">remove</font>*(p0 : <a href="#type-ProviderList">ProviderList</a>;
+                                      p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-ProviderList">ProviderList</a>;
+                  <b>END</b>;
+
+  <a name="type-Providers"></a><font color="#cc0033">Providers</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+               <b>STATIC</b>
+                 <b>PROCEDURE </b><font color="#cc0033">beginThreadProviderList</font>*(p0 : <a href="#type-ProviderList">ProviderList</a>) : <a href="#type-ProviderList">ProviderList</a>;
+                 <b>PROCEDURE </b><font color="#cc0033">endThreadProviderList</font>*(p0 : <a href="#type-ProviderList">ProviderList</a>);
+                 <b>PROCEDURE </b><font color="#cc0033">getFullProviderList</font>*() : <a href="#type-ProviderList">ProviderList</a>;
+                 <b>PROCEDURE </b><font color="#cc0033">getProviderList</font>*() : <a href="#type-ProviderList">ProviderList</a>;
+                 <b>PROCEDURE </b><font color="#cc0033">getThreadProviderList</font>*() : <a href="#type-ProviderList">ProviderList</a>;
+                 <b>PROCEDURE </b><font color="#cc0033">setProviderList</font>*(p0 : <a href="#type-ProviderList">ProviderList</a>);
+                 <b>PROCEDURE </b><font color="#cc0033">startJarVerification</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                 <b>PROCEDURE </b><font color="#cc0033">stopJarVerification</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>);
+               <b>END</b>;
+
+  <a name="type-ServiceId"></a><font color="#cc0033">ServiceId</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                 <font color="#cc0033">type</font>*      : <a href="java_lang.html#type-String">java_lang.String</a>;
+                 <font color="#cc0033">algorithm</font>* : <a href="java_lang.html#type-String">java_lang.String</a>;
+               <b>STATIC</b>
+                 <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                 p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-ServiceId">ServiceId</a><b>,CONSTRUCTOR</b>;
+               <b>END</b>;
+
+
+
+<a name="meths-GetInstance$Instance"></a>
+<b>PROCEDURE </b>(self:GetInstance$Instance) <font color="#cc0033">toArray</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-Object">java_lang.Object</a><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-ProviderList"></a>
+<b>PROCEDURE </b>(self:ProviderList) <font color="#cc0033">getIndex</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProviderList) <font color="#cc0033">getProvider</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_security.html#type-Provider">java_security.Provider</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProviderList) <font color="#cc0033">getService</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                          p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_security.html#type-Provider$Service">java_security.Provider$Service</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProviderList) <font color="#cc0033">getServices</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                           p1 : <a href="java_util.html#type-List">java_util.List</a>) : <a href="java_util.html#type-List">java_util.List</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProviderList) <font color="#cc0033">getServices</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                           p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_util.html#type-List">java_util.List</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProviderList) <font color="#cc0033">getServices</font>*(p0 : <a href="java_util.html#type-List">java_util.List</a>) : <a href="java_util.html#type-List">java_util.List</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProviderList) <font color="#cc0033">providers</font>*() : <a href="java_util.html#type-List">java_util.List</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProviderList) <font color="#cc0033">size</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProviderList) <font color="#cc0033">toArray</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_security.html#type-Provider">java_security.Provider</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ProviderList) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,EXTENSIBLE</b>;
+
+<b>END </b><font color="#cc0033">sun_security_jca</font>.
+</font></pre></hr></body></html>

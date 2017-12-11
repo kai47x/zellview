@@ -1,0 +1,559 @@
+<html><head><title>java_awt_peer</title></head>
+<body bgcolor="white">
+<hr><pre>
+<b>FOREIGN MODULE </b><font color="#cc0033">java_awt_peer</font>;
+
+<b>IMPORT</b>
+    <a href="java_lang.html">java_lang</a> := "java.lang",
+    <a href="java_awt.html">java_awt</a> := "java.awt",
+    <a href="java_awt_event.html">java_awt_event</a> := "java.awt.event",
+    <a href="java_awt_image.html">java_awt_image</a> := "java.awt.image",
+    <a href="sun_awt.html">sun_awt</a> := "sun.awt",
+    <a href="sun_java2d_pipe.html">sun_java2d_pipe</a> := "sun.java2d.pipe",
+    <a href="java_io.html">java_io</a> := "java.io",
+    <a href="java_net.html">java_net</a> := "java.net",
+    <a href="java_util.html">java_util</a> := "java.util",
+    <a href="java_awt_im.html">java_awt_im</a> := "java.awt.im";
+
+<b>TYPE</b>
+
+  <a name="type-ButtonPeer"></a><font color="#cc0033">ButtonPeer</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-ComponentPeer">ComponentPeer</a>)    <a href="#meths-ButtonPeer"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                <b>END</b>;
+
+  <a name="type-CanvasPeer"></a><font color="#cc0033">CanvasPeer</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-ComponentPeer">ComponentPeer</a>)
+                <b>END</b>;
+
+  <a name="type-CheckboxMenuItemPeer"></a><font color="#cc0033">CheckboxMenuItemPeer</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-MenuItemPeer">MenuItemPeer</a>)    <a href="#meths-CheckboxMenuItemPeer"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                          <b>END</b>;
+
+  <a name="type-CheckboxPeer"></a><font color="#cc0033">CheckboxPeer</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-ComponentPeer">ComponentPeer</a>)    <a href="#meths-CheckboxPeer"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                  <b>END</b>;
+
+  <a name="type-ChoicePeer"></a><font color="#cc0033">ChoicePeer</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-ComponentPeer">ComponentPeer</a>)    <a href="#meths-ChoicePeer"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                <b>END</b>;
+
+  <a name="type-ComponentPeer"></a><font color="#cc0033">ComponentPeer</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-ComponentPeer"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                   <b>STATIC</b>
+                     <font color="#cc0033">DEFAULT_OPERATION</font>* = 3;
+                     <font color="#cc0033">NO_EMBEDDED_CHECK</font>* = 16384;
+                     <font color="#cc0033">RESET_OPERATION</font>*   = 5;
+                     <font color="#cc0033">SET_BOUNDS</font>*        = 3;
+                     <font color="#cc0033">SET_CLIENT_SIZE</font>*   = 4;
+                     <font color="#cc0033">SET_LOCATION</font>*      = 1;
+                     <font color="#cc0033">SET_SIZE</font>*          = 2;
+                   <b>END</b>;
+
+  <a name="type-ContainerPeer"></a><font color="#cc0033">ContainerPeer</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-ComponentPeer">ComponentPeer</a>)    <a href="#meths-ContainerPeer"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                   <b>END</b>;
+
+  <a name="type-DesktopPeer"></a><font color="#cc0033">DesktopPeer</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-DesktopPeer"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                 <b>END</b>;
+
+  <a name="type-DialogPeer"></a><font color="#cc0033">DialogPeer</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-WindowPeer">WindowPeer</a>)    <a href="#meths-DialogPeer"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                <b>END</b>;
+
+  <a name="type-FileDialogPeer"></a><font color="#cc0033">FileDialogPeer</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-DialogPeer">DialogPeer</a>)    <a href="#meths-FileDialogPeer"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                    <b>END</b>;
+
+  <a name="type-FontPeer"></a><font color="#cc0033">FontPeer</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+              <b>END</b>;
+
+  <a name="type-FramePeer"></a><font color="#cc0033">FramePeer</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-WindowPeer">WindowPeer</a>)    <a href="#meths-FramePeer"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+               <b>END</b>;
+
+  <a name="type-KeyboardFocusManagerPeer"></a><font color="#cc0033">KeyboardFocusManagerPeer</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-KeyboardFocusManagerPeer"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                              <b>END</b>;
+
+  <a name="type-LabelPeer"></a><font color="#cc0033">LabelPeer</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-ComponentPeer">ComponentPeer</a>)    <a href="#meths-LabelPeer"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+               <b>END</b>;
+
+  <a name="type-LightweightPeer"></a><font color="#cc0033">LightweightPeer</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-ComponentPeer">ComponentPeer</a>)
+                     <b>END</b>;
+
+  <a name="type-ListPeer"></a><font color="#cc0033">ListPeer</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-ComponentPeer">ComponentPeer</a>)    <a href="#meths-ListPeer"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+              <b>END</b>;
+
+  <a name="type-MenuBarPeer"></a><font color="#cc0033">MenuBarPeer</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-MenuComponentPeer">MenuComponentPeer</a>)    <a href="#meths-MenuBarPeer"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                 <b>END</b>;
+
+  <a name="type-MenuComponentPeer"></a><font color="#cc0033">MenuComponentPeer</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-MenuComponentPeer"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                       <b>END</b>;
+
+  <a name="type-MenuItemPeer"></a><font color="#cc0033">MenuItemPeer</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-MenuComponentPeer">MenuComponentPeer</a>)    <a href="#meths-MenuItemPeer"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                  <b>END</b>;
+
+  <a name="type-MenuPeer"></a><font color="#cc0033">MenuPeer</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-MenuItemPeer">MenuItemPeer</a>)    <a href="#meths-MenuPeer"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+              <b>END</b>;
+
+  <a name="type-MouseInfoPeer"></a><font color="#cc0033">MouseInfoPeer</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-MouseInfoPeer"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                   <b>END</b>;
+
+  <a name="type-PanelPeer"></a><font color="#cc0033">PanelPeer</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-ContainerPeer">ContainerPeer</a>)
+               <b>END</b>;
+
+  <a name="type-PopupMenuPeer"></a><font color="#cc0033">PopupMenuPeer</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-MenuPeer">MenuPeer</a>)    <a href="#meths-PopupMenuPeer"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                   <b>END</b>;
+
+  <a name="type-RobotPeer"></a><font color="#cc0033">RobotPeer</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-RobotPeer"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+               <b>END</b>;
+
+  <a name="type-ScrollbarPeer"></a><font color="#cc0033">ScrollbarPeer</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-ComponentPeer">ComponentPeer</a>)    <a href="#meths-ScrollbarPeer"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                   <b>END</b>;
+
+  <a name="type-ScrollPanePeer"></a><font color="#cc0033">ScrollPanePeer</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-ContainerPeer">ContainerPeer</a>)    <a href="#meths-ScrollPanePeer"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                    <b>END</b>;
+
+  <a name="type-SystemTrayPeer"></a><font color="#cc0033">SystemTrayPeer</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-SystemTrayPeer"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                    <b>END</b>;
+
+  <a name="type-TextAreaPeer"></a><font color="#cc0033">TextAreaPeer</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-TextComponentPeer">TextComponentPeer</a>)    <a href="#meths-TextAreaPeer"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                  <b>END</b>;
+
+  <a name="type-TextComponentPeer"></a><font color="#cc0033">TextComponentPeer</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-ComponentPeer">ComponentPeer</a>)    <a href="#meths-TextComponentPeer"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                       <b>END</b>;
+
+  <a name="type-TextFieldPeer"></a><font color="#cc0033">TextFieldPeer</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-TextComponentPeer">TextComponentPeer</a>)    <a href="#meths-TextFieldPeer"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                   <b>END</b>;
+
+  <a name="type-TrayIconPeer"></a><font color="#cc0033">TrayIconPeer</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-TrayIconPeer"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                  <b>END</b>;
+
+  <a name="type-WindowPeer"></a><font color="#cc0033">WindowPeer</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-ContainerPeer">ContainerPeer</a>)    <a href="#meths-WindowPeer"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                <b>END</b>;
+
+
+
+<a name="meths-ButtonPeer"></a>
+<b>PROCEDURE </b>(self:ButtonPeer) <font color="#cc0033">setLabel</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-CheckboxMenuItemPeer"></a>
+<b>PROCEDURE </b>(self:CheckboxMenuItemPeer) <font color="#cc0033">setState</font>*(p0 : BOOLEAN)<b>,NEW,ABSTRACT</b>;
+<a name="meths-CheckboxPeer"></a>
+<b>PROCEDURE </b>(self:CheckboxPeer) <font color="#cc0033">setCheckboxGroup</font>*(p0 : <a href="java_awt.html#type-CheckboxGroup">java_awt.CheckboxGroup</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CheckboxPeer) <font color="#cc0033">setLabel</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CheckboxPeer) <font color="#cc0033">setState</font>*(p0 : BOOLEAN)<b>,NEW,ABSTRACT</b>;
+<a name="meths-ChoicePeer"></a>
+<b>PROCEDURE </b>(self:ChoicePeer) <font color="#cc0033">add</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                 p1 : INTEGER)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ChoicePeer) <font color="#cc0033">addItem</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                     p1 : INTEGER)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ChoicePeer) <font color="#cc0033">remove</font>*(p0 : INTEGER)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ChoicePeer) <font color="#cc0033">removeAll</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ChoicePeer) <font color="#cc0033">select</font>*(p0 : INTEGER)<b>,NEW,ABSTRACT</b>;
+<a name="meths-ComponentPeer"></a>
+<b>PROCEDURE </b>(self:ComponentPeer) <font color="#cc0033">applyShape</font>*(p0 : <a href="sun_java2d_pipe.html#type-Region">sun_java2d_pipe.Region</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ComponentPeer) <font color="#cc0033">canDetermineObscurity</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ComponentPeer) <font color="#cc0033">checkImage</font>*(p0 : <a href="java_awt.html#type-Image">java_awt.Image</a>;
+                                           p1 : INTEGER;
+                                           p2 : INTEGER;
+                                           p3 : <a href="java_awt_image.html#type-ImageObserver">java_awt_image.ImageObserver</a>) : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ComponentPeer) <font color="#cc0033">coalescePaintEvent</font>*(p0 : <a href="java_awt_event.html#type-PaintEvent">java_awt_event.PaintEvent</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ComponentPeer) <font color="#cc0033">createBuffers</font>*(p0 : INTEGER;
+                                              p1 : <a href="java_awt.html#type-BufferCapabilities">java_awt.BufferCapabilities</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ComponentPeer) <font color="#cc0033">createImage</font>*(p0 : <a href="java_awt_image.html#type-ImageProducer">java_awt_image.ImageProducer</a>) : <a href="java_awt.html#type-Image">java_awt.Image</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ComponentPeer) <font color="#cc0033">createImage</font>*(p0 : INTEGER;
+                                            p1 : INTEGER) : <a href="java_awt.html#type-Image">java_awt.Image</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ComponentPeer) <font color="#cc0033">createVolatileImage</font>*(p0 : INTEGER;
+                                                    p1 : INTEGER) : <a href="java_awt_image.html#type-VolatileImage">java_awt_image.VolatileImage</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ComponentPeer) <font color="#cc0033">destroyBuffers</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ComponentPeer) <font color="#cc0033">disable</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ComponentPeer) <font color="#cc0033">dispose</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ComponentPeer) <font color="#cc0033">enable</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ComponentPeer) <font color="#cc0033">flip</font>*(p0 : INTEGER;
+                                     p1 : INTEGER;
+                                     p2 : INTEGER;
+                                     p3 : INTEGER;
+                                     p4 : <a href="java_awt.html#type-BufferCapabilities$FlipContents">java_awt.BufferCapabilities$FlipContents</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ComponentPeer) <font color="#cc0033">getBackBuffer</font>*() : <a href="java_awt.html#type-Image">java_awt.Image</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ComponentPeer) <font color="#cc0033">getBounds</font>*() : <a href="java_awt.html#type-Rectangle">java_awt.Rectangle</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ComponentPeer) <font color="#cc0033">getColorModel</font>*() : <a href="java_awt_image.html#type-ColorModel">java_awt_image.ColorModel</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ComponentPeer) <font color="#cc0033">getFontMetrics</font>*(p0 : <a href="java_awt.html#type-Font">java_awt.Font</a>) : <a href="java_awt.html#type-FontMetrics">java_awt.FontMetrics</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ComponentPeer) <font color="#cc0033">getGraphics</font>*() : <a href="java_awt.html#type-Graphics">java_awt.Graphics</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ComponentPeer) <font color="#cc0033">getGraphicsConfiguration</font>*() : <a href="java_awt.html#type-GraphicsConfiguration">java_awt.GraphicsConfiguration</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ComponentPeer) <font color="#cc0033">getLocationOnScreen</font>*() : <a href="java_awt.html#type-Point">java_awt.Point</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ComponentPeer) <font color="#cc0033">getMinimumSize</font>*() : <a href="java_awt.html#type-Dimension">java_awt.Dimension</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ComponentPeer) <font color="#cc0033">getPreferredSize</font>*() : <a href="java_awt.html#type-Dimension">java_awt.Dimension</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ComponentPeer) <font color="#cc0033">getToolkit</font>*() : <a href="java_awt.html#type-Toolkit">java_awt.Toolkit</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ComponentPeer) <font color="#cc0033">handleEvent</font>*(p0 : <a href="java_awt.html#type-AWTEvent">java_awt.AWTEvent</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ComponentPeer) <font color="#cc0033">handlesWheelScrolling</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ComponentPeer) <font color="#cc0033">hide</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ComponentPeer) <font color="#cc0033">isFocusable</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ComponentPeer) <font color="#cc0033">isObscured</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ComponentPeer) <font color="#cc0033">isReparentSupported</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ComponentPeer) <font color="#cc0033">layout</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ComponentPeer) <font color="#cc0033">minimumSize</font>*() : <a href="java_awt.html#type-Dimension">java_awt.Dimension</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ComponentPeer) <font color="#cc0033">paint</font>*(p0 : <a href="java_awt.html#type-Graphics">java_awt.Graphics</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ComponentPeer) <font color="#cc0033">preferredSize</font>*() : <a href="java_awt.html#type-Dimension">java_awt.Dimension</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ComponentPeer) <font color="#cc0033">prepareImage</font>*(p0 : <a href="java_awt.html#type-Image">java_awt.Image</a>;
+                                             p1 : INTEGER;
+                                             p2 : INTEGER;
+                                             p3 : <a href="java_awt_image.html#type-ImageObserver">java_awt_image.ImageObserver</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ComponentPeer) <font color="#cc0033">print</font>*(p0 : <a href="java_awt.html#type-Graphics">java_awt.Graphics</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ComponentPeer) <font color="#cc0033">repaint</font>*(p0 : LONGINT;
+                                        p1 : INTEGER;
+                                        p2 : INTEGER;
+                                        p3 : INTEGER;
+                                        p4 : INTEGER)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ComponentPeer) <font color="#cc0033">reparent</font>*(p0 : <a href="#type-ContainerPeer">ContainerPeer</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ComponentPeer) <font color="#cc0033">requestFocus</font>*(p0 : <a href="java_awt.html#type-Component">java_awt.Component</a>;
+                                             p1 : BOOLEAN;
+                                             p2 : BOOLEAN;
+                                             p3 : LONGINT;
+                                             p4 : <a href="sun_awt.html#type-CausedFocusEvent$Cause">sun_awt.CausedFocusEvent$Cause</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ComponentPeer) <font color="#cc0033">reshape</font>*(p0 : INTEGER;
+                                        p1 : INTEGER;
+                                        p2 : INTEGER;
+                                        p3 : INTEGER)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ComponentPeer) <font color="#cc0033">setBackground</font>*(p0 : <a href="java_awt.html#type-Color">java_awt.Color</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ComponentPeer) <font color="#cc0033">setBounds</font>*(p0 : INTEGER;
+                                          p1 : INTEGER;
+                                          p2 : INTEGER;
+                                          p3 : INTEGER;
+                                          p4 : INTEGER)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ComponentPeer) <font color="#cc0033">setEnabled</font>*(p0 : BOOLEAN)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ComponentPeer) <font color="#cc0033">setFont</font>*(p0 : <a href="java_awt.html#type-Font">java_awt.Font</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ComponentPeer) <font color="#cc0033">setForeground</font>*(p0 : <a href="java_awt.html#type-Color">java_awt.Color</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ComponentPeer) <font color="#cc0033">setVisible</font>*(p0 : BOOLEAN)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ComponentPeer) <font color="#cc0033">show</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ComponentPeer) <font color="#cc0033">updateCursorImmediately</font>*()<b>,NEW,ABSTRACT</b>;
+<a name="meths-ContainerPeer"></a>
+<b>PROCEDURE </b>(self:ContainerPeer) <font color="#cc0033">beginLayout</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ContainerPeer) <font color="#cc0033">beginValidate</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ContainerPeer) <font color="#cc0033">endLayout</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ContainerPeer) <font color="#cc0033">endValidate</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ContainerPeer) <font color="#cc0033">getInsets</font>*() : <a href="java_awt.html#type-Insets">java_awt.Insets</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ContainerPeer) <font color="#cc0033">insets</font>*() : <a href="java_awt.html#type-Insets">java_awt.Insets</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ContainerPeer) <font color="#cc0033">isPaintPending</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ContainerPeer) <font color="#cc0033">isRestackSupported</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ContainerPeer) <font color="#cc0033">restack</font>*()<b>,NEW,ABSTRACT</b>;
+<a name="meths-DesktopPeer"></a>
+<b>PROCEDURE </b>(self:DesktopPeer) <font color="#cc0033">browse</font>*(p0 : <a href="java_net.html#type-URI">java_net.URI</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DesktopPeer) <font color="#cc0033">edit</font>*(p0 : <a href="java_io.html#type-File">java_io.File</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DesktopPeer) <font color="#cc0033">isSupported</font>*(p0 : <a href="java_awt.html#type-Desktop$Action">java_awt.Desktop$Action</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DesktopPeer) <font color="#cc0033">mail</font>*(p0 : <a href="java_net.html#type-URI">java_net.URI</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DesktopPeer) <font color="#cc0033">open</font>*(p0 : <a href="java_io.html#type-File">java_io.File</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DesktopPeer) <font color="#cc0033">print</font>*(p0 : <a href="java_io.html#type-File">java_io.File</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-DialogPeer"></a>
+<b>PROCEDURE </b>(self:DialogPeer) <font color="#cc0033">blockWindows</font>*(p0 : <a href="java_util.html#type-List">java_util.List</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DialogPeer) <font color="#cc0033">setResizable</font>*(p0 : BOOLEAN)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:DialogPeer) <font color="#cc0033">setTitle</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-FileDialogPeer"></a>
+<b>PROCEDURE </b>(self:FileDialogPeer) <font color="#cc0033">setDirectory</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:FileDialogPeer) <font color="#cc0033">setFile</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:FileDialogPeer) <font color="#cc0033">setFilenameFilter</font>*(p0 : <a href="java_io.html#type-FilenameFilter">java_io.FilenameFilter</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-FramePeer"></a>
+<b>PROCEDURE </b>(self:FramePeer) <font color="#cc0033">getBoundsPrivate</font>*() : <a href="java_awt.html#type-Rectangle">java_awt.Rectangle</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:FramePeer) <font color="#cc0033">getState</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:FramePeer) <font color="#cc0033">setBoundsPrivate</font>*(p0 : INTEGER;
+                                             p1 : INTEGER;
+                                             p2 : INTEGER;
+                                             p3 : INTEGER)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:FramePeer) <font color="#cc0033">setMaximizedBounds</font>*(p0 : <a href="java_awt.html#type-Rectangle">java_awt.Rectangle</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:FramePeer) <font color="#cc0033">setMenuBar</font>*(p0 : <a href="java_awt.html#type-MenuBar">java_awt.MenuBar</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:FramePeer) <font color="#cc0033">setResizable</font>*(p0 : BOOLEAN)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:FramePeer) <font color="#cc0033">setState</font>*(p0 : INTEGER)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:FramePeer) <font color="#cc0033">setTitle</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-KeyboardFocusManagerPeer"></a>
+<b>PROCEDURE </b>(self:KeyboardFocusManagerPeer) <font color="#cc0033">clearGlobalFocusOwner</font>*(p0 : <a href="java_awt.html#type-Window">java_awt.Window</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:KeyboardFocusManagerPeer) <font color="#cc0033">getCurrentFocusedWindow</font>*() : <a href="java_awt.html#type-Window">java_awt.Window</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:KeyboardFocusManagerPeer) <font color="#cc0033">getCurrentFocusOwner</font>*() : <a href="java_awt.html#type-Component">java_awt.Component</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:KeyboardFocusManagerPeer) <font color="#cc0033">setCurrentFocusedWindow</font>*(p0 : <a href="java_awt.html#type-Window">java_awt.Window</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:KeyboardFocusManagerPeer) <font color="#cc0033">setCurrentFocusOwner</font>*(p0 : <a href="java_awt.html#type-Component">java_awt.Component</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-LabelPeer"></a>
+<b>PROCEDURE </b>(self:LabelPeer) <font color="#cc0033">setAlignment</font>*(p0 : INTEGER)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:LabelPeer) <font color="#cc0033">setText</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-ListPeer"></a>
+<b>PROCEDURE </b>(self:ListPeer) <font color="#cc0033">add</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                               p1 : INTEGER)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ListPeer) <font color="#cc0033">addItem</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                   p1 : INTEGER)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ListPeer) <font color="#cc0033">clear</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ListPeer) <font color="#cc0033">delItems</font>*(p0 : INTEGER;
+                                    p1 : INTEGER)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ListPeer) <font color="#cc0033">deselect</font>*(p0 : INTEGER)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ListPeer) <font color="#cc0033">getMinimumSize</font>*(p0 : INTEGER) : <a href="java_awt.html#type-Dimension">java_awt.Dimension</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ListPeer) <font color="#cc0033">getPreferredSize</font>*(p0 : INTEGER) : <a href="java_awt.html#type-Dimension">java_awt.Dimension</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ListPeer) <font color="#cc0033">getSelectedIndexes</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ListPeer) <font color="#cc0033">makeVisible</font>*(p0 : INTEGER)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ListPeer) <font color="#cc0033">minimumSize</font>*(p0 : INTEGER) : <a href="java_awt.html#type-Dimension">java_awt.Dimension</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ListPeer) <font color="#cc0033">preferredSize</font>*(p0 : INTEGER) : <a href="java_awt.html#type-Dimension">java_awt.Dimension</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ListPeer) <font color="#cc0033">removeAll</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ListPeer) <font color="#cc0033">select</font>*(p0 : INTEGER)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ListPeer) <font color="#cc0033">setMultipleMode</font>*(p0 : BOOLEAN)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ListPeer) <font color="#cc0033">setMultipleSelections</font>*(p0 : BOOLEAN)<b>,NEW,ABSTRACT</b>;
+<a name="meths-MenuBarPeer"></a>
+<b>PROCEDURE </b>(self:MenuBarPeer) <font color="#cc0033">addHelpMenu</font>*(p0 : <a href="java_awt.html#type-Menu">java_awt.Menu</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MenuBarPeer) <font color="#cc0033">addMenu</font>*(p0 : <a href="java_awt.html#type-Menu">java_awt.Menu</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MenuBarPeer) <font color="#cc0033">delMenu</font>*(p0 : INTEGER)<b>,NEW,ABSTRACT</b>;
+<a name="meths-MenuComponentPeer"></a>
+<b>PROCEDURE </b>(self:MenuComponentPeer) <font color="#cc0033">dispose</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MenuComponentPeer) <font color="#cc0033">setFont</font>*(p0 : <a href="java_awt.html#type-Font">java_awt.Font</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-MenuItemPeer"></a>
+<b>PROCEDURE </b>(self:MenuItemPeer) <font color="#cc0033">disable</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MenuItemPeer) <font color="#cc0033">enable</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MenuItemPeer) <font color="#cc0033">setEnabled</font>*(p0 : BOOLEAN)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MenuItemPeer) <font color="#cc0033">setLabel</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-MenuPeer"></a>
+<b>PROCEDURE </b>(self:MenuPeer) <font color="#cc0033">addItem</font>*(p0 : <a href="java_awt.html#type-MenuItem">java_awt.MenuItem</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MenuPeer) <font color="#cc0033">addSeparator</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MenuPeer) <font color="#cc0033">delItem</font>*(p0 : INTEGER)<b>,NEW,ABSTRACT</b>;
+<a name="meths-MouseInfoPeer"></a>
+<b>PROCEDURE </b>(self:MouseInfoPeer) <font color="#cc0033">fillPointWithCoords</font>*(p0 : <a href="java_awt.html#type-Point">java_awt.Point</a>) : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:MouseInfoPeer) <font color="#cc0033">isWindowUnderMouse</font>*(p0 : <a href="java_awt.html#type-Window">java_awt.Window</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+<a name="meths-PopupMenuPeer"></a>
+<b>PROCEDURE </b>(self:PopupMenuPeer) <font color="#cc0033">show</font>*(p0 : <a href="java_awt.html#type-Event">java_awt.Event</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-RobotPeer"></a>
+<b>PROCEDURE </b>(self:RobotPeer) <font color="#cc0033">dispose</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RobotPeer) <font color="#cc0033">getRGBPixel</font>*(p0 : INTEGER;
+                                        p1 : INTEGER) : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RobotPeer) <font color="#cc0033">getRGBPixels</font>*(p0 : <a href="java_awt.html#type-Rectangle">java_awt.Rectangle</a>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RobotPeer) <font color="#cc0033">keyPress</font>*(p0 : INTEGER)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RobotPeer) <font color="#cc0033">keyRelease</font>*(p0 : INTEGER)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RobotPeer) <font color="#cc0033">mouseMove</font>*(p0 : INTEGER;
+                                      p1 : INTEGER)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RobotPeer) <font color="#cc0033">mousePress</font>*(p0 : INTEGER)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RobotPeer) <font color="#cc0033">mouseRelease</font>*(p0 : INTEGER)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:RobotPeer) <font color="#cc0033">mouseWheel</font>*(p0 : INTEGER)<b>,NEW,ABSTRACT</b>;
+<a name="meths-ScrollbarPeer"></a>
+<b>PROCEDURE </b>(self:ScrollbarPeer) <font color="#cc0033">setLineIncrement</font>*(p0 : INTEGER)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ScrollbarPeer) <font color="#cc0033">setPageIncrement</font>*(p0 : INTEGER)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ScrollbarPeer) <font color="#cc0033">setValues</font>*(p0 : INTEGER;
+                                          p1 : INTEGER;
+                                          p2 : INTEGER;
+                                          p3 : INTEGER)<b>,NEW,ABSTRACT</b>;
+<a name="meths-ScrollPanePeer"></a>
+<b>PROCEDURE </b>(self:ScrollPanePeer) <font color="#cc0033">childResized</font>*(p0 : INTEGER;
+                                              p1 : INTEGER)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ScrollPanePeer) <font color="#cc0033">getHScrollbarHeight</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ScrollPanePeer) <font color="#cc0033">getVScrollbarWidth</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ScrollPanePeer) <font color="#cc0033">setScrollPosition</font>*(p0 : INTEGER;
+                                                   p1 : INTEGER)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ScrollPanePeer) <font color="#cc0033">setUnitIncrement</font>*(p0 : <a href="java_awt.html#type-Adjustable">java_awt.Adjustable</a>;
+                                                  p1 : INTEGER)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ScrollPanePeer) <font color="#cc0033">setValue</font>*(p0 : <a href="java_awt.html#type-Adjustable">java_awt.Adjustable</a>;
+                                          p1 : INTEGER)<b>,NEW,ABSTRACT</b>;
+<a name="meths-SystemTrayPeer"></a>
+<b>PROCEDURE </b>(self:SystemTrayPeer) <font color="#cc0033">getTrayIconSize</font>*() : <a href="java_awt.html#type-Dimension">java_awt.Dimension</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-TextAreaPeer"></a>
+<b>PROCEDURE </b>(self:TextAreaPeer) <font color="#cc0033">getMinimumSize</font>*(p0 : INTEGER;
+                                              p1 : INTEGER) : <a href="java_awt.html#type-Dimension">java_awt.Dimension</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:TextAreaPeer) <font color="#cc0033">getPreferredSize</font>*(p0 : INTEGER;
+                                                p1 : INTEGER) : <a href="java_awt.html#type-Dimension">java_awt.Dimension</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:TextAreaPeer) <font color="#cc0033">insert</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                      p1 : INTEGER)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:TextAreaPeer) <font color="#cc0033">insertText</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                          p1 : INTEGER)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:TextAreaPeer) <font color="#cc0033">minimumSize</font>*(p0 : INTEGER;
+                                           p1 : INTEGER) : <a href="java_awt.html#type-Dimension">java_awt.Dimension</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:TextAreaPeer) <font color="#cc0033">preferredSize</font>*(p0 : INTEGER;
+                                             p1 : INTEGER) : <a href="java_awt.html#type-Dimension">java_awt.Dimension</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:TextAreaPeer) <font color="#cc0033">replaceRange</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                            p1 : INTEGER;
+                                            p2 : INTEGER)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:TextAreaPeer) <font color="#cc0033">replaceText</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                           p1 : INTEGER;
+                                           p2 : INTEGER)<b>,NEW,ABSTRACT</b>;
+<a name="meths-TextComponentPeer"></a>
+<b>PROCEDURE </b>(self:TextComponentPeer) <font color="#cc0033">filterEvents</font>*(p0 : LONGINT) : LONGINT<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:TextComponentPeer) <font color="#cc0033">getCaretPosition</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:TextComponentPeer) <font color="#cc0033">getCharacterBounds</font>*(p0 : INTEGER) : <a href="java_awt.html#type-Rectangle">java_awt.Rectangle</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:TextComponentPeer) <font color="#cc0033">getIndexAtPoint</font>*(p0 : INTEGER;
+                                                    p1 : INTEGER) : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:TextComponentPeer) <font color="#cc0033">getInputMethodRequests</font>*() : <a href="java_awt_im.html#type-InputMethodRequests">java_awt_im.InputMethodRequests</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:TextComponentPeer) <font color="#cc0033">getSelectionEnd</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:TextComponentPeer) <font color="#cc0033">getSelectionStart</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:TextComponentPeer) <font color="#cc0033">getText</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:TextComponentPeer) <font color="#cc0033">select</font>*(p0 : INTEGER;
+                                           p1 : INTEGER)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:TextComponentPeer) <font color="#cc0033">setCaretPosition</font>*(p0 : INTEGER)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:TextComponentPeer) <font color="#cc0033">setEditable</font>*(p0 : BOOLEAN)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:TextComponentPeer) <font color="#cc0033">setText</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-TextFieldPeer"></a>
+<b>PROCEDURE </b>(self:TextFieldPeer) <font color="#cc0033">getMinimumSize</font>*(p0 : INTEGER) : <a href="java_awt.html#type-Dimension">java_awt.Dimension</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:TextFieldPeer) <font color="#cc0033">getPreferredSize</font>*(p0 : INTEGER) : <a href="java_awt.html#type-Dimension">java_awt.Dimension</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:TextFieldPeer) <font color="#cc0033">minimumSize</font>*(p0 : INTEGER) : <a href="java_awt.html#type-Dimension">java_awt.Dimension</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:TextFieldPeer) <font color="#cc0033">preferredSize</font>*(p0 : INTEGER) : <a href="java_awt.html#type-Dimension">java_awt.Dimension</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:TextFieldPeer) <font color="#cc0033">setEchoChar</font>*(p0 : CHAR)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:TextFieldPeer) <font color="#cc0033">setEchoCharacter</font>*(p0 : CHAR)<b>,NEW,ABSTRACT</b>;
+<a name="meths-TrayIconPeer"></a>
+<b>PROCEDURE </b>(self:TrayIconPeer) <font color="#cc0033">displayMessage</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                              p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                              p2 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:TrayIconPeer) <font color="#cc0033">dispose</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:TrayIconPeer) <font color="#cc0033">setToolTip</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:TrayIconPeer) <font color="#cc0033">showPopupMenu</font>*(p0 : INTEGER;
+                                             p1 : INTEGER)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:TrayIconPeer) <font color="#cc0033">updateImage</font>*()<b>,NEW,ABSTRACT</b>;
+<a name="meths-WindowPeer"></a>
+<b>PROCEDURE </b>(self:WindowPeer) <font color="#cc0033">repositionSecurityWarning</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:WindowPeer) <font color="#cc0033">requestWindowFocus</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:WindowPeer) <font color="#cc0033">setAlwaysOnTop</font>*(p0 : BOOLEAN)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:WindowPeer) <font color="#cc0033">setModalBlocked</font>*(p0 : <a href="java_awt.html#type-Dialog">java_awt.Dialog</a>;
+                                             p1 : BOOLEAN)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:WindowPeer) <font color="#cc0033">setOpacity</font>*(p0 : SHORTREAL)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:WindowPeer) <font color="#cc0033">setOpaque</font>*(p0 : BOOLEAN)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:WindowPeer) <font color="#cc0033">toBack</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:WindowPeer) <font color="#cc0033">toFront</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:WindowPeer) <font color="#cc0033">updateFocusableWindowState</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:WindowPeer) <font color="#cc0033">updateIconImages</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:WindowPeer) <font color="#cc0033">updateMinimumSize</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:WindowPeer) <font color="#cc0033">updateWindow</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>END </b><font color="#cc0033">java_awt_peer</font>.
+</font></pre></hr></body></html>

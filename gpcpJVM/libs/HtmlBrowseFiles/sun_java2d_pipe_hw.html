@@ -1,0 +1,151 @@
+<html><head><title>sun_java2d_pipe_hw</title></head>
+<body bgcolor="white">
+<hr><pre>
+<b>FOREIGN MODULE </b><font color="#cc0033">sun_java2d_pipe_hw</font>;
+
+<b>IMPORT</b>
+    <a href="java_lang.html">java_lang</a> := "java.lang",
+    <a href="java_util.html">java_util</a> := "java.util",
+    <a href="java_awt_image.html">java_awt_image</a> := "java.awt.image",
+    <a href="sun_java2d.html">sun_java2d</a> := "sun.java2d",
+    <a href="java_awt.html">java_awt</a> := "java.awt",
+    <a href="sun_awt_image.html">sun_awt_image</a> := "sun.awt.image",
+    <a href="sun_java2d_pipe.html">sun_java2d_pipe</a> := "sun.java2d.pipe",
+    <a href="java_io.html">java_io</a> := "java.io";
+
+<b>TYPE</b>
+
+  <a name="type-AccelDeviceEventListener"></a><font color="#cc0033">AccelDeviceEventListener</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-AccelDeviceEventListener"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                              <b>END</b>;
+
+  <a name="type-AccelDeviceEventNotifier"></a><font color="#cc0033">AccelDeviceEventNotifier</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                              <b>STATIC</b>
+                                <font color="#cc0033">DEVICE_DISPOSED</font>* = 1;
+                                <font color="#cc0033">DEVICE_RESET</font>*    = 0;
+                                <b>PROCEDURE </b><font color="#cc0033">addListener</font>*(p0 : <a href="#type-AccelDeviceEventListener">AccelDeviceEventListener</a>;
+                                                       p1 : INTEGER);
+                                <b>PROCEDURE </b><font color="#cc0033">eventOccured</font>*(p0 : INTEGER;
+                                                        p1 : INTEGER);
+                                <b>PROCEDURE </b><font color="#cc0033">removeListener</font>*(p0 : <a href="#type-AccelDeviceEventListener">AccelDeviceEventListener</a>);
+                              <b>END</b>;
+
+  <a name="type-AccelGraphicsConfig"></a><font color="#cc0033">AccelGraphicsConfig</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-BufferedContextProvider">BufferedContextProvider</a>)    <a href="#meths-AccelGraphicsConfig"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                         <b>END</b>;
+
+  <a name="type-AccelSurface"></a><font color="#cc0033">AccelSurface</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-BufferedContextProvider">BufferedContextProvider</a> + <a href="sun_java2d.html#type-Surface">sun_java2d.Surface</a>)    <a href="#meths-AccelSurface"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                  <b>STATIC</b>
+                    <font color="#cc0033">FLIP_BACKBUFFER</font>* = 4;
+                    <font color="#cc0033">RT_PLAIN</font>*        = 2;
+                    <font color="#cc0033">RT_TEXTURE</font>*      = 5;
+                    <font color="#cc0033">TEXTURE</font>*         = 3;
+                    <font color="#cc0033">UNDEFINED</font>*       = 0;
+                    <font color="#cc0033">WINDOW</font>*          = 1;
+                  <b>END</b>;
+
+  <a name="type-AccelTypedVolatileImage"></a><font color="#cc0033">AccelTypedVolatileImage</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="sun_awt_image.html#type-SunVolatileImage">sun_awt_image.SunVolatileImage</a>)    <a href="#meths-AccelTypedVolatileImage"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                             <b>STATIC</b>
+                               <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_awt.html#type-GraphicsConfiguration">java_awt.GraphicsConfiguration</a>;
+                                               p1 : INTEGER;
+                                               p2 : INTEGER;
+                                               p3 : INTEGER;
+                                               p4 : INTEGER) : <a href="#type-AccelTypedVolatileImage">AccelTypedVolatileImage</a><b>,CONSTRUCTOR</b>;
+                             <b>END</b>;
+
+  <a name="type-BufferedContextProvider"></a><font color="#cc0033">BufferedContextProvider</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-BufferedContextProvider"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                             <b>END</b>;
+
+  <a name="type-ContextCapabilities"></a><font color="#cc0033">ContextCapabilities</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-ContextCapabilities"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                           <font color="#cc0033">caps</font>!      : INTEGER;
+                           <font color="#cc0033">adapterId</font>! : <a href="java_lang.html#type-String">java_lang.String</a>;
+                         <b>STATIC</b>
+                           <font color="#cc0033">CAPS_EMPTY</font>*             = 0;
+                           <font color="#cc0033">CAPS_MULTITEXTURE</font>*      = 16;
+                           <font color="#cc0033">CAPS_PS20</font>*              = 128;
+                           <font color="#cc0033">CAPS_PS30</font>*              = 256;
+                           <font color="#cc0033">CAPS_RT_PLAIN_ALPHA</font>*    = 2;
+                           <font color="#cc0033">CAPS_RT_TEXTURE_ALPHA</font>*  = 4;
+                           <font color="#cc0033">CAPS_RT_TEXTURE_OPAQUE</font>* = 8;
+                           <font color="#cc0033">CAPS_TEXNONPOW2</font>*        = 32;
+                           <font color="#cc0033">CAPS_TEXNONSQUARE</font>*      = 64;
+                           <font color="#cc0033">FIRST_PRIVATE_CAP</font>!      = 65536;
+                           <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : INTEGER;
+                                           p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-ContextCapabilities">ContextCapabilities</a><b>,CONSTRUCTOR</b>;
+                         <b>END</b>;
+
+  <a name="type-ExtendedBufferCapabilities"></a><font color="#cc0033">ExtendedBufferCapabilities</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_awt.html#type-BufferCapabilities">java_awt.BufferCapabilities</a>)    <a href="#meths-ExtendedBufferCapabilities"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                                <b>STATIC</b>
+                                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_awt.html#type-ImageCapabilities">java_awt.ImageCapabilities</a>;
+                                                  p1 : <a href="java_awt.html#type-ImageCapabilities">java_awt.ImageCapabilities</a>;
+                                                  p2 : <a href="java_awt.html#type-BufferCapabilities$FlipContents">java_awt.BufferCapabilities$FlipContents</a>;
+                                                  p3 : <a href="#type-ExtendedBufferCapabilities$VSyncType">ExtendedBufferCapabilities$VSyncType</a>) : <a href="#type-ExtendedBufferCapabilities">ExtendedBufferCapabilities</a><b>,CONSTRUCTOR</b>;
+                                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_awt.html#type-BufferCapabilities">java_awt.BufferCapabilities</a>;
+                                                  p1 : <a href="#type-ExtendedBufferCapabilities$VSyncType">ExtendedBufferCapabilities$VSyncType</a>) : <a href="#type-ExtendedBufferCapabilities">ExtendedBufferCapabilities</a><b>,CONSTRUCTOR</b>;
+                                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_awt.html#type-BufferCapabilities">java_awt.BufferCapabilities</a>) : <a href="#type-ExtendedBufferCapabilities">ExtendedBufferCapabilities</a><b>,CONSTRUCTOR</b>;
+                                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_awt.html#type-ImageCapabilities">java_awt.ImageCapabilities</a>;
+                                                  p1 : <a href="java_awt.html#type-ImageCapabilities">java_awt.ImageCapabilities</a>;
+                                                  p2 : <a href="java_awt.html#type-BufferCapabilities$FlipContents">java_awt.BufferCapabilities$FlipContents</a>) : <a href="#type-ExtendedBufferCapabilities">ExtendedBufferCapabilities</a><b>,CONSTRUCTOR</b>;
+                                <b>END</b>;
+
+  <a name="type-ExtendedBufferCapabilities$VSyncType"></a><font color="#cc0033">ExtendedBufferCapabilities$VSyncType</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Enum">java_lang.Enum</a>)    <a href="#meths-ExtendedBufferCapabilities$VSyncType"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                                          <b>STATIC</b>
+                                            <a name="type-VSYNC_DEFAULT"></a><font color="#cc0033">VSYNC_DEFAULT</font>* : <a href="#type-ExtendedBufferCapabilities$VSyncType">ExtendedBufferCapabilities$VSyncType</a>;
+                                            <a name="type-VSYNC_OFF"></a><font color="#cc0033">VSYNC_OFF</font>*     : <a href="#type-ExtendedBufferCapabilities$VSyncType">ExtendedBufferCapabilities$VSyncType</a>;
+                                            <a name="type-VSYNC_ON"></a><font color="#cc0033">VSYNC_ON</font>*      : <a href="#type-ExtendedBufferCapabilities$VSyncType">ExtendedBufferCapabilities$VSyncType</a>;
+                                            <b>PROCEDURE </b><font color="#cc0033">valueOf</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-ExtendedBufferCapabilities$VSyncType">ExtendedBufferCapabilities$VSyncType</a>;
+                                            <b>PROCEDURE </b><font color="#cc0033">values</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-ExtendedBufferCapabilities$VSyncType">ExtendedBufferCapabilities$VSyncType</a>;
+                                          <b>END</b>;
+
+
+
+<a name="meths-AccelDeviceEventListener"></a>
+<b>PROCEDURE </b>(self:AccelDeviceEventListener) <font color="#cc0033">onDeviceDispose</font>*()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AccelDeviceEventListener) <font color="#cc0033">onDeviceReset</font>*()<b>,NEW,ABSTRACT</b>;
+<a name="meths-AccelGraphicsConfig"></a>
+<b>PROCEDURE </b>(self:AccelGraphicsConfig) <font color="#cc0033">addDeviceEventListener</font>*(p0 : <a href="#type-AccelDeviceEventListener">AccelDeviceEventListener</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AccelGraphicsConfig) <font color="#cc0033">createCompatibleVolatileImage</font>*(p0 : INTEGER;
+                                                                    p1 : INTEGER;
+                                                                    p2 : INTEGER;
+                                                                    p3 : INTEGER) : <a href="java_awt_image.html#type-VolatileImage">java_awt_image.VolatileImage</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AccelGraphicsConfig) <font color="#cc0033">getContextCapabilities</font>*() : <a href="#type-ContextCapabilities">ContextCapabilities</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AccelGraphicsConfig) <font color="#cc0033">removeDeviceEventListener</font>*(p0 : <a href="#type-AccelDeviceEventListener">AccelDeviceEventListener</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-AccelSurface"></a>
+<b>PROCEDURE </b>(self:AccelSurface) <font color="#cc0033">getBounds</font>*() : <a href="java_awt.html#type-Rectangle">java_awt.Rectangle</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AccelSurface) <font color="#cc0033">getNativeBounds</font>*() : <a href="java_awt.html#type-Rectangle">java_awt.Rectangle</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AccelSurface) <font color="#cc0033">getNativeOps</font>*() : LONGINT<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AccelSurface) <font color="#cc0033">getNativeResource</font>*(p0 : INTEGER) : LONGINT<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AccelSurface) <font color="#cc0033">getType</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AccelSurface) <font color="#cc0033">isSurfaceLost</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AccelSurface) <font color="#cc0033">isValid</font>*() : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AccelSurface) <font color="#cc0033">markDirty</font>*()<b>,NEW,ABSTRACT</b>;
+<a name="meths-AccelTypedVolatileImage"></a>
+<b>PROCEDURE </b>(self:AccelTypedVolatileImage) <font color="#cc0033">createGraphics</font>*() : <a href="java_awt.html#type-Graphics2D">java_awt.Graphics2D</a><b>,EXTENSIBLE</b>;
+<a name="meths-BufferedContextProvider"></a>
+<b>PROCEDURE </b>(self:BufferedContextProvider) <font color="#cc0033">getContext</font>*() : <a href="sun_java2d_pipe.html#type-BufferedContext">sun_java2d_pipe.BufferedContext</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-ContextCapabilities"></a>
+<b>PROCEDURE </b>(self:ContextCapabilities) <font color="#cc0033">getAdapterId</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ContextCapabilities) <font color="#cc0033">getCaps</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ContextCapabilities) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,EXTENSIBLE</b>;
+<a name="meths-ExtendedBufferCapabilities"></a>
+<b>PROCEDURE </b>(self:ExtendedBufferCapabilities) <font color="#cc0033">derive</font>*(p0 : <a href="#type-ExtendedBufferCapabilities$VSyncType">ExtendedBufferCapabilities$VSyncType</a>) : <a href="#type-ExtendedBufferCapabilities">ExtendedBufferCapabilities</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ExtendedBufferCapabilities) <font color="#cc0033">getVSync</font>*() : <a href="#type-ExtendedBufferCapabilities$VSyncType">ExtendedBufferCapabilities$VSyncType</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ExtendedBufferCapabilities) <font color="#cc0033">isPageFlipping</font>*() : BOOLEAN;
+<a name="meths-ExtendedBufferCapabilities$VSyncType"></a>
+<b>PROCEDURE </b>(self:ExtendedBufferCapabilities$VSyncType) <font color="#cc0033">id</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>END </b><font color="#cc0033">sun_java2d_pipe_hw</font>.
+</font></pre></hr></body></html>

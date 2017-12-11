@@ -1,0 +1,32 @@
+<html><head><title>sun_net_spi_nameservice</title></head>
+<body bgcolor="white">
+<hr><pre>
+<b>FOREIGN MODULE </b><font color="#cc0033">sun_net_spi_nameservice</font>;
+
+<b>IMPORT</b>
+    <a href="java_lang.html">java_lang</a> := "java.lang",
+    <a href="java_net.html">java_net</a> := "java.net";
+
+<b>TYPE</b>
+
+  <a name="type-NameService"></a><font color="#cc0033">NameService</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-NameService"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                 <b>END</b>;
+
+  <a name="type-NameServiceDescriptor"></a><font color="#cc0033">NameServiceDescriptor</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-NameServiceDescriptor"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                           <b>END</b>;
+
+
+
+<a name="meths-NameService"></a>
+<b>PROCEDURE </b>(self:NameService) <font color="#cc0033">getHostByAddr</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:NameService) <font color="#cc0033">lookupAllHostAddr</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_net.html#type-InetAddress">java_net.InetAddress</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-NameServiceDescriptor"></a>
+<b>PROCEDURE </b>(self:NameServiceDescriptor) <font color="#cc0033">createNameService</font>*() : <a href="#type-NameService">NameService</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:NameServiceDescriptor) <font color="#cc0033">getProviderName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:NameServiceDescriptor) <font color="#cc0033">getType</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>END </b><font color="#cc0033">sun_net_spi_nameservice</font>.
+</font></pre></hr></body></html>

@@ -1,0 +1,101 @@
+<html><head><title>javax_swing_colorchooser</title></head>
+<body bgcolor="white">
+<hr><pre>
+<b>FOREIGN MODULE </b><font color="#cc0033">javax_swing_colorchooser</font>;
+
+<b>IMPORT</b>
+    <a href="javax_swing_event.html">javax_swing_event</a> := "javax.swing.event",
+    <a href="java_io.html">java_io</a> := "java.io",
+    <a href="java_lang.html">java_lang</a> := "java.lang",
+    <a href="javax_swing.html">javax_swing</a> := "javax.swing",
+    <a href="java_awt.html">java_awt</a> := "java.awt",
+    <a href="javax_accessibility.html">javax_accessibility</a> := "javax.accessibility",
+    <a href="javax_swing_plaf.html">javax_swing_plaf</a> := "javax.swing.plaf",
+    <a href="java_util.html">java_util</a> := "java.util",
+    <a href="java_beans.html">java_beans</a> := "java.beans",
+    <a href="javax_swing_border.html">javax_swing_border</a> := "javax.swing.border",
+    <a href="sun_awt.html">sun_awt</a> := "sun.awt",
+    <a href="java_awt_event.html">java_awt_event</a> := "java.awt.event",
+    <a href="java_util_logging.html">java_util_logging</a> := "java.util.logging",
+    <a href="java_awt_peer.html">java_awt_peer</a> := "java.awt.peer",
+    <a href="sun_java2d_pipe.html">sun_java2d_pipe</a> := "sun.java2d.pipe",
+    <a href="java_awt_image.html">java_awt_image</a> := "java.awt.image",
+    <a href="java_awt_dnd.html">java_awt_dnd</a> := "java.awt.dnd",
+    <a href="java_security.html">java_security</a> := "java.security",
+    <a href="java_awt_im.html">java_awt_im</a> := "java.awt.im",
+    <a href="sun_nio_ch.html">sun_nio_ch</a> := "sun.nio.ch",
+    <a href="sun_misc.html">sun_misc</a> := "sun.misc";
+
+<b>TYPE</b>
+
+  <a name="type-AbstractColorChooserPanel"></a><font color="#cc0033">AbstractColorChooserPanel</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="javax_swing.html#type-JPanel">javax_swing.JPanel</a>)    <a href="#meths-AbstractColorChooserPanel"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                               <b>STATIC</b>
+                                 <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-AbstractColorChooserPanel">AbstractColorChooserPanel</a><b>,CONSTRUCTOR</b>;
+                               <b>END</b>;
+
+  <a name="type-ColorChooserComponentFactory"></a><font color="#cc0033">ColorChooserComponentFactory</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                                  <b>STATIC</b>
+                                    <b>PROCEDURE </b><font color="#cc0033">getDefaultChooserPanels</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-AbstractColorChooserPanel">AbstractColorChooserPanel</a>;
+                                    <b>PROCEDURE </b><font color="#cc0033">getPreviewPanel</font>*() : <a href="javax_swing.html#type-JComponent">javax_swing.JComponent</a>;
+                                  <b>END</b>;
+
+  <a name="type-ColorSelectionModel"></a><font color="#cc0033">ColorSelectionModel</font>* = <b>POINTER TO </b><b>INTERFACE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-ColorSelectionModel"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                         <b>END</b>;
+
+  <a name="type-DefaultColorSelectionModel"></a><font color="#cc0033">DefaultColorSelectionModel</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="#type-ColorSelectionModel">ColorSelectionModel</a> + <a href="java_io.html#type-Serializable">java_io.Serializable</a>)    <a href="#meths-DefaultColorSelectionModel"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                                  <font color="#cc0033">changeEvent</font>!  : <a href="javax_swing_event.html#type-ChangeEvent">javax_swing_event.ChangeEvent</a>;
+                                  <font color="#cc0033">listenerList</font>! : <a href="javax_swing_event.html#type-EventListenerList">javax_swing_event.EventListenerList</a>;
+                                <b>STATIC</b>
+                                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_awt.html#type-Color">java_awt.Color</a>) : <a href="#type-DefaultColorSelectionModel">DefaultColorSelectionModel</a><b>,CONSTRUCTOR</b>;
+                                  <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-DefaultColorSelectionModel">DefaultColorSelectionModel</a><b>,CONSTRUCTOR</b>;
+                                <b>END</b>;
+
+
+
+<a name="meths-AbstractColorChooserPanel"></a>
+<b>PROCEDURE </b>(self:AbstractColorChooserPanel) <font color="#cc0033">buildChooser</font>!()<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AbstractColorChooserPanel) <font color="#cc0033">getColorFromModel</font>!() : <a href="java_awt.html#type-Color">java_awt.Color</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AbstractColorChooserPanel) <font color="#cc0033">getColorSelectionModel</font>*() : <a href="#type-ColorSelectionModel">ColorSelectionModel</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AbstractColorChooserPanel) <font color="#cc0033">getDisplayedMnemonicIndex</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AbstractColorChooserPanel) <font color="#cc0033">getDisplayName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AbstractColorChooserPanel) <font color="#cc0033">getLargeDisplayIcon</font>*() : <a href="javax_swing.html#type-Icon">javax_swing.Icon</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AbstractColorChooserPanel) <font color="#cc0033">getMnemonic</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AbstractColorChooserPanel) <font color="#cc0033">getSmallDisplayIcon</font>*() : <a href="javax_swing.html#type-Icon">javax_swing.Icon</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AbstractColorChooserPanel) <font color="#cc0033">installChooserPanel</font>*(p0 : <a href="javax_swing.html#type-JColorChooser">javax_swing.JColorChooser</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AbstractColorChooserPanel) <font color="#cc0033">paint</font>*(p0 : <a href="java_awt.html#type-Graphics">java_awt.Graphics</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AbstractColorChooserPanel) <font color="#cc0033">uninstallChooserPanel</font>*(p0 : <a href="javax_swing.html#type-JColorChooser">javax_swing.JColorChooser</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AbstractColorChooserPanel) <font color="#cc0033">updateChooser</font>*()<b>,NEW,ABSTRACT</b>;
+<a name="meths-ColorSelectionModel"></a>
+<b>PROCEDURE </b>(self:ColorSelectionModel) <font color="#cc0033">addChangeListener</font>*(p0 : <a href="javax_swing_event.html#type-ChangeListener">javax_swing_event.ChangeListener</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ColorSelectionModel) <font color="#cc0033">getSelectedColor</font>*() : <a href="java_awt.html#type-Color">java_awt.Color</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ColorSelectionModel) <font color="#cc0033">removeChangeListener</font>*(p0 : <a href="javax_swing_event.html#type-ChangeListener">javax_swing_event.ChangeListener</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:ColorSelectionModel) <font color="#cc0033">setSelectedColor</font>*(p0 : <a href="java_awt.html#type-Color">java_awt.Color</a>)<b>,NEW,ABSTRACT</b>;
+<a name="meths-DefaultColorSelectionModel"></a>
+<b>PROCEDURE </b>(self:DefaultColorSelectionModel) <font color="#cc0033">addChangeListener</font>*(p0 : <a href="javax_swing_event.html#type-ChangeListener">javax_swing_event.ChangeListener</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultColorSelectionModel) <font color="#cc0033">fireStateChanged</font>!()<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultColorSelectionModel) <font color="#cc0033">getChangeListeners</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="javax_swing_event.html#type-ChangeListener">javax_swing_event.ChangeListener</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultColorSelectionModel) <font color="#cc0033">getSelectedColor</font>*() : <a href="java_awt.html#type-Color">java_awt.Color</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultColorSelectionModel) <font color="#cc0033">removeChangeListener</font>*(p0 : <a href="javax_swing_event.html#type-ChangeListener">javax_swing_event.ChangeListener</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:DefaultColorSelectionModel) <font color="#cc0033">setSelectedColor</font>*(p0 : <a href="java_awt.html#type-Color">java_awt.Color</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>END </b><font color="#cc0033">javax_swing_colorchooser</font>.
+</font></pre></hr></body></html>

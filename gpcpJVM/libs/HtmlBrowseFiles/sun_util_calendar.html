@@ -1,0 +1,603 @@
+<html><head><title>sun_util_calendar</title></head>
+<body bgcolor="white">
+<hr><pre>
+<b>FOREIGN MODULE </b><font color="#cc0033">sun_util_calendar</font>;
+
+<b>IMPORT</b>
+    <a href="java_lang.html">java_lang</a> := "java.lang",
+    <a href="java_util.html">java_util</a> := "java.util",
+    <a href="java_util_concurrent.html">java_util_concurrent</a> := "java.util.concurrent",
+    <a href="java_security.html">java_security</a> := "java.security",
+    <a href="java_lang_ref.html">java_lang_ref</a> := "java.lang.ref",
+    <a href="java_io.html">java_io</a> := "java.io";
+
+<b>TYPE</b>
+
+  <a name="type-AbstractCalendar"></a><font color="#cc0033">AbstractCalendar</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="#type-CalendarSystem">CalendarSystem</a>)    <a href="#meths-AbstractCalendar"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                      <b>STATIC</b>
+                        <b>PROCEDURE </b><font color="#cc0033">getDayOfWeekDateOnOrBefore</font>*(p0 : LONGINT;
+                                                              p1 : INTEGER) : LONGINT;
+                        <b>PROCEDURE </b><font color="#cc0033">Init</font>!() : <a href="#type-AbstractCalendar">AbstractCalendar</a><b>,CONSTRUCTOR</b>;
+                      <b>END</b>;
+
+  <a name="type-BaseCalendar"></a><font color="#cc0033">BaseCalendar</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="#type-AbstractCalendar">AbstractCalendar</a>)    <a href="#meths-BaseCalendar"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                  <b>STATIC</b>
+                    <font color="#cc0033">APRIL</font>*                     = 4;
+                    <font color="#cc0033">AUGUST</font>*                    = 8;
+                    <font color="#cc0033">DECEMBER</font>*                  = 12;
+                    <font color="#cc0033">FEBRUARY</font>*                  = 2;
+                    <font color="#cc0033">FRIDAY</font>*                    = 6;
+                    <font color="#cc0033">JANUARY</font>*                   = 1;
+                    <font color="#cc0033">JULY</font>*                      = 7;
+                    <font color="#cc0033">JUNE</font>*                      = 6;
+                    <font color="#cc0033">MARCH</font>*                     = 3;
+                    <font color="#cc0033">MAY</font>*                       = 5;
+                    <font color="#cc0033">MONDAY</font>*                    = 2;
+                    <font color="#cc0033">NOVEMBER</font>*                  = 11;
+                    <font color="#cc0033">OCTOBER</font>*                   = 10;
+                    <font color="#cc0033">SATURDAY</font>*                  = 7;
+                    <font color="#cc0033">SEPTEMBER</font>*                 = 9;
+                    <font color="#cc0033">SUNDAY</font>*                    = 1;
+                    <font color="#cc0033">THURSDAY</font>*                  = 5;
+                    <font color="#cc0033">TUESDAY</font>*                   = 3;
+                    <font color="#cc0033">WEDNESDAY</font>*                 = 4;
+                    <b>PROCEDURE </b><font color="#cc0033">getDayOfWeekFromFixedDate</font>*(p0 : LONGINT) : INTEGER;
+                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-BaseCalendar">BaseCalendar</a><b>,CONSTRUCTOR</b>;
+                  <b>END</b>;
+
+  <a name="type-BaseCalendar$Date"></a><font color="#cc0033">BaseCalendar$Date</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="#type-CalendarDate">CalendarDate</a>)    <a href="#meths-BaseCalendar$Date"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                       <b>STATIC</b>
+                         <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : <a href="java_util.html#type-TimeZone">java_util.TimeZone</a>) : <a href="#type-BaseCalendar$Date">BaseCalendar$Date</a><b>,CONSTRUCTOR</b>;
+                         <b>PROCEDURE </b><font color="#cc0033">Init</font>!() : <a href="#type-BaseCalendar$Date">BaseCalendar$Date</a><b>,CONSTRUCTOR</b>;
+                       <b>END</b>;
+
+  <a name="type-CalendarDate"></a><font color="#cc0033">CalendarDate</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_lang.html#type-Cloneable">java_lang.Cloneable</a>)    <a href="#meths-CalendarDate"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                  <b>STATIC</b>
+                    <font color="#cc0033">FIELD_UNDEFINED</font>* = -2147483648;
+                    <font color="#cc0033">TIME_UNDEFINED</font>*  = -9223372036854775808;
+                    <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : <a href="java_util.html#type-TimeZone">java_util.TimeZone</a>) : <a href="#type-CalendarDate">CalendarDate</a><b>,CONSTRUCTOR</b>;
+                    <b>PROCEDURE </b><font color="#cc0033">Init</font>!() : <a href="#type-CalendarDate">CalendarDate</a><b>,CONSTRUCTOR</b>;
+                  <b>END</b>;
+
+  <a name="type-CalendarSystem"></a><font color="#cc0033">CalendarSystem</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-CalendarSystem"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                    <b>STATIC</b>
+                      <b>PROCEDURE </b><font color="#cc0033">forName</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-CalendarSystem">CalendarSystem</a>;
+                      <b>PROCEDURE </b><font color="#cc0033">getGregorianCalendar</font>*() : <a href="#type-Gregorian">Gregorian</a>;
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CalendarSystem">CalendarSystem</a><b>,CONSTRUCTOR</b>;
+                    <b>END</b>;
+
+  <a name="type-CalendarUtils"></a><font color="#cc0033">CalendarUtils</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                   <b>STATIC</b>
+                     <b>PROCEDURE </b><font color="#cc0033">amod</font>*(p0 : INTEGER;
+                                     p1 : INTEGER) : INTEGER;
+                     <b>PROCEDURE </b><font color="#cc0033">amod</font>*(p0 : LONGINT;
+                                     p1 : LONGINT) : LONGINT;
+                     <b>PROCEDURE </b><font color="#cc0033">floorDivide</font>*(    p0 : INTEGER;
+                                                p1 : INTEGER;
+                                            IN  p2 : <b>ARRAY </b><b>OF </b>INTEGER) : INTEGER;
+                     <b>PROCEDURE </b><font color="#cc0033">floorDivide</font>*(    p0 : LONGINT;
+                                                p1 : INTEGER;
+                                            IN  p2 : <b>ARRAY </b><b>OF </b>INTEGER) : INTEGER;
+                     <b>PROCEDURE </b><font color="#cc0033">floorDivide</font>*(p0 : INTEGER;
+                                            p1 : INTEGER) : INTEGER;
+                     <b>PROCEDURE </b><font color="#cc0033">floorDivide</font>*(p0 : LONGINT;
+                                            p1 : LONGINT) : LONGINT;
+                     <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-CalendarUtils">CalendarUtils</a><b>,CONSTRUCTOR</b>;
+                     <b>PROCEDURE </b><font color="#cc0033">isGregorianLeapYear</font>*(p0 : INTEGER) : BOOLEAN;
+                     <b>PROCEDURE </b><font color="#cc0033">isJulianLeapYear</font>*(p0 : INTEGER) : BOOLEAN;
+                     <b>PROCEDURE </b><font color="#cc0033">mod</font>*(p0 : LONGINT;
+                                    p1 : LONGINT) : LONGINT;
+                     <b>PROCEDURE </b><font color="#cc0033">mod</font>*(p0 : INTEGER;
+                                    p1 : INTEGER) : INTEGER;
+                     <b>PROCEDURE </b><font color="#cc0033">sprintf0d</font>*(p0 : <a href="java_lang.html#type-StringBuffer">java_lang.StringBuffer</a>;
+                                          p1 : INTEGER;
+                                          p2 : INTEGER) : <a href="java_lang.html#type-StringBuffer">java_lang.StringBuffer</a>;
+                     <b>PROCEDURE </b><font color="#cc0033">sprintf0d</font>*(p0 : <a href="java_lang.html#type-StringBuilder">java_lang.StringBuilder</a>;
+                                          p1 : INTEGER;
+                                          p2 : INTEGER) : <a href="java_lang.html#type-StringBuilder">java_lang.StringBuilder</a>;
+                   <b>END</b>;
+
+  <a name="type-Era"></a><font color="#cc0033">Era</font>* = <b>POINTER TO </b><b>RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-Era"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+         <b>STATIC</b>
+           <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                           p1 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                           p2 : LONGINT;
+                           p3 : BOOLEAN) : <a href="#type-Era">Era</a><b>,CONSTRUCTOR</b>;
+         <b>END</b>;
+
+  <a name="type-Gregorian"></a><font color="#cc0033">Gregorian</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-BaseCalendar">BaseCalendar</a>)    <a href="#meths-Gregorian"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+               <b>END</b>;
+
+  <a name="type-JulianCalendar"></a><font color="#cc0033">JulianCalendar</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-BaseCalendar">BaseCalendar</a>)    <a href="#meths-JulianCalendar"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                    <b>END</b>;
+
+  <a name="type-LocalGregorianCalendar"></a><font color="#cc0033">LocalGregorianCalendar</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-BaseCalendar">BaseCalendar</a>)    <a href="#meths-LocalGregorianCalendar"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                            <b>END</b>;
+
+  <a name="type-LocalGregorianCalendar$Date"></a><font color="#cc0033">LocalGregorianCalendar$Date</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-BaseCalendar$Date">BaseCalendar$Date</a>)    <a href="#meths-LocalGregorianCalendar$Date"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                                 <b>STATIC</b>
+                                   <b>PROCEDURE </b><font color="#cc0033">Init</font>!(p0 : <a href="java_util.html#type-TimeZone">java_util.TimeZone</a>) : <a href="#type-LocalGregorianCalendar$Date">LocalGregorianCalendar$Date</a><b>,CONSTRUCTOR</b>;
+                                   <b>PROCEDURE </b><font color="#cc0033">Init</font>!() : <a href="#type-LocalGregorianCalendar$Date">LocalGregorianCalendar$Date</a><b>,CONSTRUCTOR</b>;
+                                 <b>END</b>;
+
+  <a name="type-ZoneInfo"></a><font color="#cc0033">ZoneInfo</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_util.html#type-TimeZone">java_util.TimeZone</a>)    <a href="#meths-ZoneInfo"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+              <b>STATIC</b>
+                <b>PROCEDURE </b><font color="#cc0033">getAliasTable</font>*() : <a href="java_util.html#type-Map">java_util.Map</a>;
+                <b>PROCEDURE </b><font color="#cc0033">getAvailableIDs</font>*(p0 : INTEGER) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>;
+                <b>PROCEDURE </b><font color="#cc0033">getAvailableIDs</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang.html#type-String">java_lang.String</a>;
+                <b>PROCEDURE </b><font color="#cc0033">getTimeZone</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_util.html#type-TimeZone">java_util.TimeZone</a>;
+                <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-ZoneInfo">ZoneInfo</a><b>,CONSTRUCTOR</b>;
+                <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                p1 : INTEGER) : <a href="#type-ZoneInfo">ZoneInfo</a><b>,CONSTRUCTOR</b>;
+              <b>END</b>;
+
+  <a name="type-ZoneInfoFile"></a><font color="#cc0033">ZoneInfoFile</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                  <b>STATIC</b>
+                    <a name="type-JAVAZI_LABEL"></a><font color="#cc0033">JAVAZI_LABEL</font>*            : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>BYTE;
+                    <font color="#cc0033">JAVAZI_VERSION</font>*          = 1;
+                    <font color="#cc0033">JAVAZM_FILE_NAME</font>*        = "ZoneInfoMappings";
+                    <a name="type-JAVAZM_LABEL"></a><font color="#cc0033">JAVAZM_LABEL</font>*            : <b>POINTER TO </b><b>ARRAY </b><b>OF </b>BYTE;
+                    <font color="#cc0033">JAVAZM_VERSION</font>*          = 1;
+                    <font color="#cc0033">TAG_CRC32</font>*               = 3;
+                    <font color="#cc0033">TAG_ExcludedZones</font>*       = 69;
+                    <font color="#cc0033">TAG_GMTOffsetWillChange</font>* = 7;
+                    <font color="#cc0033">TAG_LastDSTSaving</font>*       = 2;
+                    <font color="#cc0033">TAG_Offset</font>*              = 5;
+                    <font color="#cc0033">TAG_RawOffset</font>*           = 1;
+                    <font color="#cc0033">TAG_RawOffsetIndices</font>*    = 66;
+                    <font color="#cc0033">TAG_RawOffsets</font>*          = 65;
+                    <font color="#cc0033">TAG_SimpleTimeZone</font>*      = 6;
+                    <font color="#cc0033">TAG_Transition</font>*          = 4;
+                    <font color="#cc0033">TAG_TZDataVersion</font>*       = 68;
+                    <font color="#cc0033">TAG_ZoneAliases</font>*         = 67;
+                    <font color="#cc0033">TAG_ZoneIDs</font>*             = 64;
+                    <b>PROCEDURE </b><font color="#cc0033">getCustomTimeZone</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                 p1 : INTEGER) : <a href="#type-ZoneInfo">ZoneInfo</a>;
+                    <b>PROCEDURE </b><font color="#cc0033">getFileName</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="java_lang.html#type-String">java_lang.String</a>;
+                    <b>PROCEDURE </b><font color="#cc0033">getZoneInfo</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-ZoneInfo">ZoneInfo</a>;
+                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-ZoneInfoFile">ZoneInfoFile</a><b>,CONSTRUCTOR</b>;
+                    <b>PROCEDURE </b><font color="#cc0033">toCustomID</font>*(p0 : INTEGER) : <a href="java_lang.html#type-String">java_lang.String</a>;
+                  <b>END</b>;
+
+
+
+<a name="meths-AbstractCalendar"></a>
+<b>PROCEDURE </b>(self:AbstractCalendar) <font color="#cc0033">getCalendarDate</font>*(p0 : LONGINT) : <a href="#type-CalendarDate">CalendarDate</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AbstractCalendar) <font color="#cc0033">getCalendarDate</font>*() : <a href="#type-CalendarDate">CalendarDate</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AbstractCalendar) <font color="#cc0033">getCalendarDate</font>*(p0 : LONGINT;
+                                                   p1 : <a href="#type-CalendarDate">CalendarDate</a>) : <a href="#type-CalendarDate">CalendarDate</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AbstractCalendar) <font color="#cc0033">getCalendarDate</font>*(p0 : LONGINT;
+                                                   p1 : <a href="java_util.html#type-TimeZone">java_util.TimeZone</a>) : <a href="#type-CalendarDate">CalendarDate</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AbstractCalendar) <font color="#cc0033">getCalendarDateFromFixedDate</font>!(p0 : <a href="#type-CalendarDate">CalendarDate</a>;
+                                                                p1 : LONGINT)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AbstractCalendar) <font color="#cc0033">getEra</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-Era">Era</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AbstractCalendar) <font color="#cc0033">getEras</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-Era">Era</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AbstractCalendar) <font color="#cc0033">getFixedDate</font>!(p0 : <a href="#type-CalendarDate">CalendarDate</a>) : LONGINT<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AbstractCalendar) <font color="#cc0033">getNthDayOfWeek</font>*(p0 : INTEGER;
+                                                   p1 : INTEGER;
+                                                   p2 : <a href="#type-CalendarDate">CalendarDate</a>) : <a href="#type-CalendarDate">CalendarDate</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AbstractCalendar) <font color="#cc0033">getTime</font>*(p0 : <a href="#type-CalendarDate">CalendarDate</a>) : LONGINT<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AbstractCalendar) <font color="#cc0033">getTimeOfDay</font>!(p0 : <a href="#type-CalendarDate">CalendarDate</a>) : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AbstractCalendar) <font color="#cc0033">getTimeOfDayValue</font>*(p0 : <a href="#type-CalendarDate">CalendarDate</a>) : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AbstractCalendar) <font color="#cc0033">getWeekLength</font>*() : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AbstractCalendar) <font color="#cc0033">isLeapYear</font>!(p0 : <a href="#type-CalendarDate">CalendarDate</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:AbstractCalendar) <font color="#cc0033">setEra</font>*(p0 : <a href="#type-CalendarDate">CalendarDate</a>;
+                                          p1 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AbstractCalendar) <font color="#cc0033">setEras</font>!(IN  p0 : <b>ARRAY </b><b>OF </b><a href="#type-Era">Era</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AbstractCalendar) <font color="#cc0033">setTimeOfDay</font>*(p0 : <a href="#type-CalendarDate">CalendarDate</a>;
+                                                p1 : INTEGER) : <a href="#type-CalendarDate">CalendarDate</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AbstractCalendar) <font color="#cc0033">validateTime</font>*(p0 : <a href="#type-CalendarDate">CalendarDate</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+<a name="meths-BaseCalendar"></a>
+<b>PROCEDURE </b>(self:BaseCalendar) <font color="#cc0033">getCalendarDateFromFixedDate</font>*(p0 : <a href="#type-CalendarDate">CalendarDate</a>;
+                                                            p1 : LONGINT)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BaseCalendar) <font color="#cc0033">getDayOfWeek</font>*(p0 : <a href="#type-CalendarDate">CalendarDate</a>) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BaseCalendar) <font color="#cc0033">getDayOfYear</font>*(p0 : <a href="#type-CalendarDate">CalendarDate</a>) : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BaseCalendar) <font color="#cc0033">getFixedDate</font>*(p0 : <a href="#type-CalendarDate">CalendarDate</a>) : LONGINT<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BaseCalendar) <font color="#cc0033">getFixedDate</font>*(p0 : INTEGER;
+                                            p1 : INTEGER;
+                                            p2 : INTEGER;
+                                            p3 : <a href="#type-BaseCalendar$Date">BaseCalendar$Date</a>) : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BaseCalendar) <font color="#cc0033">getMonthLength</font>*(p0 : <a href="#type-CalendarDate">CalendarDate</a>) : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BaseCalendar) <font color="#cc0033">getYearFromFixedDate</font>*(p0 : LONGINT) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BaseCalendar) <font color="#cc0033">getYearLength</font>*(p0 : <a href="#type-CalendarDate">CalendarDate</a>) : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BaseCalendar) <font color="#cc0033">getYearLengthInMonths</font>*(p0 : <a href="#type-CalendarDate">CalendarDate</a>) : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BaseCalendar) <font color="#cc0033">isLeapYear</font>!(p0 : <a href="#type-CalendarDate">CalendarDate</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BaseCalendar) <font color="#cc0033">normalize</font>*(p0 : <a href="#type-CalendarDate">CalendarDate</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BaseCalendar) <font color="#cc0033">validate</font>*(p0 : <a href="#type-CalendarDate">CalendarDate</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+<a name="meths-BaseCalendar$Date"></a>
+<b>PROCEDURE </b>(self:BaseCalendar$Date) <font color="#cc0033">getCachedJan1</font>!() : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BaseCalendar$Date) <font color="#cc0033">getCachedYear</font>!() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BaseCalendar$Date) <font color="#cc0033">getNormalizedYear</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:BaseCalendar$Date) <font color="#cc0033">hit</font>!(p0 : LONGINT) : BOOLEAN<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:BaseCalendar$Date) <font color="#cc0033">hit</font>!(p0 : INTEGER) : BOOLEAN<b>,NEW</b>;
+
+<b>PROCEDURE </b>(self:BaseCalendar$Date) <font color="#cc0033">setCache</font>!(p0 : INTEGER;
+                                             p1 : LONGINT;
+                                             p2 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BaseCalendar$Date) <font color="#cc0033">setNormalizedDate</font>*(p0 : INTEGER;
+                                                      p1 : INTEGER;
+                                                      p2 : INTEGER) : <a href="#type-BaseCalendar$Date">BaseCalendar$Date</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:BaseCalendar$Date) <font color="#cc0033">setNormalizedYear</font>*(p0 : INTEGER)<b>,NEW,ABSTRACT</b>;
+<a name="meths-CalendarDate"></a>
+<b>PROCEDURE </b>(self:CalendarDate) <font color="#cc0033">addDate</font>*(p0 : INTEGER;
+                                       p1 : INTEGER;
+                                       p2 : INTEGER) : <a href="#type-CalendarDate">CalendarDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CalendarDate) <font color="#cc0033">addDayOfMonth</font>*(p0 : INTEGER) : <a href="#type-CalendarDate">CalendarDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CalendarDate) <font color="#cc0033">addHours</font>*(p0 : INTEGER) : <a href="#type-CalendarDate">CalendarDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CalendarDate) <font color="#cc0033">addMillis</font>*(p0 : INTEGER) : <a href="#type-CalendarDate">CalendarDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CalendarDate) <font color="#cc0033">addMinutes</font>*(p0 : INTEGER) : <a href="#type-CalendarDate">CalendarDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CalendarDate) <font color="#cc0033">addMonth</font>*(p0 : INTEGER) : <a href="#type-CalendarDate">CalendarDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CalendarDate) <font color="#cc0033">addSeconds</font>*(p0 : INTEGER) : <a href="#type-CalendarDate">CalendarDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CalendarDate) <font color="#cc0033">addTimeOfDay</font>*(p0 : INTEGER;
+                                            p1 : INTEGER;
+                                            p2 : INTEGER;
+                                            p3 : INTEGER) : <a href="#type-CalendarDate">CalendarDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CalendarDate) <font color="#cc0033">addYear</font>*(p0 : INTEGER) : <a href="#type-CalendarDate">CalendarDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CalendarDate) <font color="#cc0033">clone</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CalendarDate) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CalendarDate) <font color="#cc0033">getDaylightSaving</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CalendarDate) <font color="#cc0033">getDayOfMonth</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CalendarDate) <font color="#cc0033">getDayOfWeek</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CalendarDate) <font color="#cc0033">getEra</font>*() : <a href="#type-Era">Era</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CalendarDate) <font color="#cc0033">getHours</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CalendarDate) <font color="#cc0033">getMillis</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CalendarDate) <font color="#cc0033">getMinutes</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CalendarDate) <font color="#cc0033">getMonth</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CalendarDate) <font color="#cc0033">getSeconds</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CalendarDate) <font color="#cc0033">getTimeOfDay</font>*() : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CalendarDate) <font color="#cc0033">getYear</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CalendarDate) <font color="#cc0033">getZone</font>*() : <a href="java_util.html#type-TimeZone">java_util.TimeZone</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CalendarDate) <font color="#cc0033">getZoneOffset</font>*() : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CalendarDate) <font color="#cc0033">hashCode</font>*() : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CalendarDate) <font color="#cc0033">isDaylightTime</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CalendarDate) <font color="#cc0033">isLeapYear</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CalendarDate) <font color="#cc0033">isNormalized</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CalendarDate) <font color="#cc0033">isSameDate</font>*(p0 : <a href="#type-CalendarDate">CalendarDate</a>) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CalendarDate) <font color="#cc0033">isStandardTime</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CalendarDate) <font color="#cc0033">setDate</font>*(p0 : INTEGER;
+                                       p1 : INTEGER;
+                                       p2 : INTEGER) : <a href="#type-CalendarDate">CalendarDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CalendarDate) <font color="#cc0033">setDaylightSaving</font>!(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CalendarDate) <font color="#cc0033">setDayOfMonth</font>*(p0 : INTEGER) : <a href="#type-CalendarDate">CalendarDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CalendarDate) <font color="#cc0033">setDayOfWeek</font>!(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CalendarDate) <font color="#cc0033">setEra</font>*(p0 : <a href="#type-Era">Era</a>) : <a href="#type-CalendarDate">CalendarDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CalendarDate) <font color="#cc0033">setHours</font>*(p0 : INTEGER) : <a href="#type-CalendarDate">CalendarDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CalendarDate) <font color="#cc0033">setLocale</font>!(p0 : <a href="java_util.html#type-Locale">java_util.Locale</a>)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CalendarDate) <font color="#cc0033">setMillis</font>*(p0 : INTEGER) : <a href="#type-CalendarDate">CalendarDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CalendarDate) <font color="#cc0033">setMinutes</font>*(p0 : INTEGER) : <a href="#type-CalendarDate">CalendarDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CalendarDate) <font color="#cc0033">setMonth</font>*(p0 : INTEGER) : <a href="#type-CalendarDate">CalendarDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CalendarDate) <font color="#cc0033">setNormalized</font>!(p0 : BOOLEAN)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CalendarDate) <font color="#cc0033">setSeconds</font>*(p0 : INTEGER) : <a href="#type-CalendarDate">CalendarDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CalendarDate) <font color="#cc0033">setStandardTime</font>*(p0 : BOOLEAN)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CalendarDate) <font color="#cc0033">setTimeOfDay</font>*(p0 : INTEGER;
+                                            p1 : INTEGER;
+                                            p2 : INTEGER;
+                                            p3 : INTEGER) : <a href="#type-CalendarDate">CalendarDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CalendarDate) <font color="#cc0033">setTimeOfDay</font>!(p0 : LONGINT)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CalendarDate) <font color="#cc0033">setYear</font>*(p0 : INTEGER) : <a href="#type-CalendarDate">CalendarDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CalendarDate) <font color="#cc0033">setZone</font>*(p0 : <a href="java_util.html#type-TimeZone">java_util.TimeZone</a>) : <a href="#type-CalendarDate">CalendarDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CalendarDate) <font color="#cc0033">setZoneOffset</font>!(p0 : INTEGER)<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:CalendarDate) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,EXTENSIBLE</b>;
+<a name="meths-CalendarSystem"></a>
+<b>PROCEDURE </b>(self:CalendarSystem) <font color="#cc0033">getCalendarDate</font>*(p0 : LONGINT;
+                                                 p1 : <a href="#type-CalendarDate">CalendarDate</a>) : <a href="#type-CalendarDate">CalendarDate</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CalendarSystem) <font color="#cc0033">getCalendarDate</font>*(p0 : LONGINT;
+                                                 p1 : <a href="java_util.html#type-TimeZone">java_util.TimeZone</a>) : <a href="#type-CalendarDate">CalendarDate</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CalendarSystem) <font color="#cc0033">getCalendarDate</font>*(p0 : LONGINT) : <a href="#type-CalendarDate">CalendarDate</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CalendarSystem) <font color="#cc0033">getCalendarDate</font>*() : <a href="#type-CalendarDate">CalendarDate</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CalendarSystem) <font color="#cc0033">getEra</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-Era">Era</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CalendarSystem) <font color="#cc0033">getEras</font>*() : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="#type-Era">Era</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CalendarSystem) <font color="#cc0033">getMonthLength</font>*(p0 : <a href="#type-CalendarDate">CalendarDate</a>) : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CalendarSystem) <font color="#cc0033">getName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CalendarSystem) <font color="#cc0033">getNthDayOfWeek</font>*(p0 : INTEGER;
+                                                 p1 : INTEGER;
+                                                 p2 : <a href="#type-CalendarDate">CalendarDate</a>) : <a href="#type-CalendarDate">CalendarDate</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CalendarSystem) <font color="#cc0033">getTime</font>*(p0 : <a href="#type-CalendarDate">CalendarDate</a>) : LONGINT<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CalendarSystem) <font color="#cc0033">getWeekLength</font>*() : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CalendarSystem) <font color="#cc0033">getYearLength</font>*(p0 : <a href="#type-CalendarDate">CalendarDate</a>) : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CalendarSystem) <font color="#cc0033">getYearLengthInMonths</font>*(p0 : <a href="#type-CalendarDate">CalendarDate</a>) : INTEGER<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CalendarSystem) <font color="#cc0033">newCalendarDate</font>*() : <a href="#type-CalendarDate">CalendarDate</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CalendarSystem) <font color="#cc0033">newCalendarDate</font>*(p0 : <a href="java_util.html#type-TimeZone">java_util.TimeZone</a>) : <a href="#type-CalendarDate">CalendarDate</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CalendarSystem) <font color="#cc0033">normalize</font>*(p0 : <a href="#type-CalendarDate">CalendarDate</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CalendarSystem) <font color="#cc0033">setEra</font>*(p0 : <a href="#type-CalendarDate">CalendarDate</a>;
+                                        p1 : <a href="java_lang.html#type-String">java_lang.String</a>)<b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CalendarSystem) <font color="#cc0033">setTimeOfDay</font>*(p0 : <a href="#type-CalendarDate">CalendarDate</a>;
+                                              p1 : INTEGER) : <a href="#type-CalendarDate">CalendarDate</a><b>,NEW,ABSTRACT</b>;
+
+<b>PROCEDURE </b>(self:CalendarSystem) <font color="#cc0033">validate</font>*(p0 : <a href="#type-CalendarDate">CalendarDate</a>) : BOOLEAN<b>,NEW,ABSTRACT</b>;
+<a name="meths-Era"></a>
+<b>PROCEDURE </b>(self:Era) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Era) <font color="#cc0033">getAbbreviation</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Era) <font color="#cc0033">getDiaplayAbbreviation</font>*(p0 : <a href="java_util.html#type-Locale">java_util.Locale</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Era) <font color="#cc0033">getDisplayName</font>*(p0 : <a href="java_util.html#type-Locale">java_util.Locale</a>) : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Era) <font color="#cc0033">getName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Era) <font color="#cc0033">getSince</font>*(p0 : <a href="java_util.html#type-TimeZone">java_util.TimeZone</a>) : LONGINT<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Era) <font color="#cc0033">getSinceDate</font>*() : <a href="#type-CalendarDate">CalendarDate</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Era) <font color="#cc0033">hashCode</font>*() : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Era) <font color="#cc0033">isLocalTime</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Era) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,EXTENSIBLE</b>;
+<a name="meths-Gregorian"></a>
+<b>PROCEDURE </b>(self:Gregorian) <font color="#cc0033">getCalendarDate</font>*(p0 : LONGINT) : <a href="#type-CalendarDate">CalendarDate</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Gregorian) <font color="#cc0033">getCalendarDate</font>*() : <a href="#type-CalendarDate">CalendarDate</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Gregorian) <font color="#cc0033">getCalendarDate</font>*(p0 : LONGINT;
+                                            p1 : <a href="java_util.html#type-TimeZone">java_util.TimeZone</a>) : <a href="#type-CalendarDate">CalendarDate</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Gregorian) <font color="#cc0033">getCalendarDate</font>*(p0 : LONGINT;
+                                            p1 : <a href="#type-CalendarDate">CalendarDate</a>) : <a href="#type-CalendarDate">CalendarDate</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Gregorian) <font color="#cc0033">getCalendarDate</font>*(p0 : LONGINT;
+                                            p1 : <a href="java_util.html#type-TimeZone">java_util.TimeZone</a>) : <b>Gregorian$Date</b><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Gregorian) <font color="#cc0033">getCalendarDate</font>*() : <b>Gregorian$Date</b><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Gregorian) <font color="#cc0033">getCalendarDate</font>*(p0 : LONGINT) : <b>Gregorian$Date</b><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Gregorian) <font color="#cc0033">getCalendarDate</font>*(p0 : LONGINT;
+                                            p1 : <a href="#type-CalendarDate">CalendarDate</a>) : <b>Gregorian$Date</b><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Gregorian) <font color="#cc0033">getName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Gregorian) <font color="#cc0033">newCalendarDate</font>*() : <a href="#type-CalendarDate">CalendarDate</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Gregorian) <font color="#cc0033">newCalendarDate</font>*(p0 : <a href="java_util.html#type-TimeZone">java_util.TimeZone</a>) : <a href="#type-CalendarDate">CalendarDate</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Gregorian) <font color="#cc0033">newCalendarDate</font>*() : <b>Gregorian$Date</b><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:Gregorian) <font color="#cc0033">newCalendarDate</font>*(p0 : <a href="java_util.html#type-TimeZone">java_util.TimeZone</a>) : <b>Gregorian$Date</b><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-JulianCalendar"></a>
+<b>PROCEDURE </b>(self:JulianCalendar) <font color="#cc0033">getCalendarDate</font>*(p0 : LONGINT) : <a href="#type-CalendarDate">CalendarDate</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:JulianCalendar) <font color="#cc0033">getCalendarDate</font>*(p0 : LONGINT;
+                                                 p1 : <a href="java_util.html#type-TimeZone">java_util.TimeZone</a>) : <b>JulianCalendar$Date</b><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:JulianCalendar) <font color="#cc0033">getCalendarDate</font>*(p0 : LONGINT;
+                                                 p1 : <a href="#type-CalendarDate">CalendarDate</a>) : <a href="#type-CalendarDate">CalendarDate</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:JulianCalendar) <font color="#cc0033">getCalendarDate</font>*(p0 : LONGINT;
+                                                 p1 : <a href="java_util.html#type-TimeZone">java_util.TimeZone</a>) : <a href="#type-CalendarDate">CalendarDate</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:JulianCalendar) <font color="#cc0033">getCalendarDate</font>*() : <b>JulianCalendar$Date</b><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:JulianCalendar) <font color="#cc0033">getCalendarDate</font>*() : <a href="#type-CalendarDate">CalendarDate</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:JulianCalendar) <font color="#cc0033">getCalendarDate</font>*(p0 : LONGINT;
+                                                 p1 : <a href="#type-CalendarDate">CalendarDate</a>) : <b>JulianCalendar$Date</b><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:JulianCalendar) <font color="#cc0033">getCalendarDate</font>*(p0 : LONGINT) : <b>JulianCalendar$Date</b><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:JulianCalendar) <font color="#cc0033">getCalendarDateFromFixedDate</font>*(p0 : <a href="#type-CalendarDate">CalendarDate</a>;
+                                                              p1 : LONGINT)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:JulianCalendar) <font color="#cc0033">getDayOfWeek</font>*(p0 : <a href="#type-CalendarDate">CalendarDate</a>) : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:JulianCalendar) <font color="#cc0033">getFixedDate</font>*(p0 : INTEGER;
+                                              p1 : INTEGER;
+                                              p2 : INTEGER;
+                                              p3 : <a href="#type-BaseCalendar$Date">BaseCalendar$Date</a>) : LONGINT<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:JulianCalendar) <font color="#cc0033">getName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:JulianCalendar) <font color="#cc0033">getYearFromFixedDate</font>*(p0 : LONGINT) : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:JulianCalendar) <font color="#cc0033">newCalendarDate</font>*(p0 : <a href="java_util.html#type-TimeZone">java_util.TimeZone</a>) : <a href="#type-CalendarDate">CalendarDate</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:JulianCalendar) <font color="#cc0033">newCalendarDate</font>*() : <a href="#type-CalendarDate">CalendarDate</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:JulianCalendar) <font color="#cc0033">newCalendarDate</font>*(p0 : <a href="java_util.html#type-TimeZone">java_util.TimeZone</a>) : <b>JulianCalendar$Date</b><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:JulianCalendar) <font color="#cc0033">newCalendarDate</font>*() : <b>JulianCalendar$Date</b><b>,NEW,EXTENSIBLE</b>;
+<a name="meths-LocalGregorianCalendar"></a>
+<b>PROCEDURE </b>(self:LocalGregorianCalendar) <font color="#cc0033">getCalendarDate</font>*(p0 : LONGINT) : <a href="#type-CalendarDate">CalendarDate</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LocalGregorianCalendar) <font color="#cc0033">getCalendarDate</font>*() : <a href="#type-CalendarDate">CalendarDate</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LocalGregorianCalendar) <font color="#cc0033">getCalendarDate</font>*(p0 : LONGINT;
+                                                         p1 : <a href="#type-CalendarDate">CalendarDate</a>) : <a href="#type-CalendarDate">CalendarDate</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LocalGregorianCalendar) <font color="#cc0033">getCalendarDate</font>*(p0 : LONGINT;
+                                                         p1 : <a href="java_util.html#type-TimeZone">java_util.TimeZone</a>) : <a href="#type-CalendarDate">CalendarDate</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LocalGregorianCalendar) <font color="#cc0033">getCalendarDate</font>*(p0 : LONGINT;
+                                                         p1 : <a href="#type-CalendarDate">CalendarDate</a>) : <a href="#type-LocalGregorianCalendar$Date">LocalGregorianCalendar$Date</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LocalGregorianCalendar) <font color="#cc0033">getCalendarDate</font>*() : <a href="#type-LocalGregorianCalendar$Date">LocalGregorianCalendar$Date</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LocalGregorianCalendar) <font color="#cc0033">getCalendarDate</font>*(p0 : LONGINT) : <a href="#type-LocalGregorianCalendar$Date">LocalGregorianCalendar$Date</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LocalGregorianCalendar) <font color="#cc0033">getCalendarDate</font>*(p0 : LONGINT;
+                                                         p1 : <a href="java_util.html#type-TimeZone">java_util.TimeZone</a>) : <a href="#type-LocalGregorianCalendar$Date">LocalGregorianCalendar$Date</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LocalGregorianCalendar) <font color="#cc0033">getCalendarDateFromFixedDate</font>*(p0 : <a href="#type-CalendarDate">CalendarDate</a>;
+                                                                      p1 : LONGINT)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LocalGregorianCalendar) <font color="#cc0033">getName</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LocalGregorianCalendar) <font color="#cc0033">isLeapYear</font>*(p0 : <a href="#type-Era">Era</a>;
+                                                    p1 : INTEGER) : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LocalGregorianCalendar) <font color="#cc0033">isLeapYear</font>*(p0 : INTEGER) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LocalGregorianCalendar) <font color="#cc0033">newCalendarDate</font>*(p0 : <a href="java_util.html#type-TimeZone">java_util.TimeZone</a>) : <a href="#type-LocalGregorianCalendar$Date">LocalGregorianCalendar$Date</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LocalGregorianCalendar) <font color="#cc0033">newCalendarDate</font>*() : <a href="#type-LocalGregorianCalendar$Date">LocalGregorianCalendar$Date</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LocalGregorianCalendar) <font color="#cc0033">newCalendarDate</font>*(p0 : <a href="java_util.html#type-TimeZone">java_util.TimeZone</a>) : <a href="#type-CalendarDate">CalendarDate</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LocalGregorianCalendar) <font color="#cc0033">newCalendarDate</font>*() : <a href="#type-CalendarDate">CalendarDate</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LocalGregorianCalendar) <font color="#cc0033">normalize</font>*(p0 : <a href="#type-CalendarDate">CalendarDate</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LocalGregorianCalendar) <font color="#cc0033">validate</font>*(p0 : <a href="#type-CalendarDate">CalendarDate</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+<a name="meths-LocalGregorianCalendar$Date"></a>
+<b>PROCEDURE </b>(self:LocalGregorianCalendar$Date) <font color="#cc0033">addYear</font>*(p0 : INTEGER) : <a href="#type-LocalGregorianCalendar$Date">LocalGregorianCalendar$Date</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LocalGregorianCalendar$Date) <font color="#cc0033">addYear</font>*(p0 : INTEGER) : <a href="#type-CalendarDate">CalendarDate</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LocalGregorianCalendar$Date) <font color="#cc0033">getNormalizedYear</font>*() : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LocalGregorianCalendar$Date) <font color="#cc0033">setEra</font>*(p0 : <a href="#type-Era">Era</a>) : <a href="#type-LocalGregorianCalendar$Date">LocalGregorianCalendar$Date</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LocalGregorianCalendar$Date) <font color="#cc0033">setEra</font>*(p0 : <a href="#type-Era">Era</a>) : <a href="#type-CalendarDate">CalendarDate</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LocalGregorianCalendar$Date) <font color="#cc0033">setNormalizedYear</font>*(p0 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LocalGregorianCalendar$Date) <font color="#cc0033">setYear</font>*(p0 : INTEGER) : <a href="#type-LocalGregorianCalendar$Date">LocalGregorianCalendar$Date</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LocalGregorianCalendar$Date) <font color="#cc0033">setYear</font>*(p0 : INTEGER) : <a href="#type-CalendarDate">CalendarDate</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:LocalGregorianCalendar$Date) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,EXTENSIBLE</b>;
+<a name="meths-ZoneInfo"></a>
+<b>PROCEDURE </b>(self:ZoneInfo) <font color="#cc0033">clone</font>*() : <a href="java_lang.html#type-Object">java_lang.Object</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ZoneInfo) <font color="#cc0033">equals</font>*(p0 : <a href="java_lang.html#type-Object">java_lang.Object</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ZoneInfo) <font color="#cc0033">getDSTSavings</font>*() : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ZoneInfo) <font color="#cc0033">getLastRuleInstance</font>*() : <a href="java_util.html#type-SimpleTimeZone">java_util.SimpleTimeZone</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ZoneInfo) <font color="#cc0033">getOffset</font>*(p0 : INTEGER;
+                                     p1 : INTEGER;
+                                     p2 : INTEGER;
+                                     p3 : INTEGER;
+                                     p4 : INTEGER;
+                                     p5 : INTEGER) : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ZoneInfo) <font color="#cc0033">getOffset</font>*(p0 : LONGINT) : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ZoneInfo) <font color="#cc0033">getOffsets</font>*(    p0 : LONGINT;
+                                      IN  p1 : <b>ARRAY </b><b>OF </b>INTEGER) : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ZoneInfo) <font color="#cc0033">getOffsetsByStandard</font>*(    p0 : LONGINT;
+                                                IN  p1 : <b>ARRAY </b><b>OF </b>INTEGER) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ZoneInfo) <font color="#cc0033">getOffsetsByWall</font>*(    p0 : LONGINT;
+                                            IN  p1 : <b>ARRAY </b><b>OF </b>INTEGER) : INTEGER<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ZoneInfo) <font color="#cc0033">getRawOffset</font>*() : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ZoneInfo) <font color="#cc0033">hashCode</font>*() : INTEGER<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ZoneInfo) <font color="#cc0033">hasSameRules</font>*(p0 : <a href="java_util.html#type-TimeZone">java_util.TimeZone</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ZoneInfo) <font color="#cc0033">inDaylightTime</font>*(p0 : <a href="java_util.html#type-Date">java_util.Date</a>) : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ZoneInfo) <font color="#cc0033">isDirty</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ZoneInfo) <font color="#cc0033">setRawOffset</font>*(p0 : INTEGER)<b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ZoneInfo) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:ZoneInfo) <font color="#cc0033">useDaylightTime</font>*() : BOOLEAN<b>,EXTENSIBLE</b>;
+
+<b>END </b><font color="#cc0033">sun_util_calendar</font>.
+</font></pre></hr></body></html>

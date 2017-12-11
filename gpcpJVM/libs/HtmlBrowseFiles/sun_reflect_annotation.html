@@ -1,0 +1,81 @@
+<html><head><title>sun_reflect_annotation</title></head>
+<body bgcolor="white">
+<hr><pre>
+<b>FOREIGN MODULE </b><font color="#cc0033">sun_reflect_annotation</font>;
+
+<b>IMPORT</b>
+    <a href="java_security.html">java_security</a> := "java.security",
+    <a href="java_lang.html">java_lang</a> := "java.lang",
+    <a href="java_lang_reflect.html">java_lang_reflect</a> := "java.lang.reflect",
+    <a href="java_io.html">java_io</a> := "java.io",
+    <a href="java_util.html">java_util</a> := "java.util",
+    <a href="sun_reflect.html">sun_reflect</a> := "sun.reflect",
+    <a href="java_lang_annotation.html">java_lang_annotation</a> := "java.lang.annotation",
+    <a href="java_nio.html">java_nio</a> := "java.nio";
+
+<b>TYPE</b>
+
+  <a name="type-AnnotationParser"></a><font color="#cc0033">AnnotationParser</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)
+                      <b>STATIC</b>
+                        <b>PROCEDURE </b><font color="#cc0033">annotationForMap</font>*(p0 : <a href="java_lang.html#type-Class">java_lang.Class</a>;
+                                                    p1 : <a href="java_util.html#type-Map">java_util.Map</a>) : <a href="java_lang_annotation.html#type-Annotation">java_lang_annotation.Annotation</a>;
+                        <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-AnnotationParser">AnnotationParser</a><b>,CONSTRUCTOR</b>;
+                        <b>PROCEDURE </b><font color="#cc0033">parseAnnotations</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE;
+                                                        p1 : <a href="sun_reflect.html#type-ConstantPool">sun_reflect.ConstantPool</a>;
+                                                        p2 : <a href="java_lang.html#type-Class">java_lang.Class</a>) : <a href="java_util.html#type-Map">java_util.Map</a>;
+                        <b>PROCEDURE </b><font color="#cc0033">parseMemberValue</font>*(p0 : <a href="java_lang.html#type-Class">java_lang.Class</a>;
+                                                    p1 : <a href="java_nio.html#type-ByteBuffer">java_nio.ByteBuffer</a>;
+                                                    p2 : <a href="sun_reflect.html#type-ConstantPool">sun_reflect.ConstantPool</a>;
+                                                    p3 : <a href="java_lang.html#type-Class">java_lang.Class</a>) : <a href="java_lang.html#type-Object">java_lang.Object</a>;
+                        <b>PROCEDURE </b><font color="#cc0033">parseParameterAnnotations</font>*(IN  p0 : <b>ARRAY </b><b>OF </b>BYTE;
+                                                                 p1 : <a href="sun_reflect.html#type-ConstantPool">sun_reflect.ConstantPool</a>;
+                                                                 p2 : <a href="java_lang.html#type-Class">java_lang.Class</a>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang_annotation.html#type-Annotation">java_lang_annotation.Annotation</a>;
+                        <b>PROCEDURE </b><font color="#cc0033">toArray</font>*(p0 : <a href="java_util.html#type-Map">java_util.Map</a>) : <b>POINTER TO </b><b>ARRAY </b><b>OF </b><a href="java_lang_annotation.html#type-Annotation">java_lang_annotation.Annotation</a>;
+                      <b>END</b>;
+
+  <a name="type-AnnotationType"></a><font color="#cc0033">AnnotationType</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a>)    <a href="#meths-AnnotationType"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                    <b>STATIC</b>
+                      <b>PROCEDURE </b><font color="#cc0033">getInstance</font>*(p0 : <a href="java_lang.html#type-Class">java_lang.Class</a>) : <a href="#type-AnnotationType">AnnotationType</a>;
+                      <b>PROCEDURE </b><font color="#cc0033">invocationHandlerReturnType</font>*(p0 : <a href="java_lang.html#type-Class">java_lang.Class</a>) : <a href="java_lang.html#type-Class">java_lang.Class</a>;
+                    <b>END</b>;
+
+  <a name="type-EnumConstantNotPresentExceptionProxy"></a><font color="#cc0033">EnumConstantNotPresentExceptionProxy</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-ExceptionProxy">ExceptionProxy</a>)    <a href="#meths-EnumConstantNotPresentExceptionProxy"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                                          <b>STATIC</b>
+                                            <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-Class">java_lang.Class</a>;
+                                                            p1 : <a href="java_lang.html#type-String">java_lang.String</a>) : <a href="#type-EnumConstantNotPresentExceptionProxy">EnumConstantNotPresentExceptionProxy</a><b>,CONSTRUCTOR</b>;
+                                          <b>END</b>;
+
+  <a name="type-ExceptionProxy"></a><font color="#cc0033">ExceptionProxy</font>* = <b>POINTER TO </b><b>ABSTRACT RECORD</b> (<a href="java_lang.html#type-Object">java_lang.Object</a> + <a href="java_io.html#type-Serializable">java_io.Serializable</a>)    <a href="#meths-ExceptionProxy"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                    <b>STATIC</b>
+                      <b>PROCEDURE </b><font color="#cc0033">Init</font>*() : <a href="#type-ExceptionProxy">ExceptionProxy</a><b>,CONSTRUCTOR</b>;
+                    <b>END</b>;
+
+  <a name="type-TypeNotPresentExceptionProxy"></a><font color="#cc0033">TypeNotPresentExceptionProxy</font>* = <b>POINTER TO </b><b>EXTENSIBLE RECORD</b> (<a href="#type-ExceptionProxy">ExceptionProxy</a>)    <a href="#meths-TypeNotPresentExceptionProxy"><font color="#cc0033">(* Typebound Procedures *)</font></a>
+                                  <b>STATIC</b>
+                                    <b>PROCEDURE </b><font color="#cc0033">Init</font>*(p0 : <a href="java_lang.html#type-String">java_lang.String</a>;
+                                                    p1 : <a href="java_lang.html#type-Throwable">java_lang.Throwable</a>) : <a href="#type-TypeNotPresentExceptionProxy">TypeNotPresentExceptionProxy</a><b>,CONSTRUCTOR</b>;
+                                  <b>END</b>;
+
+
+
+<a name="meths-AnnotationType"></a>
+<b>PROCEDURE </b>(self:AnnotationType) <font color="#cc0033">isInherited</font>*() : BOOLEAN<b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AnnotationType) <font color="#cc0033">memberDefaults</font>*() : <a href="java_util.html#type-Map">java_util.Map</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AnnotationType) <font color="#cc0033">members</font>*() : <a href="java_util.html#type-Map">java_util.Map</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AnnotationType) <font color="#cc0033">memberTypes</font>*() : <a href="java_util.html#type-Map">java_util.Map</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AnnotationType) <font color="#cc0033">retention</font>*() : <a href="java_lang_annotation.html#type-RetentionPolicy">java_lang_annotation.RetentionPolicy</a><b>,NEW,EXTENSIBLE</b>;
+
+<b>PROCEDURE </b>(self:AnnotationType) <font color="#cc0033">toString</font>*() : <a href="java_lang.html#type-String">java_lang.String</a><b>,EXTENSIBLE</b>;
+<a name="meths-EnumConstantNotPresentExceptionProxy"></a>
+<b>PROCEDURE </b>(self:EnumConstantNotPresentExceptionProxy) <font color="#cc0033">generateException</font>!() : <a href="java_lang.html#type-RuntimeException">java_lang.RuntimeException</a><b>,EXTENSIBLE</b>;
+<a name="meths-ExceptionProxy"></a>
+<b>PROCEDURE </b>(self:ExceptionProxy) <font color="#cc0033">generateException</font>!() : <a href="java_lang.html#type-RuntimeException">java_lang.RuntimeException</a><b>,NEW,ABSTRACT</b>;
+<a name="meths-TypeNotPresentExceptionProxy"></a>
+<b>PROCEDURE </b>(self:TypeNotPresentExceptionProxy) <font color="#cc0033">generateException</font>!() : <a href="java_lang.html#type-RuntimeException">java_lang.RuntimeException</a><b>,EXTENSIBLE</b>;
+
+<b>END </b><font color="#cc0033">sun_reflect_annotation</font>.
+</font></pre></hr></body></html>
