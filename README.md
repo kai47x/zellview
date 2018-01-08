@@ -1,4 +1,5 @@
 "18. Dez 2017, from Helmut B1712, new year " 
 "# from Helmut" 
-"18. Dez 2017, from Helmut B1712, new year " 
-"18. Dez 2017, from Helmut B1712, new year " 
+
+"git clone <url> --branch <branch> --single-branch <folder> " 
+"git clone <url> --branch <branch> --single-branch <folder> " 
